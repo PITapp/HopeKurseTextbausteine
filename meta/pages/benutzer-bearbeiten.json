@@ -1,0 +1,523 @@
+{
+  "access": [
+    "Authenticated"
+  ],
+  "components": [
+    {
+      "components": [
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Email",
+                              "name": "EmailLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "E-Mail",
+                              "type": "label"
+                            }
+                          ],
+                          "style": {
+                            "textAlign": "right"
+                          },
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "Email",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${rstUser.Email}"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Benutzername",
+                              "name": "label1",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Benutzername",
+                              "type": "label"
+                            }
+                          ],
+                          "name": "col2",
+                          "style": {
+                            "textAlign": "right"
+                          },
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "Benutzername",
+                              "placeholder": "",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${rstBenutzer.Benutzername}"
+                            }
+                          ],
+                          "name": "col3",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row1",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Notiz",
+                              "name": "label0",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Notiz",
+                              "type": "label"
+                            }
+                          ],
+                          "name": "col0",
+                          "style": {
+                            "textAlign": "right"
+                          },
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "Notiz",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${rstBenutzer.Notiz}"
+                            }
+                          ],
+                          "name": "col1",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row0",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "textboxKennwort",
+                              "name": "label2",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Kennwort",
+                              "type": "label"
+                            }
+                          ],
+                          "name": "col4",
+                          "style": {
+                            "textAlign": "right"
+                          },
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "textboxKennwort",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${rstBenutzer.Kennwort}"
+                            }
+                          ],
+                          "name": "col5",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row2",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "RoleNames",
+                              "name": "RoleNamesLabel",
+                              "style": {
+                                "textAlign": "right",
+                                "width": "100%"
+                              },
+                              "text": "Rolen",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "data": "${rstRoles}",
+                              "emptyFilterText": "No results found",
+                              "multiple": true,
+                              "multipleItemsSelectedText": "{0} items selected",
+                              "name": "RoleNames",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "textProperty": "Name",
+                              "type": "dropdown",
+                              "value": "${rstUser.RoleNames}",
+                              "valueProperty": "Name"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Password",
+                              "name": "PasswordLabel",
+                              "style": {
+                                "textAlign": "right",
+                                "width": "100%"
+                              },
+                              "text": "Passwort",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "events": {
+                                "change": [
+                                  {
+                                    "code": "this.rstBenutzer.Kennwort = ${event}",
+                                    "type": "execute"
+                                  }
+                                ]
+                              },
+                              "name": "Password",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "password",
+                              "value": "${rstUser.Password}"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "ConfirmPassword",
+                              "name": "ConfirmPasswordLabel",
+                              "style": {
+                                "textAlign": "right",
+                                "width": "100%"
+                              },
+                              "text": "Wiederholen",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "ConfirmPassword",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "password",
+                              "value": "${rstUser.ConfirmPassword}"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col offset-sm-3",
+                          "components": [
+                            {
+                              "buttonStyle": "primary",
+                              "buttonType": "submit",
+                              "icon": "save",
+                              "text": "Speichern",
+                              "type": "button"
+                            },
+                            {
+                              "buttonStyle": "light",
+                              "events": {
+                                "click": [
+                                  {
+                                    "type": "back"
+                                  }
+                                ]
+                              },
+                              "style": {
+                                "marginLeft": "1rem"
+                              },
+                              "text": "Abbruch",
+                              "type": "button"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "textAlign": "right"
+                      },
+                      "type": "row"
+                    }
+                  ],
+                  "events": {
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "${result.error.message}",
+                            "severity": "error",
+                            "summary": "Benutzer (Net) konnte nicht aktualisiert werden!",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "Security.updateUser",
+                        "parameters": [
+                          {
+                            "name": "Id",
+                            "value": "${rstUser.Id}"
+                          },
+                          {
+                            "name": "User",
+                            "value": "${rstUser}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "error": [
+                              {
+                                "detail": "${result.error.message}",
+                                "severity": "error",
+                                "summary": "Benutzer konnte nicht aktualisiert werden!",
+                                "type": "notify"
+                              }
+                            ],
+                            "name": "dbHopeKurseTextbausteine.updateBenutzer",
+                            "parameters": [
+                              {
+                                "name": "BenutzerID",
+                                "value": "${rstBenutzer.BenutzerID}"
+                              },
+                              {
+                                "name": "Benutzer",
+                                "value": "${rstBenutzer}"
+                              }
+                            ],
+                            "then": [
+                              {
+                                "severity": "success",
+                                "summary": "Benutzer erfolgreich aktualisiert!",
+                                "type": "notify"
+                              },
+                              {
+                                "type": "back"
+                              }
+                            ],
+                            "type": "invoke"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  },
+                  "name": "form0",
+                  "type": "template-form"
+                }
+              ],
+              "type": "col"
+            }
+          ],
+          "type": "row"
+        },
+        {
+          "allowCollapse": false,
+          "attributes": [
+            {}
+          ],
+          "collapsed": false,
+          "components": [
+            {
+              "components": [
+                {
+                  "class": "col-md-6",
+                  "components": [
+                    {
+                      "name": "textarea0",
+                      "placeholder": "Die Adventgemeinde Voitsberg von ihrer Entstehung bis heute\n\nEventuell kurzen Abschnitt über die allgemeine Adventbewegung Ende des 18., Anfang des 19. Jahrhunderts mit Gründung der STA 1863 von enttäuschten Männern und Frauen der Millerbewegung voranstellen. Bald erfolgt eine weltweite Mission der Evangeliums Botschaft, sowie Bemühungen um eine gesunde Lebensweise und Verkündigung der beginnenden Endzeit und der baldigen Wiederkunft Christi.\n\nMan schreibt das Jahr 1909, ein junger Mann aus Köflach nimmt die Adventbotschaft an und schließt sich durch die biblische Erwachsenen Taufe, der Kirche der Siebenten Tags Adventisten an. Sein Name ist Vinzenz Suchanek. Er geht bald danach nach Deutschland und lässt sich am theologischen Seminar in Friedensau zum Verkünder der Botschaft von der Erlösung durch Jesus Christus und seiner in der ganzen Bibel verheißenen Wiederkunft ausbilden. Als junger Prediger arbeitet er einige Jahre im Friaul. Durch den ersten Weltkrieg wird dieser für die Voitsberger Adventgemeinde später wichtige Mann plötzlich aus seiner Arbeit gerissen. Nach jahrelangem Kriegseinsatz, kehrt er schwer gezeichnet und leidend in seine Heimat zurück, nicht mehr in der Lage den schweren Dienst als Missionar auszufüllen.\n\nIn den letzten Jahren vor dem ersten Weltkrieg tauchen zwei andere Männer, die von der Adventbotschaft ergriffen wurden, in Voitsberg auf. Es sind dies der spätere Buchevangelist Franz Petrowitsch und der Landwirt Wenzel Häntschel. Auch ihre Tätigkeit wird durch den Krieg jäh unterbrochen, aber noch während des Krieges im Jahre 1916 schlossen sie sich durch die Taufe der Adventgemeinde in Österreich an, während die Frauen dieser beiden Männer sich schon i915 der Advent-Bewegung angeschlossen hatten.\n\nAls bei Kriegsende die Gruppe der Siebenten Tags Adventisten im Bezirk Voitsberg die Zahl 18 erreichte, wurde die Adventgemeinde Voitsberg gegründet. Im alten Berichtsbuch heißt es dazu: \"Durch des Herrn Gnade konnten wir am 28. Dezember 1918 unsere Gemeinde in Voitsberg gründen, zu dessen Vorrecht wir den Herrn loben und preisen möchten.\" Die Gründung der Advent Gemeinde Voitsberg erfolgte durch Pastor Werner aus Graz. Der erste Leiter der kleinen Kirchengemeinde war Wenzel Häntschel aus Kowald. Die schweren Kriegs- und Nachkriegsjahre waren für die Verbreitung der Adventbotschaft sehr fruchtbar. Bereits im Jahre 1925 betrug die Gliederzahl der Adventgemeinde Voitsberg über 50. Die Gottesdienste fanden in diesen Jahren im alten Kinosaal statt. Auch die Inflation nach dem ersten Weltkrieg fand ihren Niederschlag in den Berichtsbüchern. So heißt es im Jahresabschluss für das Jahr 1923 etwa: Zehnter 23.829.588,-- Kronen, Sabbatschulgaben 1.331.269,-- Kronen, Geburtstagsgaben 2.030.000,-- Kronen\n\nAm 29. Juli 1927 konnte mit Unterstützung von Bürgermeister Fripertinger, aus dem Gebäudekomplex der stillgelegten Papierfabrik, das Haus Nr. 10 in der Rosseggergasse für die Adventgemeinde erworben werden. Für die Gottesdienste wurden die Räume im ersten Stock ausgebaut. Der große Versammlungsraum bot bis zu 100 Besuchern Platz. Im Erdgeschoß des Hauses wurde eine Wohnung und Werkstättenräume eingerichtet, dort gründete im Jahre 1930, Rudolf Bauer einen kleinen Betrieb, der nach dem zweiten Weltkrieg einen großen Aufschwung erlebte.\n\nIn all diesen Jahren hatte die kleine aber aktive Gemeinde keinen eigenen Pastor. Betreut wurde die Adventgemeinde Voitsberg bis Anfang der 70iger Jahre von einem Prediger aus Graz. Dieser konnte natürlich nur alle 3 bis 4 Wochen bei den Gottesdiensten an Samstagen anwesend sein. Die Gestaltung der Gottesdienste, auch die wöchentlichen Predigten, oblag also weitgehend einigen Laiengliedern. Auch die Unterweisung von Freunden der Adventbotschaft in wichtigen biblischen Wahrheiten erfolgte zu einem guten Teil durch befähigte Laien der örtlichen Gemeinde.\n \n\n\n\n",
+                      "style": {
+                        "height": "400px",
+                        "width": "100%"
+                      },
+                      "type": "textarea",
+                      "value": ""
+                    }
+                  ],
+                  "name": "col6",
+                  "type": "col"
+                },
+                {
+                  "class": "col-md-6",
+                  "name": "col7",
+                  "type": "col"
+                }
+              ],
+              "name": "row3",
+              "type": "row"
+            }
+          ],
+          "name": "panel0",
+          "style": {
+            "marginTop": "20px"
+          },
+          "text": "Funktionsbeschreibung - BenutzerBearbeiten",
+          "type": "panel",
+          "visible": false
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "Security.getUserById",
+        "parameters": [
+          {
+            "name": "Id",
+            "value": "${parameters.Id}"
+          }
+        ],
+        "then": [
+          {
+            "name": "rstUser",
+            "type": "set",
+            "value": "${result}"
+          },
+          {
+            "code": "this.rstUser.UserName = 'TempUserName'",
+            "type": "execute"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "Security.getRoles",
+        "then": [
+          {
+            "name": "rstRoles",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "dbHopeKurseTextbausteine.getBenutzers",
+        "parameters": [
+          {
+            "name": "$filter",
+            "value": "AspNetUsers_Id eq '${parameters.Id}'"
+          }
+        ],
+        "then": [
+          {
+            "name": "rstBenutzer",
+            "type": "set",
+            "value": "${result.value[0]}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "BenutzerBearbeiten"
+}

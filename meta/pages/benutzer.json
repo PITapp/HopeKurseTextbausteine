@@ -1,0 +1,772 @@
+{
+  "access": [
+    "Authenticated"
+  ],
+  "components": [
+    {
+      "components": [
+        {
+          "components": [
+            {
+              "class": "d-flex align-items-center justify-content-start  col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12",
+              "components": [
+                {
+                  "name": "heading8",
+                  "size": "H1",
+                  "style": {
+                    "color": "#5d717b",
+                    "display": "inline-block"
+                  },
+                  "text": "Benutzer",
+                  "type": "heading"
+                },
+                {
+                  "name": "heading9",
+                  "size": "H3",
+                  "style": {
+                    "color": "#6d787d",
+                    "display": "inline-block",
+                    "marginTop": "9px",
+                    "paddingLeft": "10px",
+                    "paddingRight": "10px"
+                  },
+                  "text": "|",
+                  "type": "heading"
+                },
+                {
+                  "attributes": [
+                    {}
+                  ],
+                  "name": "heading16",
+                  "size": "H3",
+                  "style": {
+                    "color": "#6d787d",
+                    "display": "inline",
+                    "marginTop": "9px"
+                  },
+                  "text": "Hier entsteht was neues",
+                  "type": "heading"
+                }
+              ],
+              "name": "col3",
+              "type": "col"
+            }
+          ],
+          "name": "row1",
+          "style": {
+            "marginTop": "-7px",
+            "paddingBottom": "0",
+            "paddingLeft": "5px",
+            "paddingRight": "3px",
+            "paddingTop": "0"
+          },
+          "type": "row"
+        },
+        {
+          "items": [
+            {
+              "components": [
+                {
+                  "components": [
+                    {
+                      "class": "col-md-6",
+                      "components": [
+                        {
+                          "addText": "Neuer Benutzer",
+                          "allowAdd": true,
+                          "allowDelete": true,
+                          "allowFiltering": true,
+                          "allowPaging": true,
+                          "allowSorting": true,
+                          "alwaysShowPager": true,
+                          "applyFilterText": "Apply",
+                          "clearFilterText": "Clear",
+                          "columns": [
+                            {
+                              "property": "UserName",
+                              "title": "Benutzername"
+                            },
+                            {
+                              "property": "Email",
+                              "title": "E-Mail"
+                            }
+                          ],
+                          "confirmDelete": true,
+                          "confirmDeleteCancelText": "Abbruch",
+                          "confirmDeleteOkText": "Löschen",
+                          "confirmDeleteText": "Bist du sicher, dass der Benutzer '${data.UserName}' gelöscht werden soll?",
+                          "confirmDeleteTitle": "Löschen Benutzer",
+                          "containsText": "Contains",
+                          "count": "",
+                          "data": "${rstUsers}",
+                          "emptyText": "No records to display.",
+                          "endsWithText": "Ends with",
+                          "equalsText": "Equals",
+                          "events": {
+                            "add": [
+                              {
+                                "path": "benutzer-neu",
+                                "title": "Neuer Benutzer",
+                                "type": "popup"
+                              }
+                            ],
+                            "delete": [
+                              {
+                                "error": [
+                                  {
+                                    "detail": "${result.error.message}",
+                                    "severity": "error",
+                                    "summary": "Benutzer konnte nicht gelöscht werden!",
+                                    "type": "notify"
+                                  }
+                                ],
+                                "name": "Security.deleteUser",
+                                "parameters": [
+                                  {
+                                    "name": "id",
+                                    "value": "${event.Id}"
+                                  }
+                                ],
+                                "then": [
+                                  {
+                                    "detail": "Der Benutzer '${event.UserName}' wurde gelöscht.",
+                                    "severity": "success",
+                                    "summary": "Löschen erfolgreich",
+                                    "type": "notify"
+                                  }
+                                ],
+                                "type": "invoke"
+                              }
+                            ],
+                            "loadData": [],
+                            "rowDoubleClick": [
+                              {
+                                "parameters": [
+                                  {
+                                    "name": "Id",
+                                    "value": "${event.Id}"
+                                  }
+                                ],
+                                "path": "benutzer-bearbeiten",
+                                "title": "Bearbeiten Benutzer",
+                                "type": "popup"
+                              }
+                            ],
+                            "rowSelect": [
+                              {
+                                "name": "dbHopeKurseTextbausteine.getBenutzers",
+                                "parameters": [
+                                  {
+                                    "name": "$filter",
+                                    "value": "AspNetUsers_Id eq '${event.Id}'"
+                                  }
+                                ],
+                                "then": [
+                                  {
+                                    "name": "rstBenutzer",
+                                    "type": "set",
+                                    "value": "${result.value}"
+                                  }
+                                ],
+                                "type": "invoke"
+                              },
+                              {
+                                "name": "Security.getUserById",
+                                "parameters": [
+                                  {
+                                    "name": "Id",
+                                    "value": "${event.Id}"
+                                  }
+                                ],
+                                "then": [
+                                  {
+                                    "name": "rstUser",
+                                    "type": "set",
+                                    "value": "${result}"
+                                  }
+                                ],
+                                "type": "invoke"
+                              }
+                            ]
+                          },
+                          "greaterThanOrEqualsText": "Greater than or equals",
+                          "greaterThanText": "Greater than",
+                          "lessThanOrEqualsText": "Less than or equals",
+                          "lessThanText": "Less than",
+                          "name": "gridUsers",
+                          "notEqualsText": "Not equals",
+                          "pageSize": 20,
+                          "startsWithText": "Starts with",
+                          "style": {
+                            "height": "745px"
+                          },
+                          "type": "grid"
+                        }
+                      ],
+                      "name": "col1",
+                      "type": "col"
+                    },
+                    {
+                      "class": "col-md-6",
+                      "components": [
+                        {
+                          "components": [
+                            {
+                              "components": [
+                                {
+                                  "class": "col-md-3",
+                                  "components": [
+                                    {
+                                      "component": "Benutzername",
+                                      "name": "BenutzernameLabel",
+                                      "style": {
+                                        "width": "100%"
+                                      },
+                                      "text": "Benutzername",
+                                      "type": "label"
+                                    }
+                                  ],
+                                  "type": "col"
+                                },
+                                {
+                                  "class": "col-md-9",
+                                  "components": [
+                                    {
+                                      "format": "",
+                                      "name": "Benutzername",
+                                      "placeholder": "",
+                                      "style": {
+                                        "display": "block",
+                                        "width": "100%"
+                                      },
+                                      "type": "textbox",
+                                      "value": "${rstBenutzer[0].Benutzername}"
+                                    },
+                                    {
+                                      "component": "Benutzername",
+                                      "name": "BenutzernameRequiredValidator",
+                                      "style": {
+                                        "position": "absolute"
+                                      },
+                                      "text": "Benutzername is required",
+                                      "type": "required-validator"
+                                    }
+                                  ],
+                                  "type": "col"
+                                }
+                              ],
+                              "style": {
+                                "marginBottom": "1rem"
+                              },
+                              "type": "row"
+                            },
+                            {
+                              "components": [
+                                {
+                                  "class": "col-md-3",
+                                  "components": [
+                                    {
+                                      "component": "Kennwort",
+                                      "name": "KennwortLabel",
+                                      "style": {
+                                        "width": "100%"
+                                      },
+                                      "text": "Kennwort",
+                                      "type": "label"
+                                    }
+                                  ],
+                                  "type": "col"
+                                },
+                                {
+                                  "class": "col-md-9",
+                                  "components": [
+                                    {
+                                      "format": "",
+                                      "name": "Kennwort",
+                                      "style": {
+                                        "display": "block",
+                                        "width": "100%"
+                                      },
+                                      "type": "textbox",
+                                      "value": "${rstBenutzer[0].Kennwort}"
+                                    },
+                                    {
+                                      "component": "Kennwort",
+                                      "name": "KennwortRequiredValidator",
+                                      "style": {
+                                        "position": "absolute"
+                                      },
+                                      "text": "Kennwort is required",
+                                      "type": "required-validator"
+                                    }
+                                  ],
+                                  "type": "col"
+                                }
+                              ],
+                              "style": {
+                                "marginBottom": "1rem"
+                              },
+                              "type": "row"
+                            },
+                            {
+                              "components": [
+                                {
+                                  "class": "col-md-3",
+                                  "components": [
+                                    {
+                                      "component": "Initialen",
+                                      "name": "InitialenLabel",
+                                      "style": {
+                                        "width": "100%"
+                                      },
+                                      "text": "Initialen",
+                                      "type": "label"
+                                    }
+                                  ],
+                                  "type": "col"
+                                },
+                                {
+                                  "class": "col-md-9",
+                                  "components": [
+                                    {
+                                      "format": "",
+                                      "name": "Initialen",
+                                      "style": {
+                                        "display": "block",
+                                        "width": "100%"
+                                      },
+                                      "type": "textbox",
+                                      "value": "${rstBenutzer[0].Initialen}"
+                                    },
+                                    {
+                                      "component": "Initialen",
+                                      "name": "InitialenRequiredValidator",
+                                      "style": {
+                                        "position": "absolute"
+                                      },
+                                      "text": "Initialen is required",
+                                      "type": "required-validator"
+                                    }
+                                  ],
+                                  "type": "col"
+                                }
+                              ],
+                              "style": {
+                                "marginBottom": "1rem"
+                              },
+                              "type": "row"
+                            },
+                            {
+                              "components": [
+                                {
+                                  "class": "col-md-3",
+                                  "components": [
+                                    {
+                                      "component": "BenutzerInfo",
+                                      "name": "BenutzerInfoLabel",
+                                      "style": {
+                                        "width": "100%"
+                                      },
+                                      "text": "Benutzer Info",
+                                      "type": "label"
+                                    }
+                                  ],
+                                  "type": "col"
+                                },
+                                {
+                                  "class": "col-md-9",
+                                  "components": [
+                                    {
+                                      "format": "",
+                                      "name": "BenutzerInfo",
+                                      "style": {
+                                        "width": "100%"
+                                      },
+                                      "type": "textbox",
+                                      "value": "${rstBenutzer[0].BenutzerInfo}"
+                                    }
+                                  ],
+                                  "type": "col"
+                                }
+                              ],
+                              "style": {
+                                "marginBottom": "1rem"
+                              },
+                              "type": "row"
+                            },
+                            {
+                              "components": [
+                                {
+                                  "class": "col-md-3",
+                                  "components": [
+                                    {
+                                      "component": "EMail",
+                                      "name": "EMailLabel",
+                                      "style": {
+                                        "width": "100%"
+                                      },
+                                      "text": "EMail",
+                                      "type": "label"
+                                    }
+                                  ],
+                                  "type": "col"
+                                },
+                                {
+                                  "class": "col-md-9",
+                                  "components": [
+                                    {
+                                      "name": "EMail",
+                                      "style": {
+                                        "width": "100%"
+                                      },
+                                      "type": "textbox",
+                                      "value": "${rstBenutzer[0].EMail}"
+                                    }
+                                  ],
+                                  "type": "col"
+                                }
+                              ],
+                              "style": {
+                                "marginBottom": "1rem"
+                              },
+                              "type": "row"
+                            },
+                            {
+                              "components": [
+                                {
+                                  "class": "col-md-3",
+                                  "components": [
+                                    {
+                                      "component": "RoleNames",
+                                      "name": "RoleNamesLabel",
+                                      "style": {
+                                        "textAlign": "right",
+                                        "width": "100%"
+                                      },
+                                      "text": "Rolen",
+                                      "type": "label"
+                                    }
+                                  ],
+                                  "name": "col0",
+                                  "type": "col"
+                                },
+                                {
+                                  "class": "col-md-9",
+                                  "components": [
+                                    {
+                                      "data": "${rstRoles}",
+                                      "emptyFilterText": "No results found",
+                                      "multiple": true,
+                                      "multipleItemsSelectedText": "{0} items selected",
+                                      "name": "RoleNames",
+                                      "style": {
+                                        "width": "100%"
+                                      },
+                                      "textProperty": "Name",
+                                      "type": "dropdown",
+                                      "value": "${rstUser.RoleNames}",
+                                      "valueProperty": "Name"
+                                    }
+                                  ],
+                                  "name": "col4",
+                                  "type": "col"
+                                }
+                              ],
+                              "name": "row2",
+                              "style": {
+                                "marginBottom": "1rem"
+                              },
+                              "type": "row"
+                            },
+                            {
+                              "components": [
+                                {
+                                  "class": "col offset-sm-3",
+                                  "components": [
+                                    {
+                                      "buttonStyle": "primary",
+                                      "buttonType": "submit",
+                                      "events": {
+                                        "click": []
+                                      },
+                                      "icon": "save",
+                                      "text": "Speichern",
+                                      "type": "button"
+                                    }
+                                  ],
+                                  "type": "col"
+                                }
+                              ],
+                              "type": "row"
+                            }
+                          ],
+                          "events": {
+                            "submit": [
+                              {
+                                "detail": "Hallo2",
+                                "severity": "info",
+                                "summary": "Test",
+                                "type": "notify"
+                              }
+                            ]
+                          },
+                          "name": "formBenutzer",
+                          "type": "template-form"
+                        }
+                      ],
+                      "name": "col2",
+                      "type": "col"
+                    }
+                  ],
+                  "name": "row0",
+                  "type": "row"
+                }
+              ],
+              "selected": true,
+              "text": "Daten"
+            },
+            {
+              "components": [
+                {
+                  "components": [
+                    {
+                      "class": "col-md-6",
+                      "components": [
+                        {
+                          "addText": "Neue Rolle",
+                          "allowAdd": true,
+                          "allowDelete": true,
+                          "allowFiltering": true,
+                          "allowPaging": true,
+                          "allowSorting": true,
+                          "alwaysShowPager": true,
+                          "applyFilterText": "Apply",
+                          "clearFilterText": "Clear",
+                          "columns": [
+                            {
+                              "property": "Name",
+                              "title": "Benutzerrolle"
+                            }
+                          ],
+                          "confirmDelete": true,
+                          "confirmDeleteCancelText": "Abbruch",
+                          "confirmDeleteOkText": "Löschen",
+                          "confirmDeleteText": "Bist du sicher, dass die Rolle '${data.Name}' gelöscht werden soll?",
+                          "confirmDeleteTitle": "Confirmation",
+                          "containsText": "Contains",
+                          "data": "${rstRoles}",
+                          "emptyText": "No records to display.",
+                          "endsWithText": "Ends with",
+                          "equalsText": "Equals",
+                          "events": {
+                            "add": [
+                              {
+                                "path": "benutzer-neu-rolle",
+                                "title": "Neue Rolle",
+                                "type": "popup"
+                              }
+                            ],
+                            "delete": [
+                              {
+                                "error": [
+                                  {
+                                    "detail": "${result.error.message}",
+                                    "severity": "error",
+                                    "summary": "Rolle '${event.Name}' kann nicht gelöscht werden!",
+                                    "type": "notify"
+                                  }
+                                ],
+                                "name": "Security.deleteRole",
+                                "parameters": [
+                                  {
+                                    "name": "id",
+                                    "value": "${event.Id}"
+                                  }
+                                ],
+                                "then": [
+                                  {
+                                    "detail": "Rolle '${event.Name}' erfolgreich gelöscht.",
+                                    "severity": "info",
+                                    "summary": "Success",
+                                    "type": "notify"
+                                  }
+                                ],
+                                "type": "invoke"
+                              }
+                            ],
+                            "rowSelect": [
+                              {
+                                "name": "dbHopeKurseTextbausteine.getVwBenutzerRollens",
+                                "parameters": [
+                                  {
+                                    "name": "$filter",
+                                    "value": "RoleId eq '${event.Id}'"
+                                  }
+                                ],
+                                "then": [
+                                  {
+                                    "name": "rstBenutzerRollen",
+                                    "type": "set",
+                                    "value": "${result.value}"
+                                  }
+                                ],
+                                "type": "invoke"
+                              },
+                              {
+                                "name": "varBenutzerrolleTitel",
+                                "type": "set",
+                                "value": "${event.Name}"
+                              }
+                            ]
+                          },
+                          "greaterThanOrEqualsText": "Greater than or equals",
+                          "greaterThanText": "Greater than",
+                          "lessThanOrEqualsText": "Less than or equals",
+                          "lessThanText": "Less than",
+                          "name": "gridRoles",
+                          "notEqualsText": "Not equals",
+                          "pageSize": 10,
+                          "startsWithText": "Starts with",
+                          "style": {
+                            "height": "745px"
+                          },
+                          "type": "grid",
+                          "value": ""
+                        }
+                      ],
+                      "name": "col5",
+                      "style": {
+                        "paddingRight": "10px"
+                      },
+                      "type": "col"
+                    },
+                    {
+                      "class": "col-md-6",
+                      "components": [
+                        {
+                          "components": [
+                            {
+                              "allowFiltering": true,
+                              "allowPaging": true,
+                              "allowSorting": true,
+                              "alwaysShowPager": true,
+                              "columns": [
+                                {
+                                  "format": "",
+                                  "property": "NameGesamt",
+                                  "title": "Benutzer",
+                                  "type": "string"
+                                },
+                                {
+                                  "property": "Initialen",
+                                  "title": "Initialen",
+                                  "type": "string"
+                                },
+                                {
+                                  "property": "BenutzerEMail",
+                                  "title": "E Mail",
+                                  "type": "string"
+                                }
+                              ],
+                              "count": "",
+                              "data": "${rstBenutzerRollen}",
+                              "emptyText": "Dieser Rolle sind keine Benutzer zugewiesen!",
+                              "events": {
+                                "loadData": []
+                              },
+                              "name": "gridBenutzerRollen",
+                              "pageSize": 10,
+                              "style": {
+                                "height": "687px"
+                              },
+                              "type": "grid"
+                            }
+                          ],
+                          "name": "panel0",
+                          "style": {
+                            "border": "1px solid #e1e7eb",
+                            "height": "745px"
+                          },
+                          "text": "Rolle: ${varBenutzerrolleTitel}",
+                          "type": "panel"
+                        }
+                      ],
+                      "name": "col6",
+                      "style": {
+                        "paddingLeft": "10px"
+                      },
+                      "type": "col"
+                    }
+                  ],
+                  "name": "row3",
+                  "type": "row"
+                }
+              ],
+              "icon": "",
+              "selected": false,
+              "text": "Rollen"
+            }
+          ],
+          "name": "tabs0",
+          "style": {
+            "float": "none",
+            "height": "826px"
+          },
+          "type": "tabs"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "Security.getUsers",
+        "parameters": [
+          {
+            "name": "$orderby",
+            "value": "UserName"
+          }
+        ],
+        "then": [
+          {
+            "name": "rstUsers",
+            "type": "set",
+            "value": "${result.value}"
+          },
+          {
+            "code": "${this.gridUsers.onSelect(result.value[0])}",
+            "condition": "result.value.length && !this.gridUsers.value",
+            "type": "execute"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "Security.getRoles",
+        "parameters": [
+          {
+            "name": "$orderby",
+            "value": "Name"
+          }
+        ],
+        "then": [
+          {
+            "name": "rstRoles",
+            "type": "set",
+            "value": "${result.value}"
+          },
+          {
+            "code": "${this.gridRoles.onSelect(result.value[0])}",
+            "condition": "result.value.length && !this.gridRoles.value",
+            "type": "execute"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "Benutzer"
+}

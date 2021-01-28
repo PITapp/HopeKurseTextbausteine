@@ -1,0 +1,1105 @@
+{
+  "info": {
+    "title": "dbHopeKurseTextbausteine",
+    "x-type": "odata",
+    "x-connector": "mysql"
+  },
+  "definitions": {
+    "Base": {
+      "x-table": "def.Base",
+      "resource": "Bases",
+      "required": [
+        "Name1"
+      ],
+      "properties": {
+        "BaseID": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "type": "integer",
+          "x-navigation": [
+            {
+              "inversePropertyName": "Base",
+              "name": "Benutzers",
+              "type": "Benutzer"
+            }
+          ]
+        },
+        "BaseAnreden": {
+          "type": "object",
+          "$ref": "#/definitions/BaseAnreden"
+        },
+        "AnredeID": {
+          "type": "integer",
+          "x-foreignKey": {
+            "parentTable": "BaseAnreden",
+            "parentEntityType": "BaseAnreden",
+            "type": "BaseAnreden",
+            "principalKey": "AnredeID",
+            "name": "BaseAnreden",
+            "textProperty": "Anrede",
+            "navigationProperty": "Bases"
+          }
+        },
+        "Name1": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 100
+        },
+        "Name2": {
+          "type": "string",
+          "length": 30
+        },
+        "NameGesamt": {
+          "type": "string",
+          "length": 130
+        },
+        "NameVorNach": {
+          "type": "string",
+          "length": 130
+        },
+        "NameKuerzel": {
+          "type": "string",
+          "length": 5
+        },
+        "TitelVorne": {
+          "type": "string",
+          "length": 20
+        },
+        "TitelHinten": {
+          "type": "string",
+          "length": 20
+        },
+        "Strasse": {
+          "type": "string",
+          "length": 70
+        },
+        "PLZ": {
+          "type": "string",
+          "length": 10
+        },
+        "Ort": {
+          "type": "string",
+          "length": 100
+        },
+        "Geburtsdatum": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "Versicherungsnummer": {
+          "type": "string",
+          "length": 15
+        },
+        "Staatsangehoerigkeit": {
+          "type": "string",
+          "length": 30
+        },
+        "Telefon1": {
+          "type": "string",
+          "length": 30
+        },
+        "Telefon2": {
+          "type": "string",
+          "length": 30
+        },
+        "EMail1": {
+          "type": "string",
+          "length": 70
+        },
+        "EMail2": {
+          "type": "string",
+          "length": 70
+        },
+        "Webseite": {
+          "type": "string",
+          "length": 70
+        },
+        "BildURL": {
+          "type": "string",
+          "length": 16777215
+        },
+        "Info": {
+          "type": "string",
+          "length": 65535
+        },
+        "Benutzers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Benutzer"
+          }
+        }
+      }
+    },
+    "BaseAnreden": {
+      "x-table": "def.BaseAnreden",
+      "resource": "BaseAnredens",
+      "required": [
+        "Anrede"
+      ],
+      "properties": {
+        "AnredeID": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "type": "integer",
+          "x-navigation": [
+            {
+              "inversePropertyName": "BaseAnreden",
+              "name": "Bases",
+              "type": "Base"
+            }
+          ]
+        },
+        "Anrede": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 45
+        },
+        "Bases": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Base"
+          }
+        }
+      }
+    },
+    "Benutzer": {
+      "x-table": "def.Benutzer",
+      "resource": "Benutzers",
+      "required": [
+        "BenutzerID",
+        "BaseID",
+        "AspNetUsers_Id",
+        "Benutzername",
+        "Kennwort",
+        "Initialen"
+      ],
+      "properties": {
+        "BenutzerID": {
+          "x-key": true,
+          "x-nullable": false,
+          "type": "string",
+          "length": 255
+        },
+        "Base": {
+          "type": "object",
+          "$ref": "#/definitions/Base"
+        },
+        "BaseID": {
+          "x-nullable": false,
+          "type": "integer",
+          "x-foreignKey": {
+            "parentTable": "Base",
+            "parentEntityType": "Base",
+            "type": "Base",
+            "principalKey": "BaseID",
+            "name": "Base",
+            "textProperty": "Name1",
+            "navigationProperty": "Benutzers"
+          }
+        },
+        "AspNetUsers_Id": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 255
+        },
+        "Benutzername": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 130
+        },
+        "Kennwort": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 255
+        },
+        "Initialen": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 2
+        },
+        "BenutzerEMail": {
+          "type": "string",
+          "length": 200
+        },
+        "Notiz": {
+          "type": "string",
+          "length": 65535
+        },
+        "LetzteKundenID": {
+          "type": "integer"
+        },
+        "LetzteMitarbeiterID": {
+          "type": "integer"
+        },
+        "LetzteBaseID": {
+          "type": "integer"
+        },
+        "LetzteBenutzerID": {
+          "type": "integer"
+        }
+      }
+    },
+    "InfotexteHtml": {
+      "x-table": "def.InfotexteHTML",
+      "resource": "InfotexteHtmls",
+      "required": [
+        "Code",
+        "Titel"
+      ],
+      "properties": {
+        "InfotextID": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "type": "integer"
+        },
+        "Code": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 20
+        },
+        "Titel": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 100
+        },
+        "Inhalt": {
+          "type": "string",
+          "length": 4294967295
+        },
+        "Sortierung": {
+          "type": "integer"
+        }
+      }
+    },
+    "VwBenutzerRollen": {
+      "x-view": true,
+      "x-table": "def.vwBenutzerRollen",
+      "resource": "VwBenutzerRollens",
+      "required": [
+        "BenutzerID",
+        "BaseID",
+        "Name1",
+        "Benutzername",
+        "Initialen",
+        "RoleId"
+      ],
+      "properties": {
+        "BenutzerID": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 255,
+          "x-key": true,
+          "x-virtual": true
+        },
+        "BaseID": {
+          "x-nullable": false,
+          "type": "integer"
+        },
+        "Name1": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 100
+        },
+        "Name2": {
+          "type": "string",
+          "length": 30
+        },
+        "NameGesamt": {
+          "type": "string",
+          "length": 130
+        },
+        "Benutzername": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 130
+        },
+        "Initialen": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 2
+        },
+        "BenutzerEMail": {
+          "type": "string",
+          "length": 200
+        },
+        "RoleId": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 255
+        },
+        "Benutzerrolle": {
+          "type": "string",
+          "length": 256
+        }
+      }
+    }
+  },
+  "paths": {
+    "/Bases": {
+      "get": {
+        "operationId": "getBases",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/Base"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createBase",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "Base",
+            "schema": {
+              "$ref": "#/definitions/Base"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Base"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/BaseAnredens": {
+      "get": {
+        "operationId": "getBaseAnredens",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/BaseAnreden"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createBaseAnreden",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "BaseAnreden",
+            "schema": {
+              "$ref": "#/definitions/BaseAnreden"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/BaseAnreden"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Benutzers": {
+      "get": {
+        "operationId": "getBenutzers",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/Benutzer"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createBenutzer",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "Benutzer",
+            "schema": {
+              "$ref": "#/definitions/Benutzer"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Benutzer"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/InfotexteHtmls": {
+      "get": {
+        "operationId": "getInfotexteHtmls",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/InfotexteHtml"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createInfotexteHtml",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "InfotexteHtml",
+            "schema": {
+              "$ref": "#/definitions/InfotexteHtml"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/InfotexteHtml"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/VwBenutzerRollens": {
+      "get": {
+        "operationId": "getVwBenutzerRollens",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/VwBenutzerRollen"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Bases({BaseID})": {
+      "delete": {
+        "operationId": "deleteBase",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "BaseID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getBaseByBaseID",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "BaseID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Base"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateBase",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "BaseID",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "Base",
+            "schema": {
+              "$ref": "#/definitions/Base"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/BaseAnredens({AnredeID})": {
+      "delete": {
+        "operationId": "deleteBaseAnreden",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "AnredeID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getBaseAnredenByAnredeID",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "AnredeID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/BaseAnreden"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateBaseAnreden",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "AnredeID",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "BaseAnreden",
+            "schema": {
+              "$ref": "#/definitions/BaseAnreden"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Benutzers('{BenutzerID}')": {
+      "delete": {
+        "operationId": "deleteBenutzer",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "BenutzerID",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getBenutzerByBenutzerID",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "BenutzerID",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Benutzer"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateBenutzer",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "BenutzerID",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "Benutzer",
+            "schema": {
+              "$ref": "#/definitions/Benutzer"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/InfotexteHtmls({InfotextID})": {
+      "delete": {
+        "operationId": "deleteInfotexteHtml",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "InfotextID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getInfotexteHtmlByInfotextID",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "InfotextID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/InfotexteHtml"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateInfotexteHtml",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "InfotextID",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "InfotexteHtml",
+            "schema": {
+              "$ref": "#/definitions/InfotexteHtml"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "basePath": "/odata/dbHopeKurseTextbausteine",
+  "host": "localhost:5000",
+  "schemes": [
+    "http"
+  ]
+}

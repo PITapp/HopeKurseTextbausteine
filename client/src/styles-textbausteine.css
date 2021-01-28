@@ -1,0 +1,200 @@
+/* --- Meine Einstellungen --- */
+
+/* --- Kopfzeile: verlaufend dunkel --- */
+.header {
+  background-image: linear-gradient(#455B65, #212C36);
+}
+
+/* --- Umschalter für Seitenmenü links --- */
+.sidebar-toggle {
+  border: none;
+  background-color: transparent;
+  color: whitesmoke;
+  font-size: 18px;
+}
+.sidebar-toggle:hover {
+  color: #D86E13;
+  background: transparent;
+  border-radius: 0; }
+
+
+/* --- Profilmenü rechts oben --- */
+ul.profile-menu {
+  background-color: transparent;
+  color: whitesmoke;
+  border-left: 0px solid #a2a2a2;
+}
+
+ul.profile-menu .navigation-item-icon-children {
+  color: whitesmoke;
+}
+
+ul.profile-menu .navigation-menu {
+  background-color: #ffffff;
+  top: calc(100%);
+}
+
+ul.profile-menu .navigation-menu .navigation-item-wrapper:hover {
+  background-color: #D86E13;
+}
+
+ul.profile-menu .navigation-menu .navigation-item-wrapper:hover .navigation-item-link {
+  color: whitesmoke;
+}
+
+
+/* --- Einstellungen Seitenmenü links --- */
+.panel-menu {
+  color: #212529;
+  background-color: #FFFFFF;
+}
+
+.panel-menu .navigation-item {
+  border-bottom: solid 1px #E6E5E5;
+}
+
+.panel-menu .navigation-item-wrapper:hover {
+  background-color: #D86E13;
+  color: #f5f5f5;
+}
+
+.panel-menu .navigation-item-wrapper:hover .navigation-item-icon {
+  color: #f5f5f5;
+}
+
+.panel-menu .navigation-item-icon {
+  color: #727272;
+}
+
+.panel-menu .navigation-item-wrapper-active {
+  background-color: #F4F5F7;
+  color: #D86E13;
+}
+
+.panel-menu .navigation-item-wrapper-active .navigation-item-icon {
+  color: #D86E13;
+}
+
+.panel-menu .navigation-item-wrapper-active:before {
+  width: 7px;
+  background-color: #D86E13;
+}
+
+
+/* --- Einstellungen Seitenmenü links | zweite Ebene --- */
+.panel-menu .navigation-item-active {
+  background-color: #ffffff;
+}
+
+.panel-menu .navigation-menu .navigation-item-wrapper {
+  background-color: #ffffff;
+}
+
+.panel-menu .navigation-menu .navigation-item-wrapper:hover {
+  background-color: #f3f5f7;
+}
+
+.panel-menu .navigation-menu .navigation-item-wrapper-active {
+  background-color: #F4F5F7;
+  color: #D86E13;
+}
+
+
+/* --- Dialog für zB Löschabfragen --- */
+.ui-dialog-footer .ui-button:first-child,
+.ui-dialog-footer .ui-paginator-element:first-child {
+  text-align: center !important;
+  width: 120px;
+  margin-right: 10px;
+  background-color: #D86E13;
+  color: #ffffff;
+}
+
+.ui-dialog-footer .ui-button:last-child,
+.ui-dialog-footer .ui-paginator-element:last-child {
+  text-align: center !important;
+  width: 120px;
+  background-color: #e6ecef;
+  color: #3a474d;
+}
+
+/* --- Dialog für zB Löschabfragen: Icon in der Schaltfläche ausblenden --- */
+.ui-dialog-footer .ui-button .pi {
+  width: 0;
+}
+
+
+/* --- DropDown Box Höhe einstellen --- */
+.ui-dropdown-items-wrapper,
+.ui-multiselect-items-wrapper {
+  max-height: 500px !important;
+  max-width: 798px !important;
+}
+
+/* --- DataGrit: Hintergrundfarbe des Lösch-Buttons --- */
+/*
+.ui-datatable-data .ui-cell-data .ui-button-sm.ui-button-icon-only {
+  background: #95A5A6;
+  background: #e6ecef;
+}
+*/
+
+/* --- Darstellung des Focus in Eingabefeldern --- */
+input:focus {
+  outline: none;
+  border: 1px solid #D86E13;
+  box-shadow: 0px 0px 4px #D86E13;
+  -moz-box-shadow: 0px 0px 4px #D86E13;
+  -webkit-box-shadow: 0px 0px 4px #D86E13;
+}
+
+.ui-tabview-nav .ui-tabview-selected {
+  outline: none;
+}
+
+/* --- In den Tabs wird der Zeiger zum Pointer --- */
+.ui-tabview-nav {
+  cursor: pointer;
+}
+
+.ui-tabview-nav li:hover:not(.ui-tabview-selected):not(.ui-state-disabled) a {
+  color: #3a474d;
+}
+
+/* --- Den Überlauf in den Tabs unsichtbat machen --- */
+.ui-tabview-panel {
+  overflow: hidden !important;
+}
+
+/* --- Kopfzeile in Dialogen --- */
+.ui-dialog-titlebar {
+  /* 
+  background-color: #3B4650; 
+  background-color: #424753;
+  */
+  background-color: #D86E13;
+  background-image: linear-gradient(#455B65, #212C36);
+  color: whitesmoke;
+}
+
+.ui-dialog-titlebar-close {
+  color: whitesmoke;
+}
+
+.ui-dialog-titlebar-close .pi-times:before {
+  color: whitesmoke;
+}
+
+
+/* --- Quill Editor --- */
+.ql-toolbar.ql-snow {
+  border: 1px solid #dadfe2;
+  border-radius: 4px 4px 0px 0px;
+}
+
+.ql-container {
+  font-family: 'Open Sans', sans-serif, Helvetica, Arial;
+  font-size: 14px;
+  border: 1px solid #dadfe2;
+  border-radius: 0px 0px 4px 4px;
+}
