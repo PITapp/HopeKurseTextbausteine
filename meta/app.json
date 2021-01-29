@@ -23,7 +23,8 @@
   "name": "HopeKurseTextbausteine",
   "namespaces": [],
   "navigation": [
-    "Dashboard"
+    "Dashboard",
+    "Kontakte"
   ],
   "pages": [
     "BenutzerNeu",
@@ -47,7 +48,8 @@
     "Kontakt",
     "Textbausteine",
     "Dokumente",
-    "Nachrichten"
+    "Nachrichten",
+    "Kontakte"
   ],
   "port": 8000,
   "security": {

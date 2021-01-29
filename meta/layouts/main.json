@@ -142,7 +142,12 @@
               "text": "Dokumente"
             },
             {
-              "icon": "account_box",
+              "icon": "contact_phone",
+              "path": "kontakte",
+              "text": "Kontakte"
+            },
+            {
+              "icon": "face",
               "path": "benutzer-profil",
               "text": "Benutzerprofil"
             },

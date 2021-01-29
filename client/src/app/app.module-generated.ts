@@ -41,6 +41,7 @@ import { DataListModule } from '@radzen/angular/dist/datalist';
 import { LoginModule } from '@radzen/angular/dist/login';
 import { FormModule } from '@radzen/angular/dist/form';
 import { HtmlModule } from '@radzen/angular/dist/html';
+import { DatePickerModule } from '@radzen/angular/dist/datepicker';
 import { SharedModule } from '@radzen/angular/dist/shared';
 import { NotificationModule } from '@radzen/angular/dist/notification';
 import { DialogModule } from '@radzen/angular/dist/dialog';
@@ -72,6 +73,7 @@ import { KontaktComponent } from './kontakt/kontakt.component';
 import { TextbausteineComponent } from './textbausteine/textbausteine.component';
 import { DokumenteComponent } from './dokumente/dokumente.component';
 import { NachrichtenComponent } from './nachrichten/nachrichten.component';
+import { KontakteComponent } from './kontakte/kontakte.component';
 import { LoginLayoutComponent } from './login-layout/login-layout.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 
@@ -103,6 +105,7 @@ export const PageDeclarations = [
   TextbausteineComponent,
   DokumenteComponent,
   NachrichtenComponent,
+  KontakteComponent,
 ];
 
 export const LayoutDeclarations = [
@@ -179,6 +182,7 @@ export const AppImports = [
   LoginModule,
   FormModule,
   HtmlModule,
+  DatePickerModule,
   SharedModule,
   NotificationModule,
   DialogModule,

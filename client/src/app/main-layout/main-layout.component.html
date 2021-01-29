@@ -36,7 +36,9 @@
     </rz-panelmenu-item>
     <rz-panelmenu-item icon="description" path="dokumente" text="Dokumente" *ngIf="security?.isInRole(['Authenticated'])">
     </rz-panelmenu-item>
-    <rz-panelmenu-item icon="account_box" path="benutzer-profil" text="Benutzerprofil" *ngIf="security?.isInRole(['Authenticated'])">
+    <rz-panelmenu-item icon="contact_phone" path="kontakte" text="Kontakte" *ngIf="security?.isInRole(['Authenticated'])">
+    </rz-panelmenu-item>
+    <rz-panelmenu-item icon="face" path="benutzer-profil" text="Benutzerprofil" *ngIf="security?.isInRole(['Authenticated'])">
     </rz-panelmenu-item>
     <rz-panelmenu-item icon="supervisor_account" path="benutzer" text="Benutzer" *ngIf="security?.isInRole(['Authenticated'])">
     </rz-panelmenu-item>

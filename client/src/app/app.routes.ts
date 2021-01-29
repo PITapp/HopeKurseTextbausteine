@@ -25,6 +25,7 @@ import { KontaktComponent } from './kontakt/kontakt.component';
 import { TextbausteineComponent } from './textbausteine/textbausteine.component';
 import { DokumenteComponent } from './dokumente/dokumente.component';
 import { NachrichtenComponent } from './nachrichten/nachrichten.component';
+import { KontakteComponent } from './kontakte/kontakte.component';
 
 import { SecurityService } from './security.service';
 import { AuthGuard } from './auth.guard';
@@ -199,6 +200,14 @@ export const routes: Routes = [
           roles: ['Authenticated'],
         },
         component: NachrichtenComponent
+      },
+      {
+        path: 'kontakte',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: KontakteComponent
       },
     ]
   },
