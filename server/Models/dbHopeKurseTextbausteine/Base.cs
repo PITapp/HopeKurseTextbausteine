@@ -35,16 +35,6 @@ namespace HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine
       get;
       set;
     }
-    public string NameGesamt
-    {
-      get;
-      set;
-    }
-    public string NameVorNach
-    {
-      get;
-      set;
-    }
     public string NameKuerzel
     {
       get;
@@ -75,17 +65,7 @@ namespace HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine
       get;
       set;
     }
-    public DateTime? Geburtsdatum
-    {
-      get;
-      set;
-    }
-    public string Versicherungsnummer
-    {
-      get;
-      set;
-    }
-    public string Staatsangehoerigkeit
+    public string LKZ
     {
       get;
       set;
@@ -110,7 +90,7 @@ namespace HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine
       get;
       set;
     }
-    public string Webseite
+    public string Website
     {
       get;
       set;
@@ -120,7 +100,7 @@ namespace HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine
       get;
       set;
     }
-    public string Info
+    public string Notiz
     {
       get;
       set;

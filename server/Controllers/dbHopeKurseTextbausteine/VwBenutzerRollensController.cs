@@ -44,10 +44,10 @@ namespace HopeKurseTextbausteine.Controllers.DbHopeKurseTextbausteine
     partial void OnVwBenutzerRollensRead(ref IQueryable<Models.DbHopeKurseTextbausteine.VwBenutzerRollen> items);
 
     [EnableQuery(MaxExpansionDepth=10,MaxAnyAllExpressionDepth=10,MaxNodeCount=1000)]
-    [HttpGet("{BenutzerID}")]
-    public SingleResult<VwBenutzerRollen> GetVwBenutzerRollen(string key)
+    [HttpGet("{BaseID}")]
+    public SingleResult<VwBenutzerRollen> GetVwBenutzerRollen(int key)
     {
-        var items = this.context.VwBenutzerRollens.AsNoTracking().Where(i=>i.BenutzerID == key);
+        var items = this.context.VwBenutzerRollens.AsNoTracking().Where(i=>i.BaseID == key);
         this.OnVwBenutzerRollensGet(ref items);
 
         return SingleResult.Create(items);

@@ -29,20 +29,20 @@ export class BenutzerBearbeitenGenerated implements AfterViewInit, OnInit, OnDes
   // Components
   @ViewChild('content1') content1: ContentComponent;
   @ViewChild('form0') form0: TemplateFormComponent;
-  @ViewChild('EmailLabel') emailLabel: LabelComponent;
-  @ViewChild('Email') email: TextBoxComponent;
+  @ViewChild('emailLabel') emailLabel: LabelComponent;
+  @ViewChild('email') email: TextBoxComponent;
   @ViewChild('label1') label1: LabelComponent;
-  @ViewChild('Benutzername') benutzername: TextBoxComponent;
+  @ViewChild('benutzername') benutzername: TextBoxComponent;
   @ViewChild('label0') label0: LabelComponent;
-  @ViewChild('Notiz') notiz: TextBoxComponent;
+  @ViewChild('notiz') notiz: TextBoxComponent;
   @ViewChild('label2') label2: LabelComponent;
   @ViewChild('textboxKennwort') textboxKennwort: TextBoxComponent;
-  @ViewChild('RoleNamesLabel') roleNamesLabel: LabelComponent;
-  @ViewChild('RoleNames') roleNames: DropDownComponent;
-  @ViewChild('PasswordLabel') passwordLabel: LabelComponent;
-  @ViewChild('Password') password: PasswordComponent;
-  @ViewChild('ConfirmPasswordLabel') confirmPasswordLabel: LabelComponent;
-  @ViewChild('ConfirmPassword') confirmPassword: PasswordComponent;
+  @ViewChild('roleNamesLabel') roleNamesLabel: LabelComponent;
+  @ViewChild('roleNames') roleNames: DropDownComponent;
+  @ViewChild('passwordLabel') passwordLabel: LabelComponent;
+  @ViewChild('password') password: PasswordComponent;
+  @ViewChild('confirmPasswordLabel') confirmPasswordLabel: LabelComponent;
+  @ViewChild('confirmPassword') confirmPassword: PasswordComponent;
   @ViewChild('button1') button1: ButtonComponent;
   @ViewChild('button2') button2: ButtonComponent;
   @ViewChild('panel0') panel0: PanelComponent;
@@ -153,7 +153,7 @@ export class BenutzerBearbeitenGenerated implements AfterViewInit, OnInit, OnDes
   form0Submit(event: any) {
     this.security.updateUser(`${this.rstUser.Id}`, this.rstUser)
     .subscribe((result: any) => {
-      this.dbHopeKurseTextbausteine.updateBenutzer(null, `${this.rstBenutzer.BenutzerID}`, this.rstBenutzer)
+      this.dbHopeKurseTextbausteine.updateBenutzer(null, this.rstBenutzer.BenutzerID, this.rstBenutzer)
       .subscribe((result: any) => {
         this.notificationService.notify({ severity: "success", summary: `Benutzer erfolgreich aktualisiert!`, detail: `` });
 

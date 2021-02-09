@@ -13,9 +13,11 @@ import { NotificationService } from '@radzen/angular/dist/notification';
 import { ContentComponent } from '@radzen/angular/dist/content';
 import { HeadingComponent } from '@radzen/angular/dist/heading';
 import { TabsComponent } from '@radzen/angular/dist/tabs';
+import { HtmlComponent } from '@radzen/angular/dist/html';
 
 import { ConfigService } from '../config.service';
 
+import { DbHopeKurseTextbausteineService } from '../db-hope-kurse-textbausteine.service';
 import { SecurityService } from '../security.service';
 
 export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy {
@@ -25,7 +27,8 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
   @ViewChild('heading9') heading9: HeadingComponent;
   @ViewChild('heading16') heading16: HeadingComponent;
   @ViewChild('tabs0') tabs0: TabsComponent;
-  @ViewChild('heading0') heading0: HeadingComponent;
+  @ViewChild('html0') html0: HtmlComponent;
+  @ViewChild('tabs2') tabs2: TabsComponent;
 
   router: Router;
 
@@ -49,7 +52,10 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
 
   _subscription: Subscription;
 
+  dbHopeKurseTextbausteine: DbHopeKurseTextbausteineService;
+
   security: SecurityService;
+  selectedTextbaustein: any;
   parameters: any;
 
   constructor(private injector: Injector) {
@@ -76,6 +82,7 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
 
     this.httpClient = this.injector.get(HttpClient);
 
+    this.dbHopeKurseTextbausteine = this.injector.get(DbHopeKurseTextbausteineService);
     this.security = this.injector.get(SecurityService);
   }
 
@@ -99,6 +106,11 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
 
 
   load() {
+    this.dbHopeKurseTextbausteine.getInfotexteHtmls(`Code eq 'TestTextbaustein'`, null, null, null, null, null, null, null)
+    .subscribe((result: any) => {
+      this.selectedTextbaustein = result.value[0].Inhalt;
+    }, (result: any) => {
 
+    });
   }
 }

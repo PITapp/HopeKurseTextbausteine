@@ -45,7 +45,7 @@ namespace HopeKurseTextbausteine.Controllers.DbHopeKurseTextbausteine
 
     [EnableQuery(MaxExpansionDepth=10,MaxAnyAllExpressionDepth=10,MaxNodeCount=1000)]
     [HttpGet("{BenutzerID}")]
-    public SingleResult<Benutzer> GetBenutzer(string key)
+    public SingleResult<Benutzer> GetBenutzer(int key)
     {
         var items = this.context.Benutzers.Where(i=>i.BenutzerID == key);
         this.OnBenutzersGet(ref items);
@@ -58,7 +58,7 @@ namespace HopeKurseTextbausteine.Controllers.DbHopeKurseTextbausteine
     partial void OnBenutzerDeleted(Models.DbHopeKurseTextbausteine.Benutzer item);
 
     [HttpDelete("{BenutzerID}")]
-    public IActionResult DeleteBenutzer(string key)
+    public IActionResult DeleteBenutzer(int key)
     {
         try
         {
@@ -95,7 +95,7 @@ namespace HopeKurseTextbausteine.Controllers.DbHopeKurseTextbausteine
 
     [HttpPut("{BenutzerID}")]
     [EnableQuery(MaxExpansionDepth=10,MaxAnyAllExpressionDepth=10,MaxNodeCount=1000)]
-    public IActionResult PutBenutzer(string key, [FromBody]Models.DbHopeKurseTextbausteine.Benutzer newItem)
+    public IActionResult PutBenutzer(int key, [FromBody]Models.DbHopeKurseTextbausteine.Benutzer newItem)
     {
         try
         {
@@ -126,7 +126,7 @@ namespace HopeKurseTextbausteine.Controllers.DbHopeKurseTextbausteine
 
     [HttpPatch("{BenutzerID}")]
     [EnableQuery(MaxExpansionDepth=10,MaxAnyAllExpressionDepth=10,MaxNodeCount=1000)]
-    public IActionResult PatchBenutzer(string key, [FromBody]Delta<Models.DbHopeKurseTextbausteine.Benutzer> patch)
+    public IActionResult PatchBenutzer(int key, [FromBody]Delta<Models.DbHopeKurseTextbausteine.Benutzer> patch)
     {
         try
         {

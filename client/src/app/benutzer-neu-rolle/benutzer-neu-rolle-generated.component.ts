@@ -25,9 +25,9 @@ export class BenutzerNeuRolleGenerated implements AfterViewInit, OnInit, OnDestr
   // Components
   @ViewChild('content1') content1: ContentComponent;
   @ViewChild('form0') form0: TemplateFormComponent;
-  @ViewChild('NameLabel') nameLabel: LabelComponent;
-  @ViewChild('Name') name: TextBoxComponent;
-  @ViewChild('NameRequiredValidator') nameRequiredValidator: RequiredValidatorComponent;
+  @ViewChild('nameLabel') nameLabel: LabelComponent;
+  @ViewChild('name') name: TextBoxComponent;
+  @ViewChild('nameRequiredValidator') nameRequiredValidator: RequiredValidatorComponent;
   @ViewChild('button1') button1: ButtonComponent;
   @ViewChild('button2') button2: ButtonComponent;
 

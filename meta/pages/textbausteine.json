@@ -67,13 +67,72 @@
             {
               "components": [
                 {
-                  "name": "heading0",
-                  "size": "H3",
+                  "components": [
+                    {
+                      "class": "col-lg-6",
+                      "components": [
+                        {
+                          "content": "<p-editor [(ngModel)]=\"selectedTextbaustein\" [style]=\"{'height': '702px'}\">\n    <p-header>\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-font\">\n                <option selected>Aref Ruqaa</option>\n                <option value=\"mirza\">Mirza</option>\n                <option value=\"roboto\">Roboto</option>\n\t\t\t</select>\n\t\t</span>\n    \n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-header\">\n\t\t\t    <option value=\"1\">Titel 1</option>\n\t\t\t    <option value=\"2\">Titel 2</option>\n\t\t\t    <option value=\"3\">Titel 3</option>\n\t\t\t    <option value=\"4\">Titel 4</option>\n\t\t\t    <option value=\"5\">Titel 5</option>\n\t\t\t    <option value=\"6\">Titel 6</option>\n\t\t\t    <option selected>Normal</option>\n\t\t\t</select>\n\t\t</span>\n\t\t\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-bold\" aria-label=\"Bold\">Fett</button>\n\t\t\t<button class=\"ql-italic\" aria-label=\"Italic\"></button>\n\t\t\t<button class=\"ql-underline\" aria-label=\"Underline\"></button>\n\t\t</span>\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-blockquote\"></button>\n\t\t</span>\t\t\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-align\"></select>\n\t\t</span>\t\t\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-color\"></select>\n\t\t\t<select class=\"ql-background\"></select>\n\t\t</span>\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-list\" value=\"ordered\"></button>\n\t\t\t<button class=\"ql-list\" value=\"bullet\"></button>\n\t\t\t<button class=\"ql-indent\" value=\"-1\"></button>\n\t\t\t<button class=\"ql-indent\" value=\"+1\"></button>\n\t\t</span>\n    </p-header>\n</p-editor>",
+                          "name": "html0",
+                          "type": "html"
+                        }
+                      ],
+                      "name": "col1",
+                      "style": {
+                        "paddingRight": "0px"
+                      },
+                      "type": "col"
+                    },
+                    {
+                      "class": "col-lg-6",
+                      "components": [
+                        {
+                          "events": {
+                            "change": []
+                          },
+                          "items": [
+                            {
+                              "components": [],
+                              "selected": false,
+                              "text": "Bausteine"
+                            },
+                            {
+                              "components": [],
+                              "icon": "",
+                              "selected": false,
+                              "text": "Metadaten"
+                            },
+                            {
+                              "components": [],
+                              "icon": "",
+                              "selected": false,
+                              "text": "Bilder"
+                            },
+                            {
+                              "components": [],
+                              "selected": true,
+                              "text": "Vorschau"
+                            }
+                          ],
+                          "name": "tabs2",
+                          "style": {
+                            "height": "700px"
+                          },
+                          "type": "tabs",
+                          "visible": true
+                        }
+                      ],
+                      "name": "col2",
+                      "style": {},
+                      "type": "col"
+                    }
+                  ],
+                  "name": "row0",
                   "style": {
-                    "color": "#479cc8"
+                    "marginBottom": "-17px",
+                    "visibility": "visible"
                   },
-                  "text": "Hier ist etwas im Entstehen...",
-                  "type": "heading"
+                  "type": "row"
                 }
               ],
               "selected": true,
@@ -98,7 +157,25 @@
     }
   ],
   "events": {
-    "load": []
+    "load": [
+      {
+        "name": "dbHopeKurseTextbausteine.getInfotexteHtmls",
+        "parameters": [
+          {
+            "name": "$filter",
+            "value": "Code eq 'TestTextbaustein'"
+          }
+        ],
+        "then": [
+          {
+            "name": "selectedTextbaustein",
+            "type": "set",
+            "value": "${result.value[0].Inhalt}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
   },
   "layout": "Main",
   "name": "Textbausteine"

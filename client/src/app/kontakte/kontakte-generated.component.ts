@@ -13,6 +13,8 @@ import { NotificationService } from '@radzen/angular/dist/notification';
 import { ContentComponent } from '@radzen/angular/dist/content';
 import { HeadingComponent } from '@radzen/angular/dist/heading';
 import { GridComponent } from '@radzen/angular/dist/grid';
+import { ImageComponent } from '@radzen/angular/dist/image';
+import { UploadComponent } from '@radzen/angular/dist/upload';
 import { CardComponent } from '@radzen/angular/dist/card';
 import { TemplateFormComponent } from '@radzen/angular/dist/template-form';
 import { LabelComponent } from '@radzen/angular/dist/label';
@@ -32,51 +34,53 @@ export class KontakteGenerated implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('content1') content1: ContentComponent;
   @ViewChild('pageTitle') pageTitle: HeadingComponent;
   @ViewChild('grid0') grid0: GridComponent;
+  @ViewChild('image0') image0: ImageComponent;
+  @ViewChild('upload0') upload0: UploadComponent;
   @ViewChild('card1') card1: CardComponent;
   @ViewChild('form0') form0: TemplateFormComponent;
-  @ViewChild('AnredeIDLabel') anredeIdLabel: LabelComponent;
-  @ViewChild('AnredeID') anredeId: DropDownComponent;
-  @ViewChild('Name1Label') name1Label: LabelComponent;
-  @ViewChild('Name1') name1: TextBoxComponent;
-  @ViewChild('Name1RequiredValidator') name1RequiredValidator: RequiredValidatorComponent;
-  @ViewChild('Name2Label') name2Label: LabelComponent;
-  @ViewChild('Name2') name2: TextBoxComponent;
-  @ViewChild('NameGesamtLabel') nameGesamtLabel: LabelComponent;
-  @ViewChild('NameGesamt') nameGesamt: TextBoxComponent;
-  @ViewChild('NameVorNachLabel') nameVorNachLabel: LabelComponent;
-  @ViewChild('NameVorNach') nameVorNach: TextBoxComponent;
-  @ViewChild('NameKuerzelLabel') nameKuerzelLabel: LabelComponent;
-  @ViewChild('NameKuerzel') nameKuerzel: TextBoxComponent;
-  @ViewChild('TitelVorneLabel') titelVorneLabel: LabelComponent;
-  @ViewChild('TitelVorne') titelVorne: TextBoxComponent;
-  @ViewChild('TitelHintenLabel') titelHintenLabel: LabelComponent;
-  @ViewChild('TitelHinten') titelHinten: TextBoxComponent;
-  @ViewChild('StrasseLabel') strasseLabel: LabelComponent;
-  @ViewChild('Strasse') strasse: TextBoxComponent;
-  @ViewChild('PLZLabel') plzLabel: LabelComponent;
-  @ViewChild('PLZ') plz: TextBoxComponent;
-  @ViewChild('OrtLabel') ortLabel: LabelComponent;
-  @ViewChild('Ort') ort: TextBoxComponent;
-  @ViewChild('GeburtsdatumLabel') geburtsdatumLabel: LabelComponent;
-  @ViewChild('Geburtsdatum') geburtsdatum: DatePickerComponent;
-  @ViewChild('VersicherungsnummerLabel') versicherungsnummerLabel: LabelComponent;
-  @ViewChild('Versicherungsnummer') versicherungsnummer: TextBoxComponent;
-  @ViewChild('StaatsangehoerigkeitLabel') staatsangehoerigkeitLabel: LabelComponent;
-  @ViewChild('Staatsangehoerigkeit') staatsangehoerigkeit: TextBoxComponent;
-  @ViewChild('Telefon1Label') telefon1Label: LabelComponent;
-  @ViewChild('Telefon1') telefon1: TextBoxComponent;
-  @ViewChild('Telefon2Label') telefon2Label: LabelComponent;
-  @ViewChild('Telefon2') telefon2: TextBoxComponent;
-  @ViewChild('EMail1Label') eMail1Label: LabelComponent;
-  @ViewChild('EMail1') eMail1: TextBoxComponent;
-  @ViewChild('EMail2Label') eMail2Label: LabelComponent;
-  @ViewChild('EMail2') eMail2: TextBoxComponent;
-  @ViewChild('WebseiteLabel') webseiteLabel: LabelComponent;
-  @ViewChild('Webseite') webseite: TextBoxComponent;
-  @ViewChild('BildURLLabel') bildUrlLabel: LabelComponent;
-  @ViewChild('BildURL') bildUrl: TextBoxComponent;
-  @ViewChild('InfoLabel') infoLabel: LabelComponent;
-  @ViewChild('Info') info: TextBoxComponent;
+  @ViewChild('anredeIdLabel') anredeIdLabel: LabelComponent;
+  @ViewChild('anredeId') anredeId: DropDownComponent;
+  @ViewChild('name1Label') name1Label: LabelComponent;
+  @ViewChild('name1') name1: TextBoxComponent;
+  @ViewChild('name1RequiredValidator') name1RequiredValidator: RequiredValidatorComponent;
+  @ViewChild('name2Label') name2Label: LabelComponent;
+  @ViewChild('name2') name2: TextBoxComponent;
+  @ViewChild('nameGesamtLabel') nameGesamtLabel: LabelComponent;
+  @ViewChild('nameGesamt') nameGesamt: TextBoxComponent;
+  @ViewChild('nameVorNachLabel') nameVorNachLabel: LabelComponent;
+  @ViewChild('nameVorNach') nameVorNach: TextBoxComponent;
+  @ViewChild('nameKuerzelLabel') nameKuerzelLabel: LabelComponent;
+  @ViewChild('nameKuerzel') nameKuerzel: TextBoxComponent;
+  @ViewChild('titelVorneLabel') titelVorneLabel: LabelComponent;
+  @ViewChild('titelVorne') titelVorne: TextBoxComponent;
+  @ViewChild('titelHintenLabel') titelHintenLabel: LabelComponent;
+  @ViewChild('titelHinten') titelHinten: TextBoxComponent;
+  @ViewChild('strasseLabel') strasseLabel: LabelComponent;
+  @ViewChild('strasse') strasse: TextBoxComponent;
+  @ViewChild('plzLabel') plzLabel: LabelComponent;
+  @ViewChild('plz') plz: TextBoxComponent;
+  @ViewChild('ortLabel') ortLabel: LabelComponent;
+  @ViewChild('ort') ort: TextBoxComponent;
+  @ViewChild('geburtsdatumLabel') geburtsdatumLabel: LabelComponent;
+  @ViewChild('geburtsdatum') geburtsdatum: DatePickerComponent;
+  @ViewChild('versicherungsnummerLabel') versicherungsnummerLabel: LabelComponent;
+  @ViewChild('versicherungsnummer') versicherungsnummer: TextBoxComponent;
+  @ViewChild('staatsangehoerigkeitLabel') staatsangehoerigkeitLabel: LabelComponent;
+  @ViewChild('staatsangehoerigkeit') staatsangehoerigkeit: TextBoxComponent;
+  @ViewChild('telefon1Label') telefon1Label: LabelComponent;
+  @ViewChild('telefon1') telefon1: TextBoxComponent;
+  @ViewChild('telefon2Label') telefon2Label: LabelComponent;
+  @ViewChild('telefon2') telefon2: TextBoxComponent;
+  @ViewChild('eMail1Label') eMail1Label: LabelComponent;
+  @ViewChild('eMail1') eMail1: TextBoxComponent;
+  @ViewChild('eMail2Label') eMail2Label: LabelComponent;
+  @ViewChild('eMail2') eMail2: TextBoxComponent;
+  @ViewChild('webseiteLabel') webseiteLabel: LabelComponent;
+  @ViewChild('webseite') webseite: TextBoxComponent;
+  @ViewChild('bildUrlLabel') bildUrlLabel: LabelComponent;
+  @ViewChild('bildUrl') bildUrl: TextBoxComponent;
+  @ViewChild('infoLabel') infoLabel: LabelComponent;
+  @ViewChild('info') info: TextBoxComponent;
   @ViewChild('button1') button1: ButtonComponent;
   @ViewChild('button2') button2: ButtonComponent;
 
@@ -107,10 +111,10 @@ export class KontakteGenerated implements AfterViewInit, OnInit, OnDestroy {
   security: SecurityService;
   getBaseAnredensResult: any;
   parameters: any;
-  getBasesResult: any;
-  getBasesCount: any;
   isEdit: any;
   base: any;
+  getBasesResult: any;
+  getBasesCount: any;
 
   constructor(private injector: Injector) {
   }
@@ -170,6 +174,21 @@ export class KontakteGenerated implements AfterViewInit, OnInit, OnDestroy {
     this.grid0.load();
   }
 
+  grid0Add(event: any) {
+    this.isEdit = false;
+
+    this.base = {};
+  }
+
+  grid0Delete(event: any) {
+    this.dbHopeKurseTextbausteine.deleteBase(event.BaseID)
+    .subscribe((result: any) => {
+      this.notificationService.notify({ severity: "success", summary: `Success`, detail: `Base deleted!` });
+    }, (result: any) => {
+      this.notificationService.notify({ severity: "error", summary: `Error`, detail: `Unable to delete Base` });
+    });
+  }
+
   grid0LoadData(event: any) {
     this.dbHopeKurseTextbausteine.getBases(`${event.filter}`, event.top, event.skip, `${event.orderby}`, event.top != null && event.skip != null, null, null, null)
     .subscribe((result: any) => {
@@ -183,21 +202,6 @@ export class KontakteGenerated implements AfterViewInit, OnInit, OnDestroy {
     }, (result: any) => {
       this.notificationService.notify({ severity: "error", summary: `Error`, detail: `Unable to load Bases` });
     });
-  }
-
-  grid0Delete(event: any) {
-    this.dbHopeKurseTextbausteine.deleteBase(event.BaseID)
-    .subscribe((result: any) => {
-      this.notificationService.notify({ severity: "success", summary: `Success`, detail: `Base deleted!` });
-    }, (result: any) => {
-      this.notificationService.notify({ severity: "error", summary: `Error`, detail: `Unable to delete Base` });
-    });
-  }
-
-  grid0Add(event: any) {
-    this.isEdit = false;
-
-    this.base = {};
   }
 
   grid0RowSelect(event: any) {

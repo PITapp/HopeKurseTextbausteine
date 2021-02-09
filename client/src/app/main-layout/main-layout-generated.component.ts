@@ -29,7 +29,7 @@ import { SecurityService } from '../security.service';
 export class MainLayoutGenerated implements AfterViewInit, OnInit, OnDestroy {
   // Components
   @ViewChild('header0') header0: HeaderComponent;
-  @ViewChild('sidebar-toggle0') sidebarToggle0: SidebarToggleComponent;
+  @ViewChild('sidebarToggle0') sidebarToggle0: SidebarToggleComponent;
   @ViewChild('image0') image0: ImageComponent;
   @ViewChild('link0') link0: LinkComponent;
   @ViewChild('link1') link1: LinkComponent;

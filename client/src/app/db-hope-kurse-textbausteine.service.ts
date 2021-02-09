@@ -65,16 +65,16 @@ export class DbHopeKurseTextbausteineService {
     return this.odata.post(`/Benutzers`, benutzer, { expand }, ['Base']);
   }
 
-  deleteBenutzer(benutzerId: string | null) : Observable<any> {
-    return this.odata.delete(`/Benutzers('${encodeURIComponent(benutzerId)}')`, item => !(item.BenutzerID == benutzerId));
+  deleteBenutzer(benutzerId: number | null) : Observable<any> {
+    return this.odata.delete(`/Benutzers(${benutzerId})`, item => !(item.BenutzerID == benutzerId));
   }
 
-  getBenutzerByBenutzerId(expand: string | null, benutzerId: string | null) : Observable<any> {
-    return this.odata.getById(`/Benutzers('${encodeURIComponent(benutzerId)}')`, { expand });
+  getBenutzerByBenutzerId(expand: string | null, benutzerId: number | null) : Observable<any> {
+    return this.odata.getById(`/Benutzers(${benutzerId})`, { expand });
   }
 
-  updateBenutzer(expand: string | null, benutzerId: string | null, benutzer: models.Benutzer | null) : Observable<any> {
-    return this.odata.patch(`/Benutzers('${encodeURIComponent(benutzerId)}')`, benutzer, item => item.BenutzerID == benutzerId, { expand }, ['Base']);
+  updateBenutzer(expand: string | null, benutzerId: number | null, benutzer: models.Benutzer | null) : Observable<any> {
+    return this.odata.patch(`/Benutzers(${benutzerId})`, benutzer, item => item.BenutzerID == benutzerId, { expand }, ['Base']);
   }
 
   getInfotexteHtmls(filter: string | null, top: number | null, skip: number | null, orderby: string | null, count: boolean | null, expand: string | null, format: string | null, select: string | null) : Observable<any> {

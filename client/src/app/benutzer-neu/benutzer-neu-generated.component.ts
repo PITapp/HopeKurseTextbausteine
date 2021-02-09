@@ -28,16 +28,16 @@ export class BenutzerNeuGenerated implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('content1') content1: ContentComponent;
   @ViewChild('form0') form0: TemplateFormComponent;
   @ViewChild('label0') label0: LabelComponent;
-  @ViewChild('EMail') eMail: TextBoxComponent;
+  @ViewChild('eMail') eMail: TextBoxComponent;
   @ViewChild('requiredValidator0') requiredValidator0: RequiredValidatorComponent;
-  @ViewChild('RoleNamesLabel') roleNamesLabel: LabelComponent;
-  @ViewChild('RoleNames') roleNames: DropDownComponent;
-  @ViewChild('PasswordLabel') passwordLabel: LabelComponent;
-  @ViewChild('Password') password: PasswordComponent;
-  @ViewChild('PasswordRequiredValidator') passwordRequiredValidator: RequiredValidatorComponent;
-  @ViewChild('ConfirmPasswordLabel') confirmPasswordLabel: LabelComponent;
-  @ViewChild('ConfirmPassword') confirmPassword: PasswordComponent;
-  @ViewChild('ConfirmPasswordRequiredValidator') confirmPasswordRequiredValidator: RequiredValidatorComponent;
+  @ViewChild('roleNamesLabel') roleNamesLabel: LabelComponent;
+  @ViewChild('roleNames') roleNames: DropDownComponent;
+  @ViewChild('passwordLabel') passwordLabel: LabelComponent;
+  @ViewChild('password') password: PasswordComponent;
+  @ViewChild('passwordRequiredValidator') passwordRequiredValidator: RequiredValidatorComponent;
+  @ViewChild('confirmPasswordLabel') confirmPasswordLabel: LabelComponent;
+  @ViewChild('confirmPassword') confirmPassword: PasswordComponent;
+  @ViewChild('confirmPasswordRequiredValidator') confirmPasswordRequiredValidator: RequiredValidatorComponent;
   @ViewChild('button1') button1: ButtonComponent;
   @ViewChild('button2') button2: ButtonComponent;
 

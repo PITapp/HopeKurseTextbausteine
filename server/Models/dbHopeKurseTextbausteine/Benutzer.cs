@@ -8,7 +8,13 @@ namespace HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine
   public partial class Benutzer
   {
     [Key]
-    public string BenutzerID
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int BenutzerID
+    {
+      get;
+      set;
+    }
+    public string AspNetUsers_Id
     {
       get;
       set;
@@ -20,17 +26,7 @@ namespace HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine
     }
 
     public Base Base { get; set; }
-    public string AspNetUsers_Id
-    {
-      get;
-      set;
-    }
     public string Benutzername
-    {
-      get;
-      set;
-    }
-    public string Kennwort
     {
       get;
       set;
@@ -46,26 +42,6 @@ namespace HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine
       set;
     }
     public string Notiz
-    {
-      get;
-      set;
-    }
-    public int? LetzteKundenID
-    {
-      get;
-      set;
-    }
-    public int? LetzteMitarbeiterID
-    {
-      get;
-      set;
-    }
-    public int? LetzteBaseID
-    {
-      get;
-      set;
-    }
-    public int? LetzteBenutzerID
     {
       get;
       set;

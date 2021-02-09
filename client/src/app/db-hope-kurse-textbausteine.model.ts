@@ -3,24 +3,20 @@ export interface Base {
   AnredeID: number;
   Name1: string;
   Name2: string;
-  NameGesamt: string;
-  NameVorNach: string;
   NameKuerzel: string;
   TitelVorne: string;
   TitelHinten: string;
   Strasse: string;
   PLZ: string;
   Ort: string;
-  Geburtsdatum: string;
-  Versicherungsnummer: string;
-  Staatsangehoerigkeit: string;
+  LKZ: string;
   Telefon1: string;
   Telefon2: string;
   EMail1: string;
   EMail2: string;
-  Webseite: string;
+  Website: string;
   BildURL: string;
-  Info: string;
+  Notiz: string;
 }
 
 export interface BaseAnreden {
@@ -29,18 +25,13 @@ export interface BaseAnreden {
 }
 
 export interface Benutzer {
-  BenutzerID: string;
-  BaseID: number;
+  BenutzerID: number;
   AspNetUsers_Id: string;
+  BaseID: number;
   Benutzername: string;
-  Kennwort: string;
   Initialen: string;
   BenutzerEMail: string;
   Notiz: string;
-  LetzteKundenID: number;
-  LetzteMitarbeiterID: number;
-  LetzteBaseID: number;
-  LetzteBenutzerID: number;
 }
 
 export interface InfotexteHtml {
@@ -52,11 +43,10 @@ export interface InfotexteHtml {
 }
 
 export interface VwBenutzerRollen {
-  BenutzerID: string;
+  BenutzerID: number;
   BaseID: number;
   Name1: string;
   Name2: string;
-  NameGesamt: string;
   Benutzername: string;
   Initialen: string;
   BenutzerEMail: string;

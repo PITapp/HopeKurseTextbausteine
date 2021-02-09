@@ -50,14 +50,6 @@
           "type": "string",
           "length": 30
         },
-        "NameGesamt": {
-          "type": "string",
-          "length": 130
-        },
-        "NameVorNach": {
-          "type": "string",
-          "length": 130
-        },
         "NameKuerzel": {
           "type": "string",
           "length": 5
@@ -82,17 +74,9 @@
           "type": "string",
           "length": 100
         },
-        "Geburtsdatum": {
+        "LKZ": {
           "type": "string",
-          "format": "date-time"
-        },
-        "Versicherungsnummer": {
-          "type": "string",
-          "length": 15
-        },
-        "Staatsangehoerigkeit": {
-          "type": "string",
-          "length": 30
+          "length": 3
         },
         "Telefon1": {
           "type": "string",
@@ -110,15 +94,15 @@
           "type": "string",
           "length": 70
         },
-        "Webseite": {
+        "Website": {
           "type": "string",
-          "length": 70
+          "length": 200
         },
         "BildURL": {
           "type": "string",
           "length": 16777215
         },
-        "Info": {
+        "Notiz": {
           "type": "string",
           "length": 65535
         },
@@ -167,16 +151,20 @@
       "x-table": "def.Benutzer",
       "resource": "Benutzers",
       "required": [
-        "BenutzerID",
-        "BaseID",
         "AspNetUsers_Id",
+        "BaseID",
         "Benutzername",
-        "Kennwort",
-        "Initialen"
+        "Initialen",
+        "BenutzerEMail"
       ],
       "properties": {
         "BenutzerID": {
           "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "type": "integer"
+        },
+        "AspNetUsers_Id": {
           "x-nullable": false,
           "type": "string",
           "length": 255
@@ -198,20 +186,10 @@
             "navigationProperty": "Benutzers"
           }
         },
-        "AspNetUsers_Id": {
-          "x-nullable": false,
-          "type": "string",
-          "length": 255
-        },
         "Benutzername": {
           "x-nullable": false,
           "type": "string",
           "length": 130
-        },
-        "Kennwort": {
-          "x-nullable": false,
-          "type": "string",
-          "length": 255
         },
         "Initialen": {
           "x-nullable": false,
@@ -219,24 +197,13 @@
           "length": 2
         },
         "BenutzerEMail": {
+          "x-nullable": false,
           "type": "string",
           "length": 200
         },
         "Notiz": {
           "type": "string",
           "length": 65535
-        },
-        "LetzteKundenID": {
-          "type": "integer"
-        },
-        "LetzteMitarbeiterID": {
-          "type": "integer"
-        },
-        "LetzteBaseID": {
-          "type": "integer"
-        },
-        "LetzteBenutzerID": {
-          "type": "integer"
         }
       }
     },
@@ -278,24 +245,24 @@
       "x-table": "def.vwBenutzerRollen",
       "resource": "VwBenutzerRollens",
       "required": [
-        "BenutzerID",
         "BaseID",
         "Name1",
         "Benutzername",
         "Initialen",
+        "BenutzerEMail",
         "RoleId"
       ],
       "properties": {
         "BenutzerID": {
+          "x-default-sql": "0",
           "x-nullable": false,
-          "type": "string",
-          "length": 255,
-          "x-key": true,
-          "x-virtual": true
+          "type": "integer"
         },
         "BaseID": {
           "x-nullable": false,
-          "type": "integer"
+          "type": "integer",
+          "x-key": true,
+          "x-virtual": true
         },
         "Name1": {
           "x-nullable": false,
@@ -305,10 +272,6 @@
         "Name2": {
           "type": "string",
           "length": 30
-        },
-        "NameGesamt": {
-          "type": "string",
-          "length": 130
         },
         "Benutzername": {
           "x-nullable": false,
@@ -321,6 +284,7 @@
           "length": 2
         },
         "BenutzerEMail": {
+          "x-nullable": false,
           "type": "string",
           "length": 200
         },
@@ -942,14 +906,14 @@
         }
       }
     },
-    "/Benutzers('{BenutzerID}')": {
+    "/Benutzers({BenutzerID})": {
       "delete": {
         "operationId": "deleteBenutzer",
         "parameters": [
           {
             "in": "path",
             "name": "BenutzerID",
-            "type": "string"
+            "type": "integer"
           }
         ],
         "responses": {
@@ -972,7 +936,7 @@
           {
             "in": "path",
             "name": "BenutzerID",
-            "type": "string"
+            "type": "integer"
           }
         ],
         "responses": {
@@ -999,7 +963,7 @@
           {
             "in": "path",
             "name": "BenutzerID",
-            "type": "string"
+            "type": "integer"
           },
           {
             "in": "body",

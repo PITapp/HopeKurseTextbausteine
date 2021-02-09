@@ -62,7 +62,7 @@ export class DashboardGenerated implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('grid0') grid0: GridComponent;
   @ViewChild('card5') card5: CardComponent;
   @ViewChild('selectbar0') selectbar0: SelectBarComponent;
-  @ViewChild('Sales') sales: HeadingComponent;
+  @ViewChild('sales') sales: HeadingComponent;
   @ViewChild('chart0') chart0: ChartComponent;
   @ViewChild('card7') card7: CardComponent;
   @ViewChild('heading15') heading15: HeadingComponent;

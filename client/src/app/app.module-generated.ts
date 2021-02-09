@@ -41,6 +41,7 @@ import { DataListModule } from '@radzen/angular/dist/datalist';
 import { LoginModule } from '@radzen/angular/dist/login';
 import { FormModule } from '@radzen/angular/dist/form';
 import { HtmlModule } from '@radzen/angular/dist/html';
+import { UploadModule } from '@radzen/angular/dist/upload';
 import { DatePickerModule } from '@radzen/angular/dist/datepicker';
 import { SharedModule } from '@radzen/angular/dist/shared';
 import { NotificationModule } from '@radzen/angular/dist/notification';
@@ -182,6 +183,7 @@ export const AppImports = [
   LoginModule,
   FormModule,
   HtmlModule,
+  UploadModule,
   DatePickerModule,
   SharedModule,
   NotificationModule,

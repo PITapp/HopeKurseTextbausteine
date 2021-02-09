@@ -41,6 +41,10 @@ namespace HopeKurseTextbausteine.Data
                   .HasForeignKey(i => i.BaseID)
                   .HasPrincipalKey(i => i.BaseID);
 
+            builder.Entity<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.VwBenutzerRollen>()
+                  .Property(p => p.BenutzerID)
+                  .HasDefaultValueSql("0");
+
 
             this.OnModelBuilding(builder);
         }

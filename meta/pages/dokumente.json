@@ -77,7 +77,36 @@
                 },
                 {
                   "class": "col-md-12",
-                  "components": [],
+                  "components": [
+                    {
+                      "events": {
+                        "error": [
+                          {
+                            "severity": "error",
+                            "summary": "Hochladen geht nicht",
+                            "type": "notify"
+                          }
+                        ],
+                        "progress": [
+                          {
+                            "severity": "info",
+                            "summary": "jetzt läuft es...",
+                            "type": "notify"
+                          }
+                        ],
+                        "upload": [
+                          {
+                            "severity": "info",
+                            "summary": "Jetzt wird hochgeladen",
+                            "type": "notify"
+                          }
+                        ]
+                      },
+                      "name": "upload0",
+                      "type": "upload",
+                      "url": "https://hopekurse-textbausteine.app/upload"
+                    }
+                  ],
                   "name": "col0",
                   "type": "col"
                 }

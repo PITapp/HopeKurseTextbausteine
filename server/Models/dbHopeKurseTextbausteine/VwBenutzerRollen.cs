@@ -7,12 +7,12 @@ namespace HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine
   [Table("vwBenutzerRollen")]
   public partial class VwBenutzerRollen
   {
-    [Key]
-    public string BenutzerID
+    public int BenutzerID
     {
       get;
       set;
     }
+    [Key]
     public int BaseID
     {
       get;
@@ -24,11 +24,6 @@ namespace HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine
       set;
     }
     public string Name2
-    {
-      get;
-      set;
-    }
-    public string NameGesamt
     {
       get;
       set;

@@ -13,6 +13,7 @@ import { NotificationService } from '@radzen/angular/dist/notification';
 import { ContentComponent } from '@radzen/angular/dist/content';
 import { HeadingComponent } from '@radzen/angular/dist/heading';
 import { TabsComponent } from '@radzen/angular/dist/tabs';
+import { UploadComponent } from '@radzen/angular/dist/upload';
 
 import { ConfigService } from '../config.service';
 
@@ -26,6 +27,7 @@ export class DokumenteGenerated implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('heading16') heading16: HeadingComponent;
   @ViewChild('tabs0') tabs0: TabsComponent;
   @ViewChild('heading0') heading0: HeadingComponent;
+  @ViewChild('upload0') upload0: UploadComponent;
 
   router: Router;
 
@@ -100,5 +102,17 @@ export class DokumenteGenerated implements AfterViewInit, OnInit, OnDestroy {
 
   load() {
 
+  }
+
+  upload0Error(event: any) {
+    this.notificationService.notify({ severity: "error", summary: `Hochladen geht nicht`, detail: `` });
+  }
+
+  upload0Progress(event: any) {
+    this.notificationService.notify({ severity: "info", summary: `jetzt läuft es...`, detail: `` });
+  }
+
+  upload0Upload(event: any) {
+    this.notificationService.notify({ severity: "info", summary: `Jetzt wird hochgeladen`, detail: `` });
   }
 }
