@@ -14,7 +14,9 @@
       <rz-heading #heading0 size="H3" [style]="{'color': '#479cc8'}" text="Hier ist etwas im Entstehen...">
       </rz-heading>
       <div class="col-md-12">
-        <rz-upload #upload0 url="https://hopekurse-textbausteine.app/upload" (error)="upload0Error($event)" (progress)="upload0Progress($event)" (upload)="upload0Upload($event)">
+        <rz-upload #upload0 cancelText="Abbruch" chooseText="Dokument auswählen" mode="advanced" [multiple]="false" uploadText="Hochladen" url="upload/single" (error)="upload0Error($event)" (upload)="upload0Upload($event)">
+        </rz-upload>
+        <rz-upload #upload1 cancelText="Abbruch" chooseText="Dokument(e) auswählen" mode="advanced" [multiple]="true" uploadText="Hochladen" url="upload/multiple" (error)="upload1Error($event)" (upload)="upload1Upload($event)">
         </rz-upload>
       </div>
     </rz-tabs-item>

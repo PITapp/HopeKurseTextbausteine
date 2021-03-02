@@ -28,6 +28,7 @@ export class DokumenteGenerated implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('tabs0') tabs0: TabsComponent;
   @ViewChild('heading0') heading0: HeadingComponent;
   @ViewChild('upload0') upload0: UploadComponent;
+  @ViewChild('upload1') upload1: UploadComponent;
 
   router: Router;
 
@@ -105,14 +106,18 @@ export class DokumenteGenerated implements AfterViewInit, OnInit, OnDestroy {
   }
 
   upload0Error(event: any) {
-    this.notificationService.notify({ severity: "error", summary: `Hochladen geht nicht`, detail: `` });
-  }
-
-  upload0Progress(event: any) {
-    this.notificationService.notify({ severity: "info", summary: `jetzt läuft es...`, detail: `` });
+    this.notificationService.notify({ severity: "error", summary: `Dokument hochladen fehlgeschlagen`, detail: `` });
   }
 
   upload0Upload(event: any) {
-    this.notificationService.notify({ severity: "info", summary: `Jetzt wird hochgeladen`, detail: `` });
+    this.notificationService.notify({ severity: "success", summary: `Dokument erfolgreich hochgeladen`, detail: `` });
+  }
+
+  upload1Error(event: any) {
+    this.notificationService.notify({ severity: "error", summary: `Dokument hochladen fehlgeschlagen`, detail: `` });
+  }
+
+  upload1Upload(event: any) {
+    this.notificationService.notify({ severity: "success", summary: `Dokument erfolgreich hochgeladen`, detail: `` });
   }
 }

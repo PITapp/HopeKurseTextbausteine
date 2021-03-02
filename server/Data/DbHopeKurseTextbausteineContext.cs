@@ -45,7 +45,6 @@ namespace HopeKurseTextbausteine.Data
                   .Property(p => p.BenutzerID)
                   .HasDefaultValueSql("0");
 
-
             this.OnModelBuilding(builder);
         }
 

@@ -79,32 +79,58 @@
                   "class": "col-md-12",
                   "components": [
                     {
+                      "cancelText": "Abbruch",
+                      "chooseText": "Dokument auswählen",
                       "events": {
                         "error": [
                           {
                             "severity": "error",
-                            "summary": "Hochladen geht nicht",
+                            "summary": "Dokument hochladen fehlgeschlagen",
                             "type": "notify"
                           }
                         ],
-                        "progress": [
-                          {
-                            "severity": "info",
-                            "summary": "jetzt läuft es...",
-                            "type": "notify"
-                          }
-                        ],
+                        "progress": [],
                         "upload": [
                           {
-                            "severity": "info",
-                            "summary": "Jetzt wird hochgeladen",
+                            "severity": "success",
+                            "summary": "Dokument erfolgreich hochgeladen",
                             "type": "notify"
                           }
                         ]
                       },
+                      "mode": "advanced",
+                      "multiple": false,
                       "name": "upload0",
                       "type": "upload",
-                      "url": "https://hopekurse-textbausteine.app/upload"
+                      "uploadText": "Hochladen",
+                      "url": "upload/single"
+                    },
+                    {
+                      "cancelText": "Abbruch",
+                      "chooseText": "Dokument(e) auswählen",
+                      "events": {
+                        "error": [
+                          {
+                            "severity": "error",
+                            "summary": "Dokument hochladen fehlgeschlagen",
+                            "type": "notify"
+                          }
+                        ],
+                        "progress": [],
+                        "upload": [
+                          {
+                            "severity": "success",
+                            "summary": "Dokument erfolgreich hochgeladen",
+                            "type": "notify"
+                          }
+                        ]
+                      },
+                      "mode": "advanced",
+                      "multiple": true,
+                      "name": "upload1",
+                      "type": "upload",
+                      "uploadText": "Hochladen",
+                      "url": "upload/multiple"
                     }
                   ],
                   "name": "col0",
