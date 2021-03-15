@@ -19,6 +19,7 @@ import { LabelComponent } from '@radzen/angular/dist/label';
 import { TextBoxComponent } from '@radzen/angular/dist/textbox';
 import { RequiredValidatorComponent } from '@radzen/angular/dist/required-validator';
 import { DropDownComponent } from '@radzen/angular/dist/dropdown';
+import { TextAreaComponent } from '@radzen/angular/dist/textarea';
 import { ButtonComponent } from '@radzen/angular/dist/button';
 import { PanelComponent } from '@radzen/angular/dist/panel';
 
@@ -40,20 +41,17 @@ export class BenutzerGenerated implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('gridUsers') gridUsers: GridComponent;
   @ViewChild('formBenutzer') formBenutzer: TemplateFormComponent;
   @ViewChild('benutzernameLabel') benutzernameLabel: LabelComponent;
-  @ViewChild('benutzername') benutzername: TextBoxComponent;
+  @ViewChild('txbBenutzername') txbBenutzername: TextBoxComponent;
   @ViewChild('benutzernameRequiredValidator') benutzernameRequiredValidator: RequiredValidatorComponent;
-  @ViewChild('kennwortLabel') kennwortLabel: LabelComponent;
-  @ViewChild('kennwort') kennwort: TextBoxComponent;
-  @ViewChild('kennwortRequiredValidator') kennwortRequiredValidator: RequiredValidatorComponent;
   @ViewChild('initialenLabel') initialenLabel: LabelComponent;
-  @ViewChild('initialen') initialen: TextBoxComponent;
+  @ViewChild('txbInitialen') txbInitialen: TextBoxComponent;
   @ViewChild('initialenRequiredValidator') initialenRequiredValidator: RequiredValidatorComponent;
-  @ViewChild('benutzerInfoLabel') benutzerInfoLabel: LabelComponent;
-  @ViewChild('benutzerInfo') benutzerInfo: TextBoxComponent;
   @ViewChild('eMailLabel') eMailLabel: LabelComponent;
-  @ViewChild('eMail') eMail: TextBoxComponent;
+  @ViewChild('txbBenutzerEMail') txbBenutzerEMail: TextBoxComponent;
   @ViewChild('roleNamesLabel') roleNamesLabel: LabelComponent;
-  @ViewChild('roleNames') roleNames: DropDownComponent;
+  @ViewChild('dpdRollen') dpdRollen: DropDownComponent;
+  @ViewChild('benutzerInfoLabel') benutzerInfoLabel: LabelComponent;
+  @ViewChild('txaNotiz') txaNotiz: TextAreaComponent;
   @ViewChild('button1') button1: ButtonComponent;
   @ViewChild('gridRoles') gridRoles: GridComponent;
   @ViewChild('panel0') panel0: PanelComponent;
@@ -183,7 +181,7 @@ export class BenutzerGenerated implements AfterViewInit, OnInit, OnDestroy {
   gridUsersRowSelect(event: any) {
     this.dbHopeKurseTextbausteine.getBenutzers(`AspNetUsers_Id eq '${event.Id}'`, null, null, null, null, null, null, null)
     .subscribe((result: any) => {
-      this.rstBenutzer = result.value;
+      this.rstBenutzer = result.value[0];
     }, (result: any) => {
 
     });
@@ -197,7 +195,12 @@ export class BenutzerGenerated implements AfterViewInit, OnInit, OnDestroy {
   }
 
   formBenutzerSubmit(event: any) {
-    this.notificationService.notify({ severity: "info", summary: `Test`, detail: `Hallo2` });
+    this.dbHopeKurseTextbausteine.updateBenutzer(null, this.rstBenutzer.BenutzerID, this.rstBenutzer)
+    .subscribe((result: any) => {
+      this.notificationService.notify({ severity: "success", summary: `Benutzerdaten gespeichert`, detail: `` });
+    }, (result: any) => {
+      this.notificationService.notify({ severity: "error", summary: `Benutzerdaten nicht gespeichert`, detail: `` });
+    });
   }
 
   gridRolesAdd(event: any) {
@@ -214,7 +217,7 @@ export class BenutzerGenerated implements AfterViewInit, OnInit, OnDestroy {
   }
 
   gridRolesRowSelect(event: any) {
-    this.dbHopeKurseTextbausteine.getVwBenutzerRollens(`RoleId eq '${event.Id}'`, null, null, null, null, null, null, null)
+    this.security.getRoles(`RoleId eq '${event.Id}'`, null, null, null, null, null)
     .subscribe((result: any) => {
       this.rstBenutzerRollen = result.value;
     }, (result: any) => {

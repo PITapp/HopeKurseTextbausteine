@@ -23,12 +23,12 @@
         <div class="col-md-6">
           <rz-template-form #formBenutzer (submit)="formBenutzerSubmit($event)">
             <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
-              <div class="col-md-3">
+              <div class="col-md-3" [ngStyle]="{'textAlign': 'right'}">
                 <rz-label #benutzernameLabel component="Benutzername" [style]="{'width': '100%'}" text="Benutzername">
                 </rz-label>
               </div>
               <div class="col-md-9">
-                <rz-textbox #benutzername [style]="{'display': 'block', 'width': '100%'}" [(ngModel)]="(rstBenutzer || {})[0] && (rstBenutzer || {})[0].Benutzername" name="Benutzername">
+                <rz-textbox #txbBenutzername [style]="{'display': 'block', 'width': '100%'}" [(ngModel)]="rstBenutzer && rstBenutzer.Benutzername" name="txbBenutzername">
                 </rz-textbox>
                 <rz-required-validator #benutzernameRequiredValidator [component]="benutzername" [style]="{'position': 'absolute'}" text="Benutzername is required">
                 </rz-required-validator>
@@ -36,23 +36,11 @@
             </div>
             <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
               <div class="col-md-3">
-                <rz-label #kennwortLabel component="Kennwort" [style]="{'width': '100%'}" text="Kennwort">
+                <rz-label #initialenLabel component="Initialen" [style]="{'textAlign': 'right', 'width': '100%'}" text="Initialen">
                 </rz-label>
               </div>
               <div class="col-md-9">
-                <rz-textbox #kennwort [style]="{'display': 'block', 'width': '100%'}" [(ngModel)]="(rstBenutzer || {})[0] && (rstBenutzer || {})[0].Kennwort" name="Kennwort">
-                </rz-textbox>
-                <rz-required-validator #kennwortRequiredValidator [component]="kennwort" [style]="{'position': 'absolute'}" text="Kennwort is required">
-                </rz-required-validator>
-              </div>
-            </div>
-            <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
-              <div class="col-md-3">
-                <rz-label #initialenLabel component="Initialen" [style]="{'width': '100%'}" text="Initialen">
-                </rz-label>
-              </div>
-              <div class="col-md-9">
-                <rz-textbox #initialen [style]="{'display': 'block', 'width': '100%'}" [(ngModel)]="(rstBenutzer || {})[0] && (rstBenutzer || {})[0].Initialen" name="Initialen">
+                <rz-textbox #txbInitialen [style]="{'display': 'block', 'width': '100%'}" [(ngModel)]="rstBenutzer && rstBenutzer.Initialen" name="txbInitialen">
                 </rz-textbox>
                 <rz-required-validator #initialenRequiredValidator [component]="initialen" [style]="{'position': 'absolute'}" text="Initialen is required">
                 </rz-required-validator>
@@ -60,32 +48,32 @@
             </div>
             <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
               <div class="col-md-3">
-                <rz-label #benutzerInfoLabel component="BenutzerInfo" [style]="{'width': '100%'}" text="Benutzer Info">
+                <rz-label #eMailLabel component="EMail" [style]="{'textAlign': 'right', 'width': '100%'}" text="EMail">
                 </rz-label>
               </div>
               <div class="col-md-9">
-                <rz-textbox #benutzerInfo [style]="{'width': '100%'}" [(ngModel)]="(rstBenutzer || {})[0] && (rstBenutzer || {})[0].BenutzerInfo" name="BenutzerInfo">
+                <rz-textbox #txbBenutzerEMail [style]="{'width': '100%'}" [(ngModel)]="rstBenutzer && rstBenutzer.BenutzerEMail" name="txbBenutzerEMail">
                 </rz-textbox>
               </div>
             </div>
             <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
               <div class="col-md-3">
-                <rz-label #eMailLabel component="EMail" [style]="{'width': '100%'}" text="EMail">
+                <rz-label #roleNamesLabel component="RoleNames" [style]="{'textAlign': 'right', 'width': '100%'}" text="Rollen">
                 </rz-label>
               </div>
               <div class="col-md-9">
-                <rz-textbox #eMail [style]="{'width': '100%'}" [(ngModel)]="(rstBenutzer || {})[0] && (rstBenutzer || {})[0].EMail" name="EMail">
-                </rz-textbox>
-              </div>
-            </div>
-            <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
-              <div class="col-md-3">
-                <rz-label #roleNamesLabel component="RoleNames" [style]="{'textAlign': 'right', 'width': '100%'}" text="Rolen">
-                </rz-label>
-              </div>
-              <div class="col-md-9">
-                <rz-dropdown #roleNames [data]="rstRoles" emptyFilterText="No results found" [multiple]="true" multipleItemsSelectedText="{0} items selected" [style]="{'width': '100%'}" textProperty="Name" [(ngModel)]="rstUser && rstUser.RoleNames" valueProperty="Name" name="RoleNames">
+                <rz-dropdown #dpdRollen [data]="rstRoles" emptyFilterText="No results found" [multiple]="true" multipleItemsSelectedText="{0} items selected" [style]="{'width': '100%'}" textProperty="Name" [(ngModel)]="rstUser && rstUser.RoleNames" valueProperty="Name" name="dpdRollen">
                 </rz-dropdown>
+              </div>
+            </div>
+            <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+              <div class="col-md-3">
+                <rz-label #benutzerInfoLabel component="BenutzerInfo" [style]="{'textAlign': 'right', 'width': '100%'}" text="Notiz">
+                </rz-label>
+              </div>
+              <div class="col-md-9">
+                <rz-textarea #txaNotiz [rows]="7" [style]="{'width': '100%'}" [(ngModel)]="rstBenutzer && rstBenutzer.Notiz" name="txaNotiz">
+                </rz-textarea>
               </div>
             </div>
             <div class="row">

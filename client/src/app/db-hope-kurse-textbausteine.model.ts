@@ -34,6 +34,103 @@ export interface Benutzer {
   Notiz: string;
 }
 
+export interface Einstellungen {
+  EinstellungenID: number;
+  PfadDokumenteTextbausteine: string;
+}
+
+export interface IbsiKurse {
+  KursNr: number;
+  KursArtNr: number;
+  Titel: string;
+  Untertitel: string;
+  Kurzzeichen: string;
+  Beschreibung: string;
+  AnzahlThemen: number;
+  Printkurs: boolean;
+  Onlinekurs: boolean;
+}
+
+export interface IbsiKurseArten {
+  KursArtNr: number;
+  Bezeichnung: string;
+  Sortierung: number;
+}
+
+export interface IbsiKurseThemen {
+  KursThemaNr: number;
+  KursNr: number;
+  Nummer: number;
+  Titel: string;
+  Untertitel: string;
+  Kurzbeschreibung: string;
+  Begleitmaterial: string;
+  Druckfehler: string;
+  InfoMemo: string;
+}
+
+export interface IbsiTextbausteine {
+  TextbausteinNr: number;
+  Anrede: string;
+  Status: number;
+  StatusInhalt: number;
+  KursNr: number;
+  TextbausteinArtCode: string;
+  AutorNr: number;
+  Typ: string;
+  TitelTextbaustein: string;
+  UntertitelTextbaustein: string;
+  Land: string;
+  ThemaNummer: number;
+  TextbausteinHTML: string;
+  DokumentTitel: string;
+  DokumentName: string;
+  DokumentTyp: string;
+  DokumentErstelltVon: string;
+  DokumentErstelltAm: string;
+  SeiteHhe: number;
+  SeiteBreite: number;
+  RandOben: number;
+  RandRechts: number;
+  RandUnten: number;
+  RandLinks: number;
+  nderungsdatum: string;
+  InfoText: string;
+}
+
+export interface IbsiTextbausteineAnreden {
+  Anrede: string;
+  Bezeichnung: string;
+  Sortierung: number;
+}
+
+export interface IbsiTextbausteineArten {
+  TextbausteinArtCode: string;
+  Bezeichnung: string;
+  Sortierung: number;
+}
+
+export interface IbsiTextbausteineAutoren {
+  AutorNr: number;
+  Name: string;
+  Krzel: string;
+}
+
+export interface IbsiTextbausteineStatusForm {
+  Status: number;
+  Bezeichnung: string;
+}
+
+export interface IbsiTextbausteineStatusInhalt {
+  StatusInhalt: number;
+  Bezeichnung: string;
+}
+
+export interface IbsiTextbausteineTypen {
+  Typ: string;
+  Bezeichnung: string;
+}
+
 export interface InfotexteHtml {
   InfotextID: number;
   Code: string;

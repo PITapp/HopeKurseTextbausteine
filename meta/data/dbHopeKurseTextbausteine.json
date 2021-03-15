@@ -207,6 +207,633 @@
         }
       }
     },
+    "Einstellungen": {
+      "x-table": "def.Einstellungen",
+      "resource": "Einstellungens",
+      "required": [],
+      "properties": {
+        "EinstellungenID": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "type": "integer"
+        },
+        "PfadDokumenteTextbausteine": {
+          "type": "string",
+          "length": 255
+        }
+      }
+    },
+    "IbsiKurse": {
+      "x-table": "def.IBSIKurse",
+      "resource": "IbsiKurses",
+      "required": [
+        "KursArtNr",
+        "Titel"
+      ],
+      "properties": {
+        "KursNr": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "type": "integer",
+          "x-navigation": [
+            {
+              "inversePropertyName": "IbsiKurse",
+              "name": "IbsiKurseThemens",
+              "type": "IbsiKurseThemen"
+            },
+            {
+              "inversePropertyName": "IbsiKurse",
+              "name": "IbsiTextbausteines",
+              "type": "IbsiTextbausteine"
+            }
+          ]
+        },
+        "IbsiKurseArten": {
+          "type": "object",
+          "$ref": "#/definitions/IbsiKurseArten"
+        },
+        "KursArtNr": {
+          "x-nullable": false,
+          "type": "integer",
+          "x-foreignKey": {
+            "parentTable": "IBSIKurseArten",
+            "parentEntityType": "IbsiKurseArten",
+            "type": "IbsiKurseArten",
+            "principalKey": "KursArtNr",
+            "name": "IbsiKurseArten",
+            "textProperty": "Bezeichnung",
+            "navigationProperty": "IbsiKurses"
+          }
+        },
+        "Titel": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 50
+        },
+        "Untertitel": {
+          "type": "string",
+          "length": 50
+        },
+        "Kurzzeichen": {
+          "type": "string",
+          "length": 10
+        },
+        "Beschreibung": {
+          "type": "string",
+          "length": 16777215
+        },
+        "AnzahlThemen": {
+          "type": "integer"
+        },
+        "Printkurs": {
+          "type": "boolean"
+        },
+        "Onlinekurs": {
+          "type": "boolean"
+        },
+        "IbsiKurseThemens": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/IbsiKurseThemen"
+          }
+        },
+        "IbsiTextbausteines": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/IbsiTextbausteine"
+          }
+        }
+      }
+    },
+    "IbsiKurseArten": {
+      "x-table": "def.IBSIKurseArten",
+      "resource": "IbsiKurseArtens",
+      "required": [
+        "Bezeichnung"
+      ],
+      "properties": {
+        "KursArtNr": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "type": "integer",
+          "x-navigation": [
+            {
+              "inversePropertyName": "IbsiKurseArten",
+              "name": "IbsiKurses",
+              "type": "IbsiKurse"
+            }
+          ]
+        },
+        "Bezeichnung": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 30
+        },
+        "Sortierung": {
+          "type": "integer"
+        },
+        "IbsiKurses": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/IbsiKurse"
+          }
+        }
+      }
+    },
+    "IbsiKurseThemen": {
+      "x-table": "def.IBSIKurseThemen",
+      "resource": "IbsiKurseThemens",
+      "required": [
+        "KursNr",
+        "Nummer",
+        "Titel"
+      ],
+      "properties": {
+        "KursThemaNr": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "type": "integer"
+        },
+        "IbsiKurse": {
+          "type": "object",
+          "$ref": "#/definitions/IbsiKurse"
+        },
+        "KursNr": {
+          "x-nullable": false,
+          "type": "integer",
+          "x-foreignKey": {
+            "parentTable": "IBSIKurse",
+            "parentEntityType": "IbsiKurse",
+            "type": "IbsiKurse",
+            "principalKey": "KursNr",
+            "name": "IbsiKurse",
+            "textProperty": "Titel",
+            "navigationProperty": "IbsiKurseThemens"
+          }
+        },
+        "Nummer": {
+          "x-nullable": false,
+          "type": "integer"
+        },
+        "Titel": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 50
+        },
+        "Untertitel": {
+          "type": "string",
+          "length": 100
+        },
+        "Kurzbeschreibung": {
+          "type": "string",
+          "length": 16777215
+        },
+        "Begleitmaterial": {
+          "type": "string",
+          "length": 16777215
+        },
+        "Druckfehler": {
+          "type": "string",
+          "length": 16777215
+        },
+        "InfoMemo": {
+          "type": "string",
+          "length": 16777215
+        }
+      }
+    },
+    "IbsiTextbausteine": {
+      "x-table": "def.IBSITextbausteine",
+      "resource": "IbsiTextbausteines",
+      "required": [
+        "Status",
+        "StatusInhalt",
+        "KursNr",
+        "TextbausteinArtCode",
+        "AutorNr",
+        "Typ",
+        "TitelTextbaustein",
+        "Land"
+      ],
+      "properties": {
+        "TextbausteinNr": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "type": "integer"
+        },
+        "IbsiTextbausteineAnreden": {
+          "type": "object",
+          "$ref": "#/definitions/IbsiTextbausteineAnreden"
+        },
+        "Anrede": {
+          "type": "string",
+          "length": 5,
+          "x-foreignKey": {
+            "parentTable": "IBSITextbausteineAnreden",
+            "parentEntityType": "IbsiTextbausteineAnreden",
+            "type": "IbsiTextbausteineAnreden",
+            "principalKey": "Anrede",
+            "name": "IbsiTextbausteineAnreden",
+            "textProperty": "Bezeichnung",
+            "navigationProperty": "IbsiTextbausteines"
+          }
+        },
+        "IbsiTextbausteineStatusForm": {
+          "type": "object",
+          "$ref": "#/definitions/IbsiTextbausteineStatusForm"
+        },
+        "Status": {
+          "x-nullable": false,
+          "type": "integer",
+          "x-foreignKey": {
+            "parentTable": "IBSITextbausteineStatusForm",
+            "parentEntityType": "IbsiTextbausteineStatusForm",
+            "type": "IbsiTextbausteineStatusForm",
+            "principalKey": "Status",
+            "name": "IbsiTextbausteineStatusForm",
+            "textProperty": "Bezeichnung",
+            "navigationProperty": "IbsiTextbausteines"
+          }
+        },
+        "IbsiTextbausteineStatusInhalt": {
+          "type": "object",
+          "$ref": "#/definitions/IbsiTextbausteineStatusInhalt"
+        },
+        "StatusInhalt": {
+          "x-nullable": false,
+          "type": "integer",
+          "x-foreignKey": {
+            "parentTable": "IBSITextbausteineStatusInhalt",
+            "parentEntityType": "IbsiTextbausteineStatusInhalt",
+            "type": "IbsiTextbausteineStatusInhalt",
+            "principalKey": "StatusInhalt",
+            "name": "IbsiTextbausteineStatusInhalt",
+            "textProperty": "Bezeichnung",
+            "navigationProperty": "IbsiTextbausteines"
+          }
+        },
+        "IbsiKurse": {
+          "type": "object",
+          "$ref": "#/definitions/IbsiKurse"
+        },
+        "KursNr": {
+          "x-nullable": false,
+          "type": "integer",
+          "x-foreignKey": {
+            "parentTable": "IBSIKurse",
+            "parentEntityType": "IbsiKurse",
+            "type": "IbsiKurse",
+            "principalKey": "KursNr",
+            "name": "IbsiKurse",
+            "textProperty": "Titel",
+            "navigationProperty": "IbsiTextbausteines"
+          }
+        },
+        "IbsiTextbausteineArten": {
+          "type": "object",
+          "$ref": "#/definitions/IbsiTextbausteineArten"
+        },
+        "TextbausteinArtCode": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 3,
+          "x-foreignKey": {
+            "parentTable": "IBSITextbausteineArten",
+            "parentEntityType": "IbsiTextbausteineArten",
+            "type": "IbsiTextbausteineArten",
+            "principalKey": "TextbausteinArtCode",
+            "name": "IbsiTextbausteineArten",
+            "textProperty": "Bezeichnung",
+            "navigationProperty": "IbsiTextbausteines"
+          }
+        },
+        "IbsiTextbausteineAutoren": {
+          "type": "object",
+          "$ref": "#/definitions/IbsiTextbausteineAutoren"
+        },
+        "AutorNr": {
+          "x-nullable": false,
+          "type": "integer",
+          "x-foreignKey": {
+            "parentTable": "IBSITextbausteineAutoren",
+            "parentEntityType": "IbsiTextbausteineAutoren",
+            "type": "IbsiTextbausteineAutoren",
+            "principalKey": "AutorNr",
+            "name": "IbsiTextbausteineAutoren",
+            "textProperty": "Name",
+            "navigationProperty": "IbsiTextbausteines"
+          }
+        },
+        "IbsiTextbausteineTypen": {
+          "type": "object",
+          "$ref": "#/definitions/IbsiTextbausteineTypen"
+        },
+        "Typ": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 1,
+          "x-foreignKey": {
+            "parentTable": "IBSITextbausteineTypen",
+            "parentEntityType": "IbsiTextbausteineTypen",
+            "type": "IbsiTextbausteineTypen",
+            "principalKey": "Typ",
+            "name": "IbsiTextbausteineTypen",
+            "textProperty": "Bezeichnung",
+            "navigationProperty": "IbsiTextbausteines"
+          }
+        },
+        "TitelTextbaustein": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 100
+        },
+        "UntertitelTextbaustein": {
+          "type": "string",
+          "length": 100
+        },
+        "Land": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 5
+        },
+        "ThemaNummer": {
+          "type": "integer"
+        },
+        "TextbausteinHTML": {
+          "type": "string",
+          "length": 16777215
+        },
+        "DokumentTitel": {
+          "type": "string",
+          "length": 255
+        },
+        "DokumentName": {
+          "type": "string",
+          "length": 200
+        },
+        "DokumentTyp": {
+          "type": "string",
+          "length": 5
+        },
+        "DokumentErstelltVon": {
+          "type": "string",
+          "length": 50
+        },
+        "DokumentErstelltAm": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "SeiteHhe": {
+          "x-original-name": "SeiteHöhe",
+          "type": "integer",
+          "format": "int16"
+        },
+        "SeiteBreite": {
+          "type": "integer",
+          "format": "int16"
+        },
+        "RandOben": {
+          "type": "integer",
+          "format": "int16"
+        },
+        "RandRechts": {
+          "type": "integer",
+          "format": "int16"
+        },
+        "RandUnten": {
+          "type": "integer",
+          "format": "int16"
+        },
+        "RandLinks": {
+          "type": "integer",
+          "format": "int16"
+        },
+        "nderungsdatum": {
+          "x-original-name": "Änderungsdatum",
+          "type": "string",
+          "format": "date-time"
+        },
+        "InfoText": {
+          "type": "string",
+          "length": 16777215
+        }
+      }
+    },
+    "IbsiTextbausteineAnreden": {
+      "x-table": "def.IBSITextbausteineAnreden",
+      "resource": "IbsiTextbausteineAnredens",
+      "required": [
+        "Anrede"
+      ],
+      "properties": {
+        "Anrede": {
+          "x-key": true,
+          "x-nullable": false,
+          "type": "string",
+          "length": 5,
+          "x-navigation": [
+            {
+              "inversePropertyName": "IbsiTextbausteineAnreden",
+              "name": "IbsiTextbausteines",
+              "type": "IbsiTextbausteine"
+            }
+          ]
+        },
+        "Bezeichnung": {
+          "type": "string",
+          "length": 45
+        },
+        "Sortierung": {
+          "type": "integer"
+        },
+        "IbsiTextbausteines": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/IbsiTextbausteine"
+          }
+        }
+      }
+    },
+    "IbsiTextbausteineArten": {
+      "x-table": "def.IBSITextbausteineArten",
+      "resource": "IbsiTextbausteineArtens",
+      "required": [
+        "TextbausteinArtCode",
+        "Bezeichnung"
+      ],
+      "properties": {
+        "TextbausteinArtCode": {
+          "x-key": true,
+          "x-nullable": false,
+          "type": "string",
+          "length": 3,
+          "x-navigation": [
+            {
+              "inversePropertyName": "IbsiTextbausteineArten",
+              "name": "IbsiTextbausteines",
+              "type": "IbsiTextbausteine"
+            }
+          ]
+        },
+        "Bezeichnung": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 40
+        },
+        "Sortierung": {
+          "type": "integer"
+        },
+        "IbsiTextbausteines": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/IbsiTextbausteine"
+          }
+        }
+      }
+    },
+    "IbsiTextbausteineAutoren": {
+      "x-table": "def.IBSITextbausteineAutoren",
+      "resource": "IbsiTextbausteineAutorens",
+      "required": [
+        "Name"
+      ],
+      "properties": {
+        "AutorNr": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "type": "integer",
+          "x-navigation": [
+            {
+              "inversePropertyName": "IbsiTextbausteineAutoren",
+              "name": "IbsiTextbausteines",
+              "type": "IbsiTextbausteine"
+            }
+          ]
+        },
+        "Name": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 250
+        },
+        "Krzel": {
+          "x-original-name": "Kürzel",
+          "type": "string",
+          "length": 50
+        },
+        "IbsiTextbausteines": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/IbsiTextbausteine"
+          }
+        }
+      }
+    },
+    "IbsiTextbausteineStatusForm": {
+      "x-table": "def.IBSITextbausteineStatusForm",
+      "resource": "IbsiTextbausteineStatusForms",
+      "required": [
+        "Status",
+        "Bezeichnung"
+      ],
+      "properties": {
+        "Status": {
+          "x-key": true,
+          "x-nullable": false,
+          "type": "integer",
+          "x-navigation": [
+            {
+              "inversePropertyName": "IbsiTextbausteineStatusForm",
+              "name": "IbsiTextbausteines",
+              "type": "IbsiTextbausteine"
+            }
+          ]
+        },
+        "Bezeichnung": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 45
+        },
+        "IbsiTextbausteines": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/IbsiTextbausteine"
+          }
+        }
+      }
+    },
+    "IbsiTextbausteineStatusInhalt": {
+      "x-table": "def.IBSITextbausteineStatusInhalt",
+      "resource": "IbsiTextbausteineStatusInhalts",
+      "required": [
+        "StatusInhalt",
+        "Bezeichnung"
+      ],
+      "properties": {
+        "StatusInhalt": {
+          "x-key": true,
+          "x-nullable": false,
+          "type": "integer",
+          "x-navigation": [
+            {
+              "inversePropertyName": "IbsiTextbausteineStatusInhalt",
+              "name": "IbsiTextbausteines",
+              "type": "IbsiTextbausteine"
+            }
+          ]
+        },
+        "Bezeichnung": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 45
+        },
+        "IbsiTextbausteines": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/IbsiTextbausteine"
+          }
+        }
+      }
+    },
+    "IbsiTextbausteineTypen": {
+      "x-table": "def.IBSITextbausteineTypen",
+      "resource": "IbsiTextbausteineTypens",
+      "required": [
+        "Typ",
+        "Bezeichnung"
+      ],
+      "properties": {
+        "Typ": {
+          "x-key": true,
+          "x-nullable": false,
+          "type": "string",
+          "length": 1,
+          "x-navigation": [
+            {
+              "inversePropertyName": "IbsiTextbausteineTypen",
+              "name": "IbsiTextbausteines",
+              "type": "IbsiTextbausteine"
+            }
+          ]
+        },
+        "Bezeichnung": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 45
+        },
+        "IbsiTextbausteines": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/IbsiTextbausteine"
+          }
+        }
+      }
+    },
     "InfotexteHtml": {
       "x-table": "def.InfotexteHTML",
       "resource": "InfotexteHtmls",
@@ -579,6 +1206,1062 @@
           "201": {
             "schema": {
               "$ref": "#/definitions/Benutzer"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Einstellungens": {
+      "get": {
+        "operationId": "getEinstellungens",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/Einstellungen"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createEinstellungen",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "Einstellungen",
+            "schema": {
+              "$ref": "#/definitions/Einstellungen"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/Einstellungen"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/IbsiKurses": {
+      "get": {
+        "operationId": "getIbsiKurses",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/IbsiKurse"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createIbsiKurse",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "IbsiKurse",
+            "schema": {
+              "$ref": "#/definitions/IbsiKurse"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/IbsiKurse"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/IbsiKurseArtens": {
+      "get": {
+        "operationId": "getIbsiKurseArtens",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/IbsiKurseArten"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createIbsiKurseArten",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "IbsiKurseArten",
+            "schema": {
+              "$ref": "#/definitions/IbsiKurseArten"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/IbsiKurseArten"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/IbsiKurseThemens": {
+      "get": {
+        "operationId": "getIbsiKurseThemens",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/IbsiKurseThemen"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createIbsiKurseThemen",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "IbsiKurseThemen",
+            "schema": {
+              "$ref": "#/definitions/IbsiKurseThemen"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/IbsiKurseThemen"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/IbsiTextbausteines": {
+      "get": {
+        "operationId": "getIbsiTextbausteines",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/IbsiTextbausteine"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createIbsiTextbausteine",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "IbsiTextbausteine",
+            "schema": {
+              "$ref": "#/definitions/IbsiTextbausteine"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/IbsiTextbausteine"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/IbsiTextbausteineAnredens": {
+      "get": {
+        "operationId": "getIbsiTextbausteineAnredens",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/IbsiTextbausteineAnreden"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createIbsiTextbausteineAnreden",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "IbsiTextbausteineAnreden",
+            "schema": {
+              "$ref": "#/definitions/IbsiTextbausteineAnreden"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/IbsiTextbausteineAnreden"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/IbsiTextbausteineArtens": {
+      "get": {
+        "operationId": "getIbsiTextbausteineArtens",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/IbsiTextbausteineArten"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createIbsiTextbausteineArten",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "IbsiTextbausteineArten",
+            "schema": {
+              "$ref": "#/definitions/IbsiTextbausteineArten"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/IbsiTextbausteineArten"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/IbsiTextbausteineAutorens": {
+      "get": {
+        "operationId": "getIbsiTextbausteineAutorens",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/IbsiTextbausteineAutoren"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createIbsiTextbausteineAutoren",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "IbsiTextbausteineAutoren",
+            "schema": {
+              "$ref": "#/definitions/IbsiTextbausteineAutoren"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/IbsiTextbausteineAutoren"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/IbsiTextbausteineStatusForms": {
+      "get": {
+        "operationId": "getIbsiTextbausteineStatusForms",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/IbsiTextbausteineStatusForm"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createIbsiTextbausteineStatusForm",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "IbsiTextbausteineStatusForm",
+            "schema": {
+              "$ref": "#/definitions/IbsiTextbausteineStatusForm"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/IbsiTextbausteineStatusForm"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/IbsiTextbausteineStatusInhalts": {
+      "get": {
+        "operationId": "getIbsiTextbausteineStatusInhalts",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/IbsiTextbausteineStatusInhalt"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createIbsiTextbausteineStatusInhalt",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "IbsiTextbausteineStatusInhalt",
+            "schema": {
+              "$ref": "#/definitions/IbsiTextbausteineStatusInhalt"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/IbsiTextbausteineStatusInhalt"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/IbsiTextbausteineTypens": {
+      "get": {
+        "operationId": "getIbsiTextbausteineTypens",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/IbsiTextbausteineTypen"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createIbsiTextbausteineTypen",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "IbsiTextbausteineTypen",
+            "schema": {
+              "$ref": "#/definitions/IbsiTextbausteineTypen"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/IbsiTextbausteineTypen"
             }
           },
           "default": {
@@ -970,6 +2653,853 @@
             "name": "Benutzer",
             "schema": {
               "$ref": "#/definitions/Benutzer"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Einstellungens({EinstellungenID})": {
+      "delete": {
+        "operationId": "deleteEinstellungen",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "EinstellungenID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getEinstellungenByEinstellungenID",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "EinstellungenID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Einstellungen"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateEinstellungen",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "EinstellungenID",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "Einstellungen",
+            "schema": {
+              "$ref": "#/definitions/Einstellungen"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/IbsiKurses({KursNr})": {
+      "delete": {
+        "operationId": "deleteIbsiKurse",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "KursNr",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getIbsiKurseByKursNr",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "KursNr",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/IbsiKurse"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateIbsiKurse",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "KursNr",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "IbsiKurse",
+            "schema": {
+              "$ref": "#/definitions/IbsiKurse"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/IbsiKurseArtens({KursArtNr})": {
+      "delete": {
+        "operationId": "deleteIbsiKurseArten",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "KursArtNr",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getIbsiKurseArtenByKursArtNr",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "KursArtNr",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/IbsiKurseArten"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateIbsiKurseArten",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "KursArtNr",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "IbsiKurseArten",
+            "schema": {
+              "$ref": "#/definitions/IbsiKurseArten"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/IbsiKurseThemens({KursThemaNr})": {
+      "delete": {
+        "operationId": "deleteIbsiKurseThemen",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "KursThemaNr",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getIbsiKurseThemenByKursThemaNr",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "KursThemaNr",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/IbsiKurseThemen"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateIbsiKurseThemen",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "KursThemaNr",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "IbsiKurseThemen",
+            "schema": {
+              "$ref": "#/definitions/IbsiKurseThemen"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/IbsiTextbausteines({TextbausteinNr})": {
+      "delete": {
+        "operationId": "deleteIbsiTextbausteine",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "TextbausteinNr",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getIbsiTextbausteineByTextbausteinNr",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "TextbausteinNr",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/IbsiTextbausteine"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateIbsiTextbausteine",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "TextbausteinNr",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "IbsiTextbausteine",
+            "schema": {
+              "$ref": "#/definitions/IbsiTextbausteine"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/IbsiTextbausteineAnredens('{Anrede}')": {
+      "delete": {
+        "operationId": "deleteIbsiTextbausteineAnreden",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Anrede",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getIbsiTextbausteineAnredenByAnrede",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "Anrede",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/IbsiTextbausteineAnreden"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateIbsiTextbausteineAnreden",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "Anrede",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "IbsiTextbausteineAnreden",
+            "schema": {
+              "$ref": "#/definitions/IbsiTextbausteineAnreden"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/IbsiTextbausteineArtens('{TextbausteinArtCode}')": {
+      "delete": {
+        "operationId": "deleteIbsiTextbausteineArten",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "TextbausteinArtCode",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getIbsiTextbausteineArtenByTextbausteinArtCode",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "TextbausteinArtCode",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/IbsiTextbausteineArten"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateIbsiTextbausteineArten",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "TextbausteinArtCode",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "IbsiTextbausteineArten",
+            "schema": {
+              "$ref": "#/definitions/IbsiTextbausteineArten"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/IbsiTextbausteineAutorens({AutorNr})": {
+      "delete": {
+        "operationId": "deleteIbsiTextbausteineAutoren",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "AutorNr",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getIbsiTextbausteineAutorenByAutorNr",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "AutorNr",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/IbsiTextbausteineAutoren"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateIbsiTextbausteineAutoren",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "AutorNr",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "IbsiTextbausteineAutoren",
+            "schema": {
+              "$ref": "#/definitions/IbsiTextbausteineAutoren"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/IbsiTextbausteineStatusForms({Status})": {
+      "delete": {
+        "operationId": "deleteIbsiTextbausteineStatusForm",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Status",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getIbsiTextbausteineStatusFormByStatus",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "Status",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/IbsiTextbausteineStatusForm"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateIbsiTextbausteineStatusForm",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "Status",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "IbsiTextbausteineStatusForm",
+            "schema": {
+              "$ref": "#/definitions/IbsiTextbausteineStatusForm"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/IbsiTextbausteineStatusInhalts({StatusInhalt})": {
+      "delete": {
+        "operationId": "deleteIbsiTextbausteineStatusInhalt",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "StatusInhalt",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getIbsiTextbausteineStatusInhaltByStatusInhalt",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "StatusInhalt",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/IbsiTextbausteineStatusInhalt"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateIbsiTextbausteineStatusInhalt",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "StatusInhalt",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "IbsiTextbausteineStatusInhalt",
+            "schema": {
+              "$ref": "#/definitions/IbsiTextbausteineStatusInhalt"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/IbsiTextbausteineTypens('{Typ}')": {
+      "delete": {
+        "operationId": "deleteIbsiTextbausteineTypen",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "Typ",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getIbsiTextbausteineTypenByTyp",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "Typ",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/IbsiTextbausteineTypen"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateIbsiTextbausteineTypen",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "Typ",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "IbsiTextbausteineTypen",
+            "schema": {
+              "$ref": "#/definitions/IbsiTextbausteineTypen"
             }
           }
         ],

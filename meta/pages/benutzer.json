@@ -165,7 +165,7 @@
                                   {
                                     "name": "rstBenutzer",
                                     "type": "set",
-                                    "value": "${result.value}"
+                                    "value": "${result.value[0]}"
                                   }
                                 ],
                                 "type": "invoke"
@@ -227,6 +227,9 @@
                                       "type": "label"
                                     }
                                   ],
+                                  "style": {
+                                    "textAlign": "right"
+                                  },
                                   "type": "col"
                                 },
                                 {
@@ -234,14 +237,14 @@
                                   "components": [
                                     {
                                       "format": "",
-                                      "name": "Benutzername",
+                                      "name": "txbBenutzername",
                                       "placeholder": "",
                                       "style": {
                                         "display": "block",
                                         "width": "100%"
                                       },
                                       "type": "textbox",
-                                      "value": "${rstBenutzer[0].Benutzername}"
+                                      "value": "${rstBenutzer.Benutzername}"
                                     },
                                     {
                                       "component": "Benutzername",
@@ -267,57 +270,10 @@
                                   "class": "col-md-3",
                                   "components": [
                                     {
-                                      "component": "Kennwort",
-                                      "name": "KennwortLabel",
-                                      "style": {
-                                        "width": "100%"
-                                      },
-                                      "text": "Kennwort",
-                                      "type": "label"
-                                    }
-                                  ],
-                                  "type": "col"
-                                },
-                                {
-                                  "class": "col-md-9",
-                                  "components": [
-                                    {
-                                      "format": "",
-                                      "name": "Kennwort",
-                                      "style": {
-                                        "display": "block",
-                                        "width": "100%"
-                                      },
-                                      "type": "textbox",
-                                      "value": "${rstBenutzer[0].Kennwort}"
-                                    },
-                                    {
-                                      "component": "Kennwort",
-                                      "name": "KennwortRequiredValidator",
-                                      "style": {
-                                        "position": "absolute"
-                                      },
-                                      "text": "Kennwort is required",
-                                      "type": "required-validator"
-                                    }
-                                  ],
-                                  "type": "col"
-                                }
-                              ],
-                              "style": {
-                                "marginBottom": "1rem"
-                              },
-                              "type": "row"
-                            },
-                            {
-                              "components": [
-                                {
-                                  "class": "col-md-3",
-                                  "components": [
-                                    {
                                       "component": "Initialen",
                                       "name": "InitialenLabel",
                                       "style": {
+                                        "textAlign": "right",
                                         "width": "100%"
                                       },
                                       "text": "Initialen",
@@ -331,13 +287,13 @@
                                   "components": [
                                     {
                                       "format": "",
-                                      "name": "Initialen",
+                                      "name": "txbInitialen",
                                       "style": {
                                         "display": "block",
                                         "width": "100%"
                                       },
                                       "type": "textbox",
-                                      "value": "${rstBenutzer[0].Initialen}"
+                                      "value": "${rstBenutzer.Initialen}"
                                     },
                                     {
                                       "component": "Initialen",
@@ -363,47 +319,10 @@
                                   "class": "col-md-3",
                                   "components": [
                                     {
-                                      "component": "BenutzerInfo",
-                                      "name": "BenutzerInfoLabel",
-                                      "style": {
-                                        "width": "100%"
-                                      },
-                                      "text": "Benutzer Info",
-                                      "type": "label"
-                                    }
-                                  ],
-                                  "type": "col"
-                                },
-                                {
-                                  "class": "col-md-9",
-                                  "components": [
-                                    {
-                                      "format": "",
-                                      "name": "BenutzerInfo",
-                                      "style": {
-                                        "width": "100%"
-                                      },
-                                      "type": "textbox",
-                                      "value": "${rstBenutzer[0].BenutzerInfo}"
-                                    }
-                                  ],
-                                  "type": "col"
-                                }
-                              ],
-                              "style": {
-                                "marginBottom": "1rem"
-                              },
-                              "type": "row"
-                            },
-                            {
-                              "components": [
-                                {
-                                  "class": "col-md-3",
-                                  "components": [
-                                    {
                                       "component": "EMail",
                                       "name": "EMailLabel",
                                       "style": {
+                                        "textAlign": "right",
                                         "width": "100%"
                                       },
                                       "text": "EMail",
@@ -416,12 +335,12 @@
                                   "class": "col-md-9",
                                   "components": [
                                     {
-                                      "name": "EMail",
+                                      "name": "txbBenutzerEMail",
                                       "style": {
                                         "width": "100%"
                                       },
                                       "type": "textbox",
-                                      "value": "${rstBenutzer[0].EMail}"
+                                      "value": "${rstBenutzer.BenutzerEMail}"
                                     }
                                   ],
                                   "type": "col"
@@ -444,7 +363,7 @@
                                         "textAlign": "right",
                                         "width": "100%"
                                       },
-                                      "text": "Rolen",
+                                      "text": "Rollen",
                                       "type": "label"
                                     }
                                   ],
@@ -459,7 +378,7 @@
                                       "emptyFilterText": "No results found",
                                       "multiple": true,
                                       "multipleItemsSelectedText": "{0} items selected",
-                                      "name": "RoleNames",
+                                      "name": "dpdRollen",
                                       "style": {
                                         "width": "100%"
                                       },
@@ -474,6 +393,49 @@
                                 }
                               ],
                               "name": "row2",
+                              "style": {
+                                "marginBottom": "1rem"
+                              },
+                              "type": "row"
+                            },
+                            {
+                              "components": [
+                                {
+                                  "class": "col-md-3",
+                                  "components": [
+                                    {
+                                      "component": "BenutzerInfo",
+                                      "name": "BenutzerInfoLabel",
+                                      "style": {
+                                        "textAlign": "right",
+                                        "width": "100%"
+                                      },
+                                      "text": "Notiz",
+                                      "type": "label"
+                                    }
+                                  ],
+                                  "name": "col7",
+                                  "type": "col"
+                                },
+                                {
+                                  "class": "col-md-9",
+                                  "components": [
+                                    {
+                                      "name": "txaNotiz",
+                                      "placeholder": "",
+                                      "rows": 7,
+                                      "style": {
+                                        "width": "100%"
+                                      },
+                                      "type": "textarea",
+                                      "value": "${rstBenutzer.Notiz}"
+                                    }
+                                  ],
+                                  "name": "col8",
+                                  "type": "col"
+                                }
+                              ],
+                              "name": "row4",
                               "style": {
                                 "marginBottom": "1rem"
                               },
@@ -504,10 +466,32 @@
                           "events": {
                             "submit": [
                               {
-                                "detail": "Hallo2",
-                                "severity": "info",
-                                "summary": "Test",
-                                "type": "notify"
+                                "error": [
+                                  {
+                                    "severity": "error",
+                                    "summary": "Benutzerdaten nicht gespeichert",
+                                    "type": "notify"
+                                  }
+                                ],
+                                "name": "dbHopeKurseTextbausteine.updateBenutzer",
+                                "parameters": [
+                                  {
+                                    "name": "BenutzerID",
+                                    "value": "${rstBenutzer.BenutzerID}"
+                                  },
+                                  {
+                                    "name": "Benutzer",
+                                    "value": "${rstBenutzer}"
+                                  }
+                                ],
+                                "then": [
+                                  {
+                                    "severity": "success",
+                                    "summary": "Benutzerdaten gespeichert",
+                                    "type": "notify"
+                                  }
+                                ],
+                                "type": "invoke"
                               }
                             ]
                           },
@@ -597,7 +581,7 @@
                             ],
                             "rowSelect": [
                               {
-                                "name": "dbHopeKurseTextbausteine.getVwBenutzerRollens",
+                                "name": "Security.getRoles",
                                 "parameters": [
                                   {
                                     "name": "$filter",
