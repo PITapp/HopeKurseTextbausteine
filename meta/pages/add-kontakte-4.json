@@ -1,0 +1,222 @@
+{
+  "access": [
+    "Authenticated"
+  ],
+  "components": [
+    {
+      "components": [
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "data": "",
+                  "events": {
+                    "cancel": [
+                      {
+                        "type": "back"
+                      }
+                    ],
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to create new Base!",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "dbHopeKurseTextbausteine.createBase",
+                        "parameters": [
+                          {
+                            "name": "Base",
+                            "value": "${event}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "type": "back"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  },
+                  "fields": [
+                    {
+                      "data": "${getBaseAnredensResult}",
+                      "emptyFilterText": "No results found",
+                      "multipleItemsSelectedText": "{0} items selected",
+                      "placeholder": "Choose BaseAnreden",
+                      "property": "AnredeID",
+                      "required": false,
+                      "requiredText": "is required",
+                      "textProperty": "Anrede",
+                      "title": "Base Anreden",
+                      "type": "lookup",
+                      "valueProperty": "AnredeID"
+                    },
+                    {
+                      "maxLength": 100,
+                      "property": "Name1",
+                      "required": false,
+                      "requiredText": "is required",
+                      "title": "Name 1",
+                      "type": "string"
+                    },
+                    {
+                      "maxLength": 30,
+                      "property": "Name2",
+                      "required": false,
+                      "requiredText": "is required",
+                      "title": "Name 2",
+                      "type": "string"
+                    },
+                    {
+                      "maxLength": 5,
+                      "property": "NameKuerzel",
+                      "required": false,
+                      "requiredText": "is required",
+                      "title": "Name Kuerzel",
+                      "type": "string"
+                    },
+                    {
+                      "maxLength": 20,
+                      "property": "TitelVorne",
+                      "required": false,
+                      "requiredText": "is required",
+                      "title": "Titel Vorne",
+                      "type": "string"
+                    },
+                    {
+                      "maxLength": 20,
+                      "property": "TitelHinten",
+                      "required": false,
+                      "requiredText": "is required",
+                      "title": "Titel Hinten",
+                      "type": "string"
+                    },
+                    {
+                      "maxLength": 70,
+                      "property": "Strasse",
+                      "required": false,
+                      "requiredText": "is required",
+                      "title": "Strasse",
+                      "type": "string"
+                    },
+                    {
+                      "maxLength": 10,
+                      "property": "PLZ",
+                      "required": false,
+                      "requiredText": "is required",
+                      "title": "Plz",
+                      "type": "string"
+                    },
+                    {
+                      "maxLength": 100,
+                      "property": "Ort",
+                      "required": false,
+                      "requiredText": "is required",
+                      "title": "Ort",
+                      "type": "string"
+                    },
+                    {
+                      "maxLength": 3,
+                      "property": "LKZ",
+                      "required": false,
+                      "requiredText": "is required",
+                      "title": "Lkz",
+                      "type": "string"
+                    },
+                    {
+                      "maxLength": 30,
+                      "property": "Telefon1",
+                      "required": false,
+                      "requiredText": "is required",
+                      "title": "Telefon 1",
+                      "type": "string"
+                    },
+                    {
+                      "maxLength": 30,
+                      "property": "Telefon2",
+                      "required": false,
+                      "requiredText": "is required",
+                      "title": "Telefon 2",
+                      "type": "string"
+                    },
+                    {
+                      "maxLength": 70,
+                      "property": "EMail1",
+                      "required": false,
+                      "requiredText": "is required",
+                      "title": "E Mail 1",
+                      "type": "string"
+                    },
+                    {
+                      "maxLength": 70,
+                      "property": "EMail2",
+                      "required": false,
+                      "requiredText": "is required",
+                      "title": "E Mail 2",
+                      "type": "string"
+                    },
+                    {
+                      "maxLength": 200,
+                      "property": "Website",
+                      "required": false,
+                      "requiredText": "is required",
+                      "title": "Website",
+                      "type": "string"
+                    },
+                    {
+                      "maxLength": 16777215,
+                      "property": "BildURL",
+                      "required": false,
+                      "requiredText": "is required",
+                      "title": "Bild Url",
+                      "type": "string"
+                    },
+                    {
+                      "maxLength": 65535,
+                      "property": "Notiz",
+                      "required": false,
+                      "requiredText": "is required",
+                      "title": "Notiz",
+                      "type": "string"
+                    }
+                  ],
+                  "name": "form0",
+                  "type": "form"
+                }
+              ],
+              "type": "col"
+            }
+          ],
+          "type": "row"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "dbHopeKurseTextbausteine.getBaseAnredens",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getBaseAnredensResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "Add Kontakte 4"
+}

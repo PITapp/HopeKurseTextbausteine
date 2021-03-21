@@ -139,6 +139,28 @@ export interface InfotexteHtml {
   Sortierung: number;
 }
 
+export interface VwBaseAlle {
+  BaseID: number;
+  Name1: string;
+  Name2: string;
+  NameKuerzel: string;
+  AnredeID: number;
+  TitelVorne: string;
+  TitelHinten: string;
+  Strasse: string;
+  PLZ: string;
+  Ort: string;
+  LKZ: string;
+  Telefon1: string;
+  Telefon2: string;
+  EMail1: string;
+  EMail2: string;
+  Website: string;
+  BildURL: string;
+  Notiz: string;
+  NameGesamt: string;
+}
+
 export interface VwBenutzerRollen {
   BenutzerID: number;
   BaseID: number;

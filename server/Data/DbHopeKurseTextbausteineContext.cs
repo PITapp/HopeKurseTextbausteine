@@ -86,6 +86,10 @@ namespace HopeKurseTextbausteine.Data
                   .HasForeignKey(i => i.Typ)
                   .HasPrincipalKey(i => i.Typ);
 
+            builder.Entity<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.VwBaseAlle>()
+                  .Property(p => p.BaseID)
+                  .HasDefaultValueSql("0");
+
             builder.Entity<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.VwBenutzerRollen>()
                   .Property(p => p.BenutzerID)
                   .HasDefaultValueSql("0");
@@ -179,6 +183,12 @@ namespace HopeKurseTextbausteine.Data
         }
 
         public DbSet<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.InfotexteHtml> InfotexteHtmls
+        {
+          get;
+          set;
+        }
+
+        public DbSet<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.VwBaseAlle> VwBaseAlles
         {
           get;
           set;

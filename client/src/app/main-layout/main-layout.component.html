@@ -1,12 +1,18 @@
 <rz-header #header0>
   <div class="row justify-content-start align-items-center">
-    <div class="col-md-6 d-flex align-items-center justify-content-start" [ngStyle]="{'float': 'left'}">
+    <div class="d-flex align-items-center justify-content-start col-md-3" [ngStyle]="{'float': 'left'}">
       <rz-sidebar-toggle #sidebarToggle0 [style]="{'marginRight': '10px'}">
       </rz-sidebar-toggle>
-      <rz-image #image0 path="assets/images/Logo02.png" [style]="{'float': 'left', 'height': '36px'}" (click)="image0Click($event)">
-      </rz-image>
     </div>
-    <div class="col-md-6 text-lg-right align-items-center d-flex justify-content-end" [ngStyle]="{'backgroundColor': 'rgba(0, 0, 0, 0)', 'float': 'right'}">
+    <div class="col-md-6 justify-content-center d-flex" [ngStyle]="{'backgroundColor': 'rgba(0, 0, 0, 0)', 'verticalAlign': 'baseline'}">
+      <rz-image #image0 path="assets/images/Logo03.png" [style]="{'float': 'left', 'height': '30px'}" (click)="image0Click($event)">
+      </rz-image>
+      <rz-label #label2 [style]="{'color': '#88989b', 'float': 'none', 'fontSize': '12px', 'paddingLeft': '10px', 'paddingRight': '10px', 'paddingTop': '8px'}" text="|">
+      </rz-label>
+      <rz-label #label5 [style]="{'color': '#88989b', 'float': 'none', 'fontSize': '14px', 'fontWeight': 'normal', 'paddingTop': '6px'}" text="Textbausteine">
+      </rz-label>
+    </div>
+    <div class="text-lg-right align-items-center d-flex justify-content-end col-md-3" [ngStyle]="{'backgroundColor': 'rgba(0, 0, 0, 0)', 'float': 'right'}">
       <rz-link #link0 icon="email" path="nachrichten" [style]="{'color': '#f5f5f5', 'fontSize': '22px', 'marginRight': '35px'}">
       </rz-link>
       <rz-link #link1 icon="widgets" path="dashboard" [style]="{'color': '#f5f5f5', 'fontSize': '22px', 'marginRight': '20px'}">
@@ -44,18 +50,24 @@
     </rz-panelmenu-item>
     <rz-panelmenu-item icon="settings" path="einstellungen" text="Einstellungen" *ngIf="security?.isInRole(['Authenticated'])">
     </rz-panelmenu-item>
+    <rz-panelmenu-item path="kontakte-2" text="Item 7" *ngIf="security?.isInRole(['Authenticated'])">
+    </rz-panelmenu-item>
   </rz-panelmenu>
 </rz-sidebar>
 <rz-footer #footer1 [style]="{'height': '50px', 'paddingTop': '12px'}">
-  <rz-label #footerTextLeft [style]="{'color': '#6d787d', 'float': 'none'}" text="© 2021 HopeKurse | Textbausteine | Deutschland · Österreich · Schweiz">
+  <rz-label #footerTextLeft [style]="{'color': '#6d787d', 'float': 'none'}" text="© 2021 HopeKurse Textbausteine">
+  </rz-label>
+  <rz-label #label0 [style]="{'color': '#88989b', 'float': 'none', 'marginTop': '-2px', 'paddingLeft': '10px', 'paddingRight': '10px'}" text="|">
+  </rz-label>
+  <rz-label #label4 [style]="{'color': '#6d787d', 'float': 'none'}" text="Deutschland · Österreich · Schweiz">
   </rz-label>
   <rz-link #linkKontakt path="kontakt" [style]="{'float': 'right', 'marginTop': '-2px'}" text="Kontakt">
   </rz-link>
-  <rz-label #label1 [style]="{'float': 'right', 'marginTop': '-2px', 'paddingLeft': '10px', 'paddingRight': '10px'}" text="|">
+  <rz-label #label1 [style]="{'color': '#88989b', 'float': 'right', 'marginTop': '-2px', 'paddingLeft': '10px', 'paddingRight': '10px'}" text="|">
   </rz-label>
   <rz-link #linkDatenschutz path="datenschutz" [style]="{'float': 'right', 'marginTop': '-2px'}" text="Datenschutz">
   </rz-link>
-  <rz-label #label2 [style]="{'float': 'right', 'marginTop': '-2px', 'paddingLeft': '10px', 'paddingRight': '10px'}" text="|">
+  <rz-label #label3 [style]="{'color': '#88989b', 'float': 'right', 'marginTop': '-2px', 'paddingLeft': '10px', 'paddingRight': '10px'}" text="|">
   </rz-label>
   <rz-link #linkImpressum path="impressum" [style]="{'float': 'right', 'marginTop': '-2px'}" text="Impressum">
   </rz-link>

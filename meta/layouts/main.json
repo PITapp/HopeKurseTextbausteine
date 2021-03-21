@@ -6,7 +6,7 @@
           "class": "justify-content-start align-items-center",
           "components": [
             {
-              "class": "col-md-6 d-flex align-items-center justify-content-start",
+              "class": "d-flex align-items-center justify-content-start col-md-3",
               "components": [
                 {
                   "attributes": [],
@@ -15,7 +15,17 @@
                     "marginRight": "10px"
                   },
                   "type": "sidebar-toggle"
-                },
+                }
+              ],
+              "name": "leftCol",
+              "style": {
+                "float": "left"
+              },
+              "type": "col"
+            },
+            {
+              "class": "col-md-6 justify-content-center d-flex",
+              "components": [
                 {
                   "events": {
                     "click": [
@@ -26,22 +36,48 @@
                     ]
                   },
                   "name": "image0",
-                  "path": "/assets/images/Logo02.png",
+                  "path": "/assets/images/Logo03.png",
                   "style": {
                     "float": "left",
-                    "height": "36px"
+                    "height": "30px"
                   },
                   "type": "image"
+                },
+                {
+                  "name": "label2",
+                  "style": {
+                    "color": "#88989b",
+                    "float": "none",
+                    "fontSize": "12px",
+                    "paddingLeft": "10px",
+                    "paddingRight": "10px",
+                    "paddingTop": "8px"
+                  },
+                  "text": "|",
+                  "type": "label"
+                },
+                {
+                  "name": "label5",
+                  "style": {
+                    "color": "#88989b",
+                    "float": "none",
+                    "fontSize": "14px",
+                    "fontWeight": "normal",
+                    "paddingTop": "6px"
+                  },
+                  "text": "Textbausteine",
+                  "type": "label"
                 }
               ],
-              "name": "leftCol",
+              "name": "col0",
               "style": {
-                "float": "left"
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "verticalAlign": "baseline"
               },
               "type": "col"
             },
             {
-              "class": "col-md-6 text-lg-right align-items-center d-flex justify-content-end",
+              "class": "text-lg-right align-items-center d-flex justify-content-end col-md-3",
               "components": [
                 {
                   "icon": "email",
@@ -160,6 +196,10 @@
               "icon": "settings",
               "path": "einstellungen",
               "text": "Einstellungen"
+            },
+            {
+              "path": "kontakte-2",
+              "text": "Item 7"
             }
           ],
           "name": "panelmenu0",
@@ -180,7 +220,28 @@
             "color": "#6d787d",
             "float": "none"
           },
-          "text": "© 2021 HopeKurse | Textbausteine | Deutschland · Österreich · Schweiz",
+          "text": "© 2021 HopeKurse Textbausteine",
+          "type": "label"
+        },
+        {
+          "name": "label0",
+          "style": {
+            "color": "#88989b",
+            "float": "none",
+            "marginTop": "-2px",
+            "paddingLeft": "10px",
+            "paddingRight": "10px"
+          },
+          "text": "|",
+          "type": "label"
+        },
+        {
+          "name": "label4",
+          "style": {
+            "color": "#6d787d",
+            "float": "none"
+          },
+          "text": "Deutschland · Österreich · Schweiz",
           "type": "label"
         },
         {
@@ -197,6 +258,7 @@
         {
           "name": "label1",
           "style": {
+            "color": "#88989b",
             "float": "right",
             "marginTop": "-2px",
             "paddingLeft": "10px",
@@ -217,8 +279,9 @@
           "type": "link"
         },
         {
-          "name": "label2",
+          "name": "label3",
           "style": {
+            "color": "#88989b",
             "float": "right",
             "marginTop": "-2px",
             "paddingLeft": "10px",

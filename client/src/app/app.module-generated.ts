@@ -13,12 +13,12 @@ import { ImageModule } from '@radzen/angular/dist/image';
 import { ContentContainerModule } from '@radzen/angular/dist/content-container';
 import { HeaderModule } from '@radzen/angular/dist/header';
 import { SidebarToggleModule } from '@radzen/angular/dist/sidebar-toggle';
+import { LabelModule } from '@radzen/angular/dist/label';
 import { LinkModule } from '@radzen/angular/dist/link';
 import { ProfileMenuModule } from '@radzen/angular/dist/profilemenu';
 import { SidebarModule } from '@radzen/angular/dist/sidebar';
 import { PanelMenuModule } from '@radzen/angular/dist/panelmenu';
 import { FooterModule } from '@radzen/angular/dist/footer';
-import { LabelModule } from '@radzen/angular/dist/label';
 import { ContentModule } from '@radzen/angular/dist/content';
 import { TemplateFormModule } from '@radzen/angular/dist/template-form';
 import { TextBoxModule } from '@radzen/angular/dist/textbox';
@@ -43,6 +43,9 @@ import { FormModule } from '@radzen/angular/dist/form';
 import { HtmlModule } from '@radzen/angular/dist/html';
 import { UploadModule } from '@radzen/angular/dist/upload';
 import { DatePickerModule } from '@radzen/angular/dist/datepicker';
+import { DropDownDataGridModule } from '@radzen/angular/dist/dropdown-datagrid';
+import { ListBoxModule } from '@radzen/angular/dist/listbox';
+import { FieldsetModule } from '@radzen/angular/dist/fieldset';
 import { SharedModule } from '@radzen/angular/dist/shared';
 import { NotificationModule } from '@radzen/angular/dist/notification';
 import { DialogModule } from '@radzen/angular/dist/dialog';
@@ -75,6 +78,17 @@ import { TextbausteineComponent } from './textbausteine/textbausteine.component'
 import { DokumenteComponent } from './dokumente/dokumente.component';
 import { NachrichtenComponent } from './nachrichten/nachrichten.component';
 import { KontakteComponent } from './kontakte/kontakte.component';
+import { KontakteTemp2Component } from './kontakte-temp-2/kontakte-temp-2.component';
+import { AddKontakteComponent } from './add-kontakte/add-kontakte.component';
+import { EditKontakteComponent } from './edit-kontakte/edit-kontakte.component';
+import { Kontakte2Component } from './kontakte-2/kontakte-2.component';
+import { Kontakte3Component } from './kontakte-3/kontakte-3.component';
+import { AddKontakte3Component } from './add-kontakte-3/add-kontakte-3.component';
+import { EditKontakte3Component } from './edit-kontakte-3/edit-kontakte-3.component';
+import { Kontakte4Component } from './kontakte-4/kontakte-4.component';
+import { AddKontakte4Component } from './add-kontakte-4/add-kontakte-4.component';
+import { EditKontakte4Component } from './edit-kontakte-4/edit-kontakte-4.component';
+import { CopyOfKontakteComponent } from './copy-of-kontakte/copy-of-kontakte.component';
 import { LoginLayoutComponent } from './login-layout/login-layout.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 
@@ -107,6 +121,17 @@ export const PageDeclarations = [
   DokumenteComponent,
   NachrichtenComponent,
   KontakteComponent,
+  KontakteTemp2Component,
+  AddKontakteComponent,
+  EditKontakteComponent,
+  Kontakte2Component,
+  Kontakte3Component,
+  AddKontakte3Component,
+  EditKontakte3Component,
+  Kontakte4Component,
+  AddKontakte4Component,
+  EditKontakte4Component,
+  CopyOfKontakteComponent,
 ];
 
 export const LayoutDeclarations = [
@@ -155,12 +180,12 @@ export const AppImports = [
   ContentContainerModule,
   HeaderModule,
   SidebarToggleModule,
+  LabelModule,
   LinkModule,
   ProfileMenuModule,
   SidebarModule,
   PanelMenuModule,
   FooterModule,
-  LabelModule,
   ContentModule,
   TemplateFormModule,
   TextBoxModule,
@@ -185,6 +210,9 @@ export const AppImports = [
   HtmlModule,
   UploadModule,
   DatePickerModule,
+  DropDownDataGridModule,
+  ListBoxModule,
+  FieldsetModule,
   SharedModule,
   NotificationModule,
   DialogModule,

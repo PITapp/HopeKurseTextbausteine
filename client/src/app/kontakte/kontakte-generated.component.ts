@@ -12,16 +12,16 @@ import { DialogService, DIALOG_PARAMETERS, DialogRef } from '@radzen/angular/dis
 import { NotificationService } from '@radzen/angular/dist/notification';
 import { ContentComponent } from '@radzen/angular/dist/content';
 import { HeadingComponent } from '@radzen/angular/dist/heading';
+import { TabsComponent } from '@radzen/angular/dist/tabs';
 import { GridComponent } from '@radzen/angular/dist/grid';
-import { ImageComponent } from '@radzen/angular/dist/image';
-import { UploadComponent } from '@radzen/angular/dist/upload';
-import { CardComponent } from '@radzen/angular/dist/card';
+import { PanelComponent } from '@radzen/angular/dist/panel';
 import { TemplateFormComponent } from '@radzen/angular/dist/template-form';
 import { LabelComponent } from '@radzen/angular/dist/label';
 import { DropDownComponent } from '@radzen/angular/dist/dropdown';
 import { TextBoxComponent } from '@radzen/angular/dist/textbox';
 import { RequiredValidatorComponent } from '@radzen/angular/dist/required-validator';
 import { DatePickerComponent } from '@radzen/angular/dist/datepicker';
+import { TextAreaComponent } from '@radzen/angular/dist/textarea';
 import { ButtonComponent } from '@radzen/angular/dist/button';
 
 import { ConfigService } from '../config.service';
@@ -32,57 +32,46 @@ import { SecurityService } from '../security.service';
 export class KontakteGenerated implements AfterViewInit, OnInit, OnDestroy {
   // Components
   @ViewChild('content1') content1: ContentComponent;
-  @ViewChild('pageTitle') pageTitle: HeadingComponent;
-  @ViewChild('grid0') grid0: GridComponent;
-  @ViewChild('image0') image0: ImageComponent;
-  @ViewChild('upload0') upload0: UploadComponent;
-  @ViewChild('card1') card1: CardComponent;
-  @ViewChild('form0') form0: TemplateFormComponent;
-  @ViewChild('anredeIdLabel') anredeIdLabel: LabelComponent;
-  @ViewChild('anredeId') anredeId: DropDownComponent;
-  @ViewChild('name1Label') name1Label: LabelComponent;
-  @ViewChild('name1') name1: TextBoxComponent;
-  @ViewChild('name1RequiredValidator') name1RequiredValidator: RequiredValidatorComponent;
-  @ViewChild('name2Label') name2Label: LabelComponent;
-  @ViewChild('name2') name2: TextBoxComponent;
-  @ViewChild('nameGesamtLabel') nameGesamtLabel: LabelComponent;
-  @ViewChild('nameGesamt') nameGesamt: TextBoxComponent;
-  @ViewChild('nameVorNachLabel') nameVorNachLabel: LabelComponent;
-  @ViewChild('nameVorNach') nameVorNach: TextBoxComponent;
-  @ViewChild('nameKuerzelLabel') nameKuerzelLabel: LabelComponent;
-  @ViewChild('nameKuerzel') nameKuerzel: TextBoxComponent;
-  @ViewChild('titelVorneLabel') titelVorneLabel: LabelComponent;
-  @ViewChild('titelVorne') titelVorne: TextBoxComponent;
-  @ViewChild('titelHintenLabel') titelHintenLabel: LabelComponent;
-  @ViewChild('titelHinten') titelHinten: TextBoxComponent;
-  @ViewChild('strasseLabel') strasseLabel: LabelComponent;
-  @ViewChild('strasse') strasse: TextBoxComponent;
-  @ViewChild('plzLabel') plzLabel: LabelComponent;
-  @ViewChild('plz') plz: TextBoxComponent;
-  @ViewChild('ortLabel') ortLabel: LabelComponent;
-  @ViewChild('ort') ort: TextBoxComponent;
-  @ViewChild('geburtsdatumLabel') geburtsdatumLabel: LabelComponent;
-  @ViewChild('geburtsdatum') geburtsdatum: DatePickerComponent;
-  @ViewChild('versicherungsnummerLabel') versicherungsnummerLabel: LabelComponent;
-  @ViewChild('versicherungsnummer') versicherungsnummer: TextBoxComponent;
-  @ViewChild('staatsangehoerigkeitLabel') staatsangehoerigkeitLabel: LabelComponent;
-  @ViewChild('staatsangehoerigkeit') staatsangehoerigkeit: TextBoxComponent;
-  @ViewChild('telefon1Label') telefon1Label: LabelComponent;
-  @ViewChild('telefon1') telefon1: TextBoxComponent;
-  @ViewChild('telefon2Label') telefon2Label: LabelComponent;
-  @ViewChild('telefon2') telefon2: TextBoxComponent;
-  @ViewChild('eMail1Label') eMail1Label: LabelComponent;
-  @ViewChild('eMail1') eMail1: TextBoxComponent;
-  @ViewChild('eMail2Label') eMail2Label: LabelComponent;
-  @ViewChild('eMail2') eMail2: TextBoxComponent;
-  @ViewChild('webseiteLabel') webseiteLabel: LabelComponent;
-  @ViewChild('webseite') webseite: TextBoxComponent;
-  @ViewChild('bildUrlLabel') bildUrlLabel: LabelComponent;
-  @ViewChild('bildUrl') bildUrl: TextBoxComponent;
-  @ViewChild('infoLabel') infoLabel: LabelComponent;
-  @ViewChild('info') info: TextBoxComponent;
-  @ViewChild('button1') button1: ButtonComponent;
-  @ViewChild('button2') button2: ButtonComponent;
+  @ViewChild('heading8') heading8: HeadingComponent;
+  @ViewChild('heading9') heading9: HeadingComponent;
+  @ViewChild('heading16') heading16: HeadingComponent;
+  @ViewChild('heading0') heading0: HeadingComponent;
+  @ViewChild('tabs0') tabs0: TabsComponent;
+  @ViewChild('gridKontakte') gridKontakte: GridComponent;
+  @ViewChild('panel2') panel2: PanelComponent;
+  @ViewChild('templateForm0') templateForm0: TemplateFormComponent;
+  @ViewChild('label7') label7: LabelComponent;
+  @ViewChild('dropdown0') dropdown0: DropDownComponent;
+  @ViewChild('label8') label8: LabelComponent;
+  @ViewChild('textbox0') textbox0: TextBoxComponent;
+  @ViewChild('requiredValidator0') requiredValidator0: RequiredValidatorComponent;
+  @ViewChild('label18') label18: LabelComponent;
+  @ViewChild('textbox14') textbox14: TextBoxComponent;
+  @ViewChild('requiredValidator2') requiredValidator2: RequiredValidatorComponent;
+  @ViewChild('label9') label9: LabelComponent;
+  @ViewChild('textbox2') textbox2: TextBoxComponent;
+  @ViewChild('requiredValidator1') requiredValidator1: RequiredValidatorComponent;
+  @ViewChild('label10') label10: LabelComponent;
+  @ViewChild('textbox4') textbox4: TextBoxComponent;
+  @ViewChild('textbox5') textbox5: TextBoxComponent;
+  @ViewChild('label11') label11: LabelComponent;
+  @ViewChild('textbox6') textbox6: TextBoxComponent;
+  @ViewChild('label12') label12: LabelComponent;
+  @ViewChild('textbox7') textbox7: TextBoxComponent;
+  @ViewChild('textbox8') textbox8: TextBoxComponent;
+  @ViewChild('label13') label13: LabelComponent;
+  @ViewChild('textbox9') textbox9: TextBoxComponent;
+  @ViewChild('label14') label14: LabelComponent;
+  @ViewChild('textbox10') textbox10: TextBoxComponent;
+  @ViewChild('label15') label15: LabelComponent;
+  @ViewChild('textbox11') textbox11: TextBoxComponent;
+  @ViewChild('label16') label16: LabelComponent;
+  @ViewChild('textbox12') textbox12: TextBoxComponent;
+  @ViewChild('label17') label17: LabelComponent;
+  @ViewChild('datepicker0') datepicker0: DatePickerComponent;
+  @ViewChild('label19') label19: LabelComponent;
+  @ViewChild('textarea1') textarea1: TextAreaComponent;
+  @ViewChild('button4') button4: ButtonComponent;
 
   router: Router;
 
@@ -109,12 +98,11 @@ export class KontakteGenerated implements AfterViewInit, OnInit, OnDestroy {
   dbHopeKurseTextbausteine: DbHopeKurseTextbausteineService;
 
   security: SecurityService;
-  getBaseAnredensResult: any;
+  rstBaseAnreden: any;
   parameters: any;
-  isEdit: any;
-  base: any;
-  getBasesResult: any;
-  getBasesCount: any;
+  rstBaseAlles: any;
+  rstBaseAllesCount: any;
+  dataBaseAlles: any;
 
   constructor(private injector: Injector) {
   }
@@ -166,71 +154,50 @@ export class KontakteGenerated implements AfterViewInit, OnInit, OnDestroy {
   load() {
     this.dbHopeKurseTextbausteine.getBaseAnredens(null, null, null, null, null, null, null, null)
     .subscribe((result: any) => {
-      this.getBaseAnredensResult = result.value;
+      this.rstBaseAnreden = result.value;
     }, (result: any) => {
 
     });
 
-    this.grid0.load();
+    this.gridKontakte.load();
   }
 
-  grid0Add(event: any) {
-    this.isEdit = false;
-
-    this.base = {};
-  }
-
-  grid0Delete(event: any) {
+  gridKontakteDelete(event: any) {
     this.dbHopeKurseTextbausteine.deleteBase(event.BaseID)
     .subscribe((result: any) => {
-      this.notificationService.notify({ severity: "success", summary: `Success`, detail: `Base deleted!` });
+      this.notificationService.notify({ severity: "success", summary: `Success`, detail: `Kontakt gelöscht` });
     }, (result: any) => {
-      this.notificationService.notify({ severity: "error", summary: `Error`, detail: `Unable to delete Base` });
+      this.notificationService.notify({ severity: "error", summary: `Error`, detail: `Kontakt kann nicht gelöscht werden` });
     });
   }
 
-  grid0LoadData(event: any) {
-    this.dbHopeKurseTextbausteine.getBases(`${event.filter}`, event.top, event.skip, `${event.orderby}`, event.top != null && event.skip != null, null, null, null)
+  gridKontakteLoadData(event: any) {
+    this.dbHopeKurseTextbausteine.getVwBaseAlles(`${event.filter}`, event.top, event.skip, `${event.orderby}`, event.top != null && event.skip != null, null, null, null)
     .subscribe((result: any) => {
-      this.getBasesResult = result.value;
+      this.rstBaseAlles = result.value;
 
-      this.getBasesCount = event.top != null && event.skip != null ? result['@odata.count'] : result.value.length;
+      this.rstBaseAllesCount = event.top != null && event.skip != null ? result['@odata.count'] : result.value.length;
 
-      if (result.value.length && !this.grid0.value) {
-        this.grid0.onSelect(result.value[0])
-      }
+      this.gridKontakte.onSelect(result.value[0])
     }, (result: any) => {
-      this.notificationService.notify({ severity: "error", summary: `Error`, detail: `Unable to load Bases` });
+      this.notificationService.notify({ severity: "error", summary: `Error`, detail: `Kontakte können nicht geladen werden` });
     });
   }
 
-  grid0RowSelect(event: any) {
-    this.isEdit = true;
+  gridKontakteRowSelect(event: any) {
+    this.dataBaseAlles = event;
 
-    this.base = event;
+    this.notificationService.notify({ severity: "info", summary: `RowSelect`, detail: `` });
   }
 
-  form0Submit(event: any) {
-    if (this.isEdit) {
-          this.dbHopeKurseTextbausteine.updateBase(null, this.base.BaseID, event)
-      .subscribe((result: any) => {
-          this.notificationService.notify({ severity: "success", summary: `Success`, detail: `Base updated!` });
+  templateForm0Submit(event: any) {
+    this.dbHopeKurseTextbausteine.updateBase(null, base.BaseID, event)
+    .subscribe((result: any) => {
+      this.notificationService.notify({ severity: "success", summary: `Success`, detail: `Kontakt gespeichert` });
 
-      this.grid0.load()
-      }, (result: any) => {
-          this.notificationService.notify({ severity: "error", summary: `Error`, detail: `Unable to update Base` });
-      });
-    }
-
-    if (!this.isEdit) {
-          this.dbHopeKurseTextbausteine.createBase(null, event)
-      .subscribe((result: any) => {
-          this.base = {};
-
-      this.notificationService.notify({ severity: "success", summary: `Success`, detail: `Base created!` });
-      }, (result: any) => {
-          this.notificationService.notify({ severity: "error", summary: `Error`, detail: `Unable to create new Base!` });
-      });
-    }
+      this.gridKontakte.load()
+    }, (result: any) => {
+      this.notificationService.notify({ severity: "error", summary: `Error`, detail: `Kontakt konnte nicht gespeichert werden` });
+    });
   }
 }

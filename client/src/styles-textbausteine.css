@@ -148,6 +148,12 @@ input:focus {
   -webkit-box-shadow: 0px 0px 4px #D86E13;
 }
 
+/* --- Darstellung des Focus in der Listbox --- */
+.ui-listbox-item:focus {
+  outline: none;
+  border: 0px solid #D86E13;
+}
+
 .ui-tabview-nav .ui-tabview-selected {
   outline: none;
 }
@@ -161,7 +167,7 @@ input:focus {
   color: #3a474d;
 }
 
-/* --- Den Überlauf in den Tabs unsichtbat machen --- */
+/* --- Den Überlauf in den Tabs unsichtbar machen --- */
 .ui-tabview-panel {
   overflow: hidden !important;
 }
@@ -197,4 +203,24 @@ input:focus {
   font-size: 14px;
   border: 1px solid #dadfe2;
   border-radius: 0px 0px 4px 4px;
+}
+
+
+/* --- Der Icon für den DataPicker wird falsch angezeigt. Mit dieser Einstellung wird er wieder in das Eingabefeld gesetzt --- */
+.ui-datepicker-trigger {
+  right: 190px;
+}
+
+/* --- Panel: Die Farbe des Titels --- */
+.ui-panel-title {
+  color: #479cc8;
+}
+
+/* --- DataGrid: Die Ecken rundum abgerundet --- */
+.ui-datatable {
+  border-radius: 4px;
+}
+.ui-datatable-header {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
 }

@@ -13,6 +13,7 @@ import { NotificationService } from '@radzen/angular/dist/notification';
 import { HeaderComponent } from '@radzen/angular/dist/header';
 import { SidebarToggleComponent } from '@radzen/angular/dist/sidebar-toggle';
 import { ImageComponent } from '@radzen/angular/dist/image';
+import { LabelComponent } from '@radzen/angular/dist/label';
 import { LinkComponent } from '@radzen/angular/dist/link';
 import { ProfileMenuComponent } from '@radzen/angular/dist/profilemenu';
 import { BodyComponent } from '@radzen/angular/dist/body';
@@ -20,7 +21,6 @@ import { ContentContainerComponent } from '@radzen/angular/dist/content-containe
 import { SidebarComponent } from '@radzen/angular/dist/sidebar';
 import { PanelMenuComponent } from '@radzen/angular/dist/panelmenu';
 import { FooterComponent } from '@radzen/angular/dist/footer';
-import { LabelComponent } from '@radzen/angular/dist/label';
 
 import { ConfigService } from '../config.service';
 
@@ -31,6 +31,8 @@ export class MainLayoutGenerated implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('header0') header0: HeaderComponent;
   @ViewChild('sidebarToggle0') sidebarToggle0: SidebarToggleComponent;
   @ViewChild('image0') image0: ImageComponent;
+  @ViewChild('label2') label2: LabelComponent;
+  @ViewChild('label5') label5: LabelComponent;
   @ViewChild('link0') link0: LinkComponent;
   @ViewChild('link1') link1: LinkComponent;
   @ViewChild('profilemenu1') profilemenu1: ProfileMenuComponent;
@@ -40,10 +42,12 @@ export class MainLayoutGenerated implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('panelmenu0') panelmenu0: PanelMenuComponent;
   @ViewChild('footer1') footer1: FooterComponent;
   @ViewChild('footerTextLeft') footerTextLeft: LabelComponent;
+  @ViewChild('label0') label0: LabelComponent;
+  @ViewChild('label4') label4: LabelComponent;
   @ViewChild('linkKontakt') linkKontakt: LinkComponent;
   @ViewChild('label1') label1: LabelComponent;
   @ViewChild('linkDatenschutz') linkDatenschutz: LinkComponent;
-  @ViewChild('label2') label2: LabelComponent;
+  @ViewChild('label3') label3: LabelComponent;
   @ViewChild('linkImpressum') linkImpressum: LinkComponent;
 
   router: Router;

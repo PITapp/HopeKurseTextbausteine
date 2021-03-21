@@ -1,0 +1,1086 @@
+{
+  "access": [
+    "Authenticated"
+  ],
+  "components": [
+    {
+      "components": [
+        {
+          "name": "pageTitle",
+          "size": "H1",
+          "text": "Kontakte2",
+          "type": "heading"
+        },
+        {
+          "components": [
+            {
+              "class": "col-md-6",
+              "components": [
+                {
+                  "addText": "Add",
+                  "allowAdd": true,
+                  "allowDelete": true,
+                  "allowFiltering": true,
+                  "allowMultiSorting": false,
+                  "allowPaging": true,
+                  "allowSorting": true,
+                  "applyFilterText": "Apply",
+                  "clearFilterText": "Clear",
+                  "columnWidth": "150px",
+                  "columns": [
+                    {
+                      "property": "BaseID",
+                      "title": "Base ID",
+                      "type": "integer"
+                    },
+                    {
+                      "filterProperty": "BaseAnreden.Anrede",
+                      "property": "AnredeID",
+                      "sortProperty": "BaseAnreden.Anrede",
+                      "template": "${data.BaseAnreden?.Anrede}",
+                      "title": "Base Anreden",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Name1",
+                      "title": "Name 1",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Name2",
+                      "title": "Name 2",
+                      "type": "string"
+                    },
+                    {
+                      "property": "NameKuerzel",
+                      "title": "Name Kuerzel",
+                      "type": "string"
+                    },
+                    {
+                      "property": "TitelVorne",
+                      "title": "Titel Vorne",
+                      "type": "string"
+                    },
+                    {
+                      "property": "TitelHinten",
+                      "title": "Titel Hinten",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Strasse",
+                      "title": "Strasse",
+                      "type": "string"
+                    },
+                    {
+                      "property": "PLZ",
+                      "title": "PLZ",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Ort",
+                      "title": "Ort",
+                      "type": "string"
+                    },
+                    {
+                      "property": "LKZ",
+                      "title": "LKZ",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Telefon1",
+                      "title": "Telefon 1",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Telefon2",
+                      "title": "Telefon 2",
+                      "type": "string"
+                    },
+                    {
+                      "property": "EMail1",
+                      "title": "E Mail 1",
+                      "type": "string"
+                    },
+                    {
+                      "property": "EMail2",
+                      "title": "E Mail 2",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Website",
+                      "title": "Website",
+                      "type": "string"
+                    },
+                    {
+                      "property": "BildURL",
+                      "title": "Bild URL",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Notiz",
+                      "title": "Notiz",
+                      "type": "string"
+                    }
+                  ],
+                  "confirmDelete": true,
+                  "confirmDeleteCancelText": "Cancel",
+                  "confirmDeleteOkText": "Ok",
+                  "confirmDeleteText": "Are you sure you want to delete this record?",
+                  "confirmDeleteTitle": "Confirmation",
+                  "containsText": "Contains",
+                  "count": "${getBasesCount}",
+                  "data": "${getBasesResult}",
+                  "emptyText": "No records to display.",
+                  "endsWithText": "Ends with",
+                  "equalsText": "Equals",
+                  "events": {
+                    "add": [
+                      {
+                        "name": "isEdit",
+                        "type": "set",
+                        "value": "false"
+                      },
+                      {
+                        "name": "base",
+                        "type": "set",
+                        "value": "{}"
+                      }
+                    ],
+                    "delete": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to delete Base",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "dbHopeKurseTextbausteine.deleteBase",
+                        "parameters": [
+                          {
+                            "name": "BaseID",
+                            "value": "${event.BaseID}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "detail": "Base deleted!",
+                            "severity": "success",
+                            "summary": "Success",
+                            "type": "notify"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ],
+                    "loadData": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to load Bases",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "dbHopeKurseTextbausteine.getBases",
+                        "parameters": [
+                          {
+                            "name": "$top",
+                            "value": "event.top"
+                          },
+                          {
+                            "name": "$skip",
+                            "value": "event.skip"
+                          },
+                          {
+                            "name": "$count",
+                            "value": "event.top != null && event.skip != null"
+                          },
+                          {
+                            "name": "$filter",
+                            "value": "${event.filter}"
+                          },
+                          {
+                            "name": "$orderby",
+                            "value": "${event.orderby}"
+                          },
+                          {
+                            "name": "$expand",
+                            "value": "BaseAnreden"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "name": "getBasesResult",
+                            "type": "set",
+                            "value": "${result.value}"
+                          },
+                          {
+                            "name": "getBasesCount",
+                            "type": "set",
+                            "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
+                          },
+                          {
+                            "code": "${this.grid0.onSelect(result.value[0])}",
+                            "condition": "result.value.length && !this.grid0.value",
+                            "type": "execute"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ],
+                    "rowSelect": [
+                      {
+                        "name": "isEdit",
+                        "type": "set",
+                        "value": "true"
+                      },
+                      {
+                        "name": "base",
+                        "type": "set",
+                        "value": "${event}"
+                      }
+                    ]
+                  },
+                  "greaterThanOrEqualsText": "Greater than or equals",
+                  "greaterThanText": "Greater than",
+                  "lessThanOrEqualsText": "Less than or equals",
+                  "lessThanText": "Less than",
+                  "name": "grid0",
+                  "notEqualsText": "Not equals",
+                  "startsWithText": "Starts with",
+                  "template": "",
+                  "title": "",
+                  "type": "grid",
+                  "value": "${base}"
+                }
+              ],
+              "type": "col"
+            },
+            {
+              "class": "col-md-6",
+              "components": [
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-12",
+                          "components": [
+                            {
+                              "components": [
+                                {
+                                  "components": [
+                                    {
+                                      "class": "col-md-3",
+                                      "components": [
+                                        {
+                                          "component": "AnredeID",
+                                          "name": "AnredeIDLabel",
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "text": "Base Anreden",
+                                          "type": "label"
+                                        }
+                                      ],
+                                      "type": "col"
+                                    },
+                                    {
+                                      "class": "col-md-9",
+                                      "components": [
+                                        {
+                                          "data": "${getBaseAnredensResult}",
+                                          "emptyFilterText": "No results found",
+                                          "multipleItemsSelectedText": "{0} items selected",
+                                          "name": "AnredeID",
+                                          "placeholder": "Choose BaseAnreden",
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "textProperty": "Anrede",
+                                          "type": "dropdown",
+                                          "value": "${base.AnredeID}",
+                                          "valueProperty": "AnredeID"
+                                        }
+                                      ],
+                                      "type": "col"
+                                    }
+                                  ],
+                                  "style": {
+                                    "marginBottom": "1rem"
+                                  },
+                                  "type": "row"
+                                },
+                                {
+                                  "components": [
+                                    {
+                                      "class": "col-md-3",
+                                      "components": [
+                                        {
+                                          "component": "Name1",
+                                          "name": "Name1Label",
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "text": "Name 1",
+                                          "type": "label"
+                                        }
+                                      ],
+                                      "type": "col"
+                                    },
+                                    {
+                                      "class": "col-md-9",
+                                      "components": [
+                                        {
+                                          "maxLength": 100,
+                                          "name": "Name1",
+                                          "style": {
+                                            "display": "block",
+                                            "width": "100%"
+                                          },
+                                          "type": "textbox",
+                                          "value": "${base.Name1}"
+                                        },
+                                        {
+                                          "component": "Name1",
+                                          "name": "Name1RequiredValidator",
+                                          "style": {
+                                            "position": "absolute"
+                                          },
+                                          "text": "Name1 is required",
+                                          "type": "required-validator"
+                                        }
+                                      ],
+                                      "type": "col"
+                                    }
+                                  ],
+                                  "style": {
+                                    "marginBottom": "1rem"
+                                  },
+                                  "type": "row"
+                                },
+                                {
+                                  "components": [
+                                    {
+                                      "class": "col-md-3",
+                                      "components": [
+                                        {
+                                          "component": "Name2",
+                                          "name": "Name2Label",
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "text": "Name 2",
+                                          "type": "label"
+                                        }
+                                      ],
+                                      "type": "col"
+                                    },
+                                    {
+                                      "class": "col-md-9",
+                                      "components": [
+                                        {
+                                          "maxLength": 30,
+                                          "name": "Name2",
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "type": "textbox",
+                                          "value": "${base.Name2}"
+                                        }
+                                      ],
+                                      "type": "col"
+                                    }
+                                  ],
+                                  "style": {
+                                    "marginBottom": "1rem"
+                                  },
+                                  "type": "row"
+                                },
+                                {
+                                  "components": [
+                                    {
+                                      "class": "col-md-3",
+                                      "components": [
+                                        {
+                                          "component": "NameKuerzel",
+                                          "name": "NameKuerzelLabel",
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "text": "Name Kuerzel",
+                                          "type": "label"
+                                        }
+                                      ],
+                                      "type": "col"
+                                    },
+                                    {
+                                      "class": "col-md-9",
+                                      "components": [
+                                        {
+                                          "maxLength": 5,
+                                          "name": "NameKuerzel",
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "type": "textbox",
+                                          "value": "${base.NameKuerzel}"
+                                        }
+                                      ],
+                                      "type": "col"
+                                    }
+                                  ],
+                                  "style": {
+                                    "marginBottom": "1rem"
+                                  },
+                                  "type": "row"
+                                },
+                                {
+                                  "components": [
+                                    {
+                                      "class": "col-md-3",
+                                      "components": [
+                                        {
+                                          "component": "TitelVorne",
+                                          "name": "TitelVorneLabel",
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "text": "Titel Vorne",
+                                          "type": "label"
+                                        }
+                                      ],
+                                      "type": "col"
+                                    },
+                                    {
+                                      "class": "col-md-9",
+                                      "components": [
+                                        {
+                                          "maxLength": 20,
+                                          "name": "TitelVorne",
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "type": "textbox",
+                                          "value": "${base.TitelVorne}"
+                                        }
+                                      ],
+                                      "type": "col"
+                                    }
+                                  ],
+                                  "style": {
+                                    "marginBottom": "1rem"
+                                  },
+                                  "type": "row"
+                                },
+                                {
+                                  "components": [
+                                    {
+                                      "class": "col-md-3",
+                                      "components": [
+                                        {
+                                          "component": "TitelHinten",
+                                          "name": "TitelHintenLabel",
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "text": "Titel Hinten",
+                                          "type": "label"
+                                        }
+                                      ],
+                                      "type": "col"
+                                    },
+                                    {
+                                      "class": "col-md-9",
+                                      "components": [
+                                        {
+                                          "maxLength": 20,
+                                          "name": "TitelHinten",
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "type": "textbox",
+                                          "value": "${base.TitelHinten}"
+                                        }
+                                      ],
+                                      "type": "col"
+                                    }
+                                  ],
+                                  "style": {
+                                    "marginBottom": "1rem"
+                                  },
+                                  "type": "row"
+                                },
+                                {
+                                  "components": [
+                                    {
+                                      "class": "col-md-3",
+                                      "components": [
+                                        {
+                                          "component": "Strasse",
+                                          "name": "StrasseLabel",
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "text": "Strasse",
+                                          "type": "label"
+                                        }
+                                      ],
+                                      "type": "col"
+                                    },
+                                    {
+                                      "class": "col-md-9",
+                                      "components": [
+                                        {
+                                          "maxLength": 70,
+                                          "name": "Strasse",
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "type": "textbox",
+                                          "value": "${base.Strasse}"
+                                        }
+                                      ],
+                                      "type": "col"
+                                    }
+                                  ],
+                                  "style": {
+                                    "marginBottom": "1rem"
+                                  },
+                                  "type": "row"
+                                },
+                                {
+                                  "components": [
+                                    {
+                                      "class": "col-md-3",
+                                      "components": [
+                                        {
+                                          "component": "PLZ",
+                                          "name": "PLZLabel",
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "text": "Plz",
+                                          "type": "label"
+                                        }
+                                      ],
+                                      "type": "col"
+                                    },
+                                    {
+                                      "class": "col-md-9",
+                                      "components": [
+                                        {
+                                          "maxLength": 10,
+                                          "name": "PLZ",
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "type": "textbox",
+                                          "value": "${base.PLZ}"
+                                        }
+                                      ],
+                                      "type": "col"
+                                    }
+                                  ],
+                                  "style": {
+                                    "marginBottom": "1rem"
+                                  },
+                                  "type": "row"
+                                },
+                                {
+                                  "components": [
+                                    {
+                                      "class": "col-md-3",
+                                      "components": [
+                                        {
+                                          "component": "Ort",
+                                          "name": "OrtLabel",
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "text": "Ort",
+                                          "type": "label"
+                                        }
+                                      ],
+                                      "type": "col"
+                                    },
+                                    {
+                                      "class": "col-md-9",
+                                      "components": [
+                                        {
+                                          "maxLength": 100,
+                                          "name": "Ort",
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "type": "textbox",
+                                          "value": "${base.Ort}"
+                                        }
+                                      ],
+                                      "type": "col"
+                                    }
+                                  ],
+                                  "style": {
+                                    "marginBottom": "1rem"
+                                  },
+                                  "type": "row"
+                                },
+                                {
+                                  "components": [
+                                    {
+                                      "class": "col-md-3",
+                                      "components": [
+                                        {
+                                          "component": "LKZ",
+                                          "name": "LKZLabel",
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "text": "Lkz",
+                                          "type": "label"
+                                        }
+                                      ],
+                                      "type": "col"
+                                    },
+                                    {
+                                      "class": "col-md-9",
+                                      "components": [
+                                        {
+                                          "maxLength": 3,
+                                          "name": "LKZ",
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "type": "textbox",
+                                          "value": "${base.LKZ}"
+                                        }
+                                      ],
+                                      "type": "col"
+                                    }
+                                  ],
+                                  "style": {
+                                    "marginBottom": "1rem"
+                                  },
+                                  "type": "row"
+                                },
+                                {
+                                  "components": [
+                                    {
+                                      "class": "col-md-3",
+                                      "components": [
+                                        {
+                                          "component": "Telefon1",
+                                          "name": "Telefon1Label",
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "text": "Telefon 1",
+                                          "type": "label"
+                                        }
+                                      ],
+                                      "type": "col"
+                                    },
+                                    {
+                                      "class": "col-md-9",
+                                      "components": [
+                                        {
+                                          "maxLength": 30,
+                                          "name": "Telefon1",
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "type": "textbox",
+                                          "value": "${base.Telefon1}"
+                                        }
+                                      ],
+                                      "type": "col"
+                                    }
+                                  ],
+                                  "style": {
+                                    "marginBottom": "1rem"
+                                  },
+                                  "type": "row"
+                                },
+                                {
+                                  "components": [
+                                    {
+                                      "class": "col-md-3",
+                                      "components": [
+                                        {
+                                          "component": "Telefon2",
+                                          "name": "Telefon2Label",
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "text": "Telefon 2",
+                                          "type": "label"
+                                        }
+                                      ],
+                                      "type": "col"
+                                    },
+                                    {
+                                      "class": "col-md-9",
+                                      "components": [
+                                        {
+                                          "maxLength": 30,
+                                          "name": "Telefon2",
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "type": "textbox",
+                                          "value": "${base.Telefon2}"
+                                        }
+                                      ],
+                                      "type": "col"
+                                    }
+                                  ],
+                                  "style": {
+                                    "marginBottom": "1rem"
+                                  },
+                                  "type": "row"
+                                },
+                                {
+                                  "components": [
+                                    {
+                                      "class": "col-md-3",
+                                      "components": [
+                                        {
+                                          "component": "EMail1",
+                                          "name": "EMail1Label",
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "text": "E Mail 1",
+                                          "type": "label"
+                                        }
+                                      ],
+                                      "type": "col"
+                                    },
+                                    {
+                                      "class": "col-md-9",
+                                      "components": [
+                                        {
+                                          "maxLength": 70,
+                                          "name": "EMail1",
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "type": "textbox",
+                                          "value": "${base.EMail1}"
+                                        }
+                                      ],
+                                      "type": "col"
+                                    }
+                                  ],
+                                  "style": {
+                                    "marginBottom": "1rem"
+                                  },
+                                  "type": "row"
+                                },
+                                {
+                                  "components": [
+                                    {
+                                      "class": "col-md-3",
+                                      "components": [
+                                        {
+                                          "component": "EMail2",
+                                          "name": "EMail2Label",
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "text": "E Mail 2",
+                                          "type": "label"
+                                        }
+                                      ],
+                                      "type": "col"
+                                    },
+                                    {
+                                      "class": "col-md-9",
+                                      "components": [
+                                        {
+                                          "maxLength": 70,
+                                          "name": "EMail2",
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "type": "textbox",
+                                          "value": "${base.EMail2}"
+                                        }
+                                      ],
+                                      "type": "col"
+                                    }
+                                  ],
+                                  "style": {
+                                    "marginBottom": "1rem"
+                                  },
+                                  "type": "row"
+                                },
+                                {
+                                  "components": [
+                                    {
+                                      "class": "col-md-3",
+                                      "components": [
+                                        {
+                                          "component": "Website",
+                                          "name": "WebsiteLabel",
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "text": "Website",
+                                          "type": "label"
+                                        }
+                                      ],
+                                      "type": "col"
+                                    },
+                                    {
+                                      "class": "col-md-9",
+                                      "components": [
+                                        {
+                                          "maxLength": 200,
+                                          "name": "Website",
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "type": "textbox",
+                                          "value": "${base.Website}"
+                                        }
+                                      ],
+                                      "type": "col"
+                                    }
+                                  ],
+                                  "style": {
+                                    "marginBottom": "1rem"
+                                  },
+                                  "type": "row"
+                                },
+                                {
+                                  "components": [
+                                    {
+                                      "class": "col-md-3",
+                                      "components": [
+                                        {
+                                          "component": "BildURL",
+                                          "name": "BildURLLabel",
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "text": "Bild Url",
+                                          "type": "label"
+                                        }
+                                      ],
+                                      "type": "col"
+                                    },
+                                    {
+                                      "class": "col-md-9",
+                                      "components": [
+                                        {
+                                          "maxLength": 16777215,
+                                          "name": "BildURL",
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "type": "textbox",
+                                          "value": "${base.BildURL}"
+                                        }
+                                      ],
+                                      "type": "col"
+                                    }
+                                  ],
+                                  "style": {
+                                    "marginBottom": "1rem"
+                                  },
+                                  "type": "row"
+                                },
+                                {
+                                  "components": [
+                                    {
+                                      "class": "col-md-3",
+                                      "components": [
+                                        {
+                                          "component": "Notiz",
+                                          "name": "NotizLabel",
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "text": "Notiz",
+                                          "type": "label"
+                                        }
+                                      ],
+                                      "type": "col"
+                                    },
+                                    {
+                                      "class": "col-md-9",
+                                      "components": [
+                                        {
+                                          "maxLength": 65535,
+                                          "name": "Notiz",
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "type": "textbox",
+                                          "value": "${base.Notiz}"
+                                        }
+                                      ],
+                                      "type": "col"
+                                    }
+                                  ],
+                                  "style": {
+                                    "marginBottom": "1rem"
+                                  },
+                                  "type": "row"
+                                },
+                                {
+                                  "components": [
+                                    {
+                                      "class": "col offset-sm-3",
+                                      "components": [
+                                        {
+                                          "buttonStyle": "primary",
+                                          "buttonType": "submit",
+                                          "icon": "save",
+                                          "text": "Save",
+                                          "type": "button"
+                                        },
+                                        {
+                                          "buttonStyle": "light",
+                                          "events": {},
+                                          "style": {
+                                            "marginLeft": "1rem"
+                                          },
+                                          "text": "Cancel",
+                                          "type": "button",
+                                          "visible": false
+                                        }
+                                      ],
+                                      "type": "col"
+                                    }
+                                  ],
+                                  "type": "row"
+                                }
+                              ],
+                              "events": {
+                                "submit": [
+                                  {
+                                    "condition": "${isEdit}",
+                                    "error": [
+                                      {
+                                        "detail": "Unable to update Base",
+                                        "severity": "error",
+                                        "summary": "Error",
+                                        "type": "notify"
+                                      }
+                                    ],
+                                    "name": "dbHopeKurseTextbausteine.updateBase",
+                                    "parameters": [
+                                      {
+                                        "name": "BaseID",
+                                        "value": "${base.BaseID}"
+                                      },
+                                      {
+                                        "name": "Base",
+                                        "value": "${event}"
+                                      }
+                                    ],
+                                    "then": [
+                                      {
+                                        "detail": "Base updated!",
+                                        "severity": "success",
+                                        "summary": "Success",
+                                        "type": "notify"
+                                      },
+                                      {
+                                        "code": "this.grid0.load()",
+                                        "type": "execute"
+                                      }
+                                    ],
+                                    "type": "invoke"
+                                  },
+                                  {
+                                    "condition": "${!this.isEdit}",
+                                    "error": [
+                                      {
+                                        "detail": "Unable to create new Base!",
+                                        "severity": "error",
+                                        "summary": "Error",
+                                        "type": "notify"
+                                      }
+                                    ],
+                                    "name": "dbHopeKurseTextbausteine.createBase",
+                                    "parameters": [
+                                      {
+                                        "name": "Base",
+                                        "value": "${event}"
+                                      }
+                                    ],
+                                    "then": [
+                                      {
+                                        "name": "base",
+                                        "type": "set",
+                                        "value": "{}"
+                                      },
+                                      {
+                                        "detail": "Base created!",
+                                        "severity": "success",
+                                        "summary": "Success",
+                                        "type": "notify"
+                                      }
+                                    ],
+                                    "type": "invoke"
+                                  }
+                                ]
+                              },
+                              "name": "form0",
+                              "type": "template-form"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "type": "row"
+                    }
+                  ],
+                  "style": {
+                    "height": "100%"
+                  },
+                  "type": "card"
+                }
+              ],
+              "type": "col"
+            }
+          ],
+          "style": {
+            "height": "100%"
+          },
+          "type": "row"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "dbHopeKurseTextbausteine.getBaseAnredens",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getBaseAnredensResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "code": "this.grid0.load();",
+        "type": "execute"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "Kontakte2"
+}

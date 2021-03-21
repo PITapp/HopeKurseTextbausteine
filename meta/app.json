@@ -24,7 +24,12 @@
   "namespaces": [],
   "navigation": [
     "Dashboard",
-    "Kontakte"
+    "Kontakte",
+    "KontakteTemp2",
+    "Kontakte2",
+    "Kontakte3",
+    "Kontakte4",
+    "Copy of Kontakte"
   ],
   "pages": [
     "BenutzerNeu",
@@ -49,7 +54,18 @@
     "Textbausteine",
     "Dokumente",
     "Nachrichten",
-    "Kontakte"
+    "Kontakte",
+    "KontakteTemp2",
+    "Add Kontakte",
+    "Edit Kontakte",
+    "Kontakte2",
+    "Kontakte3",
+    "Add Kontakte3",
+    "Edit Kontakte3",
+    "Kontakte4",
+    "Add Kontakte4",
+    "Edit Kontakte4",
+    "Copy of Kontakte"
   ],
   "port": 8000,
   "security": {

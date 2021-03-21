@@ -8,9 +8,7 @@
     "Base": {
       "x-table": "def.Base",
       "resource": "Bases",
-      "required": [
-        "Name1"
-      ],
+      "required": [],
       "properties": {
         "BaseID": {
           "x-key": true,
@@ -42,7 +40,6 @@
           }
         },
         "Name1": {
-          "x-nullable": false,
           "type": "string",
           "length": 100
         },
@@ -117,9 +114,7 @@
     "BaseAnreden": {
       "x-table": "def.BaseAnreden",
       "resource": "BaseAnredens",
-      "required": [
-        "Anrede"
-      ],
+      "required": [],
       "properties": {
         "AnredeID": {
           "x-key": true,
@@ -135,7 +130,6 @@
           ]
         },
         "Anrede": {
-          "x-nullable": false,
           "type": "string",
           "length": 45
         },
@@ -151,11 +145,7 @@
       "x-table": "def.Benutzer",
       "resource": "Benutzers",
       "required": [
-        "AspNetUsers_Id",
-        "BaseID",
-        "Benutzername",
-        "Initialen",
-        "BenutzerEMail"
+        "BaseID"
       ],
       "properties": {
         "BenutzerID": {
@@ -165,7 +155,6 @@
           "type": "integer"
         },
         "AspNetUsers_Id": {
-          "x-nullable": false,
           "type": "string",
           "length": 255
         },
@@ -187,17 +176,14 @@
           }
         },
         "Benutzername": {
-          "x-nullable": false,
           "type": "string",
           "length": 130
         },
         "Initialen": {
-          "x-nullable": false,
           "type": "string",
           "length": 2
         },
         "BenutzerEMail": {
-          "x-nullable": false,
           "type": "string",
           "length": 200
         },
@@ -228,8 +214,7 @@
       "x-table": "def.IBSIKurse",
       "resource": "IbsiKurses",
       "required": [
-        "KursArtNr",
-        "Titel"
+        "KursArtNr"
       ],
       "properties": {
         "KursNr": {
@@ -268,7 +253,6 @@
           }
         },
         "Titel": {
-          "x-nullable": false,
           "type": "string",
           "length": 50
         },
@@ -310,9 +294,7 @@
     "IbsiKurseArten": {
       "x-table": "def.IBSIKurseArten",
       "resource": "IbsiKurseArtens",
-      "required": [
-        "Bezeichnung"
-      ],
+      "required": [],
       "properties": {
         "KursArtNr": {
           "x-key": true,
@@ -328,7 +310,6 @@
           ]
         },
         "Bezeichnung": {
-          "x-nullable": false,
           "type": "string",
           "length": 30
         },
@@ -348,8 +329,7 @@
       "resource": "IbsiKurseThemens",
       "required": [
         "KursNr",
-        "Nummer",
-        "Titel"
+        "Nummer"
       ],
       "properties": {
         "KursThemaNr": {
@@ -380,7 +360,6 @@
           "type": "integer"
         },
         "Titel": {
-          "x-nullable": false,
           "type": "string",
           "length": 50
         },
@@ -413,11 +392,7 @@
         "Status",
         "StatusInhalt",
         "KursNr",
-        "TextbausteinArtCode",
-        "AutorNr",
-        "Typ",
-        "TitelTextbaustein",
-        "Land"
+        "AutorNr"
       ],
       "properties": {
         "TextbausteinNr": {
@@ -499,7 +474,6 @@
           "$ref": "#/definitions/IbsiTextbausteineArten"
         },
         "TextbausteinArtCode": {
-          "x-nullable": false,
           "type": "string",
           "length": 3,
           "x-foreignKey": {
@@ -534,7 +508,6 @@
           "$ref": "#/definitions/IbsiTextbausteineTypen"
         },
         "Typ": {
-          "x-nullable": false,
           "type": "string",
           "length": 1,
           "x-foreignKey": {
@@ -548,7 +521,6 @@
           }
         },
         "TitelTextbaustein": {
-          "x-nullable": false,
           "type": "string",
           "length": 100
         },
@@ -557,7 +529,6 @@
           "length": 100
         },
         "Land": {
-          "x-nullable": false,
           "type": "string",
           "length": 5
         },
@@ -663,8 +634,7 @@
       "x-table": "def.IBSITextbausteineArten",
       "resource": "IbsiTextbausteineArtens",
       "required": [
-        "TextbausteinArtCode",
-        "Bezeichnung"
+        "TextbausteinArtCode"
       ],
       "properties": {
         "TextbausteinArtCode": {
@@ -681,7 +651,6 @@
           ]
         },
         "Bezeichnung": {
-          "x-nullable": false,
           "type": "string",
           "length": 40
         },
@@ -699,9 +668,7 @@
     "IbsiTextbausteineAutoren": {
       "x-table": "def.IBSITextbausteineAutoren",
       "resource": "IbsiTextbausteineAutorens",
-      "required": [
-        "Name"
-      ],
+      "required": [],
       "properties": {
         "AutorNr": {
           "x-key": true,
@@ -717,7 +684,6 @@
           ]
         },
         "Name": {
-          "x-nullable": false,
           "type": "string",
           "length": 250
         },
@@ -738,8 +704,7 @@
       "x-table": "def.IBSITextbausteineStatusForm",
       "resource": "IbsiTextbausteineStatusForms",
       "required": [
-        "Status",
-        "Bezeichnung"
+        "Status"
       ],
       "properties": {
         "Status": {
@@ -755,7 +720,6 @@
           ]
         },
         "Bezeichnung": {
-          "x-nullable": false,
           "type": "string",
           "length": 45
         },
@@ -771,8 +735,7 @@
       "x-table": "def.IBSITextbausteineStatusInhalt",
       "resource": "IbsiTextbausteineStatusInhalts",
       "required": [
-        "StatusInhalt",
-        "Bezeichnung"
+        "StatusInhalt"
       ],
       "properties": {
         "StatusInhalt": {
@@ -788,7 +751,6 @@
           ]
         },
         "Bezeichnung": {
-          "x-nullable": false,
           "type": "string",
           "length": 45
         },
@@ -804,8 +766,7 @@
       "x-table": "def.IBSITextbausteineTypen",
       "resource": "IbsiTextbausteineTypens",
       "required": [
-        "Typ",
-        "Bezeichnung"
+        "Typ"
       ],
       "properties": {
         "Typ": {
@@ -822,7 +783,6 @@
           ]
         },
         "Bezeichnung": {
-          "x-nullable": false,
           "type": "string",
           "length": 45
         },
@@ -837,10 +797,7 @@
     "InfotexteHtml": {
       "x-table": "def.InfotexteHTML",
       "resource": "InfotexteHtmls",
-      "required": [
-        "Code",
-        "Titel"
-      ],
+      "required": [],
       "properties": {
         "InfotextID": {
           "x-key": true,
@@ -849,12 +806,10 @@
           "type": "integer"
         },
         "Code": {
-          "x-nullable": false,
           "type": "string",
           "length": 20
         },
         "Titel": {
-          "x-nullable": false,
           "type": "string",
           "length": 100
         },
@@ -867,16 +822,98 @@
         }
       }
     },
+    "VwBaseAlle": {
+      "x-view": true,
+      "x-table": "def.vwBaseAlle",
+      "resource": "VwBaseAlles",
+      "required": [],
+      "properties": {
+        "BaseID": {
+          "x-default-sql": "0",
+          "x-nullable": false,
+          "type": "integer",
+          "x-key": true,
+          "x-virtual": true
+        },
+        "Name1": {
+          "type": "string",
+          "length": 100
+        },
+        "Name2": {
+          "type": "string",
+          "length": 30
+        },
+        "NameKuerzel": {
+          "type": "string",
+          "length": 5
+        },
+        "AnredeID": {
+          "type": "integer"
+        },
+        "TitelVorne": {
+          "type": "string",
+          "length": 20
+        },
+        "TitelHinten": {
+          "type": "string",
+          "length": 20
+        },
+        "Strasse": {
+          "type": "string",
+          "length": 70
+        },
+        "PLZ": {
+          "type": "string",
+          "length": 10
+        },
+        "Ort": {
+          "type": "string",
+          "length": 100
+        },
+        "LKZ": {
+          "type": "string",
+          "length": 3
+        },
+        "Telefon1": {
+          "type": "string",
+          "length": 30
+        },
+        "Telefon2": {
+          "type": "string",
+          "length": 30
+        },
+        "EMail1": {
+          "type": "string",
+          "length": 70
+        },
+        "EMail2": {
+          "type": "string",
+          "length": 70
+        },
+        "Website": {
+          "type": "string",
+          "length": 200
+        },
+        "BildURL": {
+          "type": "string",
+          "length": 16777215
+        },
+        "Notiz": {
+          "type": "string",
+          "length": 65535
+        },
+        "NameGesamt": {
+          "type": "string",
+          "length": 131
+        }
+      }
+    },
     "VwBenutzerRollen": {
       "x-view": true,
       "x-table": "def.vwBenutzerRollen",
       "resource": "VwBenutzerRollens",
       "required": [
         "BaseID",
-        "Name1",
-        "Benutzername",
-        "Initialen",
-        "BenutzerEMail",
         "RoleId"
       ],
       "properties": {
@@ -892,7 +929,6 @@
           "x-virtual": true
         },
         "Name1": {
-          "x-nullable": false,
           "type": "string",
           "length": 100
         },
@@ -901,17 +937,14 @@
           "length": 30
         },
         "Benutzername": {
-          "x-nullable": false,
           "type": "string",
           "length": 130
         },
         "Initialen": {
-          "x-nullable": false,
           "type": "string",
           "length": 2
         },
         "BenutzerEMail": {
-          "x-nullable": false,
           "type": "string",
           "length": 200
         },
@@ -2358,6 +2391,73 @@
           "201": {
             "schema": {
               "$ref": "#/definitions/InfotexteHtml"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/VwBaseAlles": {
+      "get": {
+        "operationId": "getVwBaseAlles",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/VwBaseAlle"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
             }
           },
           "default": {

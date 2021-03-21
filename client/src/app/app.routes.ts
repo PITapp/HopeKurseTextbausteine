@@ -26,6 +26,17 @@ import { TextbausteineComponent } from './textbausteine/textbausteine.component'
 import { DokumenteComponent } from './dokumente/dokumente.component';
 import { NachrichtenComponent } from './nachrichten/nachrichten.component';
 import { KontakteComponent } from './kontakte/kontakte.component';
+import { KontakteTemp2Component } from './kontakte-temp-2/kontakte-temp-2.component';
+import { AddKontakteComponent } from './add-kontakte/add-kontakte.component';
+import { EditKontakteComponent } from './edit-kontakte/edit-kontakte.component';
+import { Kontakte2Component } from './kontakte-2/kontakte-2.component';
+import { Kontakte3Component } from './kontakte-3/kontakte-3.component';
+import { AddKontakte3Component } from './add-kontakte-3/add-kontakte-3.component';
+import { EditKontakte3Component } from './edit-kontakte-3/edit-kontakte-3.component';
+import { Kontakte4Component } from './kontakte-4/kontakte-4.component';
+import { AddKontakte4Component } from './add-kontakte-4/add-kontakte-4.component';
+import { EditKontakte4Component } from './edit-kontakte-4/edit-kontakte-4.component';
+import { CopyOfKontakteComponent } from './copy-of-kontakte/copy-of-kontakte.component';
 
 import { SecurityService } from './security.service';
 import { AuthGuard } from './auth.guard';
@@ -208,6 +219,94 @@ export const routes: Routes = [
           roles: ['Authenticated'],
         },
         component: KontakteComponent
+      },
+      {
+        path: 'kontakte-temp-2',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: KontakteTemp2Component
+      },
+      {
+        path: 'add-kontakte',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: AddKontakteComponent
+      },
+      {
+        path: 'edit-kontakte/:BaseID',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: EditKontakteComponent
+      },
+      {
+        path: 'kontakte-2',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: Kontakte2Component
+      },
+      {
+        path: 'kontakte-3',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: Kontakte3Component
+      },
+      {
+        path: 'add-kontakte-3',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: AddKontakte3Component
+      },
+      {
+        path: 'edit-kontakte-3/:BaseID',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: EditKontakte3Component
+      },
+      {
+        path: 'kontakte-4',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: Kontakte4Component
+      },
+      {
+        path: 'add-kontakte-4',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: AddKontakte4Component
+      },
+      {
+        path: 'edit-kontakte-4/:BaseID',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: EditKontakte4Component
+      },
+      {
+        path: 'copy-of-kontakte',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: CopyOfKontakteComponent
       },
     ]
   },

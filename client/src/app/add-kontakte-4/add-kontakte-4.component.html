@@ -1,0 +1,42 @@
+<rz-content #content1 container="main">
+  <div class="row">
+    <div class="col-md-12">
+      <rz-form #form0 (cancel)="form0Cancel($event)" (submit)="form0Submit($event)">
+        <rz-lookup-form-field [data]="getBaseAnredensResult" emptyFilterText="No results found" multipleItemsSelectedText="{0} items selected" placeholder="Choose BaseAnreden" property="AnredeID" [required]="false" requiredText="is required" textProperty="Anrede" title="Base Anreden" valueProperty="AnredeID" type="lookup">
+        </rz-lookup-form-field>
+        <rz-string-form-field [maxLength]="100" property="Name1" [required]="false" requiredText="is required" title="Name 1" type="string">
+        </rz-string-form-field>
+        <rz-string-form-field [maxLength]="30" property="Name2" [required]="false" requiredText="is required" title="Name 2" type="string">
+        </rz-string-form-field>
+        <rz-string-form-field [maxLength]="5" property="NameKuerzel" [required]="false" requiredText="is required" title="Name Kuerzel" type="string">
+        </rz-string-form-field>
+        <rz-string-form-field [maxLength]="20" property="TitelVorne" [required]="false" requiredText="is required" title="Titel Vorne" type="string">
+        </rz-string-form-field>
+        <rz-string-form-field [maxLength]="20" property="TitelHinten" [required]="false" requiredText="is required" title="Titel Hinten" type="string">
+        </rz-string-form-field>
+        <rz-string-form-field [maxLength]="70" property="Strasse" [required]="false" requiredText="is required" title="Strasse" type="string">
+        </rz-string-form-field>
+        <rz-string-form-field [maxLength]="10" property="PLZ" [required]="false" requiredText="is required" title="Plz" type="string">
+        </rz-string-form-field>
+        <rz-string-form-field [maxLength]="100" property="Ort" [required]="false" requiredText="is required" title="Ort" type="string">
+        </rz-string-form-field>
+        <rz-string-form-field [maxLength]="3" property="LKZ" [required]="false" requiredText="is required" title="Lkz" type="string">
+        </rz-string-form-field>
+        <rz-string-form-field [maxLength]="30" property="Telefon1" [required]="false" requiredText="is required" title="Telefon 1" type="string">
+        </rz-string-form-field>
+        <rz-string-form-field [maxLength]="30" property="Telefon2" [required]="false" requiredText="is required" title="Telefon 2" type="string">
+        </rz-string-form-field>
+        <rz-string-form-field [maxLength]="70" property="EMail1" [required]="false" requiredText="is required" title="E Mail 1" type="string">
+        </rz-string-form-field>
+        <rz-string-form-field [maxLength]="70" property="EMail2" [required]="false" requiredText="is required" title="E Mail 2" type="string">
+        </rz-string-form-field>
+        <rz-string-form-field [maxLength]="200" property="Website" [required]="false" requiredText="is required" title="Website" type="string">
+        </rz-string-form-field>
+        <rz-string-form-field [maxLength]="16777215" property="BildURL" [required]="false" requiredText="is required" title="Bild Url" type="string">
+        </rz-string-form-field>
+        <rz-string-form-field [maxLength]="65535" property="Notiz" [required]="false" requiredText="is required" title="Notiz" type="string">
+        </rz-string-form-field>
+      </rz-form>
+    </div>
+  </div>
+</rz-content>
