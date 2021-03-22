@@ -42,8 +42,8 @@ import { LoginModule } from '@radzen/angular/dist/login';
 import { FormModule } from '@radzen/angular/dist/form';
 import { HtmlModule } from '@radzen/angular/dist/html';
 import { UploadModule } from '@radzen/angular/dist/upload';
-import { DatePickerModule } from '@radzen/angular/dist/datepicker';
 import { DropDownDataGridModule } from '@radzen/angular/dist/dropdown-datagrid';
+import { DatePickerModule } from '@radzen/angular/dist/datepicker';
 import { ListBoxModule } from '@radzen/angular/dist/listbox';
 import { FieldsetModule } from '@radzen/angular/dist/fieldset';
 import { SharedModule } from '@radzen/angular/dist/shared';
@@ -89,6 +89,10 @@ import { Kontakte4Component } from './kontakte-4/kontakte-4.component';
 import { AddKontakte4Component } from './add-kontakte-4/add-kontakte-4.component';
 import { EditKontakte4Component } from './edit-kontakte-4/edit-kontakte-4.component';
 import { CopyOfKontakteComponent } from './copy-of-kontakte/copy-of-kontakte.component';
+import { Kontakte5Component } from './kontakte-5/kontakte-5.component';
+import { AddKontakte5Component } from './add-kontakte-5/add-kontakte-5.component';
+import { EditKontakte5Component } from './edit-kontakte-5/edit-kontakte-5.component';
+import { CopyOfKontakte1Component } from './copy-of-kontakte-1/copy-of-kontakte-1.component';
 import { LoginLayoutComponent } from './login-layout/login-layout.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 
@@ -132,6 +136,10 @@ export const PageDeclarations = [
   AddKontakte4Component,
   EditKontakte4Component,
   CopyOfKontakteComponent,
+  Kontakte5Component,
+  AddKontakte5Component,
+  EditKontakte5Component,
+  CopyOfKontakte1Component,
 ];
 
 export const LayoutDeclarations = [
@@ -209,8 +217,8 @@ export const AppImports = [
   FormModule,
   HtmlModule,
   UploadModule,
-  DatePickerModule,
   DropDownDataGridModule,
+  DatePickerModule,
   ListBoxModule,
   FieldsetModule,
   SharedModule,

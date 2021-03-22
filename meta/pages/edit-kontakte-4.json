@@ -58,119 +58,138 @@
                       "title": "Base Anreden",
                       "type": "lookup",
                       "valueProperty": "AnredeID",
-                      "placeholder": "Choose BaseAnreden"
+                      "placeholder": "Choose BaseAnreden",
+                      "requiredText": "is required",
+                      "multipleItemsSelectedText": "{0} items selected",
+                      "emptyFilterText": "No results found"
                     },
                     {
                       "property": "Name1",
                       "required": false,
                       "title": "Name 1",
                       "type": "string",
-                      "maxLength": 100
+                      "maxLength": 100,
+                      "requiredText": "is required"
                     },
                     {
                       "property": "Name2",
                       "required": false,
                       "title": "Name 2",
                       "type": "string",
-                      "maxLength": 30
+                      "maxLength": 30,
+                      "requiredText": "is required"
                     },
                     {
                       "property": "NameKuerzel",
                       "required": false,
                       "title": "Name Kuerzel",
                       "type": "string",
-                      "maxLength": 5
+                      "maxLength": 5,
+                      "requiredText": "is required"
                     },
                     {
                       "property": "TitelVorne",
                       "required": false,
                       "title": "Titel Vorne",
                       "type": "string",
-                      "maxLength": 20
+                      "maxLength": 20,
+                      "requiredText": "is required"
                     },
                     {
                       "property": "TitelHinten",
                       "required": false,
                       "title": "Titel Hinten",
                       "type": "string",
-                      "maxLength": 20
+                      "maxLength": 20,
+                      "requiredText": "is required"
                     },
                     {
                       "property": "Strasse",
                       "required": false,
                       "title": "Strasse",
                       "type": "string",
-                      "maxLength": 70
+                      "maxLength": 70,
+                      "requiredText": "is required"
                     },
                     {
                       "property": "PLZ",
                       "required": false,
                       "title": "Plz",
                       "type": "string",
-                      "maxLength": 10
+                      "maxLength": 10,
+                      "requiredText": "is required"
                     },
                     {
                       "property": "Ort",
                       "required": false,
                       "title": "Ort",
                       "type": "string",
-                      "maxLength": 100
+                      "maxLength": 100,
+                      "requiredText": "is required"
                     },
                     {
                       "property": "LKZ",
                       "required": false,
                       "title": "Lkz",
                       "type": "string",
-                      "maxLength": 3
+                      "maxLength": 3,
+                      "requiredText": "is required"
                     },
                     {
                       "property": "Telefon1",
                       "required": false,
                       "title": "Telefon 1",
                       "type": "string",
-                      "maxLength": 30
+                      "maxLength": 30,
+                      "requiredText": "is required"
                     },
                     {
                       "property": "Telefon2",
                       "required": false,
                       "title": "Telefon 2",
                       "type": "string",
-                      "maxLength": 30
+                      "maxLength": 30,
+                      "requiredText": "is required"
                     },
                     {
                       "property": "EMail1",
                       "required": false,
                       "title": "E Mail 1",
                       "type": "string",
-                      "maxLength": 70
+                      "maxLength": 70,
+                      "requiredText": "is required"
                     },
                     {
                       "property": "EMail2",
                       "required": false,
                       "title": "E Mail 2",
                       "type": "string",
-                      "maxLength": 70
+                      "maxLength": 70,
+                      "requiredText": "is required"
                     },
                     {
                       "property": "Website",
                       "required": false,
                       "title": "Website",
                       "type": "string",
-                      "maxLength": 200
+                      "maxLength": 200,
+                      "requiredText": "is required"
                     },
                     {
                       "property": "BildURL",
                       "required": false,
                       "title": "Bild Url",
                       "type": "string",
-                      "maxLength": 16777215
+                      "maxLength": 16777215,
+                      "requiredText": "is required"
                     },
                     {
                       "property": "Notiz",
                       "required": false,
                       "title": "Notiz",
                       "type": "string",
-                      "maxLength": 65535
+                      "maxLength": 65535,
+                      "requiredText": "is required"
                     }
                   ],
                   "name": "form0",
@@ -219,6 +238,8 @@
     ]
   },
   "name": "Edit Kontakte 4",
-  "access": "Authenticated",
+  "access": [
+    "Authenticated"
+  ],
   "layout": "Main"
 }

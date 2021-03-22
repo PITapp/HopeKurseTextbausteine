@@ -29,19 +29,6 @@
                   "columnWidth": "150px",
                   "columns": [
                     {
-                      "property": "BaseID",
-                      "title": "Base ID",
-                      "type": "integer"
-                    },
-                    {
-                      "filterProperty": "BaseAnreden.Anrede",
-                      "property": "AnredeID",
-                      "sortProperty": "BaseAnreden.Anrede",
-                      "template": "${data.BaseAnreden?.Anrede}",
-                      "title": "Base Anreden",
-                      "type": "string"
-                    },
-                    {
                       "property": "Name1",
                       "title": "Name 1",
                       "type": "string"
@@ -49,71 +36,6 @@
                     {
                       "property": "Name2",
                       "title": "Name 2",
-                      "type": "string"
-                    },
-                    {
-                      "property": "NameKuerzel",
-                      "title": "Name Kuerzel",
-                      "type": "string"
-                    },
-                    {
-                      "property": "TitelVorne",
-                      "title": "Titel Vorne",
-                      "type": "string"
-                    },
-                    {
-                      "property": "TitelHinten",
-                      "title": "Titel Hinten",
-                      "type": "string"
-                    },
-                    {
-                      "property": "Strasse",
-                      "title": "Strasse",
-                      "type": "string"
-                    },
-                    {
-                      "property": "PLZ",
-                      "title": "PLZ",
-                      "type": "string"
-                    },
-                    {
-                      "property": "Ort",
-                      "title": "Ort",
-                      "type": "string"
-                    },
-                    {
-                      "property": "LKZ",
-                      "title": "LKZ",
-                      "type": "string"
-                    },
-                    {
-                      "property": "Telefon1",
-                      "title": "Telefon 1",
-                      "type": "string"
-                    },
-                    {
-                      "property": "Telefon2",
-                      "title": "Telefon 2",
-                      "type": "string"
-                    },
-                    {
-                      "property": "EMail1",
-                      "title": "E Mail 1",
-                      "type": "string"
-                    },
-                    {
-                      "property": "EMail2",
-                      "title": "E Mail 2",
-                      "type": "string"
-                    },
-                    {
-                      "property": "Website",
-                      "title": "Website",
-                      "type": "string"
-                    },
-                    {
-                      "property": "BildURL",
-                      "title": "Bild URL",
                       "type": "string"
                     },
                     {
@@ -204,7 +126,7 @@
                           },
                           {
                             "name": "$orderby",
-                            "value": "${event.orderby}"
+                            "value": "${event.orderby || 'Name1, Name2'}"
                           },
                           {
                             "name": "$expand",
@@ -255,6 +177,47 @@
                   "title": "",
                   "type": "grid",
                   "value": "${base}"
+                },
+                {
+                  "components": [
+                    {
+                      "class": "col-md-3",
+                      "components": [
+                        {
+                          "component": "BildURL",
+                          "name": "BildURLLabel",
+                          "style": {
+                            "width": "100%"
+                          },
+                          "text": "Bild Url",
+                          "type": "label"
+                        }
+                      ],
+                      "name": "col0",
+                      "type": "col"
+                    },
+                    {
+                      "class": "col-md-9",
+                      "components": [
+                        {
+                          "maxLength": 16777215,
+                          "name": "BildURL",
+                          "style": {
+                            "width": "100%"
+                          },
+                          "type": "textbox",
+                          "value": "${base.BildURL}"
+                        }
+                      ],
+                      "name": "col1",
+                      "type": "col"
+                    }
+                  ],
+                  "name": "row0",
+                  "style": {
+                    "marginBottom": "1rem"
+                  },
+                  "type": "row"
                 }
               ],
               "type": "col"
@@ -423,6 +386,7 @@
                                         {
                                           "maxLength": 5,
                                           "name": "NameKuerzel",
+                                          "placeholder": "",
                                           "style": {
                                             "width": "100%"
                                           },
@@ -846,44 +810,6 @@
                                           },
                                           "type": "textbox",
                                           "value": "${base.Website}"
-                                        }
-                                      ],
-                                      "type": "col"
-                                    }
-                                  ],
-                                  "style": {
-                                    "marginBottom": "1rem"
-                                  },
-                                  "type": "row"
-                                },
-                                {
-                                  "components": [
-                                    {
-                                      "class": "col-md-3",
-                                      "components": [
-                                        {
-                                          "component": "BildURL",
-                                          "name": "BildURLLabel",
-                                          "style": {
-                                            "width": "100%"
-                                          },
-                                          "text": "Bild Url",
-                                          "type": "label"
-                                        }
-                                      ],
-                                      "type": "col"
-                                    },
-                                    {
-                                      "class": "col-md-9",
-                                      "components": [
-                                        {
-                                          "maxLength": 16777215,
-                                          "name": "BildURL",
-                                          "style": {
-                                            "width": "100%"
-                                          },
-                                          "type": "textbox",
-                                          "value": "${base.BildURL}"
                                         }
                                       ],
                                       "type": "col"

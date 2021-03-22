@@ -140,7 +140,7 @@ ul.profile-menu .navigation-menu .navigation-item-wrapper:hover .navigation-item
 */
 
 /* --- Darstellung des Focus in Eingabefeldern --- */
-input:focus {
+input:focus, textarea:focus {
   outline: none;
   border: 1px solid #D86E13;
   box-shadow: 0px 0px 4px #D86E13;

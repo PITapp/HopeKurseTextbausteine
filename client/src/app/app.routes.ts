@@ -37,6 +37,10 @@ import { Kontakte4Component } from './kontakte-4/kontakte-4.component';
 import { AddKontakte4Component } from './add-kontakte-4/add-kontakte-4.component';
 import { EditKontakte4Component } from './edit-kontakte-4/edit-kontakte-4.component';
 import { CopyOfKontakteComponent } from './copy-of-kontakte/copy-of-kontakte.component';
+import { Kontakte5Component } from './kontakte-5/kontakte-5.component';
+import { AddKontakte5Component } from './add-kontakte-5/add-kontakte-5.component';
+import { EditKontakte5Component } from './edit-kontakte-5/edit-kontakte-5.component';
+import { CopyOfKontakte1Component } from './copy-of-kontakte-1/copy-of-kontakte-1.component';
 
 import { SecurityService } from './security.service';
 import { AuthGuard } from './auth.guard';
@@ -307,6 +311,38 @@ export const routes: Routes = [
           roles: ['Authenticated'],
         },
         component: CopyOfKontakteComponent
+      },
+      {
+        path: 'kontakte-5',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: Kontakte5Component
+      },
+      {
+        path: 'add-kontakte-5',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: AddKontakte5Component
+      },
+      {
+        path: 'edit-kontakte-5/:BaseID',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: EditKontakte5Component
+      },
+      {
+        path: 'copy-of-kontakte-1',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: CopyOfKontakte1Component
       },
     ]
   },

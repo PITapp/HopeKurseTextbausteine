@@ -101,7 +101,7 @@ namespace HopeKurseTextbausteine.Data
                         {
                             if (!string.IsNullOrWhiteSpace(stringValue))
                             {
-                                cell.CellValue = new CellValue() { Text = ((DateTime)value).ToOADate().ToString(System.Globalization.CultureInfo.InvariantCulture) };
+                                cell.CellValue = new CellValue() { Text = DateTime.Parse(stringValue).ToOADate().ToString(System.Globalization.CultureInfo.InvariantCulture) };
                                 cell.DataType = new EnumValue<CellValues>(CellValues.Number);
                                 cell.StyleIndex = (UInt32Value)1U;
                             }

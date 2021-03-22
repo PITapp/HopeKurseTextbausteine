@@ -29,7 +29,9 @@
     "Kontakte2",
     "Kontakte3",
     "Kontakte4",
-    "Copy of Kontakte"
+    "Copy of Kontakte",
+    "Kontakte5",
+    "Copy of Kontakte 1"
   ],
   "pages": [
     "BenutzerNeu",
@@ -65,7 +67,11 @@
     "Kontakte4",
     "Add Kontakte4",
     "Edit Kontakte4",
-    "Copy of Kontakte"
+    "Copy of Kontakte",
+    "Kontakte5",
+    "Add Kontakte5",
+    "Edit Kontakte5",
+    "Copy of Kontakte 1"
   ],
   "port": 8000,
   "security": {

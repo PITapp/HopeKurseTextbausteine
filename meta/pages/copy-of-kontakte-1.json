@@ -8,14 +8,15 @@
         {
           "components": [
             {
-              "class": "d-flex align-items-center justify-content-start  col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12",
+              "class": "justify-content-start col-md-4 d-flex align-items-end",
               "components": [
                 {
                   "name": "heading8",
                   "size": "H1",
                   "style": {
                     "color": "#5d717b",
-                    "display": "inline-block"
+                    "display": "inline-block",
+                    "marginTop": "-3px"
                   },
                   "text": "Kontakte",
                   "type": "heading"
@@ -24,9 +25,9 @@
                   "name": "heading9",
                   "size": "H3",
                   "style": {
-                    "color": "#e5ecef",
+                    "color": "#3a474d",
                     "display": "inline-block",
-                    "marginTop": "9px",
+                    "marginTop": "5px",
                     "paddingLeft": "10px",
                     "paddingRight": "10px"
                   },
@@ -40,20 +41,67 @@
                   "name": "heading16",
                   "size": "H3",
                   "style": {
-                    "color": "#5d717b",
+                    "color": "#479cc8",
                     "display": "inline",
-                    "marginTop": "9px"
+                    "fontWeight": "normal",
+                    "marginBottom": "22px"
                   },
                   "text": "${zeileAusgewaehlt} von ${rstBaseAllesCount}",
+                  "type": "heading"
+                }
+              ],
+              "name": "col46",
+              "type": "col"
+            },
+            {
+              "class": "col-md-4 d-flex align-items-center justify-content-center",
+              "components": [
+                {
+                  "attributes": [
+                    {}
+                  ],
+                  "name": "heading1",
+                  "size": "H3",
+                  "style": {
+                    "color": "#479cc8",
+                    "display": "inline",
+                    "fontWeight": "bold",
+                    "marginTop": "-2px"
+                  },
+                  "text": "${dataBaseAlles.NameGesamt}",
+                  "type": "heading"
+                }
+              ],
+              "name": "col4",
+              "style": {
+                "textAlign": "left"
+              },
+              "type": "col"
+            },
+            {
+              "class": "d-flex align-items-center  col-md-4 justify-content-end",
+              "components": [
+                {
+                  "attributes": [
+                    {}
+                  ],
+                  "name": "heading4",
+                  "size": "H3",
+                  "style": {
+                    "color": "#479cc8",
+                    "display": "inline",
+                    "marginTop": "-2px"
+                  },
+                  "text": "${dataBaseAlles.Ort}",
                   "type": "heading"
                 },
                 {
                   "name": "heading0",
                   "size": "H3",
                   "style": {
-                    "color": "#e5ecef",
+                    "color": "#6d787d",
                     "display": "inline-block",
-                    "marginTop": "9px",
+                    "marginTop": "2px",
                     "paddingLeft": "10px",
                     "paddingRight": "10px"
                   },
@@ -67,22 +115,26 @@
                   "name": "heading2",
                   "size": "H3",
                   "style": {
-                    "color": "#5d717b",
+                    "color": "#479cc8",
                     "display": "inline",
-                    "fontWeight": "normal",
-                    "marginTop": "9px"
+                    "marginTop": "-2px"
                   },
-                  "text": "${dataBaseAlles.NameGesamt}",
+                  "text": "${dataBaseAlles.NameKuerzel}",
                   "type": "heading"
                 }
               ],
-              "name": "col46",
+              "name": "col5",
               "type": "col"
             }
           ],
           "name": "row24",
           "style": {
-            "marginTop": "-7px",
+            "backgroundColor": "#e6ecef",
+            "height": "48px",
+            "marginBottom": "12px",
+            "marginLeft": "0",
+            "marginRight": "0",
+            "marginTop": "-5px",
             "paddingBottom": "0",
             "paddingLeft": "5px",
             "paddingRight": "3px",
@@ -147,17 +199,16 @@
                               "type": "string"
                             },
                             {
-                              "format": "",
-                              "property": "Notiz",
-                              "title": "Notiz",
+                              "property": "Info",
+                              "title": "Info",
                               "type": "string"
                             }
                           ],
                           "confirmDelete": true,
-                          "confirmDeleteCancelText": "Abbruch",
-                          "confirmDeleteOkText": "Löschen",
-                          "confirmDeleteText": "Bist du sicher, dass dieser Kontakt gelöscht werden soll?",
-                          "confirmDeleteTitle": "Kontakt löschen",
+                          "confirmDeleteCancelText": "Cancel",
+                          "confirmDeleteOkText": "Ok",
+                          "confirmDeleteText": "Are you sure you want to delete this record?",
+                          "confirmDeleteTitle": "Confirmation",
                           "containsText": "Contains",
                           "count": "${rstBaseAllesCount}",
                           "data": "${rstBaseAlles}",
@@ -189,10 +240,6 @@
                                     "severity": "success",
                                     "summary": "Success",
                                     "type": "notify"
-                                  },
-                                  {
-                                    "code": "this.gridKontakte.load();",
-                                    "type": "execute"
                                   }
                                 ],
                                 "type": "invoke"
@@ -320,7 +367,7 @@
                                           "data": "${rstBaseAnreden}",
                                           "emptyFilterText": "No results found",
                                           "multipleItemsSelectedText": "",
-                                          "name": "AnredeID",
+                                          "name": "dropdown0",
                                           "placeholder": "",
                                           "style": {
                                             "width": "100%"
@@ -354,20 +401,10 @@
                                           "component": "Name1",
                                           "name": "label8",
                                           "style": {
-                                            "display": "block",
                                             "width": "100%"
                                           },
                                           "text": "Name",
                                           "type": "label"
-                                        },
-                                        {
-                                          "component": "textboxName",
-                                          "name": "requiredValidator0",
-                                          "style": {
-                                            "position": "absolute"
-                                          },
-                                          "text": "Name ist erforderlich",
-                                          "type": "required-validator"
                                         }
                                       ],
                                       "name": "col32",
@@ -381,7 +418,7 @@
                                       "components": [
                                         {
                                           "maxLength": 100,
-                                          "name": "Name1",
+                                          "name": "textboxName",
                                           "placeholder": "",
                                           "style": {
                                             "display": "block",
@@ -389,6 +426,15 @@
                                           },
                                           "type": "textbox",
                                           "value": "${dataBaseAlles.Name1}"
+                                        },
+                                        {
+                                          "component": "textboxName",
+                                          "name": "requiredValidator0",
+                                          "style": {
+                                            "position": "absolute"
+                                          },
+                                          "text": "Name ist erforderlich",
+                                          "type": "required-validator"
                                         }
                                       ],
                                       "name": "col33",
@@ -414,20 +460,10 @@
                                           "component": "Name2",
                                           "name": "label18",
                                           "style": {
-                                            "display": "block",
                                             "width": "100%"
                                           },
                                           "text": "Vorname",
                                           "type": "label"
-                                        },
-                                        {
-                                          "component": "textboxVorname",
-                                          "name": "requiredValidator2",
-                                          "style": {
-                                            "position": "absolute"
-                                          },
-                                          "text": "Vorname ist erforderlich",
-                                          "type": "required-validator"
                                         }
                                       ],
                                       "name": "col62",
@@ -441,13 +477,22 @@
                                       "components": [
                                         {
                                           "maxLength": 30,
-                                          "name": "Name2",
+                                          "name": "textboxVorname",
                                           "style": {
                                             "display": "block",
                                             "width": "100%"
                                           },
                                           "type": "textbox",
                                           "value": "${dataBaseAlles.Name2}"
+                                        },
+                                        {
+                                          "component": "textboxVorname",
+                                          "name": "requiredValidator2",
+                                          "style": {
+                                            "position": "absolute"
+                                          },
+                                          "text": "Vorname ist erforderlich",
+                                          "type": "required-validator"
                                         }
                                       ],
                                       "name": "col63",
@@ -473,20 +518,10 @@
                                           "component": "NameKuerzel",
                                           "name": "label9",
                                           "style": {
-                                            "display": "block",
                                             "width": "100%"
                                           },
                                           "text": "Kürzel",
                                           "type": "label"
-                                        },
-                                        {
-                                          "component": "textboxKürzel",
-                                          "name": "requiredValidator1",
-                                          "style": {
-                                            "position": "absolute"
-                                          },
-                                          "text": "Kürzel ist erforderlich",
-                                          "type": "required-validator"
                                         }
                                       ],
                                       "name": "col35",
@@ -500,13 +535,22 @@
                                       "components": [
                                         {
                                           "maxLength": 5,
-                                          "name": "NameKuerzel",
+                                          "name": "textboxKürzel",
                                           "style": {
                                             "display": "block",
                                             "width": "100%"
                                           },
                                           "type": "textbox",
                                           "value": "${dataBaseAlles.NameKuerzel}"
+                                        },
+                                        {
+                                          "component": "textboxKürzel",
+                                          "name": "requiredValidator1",
+                                          "style": {
+                                            "position": "absolute"
+                                          },
+                                          "text": "Kürzel ist erforderlich",
+                                          "type": "required-validator"
                                         }
                                       ],
                                       "name": "col36",
@@ -549,7 +593,7 @@
                                       "components": [
                                         {
                                           "maxLength": 20,
-                                          "name": "TitelVorne",
+                                          "name": "textbox4",
                                           "style": {
                                             "width": "100%"
                                           },
@@ -569,7 +613,7 @@
                                       "components": [
                                         {
                                           "maxLength": 20,
-                                          "name": "TitelHinten",
+                                          "name": "textbox5",
                                           "style": {
                                             "width": "100%"
                                           },
@@ -616,7 +660,7 @@
                                       "components": [
                                         {
                                           "maxLength": 70,
-                                          "name": "Strasse",
+                                          "name": "textbox6",
                                           "style": {
                                             "width": "100%"
                                           },
@@ -663,7 +707,7 @@
                                       "components": [
                                         {
                                           "maxLength": 10,
-                                          "name": "PLZ",
+                                          "name": "textbox7",
                                           "style": {
                                             "width": "100%"
                                           },
@@ -683,7 +727,7 @@
                                       "components": [
                                         {
                                           "maxLength": 100,
-                                          "name": "Ort",
+                                          "name": "textbox8",
                                           "style": {
                                             "width": "100%"
                                           },
@@ -730,7 +774,7 @@
                                       "components": [
                                         {
                                           "maxLength": 30,
-                                          "name": "Telefon1",
+                                          "name": "textbox9",
                                           "style": {
                                             "width": "100%"
                                           },
@@ -778,7 +822,7 @@
                                       "components": [
                                         {
                                           "maxLength": 30,
-                                          "name": "Telefon2",
+                                          "name": "textbox10",
                                           "style": {
                                             "width": "100%"
                                           },
@@ -826,7 +870,7 @@
                                       "components": [
                                         {
                                           "maxLength": 70,
-                                          "name": "EMail1",
+                                          "name": "textbox11",
                                           "style": {
                                             "width": "100%"
                                           },
@@ -874,7 +918,7 @@
                                       "components": [
                                         {
                                           "maxLength": 70,
-                                          "name": "EMail2",
+                                          "name": "textbox12",
                                           "style": {
                                             "width": "100%"
                                           },
@@ -891,6 +935,59 @@
                                     }
                                   ],
                                   "name": "row27",
+                                  "style": {
+                                    "marginBottom": "10px"
+                                  },
+                                  "type": "row"
+                                },
+                                {
+                                  "components": [
+                                    {
+                                      "class": "col-md-3",
+                                      "components": [
+                                        {
+                                          "component": "Geburtsdatum",
+                                          "name": "label17",
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "text": "Geboren",
+                                          "type": "label"
+                                        }
+                                      ],
+                                      "name": "col60",
+                                      "style": {
+                                        "paddingLeft": "0"
+                                      },
+                                      "type": "col"
+                                    },
+                                    {
+                                      "class": "col-md-5",
+                                      "components": [
+                                        {
+                                          "dateFormat": "dd.mm.yy",
+                                          "inline": false,
+                                          "name": "datepicker0",
+                                          "showSeconds": false,
+                                          "showTime": false,
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "timeOnly": false,
+                                          "type": "datepicker",
+                                          "value": "${dataBaseAlles.Geburtsdatum}",
+                                          "yearRange": "1900:2099"
+                                        }
+                                      ],
+                                      "name": "col61",
+                                      "style": {
+                                        "display": "block",
+                                        "paddingRight": "0"
+                                      },
+                                      "type": "col"
+                                    }
+                                  ],
+                                  "name": "row28",
                                   "style": {
                                     "marginBottom": "10px"
                                   },
@@ -921,14 +1018,14 @@
                                       "class": "col-md-9",
                                       "components": [
                                         {
-                                          "name": "Notiz",
+                                          "name": "textarea1",
                                           "rows": 4,
                                           "style": {
-                                            "height": "136px",
+                                            "height": "60px",
                                             "width": "100%"
                                           },
                                           "type": "textarea",
-                                          "value": "${dataBaseAlles.Notiz}"
+                                          "value": "${dataBaseAlles.Info}"
                                         }
                                       ],
                                       "name": "col65",
@@ -940,7 +1037,7 @@
                                   ],
                                   "name": "row31",
                                   "style": {
-                                    "marginBottom": "4px"
+                                    "marginBottom": "1rem"
                                   },
                                   "type": "row"
                                 },
@@ -1009,8 +1106,7 @@
                                   }
                                 ]
                               },
-                              "name": "templateFormKontakte",
-                              "style": {},
+                              "name": "templateForm0",
                               "type": "template-form"
                             }
                           ],
@@ -1021,7 +1117,7 @@
                             "border": "1px solid #e6ecef",
                             "height": "745px"
                           },
-                          "text": "Personendaten",
+                          "text": "${dataBaseAlles.NameGesamt}",
                           "type": "panel"
                         }
                       ],
@@ -1083,5 +1179,5 @@
     ]
   },
   "layout": "Main",
-  "name": "Kontakte"
+  "name": "Copy of Kontakte 1"
 }

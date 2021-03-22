@@ -3,11 +3,13 @@
     <div class="d-flex align-items-center justify-content-start  col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
       <rz-heading #heading8 size="H1" [style]="{'color': '#5d717b', 'display': 'inline-block'}" text="Kontakte">
       </rz-heading>
-      <rz-heading #heading9 size="H3" [style]="{'color': '#6d787d', 'display': 'inline-block', 'marginTop': '9px', 'paddingLeft': '10px', 'paddingRight': '10px'}" text="|">
+      <rz-heading #heading9 size="H3" [style]="{'color': '#e5ecef', 'display': 'inline-block', 'marginTop': '9px', 'paddingLeft': '10px', 'paddingRight': '10px'}" text="|">
       </rz-heading>
-      <rz-heading #heading16 size="H3" [style]="{'color': '#6d787d', 'display': 'inline', 'marginTop': '9px'}" [text]="rstBaseAllesCount" >
+      <rz-heading #heading16 size="H3" [style]="{'color': '#5d717b', 'display': 'inline', 'marginTop': '9px'}" text="{{zeileAusgewaehlt}} von {{rstBaseAllesCount}}" >
       </rz-heading>
-      <rz-heading #heading0 size="H3" [style]="{'color': '#6d787d', 'display': 'inline', 'marginTop': '9px'}" text="xxxxxxxxx" >
+      <rz-heading #heading0 size="H3" [style]="{'color': '#e5ecef', 'display': 'inline-block', 'marginTop': '9px', 'paddingLeft': '10px', 'paddingRight': '10px'}" text="|">
+      </rz-heading>
+      <rz-heading #heading2 size="H3" [style]="{'color': '#5d717b', 'display': 'inline', 'fontWeight': 'normal', 'marginTop': '9px'}" [text]="dataBaseAlles?.NameGesamt" >
       </rz-heading>
     </div>
   </div>
@@ -15,7 +17,7 @@
     <rz-tabs-item [selected]="true" text="Daten">
       <div [ngStyle]="{'height': '100%'}" class="row">
         <div class="col-md-8">
-          <rz-grid #gridKontakte addText="Kontakt erstellen" [allowAdd]="true" [allowColumnReorder]="true" [allowDelete]="true" [allowFiltering]="true" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="true" [alwaysShowPager]="true" applyFilterText="Apply" clearFilterText="Clear" columnResizeMode="expand" [confirmDelete]="true" confirmDeleteCancelText="Cancel" confirmDeleteOkText="Ok" confirmDeleteText="Are you sure you want to delete this record?" confirmDeleteTitle="Confirmation" containsText="Contains" [count]="rstBaseAllesCount" [data]="rstBaseAlles" emptyText="No records to display." endsWithText="Ends with" equalsText="Equals" filterCaseSensitivity="caseInsensitive" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="300" startsWithText="Starts with" [style]="{'height': '745px'}" (delete)="gridKontakteDelete($event)" (loadData)="gridKontakteLoadData($event)" (rowSelect)="gridKontakteRowSelect($event)">
+          <rz-grid #gridKontakte addText="Kontakt erstellen" [allowAdd]="true" [allowColumnReorder]="true" [allowDelete]="true" [allowFiltering]="true" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="true" [alwaysShowPager]="true" applyFilterText="Apply" clearFilterText="Clear" columnResizeMode="expand" columnWidth="auto" [confirmDelete]="true" confirmDeleteCancelText="Abbruch" confirmDeleteOkText="Löschen" confirmDeleteText="Bist du sicher, dass dieser Kontakt gelöscht werden soll?" confirmDeleteTitle="Kontakt löschen" containsText="Contains" [count]="rstBaseAllesCount" [data]="rstBaseAlles" emptyText="No records to display." endsWithText="Ends with" equalsText="Equals" filterCaseSensitivity="caseInsensitive" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="300" startsWithText="Starts with" [style]="{'height': '745px'}" (delete)="gridKontakteDelete($event)" (loadData)="gridKontakteLoadData($event)" (rowSelect)="gridKontakteRowSelect($event)">
             <rz-grid-column property="Name1" title="Name" type="string">
             </rz-grid-column>
             <rz-grid-column property="Name2" title="Vorname" type="string">
@@ -26,57 +28,57 @@
             </rz-grid-column>
             <rz-grid-column property="EMail1" title="E Mail 1" type="string">
             </rz-grid-column>
-            <rz-grid-column property="Info" title="Info" type="string">
+            <rz-grid-column property="Notiz" title="Notiz" type="string">
             </rz-grid-column>
           </rz-grid>
         </div>
         <div class="col-md-4" [ngStyle]="{'paddingLeft': '0px'}">
-          <rz-panel #panel2 [allowCollapse]="false" [style]="{'border': '1px solid #e6ecef', 'height': '745px'}" [text]="dataBaseAlles?.NameGesamt">
-            <rz-template-form #templateForm0 (submit)="templateForm0Submit($event)">
+          <rz-panel #panel2 [allowCollapse]="false" [style]="{'border': '1px solid #e6ecef', 'height': '745px'}" text="Personendaten">
+            <rz-template-form #templateFormKontakte [style]="{}" (submit)="templateFormKontakteSubmit($event)">
               <div [ngStyle]="{'marginBottom': '4px'}" class="row">
                 <div class="col-md-3" [ngStyle]="{'paddingLeft': '0'}">
                   <rz-label #label7 component="AnredeID" [style]="{'width': '100%'}" text="Anrede">
                   </rz-label>
                 </div>
                 <div class="col-md-5" [ngStyle]="{'paddingRight': '0'}">
-                  <rz-dropdown #dropdown0 [data]="rstBaseAnreden" emptyFilterText="No results found" [style]="{'width': '100%'}" textProperty="Anrede" [(ngModel)]="dataBaseAlles && dataBaseAlles.AnredeID" valueProperty="AnredeID" name="dropdown0">
+                  <rz-dropdown #anredeId [data]="rstBaseAnreden" emptyFilterText="No results found" [style]="{'width': '100%'}" textProperty="Anrede" [(ngModel)]="dataBaseAlles && dataBaseAlles.AnredeID" valueProperty="AnredeID" name="AnredeID">
                   </rz-dropdown>
                 </div>
               </div>
               <div [ngStyle]="{'marginBottom': '10px'}" class="row">
                 <div class="col-md-3" [ngStyle]="{'paddingLeft': '0'}">
-                  <rz-label #label8 component="Name1" [style]="{'width': '100%'}" text="Name">
+                  <rz-label #label8 component="Name1" [style]="{'display': 'block', 'width': '100%'}" text="Name">
                   </rz-label>
+                  <rz-required-validator #requiredValidator0 [component]="textboxName" [style]="{'position': 'absolute'}" text="Name ist erforderlich">
+                  </rz-required-validator>
                 </div>
                 <div class="col-md-9" [ngStyle]="{'display': 'block', 'paddingRight': '0'}">
-                  <rz-textbox #textbox0 [maxLength]="100" [style]="{'display': 'block', 'width': '100%'}" [(ngModel)]="dataBaseAlles && dataBaseAlles.Name1" name="textbox0">
+                  <rz-textbox #name1 [maxLength]="100" [style]="{'display': 'block', 'width': '100%'}" [(ngModel)]="dataBaseAlles && dataBaseAlles.Name1" name="Name1">
                   </rz-textbox>
-                  <rz-required-validator #requiredValidator0 [component]="name1" [style]="{'position': 'absolute'}" text="Name ist erforderlich">
-                  </rz-required-validator>
                 </div>
               </div>
               <div [ngStyle]="{'marginBottom': '10px'}" class="row">
                 <div class="col-md-3" [ngStyle]="{'paddingLeft': '0'}">
-                  <rz-label #label18 component="Name2" [style]="{'width': '100%'}" text="Vorname">
+                  <rz-label #label18 component="Name2" [style]="{'display': 'block', 'width': '100%'}" text="Vorname">
                   </rz-label>
+                  <rz-required-validator #requiredValidator2 [component]="textboxVorname" [style]="{'position': 'absolute'}" text="Vorname ist erforderlich">
+                  </rz-required-validator>
                 </div>
                 <div class="col-md-9" [ngStyle]="{'display': 'block', 'paddingRight': '0'}">
-                  <rz-textbox #textbox14 [maxLength]="30" [style]="{'display': 'block', 'width': '100%'}" [(ngModel)]="dataBaseAlles && dataBaseAlles.Name2" name="textbox14">
+                  <rz-textbox #name2 [maxLength]="30" [style]="{'display': 'block', 'width': '100%'}" [(ngModel)]="dataBaseAlles && dataBaseAlles.Name2" name="Name2">
                   </rz-textbox>
-                  <rz-required-validator #requiredValidator2 [component]="name2" [style]="{'position': 'absolute'}" text="Vorname ist erforderlich">
-                  </rz-required-validator>
                 </div>
               </div>
               <div [ngStyle]="{'marginBottom': '10px'}" class="row">
                 <div class="col-md-3" [ngStyle]="{'paddingLeft': '0'}">
-                  <rz-label #label9 component="NameKuerzel" [style]="{'width': '100%'}" text="Kürzel">
+                  <rz-label #label9 component="NameKuerzel" [style]="{'display': 'block', 'width': '100%'}" text="Kürzel">
                   </rz-label>
+                  <rz-required-validator #requiredValidator1 [component]="textboxKurzel" [style]="{'position': 'absolute'}" text="Kürzel ist erforderlich">
+                  </rz-required-validator>
                 </div>
                 <div class="col-md-9" [ngStyle]="{'display': 'block', 'paddingRight': '0'}">
-                  <rz-textbox #textbox2 [maxLength]="5" [style]="{'display': 'block', 'width': '100%'}" [(ngModel)]="dataBaseAlles && dataBaseAlles.NameKuerzel" name="textbox2">
+                  <rz-textbox #nameKuerzel [maxLength]="5" [style]="{'display': 'block', 'width': '100%'}" [(ngModel)]="dataBaseAlles && dataBaseAlles.NameKuerzel" name="NameKuerzel">
                   </rz-textbox>
-                  <rz-required-validator #requiredValidator1 [component]="nameKuerzel" [style]="{'position': 'absolute'}" text="Kürzel ist erforderlich">
-                  </rz-required-validator>
                 </div>
               </div>
               <div [ngStyle]="{'marginBottom': '10px'}" class="row">
@@ -85,11 +87,11 @@
                   </rz-label>
                 </div>
                 <div class="col-md-5" [ngStyle]="{'display': 'block', 'paddingRight': '0'}">
-                  <rz-textbox #textbox4 [maxLength]="20" [style]="{'width': '100%'}" [(ngModel)]="dataBaseAlles && dataBaseAlles.TitelVorne" name="textbox4">
+                  <rz-textbox #titelVorne [maxLength]="20" [style]="{'width': '100%'}" [(ngModel)]="dataBaseAlles && dataBaseAlles.TitelVorne" name="TitelVorne">
                   </rz-textbox>
                 </div>
                 <div class="col-md-4" [ngStyle]="{'paddingRight': '0'}">
-                  <rz-textbox #textbox5 [maxLength]="20" [style]="{'width': '100%'}" [(ngModel)]="dataBaseAlles && dataBaseAlles.TitelHinten" name="textbox5">
+                  <rz-textbox #titelHinten [maxLength]="20" [style]="{'width': '100%'}" [(ngModel)]="dataBaseAlles && dataBaseAlles.TitelHinten" name="TitelHinten">
                   </rz-textbox>
                 </div>
               </div>
@@ -99,7 +101,7 @@
                   </rz-label>
                 </div>
                 <div class="col-md-9" [ngStyle]="{'paddingRight': '0px'}">
-                  <rz-textbox #textbox6 [maxLength]="70" [style]="{'width': '100%'}" [(ngModel)]="dataBaseAlles && dataBaseAlles.Strasse" name="textbox6">
+                  <rz-textbox #strasse [maxLength]="70" [style]="{'width': '100%'}" [(ngModel)]="dataBaseAlles && dataBaseAlles.Strasse" name="Strasse">
                   </rz-textbox>
                 </div>
               </div>
@@ -109,11 +111,11 @@
                   </rz-label>
                 </div>
                 <div class="col-md-5" [ngStyle]="{'display': 'block', 'paddingRight': '0'}">
-                  <rz-textbox #textbox7 [maxLength]="10" [style]="{'width': '100%'}" [(ngModel)]="dataBaseAlles && dataBaseAlles.PLZ" name="textbox7">
+                  <rz-textbox #plz [maxLength]="10" [style]="{'width': '100%'}" [(ngModel)]="dataBaseAlles && dataBaseAlles.PLZ" name="PLZ">
                   </rz-textbox>
                 </div>
                 <div class="col-md-4" [ngStyle]="{'paddingRight': '0'}">
-                  <rz-textbox #textbox8 [maxLength]="100" [style]="{'width': '100%'}" [(ngModel)]="dataBaseAlles && dataBaseAlles.Ort" name="textbox8">
+                  <rz-textbox #ort [maxLength]="100" [style]="{'width': '100%'}" [(ngModel)]="dataBaseAlles && dataBaseAlles.Ort" name="Ort">
                   </rz-textbox>
                 </div>
               </div>
@@ -123,7 +125,7 @@
                   </rz-label>
                 </div>
                 <div class="col-md-9" [ngStyle]="{'display': 'block', 'paddingRight': '0'}">
-                  <rz-textbox #textbox9 [maxLength]="30" [style]="{'width': '100%'}" [(ngModel)]="dataBaseAlles && dataBaseAlles.Telefon1" name="textbox9">
+                  <rz-textbox #telefon1 [maxLength]="30" [style]="{'width': '100%'}" [(ngModel)]="dataBaseAlles && dataBaseAlles.Telefon1" name="Telefon1">
                   </rz-textbox>
                 </div>
               </div>
@@ -133,7 +135,7 @@
                   </rz-label>
                 </div>
                 <div class="col-md-9" [ngStyle]="{'display': 'block', 'paddingRight': '0'}">
-                  <rz-textbox #textbox10 [maxLength]="30" [style]="{'width': '100%'}" [(ngModel)]="dataBaseAlles && dataBaseAlles.Telefon2" name="textbox10">
+                  <rz-textbox #telefon2 [maxLength]="30" [style]="{'width': '100%'}" [(ngModel)]="dataBaseAlles && dataBaseAlles.Telefon2" name="Telefon2">
                   </rz-textbox>
                 </div>
               </div>
@@ -143,7 +145,7 @@
                   </rz-label>
                 </div>
                 <div class="col-md-9" [ngStyle]="{'display': 'block', 'paddingRight': '0'}">
-                  <rz-textbox #textbox11 [maxLength]="70" [style]="{'width': '100%'}" [(ngModel)]="dataBaseAlles && dataBaseAlles.EMail1" name="textbox11">
+                  <rz-textbox #eMail1 [maxLength]="70" [style]="{'width': '100%'}" [(ngModel)]="dataBaseAlles && dataBaseAlles.EMail1" name="EMail1">
                   </rz-textbox>
                 </div>
               </div>
@@ -153,27 +155,17 @@
                   </rz-label>
                 </div>
                 <div class="col-md-9" [ngStyle]="{'display': 'block', 'paddingRight': '0'}">
-                  <rz-textbox #textbox12 [maxLength]="70" [style]="{'width': '100%'}" [(ngModel)]="dataBaseAlles && dataBaseAlles.EMail2" name="textbox12">
+                  <rz-textbox #eMail2 [maxLength]="70" [style]="{'width': '100%'}" [(ngModel)]="dataBaseAlles && dataBaseAlles.EMail2" name="EMail2">
                   </rz-textbox>
                 </div>
               </div>
-              <div [ngStyle]="{'marginBottom': '10px'}" class="row">
-                <div class="col-md-3" [ngStyle]="{'paddingLeft': '0'}">
-                  <rz-label #label17 component="Geburtsdatum" [style]="{'width': '100%'}" text="Geboren">
-                  </rz-label>
-                </div>
-                <div class="col-md-5" [ngStyle]="{'display': 'block', 'paddingRight': '0'}">
-                  <rz-datepicker #datepicker0 dateFormat="dd.mm.yy" [inline]="false" [showSeconds]="false" [showTime]="false" [style]="{'width': '100%'}" [timeOnly]="false" [(ngModel)]="dataBaseAlles && dataBaseAlles.Geburtsdatum" yearRange="1900:2099" name="datepicker0">
-                  </rz-datepicker>
-                </div>
-              </div>
-              <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+              <div [ngStyle]="{'marginBottom': '4px'}" class="row">
                 <div class="col-md-3" [ngStyle]="{'paddingLeft': '0'}">
                   <rz-label #label19 component="Info" [style]="{'width': '100%'}" text="Notizen">
                   </rz-label>
                 </div>
                 <div class="col-md-9" [ngStyle]="{'paddingRight': '0'}">
-                  <rz-textarea #textarea1 [rows]="4" [style]="{'height': '60px', 'width': '100%'}" [(ngModel)]="dataBaseAlles && dataBaseAlles.Info" name="textarea1">
+                  <rz-textarea #notiz [rows]="4" [style]="{'height': '136px', 'width': '100%'}" [(ngModel)]="dataBaseAlles && dataBaseAlles.Notiz" name="Notiz">
                   </rz-textarea>
                 </div>
               </div>
