@@ -42,10 +42,6 @@ import { LoginModule } from '@radzen/angular/dist/login';
 import { FormModule } from '@radzen/angular/dist/form';
 import { HtmlModule } from '@radzen/angular/dist/html';
 import { UploadModule } from '@radzen/angular/dist/upload';
-import { DropDownDataGridModule } from '@radzen/angular/dist/dropdown-datagrid';
-import { DatePickerModule } from '@radzen/angular/dist/datepicker';
-import { ListBoxModule } from '@radzen/angular/dist/listbox';
-import { FieldsetModule } from '@radzen/angular/dist/fieldset';
 import { SharedModule } from '@radzen/angular/dist/shared';
 import { NotificationModule } from '@radzen/angular/dist/notification';
 import { DialogModule } from '@radzen/angular/dist/dialog';
@@ -78,21 +74,18 @@ import { TextbausteineComponent } from './textbausteine/textbausteine.component'
 import { DokumenteComponent } from './dokumente/dokumente.component';
 import { NachrichtenComponent } from './nachrichten/nachrichten.component';
 import { KontakteComponent } from './kontakte/kontakte.component';
-import { KontakteTemp2Component } from './kontakte-temp-2/kontakte-temp-2.component';
-import { AddKontakteComponent } from './add-kontakte/add-kontakte.component';
-import { EditKontakteComponent } from './edit-kontakte/edit-kontakte.component';
-import { Kontakte2Component } from './kontakte-2/kontakte-2.component';
-import { Kontakte3Component } from './kontakte-3/kontakte-3.component';
-import { AddKontakte3Component } from './add-kontakte-3/add-kontakte-3.component';
-import { EditKontakte3Component } from './edit-kontakte-3/edit-kontakte-3.component';
-import { Kontakte4Component } from './kontakte-4/kontakte-4.component';
-import { AddKontakte4Component } from './add-kontakte-4/add-kontakte-4.component';
-import { EditKontakte4Component } from './edit-kontakte-4/edit-kontakte-4.component';
-import { CopyOfKontakteComponent } from './copy-of-kontakte/copy-of-kontakte.component';
-import { Kontakte5Component } from './kontakte-5/kontakte-5.component';
-import { AddKontakte5Component } from './add-kontakte-5/add-kontakte-5.component';
-import { EditKontakte5Component } from './edit-kontakte-5/edit-kontakte-5.component';
-import { CopyOfKontakte1Component } from './copy-of-kontakte-1/copy-of-kontakte-1.component';
+import { KontakteNeuComponent } from './kontakte-neu/kontakte-neu.component';
+import { BaseComponent } from './base/base.component';
+import { AddBaseComponent } from './add-base/add-base.component';
+import { EditBaseComponent } from './edit-base/edit-base.component';
+import { KontakteV1Component } from './kontakte-v-1/kontakte-v-1.component';
+import { KontakteNeuV1Component } from './kontakte-neu-v-1/kontakte-neu-v-1.component';
+import { KontakteBearbeitenComponent } from './kontakte-bearbeiten/kontakte-bearbeiten.component';
+import { TestBaseComponent } from './test-base/test-base.component';
+import { AddBenutzerComponent } from './add-benutzer/add-benutzer.component';
+import { AddTestBaseComponent } from './add-test-base/add-test-base.component';
+import { EditTestBaseComponent } from './edit-test-base/edit-test-base.component';
+import { EditBenutzerComponent } from './edit-benutzer/edit-benutzer.component';
 import { LoginLayoutComponent } from './login-layout/login-layout.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 
@@ -125,21 +118,18 @@ export const PageDeclarations = [
   DokumenteComponent,
   NachrichtenComponent,
   KontakteComponent,
-  KontakteTemp2Component,
-  AddKontakteComponent,
-  EditKontakteComponent,
-  Kontakte2Component,
-  Kontakte3Component,
-  AddKontakte3Component,
-  EditKontakte3Component,
-  Kontakte4Component,
-  AddKontakte4Component,
-  EditKontakte4Component,
-  CopyOfKontakteComponent,
-  Kontakte5Component,
-  AddKontakte5Component,
-  EditKontakte5Component,
-  CopyOfKontakte1Component,
+  KontakteNeuComponent,
+  BaseComponent,
+  AddBaseComponent,
+  EditBaseComponent,
+  KontakteV1Component,
+  KontakteNeuV1Component,
+  KontakteBearbeitenComponent,
+  TestBaseComponent,
+  AddBenutzerComponent,
+  AddTestBaseComponent,
+  EditTestBaseComponent,
+  EditBenutzerComponent,
 ];
 
 export const LayoutDeclarations = [
@@ -217,10 +207,6 @@ export const AppImports = [
   FormModule,
   HtmlModule,
   UploadModule,
-  DropDownDataGridModule,
-  DatePickerModule,
-  ListBoxModule,
-  FieldsetModule,
   SharedModule,
   NotificationModule,
   DialogModule,

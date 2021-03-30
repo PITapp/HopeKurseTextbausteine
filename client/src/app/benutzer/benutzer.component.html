@@ -28,7 +28,7 @@
                 </rz-label>
               </div>
               <div class="col-md-9">
-                <rz-textbox #txbBenutzername [style]="{'display': 'block', 'width': '100%'}" [(ngModel)]="rstBenutzer && rstBenutzer.Benutzername" name="txbBenutzername">
+                <rz-textbox #benutzername [style]="{'display': 'block', 'width': '100%'}" [(ngModel)]="rstBenutzer && rstBenutzer.Benutzername" name="Benutzername">
                 </rz-textbox>
                 <rz-required-validator #benutzernameRequiredValidator [component]="benutzername" [style]="{'position': 'absolute'}" text="Benutzername is required">
                 </rz-required-validator>
@@ -40,7 +40,7 @@
                 </rz-label>
               </div>
               <div class="col-md-9">
-                <rz-textbox #txbInitialen [style]="{'display': 'block', 'width': '100%'}" [(ngModel)]="rstBenutzer && rstBenutzer.Initialen" name="txbInitialen">
+                <rz-textbox #initialen [style]="{'display': 'block', 'width': '100%'}" [(ngModel)]="rstBenutzer && rstBenutzer.Initialen" name="Initialen">
                 </rz-textbox>
                 <rz-required-validator #initialenRequiredValidator [component]="initialen" [style]="{'position': 'absolute'}" text="Initialen is required">
                 </rz-required-validator>

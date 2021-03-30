@@ -1,0 +1,125 @@
+{
+  "components": [
+    {
+      "type": "content",
+      "container": "main",
+      "components": [
+        {
+          "type": "row",
+          "components": [
+            {
+              "type": "col",
+              "class": "col-md-12",
+              "components": [
+                {
+                  "data": "${benutzer}",
+                  "events": {
+                    "cancel": [
+                      {
+                        "type": "back"
+                      }
+                    ],
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to update Benutzer",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "dbHopeKurseTextbausteine.updateBenutzer",
+                        "parameters": [
+                          {
+                            "name": "BenutzerID",
+                            "value": "${parameters.BenutzerID}"
+                          },
+                          {
+                            "name": "Benutzer",
+                            "value": "${event}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "type": "back"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  },
+                  "fields": [
+                    {
+                      "property": "AspNetUsers_Id",
+                      "required": false,
+                      "title": "Asp Net Users Id",
+                      "type": "string",
+                      "maxLength": 255
+                    },
+                    {
+                      "property": "Benutzername",
+                      "required": false,
+                      "title": "Benutzername",
+                      "type": "string",
+                      "maxLength": 130
+                    },
+                    {
+                      "property": "Initialen",
+                      "required": false,
+                      "title": "Initialen",
+                      "type": "string",
+                      "maxLength": 2
+                    },
+                    {
+                      "property": "BenutzerEMail",
+                      "required": false,
+                      "title": "Benutzer E Mail",
+                      "type": "string",
+                      "maxLength": 200
+                    },
+                    {
+                      "property": "Notiz",
+                      "required": false,
+                      "title": "Notiz",
+                      "type": "string",
+                      "maxLength": 65535
+                    }
+                  ],
+                  "name": "form0",
+                  "type": "form",
+                  "visible": "benutzer"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "dbHopeKurseTextbausteine.getBenutzerByBenutzerID",
+        "parameters": [
+          {
+            "name": "BenutzerID",
+            "value": "${parameters.BenutzerID}"
+          }
+        ],
+        "then": [
+          {
+            "name": "benutzer",
+            "type": "set",
+            "value": "${result}"
+          }
+        ],
+        "error": [],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Edit Benutzer",
+  "access": "Authenticated",
+  "layout": "Main"
+}

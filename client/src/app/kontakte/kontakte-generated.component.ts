@@ -14,6 +14,7 @@ import { ContentComponent } from '@radzen/angular/dist/content';
 import { HeadingComponent } from '@radzen/angular/dist/heading';
 import { TabsComponent } from '@radzen/angular/dist/tabs';
 import { GridComponent } from '@radzen/angular/dist/grid';
+import { ButtonComponent } from '@radzen/angular/dist/button';
 import { PanelComponent } from '@radzen/angular/dist/panel';
 import { TemplateFormComponent } from '@radzen/angular/dist/template-form';
 import { LabelComponent } from '@radzen/angular/dist/label';
@@ -21,9 +22,12 @@ import { DropDownComponent } from '@radzen/angular/dist/dropdown';
 import { RequiredValidatorComponent } from '@radzen/angular/dist/required-validator';
 import { TextBoxComponent } from '@radzen/angular/dist/textbox';
 import { TextAreaComponent } from '@radzen/angular/dist/textarea';
-import { ButtonComponent } from '@radzen/angular/dist/button';
+import { ImageComponent } from '@radzen/angular/dist/image';
+import { UploadComponent } from '@radzen/angular/dist/upload';
 
 import { ConfigService } from '../config.service';
+import { KontakteNeuComponent } from '../kontakte-neu/kontakte-neu.component';
+import { KontakteBearbeitenComponent } from '../kontakte-bearbeiten/kontakte-bearbeiten.component';
 
 import { DbHopeKurseTextbausteineService } from '../db-hope-kurse-textbausteine.service';
 import { SecurityService } from '../security.service';
@@ -33,8 +37,6 @@ export class KontakteGenerated implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('content1') content1: ContentComponent;
   @ViewChild('heading8') heading8: HeadingComponent;
   @ViewChild('heading9') heading9: HeadingComponent;
-  @ViewChild('heading16') heading16: HeadingComponent;
-  @ViewChild('heading0') heading0: HeadingComponent;
   @ViewChild('heading2') heading2: HeadingComponent;
   @ViewChild('tabs0') tabs0: TabsComponent;
   @ViewChild('gridKontakte') gridKontakte: GridComponent;
@@ -70,6 +72,21 @@ export class KontakteGenerated implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('label19') label19: LabelComponent;
   @ViewChild('notiz') notiz: TextAreaComponent;
   @ViewChild('button4') button4: ButtonComponent;
+  @ViewChild('panel3') panel3: PanelComponent;
+  @ViewChild('formBenutzer') formBenutzer: TemplateFormComponent;
+  @ViewChild('benutzernameLabel') benutzernameLabel: LabelComponent;
+  @ViewChild('benutzername') benutzername: TextBoxComponent;
+  @ViewChild('initialenLabel') initialenLabel: LabelComponent;
+  @ViewChild('initialen') initialen: TextBoxComponent;
+  @ViewChild('benutzerEMailLabel') benutzerEMailLabel: LabelComponent;
+  @ViewChild('benutzerEMail') benutzerEMail: TextBoxComponent;
+  @ViewChild('notizLabel') notizLabel: LabelComponent;
+  @ViewChild('textarea0') textarea0: TextAreaComponent;
+  @ViewChild('panel1') panel1: PanelComponent;
+  @ViewChild('bild') bild: PanelComponent;
+  @ViewChild('bildUrl') bildUrl: ImageComponent;
+  @ViewChild('buttonBildEntfernen') buttonBildEntfernen: ButtonComponent;
+  @ViewChild('uploadBildBase') uploadBildBase: UploadComponent;
 
   router: Router;
 
@@ -97,11 +114,12 @@ export class KontakteGenerated implements AfterViewInit, OnInit, OnDestroy {
 
   security: SecurityService;
   rstBaseAnreden: any;
+  strBildDateiName: any;
   parameters: any;
-  rstBaseAlles: any;
-  rstBaseAllesCount: any;
-  dataBaseAlles: any;
-  zeileAusgewaehlt: any;
+  rstBase: any;
+  rstBaseCount: any;
+  dsoBase: any;
+  dsoBenutzer: any;
 
   constructor(private injector: Injector) {
   }
@@ -159,46 +177,103 @@ export class KontakteGenerated implements AfterViewInit, OnInit, OnDestroy {
     });
 
     this.gridKontakte.load();
+
+    this.strBildDateiName = 'Unbekannt';
+  }
+
+  gridKontakteAdd(event: any) {
+    this.dialogService.open(KontakteNeuComponent, { parameters: {}, title: `Neuer Kontakt` })
+        .afterClosed().subscribe(result => {
+              if (result != null) {
+        this.gridKontakte.load();
+      }
+    });
   }
 
   gridKontakteDelete(event: any) {
     this.dbHopeKurseTextbausteine.deleteBase(event.BaseID)
     .subscribe((result: any) => {
-      this.notificationService.notify({ severity: "success", summary: `Success`, detail: `Kontakt gelöscht` });
+      this.notificationService.notify({ severity: "success", summary: `Kontakt`, detail: `Daten gelöscht!` });
 
       this.gridKontakte.load();
     }, (result: any) => {
-      this.notificationService.notify({ severity: "error", summary: `Error`, detail: `Kontakt kann nicht gelöscht werden` });
+      this.notificationService.notify({ severity: "error", summary: `Kontakt`, detail: `Daten können nicht gelöscht werden!` });
     });
   }
 
   gridKontakteLoadData(event: any) {
-    this.dbHopeKurseTextbausteine.getVwBaseAlles(`${event.filter}`, event.top, event.skip, `${event.orderby || 'Name1, Name2'}`, event.top != null && event.skip != null, null, null, null)
+    this.dbHopeKurseTextbausteine.getBases(`${event.filter}`, event.top, event.skip, `${event.orderby || 'Name1, Name2'}`, event.top != null && event.skip != null, `BaseAnreden`, null, null)
     .subscribe((result: any) => {
-      this.rstBaseAlles = result.value;
+      this.rstBase = result.value;
 
-      this.rstBaseAllesCount = event.top != null && event.skip != null ? result['@odata.count'] : result.value.length;
+      this.rstBaseCount = event.top != null && event.skip != null ? result['@odata.count'] : result.value.length;
 
       this.gridKontakte.onSelect(result.value[0])
     }, (result: any) => {
-      this.notificationService.notify({ severity: "error", summary: `Error`, detail: `Kontakte können nicht geladen werden` });
+      this.notificationService.notify({ severity: "error", summary: `Kontakte`, detail: `Daten können nicht geladen werden!` });
     });
   }
 
   gridKontakteRowSelect(event: any) {
-    this.dataBaseAlles = event;
+    this.dsoBase = event;
 
-    this.zeileAusgewaehlt = ((this.gridKontakte.dataTable.anchorRowIndex === null || this.gridKontakte.dataTable.anchorRowIndex === undefined) ? 0 : this.gridKontakte.dataTable.anchorRowIndex) + 1;
+    this.dbHopeKurseTextbausteine.getBenutzers(`BaseID eq ${event.BaseID}`, null, null, null, null, null, null, null)
+    .subscribe((result: any) => {
+      this.dsoBenutzer = result.value[0];
+    }, (result: any) => {
+
+    });
+  }
+
+  editButtonClick(event: any, data: any) {
+    this.dialogService.open(KontakteBearbeitenComponent, { parameters: {BaseID: data.BaseID}, title: `Bearbeiten Kontakt` })
+        .afterClosed().subscribe(result => {
+              console.log(result);
+    });
   }
 
   templateFormKontakteSubmit(event: any) {
-    this.dbHopeKurseTextbausteine.updateBase(null, this.dataBaseAlles.BaseID, event)
+    this.dbHopeKurseTextbausteine.updateBase(null, this.dsoBase.BaseID, event)
     .subscribe((result: any) => {
-      this.notificationService.notify({ severity: "success", summary: `Success`, detail: `Kontakt gespeichert` });
-
-      this.gridKontakte.load()
+      this.notificationService.notify({ severity: "success", summary: `Kontakt`, detail: `Erfolgreich gespeichert!` });
     }, (result: any) => {
-      this.notificationService.notify({ severity: "error", summary: `Error`, detail: `Kontakt konnte nicht gespeichert werden` });
+      this.notificationService.notify({ severity: "error", summary: `Kontakt`, detail: `Speichern fehlgeschlagen!` });
     });
+  }
+
+  buttonBildEntfernenClick(event: any) {
+    this.dsoBase.BildURL = 'https://hopekurse-textbausteine.app/upload/bilder/base/KeinBildPerson.png';
+
+    this.dbHopeKurseTextbausteine.updateBase(null, this.dsoBase.BaseID, this.dsoBase)
+    .subscribe((result: any) => {
+
+    }, (result: any) => {
+
+    });
+  }
+
+  uploadBildBaseBeforeUpload(event: any) {
+    var strDateiName = this.uploadBildBase.fileUpload.files[0].name;
+
+var strDateiEndung = strDateiName.substring(strDateiName.indexOf("."));
+
+this.strBildDateiName = this.dsoBase.BaseID + strDateiEndung;
+
+this.dsoBase.BildURL = 'https://hopekurse-textbausteine.app/upload/bilder/base/' + this.strBildDateiName;
+  }
+
+  uploadBildBaseError(event: any) {
+    this.notificationService.notify({ severity: "error", summary: `Bild`, detail: `Hochladen fehlgeschlagen!` });
+  }
+
+  uploadBildBaseUpload(event: any) {
+    this.dbHopeKurseTextbausteine.updateBase(null, this.dsoBase.BaseID, this.dsoBase)
+    .subscribe((result: any) => {
+
+    }, (result: any) => {
+
+    });
+
+    this.notificationService.notify({ severity: "success", summary: `Bild`, detail: `Erfolgreich hochgeladen!` });
   }
 }

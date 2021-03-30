@@ -1,0 +1,385 @@
+{
+  "components": [
+    {
+      "type": "content",
+      "container": "main",
+      "components": [
+        {
+          "type": "heading",
+          "name": "pageTitle",
+          "size": "H1",
+          "text": "TestBase"
+        },
+        {
+          "type": "row",
+          "components": [
+            {
+              "type": "col",
+              "class": "col-md-12",
+              "components": [
+                {
+                  "name": "grid0",
+                  "allowDelete": true,
+                  "confirmDelete": true,
+                  "allowAdd": true,
+                  "allowFiltering": true,
+                  "allowMultiSorting": false,
+                  "allowPaging": true,
+                  "allowSorting": true,
+                  "count": "${getBasesCount}",
+                  "data": "${getBasesResult}",
+                  "events": {
+                    "loadData": [
+                      {
+                        "name": "dbHopeKurseTextbausteine.getBases",
+                        "parameters": [
+                          {
+                            "name": "$top",
+                            "value": "event.top"
+                          },
+                          {
+                            "name": "$skip",
+                            "value": "event.skip"
+                          },
+                          {
+                            "name": "$count",
+                            "value": "event.top != null && event.skip != null"
+                          },
+                          {
+                            "name": "$filter",
+                            "value": "${event.filter}"
+                          },
+                          {
+                            "name": "$orderby",
+                            "value": "${event.orderby}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "name": "getBasesResult",
+                            "type": "set",
+                            "value": "${result.value}"
+                          },
+                          {
+                            "name": "getBasesCount",
+                            "type": "set",
+                            "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
+                          },
+                          {
+                            "code": "${this.grid0.onSelect(result.value[0])}",
+                            "condition": "result.value.length && !this.grid0.value",
+                            "type": "execute"
+                          }
+                        ],
+                        "type": "invoke",
+                        "error": [
+                          {
+                            "detail": "Unable to load Bases",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ]
+                      }
+                    ],
+                    "delete": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to delete Base",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "dbHopeKurseTextbausteine.deleteBase",
+                        "parameters": [
+                          {
+                            "name": "BaseID",
+                            "value": "${event.BaseID}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "detail": "Base deleted!",
+                            "severity": "success",
+                            "summary": "Success",
+                            "type": "notify"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ],
+                    "add": [
+                      {
+                        "path": "add-test-base",
+                        "type": "popup"
+                      }
+                    ],
+                    "rowDoubleClick": [
+                      {
+                        "parameters": [
+                          {
+                            "name": "BaseID",
+                            "value": "${event.BaseID}"
+                          }
+                        ],
+                        "path": "edit-test-base",
+                        "type": "popup"
+                      }
+                    ],
+                    "rowSelect": [
+                      {
+                        "name": "master",
+                        "type": "set",
+                        "value": "${event}"
+                      },
+                      {
+                        "name": "dbHopeKurseTextbausteine.getBenutzers",
+                        "parameters": [
+                          {
+                            "name": "$filter",
+                            "value": "BaseID eq ${event.BaseID}"
+                          },
+                          {
+                            "name": "$expand",
+                            "value": "Base"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "name": "Benutzers",
+                            "type": "set",
+                            "value": "${result.value}"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  },
+                  "title": "",
+                  "columns": [
+                    {
+                      "property": "BaseID",
+                      "title": "Base ID",
+                      "type": "integer"
+                    },
+                    {
+                      "property": "AnredeID",
+                      "title": "Anrede ID",
+                      "type": "integer"
+                    },
+                    {
+                      "property": "Name1",
+                      "title": "Name 1",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Name2",
+                      "title": "Name 2",
+                      "type": "string"
+                    },
+                    {
+                      "property": "NameKuerzel",
+                      "title": "Name Kuerzel",
+                      "type": "string"
+                    },
+                    {
+                      "property": "TitelVorne",
+                      "title": "Titel Vorne",
+                      "type": "string"
+                    },
+                    {
+                      "property": "TitelHinten",
+                      "title": "Titel Hinten",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Strasse",
+                      "title": "Strasse",
+                      "type": "string"
+                    },
+                    {
+                      "property": "PLZ",
+                      "title": "PLZ",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Ort",
+                      "title": "Ort",
+                      "type": "string"
+                    },
+                    {
+                      "property": "LKZ",
+                      "title": "LKZ",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Telefon1",
+                      "title": "Telefon 1",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Telefon2",
+                      "title": "Telefon 2",
+                      "type": "string"
+                    },
+                    {
+                      "property": "EMail1",
+                      "title": "E Mail 1",
+                      "type": "string"
+                    },
+                    {
+                      "property": "EMail2",
+                      "title": "E Mail 2",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Website",
+                      "title": "Website",
+                      "type": "string"
+                    },
+                    {
+                      "property": "BildURL",
+                      "title": "Bild URL",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Notiz",
+                      "title": "Notiz",
+                      "type": "string"
+                    }
+                  ],
+                  "type": "grid",
+                  "value": "${master}"
+                },
+                {
+                  "name": "heading1",
+                  "size": "H1",
+                  "text": "Benutzers",
+                  "type": "heading"
+                },
+                {
+                  "name": "grid1",
+                  "data": "${this.Benutzers}",
+                  "columns": [
+                    {
+                      "property": "BenutzerID",
+                      "title": "Benutzer ID",
+                      "type": "integer"
+                    },
+                    {
+                      "property": "AspNetUsers_Id",
+                      "title": "Asp Net Users Id",
+                      "type": "string"
+                    },
+                    {
+                      "property": "BaseID",
+                      "title": "Base ID",
+                      "type": "integer"
+                    },
+                    {
+                      "property": "Benutzername",
+                      "title": "Benutzername",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Initialen",
+                      "title": "Initialen",
+                      "type": "string"
+                    },
+                    {
+                      "property": "BenutzerEMail",
+                      "title": "Benutzer E Mail",
+                      "type": "string"
+                    },
+                    {
+                      "property": "Notiz",
+                      "title": "Notiz",
+                      "type": "string"
+                    }
+                  ],
+                  "type": "grid",
+                  "allowFiltering": true,
+                  "allowPaging": true,
+                  "allowSorting": true,
+                  "events": {
+                    "add": [
+                      {
+                        "path": "add-benutzer",
+                        "type": "popup",
+                        "parameters": [
+                          {
+                            "name": "BaseID",
+                            "type": "integer",
+                            "value": "${this.master.BaseID}"
+                          }
+                        ],
+                        "then": []
+                      }
+                    ],
+                    "delete": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to delete Benutzer",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "dbHopeKurseTextbausteine.deleteBenutzer",
+                        "parameters": [
+                          {
+                            "name": "BenutzerID",
+                            "value": "${event.BenutzerID}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "detail": "Benutzer deleted!",
+                            "severity": "success",
+                            "summary": "Success",
+                            "type": "notify"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ],
+                    "rowSelect": [
+                      {
+                        "parameters": [
+                          {
+                            "name": "BenutzerID",
+                            "value": "${event.BenutzerID}"
+                          }
+                        ],
+                        "path": "edit-benutzer",
+                        "type": "popup",
+                        "then": []
+                      }
+                    ]
+                  },
+                  "allowAdd": true,
+                  "allowDelete": true,
+                  "allowMultiSorting": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "type": "execute",
+        "code": "this.grid0.load();"
+      }
+    ]
+  },
+  "name": "TestBase",
+  "access": "Authenticated",
+  "layout": "Main"
+}

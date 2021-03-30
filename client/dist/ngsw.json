@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1614546988839,
+  "timestamp": 1616925230238,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -46,7 +46,8 @@
         "/assets/images/KeinBildPerson.png",
         "/assets/images/Large - Logo links 1 - transparent.png",
         "/assets/images/Logo01.png",
-        "/assets/images/Logo02.png"
+        "/assets/images/Logo02.png",
+        "/assets/images/Logo03.png"
       ],
       "patterns": []
     }
@@ -85,16 +86,17 @@
     "/assets/fonts/roboto-v15-latin-300.woff": "27c056b9c70dcfd55c43e954a898eb5bf706f730",
     "/assets/fonts/roboto-v15-latin-700.woff": "24f9df68c500f7bbd1cb1c632de59936aa85b2e0",
     "/assets/fonts/roboto-v15-latin-regular.woff": "940b859e4f02bd3e7cf7b6ce245c197b5470302a",
-    "/assets/icon-128x128.png": "2f4a42b8ba8c0a9c8215c8a95f2c2e75a7f292be",
-    "/assets/icon-152x152.png": "6f5806c72f01e877ad236b95ae99af393bd5af90",
-    "/assets/icon-256x256.png": "e72ae36b9a9bf24c832b7d4ab28563bbdafc0e9f",
-    "/assets/icon-512x512.png": "93327bcc2739c77069d5613ab76869a136e34035",
+    "/assets/icon-128x128.png": "44decb8458d14f9e075227839f898b3d24fdc64c",
+    "/assets/icon-152x152.png": "8d9ce782b3c31c29d86054025cab0408ac569774",
+    "/assets/icon-256x256.png": "f3fc2d4a6d2fad8bc501a19fe4384e287a817b41",
+    "/assets/icon-512x512.png": "3ef93af43867c2f6d6e63644eb2e8ae53ec2631c",
     "/assets/images/KeinBildPerson.png": "99a382ffdd4ed46d95376a2a37eacf5da922febe",
     "/assets/images/Large - Logo links 1 - transparent.png": "ae704351ea1794df2d53d587fe422765f7dcda5b",
     "/assets/images/Logo01.png": "5156589a2951dbc49b93f31f9d80532d4d9ce6e7",
     "/assets/images/Logo02.png": "99def623b7d1871d0bb5e62725ff957cbc7d5356",
-    "/favicon.ico": "10ba7e26742deba76429fa377cde657eed9e5ff9",
-    "/index.html": "6f4de8442e2a2cad5dc70d115b09ea1d5776fbca"
+    "/assets/images/Logo03.png": "30a52e1f05c9aacf397a371df881f7658d502f66",
+    "/favicon.ico": "b0c9c8cc47f9c43eb9217d763de5bb14168bdff0",
+    "/index.html": "470a2b34a3aabe5c50cffaf8fea08bd730908946"
   },
   "navigationUrls": [
     {

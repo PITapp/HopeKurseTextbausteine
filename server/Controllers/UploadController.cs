@@ -38,6 +38,22 @@ namespace RadzenAngularFileUpload.Controllers
             }
         }
 
+        [HttpPost("upload/bild/base/{zielName}")]
+        public ActionResult Single2(IFormFile file, string zielName)
+        {
+            try
+            {
+                // Console.WriteLine("datei: " + file);
+
+                UploadFileBilderBase(file, zielName);
+                return StatusCode(200);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
         [HttpPost("upload/multiple")]
         public IActionResult Multiple(IFormFile[] files)
         {
@@ -70,6 +86,26 @@ namespace RadzenAngularFileUpload.Controllers
                 }
 
                 var fullPath = Path.Combine(uploadPath, file.FileName);
+
+                using (FileStream fileStream = new FileStream(fullPath, FileMode.Create, FileAccess.Write))
+
+                    await file.CopyToAsync(fileStream);
+            }
+        }
+
+        public async Task UploadFileBilderBase(IFormFile file, string zielName)
+        {
+            if (file != null && file.Length > 0)
+            {
+                var imagePath = @"\upload\bilder\base";
+                var uploadPath = _environment.WebRootPath + imagePath;
+
+                if (!Directory.Exists(uploadPath))
+                {
+                    Directory.CreateDirectory(uploadPath);
+                }
+
+                var fullPath = Path.Combine(uploadPath, zielName);
 
                 using (FileStream fileStream = new FileStream(fullPath, FileMode.Create, FileAccess.Write))
 

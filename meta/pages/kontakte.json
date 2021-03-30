@@ -8,7 +8,7 @@
         {
           "components": [
             {
-              "class": "d-flex align-items-center justify-content-start  col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12",
+              "class": "justify-content-start  col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex align-items-center",
               "components": [
                 {
                   "name": "heading8",
@@ -26,34 +26,7 @@
                   "style": {
                     "color": "#e5ecef",
                     "display": "inline-block",
-                    "marginTop": "9px",
-                    "paddingLeft": "10px",
-                    "paddingRight": "10px"
-                  },
-                  "text": "|",
-                  "type": "heading"
-                },
-                {
-                  "attributes": [
-                    {}
-                  ],
-                  "name": "heading16",
-                  "size": "H3",
-                  "style": {
-                    "color": "#5d717b",
-                    "display": "inline",
-                    "marginTop": "9px"
-                  },
-                  "text": "${zeileAusgewaehlt} von ${rstBaseAllesCount}",
-                  "type": "heading"
-                },
-                {
-                  "name": "heading0",
-                  "size": "H3",
-                  "style": {
-                    "color": "#e5ecef",
-                    "display": "inline-block",
-                    "marginTop": "9px",
+                    "marginTop": "7px",
                     "paddingLeft": "10px",
                     "paddingRight": "10px"
                   },
@@ -69,24 +42,30 @@
                   "style": {
                     "color": "#5d717b",
                     "display": "inline",
-                    "fontWeight": "normal",
-                    "marginTop": "9px"
+                    "fontSize": "21px",
+                    "fontWeight": "normal"
                   },
-                  "text": "${dataBaseAlles.NameGesamt}",
+                  "text": "${dsoBase.Name1} ${dsoBase.Name2}",
                   "type": "heading"
                 }
               ],
               "name": "col46",
+              "style": {
+                "height": "57px",
+                "paddingBottom": "1px"
+              },
               "type": "col"
             }
           ],
           "name": "row24",
           "style": {
+            "height": "",
             "marginTop": "-7px",
             "paddingBottom": "0",
             "paddingLeft": "5px",
             "paddingRight": "3px",
-            "paddingTop": "0"
+            "paddingTop": "0",
+            "width": ""
           },
           "type": "row"
         },
@@ -97,21 +76,21 @@
                 {
                   "components": [
                     {
-                      "class": "col-md-8",
+                      "class": "col-md-12",
                       "components": [
                         {
-                          "addText": "Kontakt erstellen",
+                          "addText": "Neuer Kontakt",
                           "allowAdd": true,
-                          "allowColumnReorder": true,
+                          "allowColumnReorder": false,
                           "allowDelete": true,
                           "allowFiltering": true,
                           "allowMultiSorting": false,
                           "allowPaging": true,
                           "allowSorting": true,
-                          "alwaysShowPager": true,
+                          "alwaysShowPager": false,
                           "applyFilterText": "Apply",
                           "clearFilterText": "Clear",
-                          "columnResizeMode": "expand",
+                          "columnResizeMode": "fit",
                           "columnWidth": "auto",
                           "columns": [
                             {
@@ -123,27 +102,64 @@
                               "sortProperty": "",
                               "template": "",
                               "title": "Name",
-                              "type": "string"
+                              "type": "string",
+                              "width": "120px"
                             },
                             {
                               "format": "",
                               "property": "Name2",
                               "title": "Vorname",
-                              "type": "string"
+                              "type": "string",
+                              "width": "100px"
                             },
                             {
                               "property": "NameKuerzel",
+                              "sortProperty": "",
                               "title": "Kürzel",
+                              "type": "string",
+                              "width": "60px"
+                            },
+                            {
+                              "format": "",
+                              "property": "AnredeID",
+                              "title": "Anrede",
+                              "type": "integer"
+                            },
+                            {
+                              "format": "",
+                              "property": "TitelVorne",
+                              "title": "Titel Vorne",
+                              "type": "string"
+                            },
+                            {
+                              "format": "",
+                              "property": "TitelHinten",
+                              "title": "Titel Hinten",
                               "type": "string"
                             },
                             {
                               "property": "Telefon1",
                               "title": "Telefon 1",
+                              "type": "string",
+                              "width": ""
+                            },
+                            {
+                              "format": "",
+                              "property": "Telefon2",
+                              "title": "Telefon 2",
                               "type": "string"
                             },
                             {
                               "property": "EMail1",
-                              "title": "E Mail 1",
+                              "title": "E-Mail 1",
+                              "type": "string",
+                              "width": ""
+                            },
+                            {
+                              "format": "",
+                              "property": "EMail2",
+                              "template": "",
+                              "title": "E-Mail 2",
                               "type": "string"
                             },
                             {
@@ -151,28 +167,85 @@
                               "property": "Notiz",
                               "title": "Notiz",
                               "type": "string"
+                            },
+                            {
+                              "filterable": false,
+                              "sortable": false,
+                              "template": [
+                                {
+                                  "buttonStyle": "light",
+                                  "events": {
+                                    "click": [
+                                      {
+                                        "parameters": [
+                                          {
+                                            "name": "BaseID",
+                                            "value": "${data.BaseID}"
+                                          }
+                                        ],
+                                        "path": "kontakte-bearbeiten",
+                                        "then": [
+                                          {
+                                            "code": "console.log(${result});",
+                                            "type": "execute"
+                                          }
+                                        ],
+                                        "title": "Bearbeiten Kontakt",
+                                        "type": "popup"
+                                      }
+                                    ]
+                                  },
+                                  "icon": "edit",
+                                  "name": "editButton",
+                                  "size": "sm",
+                                  "style": {
+                                    "height": "20px",
+                                    "width": "20px"
+                                  },
+                                  "text": "",
+                                  "type": "button"
+                                }
+                              ],
+                              "textAlign": "center",
+                              "width": "75px"
                             }
                           ],
                           "confirmDelete": true,
                           "confirmDeleteCancelText": "Abbruch",
                           "confirmDeleteOkText": "Löschen",
-                          "confirmDeleteText": "Bist du sicher, dass dieser Kontakt gelöscht werden soll?",
+                          "confirmDeleteText": "Bist du sicher, dass der Kontakt gelöscht werden soll?",
                           "confirmDeleteTitle": "Kontakt löschen",
                           "containsText": "Contains",
-                          "count": "${rstBaseAllesCount}",
-                          "data": "${rstBaseAlles}",
-                          "emptyText": "No records to display.",
+                          "count": "${rstBaseCount}",
+                          "data": "${rstBase}",
+                          "emptyText": "Keine Kontakte vorhanden",
                           "endsWithText": "Ends with",
                           "equalsText": "Equals",
                           "events": {
-                            "add": [],
+                            "add": [
+                              {
+                                "parameters": [],
+                                "path": "kontakte-neu",
+                                "then": [
+                                  {
+                                    "code": "this.gridKontakte.load();",
+                                    "condition": "${result} != null",
+                                    "type": "execute"
+                                  }
+                                ],
+                                "title": "Neuer Kontakt",
+                                "type": "popup"
+                              }
+                            ],
+                            "create": [],
                             "delete": [
                               {
+                                "condition": "",
                                 "error": [
                                   {
-                                    "detail": "Kontakt kann nicht gelöscht werden",
+                                    "detail": "Daten können nicht gelöscht werden!",
                                     "severity": "error",
-                                    "summary": "Error",
+                                    "summary": "Kontakt",
                                     "type": "notify"
                                   }
                                 ],
@@ -185,13 +258,14 @@
                                 ],
                                 "then": [
                                   {
-                                    "detail": "Kontakt gelöscht",
+                                    "detail": "Daten gelöscht!",
                                     "severity": "success",
-                                    "summary": "Success",
+                                    "summary": "Kontakt",
                                     "type": "notify"
                                   },
                                   {
                                     "code": "this.gridKontakte.load();",
+                                    "condition": "",
                                     "type": "execute"
                                   }
                                 ],
@@ -202,13 +276,13 @@
                               {
                                 "error": [
                                   {
-                                    "detail": "Kontakte können nicht geladen werden",
+                                    "detail": "Daten können nicht geladen werden!",
                                     "severity": "error",
-                                    "summary": "Error",
+                                    "summary": "Kontakte",
                                     "type": "notify"
                                   }
                                 ],
-                                "name": "dbHopeKurseTextbausteine.getVwBaseAlles",
+                                "name": "dbHopeKurseTextbausteine.getBases",
                                 "parameters": [
                                   {
                                     "name": "$top",
@@ -229,16 +303,20 @@
                                   {
                                     "name": "$orderby",
                                     "value": "${event.orderby || 'Name1, Name2'}"
+                                  },
+                                  {
+                                    "name": "$expand",
+                                    "value": "BaseAnreden"
                                   }
                                 ],
                                 "then": [
                                   {
-                                    "name": "rstBaseAlles",
+                                    "name": "rstBase",
                                     "type": "set",
                                     "value": "${result.value}"
                                   },
                                   {
-                                    "name": "rstBaseAllesCount",
+                                    "name": "rstBaseCount",
                                     "type": "set",
                                     "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
                                   },
@@ -253,14 +331,26 @@
                             ],
                             "rowSelect": [
                               {
-                                "name": "dataBaseAlles",
+                                "name": "dsoBase",
                                 "type": "set",
                                 "value": "${event}"
                               },
                               {
-                                "name": "zeileAusgewaehlt",
-                                "type": "set",
-                                "value": "((${this.gridKontakte.dataTable.anchorRowIndex} === null || ${this.gridKontakte.dataTable.anchorRowIndex} === undefined) ? 0 : ${this.gridKontakte.dataTable.anchorRowIndex}) + 1"
+                                "name": "dbHopeKurseTextbausteine.getBenutzers",
+                                "parameters": [
+                                  {
+                                    "name": "$filter",
+                                    "value": "BaseID eq ${event.BaseID}"
+                                  }
+                                ],
+                                "then": [
+                                  {
+                                    "name": "dsoBenutzer",
+                                    "type": "set",
+                                    "value": "${result.value[0]}"
+                                  }
+                                ],
+                                "type": "invoke"
                               }
                             ]
                           },
@@ -271,10 +361,11 @@
                           "lessThanText": "Less than",
                           "name": "gridKontakte",
                           "notEqualsText": "Not equals",
-                          "pageSize": 300,
+                          "pageSize": 15,
+                          "pageSizeOptions": [],
                           "startsWithText": "Starts with",
                           "style": {
-                            "height": "745px"
+                            "height": "750px"
                           },
                           "title": "",
                           "type": "grid",
@@ -283,7 +374,23 @@
                       ],
                       "name": "col0",
                       "type": "col"
-                    },
+                    }
+                  ],
+                  "name": "row0",
+                  "style": {
+                    "height": "100%"
+                  },
+                  "type": "row"
+                }
+              ],
+              "icon": "",
+              "selected": false,
+              "text": "Übersicht"
+            },
+            {
+              "components": [
+                {
+                  "components": [
                     {
                       "class": "col-md-4",
                       "components": [
@@ -328,7 +435,7 @@
                                           "template": "",
                                           "textProperty": "Anrede",
                                           "type": "dropdown",
-                                          "value": "${dataBaseAlles.AnredeID}",
+                                          "value": "${dsoBase.AnredeID}",
                                           "valueProperty": "AnredeID"
                                         }
                                       ],
@@ -361,7 +468,7 @@
                                           "type": "label"
                                         },
                                         {
-                                          "component": "textboxName",
+                                          "component": "Name1",
                                           "name": "requiredValidator0",
                                           "style": {
                                             "position": "absolute"
@@ -388,7 +495,7 @@
                                             "width": "100%"
                                           },
                                           "type": "textbox",
-                                          "value": "${dataBaseAlles.Name1}"
+                                          "value": "${dsoBase.Name1}"
                                         }
                                       ],
                                       "name": "col33",
@@ -421,7 +528,7 @@
                                           "type": "label"
                                         },
                                         {
-                                          "component": "textboxVorname",
+                                          "component": "Name2",
                                           "name": "requiredValidator2",
                                           "style": {
                                             "position": "absolute"
@@ -447,7 +554,7 @@
                                             "width": "100%"
                                           },
                                           "type": "textbox",
-                                          "value": "${dataBaseAlles.Name2}"
+                                          "value": "${dsoBase.Name2}"
                                         }
                                       ],
                                       "name": "col63",
@@ -480,7 +587,7 @@
                                           "type": "label"
                                         },
                                         {
-                                          "component": "textboxKürzel",
+                                          "component": "NameKuerzel",
                                           "name": "requiredValidator1",
                                           "style": {
                                             "position": "absolute"
@@ -506,7 +613,7 @@
                                             "width": "100%"
                                           },
                                           "type": "textbox",
-                                          "value": "${dataBaseAlles.NameKuerzel}"
+                                          "value": "${dsoBase.NameKuerzel}"
                                         }
                                       ],
                                       "name": "col36",
@@ -554,7 +661,7 @@
                                             "width": "100%"
                                           },
                                           "type": "textbox",
-                                          "value": "${dataBaseAlles.TitelVorne}"
+                                          "value": "${dsoBase.TitelVorne}"
                                         }
                                       ],
                                       "name": "col38",
@@ -574,7 +681,7 @@
                                             "width": "100%"
                                           },
                                           "type": "textbox",
-                                          "value": "${dataBaseAlles.TitelHinten}"
+                                          "value": "${dsoBase.TitelHinten}"
                                         }
                                       ],
                                       "name": "col39",
@@ -621,7 +728,7 @@
                                             "width": "100%"
                                           },
                                           "type": "textbox",
-                                          "value": "${dataBaseAlles.Strasse}"
+                                          "value": "${dsoBase.Strasse}"
                                         }
                                       ],
                                       "name": "col41",
@@ -668,7 +775,7 @@
                                             "width": "100%"
                                           },
                                           "type": "textbox",
-                                          "value": "${dataBaseAlles.PLZ}"
+                                          "value": "${dsoBase.PLZ}"
                                         }
                                       ],
                                       "name": "col50",
@@ -688,7 +795,7 @@
                                             "width": "100%"
                                           },
                                           "type": "textbox",
-                                          "value": "${dataBaseAlles.Ort}"
+                                          "value": "${dsoBase.Ort}"
                                         }
                                       ],
                                       "name": "col51",
@@ -735,7 +842,7 @@
                                             "width": "100%"
                                           },
                                           "type": "textbox",
-                                          "value": "${dataBaseAlles.Telefon1}"
+                                          "value": "${dsoBase.Telefon1}"
                                         }
                                       ],
                                       "name": "col53",
@@ -783,7 +890,7 @@
                                             "width": "100%"
                                           },
                                           "type": "textbox",
-                                          "value": "${dataBaseAlles.Telefon2}"
+                                          "value": "${dsoBase.Telefon2}"
                                         }
                                       ],
                                       "name": "col55",
@@ -831,7 +938,7 @@
                                             "width": "100%"
                                           },
                                           "type": "textbox",
-                                          "value": "${dataBaseAlles.EMail1}"
+                                          "value": "${dsoBase.EMail1}"
                                         }
                                       ],
                                       "name": "col57",
@@ -879,7 +986,7 @@
                                             "width": "100%"
                                           },
                                           "type": "textbox",
-                                          "value": "${dataBaseAlles.EMail2}"
+                                          "value": "${dsoBase.EMail2}"
                                         }
                                       ],
                                       "name": "col59",
@@ -924,11 +1031,11 @@
                                           "name": "Notiz",
                                           "rows": 4,
                                           "style": {
-                                            "height": "136px",
+                                            "height": "141px",
                                             "width": "100%"
                                           },
                                           "type": "textarea",
-                                          "value": "${dataBaseAlles.Notiz}"
+                                          "value": "${dsoBase.Notiz}"
                                         }
                                       ],
                                       "name": "col65",
@@ -947,7 +1054,7 @@
                                 {
                                   "components": [
                                     {
-                                      "class": "col offset-sm-3",
+                                      "class": "col offset-sm-3 justify-content-end d-flex",
                                       "components": [
                                         {
                                           "buttonStyle": "success",
@@ -976,9 +1083,9 @@
                                     "condition": "",
                                     "error": [
                                       {
-                                        "detail": "Kontakt konnte nicht gespeichert werden",
+                                        "detail": "Speichern fehlgeschlagen!",
                                         "severity": "error",
-                                        "summary": "Error",
+                                        "summary": "Kontakt",
                                         "type": "notify"
                                       }
                                     ],
@@ -986,7 +1093,7 @@
                                     "parameters": [
                                       {
                                         "name": "BaseID",
-                                        "value": "${dataBaseAlles.BaseID}"
+                                        "value": "${dsoBase.BaseID}"
                                       },
                                       {
                                         "name": "Base",
@@ -995,14 +1102,10 @@
                                     ],
                                     "then": [
                                       {
-                                        "detail": "Kontakt gespeichert",
+                                        "detail": "Erfolgreich gespeichert!",
                                         "severity": "success",
-                                        "summary": "Success",
+                                        "summary": "Kontakt",
                                         "type": "notify"
-                                      },
-                                      {
-                                        "code": "this.gridKontakte.load()",
-                                        "type": "execute"
                                       }
                                     ],
                                     "type": "invoke"
@@ -1019,35 +1122,388 @@
                           "name": "panel2",
                           "style": {
                             "border": "1px solid #e6ecef",
-                            "height": "745px"
+                            "height": "750px"
                           },
                           "text": "Personendaten",
                           "type": "panel"
                         }
                       ],
-                      "name": "col1",
+                      "name": "col2",
+                      "type": "col"
+                    },
+                    {
+                      "class": "col-md-4",
+                      "components": [
+                        {
+                          "components": [
+                            {
+                              "components": [
+                                {
+                                  "components": [
+                                    {
+                                      "class": "col-md-3",
+                                      "components": [
+                                        {
+                                          "component": "Benutzername",
+                                          "name": "BenutzernameLabel",
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "text": "Benutzername",
+                                          "type": "label"
+                                        }
+                                      ],
+                                      "name": "col7",
+                                      "type": "col"
+                                    },
+                                    {
+                                      "class": "col-md-9",
+                                      "components": [
+                                        {
+                                          "format": "",
+                                          "name": "Benutzername",
+                                          "readOnly": true,
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "type": "textbox",
+                                          "value": "${dsoBenutzer.Benutzername}"
+                                        }
+                                      ],
+                                      "name": "col8",
+                                      "type": "col"
+                                    }
+                                  ],
+                                  "name": "row4",
+                                  "style": {
+                                    "marginBottom": "10px"
+                                  },
+                                  "type": "row"
+                                },
+                                {
+                                  "components": [
+                                    {
+                                      "class": "col-md-3",
+                                      "components": [
+                                        {
+                                          "component": "Initialen",
+                                          "name": "InitialenLabel",
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "text": "Initialen",
+                                          "type": "label"
+                                        }
+                                      ],
+                                      "name": "col9",
+                                      "type": "col"
+                                    },
+                                    {
+                                      "class": "col-md-9",
+                                      "components": [
+                                        {
+                                          "format": "",
+                                          "name": "Initialen",
+                                          "readOnly": true,
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "type": "textbox",
+                                          "value": "${dsoBenutzer.Initialen}"
+                                        }
+                                      ],
+                                      "name": "col10",
+                                      "type": "col"
+                                    }
+                                  ],
+                                  "name": "row5",
+                                  "style": {
+                                    "marginBottom": "10px"
+                                  },
+                                  "type": "row"
+                                },
+                                {
+                                  "components": [
+                                    {
+                                      "class": "col-md-3",
+                                      "components": [
+                                        {
+                                          "component": "BenutzerEMail",
+                                          "name": "BenutzerEMailLabel",
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "text": "E-Mail",
+                                          "type": "label"
+                                        }
+                                      ],
+                                      "name": "col11",
+                                      "type": "col"
+                                    },
+                                    {
+                                      "class": "col-md-9",
+                                      "components": [
+                                        {
+                                          "format": "",
+                                          "name": "BenutzerEMail",
+                                          "readOnly": true,
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "type": "textbox",
+                                          "value": "${dsoBenutzer.BenutzerEMail}"
+                                        }
+                                      ],
+                                      "name": "col12",
+                                      "type": "col"
+                                    }
+                                  ],
+                                  "name": "row6",
+                                  "style": {
+                                    "marginBottom": "10px"
+                                  },
+                                  "type": "row"
+                                },
+                                {
+                                  "components": [
+                                    {
+                                      "class": "col-md-3",
+                                      "components": [
+                                        {
+                                          "component": "Notiz",
+                                          "name": "NotizLabel",
+                                          "style": {
+                                            "width": "100%"
+                                          },
+                                          "text": "Notiz",
+                                          "type": "label"
+                                        }
+                                      ],
+                                      "name": "col13",
+                                      "type": "col"
+                                    },
+                                    {
+                                      "class": "col-md-9",
+                                      "components": [
+                                        {
+                                          "name": "textarea0",
+                                          "placeholder": "",
+                                          "readOnly": true,
+                                          "rows": 4,
+                                          "style": {
+                                            "height": "141px",
+                                            "width": "100%"
+                                          },
+                                          "type": "textarea",
+                                          "value": "${dsoBenutzer.Notiz}"
+                                        }
+                                      ],
+                                      "name": "col14",
+                                      "type": "col"
+                                    }
+                                  ],
+                                  "name": "row7",
+                                  "style": {
+                                    "marginBottom": "10px"
+                                  },
+                                  "type": "row"
+                                }
+                              ],
+                              "name": "formBenutzer",
+                              "type": "template-form"
+                            }
+                          ],
+                          "icon": "",
+                          "name": "panel3",
+                          "style": {
+                            "border": "1px solid #e6ecef",
+                            "height": "360px"
+                          },
+                          "text": "Benutzer",
+                          "type": "panel"
+                        },
+                        {
+                          "components": [],
+                          "icon": "",
+                          "name": "panel1",
+                          "style": {
+                            "border": "1px solid #e6ecef",
+                            "height": "375px",
+                            "marginTop": "15px"
+                          },
+                          "text": "Sonstiges",
+                          "type": "panel"
+                        }
+                      ],
+                      "name": "col4",
                       "style": {
-                        "paddingLeft": "0px"
+                        "paddingLeft": "0"
+                      },
+                      "type": "col"
+                    },
+                    {
+                      "class": "col-md-4",
+                      "components": [
+                        {
+                          "components": [
+                            {
+                              "components": [
+                                {
+                                  "class": "col-md-5",
+                                  "components": [
+                                    {
+                                      "name": "BildURL",
+                                      "path": "${dsoBase.BildURL}",
+                                      "style": {
+                                        "width": "150px"
+                                      },
+                                      "type": "image"
+                                    }
+                                  ],
+                                  "name": "col1",
+                                  "type": "col"
+                                },
+                                {
+                                  "class": "col-md-7 justify-content-end d-flex",
+                                  "components": [
+                                    {
+                                      "buttonStyle": "danger",
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "code": "${dsoBase.BildURL} = 'https://hopekurse-textbausteine.app/upload/bilder/base/KeinBildPerson.png';",
+                                            "type": "execute"
+                                          },
+                                          {
+                                            "name": "dbHopeKurseTextbausteine.updateBase",
+                                            "parameters": [
+                                              {
+                                                "name": "BaseID",
+                                                "value": "${dsoBase.BaseID}"
+                                              },
+                                              {
+                                                "name": "Base",
+                                                "value": "${dsoBase}"
+                                              }
+                                            ],
+                                            "type": "invoke"
+                                          }
+                                        ]
+                                      },
+                                      "name": "buttonBildEntfernen",
+                                      "size": "sm",
+                                      "text": "Bild entfernen",
+                                      "tooltip": "",
+                                      "type": "button"
+                                    }
+                                  ],
+                                  "name": "col6",
+                                  "type": "col"
+                                }
+                              ],
+                              "name": "row2",
+                              "style": {
+                                "marginBottom": "15px"
+                              },
+                              "type": "row"
+                            },
+                            {
+                              "components": [
+                                {
+                                  "class": "col-md-12",
+                                  "components": [
+                                    {
+                                      "accept": "image/*",
+                                      "auto": false,
+                                      "cancelText": "Abbruch",
+                                      "chooseText": "Bild auswählen",
+                                      "events": {
+                                        "beforeUpload": [
+                                          {
+                                            "code": "var strDateiName = ${this.uploadBildBase.fileUpload.files[0].name};\n\nvar strDateiEndung = strDateiName.substring(strDateiName.indexOf(\".\"));\n\nthis.strBildDateiName = ${dsoBase.BaseID} + strDateiEndung;\n\n${dsoBase.BildURL} = 'https://hopekurse-textbausteine.app/upload/bilder/base/' + this.strBildDateiName;",
+                                            "type": "execute"
+                                          }
+                                        ],
+                                        "error": [
+                                          {
+                                            "detail": "Hochladen fehlgeschlagen!",
+                                            "severity": "error",
+                                            "summary": "Bild",
+                                            "type": "notify"
+                                          }
+                                        ],
+                                        "progress": [],
+                                        "upload": [
+                                          {
+                                            "name": "dbHopeKurseTextbausteine.updateBase",
+                                            "parameters": [
+                                              {
+                                                "name": "BaseID",
+                                                "value": "${dsoBase.BaseID}"
+                                              },
+                                              {
+                                                "name": "Base",
+                                                "value": "${dsoBase}"
+                                              }
+                                            ],
+                                            "then": [],
+                                            "type": "invoke"
+                                          },
+                                          {
+                                            "detail": "Erfolgreich hochgeladen!",
+                                            "severity": "success",
+                                            "summary": "Bild",
+                                            "type": "notify"
+                                          }
+                                        ]
+                                      },
+                                      "mode": "advanced",
+                                      "multiple": false,
+                                      "name": "uploadBildBase",
+                                      "previewWidth": 50,
+                                      "showCancelButton": false,
+                                      "showUploadButton": true,
+                                      "style": {
+                                        "float": "none",
+                                        "width": "100%"
+                                      },
+                                      "type": "upload",
+                                      "uploadText": "Hochladen",
+                                      "url": "upload/bild/base/{{strBildDateiName}}"
+                                    }
+                                  ],
+                                  "name": "col5",
+                                  "type": "col"
+                                }
+                              ],
+                              "name": "row3",
+                              "type": "row"
+                            }
+                          ],
+                          "footerTemplate": "",
+                          "name": "Bild",
+                          "style": {
+                            "border": "1px solid #e6ecef",
+                            "height": "750px"
+                          },
+                          "text": "Bild",
+                          "type": "panel"
+                        }
+                      ],
+                      "name": "col3",
+                      "style": {
+                        "paddingLeft": "0"
                       },
                       "type": "col"
                     }
                   ],
-                  "name": "row0",
-                  "style": {
-                    "height": "100%"
-                  },
+                  "name": "row1",
                   "type": "row"
                 }
               ],
               "icon": "",
               "selected": true,
-              "text": "Daten"
-            },
-            {
-              "components": [],
-              "icon": "",
-              "selected": false,
-              "text": "Verbindungen"
+              "text": "Details"
             }
           ],
           "name": "tabs0",
@@ -1079,6 +1535,11 @@
       {
         "code": "this.gridKontakte.load();",
         "type": "execute"
+      },
+      {
+        "name": "strBildDateiName",
+        "type": "set",
+        "value": "'Unbekannt'"
       }
     ]
   },

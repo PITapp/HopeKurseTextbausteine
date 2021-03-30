@@ -237,7 +237,7 @@
                                   "components": [
                                     {
                                       "format": "",
-                                      "name": "txbBenutzername",
+                                      "name": "Benutzername",
                                       "placeholder": "",
                                       "style": {
                                         "display": "block",
@@ -287,7 +287,7 @@
                                   "components": [
                                     {
                                       "format": "",
-                                      "name": "txbInitialen",
+                                      "name": "Initialen",
                                       "style": {
                                         "display": "block",
                                         "width": "100%"

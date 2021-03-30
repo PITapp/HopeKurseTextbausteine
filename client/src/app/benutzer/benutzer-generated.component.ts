@@ -41,10 +41,10 @@ export class BenutzerGenerated implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('gridUsers') gridUsers: GridComponent;
   @ViewChild('formBenutzer') formBenutzer: TemplateFormComponent;
   @ViewChild('benutzernameLabel') benutzernameLabel: LabelComponent;
-  @ViewChild('txbBenutzername') txbBenutzername: TextBoxComponent;
+  @ViewChild('benutzername') benutzername: TextBoxComponent;
   @ViewChild('benutzernameRequiredValidator') benutzernameRequiredValidator: RequiredValidatorComponent;
   @ViewChild('initialenLabel') initialenLabel: LabelComponent;
-  @ViewChild('txbInitialen') txbInitialen: TextBoxComponent;
+  @ViewChild('initialen') initialen: TextBoxComponent;
   @ViewChild('initialenRequiredValidator') initialenRequiredValidator: RequiredValidatorComponent;
   @ViewChild('eMailLabel') eMailLabel: LabelComponent;
   @ViewChild('txbBenutzerEMail') txbBenutzerEMail: TextBoxComponent;
