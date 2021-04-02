@@ -8,10 +8,10 @@
         {
           "components": [
             {
-              "class": "col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12",
+              "class": "justify-content-start  col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex align-items-center",
               "components": [
                 {
-                  "name": "heading16",
+                  "name": "heading18",
                   "size": "H1",
                   "style": {
                     "color": "#5d717b",
@@ -21,12 +21,12 @@
                   "type": "heading"
                 },
                 {
-                  "name": "heading17",
+                  "name": "heading19",
                   "size": "H3",
                   "style": {
-                    "color": "#6d787d",
+                    "color": "#e5ecef",
                     "display": "inline-block",
-                    "marginTop": "9px",
+                    "marginTop": "7px",
                     "paddingLeft": "10px",
                     "paddingRight": "10px"
                   },
@@ -37,29 +37,35 @@
                   "attributes": [
                     {}
                   ],
-                  "name": "heading20",
+                  "name": "heading21",
                   "size": "H3",
                   "style": {
-                    "color": "#6d787d",
+                    "color": "#5d717b",
                     "display": "inline",
-                    "float": "none",
-                    "width": ""
+                    "fontSize": "21px",
+                    "fontWeight": "normal"
                   },
                   "text": "${security.user.name}",
                   "type": "heading"
                 }
               ],
-              "name": "col23",
+              "name": "col46",
+              "style": {
+                "height": "57px",
+                "paddingBottom": "1px"
+              },
               "type": "col"
             }
           ],
-          "name": "row13",
+          "name": "row24",
           "style": {
+            "height": "",
             "marginTop": "-7px",
             "paddingBottom": "0",
             "paddingLeft": "5px",
             "paddingRight": "3px",
-            "paddingTop": "0"
+            "paddingTop": "0",
+            "width": ""
           },
           "type": "row"
         },

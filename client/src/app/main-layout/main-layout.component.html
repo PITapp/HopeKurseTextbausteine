@@ -50,8 +50,6 @@
     </rz-panelmenu-item>
     <rz-panelmenu-item icon="settings" path="einstellungen" text="Einstellungen" *ngIf="security?.isInRole(['Authenticated'])">
     </rz-panelmenu-item>
-    <rz-panelmenu-item path="base" text="Item 7" *ngIf="security?.isInRole(['Authenticated'])">
-    </rz-panelmenu-item>
   </rz-panelmenu>
 </rz-sidebar>
 <rz-footer #footer1 [style]="{'height': '50px', 'paddingTop': '12px'}">

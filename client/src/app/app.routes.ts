@@ -27,17 +27,7 @@ import { DokumenteComponent } from './dokumente/dokumente.component';
 import { NachrichtenComponent } from './nachrichten/nachrichten.component';
 import { KontakteComponent } from './kontakte/kontakte.component';
 import { KontakteNeuComponent } from './kontakte-neu/kontakte-neu.component';
-import { BaseComponent } from './base/base.component';
-import { AddBaseComponent } from './add-base/add-base.component';
-import { EditBaseComponent } from './edit-base/edit-base.component';
-import { KontakteV1Component } from './kontakte-v-1/kontakte-v-1.component';
-import { KontakteNeuV1Component } from './kontakte-neu-v-1/kontakte-neu-v-1.component';
 import { KontakteBearbeitenComponent } from './kontakte-bearbeiten/kontakte-bearbeiten.component';
-import { TestBaseComponent } from './test-base/test-base.component';
-import { AddBenutzerComponent } from './add-benutzer/add-benutzer.component';
-import { AddTestBaseComponent } from './add-test-base/add-test-base.component';
-import { EditTestBaseComponent } from './edit-test-base/edit-test-base.component';
-import { EditBenutzerComponent } from './edit-benutzer/edit-benutzer.component';
 
 import { SecurityService } from './security.service';
 import { AuthGuard } from './auth.guard';
@@ -230,92 +220,12 @@ export const routes: Routes = [
         component: KontakteNeuComponent
       },
       {
-        path: 'base',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: BaseComponent
-      },
-      {
-        path: 'add-base',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: AddBaseComponent
-      },
-      {
-        path: 'edit-base/:BaseID',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: EditBaseComponent
-      },
-      {
-        path: 'kontakte-v-1',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: KontakteV1Component
-      },
-      {
-        path: 'kontakte-neu-v-1',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: KontakteNeuV1Component
-      },
-      {
         path: 'kontakte-bearbeiten/:BaseID',
         canActivate: [AuthGuard],
         data: {
           roles: ['Authenticated'],
         },
         component: KontakteBearbeitenComponent
-      },
-      {
-        path: 'test-base',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: TestBaseComponent
-      },
-      {
-        path: 'add-benutzer/:BaseID',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: AddBenutzerComponent
-      },
-      {
-        path: 'add-test-base',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: AddTestBaseComponent
-      },
-      {
-        path: 'edit-test-base/:BaseID',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: EditTestBaseComponent
-      },
-      {
-        path: 'edit-benutzer/:BenutzerID',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: EditBenutzerComponent
       },
     ]
   },

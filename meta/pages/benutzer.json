@@ -514,7 +514,7 @@
                   "type": "row"
                 }
               ],
-              "selected": false,
+              "selected": true,
               "text": "Daten"
             },
             {
@@ -636,44 +636,7 @@
                       "class": "col-md-6",
                       "components": [
                         {
-                          "components": [
-                            {
-                              "allowFiltering": true,
-                              "allowPaging": true,
-                              "allowSorting": true,
-                              "alwaysShowPager": true,
-                              "columns": [
-                                {
-                                  "format": "",
-                                  "property": "NameGesamt",
-                                  "title": "Benutzer",
-                                  "type": "string"
-                                },
-                                {
-                                  "property": "Initialen",
-                                  "title": "Initialen",
-                                  "type": "string"
-                                },
-                                {
-                                  "property": "BenutzerEMail",
-                                  "title": "E Mail",
-                                  "type": "string"
-                                }
-                              ],
-                              "count": "",
-                              "data": "${rstBenutzerRollen}",
-                              "emptyText": "Dieser Rolle sind keine Benutzer zugewiesen!",
-                              "events": {
-                                "loadData": []
-                              },
-                              "name": "gridBenutzerRollen",
-                              "pageSize": 10,
-                              "style": {
-                                "height": "687px"
-                              },
-                              "type": "grid"
-                            }
-                          ],
+                          "components": [],
                           "name": "panel0",
                           "style": {
                             "border": "1px solid #e1e7eb",
@@ -695,7 +658,7 @@
                 }
               ],
               "icon": "",
-              "selected": true,
+              "selected": false,
               "text": "Rollen"
             }
           ],

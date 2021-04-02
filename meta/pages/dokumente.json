@@ -8,10 +8,10 @@
         {
           "components": [
             {
-              "class": "d-flex align-items-center justify-content-start  col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12",
+              "class": "justify-content-start  col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex align-items-center",
               "components": [
                 {
-                  "name": "heading8",
+                  "name": "heading18",
                   "size": "H1",
                   "style": {
                     "color": "#5d717b",
@@ -21,12 +21,12 @@
                   "type": "heading"
                 },
                 {
-                  "name": "heading9",
+                  "name": "heading19",
                   "size": "H3",
                   "style": {
-                    "color": "#6d787d",
+                    "color": "#e5ecef",
                     "display": "inline-block",
-                    "marginTop": "9px",
+                    "marginTop": "7px",
                     "paddingLeft": "10px",
                     "paddingRight": "10px"
                   },
@@ -37,28 +37,35 @@
                   "attributes": [
                     {}
                   ],
-                  "name": "heading16",
+                  "name": "heading21",
                   "size": "H3",
                   "style": {
-                    "color": "#6d787d",
+                    "color": "#5d717b",
                     "display": "inline",
-                    "marginTop": "9px"
+                    "fontSize": "21px",
+                    "fontWeight": "normal"
                   },
                   "text": "Hier entsteht was neues",
                   "type": "heading"
                 }
               ],
-              "name": "col3",
+              "name": "col46",
+              "style": {
+                "height": "57px",
+                "paddingBottom": "1px"
+              },
               "type": "col"
             }
           ],
-          "name": "row1",
+          "name": "row24",
           "style": {
+            "height": "",
             "marginTop": "-7px",
             "paddingBottom": "0",
             "paddingLeft": "5px",
             "paddingRight": "3px",
-            "paddingTop": "0"
+            "paddingTop": "0",
+            "width": ""
           },
           "type": "row"
         },
@@ -67,89 +74,181 @@
             {
               "components": [
                 {
-                  "name": "heading0",
-                  "size": "H3",
-                  "style": {
-                    "color": "#479cc8"
-                  },
-                  "text": "Hier ist etwas im Entstehen...",
-                  "type": "heading"
-                },
-                {
-                  "class": "col-md-12",
                   "components": [
                     {
-                      "cancelText": "Abbruch",
-                      "chooseText": "Dokument auswählen",
-                      "events": {
-                        "error": [
-                          {
-                            "severity": "error",
-                            "summary": "Dokument hochladen fehlgeschlagen",
-                            "type": "notify"
-                          }
-                        ],
-                        "progress": [],
-                        "upload": [
-                          {
-                            "severity": "success",
-                            "summary": "Dokument erfolgreich hochgeladen",
-                            "type": "notify"
-                          }
-                        ]
-                      },
-                      "mode": "advanced",
-                      "multiple": false,
-                      "name": "upload0",
-                      "type": "upload",
-                      "uploadText": "Hochladen",
-                      "url": "upload/single"
+                      "class": "col-md-4",
+                      "components": [
+                        {
+                          "allowCollapse": false,
+                          "components": [],
+                          "footerTemplate": "",
+                          "headerTemplate": "",
+                          "name": "panel2",
+                          "style": {
+                            "border": "1px solid #e6ecef",
+                            "height": "750px"
+                          },
+                          "text": "Daten 1",
+                          "type": "panel"
+                        }
+                      ],
+                      "name": "col0",
+                      "type": "col"
                     },
                     {
-                      "cancelText": "Abbruch",
-                      "chooseText": "Dokument(e) auswählen",
-                      "events": {
-                        "error": [
-                          {
-                            "severity": "error",
-                            "summary": "Dokument hochladen fehlgeschlagen",
-                            "type": "notify"
-                          }
-                        ],
-                        "progress": [],
-                        "upload": [
-                          {
-                            "severity": "success",
-                            "summary": "Dokument erfolgreich hochgeladen",
-                            "type": "notify"
-                          }
-                        ]
+                      "class": "col-md-4",
+                      "components": [
+                        {
+                          "components": [],
+                          "icon": "",
+                          "name": "panel3",
+                          "style": {
+                            "border": "1px solid #e6ecef",
+                            "height": "360px"
+                          },
+                          "text": "Daten 2",
+                          "type": "panel"
+                        },
+                        {
+                          "components": [],
+                          "icon": "",
+                          "name": "panel1",
+                          "style": {
+                            "border": "1px solid #e6ecef",
+                            "height": "375px",
+                            "marginTop": "15px"
+                          },
+                          "text": "Sonstiges",
+                          "type": "panel"
+                        }
+                      ],
+                      "name": "col4",
+                      "style": {
+                        "paddingLeft": "0"
                       },
-                      "mode": "advanced",
-                      "multiple": true,
-                      "name": "upload1",
-                      "type": "upload",
-                      "uploadText": "Hochladen",
-                      "url": "upload/multiple"
+                      "type": "col"
+                    },
+                    {
+                      "class": "col-md-4",
+                      "components": [
+                        {
+                          "components": [],
+                          "footerTemplate": "",
+                          "name": "Bild",
+                          "style": {
+                            "border": "1px solid #e6ecef",
+                            "height": "750px"
+                          },
+                          "text": "Daten 3",
+                          "type": "panel"
+                        }
+                      ],
+                      "name": "col3",
+                      "style": {
+                        "paddingLeft": "0"
+                      },
+                      "type": "col"
                     }
                   ],
-                  "name": "col0",
-                  "type": "col"
+                  "name": "row1",
+                  "type": "row"
                 }
               ],
               "selected": true,
               "text": "Daten"
             },
             {
+              "components": [
+                {
+                  "components": [
+                    {
+                      "class": "col-md-4",
+                      "components": [
+                        {
+                          "allowCollapse": false,
+                          "components": [],
+                          "footerTemplate": "",
+                          "headerTemplate": "",
+                          "name": "panel0",
+                          "style": {
+                            "border": "1px solid #e6ecef",
+                            "height": "750px"
+                          },
+                          "text": "Weitere 1",
+                          "type": "panel"
+                        }
+                      ],
+                      "name": "col1",
+                      "type": "col"
+                    },
+                    {
+                      "class": "col-md-4",
+                      "components": [
+                        {
+                          "components": [],
+                          "icon": "",
+                          "name": "panel4",
+                          "style": {
+                            "border": "1px solid #e6ecef",
+                            "height": "360px"
+                          },
+                          "text": "Weitere 2",
+                          "type": "panel"
+                        },
+                        {
+                          "components": [],
+                          "icon": "",
+                          "name": "panel5",
+                          "style": {
+                            "border": "1px solid #e6ecef",
+                            "height": "375px",
+                            "marginTop": "15px"
+                          },
+                          "text": "Sonstiges",
+                          "type": "panel"
+                        }
+                      ],
+                      "name": "col2",
+                      "style": {
+                        "paddingLeft": "0"
+                      },
+                      "type": "col"
+                    },
+                    {
+                      "class": "col-md-4",
+                      "components": [
+                        {
+                          "components": [],
+                          "footerTemplate": "",
+                          "name": "panel6",
+                          "style": {
+                            "border": "1px solid #e6ecef",
+                            "height": "750px"
+                          },
+                          "text": "Weitere 3",
+                          "type": "panel"
+                        }
+                      ],
+                      "name": "col5",
+                      "style": {
+                        "paddingLeft": "0"
+                      },
+                      "type": "col"
+                    }
+                  ],
+                  "name": "row0",
+                  "type": "row"
+                }
+              ],
               "icon": "",
               "selected": false,
               "text": "Weitere"
             }
           ],
           "name": "tabs0",
+          "selectedIndex": "",
           "style": {
-            "float": "none",
-            "height": "826px"
+            "float": "none"
           },
           "type": "tabs"
         }

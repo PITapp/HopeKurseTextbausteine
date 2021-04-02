@@ -55,7 +55,6 @@ export class BenutzerGenerated implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('button1') button1: ButtonComponent;
   @ViewChild('gridRoles') gridRoles: GridComponent;
   @ViewChild('panel0') panel0: PanelComponent;
-  @ViewChild('gridBenutzerRollen') gridBenutzerRollen: GridComponent;
 
   router: Router;
 

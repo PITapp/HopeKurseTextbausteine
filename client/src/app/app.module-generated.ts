@@ -75,17 +75,7 @@ import { DokumenteComponent } from './dokumente/dokumente.component';
 import { NachrichtenComponent } from './nachrichten/nachrichten.component';
 import { KontakteComponent } from './kontakte/kontakte.component';
 import { KontakteNeuComponent } from './kontakte-neu/kontakte-neu.component';
-import { BaseComponent } from './base/base.component';
-import { AddBaseComponent } from './add-base/add-base.component';
-import { EditBaseComponent } from './edit-base/edit-base.component';
-import { KontakteV1Component } from './kontakte-v-1/kontakte-v-1.component';
-import { KontakteNeuV1Component } from './kontakte-neu-v-1/kontakte-neu-v-1.component';
 import { KontakteBearbeitenComponent } from './kontakte-bearbeiten/kontakte-bearbeiten.component';
-import { TestBaseComponent } from './test-base/test-base.component';
-import { AddBenutzerComponent } from './add-benutzer/add-benutzer.component';
-import { AddTestBaseComponent } from './add-test-base/add-test-base.component';
-import { EditTestBaseComponent } from './edit-test-base/edit-test-base.component';
-import { EditBenutzerComponent } from './edit-benutzer/edit-benutzer.component';
 import { LoginLayoutComponent } from './login-layout/login-layout.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 
@@ -119,17 +109,7 @@ export const PageDeclarations = [
   NachrichtenComponent,
   KontakteComponent,
   KontakteNeuComponent,
-  BaseComponent,
-  AddBaseComponent,
-  EditBaseComponent,
-  KontakteV1Component,
-  KontakteNeuV1Component,
   KontakteBearbeitenComponent,
-  TestBaseComponent,
-  AddBenutzerComponent,
-  AddTestBaseComponent,
-  EditTestBaseComponent,
-  EditBenutzerComponent,
 ];
 
 export const LayoutDeclarations = [

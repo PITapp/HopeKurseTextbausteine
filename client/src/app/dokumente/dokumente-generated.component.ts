@@ -13,7 +13,7 @@ import { NotificationService } from '@radzen/angular/dist/notification';
 import { ContentComponent } from '@radzen/angular/dist/content';
 import { HeadingComponent } from '@radzen/angular/dist/heading';
 import { TabsComponent } from '@radzen/angular/dist/tabs';
-import { UploadComponent } from '@radzen/angular/dist/upload';
+import { PanelComponent } from '@radzen/angular/dist/panel';
 
 import { ConfigService } from '../config.service';
 
@@ -22,13 +22,18 @@ import { SecurityService } from '../security.service';
 export class DokumenteGenerated implements AfterViewInit, OnInit, OnDestroy {
   // Components
   @ViewChild('content1') content1: ContentComponent;
-  @ViewChild('heading8') heading8: HeadingComponent;
-  @ViewChild('heading9') heading9: HeadingComponent;
-  @ViewChild('heading16') heading16: HeadingComponent;
+  @ViewChild('heading18') heading18: HeadingComponent;
+  @ViewChild('heading19') heading19: HeadingComponent;
+  @ViewChild('heading21') heading21: HeadingComponent;
   @ViewChild('tabs0') tabs0: TabsComponent;
-  @ViewChild('heading0') heading0: HeadingComponent;
-  @ViewChild('upload0') upload0: UploadComponent;
-  @ViewChild('upload1') upload1: UploadComponent;
+  @ViewChild('panel2') panel2: PanelComponent;
+  @ViewChild('panel3') panel3: PanelComponent;
+  @ViewChild('panel1') panel1: PanelComponent;
+  @ViewChild('bild') bild: PanelComponent;
+  @ViewChild('panel0') panel0: PanelComponent;
+  @ViewChild('panel4') panel4: PanelComponent;
+  @ViewChild('panel5') panel5: PanelComponent;
+  @ViewChild('panel6') panel6: PanelComponent;
 
   router: Router;
 
@@ -103,21 +108,5 @@ export class DokumenteGenerated implements AfterViewInit, OnInit, OnDestroy {
 
   load() {
 
-  }
-
-  upload0Error(event: any) {
-    this.notificationService.notify({ severity: "error", summary: `Dokument hochladen fehlgeschlagen`, detail: `` });
-  }
-
-  upload0Upload(event: any) {
-    this.notificationService.notify({ severity: "success", summary: `Dokument erfolgreich hochgeladen`, detail: `` });
-  }
-
-  upload1Error(event: any) {
-    this.notificationService.notify({ severity: "error", summary: `Dokument hochladen fehlgeschlagen`, detail: `` });
-  }
-
-  upload1Upload(event: any) {
-    this.notificationService.notify({ severity: "success", summary: `Dokument erfolgreich hochgeladen`, detail: `` });
   }
 }

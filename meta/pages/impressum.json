@@ -8,10 +8,10 @@
         {
           "components": [
             {
-              "class": "d-flex align-items-center justify-content-start  col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12",
+              "class": "justify-content-start  col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex align-items-center",
               "components": [
                 {
-                  "name": "heading8",
+                  "name": "heading18",
                   "size": "H1",
                   "style": {
                     "color": "#5d717b",
@@ -21,12 +21,12 @@
                   "type": "heading"
                 },
                 {
-                  "name": "heading9",
+                  "name": "heading19",
                   "size": "H3",
                   "style": {
-                    "color": "#6d787d",
+                    "color": "#e5ecef",
                     "display": "inline-block",
-                    "marginTop": "9px",
+                    "marginTop": "7px",
                     "paddingLeft": "10px",
                     "paddingRight": "10px"
                   },
@@ -37,28 +37,35 @@
                   "attributes": [
                     {}
                   ],
-                  "name": "heading16",
+                  "name": "heading21",
                   "size": "H3",
                   "style": {
-                    "color": "#6d787d",
+                    "color": "#5d717b",
                     "display": "inline",
-                    "marginTop": "9px"
+                    "fontSize": "21px",
+                    "fontWeight": "normal"
                   },
                   "text": "HopeKurse Textbausteine",
                   "type": "heading"
                 }
               ],
-              "name": "col3",
+              "name": "col46",
+              "style": {
+                "height": "57px",
+                "paddingBottom": "1px"
+              },
               "type": "col"
             }
           ],
-          "name": "row1",
+          "name": "row24",
           "style": {
+            "height": "",
             "marginTop": "-7px",
             "paddingBottom": "0",
             "paddingLeft": "5px",
             "paddingRight": "3px",
-            "paddingTop": "0"
+            "paddingTop": "0",
+            "width": ""
           },
           "type": "row"
         },
@@ -67,9 +74,16 @@
             {
               "components": [
                 {
-                  "content": "<div innerHTML='${impressumHtml}'></div>",
-                  "name": "html0",
-                  "type": "html"
+                  "class": "col-md-12",
+                  "components": [
+                    {
+                      "content": "<div innerHTML='${impressumHtml}'></div>",
+                      "name": "html0",
+                      "type": "html"
+                    }
+                  ],
+                  "name": "col0",
+                  "type": "col"
                 }
               ],
               "selected": false,
@@ -80,7 +94,7 @@
           "selectedIndex": "",
           "style": {
             "float": "none",
-            "height": "826px"
+            "height": "831px"
           },
           "type": "tabs"
         }

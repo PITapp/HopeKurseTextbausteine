@@ -196,10 +196,6 @@
               "icon": "settings",
               "path": "einstellungen",
               "text": "Einstellungen"
-            },
-            {
-              "path": "base",
-              "text": "Item 7"
             }
           ],
           "name": "panelmenu0",

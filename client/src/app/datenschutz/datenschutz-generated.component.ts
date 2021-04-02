@@ -23,9 +23,9 @@ import { SecurityService } from '../security.service';
 export class DatenschutzGenerated implements AfterViewInit, OnInit, OnDestroy {
   // Components
   @ViewChild('content1') content1: ContentComponent;
-  @ViewChild('heading8') heading8: HeadingComponent;
-  @ViewChild('heading9') heading9: HeadingComponent;
-  @ViewChild('heading16') heading16: HeadingComponent;
+  @ViewChild('heading18') heading18: HeadingComponent;
+  @ViewChild('heading19') heading19: HeadingComponent;
+  @ViewChild('heading21') heading21: HeadingComponent;
   @ViewChild('tabs0') tabs0: TabsComponent;
   @ViewChild('html0') html0: HtmlComponent;
 

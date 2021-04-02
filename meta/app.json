@@ -24,10 +24,7 @@
   "namespaces": [],
   "navigation": [
     "Dashboard",
-    "Kontakte",
-    "Base",
-    "Kontakte_V1",
-    "TestBase"
+    "Kontakte"
   ],
   "pages": [
     "BenutzerNeu",
@@ -54,17 +51,7 @@
     "Nachrichten",
     "Kontakte",
     "KontakteNeu",
-    "Base",
-    "Add Base",
-    "Edit Base",
-    "Kontakte_V1",
-    "KontakteNeu_V1",
-    "KontakteBearbeiten",
-    "TestBase",
-    "Add Benutzer",
-    "Add TestBase",
-    "Edit TestBase",
-    "Edit Benutzer"
+    "KontakteBearbeiten"
   ],
   "port": 8000,
   "security": {

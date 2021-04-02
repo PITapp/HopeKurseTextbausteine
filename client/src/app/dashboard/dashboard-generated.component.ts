@@ -34,9 +34,9 @@ import { SecurityService } from '../security.service';
 export class DashboardGenerated implements AfterViewInit, OnInit, OnDestroy {
   // Components
   @ViewChild('content1') content1: ContentComponent;
-  @ViewChild('heading16') heading16: HeadingComponent;
-  @ViewChild('heading17') heading17: HeadingComponent;
-  @ViewChild('heading20') heading20: HeadingComponent;
+  @ViewChild('heading18') heading18: HeadingComponent;
+  @ViewChild('heading19') heading19: HeadingComponent;
+  @ViewChild('heading21') heading21: HeadingComponent;
   @ViewChild('card0') card0: CardComponent;
   @ViewChild('heading0') heading0: HeadingComponent;
   @ViewChild('heading1') heading1: HeadingComponent;
