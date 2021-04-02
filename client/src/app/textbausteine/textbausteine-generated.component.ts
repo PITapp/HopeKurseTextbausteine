@@ -14,6 +14,7 @@ import { ContentComponent } from '@radzen/angular/dist/content';
 import { HeadingComponent } from '@radzen/angular/dist/heading';
 import { TabsComponent } from '@radzen/angular/dist/tabs';
 import { HtmlComponent } from '@radzen/angular/dist/html';
+import { PanelComponent } from '@radzen/angular/dist/panel';
 
 import { ConfigService } from '../config.service';
 
@@ -23,12 +24,16 @@ import { SecurityService } from '../security.service';
 export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy {
   // Components
   @ViewChild('content1') content1: ContentComponent;
-  @ViewChild('heading8') heading8: HeadingComponent;
-  @ViewChild('heading9') heading9: HeadingComponent;
-  @ViewChild('heading16') heading16: HeadingComponent;
+  @ViewChild('heading0') heading0: HeadingComponent;
+  @ViewChild('heading1') heading1: HeadingComponent;
+  @ViewChild('heading2') heading2: HeadingComponent;
   @ViewChild('tabs0') tabs0: TabsComponent;
   @ViewChild('html0') html0: HtmlComponent;
   @ViewChild('tabs2') tabs2: TabsComponent;
+  @ViewChild('panel2') panel2: PanelComponent;
+  @ViewChild('panel3') panel3: PanelComponent;
+  @ViewChild('panel1') panel1: PanelComponent;
+  @ViewChild('bild') bild: PanelComponent;
 
   router: Router;
 

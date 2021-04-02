@@ -8,10 +8,10 @@
         {
           "components": [
             {
-              "class": "d-flex align-items-center justify-content-start  col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12",
+              "class": "justify-content-start  col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex align-items-center",
               "components": [
                 {
-                  "name": "heading8",
+                  "name": "heading0",
                   "size": "H1",
                   "style": {
                     "color": "#5d717b",
@@ -21,12 +21,12 @@
                   "type": "heading"
                 },
                 {
-                  "name": "heading9",
+                  "name": "heading1",
                   "size": "H3",
                   "style": {
-                    "color": "#6d787d",
+                    "color": "#e5ecef",
                     "display": "inline-block",
-                    "marginTop": "9px",
+                    "marginTop": "7px",
                     "paddingLeft": "10px",
                     "paddingRight": "10px"
                   },
@@ -37,28 +37,35 @@
                   "attributes": [
                     {}
                   ],
-                  "name": "heading16",
+                  "name": "heading2",
                   "size": "H3",
                   "style": {
-                    "color": "#6d787d",
+                    "color": "#5d717b",
                     "display": "inline",
-                    "marginTop": "9px"
+                    "fontSize": "21px",
+                    "fontWeight": "normal"
                   },
                   "text": "Hier entsteht was neues",
                   "type": "heading"
                 }
               ],
-              "name": "col3",
+              "name": "col46",
+              "style": {
+                "height": "57px",
+                "paddingBottom": "1px"
+              },
               "type": "col"
             }
           ],
-          "name": "row1",
+          "name": "row24",
           "style": {
+            "height": "",
             "marginTop": "-7px",
             "paddingBottom": "0",
             "paddingLeft": "5px",
             "paddingRight": "3px",
-            "paddingTop": "0"
+            "paddingTop": "0",
+            "width": ""
           },
           "type": "row"
         },
@@ -72,7 +79,7 @@
                       "class": "col-lg-6",
                       "components": [
                         {
-                          "content": "<p-editor [(ngModel)]=\"selectedTextbaustein\" [style]=\"{'height': '702px'}\">\n    <p-header>\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-font\">\n                <option selected>Aref Ruqaa</option>\n                <option value=\"mirza\">Mirza</option>\n                <option value=\"roboto\">Roboto</option>\n\t\t\t</select>\n\t\t</span>\n    \n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-header\">\n\t\t\t    <option value=\"1\">Titel 1</option>\n\t\t\t    <option value=\"2\">Titel 2</option>\n\t\t\t    <option value=\"3\">Titel 3</option>\n\t\t\t    <option value=\"4\">Titel 4</option>\n\t\t\t    <option value=\"5\">Titel 5</option>\n\t\t\t    <option value=\"6\">Titel 6</option>\n\t\t\t    <option selected>Normal</option>\n\t\t\t</select>\n\t\t</span>\n\t\t\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-bold\" aria-label=\"Bold\">Fett</button>\n\t\t\t<button class=\"ql-italic\" aria-label=\"Italic\"></button>\n\t\t\t<button class=\"ql-underline\" aria-label=\"Underline\"></button>\n\t\t</span>\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-blockquote\"></button>\n\t\t</span>\t\t\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-align\"></select>\n\t\t</span>\t\t\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-color\"></select>\n\t\t\t<select class=\"ql-background\"></select>\n\t\t</span>\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-list\" value=\"ordered\"></button>\n\t\t\t<button class=\"ql-list\" value=\"bullet\"></button>\n\t\t\t<button class=\"ql-indent\" value=\"-1\"></button>\n\t\t\t<button class=\"ql-indent\" value=\"+1\"></button>\n\t\t</span>\n    </p-header>\n</p-editor>",
+                          "content": "<p-editor [(ngModel)]=\"selectedTextbaustein\" [style]=\"{'height': '707px'}\">\n    <p-header>\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-font\">\n                <option selected>Aref Ruqaa</option>\n                <option value=\"mirza\">Mirza</option>\n                <option value=\"roboto\">Roboto</option>\n\t\t\t</select>\n\t\t</span>\n    \n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-header\">\n\t\t\t    <option value=\"1\">Titel 1</option>\n\t\t\t    <option value=\"2\">Titel 2</option>\n\t\t\t    <option value=\"3\">Titel 3</option>\n\t\t\t    <option value=\"4\">Titel 4</option>\n\t\t\t    <option value=\"5\">Titel 5</option>\n\t\t\t    <option value=\"6\">Titel 6</option>\n\t\t\t    <option selected>Normal</option>\n\t\t\t</select>\n\t\t</span>\n\t\t\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-bold\" aria-label=\"Bold\">Fett</button>\n\t\t\t<button class=\"ql-italic\" aria-label=\"Italic\"></button>\n\t\t\t<button class=\"ql-underline\" aria-label=\"Underline\"></button>\n\t\t</span>\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-blockquote\"></button>\n\t\t</span>\t\t\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-align\"></select>\n\t\t</span>\t\t\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-color\"></select>\n\t\t\t<select class=\"ql-background\"></select>\n\t\t</span>\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-list\" value=\"ordered\"></button>\n\t\t\t<button class=\"ql-list\" value=\"bullet\"></button>\n\t\t\t<button class=\"ql-indent\" value=\"-1\"></button>\n\t\t\t<button class=\"ql-indent\" value=\"+1\"></button>\n\t\t</span>\n    </p-header>\n</p-editor>",
                           "name": "html0",
                           "type": "html"
                         }
@@ -93,7 +100,7 @@
                           "items": [
                             {
                               "components": [],
-                              "selected": false,
+                              "selected": true,
                               "text": "Bausteine"
                             },
                             {
@@ -110,13 +117,13 @@
                             },
                             {
                               "components": [],
-                              "selected": true,
+                              "selected": false,
                               "text": "Vorschau"
                             }
                           ],
                           "name": "tabs2",
                           "style": {
-                            "height": "700px"
+                            "height": "750px"
                           },
                           "type": "tabs",
                           "visible": true
@@ -129,7 +136,6 @@
                   ],
                   "name": "row0",
                   "style": {
-                    "marginBottom": "-17px",
                     "visibility": "visible"
                   },
                   "type": "row"
@@ -139,6 +145,88 @@
               "text": "Daten"
             },
             {
+              "components": [
+                {
+                  "components": [
+                    {
+                      "class": "col-md-4",
+                      "components": [
+                        {
+                          "allowCollapse": false,
+                          "components": [],
+                          "footerTemplate": "",
+                          "headerTemplate": "",
+                          "name": "panel2",
+                          "style": {
+                            "border": "1px solid #e6ecef",
+                            "height": "750px"
+                          },
+                          "text": "Weitere 1",
+                          "type": "panel"
+                        }
+                      ],
+                      "name": "col0",
+                      "type": "col"
+                    },
+                    {
+                      "class": "col-md-4",
+                      "components": [
+                        {
+                          "components": [],
+                          "icon": "",
+                          "name": "panel3",
+                          "style": {
+                            "border": "1px solid #e6ecef",
+                            "height": "360px"
+                          },
+                          "text": "Weitere 2",
+                          "type": "panel"
+                        },
+                        {
+                          "components": [],
+                          "icon": "",
+                          "name": "panel1",
+                          "style": {
+                            "border": "1px solid #e6ecef",
+                            "height": "375px",
+                            "marginTop": "15px"
+                          },
+                          "text": "Sonstiges",
+                          "type": "panel"
+                        }
+                      ],
+                      "name": "col4",
+                      "style": {
+                        "paddingLeft": "0"
+                      },
+                      "type": "col"
+                    },
+                    {
+                      "class": "col-md-4",
+                      "components": [
+                        {
+                          "components": [],
+                          "footerTemplate": "",
+                          "name": "Bild",
+                          "style": {
+                            "border": "1px solid #e6ecef",
+                            "height": "750px"
+                          },
+                          "text": "Weitere 3",
+                          "type": "panel"
+                        }
+                      ],
+                      "name": "col3",
+                      "style": {
+                        "paddingLeft": "0"
+                      },
+                      "type": "col"
+                    }
+                  ],
+                  "name": "row1",
+                  "type": "row"
+                }
+              ],
               "icon": "",
               "selected": false,
               "text": "Weitere"
@@ -146,8 +234,7 @@
           ],
           "name": "tabs0",
           "style": {
-            "float": "none",
-            "height": "826px"
+            "float": "none"
           },
           "type": "tabs"
         }

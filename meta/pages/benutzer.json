@@ -8,10 +8,10 @@
         {
           "components": [
             {
-              "class": "d-flex align-items-center justify-content-start  col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12",
+              "class": "justify-content-start  col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex align-items-center",
               "components": [
                 {
-                  "name": "heading8",
+                  "name": "heading0",
                   "size": "H1",
                   "style": {
                     "color": "#5d717b",
@@ -21,12 +21,12 @@
                   "type": "heading"
                 },
                 {
-                  "name": "heading9",
+                  "name": "heading1",
                   "size": "H3",
                   "style": {
-                    "color": "#6d787d",
+                    "color": "#e5ecef",
                     "display": "inline-block",
-                    "marginTop": "9px",
+                    "marginTop": "7px",
                     "paddingLeft": "10px",
                     "paddingRight": "10px"
                   },
@@ -37,28 +37,35 @@
                   "attributes": [
                     {}
                   ],
-                  "name": "heading16",
+                  "name": "heading2",
                   "size": "H3",
                   "style": {
-                    "color": "#6d787d",
+                    "color": "#5d717b",
                     "display": "inline",
-                    "marginTop": "9px"
+                    "fontSize": "21px",
+                    "fontWeight": "normal"
                   },
                   "text": "Hier entsteht was neues",
                   "type": "heading"
                 }
               ],
-              "name": "col3",
+              "name": "col46",
+              "style": {
+                "height": "57px",
+                "paddingBottom": "1px"
+              },
               "type": "col"
             }
           ],
-          "name": "row1",
+          "name": "row24",
           "style": {
+            "height": "",
             "marginTop": "-7px",
             "paddingBottom": "0",
             "paddingLeft": "5px",
             "paddingRight": "3px",
-            "paddingTop": "0"
+            "paddingTop": "0",
+            "width": ""
           },
           "type": "row"
         },
@@ -199,7 +206,7 @@
                           "pageSize": 20,
                           "startsWithText": "Starts with",
                           "style": {
-                            "height": "745px"
+                            "height": "750px"
                           },
                           "type": "grid"
                         }
@@ -507,7 +514,7 @@
                   "type": "row"
                 }
               ],
-              "selected": true,
+              "selected": false,
               "text": "Daten"
             },
             {
@@ -613,7 +620,7 @@
                           "pageSize": 10,
                           "startsWithText": "Starts with",
                           "style": {
-                            "height": "745px"
+                            "height": "750px"
                           },
                           "type": "grid",
                           "value": ""
@@ -670,7 +677,7 @@
                           "name": "panel0",
                           "style": {
                             "border": "1px solid #e1e7eb",
-                            "height": "745px"
+                            "height": "750px"
                           },
                           "text": "Rolle: ${varBenutzerrolleTitel}",
                           "type": "panel"
@@ -688,14 +695,13 @@
                 }
               ],
               "icon": "",
-              "selected": false,
+              "selected": true,
               "text": "Rollen"
             }
           ],
           "name": "tabs0",
           "style": {
-            "float": "none",
-            "height": "826px"
+            "float": "none"
           },
           "type": "tabs"
         }

@@ -1,20 +1,20 @@
 <rz-content #content1 container="main">
-  <div [ngStyle]="{'marginTop': '-7px', 'paddingBottom': '0', 'paddingLeft': '5px', 'paddingRight': '3px', 'paddingTop': '0'}" class="row">
-    <div class="d-flex align-items-center justify-content-start  col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-      <rz-heading #heading8 size="H1" [style]="{'color': '#5d717b', 'display': 'inline-block'}" text="Textbausteine">
+  <div [ngStyle]="{'height': '', 'marginTop': '-7px', 'paddingBottom': '0', 'paddingLeft': '5px', 'paddingRight': '3px', 'paddingTop': '0', 'width': ''}" class="row">
+    <div class="justify-content-start  col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex align-items-center" [ngStyle]="{'height': '57px', 'paddingBottom': '1px'}">
+      <rz-heading #heading0 size="H1" [style]="{'color': '#5d717b', 'display': 'inline-block'}" text="Textbausteine">
       </rz-heading>
-      <rz-heading #heading9 size="H3" [style]="{'color': '#6d787d', 'display': 'inline-block', 'marginTop': '9px', 'paddingLeft': '10px', 'paddingRight': '10px'}" text="|">
+      <rz-heading #heading1 size="H3" [style]="{'color': '#e5ecef', 'display': 'inline-block', 'marginTop': '7px', 'paddingLeft': '10px', 'paddingRight': '10px'}" text="|">
       </rz-heading>
-      <rz-heading #heading16 size="H3" [style]="{'color': '#6d787d', 'display': 'inline', 'marginTop': '9px'}" text="Hier entsteht was neues" >
+      <rz-heading #heading2 size="H3" [style]="{'color': '#5d717b', 'display': 'inline', 'fontSize': '21px', 'fontWeight': 'normal'}" text="Hier entsteht was neues" >
       </rz-heading>
     </div>
   </div>
-  <rz-tabs #tabs0 [style]="{'float': 'none', 'height': '826px'}">
+  <rz-tabs #tabs0 [style]="{'float': 'none'}">
     <rz-tabs-item [selected]="true" text="Daten">
-      <div [ngStyle]="{'marginBottom': '-17px', 'visibility': 'visible'}" class="row">
+      <div [ngStyle]="{'visibility': 'visible'}" class="row">
         <div class="col-lg-6" [ngStyle]="{'paddingRight': '0px'}">
           <rz-html #html0>
-            <p-editor [(ngModel)]="selectedTextbaustein" [style]="{'height': '702px'}">
+            <p-editor [(ngModel)]="selectedTextbaustein" [style]="{'height': '707px'}">
                 <p-header>
             
             		<span class="ql-formats">
@@ -67,20 +67,36 @@
           </rz-html>
         </div>
         <div class="col-lg-6" [ngStyle]="{}">
-          <rz-tabs #tabs2 [style]="{'height': '700px'}">
-            <rz-tabs-item [selected]="false" text="Bausteine">
+          <rz-tabs #tabs2 [style]="{'height': '750px'}">
+            <rz-tabs-item [selected]="true" text="Bausteine">
             </rz-tabs-item>
             <rz-tabs-item [selected]="false" text="Metadaten">
             </rz-tabs-item>
             <rz-tabs-item [selected]="false" text="Bilder">
             </rz-tabs-item>
-            <rz-tabs-item [selected]="true" text="Vorschau">
+            <rz-tabs-item [selected]="false" text="Vorschau">
             </rz-tabs-item>
           </rz-tabs>
         </div>
       </div>
     </rz-tabs-item>
     <rz-tabs-item [selected]="false" text="Weitere">
+      <div class="row">
+        <div class="col-md-4">
+          <rz-panel #panel2 [allowCollapse]="false" [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="Weitere 1">
+          </rz-panel>
+        </div>
+        <div class="col-md-4" [ngStyle]="{'paddingLeft': '0'}">
+          <rz-panel #panel3 [style]="{'border': '1px solid #e6ecef', 'height': '360px'}" text="Weitere 2">
+          </rz-panel>
+          <rz-panel #panel1 [style]="{'border': '1px solid #e6ecef', 'height': '375px', 'marginTop': '15px'}" text="Sonstiges">
+          </rz-panel>
+        </div>
+        <div class="col-md-4" [ngStyle]="{'paddingLeft': '0'}">
+          <rz-panel #bild [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="Weitere 3">
+          </rz-panel>
+        </div>
+      </div>
     </rz-tabs-item>
   </rz-tabs>
 </rz-content>

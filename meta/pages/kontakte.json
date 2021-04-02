@@ -113,29 +113,34 @@
                               "width": "100px"
                             },
                             {
+                              "footerTemplate": "",
                               "property": "NameKuerzel",
                               "sortProperty": "",
                               "title": "Kürzel",
                               "type": "string",
-                              "width": "60px"
+                              "width": "80px"
                             },
                             {
                               "format": "",
-                              "property": "AnredeID",
+                              "property": "BaseAnreden.Anrede",
                               "title": "Anrede",
-                              "type": "integer"
+                              "type": "string",
+                              "width": "90px"
                             },
                             {
                               "format": "",
+                              "headerTemplate": "",
                               "property": "TitelVorne",
                               "title": "Titel Vorne",
-                              "type": "string"
+                              "type": "string",
+                              "width": "100px"
                             },
                             {
                               "format": "",
                               "property": "TitelHinten",
                               "title": "Titel Hinten",
-                              "type": "string"
+                              "type": "string",
+                              "width": "120px"
                             },
                             {
                               "property": "Telefon1",
@@ -1014,7 +1019,7 @@
                                           "style": {
                                             "width": "100%"
                                           },
-                                          "text": "Notizen",
+                                          "text": "Notiz",
                                           "type": "label"
                                         }
                                       ],
@@ -1319,7 +1324,7 @@
                             "border": "1px solid #e6ecef",
                             "height": "360px"
                           },
-                          "text": "Benutzer",
+                          "text": "Anmeldedaten",
                           "type": "panel"
                         },
                         {
@@ -1367,7 +1372,7 @@
                                   "class": "col-md-7 justify-content-end d-flex",
                                   "components": [
                                     {
-                                      "buttonStyle": "danger",
+                                      "buttonStyle": "light",
                                       "events": {
                                         "click": [
                                           {
@@ -1390,6 +1395,7 @@
                                           }
                                         ]
                                       },
+                                      "icon": "phonelink_erase",
                                       "name": "buttonBildEntfernen",
                                       "size": "sm",
                                       "text": "Bild entfernen",
@@ -1486,7 +1492,7 @@
                             "border": "1px solid #e6ecef",
                             "height": "750px"
                           },
-                          "text": "Bild",
+                          "text": "Profilbild",
                           "type": "panel"
                         }
                       ],
@@ -1508,8 +1514,7 @@
           ],
           "name": "tabs0",
           "style": {
-            "float": "none",
-            "height": ""
+            "float": "none"
           },
           "type": "tabs"
         }

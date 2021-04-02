@@ -34,9 +34,9 @@ import { SecurityService } from '../security.service';
 export class BenutzerGenerated implements AfterViewInit, OnInit, OnDestroy {
   // Components
   @ViewChild('content1') content1: ContentComponent;
-  @ViewChild('heading8') heading8: HeadingComponent;
-  @ViewChild('heading9') heading9: HeadingComponent;
-  @ViewChild('heading16') heading16: HeadingComponent;
+  @ViewChild('heading0') heading0: HeadingComponent;
+  @ViewChild('heading1') heading1: HeadingComponent;
+  @ViewChild('heading2') heading2: HeadingComponent;
   @ViewChild('tabs0') tabs0: TabsComponent;
   @ViewChild('gridUsers') gridUsers: GridComponent;
   @ViewChild('formBenutzer') formBenutzer: TemplateFormComponent;
