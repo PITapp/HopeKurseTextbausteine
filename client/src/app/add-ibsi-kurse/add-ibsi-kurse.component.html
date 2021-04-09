@@ -1,0 +1,24 @@
+<rz-content #content1 container="main">
+  <div class="row">
+    <div class="col-md-12">
+      <rz-form #form0 (cancel)="form0Cancel($event)" (submit)="form0Submit($event)">
+        <rz-lookup-form-field [data]="getIbsiKurseArtensResult" property="KursArtNr" [required]="true" textProperty="Bezeichnung" title="Ibsi Kurse Arten" valueProperty="KursArtNr" placeholder="Choose IbsiKurseArten" requiredText="is required" multipleItemsSelectedText="{0} items selected" emptyFilterText="No results found" type="lookup">
+        </rz-lookup-form-field>
+        <rz-string-form-field property="Titel" [required]="false" title="Titel" [maxLength]="50" requiredText="is required" type="string">
+        </rz-string-form-field>
+        <rz-string-form-field property="Untertitel" [required]="false" title="Untertitel" [maxLength]="50" requiredText="is required" type="string">
+        </rz-string-form-field>
+        <rz-string-form-field property="Kurzzeichen" [required]="false" title="Kurzzeichen" [maxLength]="10" requiredText="is required" type="string">
+        </rz-string-form-field>
+        <rz-string-form-field property="Beschreibung" [required]="false" title="Beschreibung" [maxLength]="16777215" requiredText="is required" type="string">
+        </rz-string-form-field>
+        <rz-integer-form-field property="AnzahlThemen" [required]="false" title="Anzahl Themen" requiredText="is required" minText="cannot be less than" maxText="cannot be more than" type="integer">
+        </rz-integer-form-field>
+        <rz-boolean-form-field property="Printkurs" [required]="false" title="Printkurs" requiredText="is required" type="boolean">
+        </rz-boolean-form-field>
+        <rz-boolean-form-field property="Onlinekurs" [required]="false" title="Onlinekurs" requiredText="is required" type="boolean">
+        </rz-boolean-form-field>
+      </rz-form>
+    </div>
+  </div>
+</rz-content>

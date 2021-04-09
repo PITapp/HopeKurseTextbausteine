@@ -1,0 +1,114 @@
+{
+  "components": [
+    {
+      "type": "content",
+      "container": "main",
+      "components": [
+        {
+          "type": "row",
+          "components": [
+            {
+              "type": "col",
+              "class": "col-md-12",
+              "components": [
+                {
+                  "data": "",
+                  "events": {
+                    "cancel": [
+                      {
+                        "type": "back"
+                      }
+                    ],
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to create new IbsiKurseThemen!",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "dbHopeKurseTextbausteine.createIbsiKurseThemen",
+                        "parameters": [
+                          {
+                            "name": "IbsiKurseThemen",
+                            "value": "${Object.assign(event, {KursNr: this.parameters.KursNr})}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "type": "back"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  },
+                  "fields": [
+                    {
+                      "property": "Nummer",
+                      "required": true,
+                      "title": "Nummer",
+                      "type": "integer"
+                    },
+                    {
+                      "property": "Titel",
+                      "required": false,
+                      "title": "Titel",
+                      "type": "string",
+                      "maxLength": 50
+                    },
+                    {
+                      "property": "Untertitel",
+                      "required": false,
+                      "title": "Untertitel",
+                      "type": "string",
+                      "maxLength": 100
+                    },
+                    {
+                      "property": "Kurzbeschreibung",
+                      "required": false,
+                      "title": "Kurzbeschreibung",
+                      "type": "string",
+                      "maxLength": 16777215
+                    },
+                    {
+                      "property": "Begleitmaterial",
+                      "required": false,
+                      "title": "Begleitmaterial",
+                      "type": "string",
+                      "maxLength": 16777215
+                    },
+                    {
+                      "property": "Druckfehler",
+                      "required": false,
+                      "title": "Druckfehler",
+                      "type": "string",
+                      "maxLength": 16777215
+                    },
+                    {
+                      "property": "InfoMemo",
+                      "required": false,
+                      "title": "Info Memo",
+                      "type": "string",
+                      "maxLength": 16777215
+                    }
+                  ],
+                  "name": "form0",
+                  "type": "form"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": []
+  },
+  "name": "Add Ibsi Kurse Themen",
+  "access": "Authenticated",
+  "layout": "Main"
+}

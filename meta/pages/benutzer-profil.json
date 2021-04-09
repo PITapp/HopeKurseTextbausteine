@@ -88,7 +88,7 @@
                             "border": "1px solid #e6ecef",
                             "height": "750px"
                           },
-                          "text": "Daten 1",
+                          "text": "Benutzer",
                           "type": "panel"
                         }
                       ],
@@ -106,7 +106,7 @@
                             "border": "1px solid #e6ecef",
                             "height": "360px"
                           },
-                          "text": "Daten 2",
+                          "text": "Kennwort",
                           "type": "panel"
                         },
                         {
@@ -139,7 +139,7 @@
                             "border": "1px solid #e6ecef",
                             "height": "750px"
                           },
-                          "text": "Daten 3",
+                          "text": "Profilbild",
                           "type": "panel"
                         }
                       ],
@@ -156,93 +156,6 @@
               ],
               "selected": true,
               "text": "Daten"
-            },
-            {
-              "components": [
-                {
-                  "components": [
-                    {
-                      "class": "col-md-4",
-                      "components": [
-                        {
-                          "allowCollapse": false,
-                          "components": [],
-                          "footerTemplate": "",
-                          "headerTemplate": "",
-                          "name": "panel0",
-                          "style": {
-                            "border": "1px solid #e6ecef",
-                            "height": "750px"
-                          },
-                          "text": "Weitere 1",
-                          "type": "panel"
-                        }
-                      ],
-                      "name": "col1",
-                      "type": "col"
-                    },
-                    {
-                      "class": "col-md-4",
-                      "components": [
-                        {
-                          "components": [],
-                          "icon": "",
-                          "name": "panel4",
-                          "style": {
-                            "border": "1px solid #e6ecef",
-                            "height": "360px"
-                          },
-                          "text": "Weitere 2",
-                          "type": "panel"
-                        },
-                        {
-                          "components": [],
-                          "icon": "",
-                          "name": "panel5",
-                          "style": {
-                            "border": "1px solid #e6ecef",
-                            "height": "375px",
-                            "marginTop": "15px"
-                          },
-                          "text": "Sonstiges",
-                          "type": "panel"
-                        }
-                      ],
-                      "name": "col2",
-                      "style": {
-                        "paddingLeft": "0"
-                      },
-                      "type": "col"
-                    },
-                    {
-                      "class": "col-md-4",
-                      "components": [
-                        {
-                          "components": [],
-                          "footerTemplate": "",
-                          "name": "panel6",
-                          "style": {
-                            "border": "1px solid #e6ecef",
-                            "height": "750px"
-                          },
-                          "text": "Weitere 3",
-                          "type": "panel"
-                        }
-                      ],
-                      "name": "col5",
-                      "style": {
-                        "paddingLeft": "0"
-                      },
-                      "type": "col"
-                    }
-                  ],
-                  "name": "row0",
-                  "type": "row"
-                }
-              ],
-              "icon": "",
-              "selected": false,
-              "text": "Weitere"
             }
           ],
           "name": "tabs0",

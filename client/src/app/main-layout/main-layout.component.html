@@ -44,11 +44,15 @@
     </rz-panelmenu-item>
     <rz-panelmenu-item icon="contact_phone" path="kontakte" text="Kontakte" *ngIf="security?.isInRole(['Authenticated'])">
     </rz-panelmenu-item>
-    <rz-panelmenu-item icon="face" path="benutzer-profil" text="Benutzerprofil" *ngIf="security?.isInRole(['Authenticated'])">
-    </rz-panelmenu-item>
     <rz-panelmenu-item icon="supervisor_account" path="benutzer" text="Benutzer" *ngIf="security?.isInRole(['Authenticated'])">
     </rz-panelmenu-item>
+    <rz-panelmenu-item icon="face" path="benutzer-profil" text="Benutzerprofil" *ngIf="security?.isInRole(['Authenticated'])">
+    </rz-panelmenu-item>
     <rz-panelmenu-item icon="settings" path="einstellungen" text="Einstellungen" *ngIf="security?.isInRole(['Authenticated'])">
+    </rz-panelmenu-item>
+    <rz-panelmenu-item path="ibsi-kurse-2" text="Item 7">
+    </rz-panelmenu-item>
+    <rz-panelmenu-item path="ibsi-kurse" text="Item 8" *ngIf="security?.isInRole(['Authenticated'])">
     </rz-panelmenu-item>
   </rz-panelmenu>
 </rz-sidebar>

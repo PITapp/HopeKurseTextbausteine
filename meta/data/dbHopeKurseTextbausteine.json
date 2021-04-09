@@ -903,6 +903,7 @@
           "length": 65535
         },
         "NameGesamt": {
+          "x-nullable": false,
           "type": "string",
           "length": 131
         }

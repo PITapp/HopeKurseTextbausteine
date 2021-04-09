@@ -14,9 +14,13 @@ import { ContentComponent } from '@radzen/angular/dist/content';
 import { HeadingComponent } from '@radzen/angular/dist/heading';
 import { TabsComponent } from '@radzen/angular/dist/tabs';
 import { PanelComponent } from '@radzen/angular/dist/panel';
+import { GridComponent } from '@radzen/angular/dist/grid';
+import { TextBoxComponent } from '@radzen/angular/dist/textbox';
+import { ButtonComponent } from '@radzen/angular/dist/button';
 
 import { ConfigService } from '../config.service';
 
+import { DbHopeKurseTextbausteineService } from '../db-hope-kurse-textbausteine.service';
 import { SecurityService } from '../security.service';
 
 export class EinstellungenGenerated implements AfterViewInit, OnInit, OnDestroy {
@@ -26,14 +30,12 @@ export class EinstellungenGenerated implements AfterViewInit, OnInit, OnDestroy 
   @ViewChild('heading19') heading19: HeadingComponent;
   @ViewChild('heading21') heading21: HeadingComponent;
   @ViewChild('tabs0') tabs0: TabsComponent;
-  @ViewChild('panel2') panel2: PanelComponent;
-  @ViewChild('panel3') panel3: PanelComponent;
   @ViewChild('panel1') panel1: PanelComponent;
-  @ViewChild('bild') bild: PanelComponent;
+  @ViewChild('gridTextbausteineAutoren') gridTextbausteineAutoren: GridComponent;
+  @ViewChild('button0') button0: ButtonComponent;
   @ViewChild('panel0') panel0: PanelComponent;
-  @ViewChild('panel4') panel4: PanelComponent;
-  @ViewChild('panel5') panel5: PanelComponent;
-  @ViewChild('panel6') panel6: PanelComponent;
+  @ViewChild('grid0') grid0: GridComponent;
+  @ViewChild('tabs1') tabs1: TabsComponent;
 
   router: Router;
 
@@ -57,8 +59,16 @@ export class EinstellungenGenerated implements AfterViewInit, OnInit, OnDestroy 
 
   _subscription: Subscription;
 
+  dbHopeKurseTextbausteine: DbHopeKurseTextbausteineService;
+
   security: SecurityService;
   parameters: any;
+  rstTextbausteineAutoren: any;
+  rstTextbausteineAutorenCount: any;
+  dsoTextbausteineAutoren: any;
+  rstTextbausteineLaden: any;
+  rstTextbausteine: any;
+  rstTextbausteineCount: any;
 
   constructor(private injector: Injector) {
   }
@@ -84,6 +94,7 @@ export class EinstellungenGenerated implements AfterViewInit, OnInit, OnDestroy 
 
     this.httpClient = this.injector.get(HttpClient);
 
+    this.dbHopeKurseTextbausteine = this.injector.get(DbHopeKurseTextbausteineService);
     this.security = this.injector.get(SecurityService);
   }
 
@@ -107,6 +118,79 @@ export class EinstellungenGenerated implements AfterViewInit, OnInit, OnDestroy 
 
 
   load() {
+    this.gridTextbausteineAutoren.load();
+  }
 
+  gridTextbausteineAutorenAdd(event: any) {
+    this.gridTextbausteineAutoren.insertRow({});
+  }
+
+  gridTextbausteineAutorenCreate(event: any) {
+    this.dbHopeKurseTextbausteine.createIbsiTextbausteineAutoren(null, event)
+    .subscribe((result: any) => {
+
+    }, (result: any) => {
+      this.notificationService.notify({ severity: "error", summary: `Fehler`, detail: `Autor konnte nicht erstellt werden!` });
+    });
+  }
+
+  gridTextbausteineAutorenDelete(event: any) {
+    this.dbHopeKurseTextbausteine.deleteIbsiTextbausteineAutoren(event.AutorNr)
+    .subscribe((result: any) => {
+      this.notificationService.notify({ severity: "success", summary: `Erfolgreich`, detail: `Autor gelöscht!` });
+    }, (result: any) => {
+      this.notificationService.notify({ severity: "error", summary: `Fehler`, detail: `Autor konnte nicht gelöscht werden! ` });
+    });
+  }
+
+  gridTextbausteineAutorenLoadData(event: any) {
+    this.dbHopeKurseTextbausteine.getIbsiTextbausteineAutorens(`${event.filter}`, event.top, event.skip, `${event.orderby || 'Name'}`, event.top != null && event.skip != null, null, null, null)
+    .subscribe((result: any) => {
+      this.rstTextbausteineAutoren = result.value;
+
+      this.rstTextbausteineAutorenCount = event.top != null && event.skip != null ? result['@odata.count'] : result.value.length;
+
+      this.gridTextbausteineAutoren.onSelect(result.value[0])
+    }, (result: any) => {
+      this.notificationService.notify({ severity: "error", summary: `Fehler`, detail: `Autoren konnten nicht geladen werden!` });
+    });
+  }
+
+  gridTextbausteineAutorenRowSelect(event: any) {
+    this.dsoTextbausteineAutoren = event;
+
+    this.rstTextbausteineLaden = true;
+
+    this.dbHopeKurseTextbausteine.getIbsiTextbausteines(`AutorNr eq ${event.AutorNr}`, event.top, event.skip, `IbsiKurse/Titel, TitelTextbaustein`, event.top != null && event.skip != null, `IbsiKurse, IbsiTextbausteineArten`, null, null)
+    .subscribe((result: any) => {
+      this.rstTextbausteine = result.value;
+
+      this.rstTextbausteineCount = event.top != null && event.skip != null ? result['@odata.count'] : result.value.length;
+
+      this.rstTextbausteineLaden = false;
+    }, (result: any) => {
+
+    });
+  }
+
+  gridTextbausteineAutorenUpdate(event: any) {
+    this.dbHopeKurseTextbausteine.updateIbsiTextbausteineAutoren(null, event.AutorNr, event)
+    .subscribe((result: any) => {
+
+    }, (result: any) => {
+      this.notificationService.notify({ severity: "error", summary: `Fehler`, detail: `Unable to delete IbsiTextbausteineAutoren` });
+    });
+  }
+
+  editButtonClick(event: any, data: any) {
+    this.gridTextbausteineAutoren.editRow(data);
+  }
+
+  saveButtonClick(event: any, data: any) {
+    this.gridTextbausteineAutoren.updateRow(data);
+  }
+
+  cancelButtonClick(event: any, data: any) {
+    this.gridTextbausteineAutoren.cancelEditRow(data);
   }
 }

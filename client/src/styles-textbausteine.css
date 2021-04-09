@@ -219,6 +219,13 @@ input:focus, textarea:focus {
 /* --- Panel: Die Farbe des Titels --- */
 .ui-panel-title {
   color: #479cc8;
+  color: #5d717b;
+  color: #D86E13;
+}
+
+/* --- Den Überlauf im Panel unsichtbar machen --- */
+.ui-panel {
+  overflow: hidden !important;
 }
 
 /* --- DataGrid: Die Ecken rundum abgerundet --- */

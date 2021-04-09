@@ -76,6 +76,11 @@ import { NachrichtenComponent } from './nachrichten/nachrichten.component';
 import { KontakteComponent } from './kontakte/kontakte.component';
 import { KontakteNeuComponent } from './kontakte-neu/kontakte-neu.component';
 import { KontakteBearbeitenComponent } from './kontakte-bearbeiten/kontakte-bearbeiten.component';
+import { IbsiKurseComponent } from './ibsi-kurse/ibsi-kurse.component';
+import { AddIbsiKurseThemenComponent } from './add-ibsi-kurse-themen/add-ibsi-kurse-themen.component';
+import { AddIbsiKurseComponent } from './add-ibsi-kurse/add-ibsi-kurse.component';
+import { EditIbsiKurseComponent } from './edit-ibsi-kurse/edit-ibsi-kurse.component';
+import { EditIbsiKurseThemenComponent } from './edit-ibsi-kurse-themen/edit-ibsi-kurse-themen.component';
 import { LoginLayoutComponent } from './login-layout/login-layout.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 
@@ -110,6 +115,11 @@ export const PageDeclarations = [
   KontakteComponent,
   KontakteNeuComponent,
   KontakteBearbeitenComponent,
+  IbsiKurseComponent,
+  AddIbsiKurseThemenComponent,
+  AddIbsiKurseComponent,
+  EditIbsiKurseComponent,
+  EditIbsiKurseThemenComponent,
 ];
 
 export const LayoutDeclarations = [

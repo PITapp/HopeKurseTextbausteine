@@ -28,6 +28,11 @@ import { NachrichtenComponent } from './nachrichten/nachrichten.component';
 import { KontakteComponent } from './kontakte/kontakte.component';
 import { KontakteNeuComponent } from './kontakte-neu/kontakte-neu.component';
 import { KontakteBearbeitenComponent } from './kontakte-bearbeiten/kontakte-bearbeiten.component';
+import { IbsiKurseComponent } from './ibsi-kurse/ibsi-kurse.component';
+import { AddIbsiKurseThemenComponent } from './add-ibsi-kurse-themen/add-ibsi-kurse-themen.component';
+import { AddIbsiKurseComponent } from './add-ibsi-kurse/add-ibsi-kurse.component';
+import { EditIbsiKurseComponent } from './edit-ibsi-kurse/edit-ibsi-kurse.component';
+import { EditIbsiKurseThemenComponent } from './edit-ibsi-kurse-themen/edit-ibsi-kurse-themen.component';
 
 import { SecurityService } from './security.service';
 import { AuthGuard } from './auth.guard';
@@ -226,6 +231,46 @@ export const routes: Routes = [
           roles: ['Authenticated'],
         },
         component: KontakteBearbeitenComponent
+      },
+      {
+        path: 'ibsi-kurse',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: IbsiKurseComponent
+      },
+      {
+        path: 'add-ibsi-kurse-themen/:KursNr',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: AddIbsiKurseThemenComponent
+      },
+      {
+        path: 'add-ibsi-kurse',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: AddIbsiKurseComponent
+      },
+      {
+        path: 'edit-ibsi-kurse/:KursNr',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: EditIbsiKurseComponent
+      },
+      {
+        path: 'edit-ibsi-kurse-themen/:KursThemaNr',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: EditIbsiKurseThemenComponent
       },
     ]
   },

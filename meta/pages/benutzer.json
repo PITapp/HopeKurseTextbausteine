@@ -514,7 +514,7 @@
                   "type": "row"
                 }
               ],
-              "selected": true,
+              "selected": false,
               "text": "Daten"
             },
             {
@@ -658,7 +658,7 @@
                 }
               ],
               "icon": "",
-              "selected": false,
+              "selected": true,
               "text": "Rollen"
             }
           ],

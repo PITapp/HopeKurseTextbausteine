@@ -45,7 +45,7 @@
                     "fontSize": "21px",
                     "fontWeight": "normal"
                   },
-                  "text": "Hier entsteht was neues",
+                  "text": "Grundeinstellungen in Modulen",
                   "type": "heading"
                 }
               ],
@@ -76,19 +76,367 @@
                 {
                   "components": [
                     {
-                      "class": "col-md-4",
+                      "class": "col-md-5",
                       "components": [
                         {
-                          "allowCollapse": false,
-                          "components": [],
-                          "footerTemplate": "",
-                          "headerTemplate": "",
-                          "name": "panel2",
+                          "components": [
+                            {
+                              "addText": "Neuer Autor",
+                              "allowAdd": false,
+                              "allowDelete": true,
+                              "allowFiltering": true,
+                              "allowMultiSorting": false,
+                              "allowPaging": true,
+                              "allowSorting": true,
+                              "applyFilterText": "Apply",
+                              "clearFilterText": "Clear",
+                              "columns": [
+                                {
+                                  "editTemplate": [
+                                    {
+                                      "name": "Name",
+                                      "style": {
+                                        "display": "block",
+                                        "width": "100%"
+                                      },
+                                      "type": "textbox",
+                                      "value": "${data.Name}"
+                                    }
+                                  ],
+                                  "filterProperty": "",
+                                  "property": "Name",
+                                  "title": "Autor",
+                                  "type": "string"
+                                },
+                                {
+                                  "editTemplate": [
+                                    {
+                                      "name": "Krzel",
+                                      "style": {
+                                        "display": "block",
+                                        "width": "100%"
+                                      },
+                                      "type": "textbox",
+                                      "value": "${data.Krzel}"
+                                    }
+                                  ],
+                                  "property": "Krzel",
+                                  "title": "Kürzel",
+                                  "type": "string",
+                                  "width": "20%"
+                                },
+                                {
+                                  "editTemplate": [
+                                    {
+                                      "buttonStyle": "success",
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "code": "this.gridTextbausteineAutoren.updateRow(${data});",
+                                            "type": "execute"
+                                          }
+                                        ]
+                                      },
+                                      "icon": "done",
+                                      "name": "saveButton",
+                                      "size": "sm",
+                                      "text": "",
+                                      "type": "button"
+                                    },
+                                    {
+                                      "buttonStyle": "secondary",
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "code": "this.gridTextbausteineAutoren.cancelEditRow(${data});",
+                                            "type": "execute"
+                                          }
+                                        ]
+                                      },
+                                      "icon": "cancel",
+                                      "name": "cancelButton",
+                                      "size": "sm",
+                                      "text": "",
+                                      "type": "button"
+                                    }
+                                  ],
+                                  "filterable": false,
+                                  "sortable": false,
+                                  "template": [
+                                    {
+                                      "buttonStyle": "light",
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "code": "this.gridTextbausteineAutoren.editRow(${data});",
+                                            "type": "execute"
+                                          }
+                                        ]
+                                      },
+                                      "icon": "edit",
+                                      "name": "editButton",
+                                      "size": "sm",
+                                      "text": "",
+                                      "type": "button"
+                                    }
+                                  ],
+                                  "textAlign": "center",
+                                  "width": "70px"
+                                }
+                              ],
+                              "confirmDelete": true,
+                              "confirmDeleteCancelText": "Abbruch",
+                              "confirmDeleteOkText": "Löschen",
+                              "confirmDeleteText": "Bist du sicher, dass dieser Autor gelöscht werden soll?",
+                              "confirmDeleteTitle": "Confirmation",
+                              "containsText": "Contains",
+                              "count": "${rstTextbausteineAutorenCount}",
+                              "data": "${rstTextbausteineAutoren}",
+                              "emptyText": "Keine Daten vorhanden",
+                              "endsWithText": "Ends with",
+                              "equalsText": "Equals",
+                              "events": {
+                                "add": [
+                                  {
+                                    "code": "this.gridTextbausteineAutoren.insertRow({});",
+                                    "type": "execute"
+                                  }
+                                ],
+                                "create": [
+                                  {
+                                    "error": [
+                                      {
+                                        "detail": "Autor konnte nicht erstellt werden!",
+                                        "severity": "error",
+                                        "summary": "Fehler",
+                                        "type": "notify"
+                                      }
+                                    ],
+                                    "name": "dbHopeKurseTextbausteine.createIbsiTextbausteineAutoren",
+                                    "parameters": [
+                                      {
+                                        "name": "IbsiTextbausteineAutoren",
+                                        "value": "${event}"
+                                      }
+                                    ],
+                                    "type": "invoke"
+                                  }
+                                ],
+                                "delete": [
+                                  {
+                                    "error": [
+                                      {
+                                        "detail": "Autor konnte nicht gelöscht werden! ",
+                                        "severity": "error",
+                                        "summary": "Fehler",
+                                        "type": "notify"
+                                      }
+                                    ],
+                                    "name": "dbHopeKurseTextbausteine.deleteIbsiTextbausteineAutoren",
+                                    "parameters": [
+                                      {
+                                        "name": "AutorNr",
+                                        "value": "${event.AutorNr}"
+                                      }
+                                    ],
+                                    "then": [
+                                      {
+                                        "detail": "Autor gelöscht!",
+                                        "severity": "success",
+                                        "summary": "Erfolgreich",
+                                        "type": "notify"
+                                      }
+                                    ],
+                                    "type": "invoke"
+                                  }
+                                ],
+                                "loadData": [
+                                  {
+                                    "error": [
+                                      {
+                                        "detail": "Autoren konnten nicht geladen werden!",
+                                        "severity": "error",
+                                        "summary": "Fehler",
+                                        "type": "notify"
+                                      }
+                                    ],
+                                    "name": "dbHopeKurseTextbausteine.getIbsiTextbausteineAutorens",
+                                    "parameters": [
+                                      {
+                                        "name": "$top",
+                                        "value": "event.top"
+                                      },
+                                      {
+                                        "name": "$skip",
+                                        "value": "event.skip"
+                                      },
+                                      {
+                                        "name": "$count",
+                                        "value": "event.top != null && event.skip != null"
+                                      },
+                                      {
+                                        "name": "$filter",
+                                        "value": "${event.filter}"
+                                      },
+                                      {
+                                        "name": "$orderby",
+                                        "value": "${event.orderby || 'Name'}"
+                                      }
+                                    ],
+                                    "then": [
+                                      {
+                                        "name": "rstTextbausteineAutoren",
+                                        "type": "set",
+                                        "value": "${result.value}"
+                                      },
+                                      {
+                                        "name": "rstTextbausteineAutorenCount",
+                                        "type": "set",
+                                        "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
+                                      },
+                                      {
+                                        "code": "${this.gridTextbausteineAutoren.onSelect(result.value[0])}",
+                                        "type": "execute"
+                                      }
+                                    ],
+                                    "type": "invoke"
+                                  }
+                                ],
+                                "rowSelect": [
+                                  {
+                                    "name": "dsoTextbausteineAutoren",
+                                    "type": "set",
+                                    "value": "${event}"
+                                  },
+                                  {
+                                    "name": "rstTextbausteineLaden",
+                                    "type": "set",
+                                    "value": "true"
+                                  },
+                                  {
+                                    "name": "dbHopeKurseTextbausteine.getIbsiTextbausteines",
+                                    "parameters": [
+                                      {
+                                        "name": "$filter",
+                                        "value": "AutorNr eq ${event.AutorNr}"
+                                      },
+                                      {
+                                        "name": "$orderby",
+                                        "value": "IbsiKurse/Titel, TitelTextbaustein"
+                                      },
+                                      {
+                                        "name": "$top",
+                                        "value": "event.top"
+                                      },
+                                      {
+                                        "name": "$skip",
+                                        "value": "event.skip"
+                                      },
+                                      {
+                                        "name": "$count",
+                                        "value": "event.top != null && event.skip != null"
+                                      },
+                                      {
+                                        "name": "$expand",
+                                        "value": "IbsiKurse, IbsiTextbausteineArten"
+                                      }
+                                    ],
+                                    "then": [
+                                      {
+                                        "name": "rstTextbausteine",
+                                        "type": "set",
+                                        "value": "${result.value}"
+                                      },
+                                      {
+                                        "name": "rstTextbausteineCount",
+                                        "type": "set",
+                                        "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
+                                      },
+                                      {
+                                        "name": "rstTextbausteineLaden",
+                                        "type": "set",
+                                        "value": "false"
+                                      }
+                                    ],
+                                    "type": "invoke"
+                                  }
+                                ],
+                                "update": [
+                                  {
+                                    "error": [
+                                      {
+                                        "detail": "Unable to delete IbsiTextbausteineAutoren",
+                                        "severity": "error",
+                                        "summary": "Fehler",
+                                        "type": "notify"
+                                      }
+                                    ],
+                                    "name": "dbHopeKurseTextbausteine.updateIbsiTextbausteineAutoren",
+                                    "parameters": [
+                                      {
+                                        "name": "AutorNr",
+                                        "value": "${event.AutorNr}"
+                                      },
+                                      {
+                                        "name": "IbsiTextbausteineAutoren",
+                                        "value": "${event}"
+                                      }
+                                    ],
+                                    "type": "invoke"
+                                  }
+                                ]
+                              },
+                              "filterCaseSensitivity": "caseInsensitive",
+                              "greaterThanOrEqualsText": "Greater than or equals",
+                              "greaterThanText": "Greater than",
+                              "lessThanOrEqualsText": "Less than or equals",
+                              "lessThanText": "Less than",
+                              "name": "gridTextbausteineAutoren",
+                              "notEqualsText": "Not equals",
+                              "pageSize": 15,
+                              "startsWithText": "Starts with",
+                              "style": {
+                                "border": "1px solid rgba(0, 0, 0, 0)",
+                                "height": "700px",
+                                "marginLeft": "-10px",
+                                "marginRight": "-10px",
+                                "marginTop": "-13px"
+                              },
+                              "title": "",
+                              "type": "grid"
+                            }
+                          ],
+                          "headerTemplate": [
+                            {
+                              "components": [
+                                {
+                                  "class": "col-md-12 align-items-start d-flex",
+                                  "components": [
+                                    {
+                                      "icon": "add",
+                                      "name": "button0",
+                                      "size": "sm",
+                                      "style": {
+                                        "marginRight": "-9px"
+                                      },
+                                      "text": "Neuer Autor",
+                                      "type": "button"
+                                    }
+                                  ],
+                                  "name": "col1",
+                                  "type": "col"
+                                }
+                              ],
+                              "name": "row0",
+                              "type": "row"
+                            }
+                          ],
+                          "name": "panel1",
                           "style": {
                             "border": "1px solid #e6ecef",
                             "height": "750px"
                           },
-                          "text": "Daten 1",
+                          "text": "${rstTextbausteineAutorenCount} Autoren",
                           "type": "panel"
                         }
                       ],
@@ -96,56 +444,101 @@
                       "type": "col"
                     },
                     {
-                      "class": "col-md-4",
+                      "class": "col-md-7",
                       "components": [
                         {
-                          "components": [],
-                          "icon": "",
-                          "name": "panel3",
-                          "style": {
-                            "border": "1px solid #e6ecef",
-                            "height": "360px"
-                          },
-                          "text": "Daten 2",
-                          "type": "panel"
-                        },
-                        {
-                          "components": [],
-                          "icon": "",
-                          "name": "panel1",
-                          "style": {
-                            "border": "1px solid #e6ecef",
-                            "height": "375px",
-                            "marginTop": "15px"
-                          },
-                          "text": "Sonstiges",
-                          "type": "panel"
-                        }
-                      ],
-                      "name": "col4",
-                      "style": {
-                        "paddingLeft": "0"
-                      },
-                      "type": "col"
-                    },
-                    {
-                      "class": "col-md-4",
-                      "components": [
-                        {
-                          "components": [],
+                          "allowCollapse": false,
+                          "collapsed": false,
+                          "components": [
+                            {
+                              "addText": "Add",
+                              "allowAdd": false,
+                              "allowDelete": false,
+                              "allowFiltering": true,
+                              "allowMultiSorting": false,
+                              "allowPaging": true,
+                              "allowSorting": true,
+                              "alwaysShowPager": true,
+                              "applyFilterText": "Apply",
+                              "clearFilterText": "Clear",
+                              "columns": [
+                                {
+                                  "format": "",
+                                  "headerTemplate": "",
+                                  "property": "IbsiKurse.Titel",
+                                  "title": "Kurs",
+                                  "type": "string"
+                                },
+                                {
+                                  "format": "",
+                                  "property": "IbsiTextbausteineArten.Bezeichnung",
+                                  "title": "Art",
+                                  "type": "string"
+                                },
+                                {
+                                  "property": "TitelTextbaustein",
+                                  "title": "Titel",
+                                  "type": "string",
+                                  "width": "35%"
+                                },
+                                {
+                                  "property": "UntertitelTextbaustein",
+                                  "title": "Untertitel",
+                                  "type": "string"
+                                }
+                              ],
+                              "confirmDelete": true,
+                              "confirmDeleteCancelText": "Cancel",
+                              "confirmDeleteOkText": "Ok",
+                              "confirmDeleteText": "Are you sure you want to delete this record?",
+                              "confirmDeleteTitle": "Confirmation",
+                              "containsText": "Contains",
+                              "count": "${rstTextbausteineCount}",
+                              "data": "${rstTextbausteine}",
+                              "emptyText": "Keine Daten vorhanden",
+                              "endsWithText": "Ends with",
+                              "equalsText": "Equals",
+                              "events": {
+                                "add": [],
+                                "delete": [],
+                                "loadData": [],
+                                "rowSelect": []
+                              },
+                              "filterCaseSensitivity": "caseInsensitive",
+                              "greaterThanOrEqualsText": "Greater than or equals",
+                              "greaterThanText": "Greater than",
+                              "isLoading": "${rstTextbausteineLaden}",
+                              "lessThanOrEqualsText": "Less than or equals",
+                              "lessThanText": "Less than",
+                              "name": "grid0",
+                              "notEqualsText": "Not equals",
+                              "pageSize": 14,
+                              "startsWithText": "Starts with",
+                              "style": {
+                                "border": "1px solid rgba(0, 0, 0, 0)",
+                                "height": "700px",
+                                "marginLeft": "-10px",
+                                "marginRight": "-10px",
+                                "marginTop": "-8px"
+                              },
+                              "title": "",
+                              "type": "grid"
+                            }
+                          ],
                           "footerTemplate": "",
-                          "name": "Bild",
+                          "headerTemplate": "",
+                          "name": "panel0",
                           "style": {
                             "border": "1px solid #e6ecef",
                             "height": "750px"
                           },
-                          "text": "Daten 3",
+                          "text": "${rstTextbausteineCount} Textbausteine von Autor ${dsoTextbausteineAutoren.Name}",
                           "type": "panel"
                         }
                       ],
                       "name": "col3",
                       "style": {
-                        "paddingLeft": "0"
+                        "paddingLeft": "5px"
                       },
                       "type": "col"
                     }
@@ -154,102 +547,44 @@
                   "type": "row"
                 }
               ],
+              "icon": "",
               "selected": true,
-              "text": "Daten"
+              "text": "Autoren"
             },
             {
               "components": [
                 {
-                  "components": [
+                  "items": [
                     {
-                      "class": "col-md-4",
-                      "components": [
-                        {
-                          "allowCollapse": false,
-                          "components": [],
-                          "footerTemplate": "",
-                          "headerTemplate": "",
-                          "name": "panel0",
-                          "style": {
-                            "border": "1px solid #e6ecef",
-                            "height": "750px"
-                          },
-                          "text": "Weitere 1",
-                          "type": "panel"
-                        }
-                      ],
-                      "name": "col1",
-                      "type": "col"
+                      "components": [],
+                      "icon": "",
+                      "text": "Daten"
                     },
                     {
-                      "class": "col-md-4",
-                      "components": [
-                        {
-                          "components": [],
-                          "icon": "",
-                          "name": "panel4",
-                          "style": {
-                            "border": "1px solid #e6ecef",
-                            "height": "360px"
-                          },
-                          "text": "Weitere 2",
-                          "type": "panel"
-                        },
-                        {
-                          "components": [],
-                          "icon": "",
-                          "name": "panel5",
-                          "style": {
-                            "border": "1px solid #e6ecef",
-                            "height": "375px",
-                            "marginTop": "15px"
-                          },
-                          "text": "Sonstiges",
-                          "type": "panel"
-                        }
-                      ],
-                      "name": "col2",
-                      "style": {
-                        "paddingLeft": "0"
-                      },
-                      "type": "col"
-                    },
-                    {
-                      "class": "col-md-4",
-                      "components": [
-                        {
-                          "components": [],
-                          "footerTemplate": "",
-                          "name": "panel6",
-                          "style": {
-                            "border": "1px solid #e6ecef",
-                            "height": "750px"
-                          },
-                          "text": "Weitere 3",
-                          "type": "panel"
-                        }
-                      ],
-                      "name": "col5",
-                      "style": {
-                        "paddingLeft": "0"
-                      },
-                      "type": "col"
+                      "text": "Themen"
                     }
                   ],
-                  "name": "row0",
-                  "type": "row"
+                  "name": "tabs1",
+                  "type": "tabs"
                 }
               ],
               "icon": "",
               "selected": false,
-              "text": "Weitere"
+              "text": "Kurse"
+            },
+            {
+              "icon": "",
+              "selected": false,
+              "text": "Infotexte"
             }
           ],
           "name": "tabs0",
+          "selectedIndex": "",
           "style": {
             "float": "none"
           },
-          "type": "tabs"
+          "type": "tabs",
+          "visible": true
         }
       ],
       "container": "main",
@@ -257,7 +592,12 @@
     }
   ],
   "events": {
-    "load": []
+    "load": [
+      {
+        "code": "this.gridTextbausteineAutoren.load();",
+        "type": "execute"
+      }
+    ]
   },
   "layout": "Main",
   "name": "Einstellungen"

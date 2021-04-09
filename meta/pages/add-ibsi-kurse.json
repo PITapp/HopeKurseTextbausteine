@@ -1,0 +1,135 @@
+{
+  "components": [
+    {
+      "type": "content",
+      "container": "main",
+      "components": [
+        {
+          "type": "row",
+          "components": [
+            {
+              "type": "col",
+              "class": "col-md-12",
+              "components": [
+                {
+                  "data": "",
+                  "events": {
+                    "cancel": [
+                      {
+                        "type": "back"
+                      }
+                    ],
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to create new IbsiKurse!",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "dbHopeKurseTextbausteine.createIbsiKurse",
+                        "parameters": [
+                          {
+                            "name": "IbsiKurse",
+                            "value": "${event}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "type": "back"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  },
+                  "fields": [
+                    {
+                      "data": "${getIbsiKurseArtensResult}",
+                      "property": "KursArtNr",
+                      "required": true,
+                      "textProperty": "Bezeichnung",
+                      "title": "Ibsi Kurse Arten",
+                      "type": "lookup",
+                      "valueProperty": "KursArtNr",
+                      "placeholder": "Choose IbsiKurseArten"
+                    },
+                    {
+                      "property": "Titel",
+                      "required": false,
+                      "title": "Titel",
+                      "type": "string",
+                      "maxLength": 50
+                    },
+                    {
+                      "property": "Untertitel",
+                      "required": false,
+                      "title": "Untertitel",
+                      "type": "string",
+                      "maxLength": 50
+                    },
+                    {
+                      "property": "Kurzzeichen",
+                      "required": false,
+                      "title": "Kurzzeichen",
+                      "type": "string",
+                      "maxLength": 10
+                    },
+                    {
+                      "property": "Beschreibung",
+                      "required": false,
+                      "title": "Beschreibung",
+                      "type": "string",
+                      "maxLength": 16777215
+                    },
+                    {
+                      "property": "AnzahlThemen",
+                      "required": false,
+                      "title": "Anzahl Themen",
+                      "type": "integer"
+                    },
+                    {
+                      "property": "Printkurs",
+                      "required": false,
+                      "title": "Printkurs",
+                      "type": "boolean"
+                    },
+                    {
+                      "property": "Onlinekurs",
+                      "required": false,
+                      "title": "Onlinekurs",
+                      "type": "boolean"
+                    }
+                  ],
+                  "name": "form0",
+                  "type": "form"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "dbHopeKurseTextbausteine.getIbsiKurseArtens",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getIbsiKurseArtensResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Add Ibsi Kurse",
+  "access": "Authenticated",
+  "layout": "Main"
+}

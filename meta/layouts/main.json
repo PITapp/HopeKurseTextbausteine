@@ -183,19 +183,27 @@
               "text": "Kontakte"
             },
             {
-              "icon": "face",
-              "path": "benutzer-profil",
-              "text": "Benutzerprofil"
-            },
-            {
               "icon": "supervisor_account",
               "path": "benutzer",
               "text": "Benutzer"
             },
             {
+              "icon": "face",
+              "path": "benutzer-profil",
+              "text": "Benutzerprofil"
+            },
+            {
               "icon": "settings",
               "path": "einstellungen",
               "text": "Einstellungen"
+            },
+            {
+              "path": "ibsi-kurse-2",
+              "text": "Item 7"
+            },
+            {
+              "path": "ibsi-kurse",
+              "text": "Item 8"
             }
           ],
           "name": "panelmenu0",
