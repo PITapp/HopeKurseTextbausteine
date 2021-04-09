@@ -25,7 +25,8 @@
   "navigation": [
     "Dashboard",
     "Kontakte",
-    "IbsiKurse"
+    "IbsiKurse",
+    "IbsiTextbausteineAutoren"
   ],
   "pages": [
     "BenutzerNeu",
@@ -57,7 +58,10 @@
     "Add Ibsi Kurse Themen",
     "Add IbsiKurse",
     "Edit IbsiKurse",
-    "Edit Ibsi Kurse Themen"
+    "Edit Ibsi Kurse Themen",
+    "IbsiTextbausteineAutoren",
+    "EinstellungenAutorenNeu",
+    "EinstellungenAutorenBearbeiten"
   ],
   "port": 8000,
   "security": {

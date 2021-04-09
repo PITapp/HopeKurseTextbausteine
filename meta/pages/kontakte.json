@@ -79,302 +79,344 @@
                       "class": "col-md-12",
                       "components": [
                         {
-                          "addText": "Neuer Kontakt",
-                          "allowAdd": true,
-                          "allowColumnReorder": false,
-                          "allowDelete": true,
-                          "allowFiltering": true,
-                          "allowMultiSorting": false,
-                          "allowPaging": true,
-                          "allowSorting": true,
-                          "alwaysShowPager": false,
-                          "applyFilterText": "Apply",
-                          "clearFilterText": "Clear",
-                          "columnResizeMode": "fit",
-                          "columnWidth": "auto",
-                          "columns": [
+                          "components": [
                             {
-                              "filterProperty": "",
-                              "filterValue": "",
-                              "footerTemplate": "",
-                              "format": "",
-                              "property": "Name1",
-                              "sortProperty": "",
-                              "template": "",
-                              "title": "Name",
-                              "type": "string",
-                              "width": "120px"
-                            },
-                            {
-                              "format": "",
-                              "property": "Name2",
-                              "title": "Vorname",
-                              "type": "string",
-                              "width": "100px"
-                            },
-                            {
-                              "footerTemplate": "",
-                              "property": "NameKuerzel",
-                              "sortProperty": "",
-                              "title": "Kürzel",
-                              "type": "string",
-                              "width": "80px"
-                            },
-                            {
-                              "format": "",
-                              "property": "BaseAnreden.Anrede",
-                              "title": "Anrede",
-                              "type": "string",
-                              "width": "90px"
-                            },
-                            {
-                              "format": "",
-                              "headerTemplate": "",
-                              "property": "TitelVorne",
-                              "title": "Titel Vorne",
-                              "type": "string",
-                              "width": "100px"
-                            },
-                            {
-                              "format": "",
-                              "property": "TitelHinten",
-                              "title": "Titel Hinten",
-                              "type": "string",
-                              "width": "120px"
-                            },
-                            {
-                              "property": "Telefon1",
-                              "title": "Telefon 1",
-                              "type": "string",
-                              "width": ""
-                            },
-                            {
-                              "format": "",
-                              "property": "Telefon2",
-                              "title": "Telefon 2",
-                              "type": "string"
-                            },
-                            {
-                              "property": "EMail1",
-                              "title": "E-Mail 1",
-                              "type": "string",
-                              "width": ""
-                            },
-                            {
-                              "format": "",
-                              "property": "EMail2",
-                              "template": "",
-                              "title": "E-Mail 2",
-                              "type": "string"
-                            },
-                            {
-                              "format": "",
-                              "property": "Notiz",
-                              "title": "Notiz",
-                              "type": "string"
-                            },
-                            {
-                              "filterable": false,
-                              "sortable": false,
-                              "template": [
+                              "addText": "Neuer Kontakt",
+                              "allowAdd": false,
+                              "allowColumnReorder": false,
+                              "allowDelete": true,
+                              "allowFiltering": true,
+                              "allowMultiSorting": false,
+                              "allowPaging": true,
+                              "allowSorting": true,
+                              "alwaysShowPager": false,
+                              "applyFilterText": "Apply",
+                              "clearFilterText": "Clear",
+                              "columnResizeMode": "fit",
+                              "columnWidth": "auto",
+                              "columns": [
                                 {
-                                  "buttonStyle": "light",
-                                  "events": {
-                                    "click": [
-                                      {
-                                        "parameters": [
+                                  "filterProperty": "",
+                                  "filterValue": "",
+                                  "footerTemplate": "",
+                                  "format": "",
+                                  "property": "Name1",
+                                  "sortProperty": "",
+                                  "template": "",
+                                  "title": "Name",
+                                  "type": "string",
+                                  "width": "120px"
+                                },
+                                {
+                                  "format": "",
+                                  "property": "Name2",
+                                  "title": "Vorname",
+                                  "type": "string",
+                                  "width": "100px"
+                                },
+                                {
+                                  "footerTemplate": "",
+                                  "property": "NameKuerzel",
+                                  "sortProperty": "",
+                                  "title": "Kürzel",
+                                  "type": "string",
+                                  "width": "80px"
+                                },
+                                {
+                                  "format": "",
+                                  "property": "BaseAnreden.Anrede",
+                                  "title": "Anrede",
+                                  "type": "string",
+                                  "width": "90px"
+                                },
+                                {
+                                  "format": "",
+                                  "headerTemplate": "",
+                                  "property": "TitelVorne",
+                                  "title": "Titel Vorne",
+                                  "type": "string",
+                                  "width": "100px"
+                                },
+                                {
+                                  "format": "",
+                                  "property": "TitelHinten",
+                                  "title": "Titel Hinten",
+                                  "type": "string",
+                                  "width": "120px"
+                                },
+                                {
+                                  "property": "Telefon1",
+                                  "title": "Telefon 1",
+                                  "type": "string",
+                                  "width": ""
+                                },
+                                {
+                                  "format": "",
+                                  "property": "Telefon2",
+                                  "title": "Telefon 2",
+                                  "type": "string"
+                                },
+                                {
+                                  "property": "EMail1",
+                                  "title": "E-Mail 1",
+                                  "type": "string",
+                                  "width": ""
+                                },
+                                {
+                                  "format": "",
+                                  "property": "EMail2",
+                                  "template": "",
+                                  "title": "E-Mail 2",
+                                  "type": "string"
+                                },
+                                {
+                                  "format": "",
+                                  "property": "Notiz",
+                                  "title": "Notiz",
+                                  "type": "string"
+                                },
+                                {
+                                  "filterable": false,
+                                  "sortable": false,
+                                  "template": [
+                                    {
+                                      "buttonStyle": "light",
+                                      "events": {
+                                        "click": [
                                           {
-                                            "name": "BaseID",
-                                            "value": "${data.BaseID}"
+                                            "parameters": [
+                                              {
+                                                "name": "BaseID",
+                                                "value": "${data.BaseID}"
+                                              }
+                                            ],
+                                            "path": "kontakte-bearbeiten",
+                                            "then": [
+                                              {
+                                                "code": "console.log(${result});",
+                                                "type": "execute"
+                                              }
+                                            ],
+                                            "title": "Bearbeiten Kontakt",
+                                            "type": "popup"
                                           }
-                                        ],
-                                        "path": "kontakte-bearbeiten",
-                                        "then": [
-                                          {
-                                            "code": "console.log(${result});",
-                                            "type": "execute"
-                                          }
-                                        ],
-                                        "title": "Bearbeiten Kontakt",
-                                        "type": "popup"
-                                      }
-                                    ]
-                                  },
-                                  "icon": "edit",
-                                  "name": "editButton",
-                                  "size": "sm",
-                                  "style": {
-                                    "height": "20px",
-                                    "width": "20px"
-                                  },
-                                  "text": "",
-                                  "type": "button"
+                                        ]
+                                      },
+                                      "icon": "edit",
+                                      "name": "editButton",
+                                      "size": "sm",
+                                      "style": {
+                                        "height": "20px",
+                                        "width": "20px"
+                                      },
+                                      "text": "",
+                                      "type": "button"
+                                    }
+                                  ],
+                                  "textAlign": "center",
+                                  "width": "75px"
                                 }
                               ],
-                              "textAlign": "center",
-                              "width": "75px"
+                              "confirmDelete": true,
+                              "confirmDeleteCancelText": "Abbruch",
+                              "confirmDeleteOkText": "Löschen",
+                              "confirmDeleteText": "Bist du sicher, dass der Kontakt gelöscht werden soll?",
+                              "confirmDeleteTitle": "Kontakt löschen",
+                              "containsText": "Contains",
+                              "count": "${rstBaseCount}",
+                              "data": "${rstBase}",
+                              "emptyText": "Keine Kontakte vorhanden",
+                              "endsWithText": "Ends with",
+                              "equalsText": "Equals",
+                              "events": {
+                                "add": [],
+                                "create": [],
+                                "delete": [
+                                  {
+                                    "condition": "",
+                                    "error": [
+                                      {
+                                        "detail": "Daten können nicht gelöscht werden!",
+                                        "severity": "error",
+                                        "summary": "Kontakt",
+                                        "type": "notify"
+                                      }
+                                    ],
+                                    "name": "dbHopeKurseTextbausteine.deleteBase",
+                                    "parameters": [
+                                      {
+                                        "name": "BaseID",
+                                        "value": "${event.BaseID}"
+                                      }
+                                    ],
+                                    "then": [
+                                      {
+                                        "detail": "Daten gelöscht!",
+                                        "severity": "success",
+                                        "summary": "Kontakt",
+                                        "type": "notify"
+                                      },
+                                      {
+                                        "code": "this.gridKontakte.load();",
+                                        "condition": "",
+                                        "type": "execute"
+                                      }
+                                    ],
+                                    "type": "invoke"
+                                  }
+                                ],
+                                "loadData": [
+                                  {
+                                    "error": [
+                                      {
+                                        "detail": "Daten können nicht geladen werden!",
+                                        "severity": "error",
+                                        "summary": "Kontakte",
+                                        "type": "notify"
+                                      }
+                                    ],
+                                    "name": "dbHopeKurseTextbausteine.getBases",
+                                    "parameters": [
+                                      {
+                                        "name": "$top",
+                                        "value": "event.top"
+                                      },
+                                      {
+                                        "name": "$skip",
+                                        "value": "event.skip"
+                                      },
+                                      {
+                                        "name": "$count",
+                                        "value": "event.top != null && event.skip != null"
+                                      },
+                                      {
+                                        "name": "$filter",
+                                        "value": "${event.filter}"
+                                      },
+                                      {
+                                        "name": "$orderby",
+                                        "value": "${event.orderby || 'Name1, Name2'}"
+                                      },
+                                      {
+                                        "name": "$expand",
+                                        "value": "BaseAnreden"
+                                      }
+                                    ],
+                                    "then": [
+                                      {
+                                        "name": "rstBase",
+                                        "type": "set",
+                                        "value": "${result.value}"
+                                      },
+                                      {
+                                        "name": "rstBaseCount",
+                                        "type": "set",
+                                        "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
+                                      },
+                                      {
+                                        "code": "${this.gridKontakte.onSelect(result.value[0])}",
+                                        "condition": "",
+                                        "type": "execute"
+                                      }
+                                    ],
+                                    "type": "invoke"
+                                  }
+                                ],
+                                "rowSelect": [
+                                  {
+                                    "name": "dsoBase",
+                                    "type": "set",
+                                    "value": "${event}"
+                                  },
+                                  {
+                                    "name": "dbHopeKurseTextbausteine.getBenutzers",
+                                    "parameters": [
+                                      {
+                                        "name": "$filter",
+                                        "value": "BaseID eq ${event.BaseID}"
+                                      }
+                                    ],
+                                    "then": [
+                                      {
+                                        "name": "dsoBenutzer",
+                                        "type": "set",
+                                        "value": "${result.value[0]}"
+                                      }
+                                    ],
+                                    "type": "invoke"
+                                  }
+                                ]
+                              },
+                              "filterCaseSensitivity": "caseInsensitive",
+                              "greaterThanOrEqualsText": "Greater than or equals",
+                              "greaterThanText": "Greater than",
+                              "lessThanOrEqualsText": "Less than or equals",
+                              "lessThanText": "Less than",
+                              "name": "gridKontakte",
+                              "notEqualsText": "Not equals",
+                              "pageSize": 15,
+                              "pageSizeOptions": [],
+                              "startsWithText": "Starts with",
+                              "style": {
+                                "border": "1px solid rgba(0, 0, 0, 0)",
+                                "height": "700px",
+                                "marginLeft": "-10px",
+                                "marginRight": "-10px",
+                                "marginTop": "-13px"
+                              },
+                              "title": "",
+                              "type": "grid",
+                              "value": ""
                             }
                           ],
-                          "confirmDelete": true,
-                          "confirmDeleteCancelText": "Abbruch",
-                          "confirmDeleteOkText": "Löschen",
-                          "confirmDeleteText": "Bist du sicher, dass der Kontakt gelöscht werden soll?",
-                          "confirmDeleteTitle": "Kontakt löschen",
-                          "containsText": "Contains",
-                          "count": "${rstBaseCount}",
-                          "data": "${rstBase}",
-                          "emptyText": "Keine Kontakte vorhanden",
-                          "endsWithText": "Ends with",
-                          "equalsText": "Equals",
-                          "events": {
-                            "add": [
-                              {
-                                "parameters": [],
-                                "path": "kontakte-neu",
-                                "then": [
-                                  {
-                                    "code": "this.gridKontakte.load();",
-                                    "condition": "${result} != null",
-                                    "type": "execute"
-                                  }
-                                ],
-                                "title": "Neuer Kontakt",
-                                "type": "popup"
-                              }
-                            ],
-                            "create": [],
-                            "delete": [
-                              {
-                                "condition": "",
-                                "error": [
-                                  {
-                                    "detail": "Daten können nicht gelöscht werden!",
-                                    "severity": "error",
-                                    "summary": "Kontakt",
-                                    "type": "notify"
-                                  }
-                                ],
-                                "name": "dbHopeKurseTextbausteine.deleteBase",
-                                "parameters": [
-                                  {
-                                    "name": "BaseID",
-                                    "value": "${event.BaseID}"
-                                  }
-                                ],
-                                "then": [
-                                  {
-                                    "detail": "Daten gelöscht!",
-                                    "severity": "success",
-                                    "summary": "Kontakt",
-                                    "type": "notify"
-                                  },
-                                  {
-                                    "code": "this.gridKontakte.load();",
-                                    "condition": "",
-                                    "type": "execute"
-                                  }
-                                ],
-                                "type": "invoke"
-                              }
-                            ],
-                            "loadData": [
-                              {
-                                "error": [
-                                  {
-                                    "detail": "Daten können nicht geladen werden!",
-                                    "severity": "error",
-                                    "summary": "Kontakte",
-                                    "type": "notify"
-                                  }
-                                ],
-                                "name": "dbHopeKurseTextbausteine.getBases",
-                                "parameters": [
-                                  {
-                                    "name": "$top",
-                                    "value": "event.top"
-                                  },
-                                  {
-                                    "name": "$skip",
-                                    "value": "event.skip"
-                                  },
-                                  {
-                                    "name": "$count",
-                                    "value": "event.top != null && event.skip != null"
-                                  },
-                                  {
-                                    "name": "$filter",
-                                    "value": "${event.filter}"
-                                  },
-                                  {
-                                    "name": "$orderby",
-                                    "value": "${event.orderby || 'Name1, Name2'}"
-                                  },
-                                  {
-                                    "name": "$expand",
-                                    "value": "BaseAnreden"
-                                  }
-                                ],
-                                "then": [
-                                  {
-                                    "name": "rstBase",
-                                    "type": "set",
-                                    "value": "${result.value}"
-                                  },
-                                  {
-                                    "name": "rstBaseCount",
-                                    "type": "set",
-                                    "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
-                                  },
-                                  {
-                                    "code": "${this.gridKontakte.onSelect(result.value[0])}",
-                                    "condition": "",
-                                    "type": "execute"
-                                  }
-                                ],
-                                "type": "invoke"
-                              }
-                            ],
-                            "rowSelect": [
-                              {
-                                "name": "dsoBase",
-                                "type": "set",
-                                "value": "${event}"
-                              },
-                              {
-                                "name": "dbHopeKurseTextbausteine.getBenutzers",
-                                "parameters": [
-                                  {
-                                    "name": "$filter",
-                                    "value": "BaseID eq ${event.BaseID}"
-                                  }
-                                ],
-                                "then": [
-                                  {
-                                    "name": "dsoBenutzer",
-                                    "type": "set",
-                                    "value": "${result.value[0]}"
-                                  }
-                                ],
-                                "type": "invoke"
-                              }
-                            ]
-                          },
-                          "filterCaseSensitivity": "caseInsensitive",
-                          "greaterThanOrEqualsText": "Greater than or equals",
-                          "greaterThanText": "Greater than",
-                          "lessThanOrEqualsText": "Less than or equals",
-                          "lessThanText": "Less than",
-                          "name": "gridKontakte",
-                          "notEqualsText": "Not equals",
-                          "pageSize": 15,
-                          "pageSizeOptions": [],
-                          "startsWithText": "Starts with",
+                          "headerTemplate": [
+                            {
+                              "components": [
+                                {
+                                  "class": "col-md-12 align-items-start d-flex",
+                                  "components": [
+                                    {
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "path": "kontakte-neu",
+                                            "then": [
+                                              {
+                                                "code": "this.gridKontakte.load();",
+                                                "condition": "${result} != null",
+                                                "type": "execute"
+                                              }
+                                            ],
+                                            "title": "Neuer Kontakt",
+                                            "type": "popup"
+                                          }
+                                        ]
+                                      },
+                                      "icon": "add",
+                                      "name": "button0",
+                                      "size": "sm",
+                                      "style": {
+                                        "marginRight": "-9px"
+                                      },
+                                      "text": "Neuer Kontakt",
+                                      "type": "button"
+                                    }
+                                  ],
+                                  "name": "col1",
+                                  "type": "col"
+                                }
+                              ],
+                              "name": "row0",
+                              "type": "row"
+                            }
+                          ],
+                          "name": "panel0",
                           "style": {
+                            "border": "1px solid #e6ecef",
                             "height": "750px"
                           },
-                          "title": "",
-                          "type": "grid",
-                          "value": ""
+                          "text": "${rstBaseCount} Kontakte",
+                          "type": "panel"
                         }
                       ],
                       "name": "col0",
@@ -1036,7 +1078,7 @@
                                           "name": "Notiz",
                                           "rows": 4,
                                           "style": {
-                                            "height": "141px",
+                                            "height": "171px",
                                             "width": "100%"
                                           },
                                           "type": "textarea",
@@ -1060,17 +1102,7 @@
                                   "components": [
                                     {
                                       "class": "col offset-sm-3 justify-content-end d-flex",
-                                      "components": [
-                                        {
-                                          "buttonStyle": "success",
-                                          "buttonType": "submit",
-                                          "icon": "save",
-                                          "name": "button4",
-                                          "style": {},
-                                          "text": "Änderungen speichern",
-                                          "type": "button"
-                                        }
-                                      ],
+                                      "components": [],
                                       "name": "col34",
                                       "style": {
                                         "paddingRight": "0"
@@ -1123,7 +1155,33 @@
                             }
                           ],
                           "footerTemplate": "",
-                          "headerTemplate": "",
+                          "headerTemplate": [
+                            {
+                              "components": [
+                                {
+                                  "class": "col-md-12 align-items-start d-flex",
+                                  "components": [
+                                    {
+                                      "buttonStyle": "success",
+                                      "buttonType": "submit",
+                                      "icon": "save",
+                                      "name": "button4",
+                                      "size": "sm",
+                                      "style": {
+                                        "marginRight": "-9px"
+                                      },
+                                      "text": "Änderungen speichern",
+                                      "type": "button"
+                                    }
+                                  ],
+                                  "name": "col16",
+                                  "type": "col"
+                                }
+                              ],
+                              "name": "row8",
+                              "type": "row"
+                            }
+                          ],
                           "name": "panel2",
                           "style": {
                             "border": "1px solid #e6ecef",
@@ -1333,8 +1391,8 @@
                           "name": "panel1",
                           "style": {
                             "border": "1px solid #e6ecef",
-                            "height": "375px",
-                            "marginTop": "15px"
+                            "height": "370px",
+                            "marginTop": "20px"
                           },
                           "text": "Sonstiges",
                           "type": "panel"
@@ -1342,7 +1400,7 @@
                       ],
                       "name": "col4",
                       "style": {
-                        "paddingLeft": "0"
+                        "paddingLeft": "5px"
                       },
                       "type": "col"
                     },
@@ -1370,39 +1428,7 @@
                                 },
                                 {
                                   "class": "col-md-7 justify-content-end d-flex",
-                                  "components": [
-                                    {
-                                      "buttonStyle": "light",
-                                      "events": {
-                                        "click": [
-                                          {
-                                            "code": "${dsoBase.BildURL} = 'https://hopekurse-textbausteine.app/upload/bilder/base/KeinBildPerson.png';",
-                                            "type": "execute"
-                                          },
-                                          {
-                                            "name": "dbHopeKurseTextbausteine.updateBase",
-                                            "parameters": [
-                                              {
-                                                "name": "BaseID",
-                                                "value": "${dsoBase.BaseID}"
-                                              },
-                                              {
-                                                "name": "Base",
-                                                "value": "${dsoBase}"
-                                              }
-                                            ],
-                                            "type": "invoke"
-                                          }
-                                        ]
-                                      },
-                                      "icon": "phonelink_erase",
-                                      "name": "buttonBildEntfernen",
-                                      "size": "sm",
-                                      "text": "Bild entfernen",
-                                      "tooltip": "",
-                                      "type": "button"
-                                    }
-                                  ],
+                                  "components": [],
                                   "name": "col6",
                                   "type": "col"
                                 }
@@ -1487,6 +1513,55 @@
                             }
                           ],
                           "footerTemplate": "",
+                          "headerTemplate": [
+                            {
+                              "components": [
+                                {
+                                  "class": "col-md-12 align-items-start d-flex",
+                                  "components": [
+                                    {
+                                      "buttonStyle": "light",
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "code": "${dsoBase.BildURL} = 'https://hopekurse-textbausteine.app/upload/bilder/base/KeinBildPerson.png';",
+                                            "type": "execute"
+                                          },
+                                          {
+                                            "name": "dbHopeKurseTextbausteine.updateBase",
+                                            "parameters": [
+                                              {
+                                                "name": "BaseID",
+                                                "value": "${dsoBase.BaseID}"
+                                              },
+                                              {
+                                                "name": "Base",
+                                                "value": "${dsoBase}"
+                                              }
+                                            ],
+                                            "type": "invoke"
+                                          }
+                                        ]
+                                      },
+                                      "icon": "phonelink_erase",
+                                      "name": "buttonBildEntfernen",
+                                      "size": "sm",
+                                      "style": {
+                                        "marginRight": "-9px"
+                                      },
+                                      "text": "Bild entfernen",
+                                      "tooltip": "",
+                                      "type": "button"
+                                    }
+                                  ],
+                                  "name": "col15",
+                                  "type": "col"
+                                }
+                              ],
+                              "name": "row8",
+                              "type": "row"
+                            }
+                          ],
                           "name": "Bild",
                           "style": {
                             "border": "1px solid #e6ecef",
@@ -1498,7 +1573,7 @@
                       ],
                       "name": "col3",
                       "style": {
-                        "paddingLeft": "0"
+                        "paddingLeft": "5px"
                       },
                       "type": "col"
                     }

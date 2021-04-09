@@ -10,7 +10,7 @@
     </div>
   </div>
   <rz-tabs #tabs0 [style]="{'float': 'none'}">
-    <rz-tabs-item [selected]="false" text="Daten">
+    <rz-tabs-item [selected]="true" text="Daten">
       <div class="row">
         <div class="col-md-6">
           <rz-grid #gridUsers addText="Neuer Benutzer" [allowAdd]="true" [allowDelete]="true" [allowFiltering]="true" [allowPaging]="true" [allowSorting]="true" [alwaysShowPager]="true" applyFilterText="Apply" clearFilterText="Clear" [confirmDelete]="true" confirmDeleteCancelText="Abbruch" confirmDeleteOkText="Löschen" confirmDeleteText="Bist du sicher, dass der Benutzer '${data.UserName}' gelöscht werden soll?" confirmDeleteTitle="Löschen Benutzer" containsText="Contains" [data]="rstUsers" emptyText="No records to display." endsWithText="Ends with" equalsText="Equals" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" [isLoading]="false" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="20" startsWithText="Starts with" [style]="{'height': '750px'}" (add)="gridUsersAdd($event)" (delete)="gridUsersDelete($event)" (rowDoubleClick)="gridUsersRowDoubleClick($event)" (rowSelect)="gridUsersRowSelect($event)">
@@ -20,7 +20,7 @@
             </rz-grid-column>
           </rz-grid>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6" [ngStyle]="{'paddingLeft': '5px'}">
           <rz-template-form #formBenutzer (submit)="formBenutzerSubmit($event)">
             <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
               <div class="col-md-3" [ngStyle]="{'textAlign': 'right'}">
@@ -86,15 +86,15 @@
         </div>
       </div>
     </rz-tabs-item>
-    <rz-tabs-item [selected]="true" text="Rollen">
+    <rz-tabs-item [selected]="false" text="Rollen">
       <div class="row">
-        <div class="col-md-6" [ngStyle]="{'paddingRight': '10px'}">
+        <div class="col-md-6" [ngStyle]="{}">
           <rz-grid #gridRoles addText="Neue Rolle" [allowAdd]="true" [allowDelete]="true" [allowFiltering]="true" [allowPaging]="true" [allowSorting]="true" [alwaysShowPager]="true" applyFilterText="Apply" clearFilterText="Clear" [confirmDelete]="true" confirmDeleteCancelText="Abbruch" confirmDeleteOkText="Löschen" confirmDeleteText="Bist du sicher, dass die Rolle '${data.Name}' gelöscht werden soll?" confirmDeleteTitle="Confirmation" containsText="Contains" [data]="rstRoles" emptyText="No records to display." endsWithText="Ends with" equalsText="Equals" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="10" startsWithText="Starts with" [style]="{'height': '750px'}" (add)="gridRolesAdd($event)" (delete)="gridRolesDelete($event)" (rowSelect)="gridRolesRowSelect($event)">
             <rz-grid-column property="Name" title="Benutzerrolle">
             </rz-grid-column>
           </rz-grid>
         </div>
-        <div class="col-md-6" [ngStyle]="{'paddingLeft': '10px'}">
+        <div class="col-md-6" [ngStyle]="{'paddingLeft': '5px'}">
           <rz-panel #panel0 [style]="{'border': '1px solid #e1e7eb', 'height': '750px'}" text="Rolle: {{varBenutzerrolleTitel}}">
           </rz-panel>
         </div>

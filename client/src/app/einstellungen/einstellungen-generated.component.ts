@@ -19,6 +19,8 @@ import { TextBoxComponent } from '@radzen/angular/dist/textbox';
 import { ButtonComponent } from '@radzen/angular/dist/button';
 
 import { ConfigService } from '../config.service';
+import { EinstellungenAutorenBearbeitenComponent } from '../einstellungen-autoren-bearbeiten/einstellungen-autoren-bearbeiten.component';
+import { EinstellungenAutorenNeuComponent } from '../einstellungen-autoren-neu/einstellungen-autoren-neu.component';
 
 import { DbHopeKurseTextbausteineService } from '../db-hope-kurse-textbausteine.service';
 import { SecurityService } from '../security.service';
@@ -183,7 +185,7 @@ export class EinstellungenGenerated implements AfterViewInit, OnInit, OnDestroy 
   }
 
   editButtonClick(event: any, data: any) {
-    this.gridTextbausteineAutoren.editRow(data);
+    this.dialogService.open(EinstellungenAutorenBearbeitenComponent, { parameters: {}, title: `Bearbeiten Autor` });
   }
 
   saveButtonClick(event: any, data: any) {
@@ -192,5 +194,9 @@ export class EinstellungenGenerated implements AfterViewInit, OnInit, OnDestroy 
 
   cancelButtonClick(event: any, data: any) {
     this.gridTextbausteineAutoren.cancelEditRow(data);
+  }
+
+  button0Click(event: any) {
+    this.dialogService.open(EinstellungenAutorenNeuComponent, { parameters: {}, title: `Neuer Autor ` });
   }
 }

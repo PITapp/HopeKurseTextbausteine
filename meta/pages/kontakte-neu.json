@@ -660,14 +660,14 @@
                       ],
                       "name": "row31",
                       "style": {
-                        "marginBottom": "4px"
+                        "marginBottom": "14px"
                       },
                       "type": "row"
                     },
                     {
                       "components": [
                         {
-                          "class": "col offset-sm-3",
+                          "class": "col offset-sm-3 justify-content-end d-flex",
                           "components": [
                             {
                               "buttonStyle": "success",

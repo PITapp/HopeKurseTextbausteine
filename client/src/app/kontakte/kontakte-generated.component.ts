@@ -13,9 +13,9 @@ import { NotificationService } from '@radzen/angular/dist/notification';
 import { ContentComponent } from '@radzen/angular/dist/content';
 import { HeadingComponent } from '@radzen/angular/dist/heading';
 import { TabsComponent } from '@radzen/angular/dist/tabs';
+import { PanelComponent } from '@radzen/angular/dist/panel';
 import { GridComponent } from '@radzen/angular/dist/grid';
 import { ButtonComponent } from '@radzen/angular/dist/button';
-import { PanelComponent } from '@radzen/angular/dist/panel';
 import { TemplateFormComponent } from '@radzen/angular/dist/template-form';
 import { LabelComponent } from '@radzen/angular/dist/label';
 import { DropDownComponent } from '@radzen/angular/dist/dropdown';
@@ -26,8 +26,8 @@ import { ImageComponent } from '@radzen/angular/dist/image';
 import { UploadComponent } from '@radzen/angular/dist/upload';
 
 import { ConfigService } from '../config.service';
-import { KontakteNeuComponent } from '../kontakte-neu/kontakte-neu.component';
 import { KontakteBearbeitenComponent } from '../kontakte-bearbeiten/kontakte-bearbeiten.component';
+import { KontakteNeuComponent } from '../kontakte-neu/kontakte-neu.component';
 
 import { DbHopeKurseTextbausteineService } from '../db-hope-kurse-textbausteine.service';
 import { SecurityService } from '../security.service';
@@ -39,7 +39,9 @@ export class KontakteGenerated implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('heading9') heading9: HeadingComponent;
   @ViewChild('heading2') heading2: HeadingComponent;
   @ViewChild('tabs0') tabs0: TabsComponent;
+  @ViewChild('panel0') panel0: PanelComponent;
   @ViewChild('gridKontakte') gridKontakte: GridComponent;
+  @ViewChild('button0') button0: ButtonComponent;
   @ViewChild('panel2') panel2: PanelComponent;
   @ViewChild('templateFormKontakte') templateFormKontakte: TemplateFormComponent;
   @ViewChild('label7') label7: LabelComponent;
@@ -85,8 +87,8 @@ export class KontakteGenerated implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('panel1') panel1: PanelComponent;
   @ViewChild('bild') bild: PanelComponent;
   @ViewChild('bildUrl') bildUrl: ImageComponent;
-  @ViewChild('buttonBildEntfernen') buttonBildEntfernen: ButtonComponent;
   @ViewChild('uploadBildBase') uploadBildBase: UploadComponent;
+  @ViewChild('buttonBildEntfernen') buttonBildEntfernen: ButtonComponent;
 
   router: Router;
 
@@ -181,15 +183,6 @@ export class KontakteGenerated implements AfterViewInit, OnInit, OnDestroy {
     this.strBildDateiName = 'Unbekannt';
   }
 
-  gridKontakteAdd(event: any) {
-    this.dialogService.open(KontakteNeuComponent, { parameters: {}, title: `Neuer Kontakt` })
-        .afterClosed().subscribe(result => {
-              if (result != null) {
-        this.gridKontakte.load();
-      }
-    });
-  }
-
   gridKontakteDelete(event: any) {
     this.dbHopeKurseTextbausteine.deleteBase(event.BaseID)
     .subscribe((result: any) => {
@@ -232,23 +225,21 @@ export class KontakteGenerated implements AfterViewInit, OnInit, OnDestroy {
     });
   }
 
+  button0Click(event: any) {
+    this.dialogService.open(KontakteNeuComponent, { parameters: {}, title: `Neuer Kontakt` })
+        .afterClosed().subscribe(result => {
+              if (result != null) {
+        this.gridKontakte.load();
+      }
+    });
+  }
+
   templateFormKontakteSubmit(event: any) {
     this.dbHopeKurseTextbausteine.updateBase(null, this.dsoBase.BaseID, event)
     .subscribe((result: any) => {
       this.notificationService.notify({ severity: "success", summary: `Kontakt`, detail: `Erfolgreich gespeichert!` });
     }, (result: any) => {
       this.notificationService.notify({ severity: "error", summary: `Kontakt`, detail: `Speichern fehlgeschlagen!` });
-    });
-  }
-
-  buttonBildEntfernenClick(event: any) {
-    this.dsoBase.BildURL = 'https://hopekurse-textbausteine.app/upload/bilder/base/KeinBildPerson.png';
-
-    this.dbHopeKurseTextbausteine.updateBase(null, this.dsoBase.BaseID, this.dsoBase)
-    .subscribe((result: any) => {
-
-    }, (result: any) => {
-
     });
   }
 
@@ -275,5 +266,16 @@ this.dsoBase.BildURL = 'https://hopekurse-textbausteine.app/upload/bilder/base/'
     });
 
     this.notificationService.notify({ severity: "success", summary: `Bild`, detail: `Erfolgreich hochgeladen!` });
+  }
+
+  buttonBildEntfernenClick(event: any) {
+    this.dsoBase.BildURL = 'https://hopekurse-textbausteine.app/upload/bilder/base/KeinBildPerson.png';
+
+    this.dbHopeKurseTextbausteine.updateBase(null, this.dsoBase.BaseID, this.dsoBase)
+    .subscribe((result: any) => {
+
+    }, (result: any) => {
+
+    });
   }
 }

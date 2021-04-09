@@ -13,36 +13,46 @@
     <rz-tabs-item [selected]="true" text="Daten">
       <div [ngStyle]="{'height': '100%'}" class="row">
         <div class="col-md-12">
-          <rz-grid #gridKontakte addText="Neuer Kontakt" [allowAdd]="true" [allowColumnReorder]="false" [allowDelete]="true" [allowFiltering]="true" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="true" [alwaysShowPager]="false" applyFilterText="Apply" clearFilterText="Clear" columnResizeMode="fit" columnWidth="auto" [confirmDelete]="true" confirmDeleteCancelText="Abbruch" confirmDeleteOkText="Löschen" confirmDeleteText="Bist du sicher, dass der Kontakt gelöscht werden soll?" confirmDeleteTitle="Kontakt löschen" containsText="Contains" [count]="rstBaseCount" [data]="rstBase" emptyText="Keine Kontakte vorhanden" endsWithText="Ends with" equalsText="Equals" filterCaseSensitivity="caseInsensitive" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="15" startsWithText="Starts with" [style]="{'height': '750px'}" (add)="gridKontakteAdd($event)" (delete)="gridKontakteDelete($event)" (loadData)="gridKontakteLoadData($event)" (rowSelect)="gridKontakteRowSelect($event)">
-            <rz-grid-column property="Name1" title="Name" width="120px" type="string">
-            </rz-grid-column>
-            <rz-grid-column property="Name2" title="Vorname" width="100px" type="string">
-            </rz-grid-column>
-            <rz-grid-column property="NameKuerzel" title="Kürzel" width="80px" type="string">
-            </rz-grid-column>
-            <rz-grid-column property="BaseAnreden.Anrede" title="Anrede" width="90px" type="string">
-            </rz-grid-column>
-            <rz-grid-column property="TitelVorne" title="Titel Vorne" width="100px" type="string">
-            </rz-grid-column>
-            <rz-grid-column property="TitelHinten" title="Titel Hinten" width="120px" type="string">
-            </rz-grid-column>
-            <rz-grid-column property="Telefon1" title="Telefon 1" type="string">
-            </rz-grid-column>
-            <rz-grid-column property="Telefon2" title="Telefon 2" type="string">
-            </rz-grid-column>
-            <rz-grid-column property="EMail1" title="E-Mail 1" type="string">
-            </rz-grid-column>
-            <rz-grid-column property="EMail2" title="E-Mail 2" type="string">
-            </rz-grid-column>
-            <rz-grid-column property="Notiz" title="Notiz" type="string">
-            </rz-grid-column>
-            <rz-grid-column [filterable]="false" [sortable]="false" textAlign="center" width="75px">
-              <ng-template let-data gridColumnTemplate>
-                <rz-button #editButton buttonStyle="light" icon="edit" size="sm" [style]="{'height': '20px', 'width': '20px'}" (click)="editButtonClick($event, data)">
-                </rz-button>
-              </ng-template>
-            </rz-grid-column>
-          </rz-grid>
+          <rz-panel #panel0 [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="{{rstBaseCount}} Kontakte">
+            <rz-grid #gridKontakte addText="Neuer Kontakt" [allowAdd]="false" [allowColumnReorder]="false" [allowDelete]="true" [allowFiltering]="true" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="true" [alwaysShowPager]="false" applyFilterText="Apply" clearFilterText="Clear" columnResizeMode="fit" columnWidth="auto" [confirmDelete]="true" confirmDeleteCancelText="Abbruch" confirmDeleteOkText="Löschen" confirmDeleteText="Bist du sicher, dass der Kontakt gelöscht werden soll?" confirmDeleteTitle="Kontakt löschen" containsText="Contains" [count]="rstBaseCount" [data]="rstBase" emptyText="Keine Kontakte vorhanden" endsWithText="Ends with" equalsText="Equals" filterCaseSensitivity="caseInsensitive" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="15" startsWithText="Starts with" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'height': '700px', 'marginLeft': '-10px', 'marginRight': '-10px', 'marginTop': '-13px'}" (delete)="gridKontakteDelete($event)" (loadData)="gridKontakteLoadData($event)" (rowSelect)="gridKontakteRowSelect($event)">
+              <rz-grid-column property="Name1" title="Name" width="120px" type="string">
+              </rz-grid-column>
+              <rz-grid-column property="Name2" title="Vorname" width="100px" type="string">
+              </rz-grid-column>
+              <rz-grid-column property="NameKuerzel" title="Kürzel" width="80px" type="string">
+              </rz-grid-column>
+              <rz-grid-column property="BaseAnreden.Anrede" title="Anrede" width="90px" type="string">
+              </rz-grid-column>
+              <rz-grid-column property="TitelVorne" title="Titel Vorne" width="100px" type="string">
+              </rz-grid-column>
+              <rz-grid-column property="TitelHinten" title="Titel Hinten" width="120px" type="string">
+              </rz-grid-column>
+              <rz-grid-column property="Telefon1" title="Telefon 1" type="string">
+              </rz-grid-column>
+              <rz-grid-column property="Telefon2" title="Telefon 2" type="string">
+              </rz-grid-column>
+              <rz-grid-column property="EMail1" title="E-Mail 1" type="string">
+              </rz-grid-column>
+              <rz-grid-column property="EMail2" title="E-Mail 2" type="string">
+              </rz-grid-column>
+              <rz-grid-column property="Notiz" title="Notiz" type="string">
+              </rz-grid-column>
+              <rz-grid-column [filterable]="false" [sortable]="false" textAlign="center" width="75px">
+                <ng-template let-data gridColumnTemplate>
+                  <rz-button #editButton buttonStyle="light" icon="edit" size="sm" [style]="{'height': '20px', 'width': '20px'}" (click)="editButtonClick($event, data)">
+                  </rz-button>
+                </ng-template>
+              </rz-grid-column>
+            </rz-grid>
+            <rz-panel-header>
+              <div class="row">
+                <div class="col-md-12 align-items-start d-flex">
+                  <rz-button #button0 icon="add" size="sm" [style]="{'marginRight': '-9px'}" text="Neuer Kontakt" (click)="button0Click($event)">
+                  </rz-button>
+                </div>
+              </div>
+            </rz-panel-header>
+          </rz-panel>
         </div>
       </div>
     </rz-tabs-item>
@@ -181,20 +191,26 @@
                   </rz-label>
                 </div>
                 <div class="col-md-9" [ngStyle]="{'paddingRight': '0'}">
-                  <rz-textarea #notiz [rows]="4" [style]="{'height': '141px', 'width': '100%'}" [(ngModel)]="dsoBase && dsoBase.Notiz" name="Notiz">
+                  <rz-textarea #notiz [rows]="4" [style]="{'height': '171px', 'width': '100%'}" [(ngModel)]="dsoBase && dsoBase.Notiz" name="Notiz">
                   </rz-textarea>
                 </div>
               </div>
               <div class="row">
                 <div class="col offset-sm-3 justify-content-end d-flex" [ngStyle]="{'paddingRight': '0'}">
-                  <rz-button #button4 buttonStyle="success" buttonType="submit" icon="save" [style]="{}" text="Änderungen speichern">
-                  </rz-button>
                 </div>
               </div>
             </rz-template-form>
+            <rz-panel-header>
+              <div class="row">
+                <div class="col-md-12 align-items-start d-flex">
+                  <rz-button #button4 buttonStyle="success" buttonType="submit" icon="save" size="sm" [style]="{'marginRight': '-9px'}" text="Änderungen speichern">
+                  </rz-button>
+                </div>
+              </div>
+            </rz-panel-header>
           </rz-panel>
         </div>
-        <div class="col-md-4" [ngStyle]="{'paddingLeft': '0'}">
+        <div class="col-md-4" [ngStyle]="{'paddingLeft': '5px'}">
           <rz-panel #panel3 [style]="{'border': '1px solid #e6ecef', 'height': '360px'}" text="Anmeldedaten">
             <rz-template-form #formBenutzer>
               <div [ngStyle]="{'marginBottom': '10px'}" class="row">
@@ -239,10 +255,10 @@
               </div>
             </rz-template-form>
           </rz-panel>
-          <rz-panel #panel1 [style]="{'border': '1px solid #e6ecef', 'height': '375px', 'marginTop': '15px'}" text="Sonstiges">
+          <rz-panel #panel1 [style]="{'border': '1px solid #e6ecef', 'height': '370px', 'marginTop': '20px'}" text="Sonstiges">
           </rz-panel>
         </div>
-        <div class="col-md-4" [ngStyle]="{'paddingLeft': '0'}">
+        <div class="col-md-4" [ngStyle]="{'paddingLeft': '5px'}">
           <rz-panel #bild [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="Profilbild">
             <div [ngStyle]="{'marginBottom': '15px'}" class="row">
               <div class="col-md-5">
@@ -250,8 +266,6 @@
                 </rz-image>
               </div>
               <div class="col-md-7 justify-content-end d-flex">
-                <rz-button #buttonBildEntfernen buttonStyle="light" icon="phonelink_erase" size="sm" text="Bild entfernen" (click)="buttonBildEntfernenClick($event)">
-                </rz-button>
               </div>
             </div>
             <div class="row">
@@ -260,6 +274,14 @@
                 </rz-upload>
               </div>
             </div>
+            <rz-panel-header>
+              <div class="row">
+                <div class="col-md-12 align-items-start d-flex">
+                  <rz-button #buttonBildEntfernen buttonStyle="light" icon="phonelink_erase" size="sm" [style]="{'marginRight': '-9px'}" text="Bild entfernen" (click)="buttonBildEntfernenClick($event)">
+                  </rz-button>
+                </div>
+              </div>
+            </rz-panel-header>
           </rz-panel>
         </div>
       </div>

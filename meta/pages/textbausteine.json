@@ -85,9 +85,7 @@
                         }
                       ],
                       "name": "col1",
-                      "style": {
-                        "paddingRight": "0px"
-                      },
+                      "style": {},
                       "type": "col"
                     },
                     {
@@ -130,7 +128,9 @@
                         }
                       ],
                       "name": "col2",
-                      "style": {},
+                      "style": {
+                        "paddingLeft": "5px"
+                      },
                       "type": "col"
                     }
                   ],
@@ -188,8 +188,8 @@
                           "name": "panel1",
                           "style": {
                             "border": "1px solid #e6ecef",
-                            "height": "375px",
-                            "marginTop": "15px"
+                            "height": "370px",
+                            "marginTop": "20px"
                           },
                           "text": "Sonstiges",
                           "type": "panel"
@@ -197,7 +197,7 @@
                       ],
                       "name": "col4",
                       "style": {
-                        "paddingLeft": "0"
+                        "paddingLeft": "5px"
                       },
                       "type": "col"
                     },
@@ -218,7 +218,7 @@
                       ],
                       "name": "col3",
                       "style": {
-                        "paddingLeft": "0"
+                        "paddingLeft": "5px"
                       },
                       "type": "col"
                     }

@@ -168,8 +168,9 @@
                                       "events": {
                                         "click": [
                                           {
-                                            "code": "this.gridTextbausteineAutoren.editRow(${data});",
-                                            "type": "execute"
+                                            "path": "einstellungen-autoren-bearbeiten",
+                                            "title": "Bearbeiten Autor",
+                                            "type": "popup"
                                           }
                                         ]
                                       },
@@ -413,6 +414,15 @@
                                   "class": "col-md-12 align-items-start d-flex",
                                   "components": [
                                     {
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "path": "einstellungen-autoren-neu",
+                                            "title": "Neuer Autor ",
+                                            "type": "popup"
+                                          }
+                                        ]
+                                      },
                                       "icon": "add",
                                       "name": "button0",
                                       "size": "sm",

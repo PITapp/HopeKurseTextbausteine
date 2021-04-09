@@ -33,6 +33,9 @@ import { AddIbsiKurseThemenComponent } from './add-ibsi-kurse-themen/add-ibsi-ku
 import { AddIbsiKurseComponent } from './add-ibsi-kurse/add-ibsi-kurse.component';
 import { EditIbsiKurseComponent } from './edit-ibsi-kurse/edit-ibsi-kurse.component';
 import { EditIbsiKurseThemenComponent } from './edit-ibsi-kurse-themen/edit-ibsi-kurse-themen.component';
+import { IbsiTextbausteineAutorenComponent } from './ibsi-textbausteine-autoren/ibsi-textbausteine-autoren.component';
+import { EinstellungenAutorenNeuComponent } from './einstellungen-autoren-neu/einstellungen-autoren-neu.component';
+import { EinstellungenAutorenBearbeitenComponent } from './einstellungen-autoren-bearbeiten/einstellungen-autoren-bearbeiten.component';
 
 import { SecurityService } from './security.service';
 import { AuthGuard } from './auth.guard';
@@ -271,6 +274,30 @@ export const routes: Routes = [
           roles: ['Authenticated'],
         },
         component: EditIbsiKurseThemenComponent
+      },
+      {
+        path: 'ibsi-textbausteine-autoren',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: IbsiTextbausteineAutorenComponent
+      },
+      {
+        path: 'einstellungen-autoren-neu',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: EinstellungenAutorenNeuComponent
+      },
+      {
+        path: 'einstellungen-autoren-bearbeiten/:AutorNr',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: EinstellungenAutorenBearbeitenComponent
       },
     ]
   },

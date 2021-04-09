@@ -507,6 +507,9 @@
                         }
                       ],
                       "name": "col2",
+                      "style": {
+                        "paddingLeft": "5px"
+                      },
                       "type": "col"
                     }
                   ],
@@ -514,7 +517,7 @@
                   "type": "row"
                 }
               ],
-              "selected": false,
+              "selected": true,
               "text": "Daten"
             },
             {
@@ -627,9 +630,7 @@
                         }
                       ],
                       "name": "col5",
-                      "style": {
-                        "paddingRight": "10px"
-                      },
+                      "style": {},
                       "type": "col"
                     },
                     {
@@ -648,7 +649,7 @@
                       ],
                       "name": "col6",
                       "style": {
-                        "paddingLeft": "10px"
+                        "paddingLeft": "5px"
                       },
                       "type": "col"
                     }
@@ -658,7 +659,7 @@
                 }
               ],
               "icon": "",
-              "selected": true,
+              "selected": false,
               "text": "Rollen"
             }
           ],
