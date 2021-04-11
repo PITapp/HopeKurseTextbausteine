@@ -1,126 +1,123 @@
 {
+  "access": [
+    "Authenticated"
+  ],
   "components": [
     {
-      "type": "content",
-      "container": "main",
       "components": [
         {
-          "type": "row",
           "components": [
             {
-              "type": "col",
               "class": "col-md-12",
               "components": [
                 {
-                  "type": "template-form",
-                  "name": "form0",
                   "components": [
                     {
-                      "type": "row",
-                      "style": {
-                        "marginBottom": "1rem"
-                      },
                       "components": [
                         {
-                          "type": "col",
                           "class": "col-md-3",
                           "components": [
                             {
-                              "type": "label",
-                              "text": "Name",
                               "component": "Name",
                               "name": "NameLabel",
                               "style": {
                                 "width": "100%"
-                              }
+                              },
+                              "text": "Name",
+                              "type": "label"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         },
                         {
-                          "type": "col",
                           "class": "col-md-9",
                           "components": [
                             {
                               "maxLength": 250,
-                              "type": "textbox",
                               "name": "Name",
                               "style": {
                                 "width": "100%"
-                              }
+                              },
+                              "type": "textbox"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         }
-                      ]
-                    },
-                    {
-                      "type": "row",
+                      ],
                       "style": {
                         "marginBottom": "1rem"
                       },
+                      "type": "row"
+                    },
+                    {
                       "components": [
                         {
-                          "type": "col",
                           "class": "col-md-3",
                           "components": [
                             {
-                              "type": "label",
-                              "text": "Kurzel",
                               "component": "Krzel",
                               "name": "KrzelLabel",
                               "style": {
                                 "width": "100%"
-                              }
+                              },
+                              "text": "Kürzel",
+                              "type": "label"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         },
                         {
-                          "type": "col",
                           "class": "col-md-9",
                           "components": [
                             {
                               "maxLength": 50,
-                              "type": "textbox",
                               "name": "Krzel",
                               "style": {
                                 "width": "100%"
-                              }
+                              },
+                              "type": "textbox"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         }
-                      ]
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
                     },
                     {
-                      "type": "row",
                       "components": [
                         {
-                          "type": "col",
-                          "class": "col offset-sm-3",
+                          "class": "col offset-sm-3 justify-content-end d-flex",
                           "components": [
                             {
-                              "type": "button",
+                              "buttonStyle": "success",
                               "buttonType": "submit",
                               "icon": "save",
-                              "text": "Save",
-                              "buttonStyle": "primary"
+                              "text": "Speichern",
+                              "type": "button"
                             },
                             {
-                              "type": "button",
                               "buttonStyle": "light",
-                              "style": {
-                                "marginLeft": "1rem"
-                              },
-                              "text": "Cancel",
                               "events": {
                                 "click": [
                                   {
                                     "type": "back"
                                   }
                                 ]
-                              }
+                              },
+                              "style": {
+                                "marginLeft": "1rem"
+                              },
+                              "text": "Abbruch",
+                              "type": "button"
                             }
-                          ]
+                          ],
+                          "type": "col"
                         }
-                      ]
+                      ],
+                      "type": "row"
                     }
                   ],
                   "events": {
@@ -143,27 +140,36 @@
                         ],
                         "then": [
                           {
-                            "type": "back"
+                            "severity": "success",
+                            "summary": "Autor erfolgreich erstellt",
+                            "type": "notify"
+                          },
+                          {
+                            "result": "${result}",
+                            "type": "close-popup"
                           }
                         ],
                         "type": "invoke"
                       }
                     ]
-                  }
+                  },
+                  "name": "form0",
+                  "type": "template-form"
                 }
-              ]
+              ],
+              "type": "col"
             }
-          ]
+          ],
+          "type": "row"
         }
-      ]
+      ],
+      "container": "main",
+      "type": "content"
     }
   ],
   "events": {
     "load": []
   },
-  "name": "EinstellungenAutorenNeu",
-  "access": [
-    "Authenticated"
-  ],
-  "layout": "Main"
+  "layout": "Main",
+  "name": "AutorenNeu"
 }

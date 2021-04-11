@@ -191,12 +191,7 @@
                                               }
                                             ],
                                             "path": "kontakte-bearbeiten",
-                                            "then": [
-                                              {
-                                                "code": "console.log(${result});",
-                                                "type": "execute"
-                                              }
-                                            ],
+                                            "then": [],
                                             "title": "Bearbeiten Kontakt",
                                             "type": "popup"
                                           }

@@ -8,25 +8,25 @@
             </rz-label>
           </div>
           <div class="col-md-9">
-            <rz-textbox #name [maxLength]="250" [style]="{'width': '100%'}" [(ngModel)]="ibsitextbausteineautoren && ibsitextbausteineautoren.Name" name="Name">
+            <rz-textbox #name [maxLength]="250" [style]="{'width': '100%'}" [(ngModel)]="dsoAutoren && dsoAutoren.Name" name="Name">
             </rz-textbox>
           </div>
         </div>
         <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
           <div class="col-md-3">
-            <rz-label #krzelLabel component="Krzel" [style]="{'width': '100%'}" text="Kurzel">
+            <rz-label #krzelLabel component="Krzel" [style]="{'width': '100%'}" text="Kürzel">
             </rz-label>
           </div>
           <div class="col-md-9">
-            <rz-textbox #krzel [maxLength]="50" [style]="{'width': '100%'}" [(ngModel)]="ibsitextbausteineautoren && ibsitextbausteineautoren.Krzel" name="Krzel">
+            <rz-textbox #krzel [maxLength]="50" [style]="{'width': '100%'}" [(ngModel)]="dsoAutoren && dsoAutoren.Krzel" name="Krzel">
             </rz-textbox>
           </div>
         </div>
         <div class="row">
           <div class="col offset-sm-3 justify-content-end d-flex">
-            <rz-button #button1 buttonStyle="primary" buttonType="submit" icon="save" text="Save">
+            <rz-button #button1 buttonStyle="success" buttonType="submit" icon="save" text="Speichern">
             </rz-button>
-            <rz-button #button2 buttonStyle="light" [style]="{'marginLeft': '1rem'}" text="Cancel" (click)="button2Click($event)">
+            <rz-button #button2 buttonStyle="light" [style]="{'marginLeft': '1rem'}" text="Abbruch" (click)="button2Click($event)">
             </rz-button>
           </div>
         </div>

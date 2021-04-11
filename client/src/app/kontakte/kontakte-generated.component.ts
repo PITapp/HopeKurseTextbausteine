@@ -219,10 +219,7 @@ export class KontakteGenerated implements AfterViewInit, OnInit, OnDestroy {
   }
 
   editButtonClick(event: any, data: any) {
-    this.dialogService.open(KontakteBearbeitenComponent, { parameters: {BaseID: data.BaseID}, title: `Bearbeiten Kontakt` })
-        .afterClosed().subscribe(result => {
-              console.log(result);
-    });
+    this.dialogService.open(KontakteBearbeitenComponent, { parameters: {BaseID: data.BaseID}, title: `Bearbeiten Kontakt` });
   }
 
   button0Click(event: any) {

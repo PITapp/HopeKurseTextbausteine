@@ -166,14 +166,24 @@
               "text": "Dashboard"
             },
             {
-              "icon": "assignment",
+              "icon": "description",
               "items": [],
               "parameters": [],
               "path": "textbausteine",
               "text": "Textbausteine"
             },
             {
-              "icon": "description",
+              "icon": "school",
+              "path": "kurse",
+              "text": "Kurse"
+            },
+            {
+              "icon": "rate_review",
+              "path": "autoren",
+              "text": "Autoren"
+            },
+            {
+              "icon": "create_new_folder",
               "path": "dokumente",
               "text": "Dokumente"
             },
@@ -196,14 +206,6 @@
               "icon": "settings",
               "path": "einstellungen",
               "text": "Einstellungen"
-            },
-            {
-              "path": "ibsi-kurse-2",
-              "text": "Item 7"
-            },
-            {
-              "path": "ibsi-kurse",
-              "text": "Item 8"
             }
           ],
           "name": "panelmenu0",

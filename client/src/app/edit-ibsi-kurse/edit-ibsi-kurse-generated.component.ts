@@ -11,7 +11,14 @@ import { Subscription } from 'rxjs';
 import { DialogService, DIALOG_PARAMETERS, DialogRef } from '@radzen/angular/dist/dialog';
 import { NotificationService } from '@radzen/angular/dist/notification';
 import { ContentComponent } from '@radzen/angular/dist/content';
-import { FormComponent } from '@radzen/angular/dist/form';
+import { TemplateFormComponent } from '@radzen/angular/dist/template-form';
+import { LabelComponent } from '@radzen/angular/dist/label';
+import { DropDownDataGridComponent } from '@radzen/angular/dist/dropdown-datagrid';
+import { RequiredValidatorComponent } from '@radzen/angular/dist/required-validator';
+import { TextBoxComponent } from '@radzen/angular/dist/textbox';
+import { NumericComponent } from '@radzen/angular/dist/numeric';
+import { CheckBoxComponent } from '@radzen/angular/dist/checkbox';
+import { ButtonComponent } from '@radzen/angular/dist/button';
 
 import { ConfigService } from '../config.service';
 
@@ -21,7 +28,26 @@ import { SecurityService } from '../security.service';
 export class EditIbsiKurseGenerated implements AfterViewInit, OnInit, OnDestroy {
   // Components
   @ViewChild('content1') content1: ContentComponent;
-  @ViewChild('form0') form0: FormComponent;
+  @ViewChild('form0') form0: TemplateFormComponent;
+  @ViewChild('kursArtNrLabel') kursArtNrLabel: LabelComponent;
+  @ViewChild('kursArtNr') kursArtNr: DropDownDataGridComponent;
+  @ViewChild('kursArtNrRequiredValidator') kursArtNrRequiredValidator: RequiredValidatorComponent;
+  @ViewChild('titelLabel') titelLabel: LabelComponent;
+  @ViewChild('titel') titel: TextBoxComponent;
+  @ViewChild('untertitelLabel') untertitelLabel: LabelComponent;
+  @ViewChild('untertitel') untertitel: TextBoxComponent;
+  @ViewChild('kurzzeichenLabel') kurzzeichenLabel: LabelComponent;
+  @ViewChild('kurzzeichen') kurzzeichen: TextBoxComponent;
+  @ViewChild('beschreibungLabel') beschreibungLabel: LabelComponent;
+  @ViewChild('beschreibung') beschreibung: TextBoxComponent;
+  @ViewChild('anzahlThemenLabel') anzahlThemenLabel: LabelComponent;
+  @ViewChild('anzahlThemen') anzahlThemen: NumericComponent;
+  @ViewChild('printkursLabel') printkursLabel: LabelComponent;
+  @ViewChild('printkurs') printkurs: CheckBoxComponent;
+  @ViewChild('onlinekursLabel') onlinekursLabel: LabelComponent;
+  @ViewChild('onlinekurs') onlinekurs: CheckBoxComponent;
+  @ViewChild('button1') button1: ButtonComponent;
+  @ViewChild('button2') button2: ButtonComponent;
 
   router: Router;
 
@@ -49,7 +75,10 @@ export class EditIbsiKurseGenerated implements AfterViewInit, OnInit, OnDestroy 
 
   security: SecurityService;
   ibsikurse: any;
-  getIbsiKurseArtensResult: any;
+  getByIbsiKurseArtensForKursArtNrResult: any;
+  getIbsiKurseArtensForKursArtNrPageSize: any;
+  getIbsiKurseArtensForKursArtNrResult: any;
+  getIbsiKurseArtensForKursArtNrCount: any;
   parameters: any;
 
   constructor(private injector: Injector) {
@@ -103,24 +132,29 @@ export class EditIbsiKurseGenerated implements AfterViewInit, OnInit, OnDestroy 
     this.dbHopeKurseTextbausteine.getIbsiKurseByKursNr(null, this.parameters.KursNr)
     .subscribe((result: any) => {
       this.ibsikurse = result;
+
+      if (this.ibsikurse.KursArtNr != null) {
+              this.dbHopeKurseTextbausteine.getIbsiKurseArtenByKursArtNr(null, this.ibsikurse.KursArtNr)
+        .subscribe((result: any) => {
+              this.getByIbsiKurseArtensForKursArtNrResult = result;
+        }, (result: any) => {
+      
+        });
+      }
     }, (result: any) => {
 
     });
 
-    this.dbHopeKurseTextbausteine.getIbsiKurseArtens(null, null, null, null, null, null, null, null)
+    this.getIbsiKurseArtensForKursArtNrPageSize = 10;
+
+    this.dbHopeKurseTextbausteine.getIbsiKurseArtens(null, this.getIbsiKurseArtensForKursArtNrPageSize, 0, null, true, null, null, null)
     .subscribe((result: any) => {
-      this.getIbsiKurseArtensResult = result.value;
+      this.getIbsiKurseArtensForKursArtNrResult = result.value;
+
+      this.getIbsiKurseArtensForKursArtNrCount = result['@odata.count'];
     }, (result: any) => {
 
     });
-  }
-
-  form0Cancel(event: any) {
-    if (this.dialogRef) {
-      this.dialogRef.close();
-    } else {
-      this._location.back();
-    }
   }
 
   form0Submit(event: any) {
@@ -134,5 +168,24 @@ export class EditIbsiKurseGenerated implements AfterViewInit, OnInit, OnDestroy 
     }, (result: any) => {
       this.notificationService.notify({ severity: "error", summary: `Error`, detail: `Unable to update IbsiKurse` });
     });
+  }
+
+  KursArtNrLoadData(event: any) {
+    this.dbHopeKurseTextbausteine.getIbsiKurseArtens(`${event.filter}`, event.top, event.skip, `${event.orderby}`, true, null, null, null)
+    .subscribe((result: any) => {
+      this.getIbsiKurseArtensForKursArtNrResult = result.value;
+
+      this.getIbsiKurseArtensForKursArtNrCount = result['@odata.count'];
+    }, (result: any) => {
+
+    });
+  }
+
+  button2Click(event: any) {
+    if (this.dialogRef) {
+      this.dialogRef.close();
+    } else {
+      this._location.back();
+    }
   }
 }

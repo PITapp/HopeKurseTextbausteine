@@ -4,7 +4,7 @@
       <rz-template-form #form0 (submit)="form0Submit($event)">
         <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
           <div class="col-md-3">
-            <rz-label #nameLabel text="Name" component="Name" [style]="{'width': '100%'}">
+            <rz-label #nameLabel component="Name" [style]="{'width': '100%'}" text="Name">
             </rz-label>
           </div>
           <div class="col-md-9">
@@ -14,7 +14,7 @@
         </div>
         <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
           <div class="col-md-3">
-            <rz-label #krzelLabel text="Kurzel" component="Krzel" [style]="{'width': '100%'}">
+            <rz-label #krzelLabel component="Krzel" [style]="{'width': '100%'}" text="Kürzel">
             </rz-label>
           </div>
           <div class="col-md-9">
@@ -23,10 +23,10 @@
           </div>
         </div>
         <div class="row">
-          <div class="col offset-sm-3">
-            <rz-button #button1 buttonType="submit" icon="save" text="Save" buttonStyle="primary">
+          <div class="col offset-sm-3 justify-content-end d-flex">
+            <rz-button #button1 buttonStyle="success" buttonType="submit" icon="save" text="Speichern">
             </rz-button>
-            <rz-button #button2 buttonStyle="light" [style]="{'marginLeft': '1rem'}" text="Cancel" (click)="button2Click($event)">
+            <rz-button #button2 buttonStyle="light" [style]="{'marginLeft': '1rem'}" text="Abbruch" (click)="button2Click($event)">
             </rz-button>
           </div>
         </div>

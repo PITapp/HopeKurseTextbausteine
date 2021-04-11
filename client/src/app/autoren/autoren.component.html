@@ -1,0 +1,64 @@
+<rz-content #content1 container="main">
+  <div [ngStyle]="{'height': '', 'marginTop': '-7px', 'paddingBottom': '0', 'paddingLeft': '5px', 'paddingRight': '3px', 'paddingTop': '0', 'width': ''}" class="row">
+    <div class="justify-content-start  col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex align-items-center" [ngStyle]="{'height': '57px', 'paddingBottom': '1px'}">
+      <rz-heading #heading18 size="H1" [style]="{'color': '#5d717b', 'display': 'inline-block'}" text="Autoren">
+      </rz-heading>
+      <rz-heading #heading19 size="H3" [style]="{'color': '#e5ecef', 'display': 'inline-block', 'marginTop': '7px', 'paddingLeft': '10px', 'paddingRight': '10px'}" text="|">
+      </rz-heading>
+      <rz-heading #heading21 size="H3" [style]="{'color': '#5d717b', 'display': 'inline', 'fontSize': '21px', 'fontWeight': 'normal'}" text="{{dsoAutoren?.Name}} ({{dsoAutoren?.Krzel}})" >
+      </rz-heading>
+    </div>
+  </div>
+  <rz-tabs #tabs0 [style]="{'float': 'none'}">
+    <rz-tabs-item [selected]="false" text="Daten">
+      <div class="row">
+        <div class="col-md-5">
+          <rz-panel #panel1 [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="{{rstAutorenCount}} Autoren">
+            <rz-grid #gridAutoren addText="Neuer Autor" [allowAdd]="false" [allowDelete]="true" [allowFiltering]="true" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="true" applyFilterText="Apply" clearFilterText="Clear" [confirmDelete]="true" confirmDeleteCancelText="Abbruch" confirmDeleteOkText="Löschen" confirmDeleteText="Bist du sicher, dass dieser Autor gelöscht werden soll?" confirmDeleteTitle="Löschen Autor" containsText="Contains" [count]="rstAutorenCount" [data]="rstAutoren" emptyText="Keine Autoren vorhanden" endsWithText="Ends with" equalsText="Equals" filterCaseSensitivity="caseInsensitive" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="15" startsWithText="Starts with" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'height': '700px', 'marginLeft': '-10px', 'marginRight': '-10px', 'marginTop': '-13px'}" (delete)="gridAutorenDelete($event)" (loadData)="gridAutorenLoadData($event)" (rowSelect)="gridAutorenRowSelect($event)">
+              <rz-grid-column property="Name" title="Autor" type="string">
+                <ng-template let-data gridColumnEditTemplate>
+                  <rz-textbox #name [style]="{'display': 'block', 'width': '100%'}" [(ngModel)]="data && data.Name" name="Name">
+                  </rz-textbox>
+                </ng-template>
+              </rz-grid-column>
+              <rz-grid-column property="Krzel" title="Kürzel" width="20%" type="string">
+                <ng-template let-data gridColumnEditTemplate>
+                  <rz-textbox #krzel [style]="{'display': 'block', 'width': '100%'}" [(ngModel)]="data && data.Krzel" name="Krzel">
+                  </rz-textbox>
+                </ng-template>
+              </rz-grid-column>
+              <rz-grid-column [filterable]="false" [sortable]="false" textAlign="center" width="70px">
+                <ng-template let-data gridColumnTemplate>
+                  <rz-button #editButton buttonStyle="light" icon="edit" size="sm" (click)="editButtonClick($event, data)">
+                  </rz-button>
+                </ng-template>
+              </rz-grid-column>
+            </rz-grid>
+            <rz-panel-header>
+              <div class="row">
+                <div class="col-md-12 align-items-start d-flex">
+                  <rz-button #button0 icon="add" size="sm" [style]="{'marginRight': '-9px'}" text="Neuer Autor" (click)="button0Click($event)">
+                  </rz-button>
+                </div>
+              </div>
+            </rz-panel-header>
+          </rz-panel>
+        </div>
+        <div class="col-md-7" [ngStyle]="{'paddingLeft': '5px'}">
+          <rz-panel #panel0 [allowCollapse]="false" [collapsed]="false" [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="{{rstTextbausteineCount}} Textbausteine von Autor {{dsoAutoren?.Name}}">
+            <rz-grid #grid0 addText="Add" [allowAdd]="false" [allowDelete]="false" [allowFiltering]="true" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="true" [alwaysShowPager]="true" applyFilterText="Apply" clearFilterText="Clear" [confirmDelete]="true" confirmDeleteCancelText="Cancel" confirmDeleteOkText="Ok" confirmDeleteText="Are you sure you want to delete this record?" confirmDeleteTitle="Confirmation" containsText="Contains" [count]="rstTextbausteineCount" [data]="rstTextbausteine" emptyText="Keine Textbausteine vorhanden" endsWithText="Ends with" equalsText="Equals" filterCaseSensitivity="caseInsensitive" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" [isLoading]="rstTextbausteineLaden" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="14" startsWithText="Starts with" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'height': '700px', 'marginLeft': '-10px', 'marginRight': '-10px', 'marginTop': '-8px'}">
+              <rz-grid-column property="IbsiKurse.Titel" title="Kurs" type="string">
+              </rz-grid-column>
+              <rz-grid-column property="IbsiTextbausteineArten.Bezeichnung" title="Art" type="string">
+              </rz-grid-column>
+              <rz-grid-column property="TitelTextbaustein" title="Titel" width="35%" type="string">
+              </rz-grid-column>
+              <rz-grid-column property="UntertitelTextbaustein" title="Untertitel" type="string">
+              </rz-grid-column>
+            </rz-grid>
+          </rz-panel>
+        </div>
+      </div>
+    </rz-tabs-item>
+  </rz-tabs>
+</rz-content>

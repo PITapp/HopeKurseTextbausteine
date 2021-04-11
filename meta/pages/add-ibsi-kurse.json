@@ -12,13 +12,390 @@
               "class": "col-md-12",
               "components": [
                 {
-                  "data": "",
+                  "type": "template-form",
+                  "name": "form0",
+                  "components": [
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Ibsi Kurse Arten",
+                              "component": "KursArtNr",
+                              "name": "KursArtNrLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "data": "${getIbsiKurseArtensForKursArtNrResult}",
+                              "textProperty": "Bezeichnung",
+                              "valueProperty": "KursArtNr",
+                              "placeholder": "Choose IbsiKurseArten",
+                              "count": "${getIbsiKurseArtensForKursArtNrCount}",
+                              "pageSize": "${getIbsiKurseArtensForKursArtNrPageSize}",
+                              "type": "dropdown-datagrid",
+                              "name": "KursArtNr",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "events": {
+                                "loadData": [
+                                  {
+                                    "name": "dbHopeKurseTextbausteine.getIbsiKurseArtens",
+                                    "parameters": [
+                                      {
+                                        "name": "$top",
+                                        "value": "${event.top}"
+                                      },
+                                      {
+                                        "name": "$skip",
+                                        "value": "${event.skip}"
+                                      },
+                                      {
+                                        "name": "$orderby",
+                                        "value": "${event.orderby}"
+                                      },
+                                      {
+                                        "name": "$filter",
+                                        "value": "${event.filter}"
+                                      },
+                                      {
+                                        "name": "$count",
+                                        "value": "true"
+                                      }
+                                    ],
+                                    "then": [
+                                      {
+                                        "name": "getIbsiKurseArtensForKursArtNrResult",
+                                        "type": "set",
+                                        "value": "${result.value}"
+                                      },
+                                      {
+                                        "name": "getIbsiKurseArtensForKursArtNrCount",
+                                        "type": "set",
+                                        "value": "result['@odata.count']"
+                                      }
+                                    ],
+                                    "type": "invoke"
+                                  }
+                                ]
+                              }
+                            },
+                            {
+                              "type": "required-validator",
+                              "name": "KursArtNrRequiredValidator",
+                              "component": "KursArtNr",
+                              "text": "KursArtNr is required",
+                              "style": {
+                                "position": "absolute"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Titel",
+                              "component": "Titel",
+                              "name": "TitelLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 50,
+                              "type": "textbox",
+                              "name": "Titel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Untertitel",
+                              "component": "Untertitel",
+                              "name": "UntertitelLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 50,
+                              "type": "textbox",
+                              "name": "Untertitel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Kurzzeichen",
+                              "component": "Kurzzeichen",
+                              "name": "KurzzeichenLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 10,
+                              "type": "textbox",
+                              "name": "Kurzzeichen",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Beschreibung",
+                              "component": "Beschreibung",
+                              "name": "BeschreibungLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 16777215,
+                              "type": "textbox",
+                              "name": "Beschreibung",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Anzahl Themen",
+                              "component": "AnzahlThemen",
+                              "name": "AnzahlThemenLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "type": "numeric",
+                              "name": "AnzahlThemen",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Printkurs",
+                              "component": "Printkurs",
+                              "name": "PrintkursLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "type": "checkbox",
+                              "name": "Printkurs",
+                              "triState": true
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Onlinekurs",
+                              "component": "Onlinekurs",
+                              "name": "OnlinekursLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "type": "checkbox",
+                              "name": "Onlinekurs",
+                              "triState": true
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col offset-sm-3",
+                          "components": [
+                            {
+                              "type": "button",
+                              "buttonType": "submit",
+                              "icon": "save",
+                              "text": "Save",
+                              "buttonStyle": "primary"
+                            },
+                            {
+                              "type": "button",
+                              "buttonStyle": "light",
+                              "style": {
+                                "marginLeft": "1rem"
+                              },
+                              "text": "Cancel",
+                              "events": {
+                                "click": [
+                                  {
+                                    "type": "back"
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ],
                   "events": {
-                    "cancel": [
-                      {
-                        "type": "back"
-                      }
-                    ],
                     "submit": [
                       {
                         "error": [
@@ -44,67 +421,7 @@
                         "type": "invoke"
                       }
                     ]
-                  },
-                  "fields": [
-                    {
-                      "data": "${getIbsiKurseArtensResult}",
-                      "property": "KursArtNr",
-                      "required": true,
-                      "textProperty": "Bezeichnung",
-                      "title": "Ibsi Kurse Arten",
-                      "type": "lookup",
-                      "valueProperty": "KursArtNr",
-                      "placeholder": "Choose IbsiKurseArten"
-                    },
-                    {
-                      "property": "Titel",
-                      "required": false,
-                      "title": "Titel",
-                      "type": "string",
-                      "maxLength": 50
-                    },
-                    {
-                      "property": "Untertitel",
-                      "required": false,
-                      "title": "Untertitel",
-                      "type": "string",
-                      "maxLength": 50
-                    },
-                    {
-                      "property": "Kurzzeichen",
-                      "required": false,
-                      "title": "Kurzzeichen",
-                      "type": "string",
-                      "maxLength": 10
-                    },
-                    {
-                      "property": "Beschreibung",
-                      "required": false,
-                      "title": "Beschreibung",
-                      "type": "string",
-                      "maxLength": 16777215
-                    },
-                    {
-                      "property": "AnzahlThemen",
-                      "required": false,
-                      "title": "Anzahl Themen",
-                      "type": "integer"
-                    },
-                    {
-                      "property": "Printkurs",
-                      "required": false,
-                      "title": "Printkurs",
-                      "type": "boolean"
-                    },
-                    {
-                      "property": "Onlinekurs",
-                      "required": false,
-                      "title": "Onlinekurs",
-                      "type": "boolean"
-                    }
-                  ],
-                  "name": "form0",
-                  "type": "form"
+                  }
                 }
               ]
             }
@@ -116,13 +433,36 @@
   "events": {
     "load": [
       {
+        "name": "getIbsiKurseArtensForKursArtNrPageSize",
+        "type": "set",
+        "value": "10"
+      },
+      {
         "name": "dbHopeKurseTextbausteine.getIbsiKurseArtens",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "$top",
+            "value": "${getIbsiKurseArtensForKursArtNrPageSize}"
+          },
+          {
+            "name": "$skip",
+            "value": "0"
+          },
+          {
+            "name": "$count",
+            "value": "true"
+          }
+        ],
         "then": [
           {
-            "name": "getIbsiKurseArtensResult",
+            "name": "getIbsiKurseArtensForKursArtNrResult",
             "type": "set",
             "value": "${result.value}"
+          },
+          {
+            "name": "getIbsiKurseArtensForKursArtNrCount",
+            "type": "set",
+            "value": "result['@odata.count']"
           }
         ],
         "type": "invoke"

@@ -1,0 +1,65 @@
+<rz-content #content1 container="main">
+  <div [ngStyle]="{'height': '', 'marginTop': '-7px', 'paddingBottom': '0', 'paddingLeft': '5px', 'paddingRight': '3px', 'paddingTop': '0', 'width': ''}" class="row">
+    <div class="justify-content-start  col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex align-items-center" [ngStyle]="{'height': '57px', 'paddingBottom': '1px'}">
+      <rz-heading #heading8 size="H1" [style]="{'color': '#5d717b', 'display': 'inline-block'}" text="Kurse">
+      </rz-heading>
+      <rz-heading #heading9 size="H3" [style]="{'color': '#e5ecef', 'display': 'inline-block', 'marginTop': '7px', 'paddingLeft': '10px', 'paddingRight': '10px'}" text="|">
+      </rz-heading>
+      <rz-heading #heading2 size="H3" [style]="{'color': '#5d717b', 'display': 'inline', 'fontSize': '21px', 'fontWeight': 'normal'}" [text]="dsoKurse?.Titel" >
+      </rz-heading>
+    </div>
+  </div>
+  <rz-tabs #tabs0 [style]="{'float': 'none'}">
+    <rz-tabs-item [selected]="true" text="Daten">
+      <div [ngStyle]="{'height': '100%'}" class="row">
+        <div class="col-md-12">
+          <rz-panel #panel0 [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text=" {{rstKurseCount}} Kurse">
+            <rz-grid #gridKurse addText="Add" [allowAdd]="false" [allowDelete]="true" [allowFiltering]="true" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="true" applyFilterText="Apply" clearFilterText="Clear" [confirmDelete]="true" confirmDeleteCancelText="Abbruch" confirmDeleteOkText="Löschen" confirmDeleteText="Bist du sicher, dass dieser Kurs gelöscht werden soll?" confirmDeleteTitle="Löschen Kurs" containsText="Contains" [count]="rstKurseCount" [data]="rstKurse" emptyText="Keine Kurse vorhanden" endsWithText="Ends with" equalsText="Equals" filterCaseSensitivity="caseInsensitive" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="15" startsWithText="Starts with" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'height': '700px', 'marginLeft': '-10px', 'marginRight': '-10px', 'marginTop': '-13px'}" [(value)]="dsoKurse" (delete)="gridKurseDelete($event)" (loadData)="gridKurseLoadData($event)" (rowSelect)="gridKurseRowSelect($event)">
+              <rz-grid-column property="Titel" title="Titel" type="string">
+              </rz-grid-column>
+              <rz-grid-column property="Untertitel" title="Untertitel" type="string">
+              </rz-grid-column>
+              <rz-grid-column property="Kurzzeichen" title="Kurzzeichen" type="string">
+              </rz-grid-column>
+              <rz-grid-column filterProperty="IbsiKurseArten.Bezeichnung" property="KursArtNr" sortProperty="IbsiKurseArten.Bezeichnung" title="Art" type="string">
+                <ng-template let-data gridColumnTemplate>
+                {{data?.IbsiKurseArten?.Bezeichnung}}
+                </ng-template>
+              </rz-grid-column>
+              <rz-grid-column property="Beschreibung" title="Beschreibung" type="string">
+              </rz-grid-column>
+              <rz-grid-column property="AnzahlThemen" textAlign="right" title="Anzahl Themen" type="integer">
+              </rz-grid-column>
+              <rz-grid-column property="Printkurs" textAlign="center" title="Printkurs" width="100px" type="string">
+                <ng-template let-data gridColumnTemplate>
+                {{((data?.Printkurs == true) ? ('Ja') : (''))}}
+                </ng-template>
+              </rz-grid-column>
+              <rz-grid-column property="Onlinekurs" textAlign="center" title="Onlinekurs" width="100px" type="string">
+                <ng-template let-data gridColumnTemplate>
+                {{((data?.Printkurs == true) ? ('Ja') : (''))}}
+                </ng-template>
+              </rz-grid-column>
+              <rz-grid-column [filterable]="false" [sortable]="false" textAlign="center" width="75px">
+                <ng-template let-data gridColumnTemplate>
+                  <rz-button #editButton buttonStyle="light" icon="edit" size="sm" (click)="editButtonClick($event, data)">
+                  </rz-button>
+                </ng-template>
+              </rz-grid-column>
+            </rz-grid>
+            <rz-panel-header>
+              <div class="row">
+                <div class="col-md-12 align-items-start d-flex">
+                  <rz-button #button0 icon="add" size="sm" [style]="{'marginRight': '-9px'}" text="Neuer Kurs" (click)="button0Click($event)">
+                  </rz-button>
+                </div>
+              </div>
+            </rz-panel-header>
+          </rz-panel>
+        </div>
+      </div>
+    </rz-tabs-item>
+    <rz-tabs-item [selected]="false" text="Themen">
+    </rz-tabs-item>
+  </rz-tabs>
+</rz-content>

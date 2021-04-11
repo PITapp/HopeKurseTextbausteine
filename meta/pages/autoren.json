@@ -17,7 +17,7 @@
                     "color": "#5d717b",
                     "display": "inline-block"
                   },
-                  "text": "Einstellungen",
+                  "text": "Autoren",
                   "type": "heading"
                 },
                 {
@@ -45,7 +45,7 @@
                     "fontSize": "21px",
                     "fontWeight": "normal"
                   },
-                  "text": "Grundeinstellungen in Modulen",
+                  "text": "${dsoAutoren.Name} (${dsoAutoren.Krzel})",
                   "type": "heading"
                 }
               ],
@@ -126,40 +126,7 @@
                                   "width": "20%"
                                 },
                                 {
-                                  "editTemplate": [
-                                    {
-                                      "buttonStyle": "success",
-                                      "events": {
-                                        "click": [
-                                          {
-                                            "code": "this.gridTextbausteineAutoren.updateRow(${data});",
-                                            "type": "execute"
-                                          }
-                                        ]
-                                      },
-                                      "icon": "done",
-                                      "name": "saveButton",
-                                      "size": "sm",
-                                      "text": "",
-                                      "type": "button"
-                                    },
-                                    {
-                                      "buttonStyle": "secondary",
-                                      "events": {
-                                        "click": [
-                                          {
-                                            "code": "this.gridTextbausteineAutoren.cancelEditRow(${data});",
-                                            "type": "execute"
-                                          }
-                                        ]
-                                      },
-                                      "icon": "cancel",
-                                      "name": "cancelButton",
-                                      "size": "sm",
-                                      "text": "",
-                                      "type": "button"
-                                    }
-                                  ],
+                                  "editTemplate": "",
                                   "filterable": false,
                                   "sortable": false,
                                   "template": [
@@ -168,6 +135,12 @@
                                       "events": {
                                         "click": [
                                           {
+                                            "parameters": [
+                                              {
+                                                "name": "AutorNr",
+                                                "value": "${data.AutorNr}"
+                                              }
+                                            ],
                                             "path": "autoren-bearbeiten",
                                             "title": "Bearbeiten Autor",
                                             "type": "popup"
@@ -189,47 +162,23 @@
                               "confirmDeleteCancelText": "Abbruch",
                               "confirmDeleteOkText": "Löschen",
                               "confirmDeleteText": "Bist du sicher, dass dieser Autor gelöscht werden soll?",
-                              "confirmDeleteTitle": "Confirmation",
+                              "confirmDeleteTitle": "Löschen Autor",
                               "containsText": "Contains",
-                              "count": "${rstTextbausteineAutorenCount}",
-                              "data": "${rstTextbausteineAutoren}",
-                              "emptyText": "Keine Daten vorhanden",
+                              "count": "${rstAutorenCount}",
+                              "data": "${rstAutoren}",
+                              "emptyText": "Keine Autoren vorhanden",
                               "endsWithText": "Ends with",
                               "equalsText": "Equals",
                               "events": {
-                                "add": [
-                                  {
-                                    "code": "this.gridTextbausteineAutoren.insertRow({});",
-                                    "type": "execute"
-                                  }
-                                ],
-                                "create": [
-                                  {
-                                    "error": [
-                                      {
-                                        "detail": "Autor konnte nicht erstellt werden!",
-                                        "severity": "error",
-                                        "summary": "Fehler",
-                                        "type": "notify"
-                                      }
-                                    ],
-                                    "name": "dbHopeKurseTextbausteine.createIbsiTextbausteineAutoren",
-                                    "parameters": [
-                                      {
-                                        "name": "IbsiTextbausteineAutoren",
-                                        "value": "${event}"
-                                      }
-                                    ],
-                                    "type": "invoke"
-                                  }
-                                ],
+                                "add": [],
+                                "create": [],
                                 "delete": [
                                   {
                                     "error": [
                                       {
-                                        "detail": "Autor konnte nicht gelöscht werden! ",
+                                        "detail": "",
                                         "severity": "error",
-                                        "summary": "Fehler",
+                                        "summary": "Autor konnte nicht gelöscht werden!",
                                         "type": "notify"
                                       }
                                     ],
@@ -242,9 +191,9 @@
                                     ],
                                     "then": [
                                       {
-                                        "detail": "Autor gelöscht!",
+                                        "detail": "",
                                         "severity": "success",
-                                        "summary": "Erfolgreich",
+                                        "summary": "Autor erfolgreich gelöscht",
                                         "type": "notify"
                                       }
                                     ],
@@ -255,9 +204,9 @@
                                   {
                                     "error": [
                                       {
-                                        "detail": "Autoren konnten nicht geladen werden!",
+                                        "detail": "",
                                         "severity": "error",
-                                        "summary": "Fehler",
+                                        "summary": "Autoren konnten nicht geladen werden!",
                                         "type": "notify"
                                       }
                                     ],
@@ -286,17 +235,17 @@
                                     ],
                                     "then": [
                                       {
-                                        "name": "rstTextbausteineAutoren",
+                                        "name": "rstAutoren",
                                         "type": "set",
                                         "value": "${result.value}"
                                       },
                                       {
-                                        "name": "rstTextbausteineAutorenCount",
+                                        "name": "rstAutorenCount",
                                         "type": "set",
                                         "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
                                       },
                                       {
-                                        "code": "${this.gridTextbausteineAutoren.onSelect(result.value[0])}",
+                                        "code": "${this.gridAutoren.onSelect(result.value[0])}",
                                         "type": "execute"
                                       }
                                     ],
@@ -305,7 +254,7 @@
                                 ],
                                 "rowSelect": [
                                   {
-                                    "name": "dsoTextbausteineAutoren",
+                                    "name": "dsoAutoren",
                                     "type": "set",
                                     "value": "${event}"
                                   },
@@ -362,37 +311,14 @@
                                     "type": "invoke"
                                   }
                                 ],
-                                "update": [
-                                  {
-                                    "error": [
-                                      {
-                                        "detail": "Unable to delete IbsiTextbausteineAutoren",
-                                        "severity": "error",
-                                        "summary": "Fehler",
-                                        "type": "notify"
-                                      }
-                                    ],
-                                    "name": "dbHopeKurseTextbausteine.updateIbsiTextbausteineAutoren",
-                                    "parameters": [
-                                      {
-                                        "name": "AutorNr",
-                                        "value": "${event.AutorNr}"
-                                      },
-                                      {
-                                        "name": "IbsiTextbausteineAutoren",
-                                        "value": "${event}"
-                                      }
-                                    ],
-                                    "type": "invoke"
-                                  }
-                                ]
+                                "update": []
                               },
                               "filterCaseSensitivity": "caseInsensitive",
                               "greaterThanOrEqualsText": "Greater than or equals",
                               "greaterThanText": "Greater than",
                               "lessThanOrEqualsText": "Less than or equals",
                               "lessThanText": "Less than",
-                              "name": "gridTextbausteineAutoren",
+                              "name": "gridAutoren",
                               "notEqualsText": "Not equals",
                               "pageSize": 15,
                               "startsWithText": "Starts with",
@@ -418,6 +344,13 @@
                                         "click": [
                                           {
                                             "path": "autoren-neu",
+                                            "then": [
+                                              {
+                                                "code": "\nthis.gridAutoren.load();",
+                                                "condition": "${result} != null",
+                                                "type": "execute"
+                                              }
+                                            ],
                                             "title": "Neuer Autor ",
                                             "type": "popup"
                                           }
@@ -446,7 +379,7 @@
                             "border": "1px solid #e6ecef",
                             "height": "750px"
                           },
-                          "text": "${rstTextbausteineAutorenCount} Autoren",
+                          "text": "${rstAutorenCount} Autoren",
                           "type": "panel"
                         }
                       ],
@@ -505,7 +438,7 @@
                               "containsText": "Contains",
                               "count": "${rstTextbausteineCount}",
                               "data": "${rstTextbausteine}",
-                              "emptyText": "Keine Daten vorhanden",
+                              "emptyText": "Keine Textbausteine vorhanden",
                               "endsWithText": "Ends with",
                               "equalsText": "Equals",
                               "events": {
@@ -537,12 +470,13 @@
                           ],
                           "footerTemplate": "",
                           "headerTemplate": "",
+                          "icon": "",
                           "name": "panel0",
                           "style": {
                             "border": "1px solid #e6ecef",
                             "height": "750px"
                           },
-                          "text": "${rstTextbausteineCount} Textbausteine von Autor ${dsoTextbausteineAutoren.Name}",
+                          "text": "${rstTextbausteineCount} Textbausteine von Autor ${dsoAutoren.Name}",
                           "type": "panel"
                         }
                       ],
@@ -558,34 +492,8 @@
                 }
               ],
               "icon": "",
-              "selected": true,
-              "text": "Autoren"
-            },
-            {
-              "components": [
-                {
-                  "items": [
-                    {
-                      "components": [],
-                      "icon": "",
-                      "text": "Daten"
-                    },
-                    {
-                      "text": "Themen"
-                    }
-                  ],
-                  "name": "tabs1",
-                  "type": "tabs"
-                }
-              ],
-              "icon": "",
               "selected": false,
-              "text": "Kurse"
-            },
-            {
-              "icon": "",
-              "selected": false,
-              "text": "Infotexte"
+              "text": "Daten"
             }
           ],
           "name": "tabs0",
@@ -604,11 +512,11 @@
   "events": {
     "load": [
       {
-        "code": "this.gridTextbausteineAutoren.load();",
+        "code": "this.gridAutoren.load();",
         "type": "execute"
       }
     ]
   },
   "layout": "Main",
-  "name": "Einstellungen"
+  "name": "Autoren"
 }

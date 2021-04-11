@@ -149,7 +149,7 @@ export class KontakteNeuGenerated implements AfterViewInit, OnInit, OnDestroy {
 
     this.dbHopeKurseTextbausteine.createBase(null, event)
     .subscribe((result: any) => {
-      this.notificationService.notify({ severity: "success", summary: `Kontakt erfolgreich erstellt!`, detail: `` });
+      this.notificationService.notify({ severity: "success", summary: `Kontakt erfolgreich erstellt`, detail: `` });
 
       this.dialogRef.close(result);
     }, (result: any) => {

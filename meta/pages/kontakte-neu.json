@@ -733,7 +733,7 @@
                           {
                             "detail": "",
                             "severity": "success",
-                            "summary": "Kontakt erfolgreich erstellt!",
+                            "summary": "Kontakt erfolgreich erstellt",
                             "type": "notify"
                           },
                           {

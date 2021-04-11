@@ -28,14 +28,15 @@ import { NachrichtenComponent } from './nachrichten/nachrichten.component';
 import { KontakteComponent } from './kontakte/kontakte.component';
 import { KontakteNeuComponent } from './kontakte-neu/kontakte-neu.component';
 import { KontakteBearbeitenComponent } from './kontakte-bearbeiten/kontakte-bearbeiten.component';
-import { IbsiKurseComponent } from './ibsi-kurse/ibsi-kurse.component';
 import { AddIbsiKurseThemenComponent } from './add-ibsi-kurse-themen/add-ibsi-kurse-themen.component';
 import { AddIbsiKurseComponent } from './add-ibsi-kurse/add-ibsi-kurse.component';
 import { EditIbsiKurseComponent } from './edit-ibsi-kurse/edit-ibsi-kurse.component';
 import { EditIbsiKurseThemenComponent } from './edit-ibsi-kurse-themen/edit-ibsi-kurse-themen.component';
-import { IbsiTextbausteineAutorenComponent } from './ibsi-textbausteine-autoren/ibsi-textbausteine-autoren.component';
-import { EinstellungenAutorenNeuComponent } from './einstellungen-autoren-neu/einstellungen-autoren-neu.component';
-import { EinstellungenAutorenBearbeitenComponent } from './einstellungen-autoren-bearbeiten/einstellungen-autoren-bearbeiten.component';
+import { AutorenNeuComponent } from './autoren-neu/autoren-neu.component';
+import { AutorenBearbeitenComponent } from './autoren-bearbeiten/autoren-bearbeiten.component';
+import { AutorenComponent } from './autoren/autoren.component';
+import { KurseComponent } from './kurse/kurse.component';
+import { IbsiKurseComponent } from './ibsi-kurse/ibsi-kurse.component';
 
 import { SecurityService } from './security.service';
 import { AuthGuard } from './auth.guard';
@@ -236,14 +237,6 @@ export const routes: Routes = [
         component: KontakteBearbeitenComponent
       },
       {
-        path: 'ibsi-kurse',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: IbsiKurseComponent
-      },
-      {
         path: 'add-ibsi-kurse-themen/:KursNr',
         canActivate: [AuthGuard],
         data: {
@@ -276,28 +269,44 @@ export const routes: Routes = [
         component: EditIbsiKurseThemenComponent
       },
       {
-        path: 'ibsi-textbausteine-autoren',
+        path: 'autoren-neu',
         canActivate: [AuthGuard],
         data: {
           roles: ['Authenticated'],
         },
-        component: IbsiTextbausteineAutorenComponent
+        component: AutorenNeuComponent
       },
       {
-        path: 'einstellungen-autoren-neu',
+        path: 'autoren-bearbeiten/:AutorNr',
         canActivate: [AuthGuard],
         data: {
           roles: ['Authenticated'],
         },
-        component: EinstellungenAutorenNeuComponent
+        component: AutorenBearbeitenComponent
       },
       {
-        path: 'einstellungen-autoren-bearbeiten/:AutorNr',
+        path: 'autoren',
         canActivate: [AuthGuard],
         data: {
           roles: ['Authenticated'],
         },
-        component: EinstellungenAutorenBearbeitenComponent
+        component: AutorenComponent
+      },
+      {
+        path: 'kurse',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: KurseComponent
+      },
+      {
+        path: 'ibsi-kurse',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: IbsiKurseComponent
       },
     ]
   },
