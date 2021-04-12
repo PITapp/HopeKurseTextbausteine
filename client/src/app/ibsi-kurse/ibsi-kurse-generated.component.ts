@@ -15,10 +15,10 @@ import { HeadingComponent } from '@radzen/angular/dist/heading';
 import { GridComponent } from '@radzen/angular/dist/grid';
 
 import { ConfigService } from '../config.service';
-import { AddIbsiKurseThemenComponent } from '../add-ibsi-kurse-themen/add-ibsi-kurse-themen.component';
-import { AddIbsiKurseComponent } from '../add-ibsi-kurse/add-ibsi-kurse.component';
-import { EditIbsiKurseComponent } from '../edit-ibsi-kurse/edit-ibsi-kurse.component';
-import { EditIbsiKurseThemenComponent } from '../edit-ibsi-kurse-themen/edit-ibsi-kurse-themen.component';
+import { KurseThemenNeuComponent } from '../kurse-themen-neu/kurse-themen-neu.component';
+import { KurseNeuComponent } from '../kurse-neu/kurse-neu.component';
+import { KurseBearbeitenComponent } from '../kurse-bearbeiten/kurse-bearbeiten.component';
+import { KurseThemenBearbeitenComponent } from '../kurse-themen-bearbeiten/kurse-themen-bearbeiten.component';
 
 import { DbHopeKurseTextbausteineService } from '../db-hope-kurse-textbausteine.service';
 import { SecurityService } from '../security.service';
@@ -138,11 +138,11 @@ export class IbsiKurseGenerated implements AfterViewInit, OnInit, OnDestroy {
   }
 
   grid0Add(event: any) {
-    this.dialogService.open(AddIbsiKurseComponent, { parameters: {}, title: 'Add Ibsi Kurse' });
+    this.dialogService.open(KurseNeuComponent, { parameters: {}, title: 'KurseNeu' });
   }
 
   grid0RowDoubleClick(event: any) {
-    this.dialogService.open(EditIbsiKurseComponent, { parameters: {KursNr: event.KursNr}, title: 'Edit Ibsi Kurse' });
+    this.dialogService.open(KurseBearbeitenComponent, { parameters: {KursNr: event.KursNr}, title: 'KurseBearbeiten' });
   }
 
   grid0RowSelect(event: any) {
@@ -157,7 +157,7 @@ export class IbsiKurseGenerated implements AfterViewInit, OnInit, OnDestroy {
   }
 
   grid1Add(event: any) {
-    this.dialogService.open(AddIbsiKurseThemenComponent, { parameters: {KursNr: this.master.KursNr}, title: 'Add Ibsi Kurse Themen' });
+    this.dialogService.open(KurseThemenNeuComponent, { parameters: {KursNr: this.master.KursNr}, title: 'KurseThemenNeu' });
   }
 
   grid1Delete(event: any) {
@@ -170,6 +170,6 @@ export class IbsiKurseGenerated implements AfterViewInit, OnInit, OnDestroy {
   }
 
   grid1RowSelect(event: any) {
-    this.dialogService.open(EditIbsiKurseThemenComponent, { parameters: {KursThemaNr: event.KursThemaNr}, title: 'Edit Ibsi Kurse Themen' });
+    this.dialogService.open(KurseThemenBearbeitenComponent, { parameters: {KursThemaNr: event.KursThemaNr}, title: 'KurseThemenBearbeiten' });
   }
 }

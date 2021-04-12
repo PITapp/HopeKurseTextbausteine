@@ -1,0 +1,100 @@
+<rz-content #content1 container="main">
+  <div class="row">
+    <div class="col-md-12">
+      <rz-template-form #form0 (submit)="form0Submit($event)">
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #kursNrLabel component="KursNr" [style]="{'width': '100%'}" text="Kurs">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-dropdown #kursNr [data]="rstKurse" emptyFilterText="No results found" multipleItemsSelectedText="{0} items selected" placeholder="Kurs auswählen" [style]="{'display': 'block', 'width': '100%'}" textProperty="Titel" [(ngModel)]="parameters && parameters.KursNr" valueProperty="KursNr" name="KursNr">
+            </rz-dropdown>
+            <rz-required-validator #kursNrRequiredValidator [component]="kursNr" [style]="{'position': 'absolute'}" text="Kurs ist erforderlich">
+            </rz-required-validator>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #nummerLabel component="Nummer" [style]="{'width': '100%'}" text="Nummer">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-numeric #nummer [style]="{'display': 'block', 'width': '100%'}" name="Nummer">
+            </rz-numeric>
+            <rz-required-validator #nummerRequiredValidator [component]="nummer" [style]="{'position': 'absolute'}" text="Nummer ist erforderlich">
+            </rz-required-validator>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #titelLabel component="Titel" [style]="{'width': '100%'}" text="Titel">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-textbox #titel [maxLength]="50" [style]="{'width': '100%'}" name="Titel">
+            </rz-textbox>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #untertitelLabel component="Untertitel" [style]="{'width': '100%'}" text="Untertitel">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-textbox #untertitel [maxLength]="100" [style]="{'width': '100%'}" name="Untertitel">
+            </rz-textbox>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #kurzbeschreibungLabel component="Kurzbeschreibung" [style]="{'width': '100%'}" text="Kurzbeschreibung">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-textarea #kurzbeschreibung [rows]="10" [style]="{'width': '100%'}" name="Kurzbeschreibung">
+            </rz-textarea>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #begleitmaterialLabel component="Begleitmaterial" [style]="{'width': '100%'}" text="Begleitmaterial">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-textarea #begleitmaterial [rows]="3" [style]="{'width': '100%'}" name="Begleitmaterial">
+            </rz-textarea>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #druckfehlerLabel component="Druckfehler" [style]="{'width': '100%'}" text="Druckfehler">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-textarea #druckfehler [rows]="3" [style]="{'width': '100%'}" name="Druckfehler">
+            </rz-textarea>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #infoMemoLabel component="InfoMemo" [style]="{'width': '100%'}" text="Notizen">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-textarea #infoMemo [rows]="3" [style]="{'width': '100%'}" name="InfoMemo">
+            </rz-textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col offset-sm-3 justify-content-end d-flex">
+            <rz-button #button1 buttonStyle="success" buttonType="submit" icon="save" text="Speichern">
+            </rz-button>
+            <rz-button #button2 buttonStyle="light" [style]="{'marginLeft': '1rem'}" text="Abbruch" (click)="button2Click($event)">
+            </rz-button>
+          </div>
+        </div>
+      </rz-template-form>
+    </div>
+  </div>
+</rz-content>

@@ -76,7 +76,7 @@
                 {
                   "components": [
                     {
-                      "class": "col-md-12",
+                      "class": "col-md-9",
                       "components": [
                         {
                           "components": [
@@ -94,17 +94,20 @@
                                 {
                                   "property": "Titel",
                                   "title": "Titel",
-                                  "type": "string"
+                                  "type": "string",
+                                  "width": "30%"
                                 },
                                 {
                                   "property": "Untertitel",
                                   "title": "Untertitel",
-                                  "type": "string"
+                                  "type": "string",
+                                  "width": "20%"
                                 },
                                 {
                                   "property": "Kurzzeichen",
                                   "title": "Kurzzeichen",
-                                  "type": "string"
+                                  "type": "string",
+                                  "width": "15%"
                                 },
                                 {
                                   "filterProperty": "IbsiKurseArten.Bezeichnung",
@@ -112,18 +115,21 @@
                                   "sortProperty": "IbsiKurseArten.Bezeichnung",
                                   "template": "${data.IbsiKurseArten?.Bezeichnung}",
                                   "title": "Art",
-                                  "type": "string"
+                                  "type": "string",
+                                  "width": "20%"
                                 },
                                 {
                                   "property": "Beschreibung",
                                   "title": "Beschreibung",
-                                  "type": "string"
+                                  "type": "string",
+                                  "width": "20%"
                                 },
                                 {
                                   "property": "AnzahlThemen",
-                                  "textAlign": "right",
-                                  "title": "Anzahl Themen",
-                                  "type": "integer"
+                                  "textAlign": "center",
+                                  "title": "Themen",
+                                  "type": "integer",
+                                  "width": "80px"
                                 },
                                 {
                                   "formatString": "",
@@ -153,18 +159,18 @@
                                           {
                                             "parameters": [
                                               {
-                                                "name": "AutorNr",
-                                                "value": "${data.AutorNr}"
+                                                "name": "KursNr",
+                                                "value": "${data.KursNr}"
                                               }
                                             ],
-                                            "path": "autoren-bearbeiten",
-                                            "title": "Bearbeiten Autor",
+                                            "path": "kurse-bearbeiten",
+                                            "title": "Bearbeiten Kurs",
                                             "type": "popup"
                                           }
                                         ]
                                       },
                                       "icon": "edit",
-                                      "name": "editButton",
+                                      "name": "editButtonKurse",
                                       "size": "sm",
                                       "text": "",
                                       "type": "button"
@@ -245,7 +251,7 @@
                                       },
                                       {
                                         "name": "$orderby",
-                                        "value": "${event.orderby}"
+                                        "value": "${event.orderby || 'Titel'}"
                                       },
                                       {
                                         "name": "$expand",
@@ -265,7 +271,7 @@
                                       },
                                       {
                                         "code": "${this.gridKurse.onSelect(result.value[0])}",
-                                        "condition": "result.value.length && !this.grid0.value",
+                                        "condition": "result.value.length && !this.gridKurse.value",
                                         "type": "execute"
                                       }
                                     ],
@@ -287,8 +293,20 @@
                                         "value": "KursNr eq ${event.KursNr}"
                                       },
                                       {
-                                        "name": "$expand",
-                                        "value": "IbsiKurse"
+                                        "name": "$top",
+                                        "value": "event.top"
+                                      },
+                                      {
+                                        "name": "$skip",
+                                        "value": "event.skip"
+                                      },
+                                      {
+                                        "name": "$count",
+                                        "value": "event.top != null && event.skip != null"
+                                      },
+                                      {
+                                        "name": "$orderby",
+                                        "value": "${event.orderby || 'Nummer'}"
                                       }
                                     ],
                                     "then": [
@@ -296,6 +314,11 @@
                                         "name": "rstKurseThemen",
                                         "type": "set",
                                         "value": "${result.value}"
+                                      },
+                                      {
+                                        "name": "rstKurseThemenCount",
+                                        "type": "set",
+                                        "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
                                       }
                                     ],
                                     "type": "invoke"
@@ -320,7 +343,7 @@
                               },
                               "title": "",
                               "type": "grid",
-                              "value": "${dsoKurse}"
+                              "value": ""
                             }
                           ],
                           "headerTemplate": [
@@ -333,15 +356,16 @@
                                       "events": {
                                         "click": [
                                           {
-                                            "path": "kontakte-neu",
+                                            "parameters": [],
+                                            "path": "kurse-neu",
                                             "then": [
                                               {
-                                                "code": "this.gridKontakte.load();",
+                                                "code": "this.gridKurse.load();",
                                                 "condition": "${result} != null",
                                                 "type": "execute"
                                               }
                                             ],
-                                            "title": "Neuer Kontakt",
+                                            "title": "Neuer Kurs",
                                             "type": "popup"
                                           }
                                         ]
@@ -375,6 +399,97 @@
                       ],
                       "name": "col0",
                       "type": "col"
+                    },
+                    {
+                      "class": "col-md-3",
+                      "components": [
+                        {
+                          "allowCollapse": false,
+                          "collapsed": false,
+                          "components": [
+                            {
+                              "addText": "Add",
+                              "allowAdd": false,
+                              "allowDelete": false,
+                              "allowFiltering": true,
+                              "allowMultiSorting": false,
+                              "allowPaging": false,
+                              "allowSorting": true,
+                              "alwaysShowPager": false,
+                              "applyFilterText": "Apply",
+                              "clearFilterText": "Clear",
+                              "columns": [
+                                {
+                                  "format": "",
+                                  "property": "Nummer",
+                                  "textAlign": "center",
+                                  "title": "Nummer",
+                                  "type": "integer",
+                                  "width": "40px"
+                                },
+                                {
+                                  "format": "",
+                                  "property": "Titel",
+                                  "title": "Titel",
+                                  "type": "string",
+                                  "width": "35%"
+                                }
+                              ],
+                              "confirmDelete": true,
+                              "confirmDeleteCancelText": "Cancel",
+                              "confirmDeleteOkText": "Ok",
+                              "confirmDeleteText": "Are you sure you want to delete this record?",
+                              "confirmDeleteTitle": "Confirmation",
+                              "containsText": "Contains",
+                              "count": "${rstKurseThemenCount}",
+                              "data": "${rstKurseThemen}",
+                              "emptyText": "Keine Themen vorhanden",
+                              "endsWithText": "Ends with",
+                              "equalsText": "Equals",
+                              "events": {
+                                "add": [],
+                                "delete": [],
+                                "loadData": [],
+                                "rowSelect": []
+                              },
+                              "filterCaseSensitivity": "caseInsensitive",
+                              "greaterThanOrEqualsText": "Greater than or equals",
+                              "greaterThanText": "Greater than",
+                              "isLoading": "",
+                              "lessThanOrEqualsText": "Less than or equals",
+                              "lessThanText": "Less than",
+                              "name": "gridKurseThemen",
+                              "notEqualsText": "Not equals",
+                              "pageSize": 100,
+                              "startsWithText": "Starts with",
+                              "style": {
+                                "border": "1px solid rgba(0, 0, 0, 0)",
+                                "height": "700px",
+                                "marginLeft": "-10px",
+                                "marginRight": "-10px",
+                                "marginTop": "-8px"
+                              },
+                              "title": "",
+                              "type": "grid"
+                            }
+                          ],
+                          "footerTemplate": "",
+                          "headerTemplate": "",
+                          "icon": "",
+                          "name": "panel1",
+                          "style": {
+                            "border": "1px solid #e6ecef",
+                            "height": "750px"
+                          },
+                          "text": "${rstKurseThemenCount} Themen im Kurs: ${dsoKurse.Titel}",
+                          "type": "panel"
+                        }
+                      ],
+                      "name": "col2",
+                      "style": {
+                        "paddingLeft": "5px"
+                      },
+                      "type": "col"
                     }
                   ],
                   "name": "row0",
@@ -389,7 +504,228 @@
               "text": "Daten"
             },
             {
-              "components": [],
+              "components": [
+                {
+                  "allowCollapse": false,
+                  "collapsed": false,
+                  "components": [
+                    {
+                      "addText": "Add",
+                      "allowAdd": false,
+                      "allowDelete": true,
+                      "allowFiltering": true,
+                      "allowMultiSorting": false,
+                      "allowPaging": true,
+                      "allowSorting": true,
+                      "applyFilterText": "Apply",
+                      "clearFilterText": "Clear",
+                      "columns": [
+                        {
+                          "format": "",
+                          "property": "Nummer",
+                          "textAlign": "center",
+                          "title": "Nummer",
+                          "type": "integer",
+                          "width": "80px"
+                        },
+                        {
+                          "format": "",
+                          "property": "Titel",
+                          "title": "Titel",
+                          "type": "string",
+                          "width": "20%"
+                        },
+                        {
+                          "format": "",
+                          "property": "Untertitel",
+                          "title": "Untertitel",
+                          "type": "string",
+                          "width": "15%"
+                        },
+                        {
+                          "format": "",
+                          "property": "Kurzbeschreibung",
+                          "title": "Kurzbeschreibung",
+                          "type": "string",
+                          "width": "15%"
+                        },
+                        {
+                          "format": "",
+                          "property": "Begleitmaterial",
+                          "title": "Begleitmaterial",
+                          "type": "string",
+                          "width": "15%"
+                        },
+                        {
+                          "format": "",
+                          "property": "Druckfehler",
+                          "title": "Druckfehler",
+                          "type": "string",
+                          "width": "15%"
+                        },
+                        {
+                          "format": "",
+                          "property": "InfoMemo",
+                          "title": "Notizen",
+                          "type": "string",
+                          "width": "20%"
+                        },
+                        {
+                          "filterable": false,
+                          "sortable": false,
+                          "template": [
+                            {
+                              "buttonStyle": "light",
+                              "events": {
+                                "click": [
+                                  {
+                                    "parameters": [
+                                      {
+                                        "name": "KursThemaNr",
+                                        "value": "${data.KursThemaNr}"
+                                      }
+                                    ],
+                                    "path": "kurse-themen-bearbeiten",
+                                    "title": "Bearbeiten Thema",
+                                    "type": "popup"
+                                  }
+                                ]
+                              },
+                              "icon": "edit",
+                              "name": "editButtonKurseThemen",
+                              "size": "sm",
+                              "text": "",
+                              "type": "button"
+                            }
+                          ],
+                          "textAlign": "center",
+                          "width": "75px"
+                        }
+                      ],
+                      "confirmDelete": true,
+                      "confirmDeleteCancelText": "Abbruch",
+                      "confirmDeleteOkText": "Löschen",
+                      "confirmDeleteText": "Bist du sicher, dass dieses Thema gelöscht werden soll?",
+                      "confirmDeleteTitle": "Löschen Thema",
+                      "containsText": "Contains",
+                      "count": "${rstKurseThemenCount}",
+                      "data": "${rstKurseThemen}",
+                      "emptyText": "Keine Themen vorhanden",
+                      "endsWithText": "Ends with",
+                      "equalsText": "Equals",
+                      "events": {
+                        "add": [],
+                        "delete": [
+                          {
+                            "error": [
+                              {
+                                "detail": "",
+                                "severity": "error",
+                                "summary": "Thema konnte nicht gelöscht werden!",
+                                "type": "notify"
+                              }
+                            ],
+                            "name": "dbHopeKurseTextbausteine.deleteIbsiKurseThemen",
+                            "parameters": [
+                              {
+                                "name": "KursThemaNr",
+                                "value": "${event.KursThemaNr}"
+                              }
+                            ],
+                            "then": [
+                              {
+                                "detail": "",
+                                "severity": "success",
+                                "summary": "Thema erfolgreich gelöscht",
+                                "type": "notify"
+                              }
+                            ],
+                            "type": "invoke"
+                          }
+                        ],
+                        "loadData": [],
+                        "rowDoubleClick": [],
+                        "rowSelect": []
+                      },
+                      "filterCaseSensitivity": "caseInsensitive",
+                      "greaterThanOrEqualsText": "Greater than or equals",
+                      "greaterThanText": "Greater than",
+                      "lessThanOrEqualsText": "Less than or equals",
+                      "lessThanText": "Less than",
+                      "name": "gridKurseThemen2",
+                      "notEqualsText": "Not equals",
+                      "pageSize": 15,
+                      "startsWithText": "Starts with",
+                      "style": {
+                        "border": "1px solid rgba(0, 0, 0, 0)",
+                        "height": "700px",
+                        "marginLeft": "-10px",
+                        "marginRight": "-10px",
+                        "marginTop": "-13px"
+                      },
+                      "title": "",
+                      "type": "grid",
+                      "value": ""
+                    }
+                  ],
+                  "footerTemplate": "",
+                  "headerTemplate": [
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-12 align-items-start d-flex",
+                          "components": [
+                            {
+                              "events": {
+                                "click": [
+                                  {
+                                    "parameters": [
+                                      {
+                                        "name": "KursNr",
+                                        "value": "${dsoKurse.KursNr}"
+                                      }
+                                    ],
+                                    "path": "kurse-themen-neu",
+                                    "then": [
+                                      {
+                                        "code": "this.gridKurseThemen2.load();",
+                                        "condition": "${result} != null",
+                                        "type": "execute"
+                                      }
+                                    ],
+                                    "title": "Neues Thema",
+                                    "type": "popup"
+                                  }
+                                ]
+                              },
+                              "icon": "add",
+                              "name": "button1",
+                              "size": "sm",
+                              "style": {
+                                "marginRight": "-9px"
+                              },
+                              "text": "Neues Thema",
+                              "type": "button"
+                            }
+                          ],
+                          "name": "col3",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row1",
+                      "type": "row"
+                    }
+                  ],
+                  "icon": "",
+                  "name": "panel2",
+                  "style": {
+                    "border": "1px solid #e6ecef",
+                    "height": "750px"
+                  },
+                  "text": "${rstKurseThemenCount} Themen",
+                  "type": "panel"
+                }
+              ],
               "icon": "",
               "selected": false,
               "text": "Themen"

@@ -1,0 +1,449 @@
+{
+  "access": [
+    "Authenticated"
+  ],
+  "components": [
+    {
+      "components": [
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "KursNr",
+                              "name": "KursNrLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Kurs",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "data": "${rstKurse}",
+                              "emptyFilterText": "No results found",
+                              "multipleItemsSelectedText": "{0} items selected",
+                              "name": "KursNr",
+                              "placeholder": "Kurs auswählen",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "template": "",
+                              "textProperty": "Titel",
+                              "type": "dropdown",
+                              "value": "${parameters.KursNr}",
+                              "valueProperty": "KursNr"
+                            },
+                            {
+                              "component": "KursNr",
+                              "name": "KursNrRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Kurs ist erforderlich",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Nummer",
+                              "name": "NummerLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Nummer",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "Nummer",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "numeric"
+                            },
+                            {
+                              "component": "Nummer",
+                              "name": "NummerRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Nummer ist erforderlich",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Titel",
+                              "name": "TitelLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Titel",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 50,
+                              "name": "Titel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "textbox"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Untertitel",
+                              "name": "UntertitelLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Untertitel",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 100,
+                              "name": "Untertitel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "textbox"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Kurzbeschreibung",
+                              "name": "KurzbeschreibungLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Kurzbeschreibung",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "Kurzbeschreibung",
+                              "rows": 10,
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "textarea",
+                              "value": ""
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Begleitmaterial",
+                              "name": "BegleitmaterialLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Begleitmaterial",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "Begleitmaterial",
+                              "rows": 3,
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "textarea",
+                              "value": ""
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Druckfehler",
+                              "name": "DruckfehlerLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Druckfehler",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "Druckfehler",
+                              "rows": 3,
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "textarea",
+                              "value": ""
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "InfoMemo",
+                              "name": "InfoMemoLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Notizen",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "InfoMemo",
+                              "rows": 3,
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "textarea",
+                              "value": ""
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col offset-sm-3 justify-content-end d-flex",
+                          "components": [
+                            {
+                              "buttonStyle": "success",
+                              "buttonType": "submit",
+                              "icon": "save",
+                              "text": "Speichern",
+                              "type": "button"
+                            },
+                            {
+                              "buttonStyle": "light",
+                              "events": {
+                                "click": [
+                                  {
+                                    "type": "back"
+                                  }
+                                ]
+                              },
+                              "style": {
+                                "marginLeft": "1rem"
+                              },
+                              "text": "Abbruch",
+                              "type": "button"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "type": "row"
+                    }
+                  ],
+                  "events": {
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "",
+                            "severity": "error",
+                            "summary": "Thema konnte nicht erstellt werden!",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "dbHopeKurseTextbausteine.createIbsiKurseThemen",
+                        "parameters": [
+                          {
+                            "name": "IbsiKurseThemen",
+                            "value": "${event}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "severity": "success",
+                            "summary": "Thema erfolgreich erstellt",
+                            "type": "notify"
+                          },
+                          {
+                            "result": "${result}",
+                            "type": "close-popup"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  },
+                  "name": "form0",
+                  "type": "template-form"
+                }
+              ],
+              "type": "col"
+            }
+          ],
+          "type": "row"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "dbHopeKurseTextbausteine.getIbsiKurses",
+        "parameters": [
+          {
+            "name": "$orderby",
+            "value": "Titel"
+          },
+          {
+            "name": "$select",
+            "value": "KursNr, Titel"
+          }
+        ],
+        "then": [
+          {
+            "name": "rstKurse",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "KurseThemenNeu"
+}

@@ -28,15 +28,16 @@ import { NachrichtenComponent } from './nachrichten/nachrichten.component';
 import { KontakteComponent } from './kontakte/kontakte.component';
 import { KontakteNeuComponent } from './kontakte-neu/kontakte-neu.component';
 import { KontakteBearbeitenComponent } from './kontakte-bearbeiten/kontakte-bearbeiten.component';
-import { AddIbsiKurseThemenComponent } from './add-ibsi-kurse-themen/add-ibsi-kurse-themen.component';
-import { AddIbsiKurseComponent } from './add-ibsi-kurse/add-ibsi-kurse.component';
-import { EditIbsiKurseComponent } from './edit-ibsi-kurse/edit-ibsi-kurse.component';
-import { EditIbsiKurseThemenComponent } from './edit-ibsi-kurse-themen/edit-ibsi-kurse-themen.component';
+import { KurseNeuComponent } from './kurse-neu/kurse-neu.component';
+import { KurseBearbeitenComponent } from './kurse-bearbeiten/kurse-bearbeiten.component';
 import { AutorenNeuComponent } from './autoren-neu/autoren-neu.component';
 import { AutorenBearbeitenComponent } from './autoren-bearbeiten/autoren-bearbeiten.component';
 import { AutorenComponent } from './autoren/autoren.component';
 import { KurseComponent } from './kurse/kurse.component';
 import { IbsiKurseComponent } from './ibsi-kurse/ibsi-kurse.component';
+import { IbsiKurseThemenComponent } from './ibsi-kurse-themen/ibsi-kurse-themen.component';
+import { KurseThemenNeuComponent } from './kurse-themen-neu/kurse-themen-neu.component';
+import { KurseThemenBearbeitenComponent } from './kurse-themen-bearbeiten/kurse-themen-bearbeiten.component';
 
 import { SecurityService } from './security.service';
 import { AuthGuard } from './auth.guard';
@@ -237,36 +238,20 @@ export const routes: Routes = [
         component: KontakteBearbeitenComponent
       },
       {
-        path: 'add-ibsi-kurse-themen/:KursNr',
+        path: 'kurse-neu',
         canActivate: [AuthGuard],
         data: {
           roles: ['Authenticated'],
         },
-        component: AddIbsiKurseThemenComponent
+        component: KurseNeuComponent
       },
       {
-        path: 'add-ibsi-kurse',
+        path: 'kurse-bearbeiten/:KursNr',
         canActivate: [AuthGuard],
         data: {
           roles: ['Authenticated'],
         },
-        component: AddIbsiKurseComponent
-      },
-      {
-        path: 'edit-ibsi-kurse/:KursNr',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: EditIbsiKurseComponent
-      },
-      {
-        path: 'edit-ibsi-kurse-themen/:KursThemaNr',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: EditIbsiKurseThemenComponent
+        component: KurseBearbeitenComponent
       },
       {
         path: 'autoren-neu',
@@ -307,6 +292,30 @@ export const routes: Routes = [
           roles: ['Authenticated'],
         },
         component: IbsiKurseComponent
+      },
+      {
+        path: 'ibsi-kurse-themen',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: IbsiKurseThemenComponent
+      },
+      {
+        path: 'kurse-themen-neu/:KursNr',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: KurseThemenNeuComponent
+      },
+      {
+        path: 'kurse-themen-bearbeiten/:KursThemaNr',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: KurseThemenBearbeitenComponent
       },
     ]
   },

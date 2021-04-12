@@ -116,7 +116,7 @@
                     ],
                     "add": [
                       {
-                        "path": "add-ibsi-kurse",
+                        "path": "kurse-neu",
                         "type": "popup"
                       }
                     ],
@@ -128,7 +128,7 @@
                             "value": "${event.KursNr}"
                           }
                         ],
-                        "path": "edit-ibsi-kurse",
+                        "path": "kurse-bearbeiten",
                         "type": "popup"
                       }
                     ],
@@ -213,7 +213,24 @@
                     }
                   ],
                   "type": "grid",
-                  "value": "${master}"
+                  "value": "${master}",
+                  "confirmDeleteText": "Are you sure you want to delete this record?",
+                  "confirmDeleteTitle": "Confirmation",
+                  "confirmDeleteOkText": "Ok",
+                  "confirmDeleteCancelText": "Cancel",
+                  "emptyText": "No records to display.",
+                  "addText": "Add",
+                  "clearFilterText": "Clear",
+                  "applyFilterText": "Apply",
+                  "equalsText": "Equals",
+                  "notEqualsText": "Not equals",
+                  "lessThanText": "Less than",
+                  "lessThanOrEqualsText": "Less than or equals",
+                  "greaterThanText": "Greater than",
+                  "greaterThanOrEqualsText": "Greater than or equals",
+                  "endsWithText": "Ends with",
+                  "containsText": "Contains",
+                  "startsWithText": "Starts with"
                 },
                 {
                   "name": "heading1",
@@ -278,7 +295,7 @@
                   "events": {
                     "add": [
                       {
-                        "path": "add-ibsi-kurse-themen",
+                        "path": "kurse-themen-neu",
                         "type": "popup",
                         "parameters": [
                           {
@@ -326,7 +343,7 @@
                             "value": "${event.KursThemaNr}"
                           }
                         ],
-                        "path": "edit-ibsi-kurse-themen",
+                        "path": "kurse-themen-bearbeiten",
                         "type": "popup",
                         "then": []
                       }
@@ -334,7 +351,24 @@
                   },
                   "allowAdd": true,
                   "allowDelete": true,
-                  "allowMultiSorting": false
+                  "allowMultiSorting": false,
+                  "confirmDeleteText": "Are you sure you want to delete this record?",
+                  "confirmDeleteTitle": "Confirmation",
+                  "confirmDeleteOkText": "Ok",
+                  "confirmDeleteCancelText": "Cancel",
+                  "emptyText": "No records to display.",
+                  "addText": "Add",
+                  "clearFilterText": "Clear",
+                  "applyFilterText": "Apply",
+                  "equalsText": "Equals",
+                  "notEqualsText": "Not equals",
+                  "lessThanText": "Less than",
+                  "lessThanOrEqualsText": "Less than or equals",
+                  "greaterThanText": "Greater than",
+                  "greaterThanOrEqualsText": "Greater than or equals",
+                  "endsWithText": "Ends with",
+                  "containsText": "Contains",
+                  "startsWithText": "Starts with"
                 }
               ]
             }
@@ -352,6 +386,8 @@
     ]
   },
   "name": "IbsiKurse",
-  "access": "Authenticated",
+  "access": [
+    "Authenticated"
+  ],
   "layout": "Main"
 }

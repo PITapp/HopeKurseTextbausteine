@@ -18,8 +18,10 @@ import { GridComponent } from '@radzen/angular/dist/grid';
 import { ButtonComponent } from '@radzen/angular/dist/button';
 
 import { ConfigService } from '../config.service';
-import { AutorenBearbeitenComponent } from '../autoren-bearbeiten/autoren-bearbeiten.component';
-import { KontakteNeuComponent } from '../kontakte-neu/kontakte-neu.component';
+import { KurseThemenBearbeitenComponent } from '../kurse-themen-bearbeiten/kurse-themen-bearbeiten.component';
+import { KurseThemenNeuComponent } from '../kurse-themen-neu/kurse-themen-neu.component';
+import { KurseBearbeitenComponent } from '../kurse-bearbeiten/kurse-bearbeiten.component';
+import { KurseNeuComponent } from '../kurse-neu/kurse-neu.component';
 
 import { DbHopeKurseTextbausteineService } from '../db-hope-kurse-textbausteine.service';
 import { SecurityService } from '../security.service';
@@ -34,6 +36,11 @@ export class KurseGenerated implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('panel0') panel0: PanelComponent;
   @ViewChild('gridKurse') gridKurse: GridComponent;
   @ViewChild('button0') button0: ButtonComponent;
+  @ViewChild('panel1') panel1: PanelComponent;
+  @ViewChild('gridKurseThemen') gridKurseThemen: GridComponent;
+  @ViewChild('panel2') panel2: PanelComponent;
+  @ViewChild('gridKurseThemen2') gridKurseThemen2: GridComponent;
+  @ViewChild('button1') button1: ButtonComponent;
 
   router: Router;
 
@@ -65,6 +72,7 @@ export class KurseGenerated implements AfterViewInit, OnInit, OnDestroy {
   rstKurseCount: any;
   dsoKurse: any;
   rstKurseThemen: any;
+  rstKurseThemenCount: any;
 
   constructor(private injector: Injector) {
   }
@@ -127,13 +135,13 @@ export class KurseGenerated implements AfterViewInit, OnInit, OnDestroy {
   }
 
   gridKurseLoadData(event: any) {
-    this.dbHopeKurseTextbausteine.getIbsiKurses(`${event.filter}`, event.top, event.skip, `${event.orderby}`, event.top != null && event.skip != null, `IbsiKurseArten`, null, null)
+    this.dbHopeKurseTextbausteine.getIbsiKurses(`${event.filter}`, event.top, event.skip, `${event.orderby || 'Titel'}`, event.top != null && event.skip != null, `IbsiKurseArten`, null, null)
     .subscribe((result: any) => {
       this.rstKurse = result.value;
 
       this.rstKurseCount = event.top != null && event.skip != null ? result['@odata.count'] : result.value.length;
 
-      if (result.value.length && !this.grid0.value) {
+      if (result.value.length && !this.gridKurse.value) {
         this.gridKurse.onSelect(result.value[0])
       }
     }, (result: any) => {
@@ -144,23 +152,47 @@ export class KurseGenerated implements AfterViewInit, OnInit, OnDestroy {
   gridKurseRowSelect(event: any) {
     this.dsoKurse = event;
 
-    this.dbHopeKurseTextbausteine.getIbsiKurseThemens(`KursNr eq ${event.KursNr}`, null, null, null, null, `IbsiKurse`, null, null)
+    this.dbHopeKurseTextbausteine.getIbsiKurseThemens(`KursNr eq ${event.KursNr}`, event.top, event.skip, `${event.orderby || 'Nummer'}`, event.top != null && event.skip != null, null, null, null)
     .subscribe((result: any) => {
       this.rstKurseThemen = result.value;
+
+      this.rstKurseThemenCount = event.top != null && event.skip != null ? result['@odata.count'] : result.value.length;
     }, (result: any) => {
 
     });
   }
 
-  editButtonClick(event: any, data: any) {
-    this.dialogService.open(AutorenBearbeitenComponent, { parameters: {AutorNr: data.AutorNr}, title: `Bearbeiten Autor` });
+  editButtonKurseClick(event: any, data: any) {
+    this.dialogService.open(KurseBearbeitenComponent, { parameters: {KursNr: data.KursNr}, title: `Bearbeiten Kurs` });
   }
 
   button0Click(event: any) {
-    this.dialogService.open(KontakteNeuComponent, { parameters: {}, title: `Neuer Kontakt` })
+    this.dialogService.open(KurseNeuComponent, { parameters: {}, title: `Neuer Kurs` })
         .afterClosed().subscribe(result => {
               if (result != null) {
-        this.gridKontakte.load();
+        this.gridKurse.load();
+      }
+    });
+  }
+
+  gridKurseThemen2Delete(event: any) {
+    this.dbHopeKurseTextbausteine.deleteIbsiKurseThemen(event.KursThemaNr)
+    .subscribe((result: any) => {
+      this.notificationService.notify({ severity: "success", summary: `Thema erfolgreich gelöscht`, detail: `` });
+    }, (result: any) => {
+      this.notificationService.notify({ severity: "error", summary: `Thema konnte nicht gelöscht werden!`, detail: `` });
+    });
+  }
+
+  editButtonKurseThemenClick(event: any, data: any) {
+    this.dialogService.open(KurseThemenBearbeitenComponent, { parameters: {KursThemaNr: data.KursThemaNr}, title: `Bearbeiten Thema` });
+  }
+
+  button1Click(event: any) {
+    this.dialogService.open(KurseThemenNeuComponent, { parameters: {KursNr: this.dsoKurse.KursNr}, title: `Neues Thema` })
+        .afterClosed().subscribe(result => {
+              if (result != null) {
+        this.gridKurseThemen2.load();
       }
     });
   }
