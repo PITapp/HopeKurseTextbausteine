@@ -37,7 +37,7 @@
               </rz-grid-column>
               <rz-grid-column property="Onlinekurs" textAlign="center" title="Onlinekurs" width="100px" type="string">
                 <ng-template let-data gridColumnTemplate>
-                {{((data?.Printkurs == true) ? ('Ja') : (''))}}
+                {{((data?.Onlinekurs == true) ? ('Ja') : (''))}}
                 </ng-template>
               </rz-grid-column>
               <rz-grid-column [filterable]="false" [sortable]="false" textAlign="center" width="75px">

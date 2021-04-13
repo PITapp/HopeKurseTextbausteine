@@ -119,13 +119,11 @@ export class AutorenBearbeitenGenerated implements AfterViewInit, OnInit, OnDest
   form0Submit(event: any) {
     this.dbHopeKurseTextbausteine.updateIbsiTextbausteineAutoren(null, this.parameters.AutorNr, event)
     .subscribe((result: any) => {
-      if (this.dialogRef) {
-        this.dialogRef.close();
-      } else {
-        this._location.back();
-      }
+      this.notificationService.notify({ severity: "success", summary: ``, detail: `Autor gespeichert` });
+
+      this.dialogRef.close(result);
     }, (result: any) => {
-      this.notificationService.notify({ severity: "error", summary: `Autor konnte nicht geändert werden!`, detail: `` });
+      this.notificationService.notify({ severity: "error", summary: ``, detail: `Autor konnte nicht geändert werden!` });
     });
   }
 

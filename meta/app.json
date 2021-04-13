@@ -24,9 +24,7 @@
   "namespaces": [],
   "navigation": [
     "Dashboard",
-    "Kontakte",
-    "IbsiKurse",
-    "IbsiKurseThemen"
+    "Kontakte"
   ],
   "pages": [
     "BenutzerNeu",
@@ -60,10 +58,11 @@
     "AutorenBearbeiten",
     "Autoren",
     "Kurse",
-    "IbsiKurse",
-    "IbsiKurseThemen",
     "KurseThemenNeu",
-    "KurseThemenBearbeiten"
+    "KurseThemenBearbeiten",
+    "EinstellungenInfotexteNeu",
+    "EinstellungenInfotexteBearbeiten",
+    "MeldungLoeschen"
   ],
   "port": 8000,
   "security": {

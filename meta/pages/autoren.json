@@ -144,6 +144,10 @@
                                             "path": "autoren-bearbeiten",
                                             "title": "Bearbeiten Autor",
                                             "type": "popup"
+                                          },
+                                          {
+                                            "code": "${this.gridAutoren.onSelect(data)}",
+                                            "type": "execute"
                                           }
                                         ]
                                       },
@@ -161,7 +165,7 @@
                               "confirmDelete": true,
                               "confirmDeleteCancelText": "Abbruch",
                               "confirmDeleteOkText": "Löschen",
-                              "confirmDeleteText": "Bist du sicher, dass dieser Autor gelöscht werden soll?",
+                              "confirmDeleteText": "Bist du sicher, dass dieser Autor gelöscht werden soll? ${parameters}",
                               "confirmDeleteTitle": "Löschen Autor",
                               "containsText": "Contains",
                               "count": "${rstAutorenCount}",
@@ -346,7 +350,7 @@
                                             "path": "autoren-neu",
                                             "then": [
                                               {
-                                                "code": "\nthis.gridAutoren.load();",
+                                                "code": "this.gridAutoren.load();",
                                                 "condition": "${result} != null",
                                                 "type": "execute"
                                               }

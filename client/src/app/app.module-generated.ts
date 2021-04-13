@@ -38,9 +38,9 @@ import { SelectBarModule } from '@radzen/angular/dist/selectbar';
 import { ChartModule } from '@radzen/angular/dist/chart';
 import { SchedulerModule } from '@radzen/angular/dist/scheduler';
 import { DataListModule } from '@radzen/angular/dist/datalist';
+import { HtmlModule } from '@radzen/angular/dist/html';
 import { LoginModule } from '@radzen/angular/dist/login';
 import { FormModule } from '@radzen/angular/dist/form';
-import { HtmlModule } from '@radzen/angular/dist/html';
 import { UploadModule } from '@radzen/angular/dist/upload';
 import { NumericModule } from '@radzen/angular/dist/numeric';
 import { CheckBoxModule } from '@radzen/angular/dist/checkbox';
@@ -84,10 +84,11 @@ import { AutorenNeuComponent } from './autoren-neu/autoren-neu.component';
 import { AutorenBearbeitenComponent } from './autoren-bearbeiten/autoren-bearbeiten.component';
 import { AutorenComponent } from './autoren/autoren.component';
 import { KurseComponent } from './kurse/kurse.component';
-import { IbsiKurseComponent } from './ibsi-kurse/ibsi-kurse.component';
-import { IbsiKurseThemenComponent } from './ibsi-kurse-themen/ibsi-kurse-themen.component';
 import { KurseThemenNeuComponent } from './kurse-themen-neu/kurse-themen-neu.component';
 import { KurseThemenBearbeitenComponent } from './kurse-themen-bearbeiten/kurse-themen-bearbeiten.component';
+import { EinstellungenInfotexteNeuComponent } from './einstellungen-infotexte-neu/einstellungen-infotexte-neu.component';
+import { EinstellungenInfotexteBearbeitenComponent } from './einstellungen-infotexte-bearbeiten/einstellungen-infotexte-bearbeiten.component';
+import { MeldungLoeschenComponent } from './meldung-loeschen/meldung-loeschen.component';
 import { LoginLayoutComponent } from './login-layout/login-layout.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 
@@ -128,10 +129,11 @@ export const PageDeclarations = [
   AutorenBearbeitenComponent,
   AutorenComponent,
   KurseComponent,
-  IbsiKurseComponent,
-  IbsiKurseThemenComponent,
   KurseThemenNeuComponent,
   KurseThemenBearbeitenComponent,
+  EinstellungenInfotexteNeuComponent,
+  EinstellungenInfotexteBearbeitenComponent,
+  MeldungLoeschenComponent,
 ];
 
 export const LayoutDeclarations = [
@@ -205,9 +207,9 @@ export const AppImports = [
   ChartModule,
   SchedulerModule,
   DataListModule,
+  HtmlModule,
   LoginModule,
   FormModule,
-  HtmlModule,
   UploadModule,
   NumericModule,
   CheckBoxModule,

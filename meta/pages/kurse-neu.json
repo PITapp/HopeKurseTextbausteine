@@ -358,9 +358,9 @@
                       {
                         "error": [
                           {
-                            "detail": "",
+                            "detail": "Kurs konnte nicht erstellt werden!",
                             "severity": "error",
-                            "summary": "Kurs konnte nicht erstellt werden!",
+                            "summary": "",
                             "type": "notify"
                           }
                         ],
@@ -373,8 +373,9 @@
                         ],
                         "then": [
                           {
+                            "detail": "Kurs erstellt",
                             "severity": "success",
-                            "summary": "Kurs erfolgreich erstellt",
+                            "summary": "",
                             "type": "notify"
                           },
                           {

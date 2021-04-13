@@ -113,11 +113,11 @@ export class AutorenNeuGenerated implements AfterViewInit, OnInit, OnDestroy {
   form0Submit(event: any) {
     this.dbHopeKurseTextbausteine.createIbsiTextbausteineAutoren(null, event)
     .subscribe((result: any) => {
-      this.notificationService.notify({ severity: "success", summary: `Autor erfolgreich erstellt`, detail: `` });
+      this.notificationService.notify({ severity: "success", summary: ``, detail: `Autor erstellt` });
 
       this.dialogRef.close(result);
     }, (result: any) => {
-      this.notificationService.notify({ severity: "error", summary: `Error`, detail: `Unable to create new IbsiTextbausteineAutoren!` });
+      this.notificationService.notify({ severity: "error", summary: ``, detail: `Autor konnte nicht erstellt werden!` });
     });
   }
 

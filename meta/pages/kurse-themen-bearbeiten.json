@@ -409,9 +409,9 @@
                       {
                         "error": [
                           {
-                            "detail": "",
+                            "detail": "Thema konnte nicht gespeichert werden!",
                             "severity": "error",
-                            "summary": "Thema konnte nicht gespeichert werden!",
+                            "summary": "",
                             "type": "notify"
                           }
                         ],
@@ -428,8 +428,9 @@
                         ],
                         "then": [
                           {
+                            "detail": "Thema gespeichert",
                             "severity": "success",
-                            "summary": "Thema erfolgreich gespeichert",
+                            "summary": "",
                             "type": "notify"
                           },
                           {

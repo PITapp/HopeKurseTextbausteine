@@ -128,9 +128,9 @@
                       {
                         "error": [
                           {
-                            "detail": "",
+                            "detail": "Autor konnte nicht geändert werden!",
                             "severity": "error",
-                            "summary": "Autor konnte nicht geändert werden!",
+                            "summary": "",
                             "type": "notify"
                           }
                         ],
@@ -147,7 +147,13 @@
                         ],
                         "then": [
                           {
-                            "type": "back"
+                            "detail": "Autor gespeichert",
+                            "severity": "success",
+                            "type": "notify"
+                          },
+                          {
+                            "result": "${result}",
+                            "type": "close-popup"
                           }
                         ],
                         "type": "invoke"

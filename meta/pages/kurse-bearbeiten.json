@@ -370,9 +370,9 @@
                       {
                         "error": [
                           {
-                            "detail": "",
+                            "detail": "Kurs konnte nicht gespeichert werden!",
                             "severity": "error",
-                            "summary": "Kurs konnte nicht gespeichert werden!",
+                            "summary": "",
                             "type": "notify"
                           }
                         ],
@@ -390,7 +390,7 @@
                         "then": [
                           {
                             "severity": "success",
-                            "summary": "Kurs erfolgreich gespeichert",
+                            "summary": "Kurs gespeichert",
                             "type": "notify"
                           },
                           {

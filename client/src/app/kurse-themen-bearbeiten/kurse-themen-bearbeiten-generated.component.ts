@@ -145,11 +145,11 @@ export class KurseThemenBearbeitenGenerated implements AfterViewInit, OnInit, On
   form0Submit(event: any) {
     this.dbHopeKurseTextbausteine.updateIbsiKurseThemen(null, this.parameters.KursThemaNr, event)
     .subscribe((result: any) => {
-      this.notificationService.notify({ severity: "success", summary: `Thema erfolgreich gespeichert`, detail: `` });
+      this.notificationService.notify({ severity: "success", summary: ``, detail: `Thema gespeichert` });
 
       this.dialogRef.close(result);
     }, (result: any) => {
-      this.notificationService.notify({ severity: "error", summary: `Thema konnte nicht gespeichert werden!`, detail: `` });
+      this.notificationService.notify({ severity: "error", summary: ``, detail: `Thema konnte nicht gespeichert werden!` });
     });
   }
 

@@ -34,10 +34,11 @@ import { AutorenNeuComponent } from './autoren-neu/autoren-neu.component';
 import { AutorenBearbeitenComponent } from './autoren-bearbeiten/autoren-bearbeiten.component';
 import { AutorenComponent } from './autoren/autoren.component';
 import { KurseComponent } from './kurse/kurse.component';
-import { IbsiKurseComponent } from './ibsi-kurse/ibsi-kurse.component';
-import { IbsiKurseThemenComponent } from './ibsi-kurse-themen/ibsi-kurse-themen.component';
 import { KurseThemenNeuComponent } from './kurse-themen-neu/kurse-themen-neu.component';
 import { KurseThemenBearbeitenComponent } from './kurse-themen-bearbeiten/kurse-themen-bearbeiten.component';
+import { EinstellungenInfotexteNeuComponent } from './einstellungen-infotexte-neu/einstellungen-infotexte-neu.component';
+import { EinstellungenInfotexteBearbeitenComponent } from './einstellungen-infotexte-bearbeiten/einstellungen-infotexte-bearbeiten.component';
+import { MeldungLoeschenComponent } from './meldung-loeschen/meldung-loeschen.component';
 
 import { SecurityService } from './security.service';
 import { AuthGuard } from './auth.guard';
@@ -286,22 +287,6 @@ export const routes: Routes = [
         component: KurseComponent
       },
       {
-        path: 'ibsi-kurse',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: IbsiKurseComponent
-      },
-      {
-        path: 'ibsi-kurse-themen',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: IbsiKurseThemenComponent
-      },
-      {
         path: 'kurse-themen-neu/:KursNr',
         canActivate: [AuthGuard],
         data: {
@@ -316,6 +301,30 @@ export const routes: Routes = [
           roles: ['Authenticated'],
         },
         component: KurseThemenBearbeitenComponent
+      },
+      {
+        path: 'einstellungen-infotexte-neu',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: EinstellungenInfotexteNeuComponent
+      },
+      {
+        path: 'einstellungen-infotexte-bearbeiten/:InfotextID',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: EinstellungenInfotexteBearbeitenComponent
+      },
+      {
+        path: 'meldung-loeschen/:strMeldung',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: MeldungLoeschenComponent
       },
     ]
   },

@@ -15,12 +15,12 @@ import { HeadingComponent } from '@radzen/angular/dist/heading';
 import { TabsComponent } from '@radzen/angular/dist/tabs';
 import { PanelComponent } from '@radzen/angular/dist/panel';
 import { GridComponent } from '@radzen/angular/dist/grid';
-import { TextBoxComponent } from '@radzen/angular/dist/textbox';
 import { ButtonComponent } from '@radzen/angular/dist/button';
+import { HtmlComponent } from '@radzen/angular/dist/html';
 
 import { ConfigService } from '../config.service';
-import { AutorenBearbeitenComponent } from '../autoren-bearbeiten/autoren-bearbeiten.component';
-import { AutorenNeuComponent } from '../autoren-neu/autoren-neu.component';
+import { EinstellungenInfotexteBearbeitenComponent } from '../einstellungen-infotexte-bearbeiten/einstellungen-infotexte-bearbeiten.component';
+import { EinstellungenInfotexteNeuComponent } from '../einstellungen-infotexte-neu/einstellungen-infotexte-neu.component';
 
 import { DbHopeKurseTextbausteineService } from '../db-hope-kurse-textbausteine.service';
 import { SecurityService } from '../security.service';
@@ -33,11 +33,11 @@ export class EinstellungenGenerated implements AfterViewInit, OnInit, OnDestroy 
   @ViewChild('heading21') heading21: HeadingComponent;
   @ViewChild('tabs0') tabs0: TabsComponent;
   @ViewChild('panel1') panel1: PanelComponent;
-  @ViewChild('gridTextbausteineAutoren') gridTextbausteineAutoren: GridComponent;
+  @ViewChild('gridInfotexte') gridInfotexte: GridComponent;
   @ViewChild('button0') button0: ButtonComponent;
   @ViewChild('panel0') panel0: PanelComponent;
-  @ViewChild('grid0') grid0: GridComponent;
-  @ViewChild('tabs1') tabs1: TabsComponent;
+  @ViewChild('htmlEditorInfotexte') htmlEditorInfotexte: HtmlComponent;
+  @ViewChild('button4') button4: ButtonComponent;
 
   router: Router;
 
@@ -65,12 +65,10 @@ export class EinstellungenGenerated implements AfterViewInit, OnInit, OnDestroy 
 
   security: SecurityService;
   parameters: any;
-  rstTextbausteineAutoren: any;
-  rstTextbausteineAutorenCount: any;
-  dsoTextbausteineAutoren: any;
-  rstTextbausteineLaden: any;
-  rstTextbausteine: any;
-  rstTextbausteineCount: any;
+  rstInfotexte: any;
+  rstInfotexteCount: any;
+  dsoInfotexte: any;
+  strInfotext: any;
 
   constructor(private injector: Injector) {
   }
@@ -120,83 +118,49 @@ export class EinstellungenGenerated implements AfterViewInit, OnInit, OnDestroy 
 
 
   load() {
-    this.gridTextbausteineAutoren.load();
+    this.gridInfotexte.load();
   }
 
-  gridTextbausteineAutorenAdd(event: any) {
-    this.gridTextbausteineAutoren.insertRow({});
-  }
-
-  gridTextbausteineAutorenCreate(event: any) {
-    this.dbHopeKurseTextbausteine.createIbsiTextbausteineAutoren(null, event)
+  gridInfotexteLoadData(event: any) {
+    this.dbHopeKurseTextbausteine.getInfotexteHtmls(`${event.filter}`, event.top, event.skip, `${event.orderby || 'Titel'}`, event.top != null && event.skip != null, null, null, null)
     .subscribe((result: any) => {
+      this.rstInfotexte = result.value;
 
+      this.rstInfotexteCount = event.top != null && event.skip != null ? result['@odata.count'] : result.value.length;
+
+      this.gridInfotexte.onSelect(result.value[0])
     }, (result: any) => {
-      this.notificationService.notify({ severity: "error", summary: `Fehler`, detail: `Autor konnte nicht erstellt werden!` });
+      this.notificationService.notify({ severity: "error", summary: ``, detail: `Infotexte konnten nicht geladen werden!` });
     });
   }
 
-  gridTextbausteineAutorenDelete(event: any) {
-    this.dbHopeKurseTextbausteine.deleteIbsiTextbausteineAutoren(event.AutorNr)
-    .subscribe((result: any) => {
-      this.notificationService.notify({ severity: "success", summary: `Erfolgreich`, detail: `Autor gelöscht!` });
-    }, (result: any) => {
-      this.notificationService.notify({ severity: "error", summary: `Fehler`, detail: `Autor konnte nicht gelöscht werden! ` });
-    });
+  gridInfotexteRowSelect(event: any) {
+    this.dsoInfotexte = event;
+
+    this.strInfotext = event.Inhalt;
   }
 
-  gridTextbausteineAutorenLoadData(event: any) {
-    this.dbHopeKurseTextbausteine.getIbsiTextbausteineAutorens(`${event.filter}`, event.top, event.skip, `${event.orderby || 'Name'}`, event.top != null && event.skip != null, null, null, null)
-    .subscribe((result: any) => {
-      this.rstTextbausteineAutoren = result.value;
-
-      this.rstTextbausteineAutorenCount = event.top != null && event.skip != null ? result['@odata.count'] : result.value.length;
-
-      this.gridTextbausteineAutoren.onSelect(result.value[0])
-    }, (result: any) => {
-      this.notificationService.notify({ severity: "error", summary: `Fehler`, detail: `Autoren konnten nicht geladen werden!` });
-    });
-  }
-
-  gridTextbausteineAutorenRowSelect(event: any) {
-    this.dsoTextbausteineAutoren = event;
-
-    this.rstTextbausteineLaden = true;
-
-    this.dbHopeKurseTextbausteine.getIbsiTextbausteines(`AutorNr eq ${event.AutorNr}`, event.top, event.skip, `IbsiKurse/Titel, TitelTextbaustein`, event.top != null && event.skip != null, `IbsiKurse, IbsiTextbausteineArten`, null, null)
-    .subscribe((result: any) => {
-      this.rstTextbausteine = result.value;
-
-      this.rstTextbausteineCount = event.top != null && event.skip != null ? result['@odata.count'] : result.value.length;
-
-      this.rstTextbausteineLaden = false;
-    }, (result: any) => {
-
-    });
-  }
-
-  gridTextbausteineAutorenUpdate(event: any) {
-    this.dbHopeKurseTextbausteine.updateIbsiTextbausteineAutoren(null, event.AutorNr, event)
-    .subscribe((result: any) => {
-
-    }, (result: any) => {
-      this.notificationService.notify({ severity: "error", summary: `Fehler`, detail: `Unable to delete IbsiTextbausteineAutoren` });
-    });
-  }
-
-  editButtonClick(event: any, data: any) {
-    this.dialogService.open(AutorenBearbeitenComponent, { parameters: {}, title: `Bearbeiten Autor` });
-  }
-
-  saveButtonClick(event: any, data: any) {
-    this.gridTextbausteineAutoren.updateRow(data);
-  }
-
-  cancelButtonClick(event: any, data: any) {
-    this.gridTextbausteineAutoren.cancelEditRow(data);
+  editButtonKurseClick(event: any, data: any) {
+    this.dialogService.open(EinstellungenInfotexteBearbeitenComponent, { parameters: {InfotextID: data.InfotextID}, title: `Bearbeiten Infotext` });
   }
 
   button0Click(event: any) {
-    this.dialogService.open(AutorenNeuComponent, { parameters: {}, title: `Neuer Autor ` });
+    this.dialogService.open(EinstellungenInfotexteNeuComponent, { parameters: {}, title: `Neuer Infotext ` })
+        .afterClosed().subscribe(result => {
+              if (result != null) {
+        this.gridInfotexte.load();
+      }
+    });
+  }
+
+  button4Click(event: any) {
+    this.dsoInfotexte.Inhalt = this.strInfotext
+
+    this.dbHopeKurseTextbausteine.updateInfotexteHtml(null, this.dsoInfotexte.InfotextID, this.dsoInfotexte)
+    .subscribe((result: any) => {
+      this.notificationService.notify({ severity: "success", summary: ``, detail: `Änderungen gespeichert` });
+    }, (result: any) => {
+      this.notificationService.notify({ severity: "error", summary: ``, detail: `Änderungen konnten nicht gespeichert werden!` });
+    });
   }
 }

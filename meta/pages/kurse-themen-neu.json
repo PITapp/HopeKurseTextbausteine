@@ -377,9 +377,9 @@
                       {
                         "error": [
                           {
-                            "detail": "",
+                            "detail": "Thema konnte nicht erstellt werden!",
                             "severity": "error",
-                            "summary": "Thema konnte nicht erstellt werden!",
+                            "summary": "",
                             "type": "notify"
                           }
                         ],
@@ -392,8 +392,9 @@
                         ],
                         "then": [
                           {
+                            "detail": "Thema erstellt",
                             "severity": "success",
-                            "summary": "Thema erfolgreich erstellt",
+                            "summary": "",
                             "type": "notify"
                           },
                           {

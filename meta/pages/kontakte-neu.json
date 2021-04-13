@@ -716,9 +716,9 @@
                         "condition": "",
                         "error": [
                           {
-                            "detail": "",
+                            "detail": "Kontakt konnte nicht erstellt werden!",
                             "severity": "error",
-                            "summary": "Kontakt konnte nicht erstellt werden!",
+                            "summary": "",
                             "type": "notify"
                           }
                         ],
@@ -731,9 +731,9 @@
                         ],
                         "then": [
                           {
-                            "detail": "",
+                            "detail": "Kontakt erstellt",
                             "severity": "success",
-                            "summary": "Kontakt erfolgreich erstellt",
+                            "summary": "",
                             "type": "notify"
                           },
                           {

@@ -81,7 +81,7 @@
                         {
                           "components": [
                             {
-                              "addText": "Neuer Kontakt",
+                              "addText": "",
                               "allowAdd": false,
                               "allowColumnReorder": false,
                               "allowDelete": true,
@@ -212,11 +212,11 @@
                                   "width": "75px"
                                 }
                               ],
-                              "confirmDelete": true,
-                              "confirmDeleteCancelText": "Abbruch",
-                              "confirmDeleteOkText": "Löschen",
-                              "confirmDeleteText": "Bist du sicher, dass der Kontakt gelöscht werden soll?",
-                              "confirmDeleteTitle": "Kontakt löschen",
+                              "confirmDelete": false,
+                              "confirmDeleteCancelText": "",
+                              "confirmDeleteOkText": "",
+                              "confirmDeleteText": "",
+                              "confirmDeleteTitle": "",
                               "containsText": "Contains",
                               "count": "${rstBaseCount}",
                               "data": "${rstBase}",
@@ -228,36 +228,49 @@
                                 "create": [],
                                 "delete": [
                                   {
-                                    "condition": "",
-                                    "error": [
-                                      {
-                                        "detail": "Daten können nicht gelöscht werden!",
-                                        "severity": "error",
-                                        "summary": "Kontakt",
-                                        "type": "notify"
-                                      }
-                                    ],
-                                    "name": "dbHopeKurseTextbausteine.deleteBase",
                                     "parameters": [
                                       {
-                                        "name": "BaseID",
-                                        "value": "${event.BaseID}"
+                                        "name": "strMeldung",
+                                        "value": "\"Soll der Kontakt '\" + ${event.Name1} + \" \" + ${event.Name2} + \"' gelöscht werden?\""
                                       }
                                     ],
+                                    "path": "meldung-loeschen",
                                     "then": [
                                       {
-                                        "detail": "Daten gelöscht!",
-                                        "severity": "success",
-                                        "summary": "Kontakt",
-                                        "type": "notify"
-                                      },
-                                      {
-                                        "code": "this.gridKontakte.load();",
-                                        "condition": "",
-                                        "type": "execute"
+                                        "condition": "${result} != null",
+                                        "error": [
+                                          {
+                                            "detail": "KOntakt konnte nicht gelöscht werden!",
+                                            "severity": "error",
+                                            "summary": "",
+                                            "type": "notify"
+                                          }
+                                        ],
+                                        "name": "dbHopeKurseTextbausteine.deleteBase",
+                                        "parameters": [
+                                          {
+                                            "name": "BaseID",
+                                            "value": "${event.BaseID}"
+                                          }
+                                        ],
+                                        "then": [
+                                          {
+                                            "detail": "Kontakt gelöscht",
+                                            "severity": "success",
+                                            "summary": "",
+                                            "type": "notify"
+                                          },
+                                          {
+                                            "code": "this.gridKontakte.load();",
+                                            "condition": "",
+                                            "type": "execute"
+                                          }
+                                        ],
+                                        "type": "invoke"
                                       }
                                     ],
-                                    "type": "invoke"
+                                    "title": "Löschen Kontakt",
+                                    "type": "popup"
                                   }
                                 ],
                                 "loadData": [
@@ -1110,39 +1123,7 @@
                                 }
                               ],
                               "events": {
-                                "submit": [
-                                  {
-                                    "condition": "",
-                                    "error": [
-                                      {
-                                        "detail": "Speichern fehlgeschlagen!",
-                                        "severity": "error",
-                                        "summary": "Kontakt",
-                                        "type": "notify"
-                                      }
-                                    ],
-                                    "name": "dbHopeKurseTextbausteine.updateBase",
-                                    "parameters": [
-                                      {
-                                        "name": "BaseID",
-                                        "value": "${dsoBase.BaseID}"
-                                      },
-                                      {
-                                        "name": "Base",
-                                        "value": "${event}"
-                                      }
-                                    ],
-                                    "then": [
-                                      {
-                                        "detail": "Erfolgreich gespeichert!",
-                                        "severity": "success",
-                                        "summary": "Kontakt",
-                                        "type": "notify"
-                                      }
-                                    ],
-                                    "type": "invoke"
-                                  }
-                                ]
+                                "submit": []
                               },
                               "name": "templateFormKontakte",
                               "style": {},
@@ -1159,6 +1140,38 @@
                                     {
                                       "buttonStyle": "success",
                                       "buttonType": "submit",
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "error": [
+                                              {
+                                                "detail": "Änderungen konnten nicht gespeichert werden!",
+                                                "severity": "error",
+                                                "type": "notify"
+                                              }
+                                            ],
+                                            "name": "dbHopeKurseTextbausteine.updateBase",
+                                            "parameters": [
+                                              {
+                                                "name": "BaseID",
+                                                "value": "${dsoBase.BaseID}"
+                                              },
+                                              {
+                                                "name": "Base",
+                                                "value": "${dsoBase}"
+                                              }
+                                            ],
+                                            "then": [
+                                              {
+                                                "detail": "Änderungen gespeichert",
+                                                "severity": "success",
+                                                "type": "notify"
+                                              }
+                                            ],
+                                            "type": "invoke"
+                                          }
+                                        ]
+                                      },
                                       "icon": "save",
                                       "name": "button4",
                                       "size": "sm",
@@ -1523,6 +1536,13 @@
                                             "type": "execute"
                                           },
                                           {
+                                            "error": [
+                                              {
+                                                "detail": "Bild konnte nicht entfernt werden!",
+                                                "severity": "error",
+                                                "type": "notify"
+                                              }
+                                            ],
                                             "name": "dbHopeKurseTextbausteine.updateBase",
                                             "parameters": [
                                               {
@@ -1532,6 +1552,13 @@
                                               {
                                                 "name": "Base",
                                                 "value": "${dsoBase}"
+                                              }
+                                            ],
+                                            "then": [
+                                              {
+                                                "detail": "Bild entfernt",
+                                                "severity": "success",
+                                                "type": "notify"
                                               }
                                             ],
                                             "type": "invoke"

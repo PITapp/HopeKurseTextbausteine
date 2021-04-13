@@ -18,32 +18,36 @@
                           "class": "col-md-3",
                           "components": [
                             {
-                              "component": "Name",
-                              "name": "NameLabel",
+                              "component": "Titel",
+                              "name": "TitelLabel",
                               "style": {
                                 "width": "100%"
                               },
-                              "text": "Name",
+                              "text": "Titel",
                               "type": "label"
                             }
                           ],
+                          "name": "col0",
                           "type": "col"
                         },
                         {
                           "class": "col-md-9",
                           "components": [
                             {
-                              "maxLength": 250,
-                              "name": "Name",
+                              "maxLength": 100,
+                              "name": "Titel",
                               "style": {
                                 "width": "100%"
                               },
-                              "type": "textbox"
+                              "type": "textbox",
+                              "value": "${infotextehtml.Titel}"
                             }
                           ],
+                          "name": "col1",
                           "type": "col"
                         }
                       ],
+                      "name": "row0",
                       "style": {
                         "marginBottom": "1rem"
                       },
@@ -55,32 +59,36 @@
                           "class": "col-md-3",
                           "components": [
                             {
-                              "component": "Krzel",
-                              "name": "KrzelLabel",
+                              "component": "Code",
+                              "name": "CodeLabel",
                               "style": {
                                 "width": "100%"
                               },
-                              "text": "Kürzel",
+                              "text": "Code",
                               "type": "label"
                             }
                           ],
+                          "name": "col2",
                           "type": "col"
                         },
                         {
                           "class": "col-md-9",
                           "components": [
                             {
-                              "maxLength": 50,
-                              "name": "Krzel",
+                              "maxLength": 20,
+                              "name": "Code",
                               "style": {
                                 "width": "100%"
                               },
-                              "type": "textbox"
+                              "type": "textbox",
+                              "value": "${infotextehtml.Code}"
                             }
                           ],
+                          "name": "col3",
                           "type": "col"
                         }
                       ],
+                      "name": "row1",
                       "style": {
                         "marginBottom": "1rem"
                       },
@@ -125,24 +133,27 @@
                       {
                         "error": [
                           {
-                            "detail": "Autor konnte nicht erstellt werden!",
+                            "detail": "Infotext konnte nicht gespeichert werden!",
                             "severity": "error",
                             "summary": "",
                             "type": "notify"
                           }
                         ],
-                        "name": "dbHopeKurseTextbausteine.createIbsiTextbausteineAutoren",
+                        "name": "dbHopeKurseTextbausteine.updateInfotexteHtml",
                         "parameters": [
                           {
-                            "name": "IbsiTextbausteineAutoren",
+                            "name": "InfotextID",
+                            "value": "${parameters.InfotextID}"
+                          },
+                          {
+                            "name": "InfotexteHtml",
                             "value": "${event}"
                           }
                         ],
                         "then": [
                           {
-                            "detail": "Autor erstellt",
+                            "detail": "Infotext gespeichert",
                             "severity": "success",
-                            "summary": "",
                             "type": "notify"
                           },
                           {
@@ -169,8 +180,27 @@
     }
   ],
   "events": {
-    "load": []
+    "load": [
+      {
+        "error": [],
+        "name": "dbHopeKurseTextbausteine.getInfotexteHtmlByInfotextID",
+        "parameters": [
+          {
+            "name": "InfotextID",
+            "value": "${parameters.InfotextID}"
+          }
+        ],
+        "then": [
+          {
+            "name": "infotextehtml",
+            "type": "set",
+            "value": "${result}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
   },
   "layout": "Main",
-  "name": "AutorenNeu"
+  "name": "EinstellungenInfotexteBearbeiten"
 }

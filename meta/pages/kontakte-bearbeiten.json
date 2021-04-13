@@ -712,9 +712,9 @@
                         "condition": "",
                         "error": [
                           {
-                            "detail": "",
+                            "detail": "Kontakt konnte nicht gespeichert werden!",
                             "severity": "error",
-                            "summary": "Kontakt konnte nicht gespeichert werden!",
+                            "summary": "",
                             "type": "notify"
                           }
                         ],
@@ -731,9 +731,9 @@
                         ],
                         "then": [
                           {
-                            "detail": "",
+                            "detail": "Kontakt gespeichert",
                             "severity": "success",
-                            "summary": "Kontakt erfolgreich gespeichert",
+                            "summary": "",
                             "type": "notify"
                           },
                           {

@@ -137,11 +137,11 @@ export class KurseNeuGenerated implements AfterViewInit, OnInit, OnDestroy {
   form0Submit(event: any) {
     this.dbHopeKurseTextbausteine.createIbsiKurse(null, event)
     .subscribe((result: any) => {
-      this.notificationService.notify({ severity: "success", summary: `Kurs erfolgreich erstellt`, detail: `` });
+      this.notificationService.notify({ severity: "success", summary: ``, detail: `Kurs erstellt` });
 
       this.dialogRef.close(result);
     }, (result: any) => {
-      this.notificationService.notify({ severity: "error", summary: `Kurs konnte nicht erstellt werden!`, detail: `` });
+      this.notificationService.notify({ severity: "error", summary: ``, detail: `Kurs konnte nicht erstellt werden!` });
     });
   }
 

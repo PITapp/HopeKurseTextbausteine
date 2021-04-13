@@ -145,11 +145,11 @@ export class KurseBearbeitenGenerated implements AfterViewInit, OnInit, OnDestro
   form0Submit(event: any) {
     this.dbHopeKurseTextbausteine.updateIbsiKurse(null, this.parameters.KursNr, event)
     .subscribe((result: any) => {
-      this.notificationService.notify({ severity: "success", summary: `Kurs erfolgreich gespeichert`, detail: `` });
+      this.notificationService.notify({ severity: "success", summary: `Kurs gespeichert`, detail: `` });
 
       this.dialogRef.close(result);
     }, (result: any) => {
-      this.notificationService.notify({ severity: "error", summary: `Kurs konnte nicht gespeichert werden!`, detail: `` });
+      this.notificationService.notify({ severity: "error", summary: ``, detail: `Kurs konnte nicht gespeichert werden!` });
     });
   }
 

@@ -142,7 +142,7 @@
                                 },
                                 {
                                   "property": "Onlinekurs",
-                                  "template": "${data.Printkurs == true ? 'Ja' : ''}",
+                                  "template": "${data.Onlinekurs == true ? 'Ja' : ''}",
                                   "textAlign": "center",
                                   "title": "Onlinekurs",
                                   "type": "string",

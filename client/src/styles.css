@@ -10,5 +10,5 @@
 @import '../node_modules/quill/dist/quill.core.css';
 @import '../node_modules/quill/dist/quill.snow.css';
 
-/* Import Spezielle Einstellungen für SinDarEla */
+/* Import Spezielle Einstellungen */
 @import './styles-textbausteine.css';

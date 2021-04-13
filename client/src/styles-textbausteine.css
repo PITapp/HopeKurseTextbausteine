@@ -198,16 +198,30 @@ input:focus, textarea:focus {
 
 
 /* --- Quill Editor --- */
-.ql-toolbar.ql-snow {
+.xxql-toolbar.ql-snow {
   border: 1px solid #e6ecef;
   border-radius: 4px 4px 0px 0px;
+}
+
+.ql-toolbar.ql-snow {
+  background-color: #e6ecef;
+  border: none;
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+.xxql-container.ql-snow {
+  font-family: 'Open Sans', sans-serif, Helvetica, Arial;
+  font-size: 14px;
+  border: 1px solid #e6ecef;
+  border-radius: 0px 0px 4px 4px;
 }
 
 .ql-container.ql-snow {
   font-family: 'Open Sans', sans-serif, Helvetica, Arial;
   font-size: 14px;
-  border: 1px solid #e6ecef;
-  border-radius: 0px 0px 4px 4px;
+  border: none;
+  padding: 3px 7px;
 }
 
 
@@ -235,4 +249,9 @@ input:focus, textarea:focus {
 .ui-datatable-header {
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
+}
+
+/* --- Damit wird verhindert, dass bei einem Popup auf der rechten Seite im Hintergrund ein rand eingeschalten wird --- */
+.no-scroll {
+  padding-right: 0px;
 }

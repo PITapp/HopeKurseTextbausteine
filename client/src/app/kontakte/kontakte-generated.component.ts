@@ -28,6 +28,7 @@ import { UploadComponent } from '@radzen/angular/dist/upload';
 import { ConfigService } from '../config.service';
 import { KontakteBearbeitenComponent } from '../kontakte-bearbeiten/kontakte-bearbeiten.component';
 import { KontakteNeuComponent } from '../kontakte-neu/kontakte-neu.component';
+import { MeldungLoeschenComponent } from '../meldung-loeschen/meldung-loeschen.component';
 
 import { DbHopeKurseTextbausteineService } from '../db-hope-kurse-textbausteine.service';
 import { SecurityService } from '../security.service';
@@ -184,13 +185,18 @@ export class KontakteGenerated implements AfterViewInit, OnInit, OnDestroy {
   }
 
   gridKontakteDelete(event: any) {
-    this.dbHopeKurseTextbausteine.deleteBase(event.BaseID)
-    .subscribe((result: any) => {
-      this.notificationService.notify({ severity: "success", summary: `Kontakt`, detail: `Daten gelöscht!` });
+    this.dialogService.open(MeldungLoeschenComponent, { parameters: {strMeldung: "Soll der Kontakt '" + event.Name1 + " " + event.Name2 + "' gelöscht werden?"}, title: `Löschen Kontakt` })
+        .afterClosed().subscribe(result => {
+              if (result != null) {
+              this.dbHopeKurseTextbausteine.deleteBase(event.BaseID)
+        .subscribe((result: any) => {
+              this.notificationService.notify({ severity: "success", summary: ``, detail: `Kontakt gelöscht` });
 
-      this.gridKontakte.load();
-    }, (result: any) => {
-      this.notificationService.notify({ severity: "error", summary: `Kontakt`, detail: `Daten können nicht gelöscht werden!` });
+        this.gridKontakte.load();
+        }, (result: any) => {
+              this.notificationService.notify({ severity: "error", summary: ``, detail: `KOntakt konnte nicht gelöscht werden!` });
+        });
+      }
     });
   }
 
@@ -231,12 +237,12 @@ export class KontakteGenerated implements AfterViewInit, OnInit, OnDestroy {
     });
   }
 
-  templateFormKontakteSubmit(event: any) {
-    this.dbHopeKurseTextbausteine.updateBase(null, this.dsoBase.BaseID, event)
+  button4Click(event: any) {
+    this.dbHopeKurseTextbausteine.updateBase(null, this.dsoBase.BaseID, this.dsoBase)
     .subscribe((result: any) => {
-      this.notificationService.notify({ severity: "success", summary: `Kontakt`, detail: `Erfolgreich gespeichert!` });
+      this.notificationService.notify({ severity: "success", summary: ``, detail: `Änderungen gespeichert` });
     }, (result: any) => {
-      this.notificationService.notify({ severity: "error", summary: `Kontakt`, detail: `Speichern fehlgeschlagen!` });
+      this.notificationService.notify({ severity: "error", summary: ``, detail: `Änderungen konnten nicht gespeichert werden!` });
     });
   }
 
@@ -270,9 +276,9 @@ this.dsoBase.BildURL = 'https://hopekurse-textbausteine.app/upload/bilder/base/'
 
     this.dbHopeKurseTextbausteine.updateBase(null, this.dsoBase.BaseID, this.dsoBase)
     .subscribe((result: any) => {
-
+      this.notificationService.notify({ severity: "success", summary: ``, detail: `Bild entfernt` });
     }, (result: any) => {
-
+      this.notificationService.notify({ severity: "error", summary: ``, detail: `Bild konnte nicht entfernt werden!` });
     });
   }
 }

@@ -163,14 +163,15 @@ export class AutorenGenerated implements AfterViewInit, OnInit, OnDestroy {
 
   editButtonClick(event: any, data: any) {
     this.dialogService.open(AutorenBearbeitenComponent, { parameters: {AutorNr: data.AutorNr}, title: `Bearbeiten Autor` });
+
+    this.gridAutoren.onSelect(data)
   }
 
   button0Click(event: any) {
     this.dialogService.open(AutorenNeuComponent, { parameters: {}, title: `Neuer Autor ` })
         .afterClosed().subscribe(result => {
               if (result != null) {
-        
-this.gridAutoren.load();
+        this.gridAutoren.load();
       }
     });
   }

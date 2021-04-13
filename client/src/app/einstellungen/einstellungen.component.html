@@ -10,32 +10,18 @@
     </div>
   </div>
   <rz-tabs #tabs0 [style]="{'float': 'none'}">
-    <rz-tabs-item [selected]="true" text="Autoren">
+    <rz-tabs-item [selected]="false" text="Infotexte">
       <div class="row">
         <div class="col-md-5">
-          <rz-panel #panel1 [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="{{rstTextbausteineAutorenCount}} Autoren">
-            <rz-grid #gridTextbausteineAutoren addText="Neuer Autor" [allowAdd]="false" [allowDelete]="true" [allowFiltering]="true" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="true" applyFilterText="Apply" clearFilterText="Clear" [confirmDelete]="true" confirmDeleteCancelText="Abbruch" confirmDeleteOkText="Löschen" confirmDeleteText="Bist du sicher, dass dieser Autor gelöscht werden soll?" confirmDeleteTitle="Confirmation" containsText="Contains" [count]="rstTextbausteineAutorenCount" [data]="rstTextbausteineAutoren" emptyText="Keine Daten vorhanden" endsWithText="Ends with" equalsText="Equals" filterCaseSensitivity="caseInsensitive" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="15" startsWithText="Starts with" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'height': '700px', 'marginLeft': '-10px', 'marginRight': '-10px', 'marginTop': '-13px'}" (add)="gridTextbausteineAutorenAdd($event)" (create)="gridTextbausteineAutorenCreate($event)" (delete)="gridTextbausteineAutorenDelete($event)" (loadData)="gridTextbausteineAutorenLoadData($event)" (rowSelect)="gridTextbausteineAutorenRowSelect($event)" (update)="gridTextbausteineAutorenUpdate($event)">
-              <rz-grid-column property="Name" title="Autor" type="string">
-                <ng-template let-data gridColumnEditTemplate>
-                  <rz-textbox #name [style]="{'display': 'block', 'width': '100%'}" [(ngModel)]="data && data.Name" name="Name">
-                  </rz-textbox>
-                </ng-template>
+          <rz-panel #panel1 [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="{{rstInfotexteCount}} Infotexte">
+            <rz-grid #gridInfotexte addText="Neuer Autor" [allowAdd]="false" [allowFiltering]="true" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="true" applyFilterText="Apply" clearFilterText="Clear" [confirmDelete]="true" confirmDeleteCancelText="Abbruch" confirmDeleteOkText="Löschen" confirmDeleteText="Bist du sicher, dass dieser Infotext gelöscht werden soll?" confirmDeleteTitle="Löschen Infotext" containsText="Contains" [count]="rstInfotexteCount" [data]="rstInfotexte" emptyText="Keine Infotexte vorhanden" endsWithText="Ends with" equalsText="Equals" filterCaseSensitivity="caseInsensitive" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="15" startsWithText="Starts with" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'height': '700px', 'marginLeft': '-10px', 'marginRight': '-10px', 'marginTop': '-13px'}" (loadData)="gridInfotexteLoadData($event)" (rowSelect)="gridInfotexteRowSelect($event)">
+              <rz-grid-column property="Titel" title="Titel" width="60%" type="string">
               </rz-grid-column>
-              <rz-grid-column property="Krzel" title="Kürzel" width="20%" type="string">
-                <ng-template let-data gridColumnEditTemplate>
-                  <rz-textbox #krzel [style]="{'display': 'block', 'width': '100%'}" [(ngModel)]="data && data.Krzel" name="Krzel">
-                  </rz-textbox>
-                </ng-template>
+              <rz-grid-column property="Code" title="Code" width="40%" type="string">
               </rz-grid-column>
               <rz-grid-column [filterable]="false" [sortable]="false" textAlign="center" width="70px">
                 <ng-template let-data gridColumnTemplate>
-                  <rz-button #editButton buttonStyle="light" icon="edit" size="sm" (click)="editButtonClick($event, data)">
-                  </rz-button>
-                </ng-template>
-                <ng-template let-data gridColumnEditTemplate>
-                  <rz-button #saveButton buttonStyle="success" icon="done" size="sm" (click)="saveButtonClick($event, data)">
-                  </rz-button>
-                  <rz-button #cancelButton buttonStyle="secondary" icon="cancel" size="sm" (click)="cancelButtonClick($event, data)">
+                  <rz-button #editButtonKurse buttonStyle="light" icon="edit" size="sm" (click)="editButtonKurseClick($event, data)">
                   </rz-button>
                 </ng-template>
               </rz-grid-column>
@@ -43,7 +29,7 @@
             <rz-panel-header>
               <div class="row">
                 <div class="col-md-12 align-items-start d-flex">
-                  <rz-button #button0 icon="add" size="sm" [style]="{'marginRight': '-9px'}" text="Neuer Autor" (click)="button0Click($event)">
+                  <rz-button #button0 icon="add" size="sm" [style]="{'marginRight': '-9px'}" text="Neuer Infotext" (click)="button0Click($event)">
                   </rz-button>
                 </div>
               </div>
@@ -51,30 +37,74 @@
           </rz-panel>
         </div>
         <div class="col-md-7" [ngStyle]="{'paddingLeft': '5px'}">
-          <rz-panel #panel0 [allowCollapse]="false" [collapsed]="false" [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="{{rstTextbausteineCount}} Textbausteine von Autor {{dsoTextbausteineAutoren?.Name}}">
-            <rz-grid #grid0 addText="Add" [allowAdd]="false" [allowDelete]="false" [allowFiltering]="true" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="true" [alwaysShowPager]="true" applyFilterText="Apply" clearFilterText="Clear" [confirmDelete]="true" confirmDeleteCancelText="Cancel" confirmDeleteOkText="Ok" confirmDeleteText="Are you sure you want to delete this record?" confirmDeleteTitle="Confirmation" containsText="Contains" [count]="rstTextbausteineCount" [data]="rstTextbausteine" emptyText="Keine Daten vorhanden" endsWithText="Ends with" equalsText="Equals" filterCaseSensitivity="caseInsensitive" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" [isLoading]="rstTextbausteineLaden" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="14" startsWithText="Starts with" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'height': '700px', 'marginLeft': '-10px', 'marginRight': '-10px', 'marginTop': '-8px'}">
-              <rz-grid-column property="IbsiKurse.Titel" title="Kurs" type="string">
-              </rz-grid-column>
-              <rz-grid-column property="IbsiTextbausteineArten.Bezeichnung" title="Art" type="string">
-              </rz-grid-column>
-              <rz-grid-column property="TitelTextbaustein" title="Titel" width="35%" type="string">
-              </rz-grid-column>
-              <rz-grid-column property="UntertitelTextbaustein" title="Untertitel" type="string">
-              </rz-grid-column>
-            </rz-grid>
+          <rz-panel #panel0 [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="Text zu: {{dsoInfotexte?.Titel}}">
+            <div [ngStyle]="{'marginLeft': '-36px', 'marginRight': '-36px', 'marginTop': '-12px'}" class="row">
+              <div class="col-md-12" [ngStyle]="{}">
+                <rz-html #htmlEditorInfotexte>
+                  <p-editor [(ngModel)]="strInfotext" [style]="{'height': '645px'}">
+                      <p-header>
+                  
+                  		<span class="ql-formats">
+                  			<select class="ql-font">
+                                  <option selected>Aref Ruqaa</option>
+                                  <option value="mirza">Mirza</option>
+                                  <option value="roboto">Roboto</option>
+                  			</select>
+                  		</span>
+                      
+                  		<span class="ql-formats">
+                  			<select class="ql-header">
+                  			    <option value="1">Titel 1</option>
+                  			    <option value="2">Titel 2</option>
+                  			    <option value="3">Titel 3</option>
+                  			    <option value="4">Titel 4</option>
+                  			    <option value="5">Titel 5</option>
+                  			    <option value="6">Titel 6</option>
+                  			    <option selected>Normal</option>
+                  			</select>
+                  		</span>
+                  		
+                  		<span class="ql-formats">
+                  			<button class="ql-bold" aria-label="Bold">Fett</button>
+                  			<button class="ql-italic" aria-label="Italic"></button>
+                  			<button class="ql-underline" aria-label="Underline"></button>
+                  		</span>
+                  
+                  		<span class="ql-formats">
+                  			<button class="ql-blockquote"></button>
+                  		</span>		
+                  
+                  		<span class="ql-formats">
+                  			<select class="ql-align"></select>
+                  		</span>		
+                  
+                  		<span class="ql-formats">
+                  			<select class="ql-color"></select>
+                  			<select class="ql-background"></select>
+                  		</span>
+                  
+                  		<span class="ql-formats">
+                  			<button class="ql-list" value="ordered"></button>
+                  			<button class="ql-list" value="bullet"></button>
+                  			<button class="ql-indent" value="-1"></button>
+                  			<button class="ql-indent" value="+1"></button>
+                  		</span>
+                      </p-header>
+                  </p-editor>
+                </rz-html>
+              </div>
+            </div>
+            <rz-panel-header>
+              <div class="row">
+                <div class="col-md-12 align-items-start d-flex">
+                  <rz-button #button4 buttonStyle="success" buttonType="submit" icon="save" size="sm" [style]="{'marginRight': '-9px'}" text="Änderungen speichern" (click)="button4Click($event)">
+                  </rz-button>
+                </div>
+              </div>
+            </rz-panel-header>
           </rz-panel>
         </div>
       </div>
-    </rz-tabs-item>
-    <rz-tabs-item [selected]="false" text="Kurse">
-      <rz-tabs #tabs1>
-        <rz-tabs-item text="Daten">
-        </rz-tabs-item>
-        <rz-tabs-item text="Themen">
-        </rz-tabs-item>
-      </rz-tabs>
-    </rz-tabs-item>
-    <rz-tabs-item [selected]="false" text="Infotexte">
     </rz-tabs-item>
   </rz-tabs>
 </rz-content>

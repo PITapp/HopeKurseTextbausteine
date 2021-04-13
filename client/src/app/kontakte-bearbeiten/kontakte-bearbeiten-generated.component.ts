@@ -155,11 +155,11 @@ export class KontakteBearbeitenGenerated implements AfterViewInit, OnInit, OnDes
   templateFormKontakteSubmit(event: any) {
     this.dbHopeKurseTextbausteine.updateBase(null, this.dsoBase.BaseID, event)
     .subscribe((result: any) => {
-      this.notificationService.notify({ severity: "success", summary: `Kontakt erfolgreich gespeichert`, detail: `` });
+      this.notificationService.notify({ severity: "success", summary: ``, detail: `Kontakt gespeichert` });
 
       this.dialogRef.close(result);
     }, (result: any) => {
-      this.notificationService.notify({ severity: "error", summary: `Kontakt konnte nicht gespeichert werden!`, detail: `` });
+      this.notificationService.notify({ severity: "error", summary: ``, detail: `Kontakt konnte nicht gespeichert werden!` });
     });
   }
 
