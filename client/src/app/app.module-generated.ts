@@ -89,6 +89,11 @@ import { KurseThemenBearbeitenComponent } from './kurse-themen-bearbeiten/kurse-
 import { EinstellungenInfotexteNeuComponent } from './einstellungen-infotexte-neu/einstellungen-infotexte-neu.component';
 import { EinstellungenInfotexteBearbeitenComponent } from './einstellungen-infotexte-bearbeiten/einstellungen-infotexte-bearbeiten.component';
 import { MeldungLoeschenComponent } from './meldung-loeschen/meldung-loeschen.component';
+import { IbsiKurseComponent } from './ibsi-kurse/ibsi-kurse.component';
+import { AddIbsiKurseThemenComponent } from './add-ibsi-kurse-themen/add-ibsi-kurse-themen.component';
+import { AddIbsiKurseComponent } from './add-ibsi-kurse/add-ibsi-kurse.component';
+import { EditIbsiKurseComponent } from './edit-ibsi-kurse/edit-ibsi-kurse.component';
+import { EditIbsiKurseThemenComponent } from './edit-ibsi-kurse-themen/edit-ibsi-kurse-themen.component';
 import { LoginLayoutComponent } from './login-layout/login-layout.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 
@@ -134,6 +139,11 @@ export const PageDeclarations = [
   EinstellungenInfotexteNeuComponent,
   EinstellungenInfotexteBearbeitenComponent,
   MeldungLoeschenComponent,
+  IbsiKurseComponent,
+  AddIbsiKurseThemenComponent,
+  AddIbsiKurseComponent,
+  EditIbsiKurseComponent,
+  EditIbsiKurseThemenComponent,
 ];
 
 export const LayoutDeclarations = [

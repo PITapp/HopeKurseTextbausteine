@@ -123,6 +123,10 @@
                                             "path": "einstellungen-infotexte-bearbeiten",
                                             "title": "Bearbeiten Infotext",
                                             "type": "popup"
+                                          },
+                                          {
+                                            "code": "${this.gridInfotexte.onSelect(data)}",
+                                            "type": "execute"
                                           }
                                         ]
                                       },

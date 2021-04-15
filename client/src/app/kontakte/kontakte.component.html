@@ -5,7 +5,7 @@
       </rz-heading>
       <rz-heading #heading9 size="H3" [style]="{'color': '#e5ecef', 'display': 'inline-block', 'marginTop': '7px', 'paddingLeft': '10px', 'paddingRight': '10px'}" text="|">
       </rz-heading>
-      <rz-heading #heading2 size="H3" [style]="{'color': '#5d717b', 'display': 'inline', 'fontSize': '21px', 'fontWeight': 'normal'}" text="{{dsoBase?.Name1}} {{dsoBase?.Name2}}" >
+      <rz-heading #heading2 size="H3" [style]="{'color': '#5d717b', 'display': 'inline', 'fontSize': '21px', 'fontWeight': 'normal'}" text="{{rstBaseCount}} Einträge" >
       </rz-heading>
     </div>
   </div>
@@ -13,8 +13,8 @@
     <rz-tabs-item [selected]="true" text="Daten">
       <div [ngStyle]="{'height': '100%'}" class="row">
         <div class="col-md-12">
-          <rz-panel #panel0 [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="{{rstBaseCount}} Kontakte">
-            <rz-grid #gridKontakte [allowAdd]="false" [allowColumnReorder]="false" [allowDelete]="true" [allowFiltering]="true" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="true" [alwaysShowPager]="false" applyFilterText="Apply" clearFilterText="Clear" columnResizeMode="fit" columnWidth="auto" [confirmDelete]="false" containsText="Contains" [count]="rstBaseCount" [data]="rstBase" emptyText="Keine Kontakte vorhanden" endsWithText="Ends with" equalsText="Equals" filterCaseSensitivity="caseInsensitive" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="15" startsWithText="Starts with" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'height': '700px', 'marginLeft': '-10px', 'marginRight': '-10px', 'marginTop': '-13px'}" (delete)="gridKontakteDelete($event)" (loadData)="gridKontakteLoadData($event)" (rowSelect)="gridKontakteRowSelect($event)">
+          <rz-panel #panel0 [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="{{dsoBase?.Name1}} {{dsoBase?.Name2}} | {{dsoBase?.NameKuerzel}}">
+            <rz-grid #gridKontakte [allowAdd]="false" [allowColumnReorder]="false" [allowColumnResize]="true" [allowDelete]="false" [allowFiltering]="true" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="true" [alwaysShowPager]="false" applyFilterText="Apply" clearFilterText="Clear" columnResizeMode="fit" columnWidth="auto" [confirmDelete]="false" containsText="Contains" [count]="rstBaseCount" [data]="rstBase" emptyText="Keine Kontakte vorhanden" endsWithText="Ends with" equalsText="Equals" filterCaseSensitivity="caseInsensitive" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="15" [responsive]="true" startsWithText="Starts with" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'height': '700px', 'marginLeft': '-10px', 'marginRight': '-10px', 'marginTop': '-13px'}" [(value)]="dsoBase" (loadData)="gridKontakteLoadData($event)" (rowDoubleClick)="gridKontakteRowDoubleClick($event)" (rowSelect)="gridKontakteRowSelect($event)">
               <rz-grid-column property="Name1" title="Name" width="120px" type="string">
               </rz-grid-column>
               <rz-grid-column property="Name2" title="Vorname" width="100px" type="string">
@@ -37,17 +37,15 @@
               </rz-grid-column>
               <rz-grid-column property="Notiz" title="Notiz" type="string">
               </rz-grid-column>
-              <rz-grid-column [filterable]="false" [sortable]="false" textAlign="center" width="75px">
-                <ng-template let-data gridColumnTemplate>
-                  <rz-button #editButton buttonStyle="light" icon="edit" size="sm" [style]="{'height': '20px', 'width': '20px'}" (click)="editButtonClick($event, data)">
-                  </rz-button>
-                </ng-template>
-              </rz-grid-column>
             </rz-grid>
             <rz-panel-header>
               <div class="row">
                 <div class="col-md-12 align-items-start d-flex">
-                  <rz-button #button0 icon="add" size="sm" [style]="{'marginRight': '-9px'}" text="Neuer Kontakt" (click)="button0Click($event)">
+                  <rz-button #buttonNeu icon="add" size="sm" [style]="{'marginRight': ''}" text="Neuer Kontakt" (click)="buttonNeuClick($event)">
+                  </rz-button>
+                  <rz-button #buttonBearbeiten buttonStyle="light" icon="create" size="sm" [style]="{'color': '#ff6d41', 'marginLeft': '10px', 'paddingLeft': ''}" tooltip="Bearbeiten Kontakt" (click)="buttonBearbeitenClick($event)">
+                  </rz-button>
+                  <rz-button #button2 buttonStyle="light" [disabled]="false" icon="clear" size="sm" [style]="{'color': '#f9777f', 'fontWeight': 'normal', 'marginLeft': '10px', 'marginRight': '-9px', 'paddingLeft': ''}" tooltip="Löschen Kontakt" (click)="button2Click($event)">
                   </rz-button>
                 </div>
               </div>
@@ -59,7 +57,7 @@
     <rz-tabs-item [selected]="false" text="Details">
       <div class="row">
         <div class="col-md-4">
-          <rz-panel #panel2 [allowCollapse]="false" [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="Personendaten">
+          <rz-panel #panel2 [allowCollapse]="false" [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="{{dsoBase?.Name1}} {{dsoBase?.Name2}} | {{dsoBase?.NameKuerzel}}">
             <rz-template-form #templateFormKontakte [style]="{}">
               <div [ngStyle]="{'marginBottom': '4px'}" class="row">
                 <div class="col-md-3" [ngStyle]="{'paddingLeft': '0'}">
@@ -203,7 +201,7 @@
             <rz-panel-header>
               <div class="row">
                 <div class="col-md-12 align-items-start d-flex">
-                  <rz-button #button4 buttonStyle="success" buttonType="submit" icon="save" size="sm" [style]="{'marginRight': '-9px'}" text="Änderungen speichern" (click)="button4Click($event)">
+                  <rz-button #button4 buttonStyle="success" buttonType="submit" icon="save" size="sm" [style]="{'marginRight': '-9px'}" text="Speichern" (click)="button4Click($event)">
                   </rz-button>
                 </div>
               </div>
@@ -260,9 +258,9 @@
         </div>
         <div class="col-md-4" [ngStyle]="{'paddingLeft': '5px'}">
           <rz-panel #bild [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="Profilbild">
-            <div [ngStyle]="{'marginBottom': '15px'}" class="row">
+            <div [ngStyle]="{'marginBottom': '15px', 'marginTop': '-5px'}" class="row">
               <div class="col-md-5">
-                <rz-image #bildUrl [path]="dsoBase?.BildURL" [style]="{'width': '150px'}">
+                <rz-image #bildUrl [path]="dsoBase?.BildURL" [style]="{'backgroundColor': 'rgba(0, 0, 0, 0)', 'border': '1px solid #dbdfe2', 'borderRadius': '4px', 'width': '120px'}">
                 </rz-image>
               </div>
               <div class="col-md-7 justify-content-end d-flex">
@@ -277,7 +275,7 @@
             <rz-panel-header>
               <div class="row">
                 <div class="col-md-12 align-items-start d-flex">
-                  <rz-button #buttonBildEntfernen buttonStyle="light" icon="phonelink_erase" size="sm" [style]="{'marginRight': '-9px'}" text="Bild entfernen" (click)="buttonBildEntfernenClick($event)">
+                  <rz-button #buttonBildEntfernen buttonStyle="light" icon="phonelink_erase" size="sm" [style]="{'color': '#ff6d41', 'marginRight': '-9px'}" text="Bild entfernen" (click)="buttonBildEntfernenClick($event)">
                   </rz-button>
                 </div>
               </div>

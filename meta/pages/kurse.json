@@ -157,6 +157,10 @@
                                       "events": {
                                         "click": [
                                           {
+                                            "code": "${this.gridKurse.onSelect(data)}",
+                                            "type": "execute"
+                                          },
+                                          {
                                             "parameters": [
                                               {
                                                 "name": "KursNr",
@@ -164,6 +168,13 @@
                                               }
                                             ],
                                             "path": "kurse-bearbeiten",
+                                            "then": [
+                                              {
+                                                "code": "${this.gridKurse.onSelect(data)}",
+                                                "condition": "${result} != null",
+                                                "type": "execute"
+                                              }
+                                            ],
                                             "title": "Bearbeiten Kurs",
                                             "type": "popup"
                                           }
@@ -578,6 +589,10 @@
                               "buttonStyle": "light",
                               "events": {
                                 "click": [
+                                  {
+                                    "code": "${this.gridKurseThemen2.onSelect(data)}",
+                                    "type": "execute"
+                                  },
                                   {
                                     "parameters": [
                                       {

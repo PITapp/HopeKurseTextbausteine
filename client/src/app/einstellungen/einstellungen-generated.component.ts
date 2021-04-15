@@ -142,6 +142,8 @@ export class EinstellungenGenerated implements AfterViewInit, OnInit, OnDestroy 
 
   editButtonKurseClick(event: any, data: any) {
     this.dialogService.open(EinstellungenInfotexteBearbeitenComponent, { parameters: {InfotextID: data.InfotextID}, title: `Bearbeiten Infotext` });
+
+    this.gridInfotexte.onSelect(data)
   }
 
   button0Click(event: any) {

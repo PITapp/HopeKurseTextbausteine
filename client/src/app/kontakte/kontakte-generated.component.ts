@@ -26,9 +26,9 @@ import { ImageComponent } from '@radzen/angular/dist/image';
 import { UploadComponent } from '@radzen/angular/dist/upload';
 
 import { ConfigService } from '../config.service';
+import { MeldungLoeschenComponent } from '../meldung-loeschen/meldung-loeschen.component';
 import { KontakteBearbeitenComponent } from '../kontakte-bearbeiten/kontakte-bearbeiten.component';
 import { KontakteNeuComponent } from '../kontakte-neu/kontakte-neu.component';
-import { MeldungLoeschenComponent } from '../meldung-loeschen/meldung-loeschen.component';
 
 import { DbHopeKurseTextbausteineService } from '../db-hope-kurse-textbausteine.service';
 import { SecurityService } from '../security.service';
@@ -42,7 +42,9 @@ export class KontakteGenerated implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('tabs0') tabs0: TabsComponent;
   @ViewChild('panel0') panel0: PanelComponent;
   @ViewChild('gridKontakte') gridKontakte: GridComponent;
-  @ViewChild('button0') button0: ButtonComponent;
+  @ViewChild('buttonNeu') buttonNeu: ButtonComponent;
+  @ViewChild('buttonBearbeiten') buttonBearbeiten: ButtonComponent;
+  @ViewChild('button2') button2: ButtonComponent;
   @ViewChild('panel2') panel2: PanelComponent;
   @ViewChild('templateFormKontakte') templateFormKontakte: TemplateFormComponent;
   @ViewChild('label7') label7: LabelComponent;
@@ -119,6 +121,7 @@ export class KontakteGenerated implements AfterViewInit, OnInit, OnDestroy {
   rstBaseAnreden: any;
   strBildDateiName: any;
   parameters: any;
+  letzteBaseID: any;
   rstBase: any;
   rstBaseCount: any;
   dsoBase: any;
@@ -182,22 +185,8 @@ export class KontakteGenerated implements AfterViewInit, OnInit, OnDestroy {
     this.gridKontakte.load();
 
     this.strBildDateiName = 'Unbekannt';
-  }
 
-  gridKontakteDelete(event: any) {
-    this.dialogService.open(MeldungLoeschenComponent, { parameters: {strMeldung: "Soll der Kontakt '" + event.Name1 + " " + event.Name2 + "' gelöscht werden?"}, title: `Löschen Kontakt` })
-        .afterClosed().subscribe(result => {
-              if (result != null) {
-              this.dbHopeKurseTextbausteine.deleteBase(event.BaseID)
-        .subscribe((result: any) => {
-              this.notificationService.notify({ severity: "success", summary: ``, detail: `Kontakt gelöscht` });
-
-        this.gridKontakte.load();
-        }, (result: any) => {
-              this.notificationService.notify({ severity: "error", summary: ``, detail: `KOntakt konnte nicht gelöscht werden!` });
-        });
-      }
-    });
+    console.log('Load - Formular');
   }
 
   gridKontakteLoadData(event: any) {
@@ -211,6 +200,19 @@ export class KontakteGenerated implements AfterViewInit, OnInit, OnDestroy {
     }, (result: any) => {
       this.notificationService.notify({ severity: "error", summary: `Kontakte`, detail: `Daten können nicht geladen werden!` });
     });
+
+    console.log('LoadData');
+  }
+
+  gridKontakteRowDoubleClick(event: any) {
+    this.dialogService.open(KontakteBearbeitenComponent, { parameters: {BaseID: event.BaseID}, title: `Bearbeiten Kontakt` })
+        .afterClosed().subscribe(result => {
+              console.log('fertig opendialog');
+
+      console.log(result);
+
+      this.gridKontakte.onSelect(null)
+    });
   }
 
   gridKontakteRowSelect(event: any) {
@@ -222,17 +224,41 @@ export class KontakteGenerated implements AfterViewInit, OnInit, OnDestroy {
     }, (result: any) => {
 
     });
+
+    console.log('RowSelect');
   }
 
-  editButtonClick(event: any, data: any) {
-    this.dialogService.open(KontakteBearbeitenComponent, { parameters: {BaseID: data.BaseID}, title: `Bearbeiten Kontakt` });
-  }
+  buttonNeuClick(event: any) {
+    this.letzteBaseID = this.dsoBase.BaseID;
 
-  button0Click(event: any) {
     this.dialogService.open(KontakteNeuComponent, { parameters: {}, title: `Neuer Kontakt` })
         .afterClosed().subscribe(result => {
               if (result != null) {
-        this.gridKontakte.load();
+        Promise.resolve().then(() => {
+          this.gridKontakte.load();
+        }).then((result: any) => {
+
+        }, (result: any) => {
+
+        });
+      }
+    });
+  }
+
+  buttonBearbeitenClick(event: any) {
+    this.dialogService.open(KontakteBearbeitenComponent, { parameters: {BaseID: this.dsoBase.BaseID}, title: `Bearbeiten Kontakt` });
+  }
+
+  button2Click(event: any) {
+    this.dialogService.open(MeldungLoeschenComponent, { parameters: {strMeldung: "Soll der Kontakt '" + this.dsoBase.Name1 + " " + this.dsoBase.Name2 + "' gelöscht werden?"}, title: `Löschen Kontakt` })
+        .afterClosed().subscribe(result => {
+              if (result != null) {
+              this.dbHopeKurseTextbausteine.deleteBase(this.dsoBase.BaseID)
+        .subscribe((result: any) => {
+              this.notificationService.notify({ severity: "success", summary: ``, detail: `Kontakt gelöscht` });
+        }, (result: any) => {
+              this.notificationService.notify({ severity: "error", summary: ``, detail: `Kontakt konnte nicht gelöscht werden!` });
+        });
       }
     });
   }

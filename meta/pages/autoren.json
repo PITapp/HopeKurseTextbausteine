@@ -135,6 +135,15 @@
                                       "events": {
                                         "click": [
                                           {
+                                            "name": "varAutorNr",
+                                            "type": "set",
+                                            "value": "${data.AutorNr}"
+                                          },
+                                          {
+                                            "code": "${this.gridAutoren.onSelect(this.rstAutoren.find(p => p.AutorNr == this.varAutorNr))}",
+                                            "type": "execute"
+                                          },
+                                          {
                                             "parameters": [
                                               {
                                                 "name": "AutorNr",
@@ -142,12 +151,15 @@
                                               }
                                             ],
                                             "path": "autoren-bearbeiten",
+                                            "then": [
+                                              {
+                                                "code": "${this.gridAutoren.onSelect(this.rstAutoren.find(p => p.AutorNr == this.varAutorNr))}",
+                                                "condition": "${result} != null",
+                                                "type": "execute"
+                                              }
+                                            ],
                                             "title": "Bearbeiten Autor",
                                             "type": "popup"
-                                          },
-                                          {
-                                            "code": "${this.gridAutoren.onSelect(data)}",
-                                            "type": "execute"
                                           }
                                         ]
                                       },
@@ -250,10 +262,15 @@
                                       },
                                       {
                                         "code": "${this.gridAutoren.onSelect(result.value[0])}",
+                                        "condition": "",
                                         "type": "execute"
                                       }
                                     ],
                                     "type": "invoke"
+                                  },
+                                  {
+                                    "code": "console.log('LoadData');",
+                                    "type": "execute"
                                   }
                                 ],
                                 "rowSelect": [
@@ -313,6 +330,10 @@
                                       }
                                     ],
                                     "type": "invoke"
+                                  },
+                                  {
+                                    "code": "console.log('RowSelect', event);",
+                                    "type": "execute"
                                   }
                                 ],
                                 "update": []
@@ -517,6 +538,10 @@
     "load": [
       {
         "code": "this.gridAutoren.load();",
+        "type": "execute"
+      },
+      {
+        "code": "console.log('Load - Autoren');",
         "type": "execute"
       }
     ]

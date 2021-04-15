@@ -163,7 +163,14 @@ export class KurseGenerated implements AfterViewInit, OnInit, OnDestroy {
   }
 
   editButtonKurseClick(event: any, data: any) {
-    this.dialogService.open(KurseBearbeitenComponent, { parameters: {KursNr: data.KursNr}, title: `Bearbeiten Kurs` });
+    this.gridKurse.onSelect(data)
+
+    this.dialogService.open(KurseBearbeitenComponent, { parameters: {KursNr: data.KursNr}, title: `Bearbeiten Kurs` })
+        .afterClosed().subscribe(result => {
+              if (result != null) {
+        this.gridKurse.onSelect(data)
+      }
+    });
   }
 
   button0Click(event: any) {
@@ -185,6 +192,8 @@ export class KurseGenerated implements AfterViewInit, OnInit, OnDestroy {
   }
 
   editButtonKurseThemenClick(event: any, data: any) {
+    this.gridKurseThemen2.onSelect(data)
+
     this.dialogService.open(KurseThemenBearbeitenComponent, { parameters: {KursThemaNr: data.KursThemaNr}, title: `Bearbeiten Thema` });
   }
 

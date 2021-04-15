@@ -255,3 +255,9 @@ input:focus, textarea:focus {
 .no-scroll {
   padding-right: 0px;
 }
+
+/* --- Notification Position einstellen --- */
+.ui-growl {
+  top: 50px;
+  right: 16px;
+}

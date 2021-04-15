@@ -45,7 +45,7 @@
                     "fontSize": "21px",
                     "fontWeight": "normal"
                   },
-                  "text": "${dsoBase.Name1} ${dsoBase.Name2}",
+                  "text": "${rstBaseCount} Einträge",
                   "type": "heading"
                 }
               ],
@@ -84,7 +84,8 @@
                               "addText": "",
                               "allowAdd": false,
                               "allowColumnReorder": false,
-                              "allowDelete": true,
+                              "allowColumnResize": true,
+                              "allowDelete": false,
                               "allowFiltering": true,
                               "allowMultiSorting": false,
                               "allowPaging": true,
@@ -174,42 +175,6 @@
                                   "property": "Notiz",
                                   "title": "Notiz",
                                   "type": "string"
-                                },
-                                {
-                                  "filterable": false,
-                                  "sortable": false,
-                                  "template": [
-                                    {
-                                      "buttonStyle": "light",
-                                      "events": {
-                                        "click": [
-                                          {
-                                            "parameters": [
-                                              {
-                                                "name": "BaseID",
-                                                "value": "${data.BaseID}"
-                                              }
-                                            ],
-                                            "path": "kontakte-bearbeiten",
-                                            "then": [],
-                                            "title": "Bearbeiten Kontakt",
-                                            "type": "popup"
-                                          }
-                                        ]
-                                      },
-                                      "icon": "edit",
-                                      "name": "editButton",
-                                      "size": "sm",
-                                      "style": {
-                                        "height": "20px",
-                                        "width": "20px"
-                                      },
-                                      "text": "",
-                                      "type": "button"
-                                    }
-                                  ],
-                                  "textAlign": "center",
-                                  "width": "75px"
                                 }
                               ],
                               "confirmDelete": false,
@@ -226,53 +191,7 @@
                               "events": {
                                 "add": [],
                                 "create": [],
-                                "delete": [
-                                  {
-                                    "parameters": [
-                                      {
-                                        "name": "strMeldung",
-                                        "value": "\"Soll der Kontakt '\" + ${event.Name1} + \" \" + ${event.Name2} + \"' gelöscht werden?\""
-                                      }
-                                    ],
-                                    "path": "meldung-loeschen",
-                                    "then": [
-                                      {
-                                        "condition": "${result} != null",
-                                        "error": [
-                                          {
-                                            "detail": "KOntakt konnte nicht gelöscht werden!",
-                                            "severity": "error",
-                                            "summary": "",
-                                            "type": "notify"
-                                          }
-                                        ],
-                                        "name": "dbHopeKurseTextbausteine.deleteBase",
-                                        "parameters": [
-                                          {
-                                            "name": "BaseID",
-                                            "value": "${event.BaseID}"
-                                          }
-                                        ],
-                                        "then": [
-                                          {
-                                            "detail": "Kontakt gelöscht",
-                                            "severity": "success",
-                                            "summary": "",
-                                            "type": "notify"
-                                          },
-                                          {
-                                            "code": "this.gridKontakte.load();",
-                                            "condition": "",
-                                            "type": "execute"
-                                          }
-                                        ],
-                                        "type": "invoke"
-                                      }
-                                    ],
-                                    "title": "Löschen Kontakt",
-                                    "type": "popup"
-                                  }
-                                ],
+                                "delete": [],
                                 "loadData": [
                                   {
                                     "error": [
@@ -328,6 +247,37 @@
                                       }
                                     ],
                                     "type": "invoke"
+                                  },
+                                  {
+                                    "code": "console.log('LoadData');",
+                                    "type": "execute"
+                                  }
+                                ],
+                                "rowDoubleClick": [
+                                  {
+                                    "parameters": [
+                                      {
+                                        "name": "BaseID",
+                                        "value": "${event.BaseID}"
+                                      }
+                                    ],
+                                    "path": "kontakte-bearbeiten",
+                                    "then": [
+                                      {
+                                        "code": "console.log('fertig opendialog');",
+                                        "type": "execute"
+                                      },
+                                      {
+                                        "code": "console.log(${result});",
+                                        "type": "execute"
+                                      },
+                                      {
+                                        "code": "${this.gridKontakte.onSelect(null)}",
+                                        "type": "execute"
+                                      }
+                                    ],
+                                    "title": "Bearbeiten Kontakt",
+                                    "type": "popup"
                                   }
                                 ],
                                 "rowSelect": [
@@ -352,6 +302,10 @@
                                       }
                                     ],
                                     "type": "invoke"
+                                  },
+                                  {
+                                    "code": "console.log('RowSelect');",
+                                    "type": "execute"
                                   }
                                 ]
                               },
@@ -364,6 +318,7 @@
                               "notEqualsText": "Not equals",
                               "pageSize": 15,
                               "pageSizeOptions": [],
+                              "responsive": true,
                               "startsWithText": "Starts with",
                               "style": {
                                 "border": "1px solid rgba(0, 0, 0, 0)",
@@ -374,7 +329,7 @@
                               },
                               "title": "",
                               "type": "grid",
-                              "value": ""
+                              "value": "${dsoBase}"
                             }
                           ],
                           "headerTemplate": [
@@ -387,11 +342,19 @@
                                       "events": {
                                         "click": [
                                           {
+                                            "name": "letzteBaseID",
+                                            "type": "set",
+                                            "value": "${dsoBase.BaseID}"
+                                          },
+                                          {
                                             "path": "kontakte-neu",
                                             "then": [
                                               {
                                                 "code": "this.gridKontakte.load();",
                                                 "condition": "${result} != null",
+                                                "then": [
+                                                  {}
+                                                ],
                                                 "type": "execute"
                                               }
                                             ],
@@ -401,12 +364,103 @@
                                         ]
                                       },
                                       "icon": "add",
-                                      "name": "button0",
+                                      "name": "buttonNeu",
                                       "size": "sm",
                                       "style": {
-                                        "marginRight": "-9px"
+                                        "marginRight": ""
                                       },
                                       "text": "Neuer Kontakt",
+                                      "tooltip": "",
+                                      "type": "button"
+                                    },
+                                    {
+                                      "buttonStyle": "light",
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "parameters": [
+                                              {
+                                                "name": "BaseID",
+                                                "value": "${dsoBase.BaseID}"
+                                              }
+                                            ],
+                                            "path": "kontakte-bearbeiten",
+                                            "title": "Bearbeiten Kontakt",
+                                            "type": "popup"
+                                          }
+                                        ]
+                                      },
+                                      "icon": "create",
+                                      "name": "buttonBearbeiten",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#ff6d41",
+                                        "marginLeft": "10px",
+                                        "paddingLeft": ""
+                                      },
+                                      "text": "",
+                                      "tooltip": "Bearbeiten Kontakt",
+                                      "type": "button"
+                                    },
+                                    {
+                                      "buttonStyle": "light",
+                                      "disabled": false,
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "parameters": [
+                                              {
+                                                "name": "strMeldung",
+                                                "value": "\"Soll der Kontakt '\" + ${dsoBase.Name1} + \" \" + ${dsoBase.Name2} + \"' gelöscht werden?\""
+                                              }
+                                            ],
+                                            "path": "meldung-loeschen",
+                                            "then": [
+                                              {
+                                                "condition": "${result} != null",
+                                                "error": [
+                                                  {
+                                                    "detail": "Kontakt konnte nicht gelöscht werden!",
+                                                    "severity": "error",
+                                                    "summary": "",
+                                                    "type": "notify"
+                                                  }
+                                                ],
+                                                "name": "dbHopeKurseTextbausteine.deleteBase",
+                                                "parameters": [
+                                                  {
+                                                    "name": "BaseID",
+                                                    "value": "${dsoBase.BaseID}"
+                                                  }
+                                                ],
+                                                "then": [
+                                                  {
+                                                    "detail": "Kontakt gelöscht",
+                                                    "severity": "success",
+                                                    "summary": "",
+                                                    "type": "notify"
+                                                  }
+                                                ],
+                                                "type": "invoke"
+                                              }
+                                            ],
+                                            "title": "Löschen Kontakt",
+                                            "type": "popup"
+                                          }
+                                        ]
+                                      },
+                                      "icon": "clear",
+                                      "name": "button2",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#f9777f",
+                                        "fontWeight": "normal",
+                                        "marginLeft": "10px",
+                                        "marginRight": "-9px",
+                                        "paddingLeft": ""
+                                      },
+                                      "text": "",
+                                      "tooltip": "Löschen Kontakt",
                                       "type": "button"
                                     }
                                   ],
@@ -423,7 +477,7 @@
                             "border": "1px solid #e6ecef",
                             "height": "750px"
                           },
-                          "text": "${rstBaseCount} Kontakte",
+                          "text": "${dsoBase.Name1} ${dsoBase.Name2} | ${dsoBase.NameKuerzel}",
                           "type": "panel"
                         }
                       ],
@@ -1178,7 +1232,8 @@
                                       "style": {
                                         "marginRight": "-9px"
                                       },
-                                      "text": "Änderungen speichern",
+                                      "text": "Speichern",
+                                      "tooltip": "",
                                       "type": "button"
                                     }
                                   ],
@@ -1195,7 +1250,7 @@
                             "border": "1px solid #e6ecef",
                             "height": "750px"
                           },
-                          "text": "Personendaten",
+                          "text": "${dsoBase.Name1} ${dsoBase.Name2} | ${dsoBase.NameKuerzel}",
                           "type": "panel"
                         }
                       ],
@@ -1426,7 +1481,10 @@
                                       "name": "BildURL",
                                       "path": "${dsoBase.BildURL}",
                                       "style": {
-                                        "width": "150px"
+                                        "backgroundColor": "rgba(0, 0, 0, 0)",
+                                        "border": "1px solid #dbdfe2",
+                                        "borderRadius": "4px",
+                                        "width": "120px"
                                       },
                                       "type": "image"
                                     }
@@ -1443,7 +1501,8 @@
                               ],
                               "name": "row2",
                               "style": {
-                                "marginBottom": "15px"
+                                "marginBottom": "15px",
+                                "marginTop": "-5px"
                               },
                               "type": "row"
                             },
@@ -1569,6 +1628,7 @@
                                       "name": "buttonBildEntfernen",
                                       "size": "sm",
                                       "style": {
+                                        "color": "#ff6d41",
                                         "marginRight": "-9px"
                                       },
                                       "text": "Bild entfernen",
@@ -1642,6 +1702,10 @@
         "name": "strBildDateiName",
         "type": "set",
         "value": "'Unbekannt'"
+      },
+      {
+        "code": "console.log('Load - Formular');",
+        "type": "execute"
       }
     ]
   },

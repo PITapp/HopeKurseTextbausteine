@@ -70,6 +70,7 @@ export class AutorenGenerated implements AfterViewInit, OnInit, OnDestroy {
   rstTextbausteineLaden: any;
   rstTextbausteine: any;
   rstTextbausteineCount: any;
+  varAutorNr: any;
 
   constructor(private injector: Injector) {
   }
@@ -120,6 +121,8 @@ export class AutorenGenerated implements AfterViewInit, OnInit, OnDestroy {
 
   load() {
     this.gridAutoren.load();
+
+    console.log('Load - Autoren');
   }
 
   gridAutorenDelete(event: any) {
@@ -142,6 +145,8 @@ export class AutorenGenerated implements AfterViewInit, OnInit, OnDestroy {
     }, (result: any) => {
       this.notificationService.notify({ severity: "error", summary: `Autoren konnten nicht geladen werden!`, detail: `` });
     });
+
+    console.log('LoadData');
   }
 
   gridAutorenRowSelect(event: any) {
@@ -159,12 +164,21 @@ export class AutorenGenerated implements AfterViewInit, OnInit, OnDestroy {
     }, (result: any) => {
 
     });
+
+    console.log('RowSelect', event);
   }
 
   editButtonClick(event: any, data: any) {
-    this.dialogService.open(AutorenBearbeitenComponent, { parameters: {AutorNr: data.AutorNr}, title: `Bearbeiten Autor` });
+    this.varAutorNr = data.AutorNr;
 
-    this.gridAutoren.onSelect(data)
+    this.gridAutoren.onSelect(this.rstAutoren.find(p => p.AutorNr == this.varAutorNr))
+
+    this.dialogService.open(AutorenBearbeitenComponent, { parameters: {AutorNr: data.AutorNr}, title: `Bearbeiten Autor` })
+        .afterClosed().subscribe(result => {
+              if (result != null) {
+        this.gridAutoren.onSelect(this.rstAutoren.find(p => p.AutorNr == this.varAutorNr))
+      }
+    });
   }
 
   button0Click(event: any) {

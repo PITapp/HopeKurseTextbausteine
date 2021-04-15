@@ -1,0 +1,98 @@
+<rz-content #content1 container="main">
+  <div class="row">
+    <div class="col-md-12">
+      <rz-template-form #form0 (submit)="form0Submit($event)">
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #kursArtNrLabel text="Ibsi Kurse Arten" component="KursArtNr" [style]="{'width': '100%'}">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-dropdown #kursArtNr [data]="getIbsiKurseArtensResult" textProperty="Bezeichnung" valueProperty="KursArtNr" placeholder="Choose IbsiKurseArten" [style]="{'display': 'block', 'width': '100%'}" [(ngModel)]="ibsikurse && ibsikurse.KursArtNr" multipleItemsSelectedText="{0} items selected" emptyFilterText="No results found" name="KursArtNr">
+            </rz-dropdown>
+            <rz-required-validator #kursArtNrRequiredValidator [component]="kursArtNr" text="KursArtNr is required" [style]="{'position': 'absolute'}">
+            </rz-required-validator>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #titelLabel text="Titel" component="Titel" [style]="{'width': '100%'}">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-textbox #titel [maxLength]="50" [style]="{'width': '100%'}" [(ngModel)]="ibsikurse && ibsikurse.Titel" name="Titel">
+            </rz-textbox>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #untertitelLabel text="Untertitel" component="Untertitel" [style]="{'width': '100%'}">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-textbox #untertitel [maxLength]="50" [style]="{'width': '100%'}" [(ngModel)]="ibsikurse && ibsikurse.Untertitel" name="Untertitel">
+            </rz-textbox>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #kurzzeichenLabel text="Kurzzeichen" component="Kurzzeichen" [style]="{'width': '100%'}">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-textbox #kurzzeichen [maxLength]="10" [style]="{'width': '100%'}" [(ngModel)]="ibsikurse && ibsikurse.Kurzzeichen" name="Kurzzeichen">
+            </rz-textbox>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #beschreibungLabel text="Beschreibung" component="Beschreibung" [style]="{'width': '100%'}">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-textbox #beschreibung [maxLength]="16777215" [style]="{'width': '100%'}" [(ngModel)]="ibsikurse && ibsikurse.Beschreibung" name="Beschreibung">
+            </rz-textbox>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #anzahlThemenLabel text="Anzahl Themen" component="AnzahlThemen" [style]="{'width': '100%'}">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-numeric #anzahlThemen [style]="{'width': '100%'}" [(ngModel)]="ibsikurse && ibsikurse.AnzahlThemen" name="AnzahlThemen">
+            </rz-numeric>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #printkursLabel text="Printkurs" component="Printkurs" [style]="{'width': '100%'}">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-checkbox #printkurs [triState]="true" [(ngModel)]="ibsikurse && ibsikurse.Printkurs" name="Printkurs">
+            </rz-checkbox>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #onlinekursLabel text="Onlinekurs" component="Onlinekurs" [style]="{'width': '100%'}">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-checkbox #onlinekurs [triState]="true" [(ngModel)]="ibsikurse && ibsikurse.Onlinekurs" name="Onlinekurs">
+            </rz-checkbox>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col offset-sm-3">
+            <rz-button #button1 buttonType="submit" icon="save" text="Save" buttonStyle="primary">
+            </rz-button>
+            <rz-button #button2 buttonStyle="light" [style]="{'marginLeft': '1rem'}" text="Cancel" (click)="button2Click($event)">
+            </rz-button>
+          </div>
+        </div>
+      </rz-template-form>
+    </div>
+  </div>
+</rz-content>
