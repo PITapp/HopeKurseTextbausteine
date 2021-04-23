@@ -107,6 +107,8 @@ export interface IbsiTextbausteineAnreden {
 export interface IbsiTextbausteineArten {
   TextbausteinArtCode: string;
   Bezeichnung: string;
+  AuswahlKurs: boolean;
+  AuswahlThemaNummer: boolean;
   Sortierung: number;
 }
 

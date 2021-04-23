@@ -45,7 +45,7 @@
                     "fontSize": "21px",
                     "fontWeight": "normal"
                   },
-                  "text": "${dsoAutoren.Name} (${dsoAutoren.Krzel})",
+                  "text": "${dsoAutoren.Name} • ${dsoAutoren.Krzel}",
                   "type": "heading"
                 }
               ],
@@ -81,12 +81,13 @@
                         {
                           "components": [
                             {
-                              "addText": "Neuer Autor",
+                              "addText": "",
                               "allowAdd": false,
-                              "allowDelete": true,
+                              "allowColumnResize": true,
+                              "allowDelete": false,
                               "allowFiltering": true,
                               "allowMultiSorting": false,
-                              "allowPaging": true,
+                              "allowPaging": false,
                               "allowSorting": true,
                               "applyFilterText": "Apply",
                               "clearFilterText": "Clear",
@@ -123,62 +124,14 @@
                                   "property": "Krzel",
                                   "title": "Kürzel",
                                   "type": "string",
-                                  "width": "20%"
-                                },
-                                {
-                                  "editTemplate": "",
-                                  "filterable": false,
-                                  "sortable": false,
-                                  "template": [
-                                    {
-                                      "buttonStyle": "light",
-                                      "events": {
-                                        "click": [
-                                          {
-                                            "name": "varAutorNr",
-                                            "type": "set",
-                                            "value": "${data.AutorNr}"
-                                          },
-                                          {
-                                            "code": "${this.gridAutoren.onSelect(this.rstAutoren.find(p => p.AutorNr == this.varAutorNr))}",
-                                            "type": "execute"
-                                          },
-                                          {
-                                            "parameters": [
-                                              {
-                                                "name": "AutorNr",
-                                                "value": "${data.AutorNr}"
-                                              }
-                                            ],
-                                            "path": "autoren-bearbeiten",
-                                            "then": [
-                                              {
-                                                "code": "${this.gridAutoren.onSelect(this.rstAutoren.find(p => p.AutorNr == this.varAutorNr))}",
-                                                "condition": "${result} != null",
-                                                "type": "execute"
-                                              }
-                                            ],
-                                            "title": "Bearbeiten Autor",
-                                            "type": "popup"
-                                          }
-                                        ]
-                                      },
-                                      "icon": "edit",
-                                      "name": "editButton",
-                                      "size": "sm",
-                                      "text": "",
-                                      "type": "button"
-                                    }
-                                  ],
-                                  "textAlign": "center",
-                                  "width": "70px"
+                                  "width": "30%"
                                 }
                               ],
-                              "confirmDelete": true,
-                              "confirmDeleteCancelText": "Abbruch",
-                              "confirmDeleteOkText": "Löschen",
-                              "confirmDeleteText": "Bist du sicher, dass dieser Autor gelöscht werden soll? ${parameters}",
-                              "confirmDeleteTitle": "Löschen Autor",
+                              "confirmDelete": false,
+                              "confirmDeleteCancelText": "",
+                              "confirmDeleteOkText": "",
+                              "confirmDeleteText": "",
+                              "confirmDeleteTitle": "",
                               "containsText": "Contains",
                               "count": "${rstAutorenCount}",
                               "data": "${rstAutoren}",
@@ -188,41 +141,14 @@
                               "events": {
                                 "add": [],
                                 "create": [],
-                                "delete": [
-                                  {
-                                    "error": [
-                                      {
-                                        "detail": "",
-                                        "severity": "error",
-                                        "summary": "Autor konnte nicht gelöscht werden!",
-                                        "type": "notify"
-                                      }
-                                    ],
-                                    "name": "dbHopeKurseTextbausteine.deleteIbsiTextbausteineAutoren",
-                                    "parameters": [
-                                      {
-                                        "name": "AutorNr",
-                                        "value": "${event.AutorNr}"
-                                      }
-                                    ],
-                                    "then": [
-                                      {
-                                        "detail": "",
-                                        "severity": "success",
-                                        "summary": "Autor erfolgreich gelöscht",
-                                        "type": "notify"
-                                      }
-                                    ],
-                                    "type": "invoke"
-                                  }
-                                ],
+                                "delete": [],
                                 "loadData": [
                                   {
                                     "error": [
                                       {
-                                        "detail": "",
+                                        "detail": "Autoren konnten nicht geladen werden!",
                                         "severity": "error",
-                                        "summary": "Autoren konnten nicht geladen werden!",
+                                        "summary": "",
                                         "type": "notify"
                                       }
                                     ],
@@ -261,16 +187,30 @@
                                         "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
                                       },
                                       {
-                                        "code": "${this.gridAutoren.onSelect(result.value[0])}",
+                                        "code": "if (this.rstAutoren.find(p => p.AutorNr == this.letzteAutorNr) != null) {\n    // letzteAutorNr wurde in rstAutoren gefunden\n    this.gridAutoren.onSelect(this.rstAutoren.find(p => p.AutorNr == this.letzteAutorNr))\n} else {\n    // letzteAutorNr wurde in rstAutoren NICHT gefunden\n    this.letzteAutorNr = null;\n    this.gridAutoren.onSelect(this.rstAutoren[0]);\n}",
                                         "condition": "",
                                         "type": "execute"
                                       }
                                     ],
                                     "type": "invoke"
+                                  }
+                                ],
+                                "rowDoubleClick": [
+                                  {
+                                    "name": "letzteAutorNr",
+                                    "type": "set",
+                                    "value": "${dsoAutoren.AutorNr}"
                                   },
                                   {
-                                    "code": "console.log('LoadData');",
-                                    "type": "execute"
+                                    "parameters": [
+                                      {
+                                        "name": "AutorNr",
+                                        "value": "${dsoAutoren.AutorNr}"
+                                      }
+                                    ],
+                                    "path": "autoren-bearbeiten",
+                                    "title": "Bearbeiten Autor",
+                                    "type": "popup"
                                   }
                                 ],
                                 "rowSelect": [
@@ -310,6 +250,10 @@
                                       {
                                         "name": "$expand",
                                         "value": "IbsiKurse, IbsiTextbausteineArten"
+                                      },
+                                      {
+                                        "name": "$select",
+                                        "value": "TextbausteinNr, TitelTextbaustein, UntertitelTextbaustein"
                                       }
                                     ],
                                     "then": [
@@ -332,7 +276,7 @@
                                     "type": "invoke"
                                   },
                                   {
-                                    "code": "console.log('RowSelect', event);",
+                                    "code": "console.log(${event});",
                                     "type": "execute"
                                   }
                                 ],
@@ -368,8 +312,19 @@
                                       "events": {
                                         "click": [
                                           {
+                                            "name": "letzteAutorNr",
+                                            "type": "set",
+                                            "value": "${dsoAutoren.AutorNr}"
+                                          },
+                                          {
                                             "path": "autoren-neu",
                                             "then": [
+                                              {
+                                                "condition": "${result} != null",
+                                                "name": "letzteAutorNr",
+                                                "type": "set",
+                                                "value": "${result.AutorNr}"
+                                              },
                                               {
                                                 "code": "this.gridAutoren.load();",
                                                 "condition": "${result} != null",
@@ -382,12 +337,111 @@
                                         ]
                                       },
                                       "icon": "add",
-                                      "name": "button0",
+                                      "name": "buttonNeu",
+                                      "size": "sm",
+                                      "style": {},
+                                      "text": "Neuer Autor",
+                                      "type": "button"
+                                    },
+                                    {
+                                      "buttonStyle": "light",
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "name": "letzteAutorNr",
+                                            "type": "set",
+                                            "value": "${dsoAutoren.AutorNr}"
+                                          },
+                                          {
+                                            "parameters": [
+                                              {
+                                                "name": "AutorNr",
+                                                "value": "${dsoAutoren.AutorNr}"
+                                              }
+                                            ],
+                                            "path": "autoren-bearbeiten",
+                                            "then": [],
+                                            "title": "Bearbeiten Autor",
+                                            "type": "popup"
+                                          }
+                                        ]
+                                      },
+                                      "icon": "create",
+                                      "name": "buttonBearbeiten",
                                       "size": "sm",
                                       "style": {
-                                        "marginRight": "-9px"
+                                        "color": "#ff6d41",
+                                        "marginLeft": "10px",
+                                        "paddingLeft": ""
                                       },
-                                      "text": "Neuer Autor",
+                                      "text": "",
+                                      "tooltip": "Bearbeiten Autor",
+                                      "type": "button"
+                                    },
+                                    {
+                                      "buttonStyle": "light",
+                                      "disabled": false,
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "name": "letzteAutorNr",
+                                            "type": "set",
+                                            "value": "null"
+                                          },
+                                          {
+                                            "parameters": [
+                                              {
+                                                "name": "strMeldung",
+                                                "value": "\"Soll der Autor '\" + ${dsoAutoren.Name} + \"' gelöscht werden?\""
+                                              }
+                                            ],
+                                            "path": "meldung-loeschen",
+                                            "then": [
+                                              {
+                                                "condition": "${result} == 'Löschen'",
+                                                "error": [
+                                                  {
+                                                    "detail": "Autor konnte nicht gelöscht werden!",
+                                                    "severity": "error",
+                                                    "summary": "",
+                                                    "type": "notify"
+                                                  }
+                                                ],
+                                                "name": "dbHopeKurseTextbausteine.deleteIbsiTextbausteineAutoren",
+                                                "parameters": [
+                                                  {
+                                                    "name": "AutorNr",
+                                                    "value": "${dsoAutoren.AutorNr}"
+                                                  }
+                                                ],
+                                                "then": [
+                                                  {
+                                                    "detail": "Autor gelöscht",
+                                                    "severity": "success",
+                                                    "summary": "",
+                                                    "type": "notify"
+                                                  }
+                                                ],
+                                                "type": "invoke"
+                                              }
+                                            ],
+                                            "title": "Löschen Autor",
+                                            "type": "popup"
+                                          }
+                                        ]
+                                      },
+                                      "icon": "clear",
+                                      "name": "buttonLoeschen",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#f9777f",
+                                        "fontWeight": "normal",
+                                        "marginLeft": "10px",
+                                        "marginRight": "-9px",
+                                        "paddingLeft": ""
+                                      },
+                                      "text": "",
+                                      "tooltip": "Löschen Autor",
                                       "type": "button"
                                     }
                                   ],
@@ -399,12 +453,13 @@
                               "type": "row"
                             }
                           ],
+                          "icon": "",
                           "name": "panel1",
                           "style": {
                             "border": "1px solid #e6ecef",
                             "height": "750px"
                           },
-                          "text": "${rstAutorenCount} Autoren",
+                          "text": "${dsoAutoren.Name} | ${dsoAutoren.Krzel}",
                           "type": "panel"
                         }
                       ],
@@ -419,14 +474,15 @@
                           "collapsed": false,
                           "components": [
                             {
-                              "addText": "Add",
+                              "addText": "",
                               "allowAdd": false,
+                              "allowColumnResize": true,
                               "allowDelete": false,
                               "allowFiltering": true,
                               "allowMultiSorting": false,
                               "allowPaging": true,
                               "allowSorting": true,
-                              "alwaysShowPager": true,
+                              "alwaysShowPager": false,
                               "applyFilterText": "Apply",
                               "clearFilterText": "Clear",
                               "columns": [
@@ -455,11 +511,11 @@
                                   "type": "string"
                                 }
                               ],
-                              "confirmDelete": true,
-                              "confirmDeleteCancelText": "Cancel",
-                              "confirmDeleteOkText": "Ok",
-                              "confirmDeleteText": "Are you sure you want to delete this record?",
-                              "confirmDeleteTitle": "Confirmation",
+                              "confirmDelete": false,
+                              "confirmDeleteCancelText": "",
+                              "confirmDeleteOkText": "",
+                              "confirmDeleteText": "",
+                              "confirmDeleteTitle": "",
                               "containsText": "Contains",
                               "count": "${rstTextbausteineCount}",
                               "data": "${rstTextbausteine}",
@@ -480,7 +536,7 @@
                               "lessThanText": "Less than",
                               "name": "grid0",
                               "notEqualsText": "Not equals",
-                              "pageSize": 14,
+                              "pageSize": 15,
                               "startsWithText": "Starts with",
                               "style": {
                                 "border": "1px solid rgba(0, 0, 0, 0)",
@@ -501,7 +557,7 @@
                             "border": "1px solid #e6ecef",
                             "height": "750px"
                           },
-                          "text": "${rstTextbausteineCount} Textbausteine von Autor ${dsoAutoren.Name}",
+                          "text": "Autor ${dsoAutoren.Name} hat ${rstTextbausteineCount} Textbausteine erstellt ",
                           "type": "panel"
                         }
                       ],
@@ -538,10 +594,6 @@
     "load": [
       {
         "code": "this.gridAutoren.load();",
-        "type": "execute"
-      },
-      {
-        "code": "console.log('Load - Autoren');",
         "type": "execute"
       }
     ]

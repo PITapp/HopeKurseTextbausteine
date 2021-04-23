@@ -86,6 +86,22 @@ namespace HopeKurseTextbausteine.Data
                   .HasForeignKey(i => i.Typ)
                   .HasPrincipalKey(i => i.Typ);
 
+            builder.Entity<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.IbsiKurse>()
+                  .Property(p => p.Printkurs)
+                  .HasDefaultValueSql("b'0'");
+
+            builder.Entity<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.IbsiKurse>()
+                  .Property(p => p.Onlinekurs)
+                  .HasDefaultValueSql("b'0'");
+
+            builder.Entity<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.IbsiTextbausteineArten>()
+                  .Property(p => p.AuswahlKurs)
+                  .HasDefaultValueSql("b'0'");
+
+            builder.Entity<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.IbsiTextbausteineArten>()
+                  .Property(p => p.AuswahlThemaNummer)
+                  .HasDefaultValueSql("b'0'");
+
             builder.Entity<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.VwBaseAlle>()
                   .Property(p => p.BaseID)
                   .HasDefaultValueSql("0");

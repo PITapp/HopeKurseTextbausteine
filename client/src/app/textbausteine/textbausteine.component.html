@@ -10,90 +10,132 @@
     </div>
   </div>
   <rz-tabs #tabs0 [style]="{'float': 'none'}">
-    <rz-tabs-item [selected]="true" text="Daten">
-      <div [ngStyle]="{'visibility': 'visible'}" class="row">
-        <div class="col-lg-6" [ngStyle]="{}">
-          <rz-html #html0>
-            <p-editor [(ngModel)]="selectedTextbaustein" [style]="{'height': '707px'}">
-                <p-header>
-            
-            		<span class="ql-formats">
-            			<select class="ql-font">
-                            <option selected>Aref Ruqaa</option>
-                            <option value="mirza">Mirza</option>
-                            <option value="roboto">Roboto</option>
-            			</select>
-            		</span>
-                
-            		<span class="ql-formats">
-            			<select class="ql-header">
-            			    <option value="1">Titel 1</option>
-            			    <option value="2">Titel 2</option>
-            			    <option value="3">Titel 3</option>
-            			    <option value="4">Titel 4</option>
-            			    <option value="5">Titel 5</option>
-            			    <option value="6">Titel 6</option>
-            			    <option selected>Normal</option>
-            			</select>
-            		</span>
-            		
-            		<span class="ql-formats">
-            			<button class="ql-bold" aria-label="Bold">Fett</button>
-            			<button class="ql-italic" aria-label="Italic"></button>
-            			<button class="ql-underline" aria-label="Underline"></button>
-            		</span>
-            
-            		<span class="ql-formats">
-            			<button class="ql-blockquote"></button>
-            		</span>		
-            
-            		<span class="ql-formats">
-            			<select class="ql-align"></select>
-            		</span>		
-            
-            		<span class="ql-formats">
-            			<select class="ql-color"></select>
-            			<select class="ql-background"></select>
-            		</span>
-            
-            		<span class="ql-formats">
-            			<button class="ql-list" value="ordered"></button>
-            			<button class="ql-list" value="bullet"></button>
-            			<button class="ql-indent" value="-1"></button>
-            			<button class="ql-indent" value="+1"></button>
-            		</span>
-                </p-header>
-            </p-editor>
-          </rz-html>
-        </div>
-        <div class="col-lg-6" [ngStyle]="{'paddingLeft': '5px'}">
-          <rz-tabs #tabs2 [style]="{'height': '750px'}">
-            <rz-tabs-item [selected]="true" text="Bausteine">
-            </rz-tabs-item>
-            <rz-tabs-item [selected]="false" text="Metadaten">
-            </rz-tabs-item>
-            <rz-tabs-item [selected]="false" text="Bilder">
-            </rz-tabs-item>
-            <rz-tabs-item [selected]="false" text="Vorschau">
-            </rz-tabs-item>
-          </rz-tabs>
-        </div>
-      </div>
-    </rz-tabs-item>
-    <rz-tabs-item [selected]="false" text="Weitere">
+    <rz-tabs-item [selected]="true" text="Auswahl">
       <div class="row">
-        <div class="col-md-4">
-          <rz-panel #panel2 [allowCollapse]="false" [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="Weitere 1">
+        <div class="col-md-2">
+          <rz-panel #panel0 [allowCollapse]="false" [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="Filter">
+            <rz-listbox #listbox0 [data]="getIbsiTextbausteineArtensResult" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'width': '100%'}" textProperty="Bezeichnung" valueProperty="TextbausteinArtCode" name="listbox0" class="testcss">
+            </rz-listbox>
+            <rz-dropdown #dropdown4 [allowFiltering]="true" placeholder="Kurs" [style]="{'width': '100%'}" name="dropdown4">
+            </rz-dropdown>
+            <rz-dropdown #dropdown5 [allowFiltering]="true" placeholder="Kurs" [style]="{'width': '100%'}" name="dropdown5">
+            </rz-dropdown>
+            <rz-dropdown #dropdown6 [allowFiltering]="true" placeholder="Kurs" [style]="{'width': '100%'}" name="dropdown6">
+            </rz-dropdown>
+            <rz-dropdown #dropdown7 [allowFiltering]="true" placeholder="Kurs" [style]="{'width': '100%'}" name="dropdown7">
+            </rz-dropdown>
+            <rz-dropdown #dropdown8 [allowFiltering]="true" placeholder="Kurs" [style]="{'width': '100%'}" name="dropdown8">
+            </rz-dropdown>
+            <rz-dropdown #dropdown9 [allowFiltering]="true" placeholder="Kurs" [style]="{'width': '100%'}" name="dropdown9">
+            </rz-dropdown>
+            <rz-dropdown #dropdown1 [allowFiltering]="true" [data]="getIbsiTextbausteineArtensResult" placeholder="Kurs" [style]="{'width': '100%'}" textProperty="Bezeichnung" valueProperty="TextbausteinArtCode" name="dropdown1">
+            </rz-dropdown>
+            <rz-radiobuttonlist #radiobuttonlist0 [options]="valTextbausteineArten" orientation="vertical" name="radiobuttonlist0">
+            </rz-radiobuttonlist>
+            <rz-panel-header>
+              <div class="row">
+                <div class="col-md-12 align-items-start d-flex">
+                  <rz-button #button7 buttonStyle="light" [disabled]="false" icon="undo" size="sm" [style]="{'color': '#D86E13', 'fontWeight': 'normal', 'marginRight': '-9px', 'paddingLeft': ''}" text="Zurücksetzen" tooltip="Löschen Autor">
+                  </rz-button>
+                </div>
+              </div>
+            </rz-panel-header>
           </rz-panel>
         </div>
         <div class="col-md-4" [ngStyle]="{'paddingLeft': '5px'}">
-          <rz-panel #panel3 [style]="{'border': '1px solid #e6ecef', 'height': '360px'}" text="Weitere 2">
-          </rz-panel>
-          <rz-panel #panel1 [style]="{'border': '1px solid #e6ecef', 'height': '370px', 'marginTop': '20px'}" text="Sonstiges">
+          <rz-panel #panel4 [allowCollapse]="false" [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="Textbausteine">
+            <rz-grid #gridTextbausteine [allowAdd]="false" [allowColumnResize]="true" [allowDelete]="false" [allowFiltering]="false" [allowMultiSorting]="false" [allowPaging]="false" [allowSorting]="false" [alwaysShowPager]="false" applyFilterText="Apply" clearFilterText="Clear" [confirmDelete]="false" containsText="Contains" [data]="rstTextbausteine" emptyText="Keine Textbausteine vorhanden" endsWithText="Ends with" equalsText="Equals" filterCaseSensitivity="caseInsensitive" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="15" startsWithText="Starts with" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'height': '700px', 'marginLeft': '-10px', 'marginRight': '-10px', 'marginTop': '-13px'}" (loadData)="gridTextbausteineLoadData($event)" (rowSelect)="gridTextbausteineRowSelect($event)">
+              <rz-grid-column property="TitelTextbaustein" title="Titel Textbaustein" width="60%" type="string">
+              </rz-grid-column>
+              <rz-grid-column property="UntertitelTextbaustein" title="Untertitel Textbaustein" width="40%" type="string">
+              </rz-grid-column>
+            </rz-grid>
+            <rz-panel-header>
+              <div class="row">
+                <div class="col-md-12 align-items-start d-flex">
+                  <rz-button #button0 icon="add" size="sm" [style]="{}" text="Neu">
+                  </rz-button>
+                  <rz-button #button1 buttonStyle="light" icon="content_copy" size="sm" [style]="{'color': '#D86E13', 'marginLeft': '10px'}" text="Duplizieren">
+                  </rz-button>
+                  <rz-button #button2 buttonStyle="light" icon="create" size="sm" [style]="{'color': '#D86E13', 'marginLeft': '10px', 'paddingLeft': ''}" tooltip="Bearbeiten Autor">
+                  </rz-button>
+                  <rz-button #button3 buttonStyle="light" [disabled]="false" icon="clear" size="sm" [style]="{'color': '#D86E13', 'fontWeight': 'normal', 'marginLeft': '10px', 'marginRight': '-9px', 'paddingLeft': ''}" tooltip="Löschen Autor">
+                  </rz-button>
+                </div>
+              </div>
+            </rz-panel-header>
           </rz-panel>
         </div>
-        <div class="col-md-4" [ngStyle]="{'paddingLeft': '5px'}">
-          <rz-panel #bild [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="Weitere 3">
+        <div class="col-md-6" [ngStyle]="{'paddingLeft': '5px'}">
+          <rz-panel #panel6 [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="Infotext für: {{dsoInfotexte?.Titel}}">
+            <div [ngStyle]="{'marginLeft': '-36px', 'marginRight': '-36px', 'marginTop': '-12px'}" class="row">
+              <div class="col-md-12" [ngStyle]="{}">
+                <rz-html #htmlEditorInfotexte>
+                  <p-editor [(ngModel)]="strTextbausteinHTML" [style]="{'height': '645px'}">
+                      <p-header>
+                  
+                  		<span class="ql-formats">
+                  			<select class="ql-font">
+                                  <option selected>Aref Ruqaa</option>
+                                  <option value="mirza">Mirza</option>
+                                  <option value="roboto">Roboto</option>
+                  			</select>
+                  		</span>
+                      
+                  		<span class="ql-formats">
+                  			<select class="ql-header">
+                  			    <option value="1">Titel 1</option>
+                  			    <option value="2">Titel 2</option>
+                  			    <option value="3">Titel 3</option>
+                  			    <option value="4">Titel 4</option>
+                  			    <option value="5">Titel 5</option>
+                  			    <option value="6">Titel 6</option>
+                  			    <option selected>Normal</option>
+                  			</select>
+                  		</span>
+                  		
+                  		<span class="ql-formats">
+                  			<button class="ql-bold" aria-label="Bold">Fett</button>
+                  			<button class="ql-italic" aria-label="Italic"></button>
+                  			<button class="ql-underline" aria-label="Underline"></button>
+                  		</span>
+                  
+                  		<span class="ql-formats">
+                  			<button class="ql-blockquote"></button>
+                  		</span>		
+                  
+                  		<span class="ql-formats">
+                  			<select class="ql-align"></select>
+                  		</span>		
+                  
+                  		<span class="ql-formats">
+                  			<select class="ql-color"></select>
+                  			<select class="ql-background"></select>
+                  		</span>
+                  
+                  		<span class="ql-formats">
+                  			<button class="ql-list" value="ordered"></button>
+                  			<button class="ql-list" value="bullet"></button>
+                  			<button class="ql-indent" value="-1"></button>
+                  			<button class="ql-indent" value="+1"></button>
+                  		</span>
+                      </p-header>
+                  </p-editor>
+                </rz-html>
+              </div>
+            </div>
+            <rz-panel-header>
+              <div class="row">
+                <div class="col-md-12 align-items-start d-flex">
+                  <rz-button #button4 buttonStyle="success" buttonType="submit" icon="save" size="sm" [style]="{}" text="Speichern">
+                  </rz-button>
+                  <rz-button #buttonNeu buttonStyle="light" icon="open_in_browser" size="sm" [style]="{'color': '#D86E13', 'marginLeft': '10px'}" text="Dokument öffnen">
+                  </rz-button>
+                  <rz-button #buttonLoeschen buttonStyle="light" [disabled]="false" icon="content_paste" size="sm" [style]="{'color': '#D86E13', 'fontWeight': 'normal', 'marginLeft': '10px', 'marginRight': '-9px', 'paddingLeft': ''}" text="Kopieren" tooltip="Löschen Autor">
+                  </rz-button>
+                </div>
+              </div>
+            </rz-panel-header>
           </rz-panel>
         </div>
       </div>

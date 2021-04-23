@@ -22,6 +22,16 @@ namespace HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine
       get;
       set;
     }
+    public bool? AuswahlKurs
+    {
+      get;
+      set;
+    }
+    public bool? AuswahlThemaNummer
+    {
+      get;
+      set;
+    }
     public int? Sortierung
     {
       get;

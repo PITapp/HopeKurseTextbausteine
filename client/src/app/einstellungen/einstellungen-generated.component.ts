@@ -19,6 +19,7 @@ import { ButtonComponent } from '@radzen/angular/dist/button';
 import { HtmlComponent } from '@radzen/angular/dist/html';
 
 import { ConfigService } from '../config.service';
+import { MeldungLoeschenComponent } from '../meldung-loeschen/meldung-loeschen.component';
 import { EinstellungenInfotexteBearbeitenComponent } from '../einstellungen-infotexte-bearbeiten/einstellungen-infotexte-bearbeiten.component';
 import { EinstellungenInfotexteNeuComponent } from '../einstellungen-infotexte-neu/einstellungen-infotexte-neu.component';
 
@@ -35,6 +36,8 @@ export class EinstellungenGenerated implements AfterViewInit, OnInit, OnDestroy 
   @ViewChild('panel1') panel1: PanelComponent;
   @ViewChild('gridInfotexte') gridInfotexte: GridComponent;
   @ViewChild('button0') button0: ButtonComponent;
+  @ViewChild('buttonBearbeiten') buttonBearbeiten: ButtonComponent;
+  @ViewChild('buttonLoeschen') buttonLoeschen: ButtonComponent;
   @ViewChild('panel0') panel0: PanelComponent;
   @ViewChild('htmlEditorInfotexte') htmlEditorInfotexte: HtmlComponent;
   @ViewChild('button4') button4: ButtonComponent;
@@ -64,6 +67,7 @@ export class EinstellungenGenerated implements AfterViewInit, OnInit, OnDestroy 
   dbHopeKurseTextbausteine: DbHopeKurseTextbausteineService;
 
   security: SecurityService;
+  letzteInfotextID: any;
   parameters: any;
   rstInfotexte: any;
   rstInfotexteCount: any;
@@ -118,6 +122,8 @@ export class EinstellungenGenerated implements AfterViewInit, OnInit, OnDestroy 
 
 
   load() {
+    this.letzteInfotextID = null;
+
     this.gridInfotexte.load();
   }
 
@@ -128,10 +134,23 @@ export class EinstellungenGenerated implements AfterViewInit, OnInit, OnDestroy 
 
       this.rstInfotexteCount = event.top != null && event.skip != null ? result['@odata.count'] : result.value.length;
 
-      this.gridInfotexte.onSelect(result.value[0])
+      if (this.rstInfotexte.find(p => p.InfotextID == this.letzteInfotextID) != null) {
+    // letzteInfotextID wurde in rstInfotexte gefunden
+    this.gridInfotexte.onSelect(this.rstInfotexte.find(p => p.InfotextID == this.letzteInfotextID))
+} else {
+    // letzteInfotextID wurde in rstInfotexte NICHT gefunden
+    this.letzteInfotextID = null;
+    this.gridInfotexte.onSelect(this.rstInfotexte[0]);
+}
     }, (result: any) => {
       this.notificationService.notify({ severity: "error", summary: ``, detail: `Infotexte konnten nicht geladen werden!` });
     });
+  }
+
+  gridInfotexteRowDoubleClick(event: any) {
+    this.letzteInfotextID = this.dsoInfotexte.InfotextID;
+
+    this.dialogService.open(EinstellungenInfotexteBearbeitenComponent, { parameters: {InfotextID: this.dsoInfotexte.InfotextID}, title: `Bearbeiten Infotexte` });
   }
 
   gridInfotexteRowSelect(event: any) {
@@ -140,17 +159,39 @@ export class EinstellungenGenerated implements AfterViewInit, OnInit, OnDestroy 
     this.strInfotext = event.Inhalt;
   }
 
-  editButtonKurseClick(event: any, data: any) {
-    this.dialogService.open(EinstellungenInfotexteBearbeitenComponent, { parameters: {InfotextID: data.InfotextID}, title: `Bearbeiten Infotext` });
-
-    this.gridInfotexte.onSelect(data)
-  }
-
   button0Click(event: any) {
+    this.letzteInfotextID = this.dsoInfotexte.InfotextID;
+
     this.dialogService.open(EinstellungenInfotexteNeuComponent, { parameters: {}, title: `Neuer Infotext ` })
         .afterClosed().subscribe(result => {
               if (result != null) {
+            this.letzteInfotextID = result.InfotextID;
+      }
+
+      if (result != null) {
         this.gridInfotexte.load();
+      }
+    });
+  }
+
+  buttonBearbeitenClick(event: any) {
+    this.letzteInfotextID = this.dsoInfotexte.InfotextID;
+
+    this.dialogService.open(EinstellungenInfotexteBearbeitenComponent, { parameters: {InfotextID: this.dsoInfotexte.InfotextID}, title: `Bearbeiten Infotext` });
+  }
+
+  buttonLoeschenClick(event: any) {
+    this.letzteInfotextID = null;
+
+    this.dialogService.open(MeldungLoeschenComponent, { parameters: {strMeldung: "Soll der Infotext '" + this.dsoInfotexte.Titel + "' gelöscht werden?"}, title: `Löschen Infotext` })
+        .afterClosed().subscribe(result => {
+              if (result == 'Löschen') {
+              this.dbHopeKurseTextbausteine.deleteInfotexteHtml(this.dsoInfotexte.InfotextID)
+        .subscribe((result: any) => {
+              this.notificationService.notify({ severity: "success", summary: ``, detail: `Infotext gelöscht` });
+        }, (result: any) => {
+              this.notificationService.notify({ severity: "error", summary: ``, detail: `Infotext konnte nicht gelöscht werden!` });
+        });
       }
     });
   }
@@ -160,9 +201,9 @@ export class EinstellungenGenerated implements AfterViewInit, OnInit, OnDestroy 
 
     this.dbHopeKurseTextbausteine.updateInfotexteHtml(null, this.dsoInfotexte.InfotextID, this.dsoInfotexte)
     .subscribe((result: any) => {
-      this.notificationService.notify({ severity: "success", summary: ``, detail: `Änderungen gespeichert` });
+      this.notificationService.notify({ severity: "success", summary: ``, detail: `Infotext gespeichert` });
     }, (result: any) => {
-      this.notificationService.notify({ severity: "error", summary: ``, detail: `Änderungen konnten nicht gespeichert werden!` });
+      this.notificationService.notify({ severity: "error", summary: ``, detail: `Infotext konnten nicht gespeichert werden!` });
     });
   }
 }

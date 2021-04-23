@@ -81,8 +81,9 @@
                         {
                           "components": [
                             {
-                              "addText": "Neuer Autor",
+                              "addText": "",
                               "allowAdd": false,
+                              "allowColumnResize": true,
                               "allowDelete": "",
                               "allowFiltering": true,
                               "allowMultiSorting": false,
@@ -104,48 +105,13 @@
                                   "title": "Code",
                                   "type": "string",
                                   "width": "40%"
-                                },
-                                {
-                                  "filterable": false,
-                                  "sortable": false,
-                                  "template": [
-                                    {
-                                      "buttonStyle": "light",
-                                      "events": {
-                                        "click": [
-                                          {
-                                            "parameters": [
-                                              {
-                                                "name": "InfotextID",
-                                                "value": "${data.InfotextID}"
-                                              }
-                                            ],
-                                            "path": "einstellungen-infotexte-bearbeiten",
-                                            "title": "Bearbeiten Infotext",
-                                            "type": "popup"
-                                          },
-                                          {
-                                            "code": "${this.gridInfotexte.onSelect(data)}",
-                                            "type": "execute"
-                                          }
-                                        ]
-                                      },
-                                      "icon": "edit",
-                                      "name": "editButtonKurse",
-                                      "size": "sm",
-                                      "text": "",
-                                      "type": "button"
-                                    }
-                                  ],
-                                  "textAlign": "center",
-                                  "width": "70px"
                                 }
                               ],
-                              "confirmDelete": true,
-                              "confirmDeleteCancelText": "Abbruch",
-                              "confirmDeleteOkText": "Löschen",
-                              "confirmDeleteText": "Bist du sicher, dass dieser Infotext gelöscht werden soll?",
-                              "confirmDeleteTitle": "Löschen Infotext",
+                              "confirmDelete": false,
+                              "confirmDeleteCancelText": "",
+                              "confirmDeleteOkText": "",
+                              "confirmDeleteText": "",
+                              "confirmDeleteTitle": "",
                               "containsText": "Contains",
                               "count": "${rstInfotexteCount}",
                               "data": "${rstInfotexte}",
@@ -201,11 +167,29 @@
                                         "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
                                       },
                                       {
-                                        "code": "${this.gridInfotexte.onSelect(result.value[0])}",
+                                        "code": "if (this.rstInfotexte.find(p => p.InfotextID == this.letzteInfotextID) != null) {\n    // letzteInfotextID wurde in rstInfotexte gefunden\n    this.gridInfotexte.onSelect(this.rstInfotexte.find(p => p.InfotextID == this.letzteInfotextID))\n} else {\n    // letzteInfotextID wurde in rstInfotexte NICHT gefunden\n    this.letzteInfotextID = null;\n    this.gridInfotexte.onSelect(this.rstInfotexte[0]);\n}",
                                         "type": "execute"
                                       }
                                     ],
                                     "type": "invoke"
+                                  }
+                                ],
+                                "rowDoubleClick": [
+                                  {
+                                    "name": "letzteInfotextID",
+                                    "type": "set",
+                                    "value": "${dsoInfotexte.InfotextID}"
+                                  },
+                                  {
+                                    "parameters": [
+                                      {
+                                        "name": "InfotextID",
+                                        "value": "${dsoInfotexte.InfotextID}"
+                                      }
+                                    ],
+                                    "path": "einstellungen-infotexte-bearbeiten",
+                                    "title": "Bearbeiten Infotexte",
+                                    "type": "popup"
                                   }
                                 ],
                                 "rowSelect": [
@@ -253,8 +237,19 @@
                                       "events": {
                                         "click": [
                                           {
+                                            "name": "letzteInfotextID",
+                                            "type": "set",
+                                            "value": "${dsoInfotexte.InfotextID}"
+                                          },
+                                          {
                                             "path": "einstellungen-infotexte-neu",
                                             "then": [
+                                              {
+                                                "condition": "${result} != null",
+                                                "name": "letzteInfotextID",
+                                                "type": "set",
+                                                "value": "${result.InfotextID}"
+                                              },
                                               {
                                                 "code": "this.gridInfotexte.load();",
                                                 "condition": "${result} != null",
@@ -269,10 +264,109 @@
                                       "icon": "add",
                                       "name": "button0",
                                       "size": "sm",
-                                      "style": {
-                                        "marginRight": "-9px"
-                                      },
+                                      "style": {},
                                       "text": "Neuer Infotext",
+                                      "type": "button"
+                                    },
+                                    {
+                                      "buttonStyle": "light",
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "name": "letzteInfotextID",
+                                            "type": "set",
+                                            "value": "${dsoInfotexte.InfotextID}"
+                                          },
+                                          {
+                                            "parameters": [
+                                              {
+                                                "name": "InfotextID",
+                                                "value": "${dsoInfotexte.InfotextID}"
+                                              }
+                                            ],
+                                            "path": "einstellungen-infotexte-bearbeiten",
+                                            "then": [],
+                                            "title": "Bearbeiten Infotext",
+                                            "type": "popup"
+                                          }
+                                        ]
+                                      },
+                                      "icon": "create",
+                                      "name": "buttonBearbeiten",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#ff6d41",
+                                        "marginLeft": "10px",
+                                        "paddingLeft": ""
+                                      },
+                                      "text": "",
+                                      "tooltip": "Bearbeiten Kontakt",
+                                      "type": "button"
+                                    },
+                                    {
+                                      "buttonStyle": "light",
+                                      "disabled": false,
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "name": "letzteInfotextID",
+                                            "type": "set",
+                                            "value": "null"
+                                          },
+                                          {
+                                            "parameters": [
+                                              {
+                                                "name": "strMeldung",
+                                                "value": "\"Soll der Infotext '\" + ${dsoInfotexte.Titel} + \"' gelöscht werden?\""
+                                              }
+                                            ],
+                                            "path": "meldung-loeschen",
+                                            "then": [
+                                              {
+                                                "condition": "${result} == 'Löschen'",
+                                                "error": [
+                                                  {
+                                                    "detail": "Infotext konnte nicht gelöscht werden!",
+                                                    "severity": "error",
+                                                    "summary": "",
+                                                    "type": "notify"
+                                                  }
+                                                ],
+                                                "name": "dbHopeKurseTextbausteine.deleteInfotexteHtml",
+                                                "parameters": [
+                                                  {
+                                                    "name": "InfotextID",
+                                                    "value": "${dsoInfotexte.InfotextID}"
+                                                  }
+                                                ],
+                                                "then": [
+                                                  {
+                                                    "detail": "Infotext gelöscht",
+                                                    "severity": "success",
+                                                    "summary": "",
+                                                    "type": "notify"
+                                                  }
+                                                ],
+                                                "type": "invoke"
+                                              }
+                                            ],
+                                            "title": "Löschen Infotext",
+                                            "type": "popup"
+                                          }
+                                        ]
+                                      },
+                                      "icon": "clear",
+                                      "name": "buttonLoeschen",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#f9777f",
+                                        "fontWeight": "normal",
+                                        "marginLeft": "10px",
+                                        "marginRight": "-9px",
+                                        "paddingLeft": ""
+                                      },
+                                      "text": "",
+                                      "tooltip": "Löschen Kontakt",
                                       "type": "button"
                                     }
                                   ],
@@ -284,12 +378,13 @@
                               "type": "row"
                             }
                           ],
+                          "icon": "",
                           "name": "panel1",
                           "style": {
                             "border": "1px solid #e6ecef",
                             "height": "750px"
                           },
-                          "text": "${rstInfotexteCount} Infotexte",
+                          "text": " ${dsoInfotexte.Titel}",
                           "type": "panel"
                         }
                       ],
@@ -344,7 +439,7 @@
                                           {
                                             "error": [
                                               {
-                                                "detail": "Änderungen konnten nicht gespeichert werden!",
+                                                "detail": "Infotext konnten nicht gespeichert werden!",
                                                 "severity": "error",
                                                 "type": "notify"
                                               }
@@ -362,7 +457,7 @@
                                             ],
                                             "then": [
                                               {
-                                                "detail": "Änderungen gespeichert",
+                                                "detail": "Infotext gespeichert",
                                                 "severity": "success",
                                                 "type": "notify"
                                               }
@@ -377,7 +472,8 @@
                                       "style": {
                                         "marginRight": "-9px"
                                       },
-                                      "text": "Änderungen speichern",
+                                      "text": "Speichern",
+                                      "tooltip": "",
                                       "type": "button"
                                     }
                                   ],
@@ -394,7 +490,7 @@
                             "border": "1px solid #e6ecef",
                             "height": "750px"
                           },
-                          "text": "Text zu: ${dsoInfotexte.Titel}",
+                          "text": "Infotext für: ${dsoInfotexte.Titel}",
                           "type": "panel"
                         }
                       ],
@@ -429,6 +525,11 @@
   ],
   "events": {
     "load": [
+      {
+        "name": "letzteInfotextID",
+        "type": "set",
+        "value": "null"
+      },
       {
         "code": "this.gridInfotexte.load();",
         "type": "execute"

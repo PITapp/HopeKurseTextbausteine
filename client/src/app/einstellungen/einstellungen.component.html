@@ -13,23 +13,21 @@
     <rz-tabs-item [selected]="false" text="Infotexte">
       <div class="row">
         <div class="col-md-5">
-          <rz-panel #panel1 [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="{{rstInfotexteCount}} Infotexte">
-            <rz-grid #gridInfotexte addText="Neuer Autor" [allowAdd]="false" [allowFiltering]="true" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="true" applyFilterText="Apply" clearFilterText="Clear" [confirmDelete]="true" confirmDeleteCancelText="Abbruch" confirmDeleteOkText="Löschen" confirmDeleteText="Bist du sicher, dass dieser Infotext gelöscht werden soll?" confirmDeleteTitle="Löschen Infotext" containsText="Contains" [count]="rstInfotexteCount" [data]="rstInfotexte" emptyText="Keine Infotexte vorhanden" endsWithText="Ends with" equalsText="Equals" filterCaseSensitivity="caseInsensitive" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="15" startsWithText="Starts with" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'height': '700px', 'marginLeft': '-10px', 'marginRight': '-10px', 'marginTop': '-13px'}" (loadData)="gridInfotexteLoadData($event)" (rowSelect)="gridInfotexteRowSelect($event)">
+          <rz-panel #panel1 [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text=" {{dsoInfotexte?.Titel}}">
+            <rz-grid #gridInfotexte [allowAdd]="false" [allowColumnResize]="true" [allowFiltering]="true" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="true" applyFilterText="Apply" clearFilterText="Clear" [confirmDelete]="false" containsText="Contains" [count]="rstInfotexteCount" [data]="rstInfotexte" emptyText="Keine Infotexte vorhanden" endsWithText="Ends with" equalsText="Equals" filterCaseSensitivity="caseInsensitive" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="15" startsWithText="Starts with" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'height': '700px', 'marginLeft': '-10px', 'marginRight': '-10px', 'marginTop': '-13px'}" (loadData)="gridInfotexteLoadData($event)" (rowDoubleClick)="gridInfotexteRowDoubleClick($event)" (rowSelect)="gridInfotexteRowSelect($event)">
               <rz-grid-column property="Titel" title="Titel" width="60%" type="string">
               </rz-grid-column>
               <rz-grid-column property="Code" title="Code" width="40%" type="string">
-              </rz-grid-column>
-              <rz-grid-column [filterable]="false" [sortable]="false" textAlign="center" width="70px">
-                <ng-template let-data gridColumnTemplate>
-                  <rz-button #editButtonKurse buttonStyle="light" icon="edit" size="sm" (click)="editButtonKurseClick($event, data)">
-                  </rz-button>
-                </ng-template>
               </rz-grid-column>
             </rz-grid>
             <rz-panel-header>
               <div class="row">
                 <div class="col-md-12 align-items-start d-flex">
-                  <rz-button #button0 icon="add" size="sm" [style]="{'marginRight': '-9px'}" text="Neuer Infotext" (click)="button0Click($event)">
+                  <rz-button #button0 icon="add" size="sm" [style]="{}" text="Neuer Infotext" (click)="button0Click($event)">
+                  </rz-button>
+                  <rz-button #buttonBearbeiten buttonStyle="light" icon="create" size="sm" [style]="{'color': '#ff6d41', 'marginLeft': '10px', 'paddingLeft': ''}" tooltip="Bearbeiten Kontakt" (click)="buttonBearbeitenClick($event)">
+                  </rz-button>
+                  <rz-button #buttonLoeschen buttonStyle="light" [disabled]="false" icon="clear" size="sm" [style]="{'color': '#f9777f', 'fontWeight': 'normal', 'marginLeft': '10px', 'marginRight': '-9px', 'paddingLeft': ''}" tooltip="Löschen Kontakt" (click)="buttonLoeschenClick($event)">
                   </rz-button>
                 </div>
               </div>
@@ -37,7 +35,7 @@
           </rz-panel>
         </div>
         <div class="col-md-7" [ngStyle]="{'paddingLeft': '5px'}">
-          <rz-panel #panel0 [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="Text zu: {{dsoInfotexte?.Titel}}">
+          <rz-panel #panel0 [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="Infotext für: {{dsoInfotexte?.Titel}}">
             <div [ngStyle]="{'marginLeft': '-36px', 'marginRight': '-36px', 'marginTop': '-12px'}" class="row">
               <div class="col-md-12" [ngStyle]="{}">
                 <rz-html #htmlEditorInfotexte>
@@ -97,7 +95,7 @@
             <rz-panel-header>
               <div class="row">
                 <div class="col-md-12 align-items-start d-flex">
-                  <rz-button #button4 buttonStyle="success" buttonType="submit" icon="save" size="sm" [style]="{'marginRight': '-9px'}" text="Änderungen speichern" (click)="button4Click($event)">
+                  <rz-button #button4 buttonStyle="success" buttonType="submit" icon="save" size="sm" [style]="{'marginRight': '-9px'}" text="Speichern" (click)="button4Click($event)">
                   </rz-button>
                 </div>
               </div>

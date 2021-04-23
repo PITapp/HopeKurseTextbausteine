@@ -13,8 +13,13 @@ import { NotificationService } from '@radzen/angular/dist/notification';
 import { ContentComponent } from '@radzen/angular/dist/content';
 import { HeadingComponent } from '@radzen/angular/dist/heading';
 import { TabsComponent } from '@radzen/angular/dist/tabs';
-import { HtmlComponent } from '@radzen/angular/dist/html';
 import { PanelComponent } from '@radzen/angular/dist/panel';
+import { ListBoxComponent } from '@radzen/angular/dist/listbox';
+import { DropDownComponent } from '@radzen/angular/dist/dropdown';
+import { RadioButtonListComponent } from '@radzen/angular/dist/radiobuttonlist';
+import { ButtonComponent } from '@radzen/angular/dist/button';
+import { GridComponent } from '@radzen/angular/dist/grid';
+import { HtmlComponent } from '@radzen/angular/dist/html';
 
 import { ConfigService } from '../config.service';
 
@@ -28,12 +33,28 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
   @ViewChild('heading1') heading1: HeadingComponent;
   @ViewChild('heading2') heading2: HeadingComponent;
   @ViewChild('tabs0') tabs0: TabsComponent;
-  @ViewChild('html0') html0: HtmlComponent;
-  @ViewChild('tabs2') tabs2: TabsComponent;
-  @ViewChild('panel2') panel2: PanelComponent;
-  @ViewChild('panel3') panel3: PanelComponent;
-  @ViewChild('panel1') panel1: PanelComponent;
-  @ViewChild('bild') bild: PanelComponent;
+  @ViewChild('panel0') panel0: PanelComponent;
+  @ViewChild('listbox0') listbox0: ListBoxComponent;
+  @ViewChild('dropdown4') dropdown4: DropDownComponent;
+  @ViewChild('dropdown5') dropdown5: DropDownComponent;
+  @ViewChild('dropdown6') dropdown6: DropDownComponent;
+  @ViewChild('dropdown7') dropdown7: DropDownComponent;
+  @ViewChild('dropdown8') dropdown8: DropDownComponent;
+  @ViewChild('dropdown9') dropdown9: DropDownComponent;
+  @ViewChild('dropdown1') dropdown1: DropDownComponent;
+  @ViewChild('radiobuttonlist0') radiobuttonlist0: RadioButtonListComponent;
+  @ViewChild('button7') button7: ButtonComponent;
+  @ViewChild('panel4') panel4: PanelComponent;
+  @ViewChild('gridTextbausteine') gridTextbausteine: GridComponent;
+  @ViewChild('button0') button0: ButtonComponent;
+  @ViewChild('button1') button1: ButtonComponent;
+  @ViewChild('button2') button2: ButtonComponent;
+  @ViewChild('button3') button3: ButtonComponent;
+  @ViewChild('panel6') panel6: PanelComponent;
+  @ViewChild('htmlEditorInfotexte') htmlEditorInfotexte: HtmlComponent;
+  @ViewChild('button4') button4: ButtonComponent;
+  @ViewChild('buttonNeu') buttonNeu: ButtonComponent;
+  @ViewChild('buttonLoeschen') buttonLoeschen: ButtonComponent;
 
   router: Router;
 
@@ -60,8 +81,11 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
   dbHopeKurseTextbausteine: DbHopeKurseTextbausteineService;
 
   security: SecurityService;
-  selectedTextbaustein: any;
+  getIbsiTextbausteineArtensResult: any;
+  valTextbausteineArten: any;
   parameters: any;
+  rstTextbausteine: any;
+  strTextbausteinHTML: any;
 
   constructor(private injector: Injector) {
   }
@@ -111,11 +135,30 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
 
 
   load() {
-    this.dbHopeKurseTextbausteine.getInfotexteHtmls(`Code eq 'TestTextbaustein'`, null, null, null, null, null, null, null)
+    this.gridTextbausteine.load();
+
+    this.dbHopeKurseTextbausteine.getIbsiTextbausteineArtens(null, null, null, null, null, null, null, null)
     .subscribe((result: any) => {
-      this.selectedTextbaustein = result.value[0].Inhalt;
+      this.getIbsiTextbausteineArtensResult = result.value;
     }, (result: any) => {
 
     });
+
+    this.valTextbausteineArten = [{text: 'Accounting', value: 'A'}, {text: 'Marketing', value: 'M'}, {text: 'Production', value: 'P'}, {text: 'Research', value: 'R'},{text: 'Accounting', value: 'A'}, {text: 'Marketing', value: 'M'}, {text: 'Production', value: 'P'}, {text: 'Research', value: 'R'},{text: 'Accounting', value: 'A'}, {text: 'Marketing', value: 'M'}, {text: 'Production', value: 'P'}, {text: 'Research', value: 'R'},{text: 'Accounting', value: 'A'}, {text: 'Marketing', value: 'M'}];
+  }
+
+  gridTextbausteineLoadData(event: any) {
+    this.dbHopeKurseTextbausteine.getIbsiTextbausteines(`KursNr eq -899890728`, null, null, null, null, null, null, null)
+    .subscribe((result: any) => {
+      this.rstTextbausteine = result.value;
+
+      this.gridTextbausteine.onSelect(this.rstTextbausteine[0]);
+    }, (result: any) => {
+
+    });
+  }
+
+  gridTextbausteineRowSelect(event: any) {
+    this.strTextbausteinHTML = event.TextbausteinHTML;
   }
 }

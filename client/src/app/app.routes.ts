@@ -10,13 +10,7 @@ import { BenutzerComponent } from './benutzer/benutzer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EinstellungenComponent } from './einstellungen/einstellungen.component';
 import { BenutzerProfilComponent } from './benutzer-profil/benutzer-profil.component';
-import { ApplicationUsersComponent } from './application-users/application-users.component';
 import { LoginComponent } from './login/login.component';
-import { ApplicationRolesComponent } from './application-roles/application-roles.component';
-import { RegisterApplicationUserComponent } from './register-application-user/register-application-user.component';
-import { AddApplicationRoleComponent } from './add-application-role/add-application-role.component';
-import { AddApplicationUserComponent } from './add-application-user/add-application-user.component';
-import { EditApplicationUserComponent } from './edit-application-user/edit-application-user.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { ImpressumComponent } from './impressum/impressum.component';
@@ -39,11 +33,13 @@ import { KurseThemenBearbeitenComponent } from './kurse-themen-bearbeiten/kurse-
 import { EinstellungenInfotexteNeuComponent } from './einstellungen-infotexte-neu/einstellungen-infotexte-neu.component';
 import { EinstellungenInfotexteBearbeitenComponent } from './einstellungen-infotexte-bearbeiten/einstellungen-infotexte-bearbeiten.component';
 import { MeldungLoeschenComponent } from './meldung-loeschen/meldung-loeschen.component';
-import { IbsiKurseComponent } from './ibsi-kurse/ibsi-kurse.component';
-import { AddIbsiKurseThemenComponent } from './add-ibsi-kurse-themen/add-ibsi-kurse-themen.component';
-import { AddIbsiKurseComponent } from './add-ibsi-kurse/add-ibsi-kurse.component';
-import { EditIbsiKurseComponent } from './edit-ibsi-kurse/edit-ibsi-kurse.component';
-import { EditIbsiKurseThemenComponent } from './edit-ibsi-kurse-themen/edit-ibsi-kurse-themen.component';
+import { MeldungJaNeinComponent } from './meldung-ja-nein/meldung-ja-nein.component';
+import { ApplicationUsersComponent } from './application-users/application-users.component';
+import { ApplicationRolesComponent } from './application-roles/application-roles.component';
+import { RegisterApplicationUserComponent } from './register-application-user/register-application-user.component';
+import { AddApplicationRoleComponent } from './add-application-role/add-application-role.component';
+import { AddApplicationUserComponent } from './add-application-user/add-application-user.component';
+import { EditApplicationUserComponent } from './edit-application-user/edit-application-user.component';
 
 import { SecurityService } from './security.service';
 import { AuthGuard } from './auth.guard';
@@ -108,53 +104,6 @@ export const routes: Routes = [
           roles: ['Authenticated'],
         },
         component: BenutzerProfilComponent
-      },
-      {
-        path: 'application-users',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: ApplicationUsersComponent
-      },
-      {
-        path: 'application-roles',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: ApplicationRolesComponent
-      },
-      {
-        path: 'register-application-user',
-        data: {
-          roles: ['Everybody'],
-        },
-        component: RegisterApplicationUserComponent
-      },
-      {
-        path: 'add-application-role',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: AddApplicationRoleComponent
-      },
-      {
-        path: 'add-application-user',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: AddApplicationUserComponent
-      },
-      {
-        path: 'edit-application-user/:Id',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: EditApplicationUserComponent
       },
       {
         path: 'profile',
@@ -332,44 +281,59 @@ export const routes: Routes = [
         component: MeldungLoeschenComponent
       },
       {
-        path: 'ibsi-kurse',
+        path: 'meldung-ja-nein/:strMeldung',
         canActivate: [AuthGuard],
         data: {
           roles: ['Authenticated'],
         },
-        component: IbsiKurseComponent
+        component: MeldungJaNeinComponent
       },
       {
-        path: 'add-ibsi-kurse-themen/:KursNr',
+        path: 'application-users',
         canActivate: [AuthGuard],
         data: {
           roles: ['Authenticated'],
         },
-        component: AddIbsiKurseThemenComponent
+        component: ApplicationUsersComponent
       },
       {
-        path: 'add-ibsi-kurse',
+        path: 'application-roles',
         canActivate: [AuthGuard],
         data: {
           roles: ['Authenticated'],
         },
-        component: AddIbsiKurseComponent
+        component: ApplicationRolesComponent
       },
       {
-        path: 'edit-ibsi-kurse/:KursNr',
-        canActivate: [AuthGuard],
+        path: 'register-application-user',
         data: {
-          roles: ['Authenticated'],
+          roles: ['Everybody'],
         },
-        component: EditIbsiKurseComponent
+        component: RegisterApplicationUserComponent
       },
       {
-        path: 'edit-ibsi-kurse-themen/:KursThemaNr',
+        path: 'add-application-role',
         canActivate: [AuthGuard],
         data: {
           roles: ['Authenticated'],
         },
-        component: EditIbsiKurseThemenComponent
+        component: AddApplicationRoleComponent
+      },
+      {
+        path: 'add-application-user',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: AddApplicationUserComponent
+      },
+      {
+        path: 'edit-application-user/:Id',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: EditApplicationUserComponent
       },
     ]
   },

@@ -10,7 +10,7 @@
     </div>
   </div>
   <rz-tabs #tabs0 [style]="{'float': 'none'}">
-    <rz-tabs-item [selected]="true" text="Daten">
+    <rz-tabs-item [selected]="false" text="Daten">
       <div [ngStyle]="{'height': '100%'}" class="row">
         <div class="col-md-12">
           <rz-panel #panel0 [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="{{dsoBase?.Name1}} {{dsoBase?.Name2}} | {{dsoBase?.NameKuerzel}}">
@@ -45,7 +45,7 @@
                   </rz-button>
                   <rz-button #buttonBearbeiten buttonStyle="light" icon="create" size="sm" [style]="{'color': '#ff6d41', 'marginLeft': '10px', 'paddingLeft': ''}" tooltip="Bearbeiten Kontakt" (click)="buttonBearbeitenClick($event)">
                   </rz-button>
-                  <rz-button #button2 buttonStyle="light" [disabled]="false" icon="clear" size="sm" [style]="{'color': '#f9777f', 'fontWeight': 'normal', 'marginLeft': '10px', 'marginRight': '-9px', 'paddingLeft': ''}" tooltip="Löschen Kontakt" (click)="button2Click($event)">
+                  <rz-button #buttonLoeschen buttonStyle="light" [disabled]="false" icon="clear" size="sm" [style]="{'color': '#f9777f', 'fontWeight': 'normal', 'marginLeft': '10px', 'marginRight': '-9px', 'paddingLeft': ''}" tooltip="Löschen Kontakt" (click)="buttonLoeschenClick($event)">
                   </rz-button>
                 </div>
               </div>
@@ -54,7 +54,7 @@
         </div>
       </div>
     </rz-tabs-item>
-    <rz-tabs-item [selected]="false" text="Details">
+    <rz-tabs-item [selected]="true" text="Details">
       <div class="row">
         <div class="col-md-4">
           <rz-panel #panel2 [allowCollapse]="false" [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="{{dsoBase?.Name1}} {{dsoBase?.Name2}} | {{dsoBase?.NameKuerzel}}">
@@ -212,42 +212,42 @@
           <rz-panel #panel3 [style]="{'border': '1px solid #e6ecef', 'height': '360px'}" text="Anmeldedaten">
             <rz-template-form #formBenutzer>
               <div [ngStyle]="{'marginBottom': '10px'}" class="row">
-                <div class="col-md-3">
+                <div class="col-md-3" [ngStyle]="{'paddingLeft': '0'}">
                   <rz-label #benutzernameLabel component="Benutzername" [style]="{'width': '100%'}" text="Benutzername">
                   </rz-label>
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-9" [ngStyle]="{'paddingRight': '0'}">
                   <rz-textbox #benutzername [readOnly]="true" [style]="{'width': '100%'}" [(ngModel)]="dsoBenutzer && dsoBenutzer.Benutzername" name="Benutzername">
                   </rz-textbox>
                 </div>
               </div>
               <div [ngStyle]="{'marginBottom': '10px'}" class="row">
-                <div class="col-md-3">
+                <div class="col-md-3" [ngStyle]="{'paddingLeft': '0'}">
                   <rz-label #initialenLabel component="Initialen" [style]="{'width': '100%'}" text="Initialen">
                   </rz-label>
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-9" [ngStyle]="{'paddingRight': '0'}">
                   <rz-textbox #initialen [readOnly]="true" [style]="{'width': '100%'}" [(ngModel)]="dsoBenutzer && dsoBenutzer.Initialen" name="Initialen">
                   </rz-textbox>
                 </div>
               </div>
               <div [ngStyle]="{'marginBottom': '10px'}" class="row">
-                <div class="col-md-3">
+                <div class="col-md-3" [ngStyle]="{'paddingLeft': '0'}">
                   <rz-label #benutzerEMailLabel component="BenutzerEMail" [style]="{'width': '100%'}" text="E-Mail">
                   </rz-label>
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-9" [ngStyle]="{'paddingRight': '0'}">
                   <rz-textbox #benutzerEMail [readOnly]="true" [style]="{'width': '100%'}" [(ngModel)]="dsoBenutzer && dsoBenutzer.BenutzerEMail" name="BenutzerEMail">
                   </rz-textbox>
                 </div>
               </div>
               <div [ngStyle]="{'marginBottom': '10px'}" class="row">
-                <div class="col-md-3">
+                <div class="col-md-3" [ngStyle]="{'paddingLeft': '0'}">
                   <rz-label #notizLabel component="Notiz" [style]="{'width': '100%'}" text="Notiz">
                   </rz-label>
                 </div>
-                <div class="col-md-9">
-                  <rz-textarea #textarea0 [readOnly]="true" [rows]="4" [style]="{'height': '141px', 'width': '100%'}" [(ngModel)]="dsoBenutzer && dsoBenutzer.Notiz" name="textarea0">
+                <div class="col-md-9" [ngStyle]="{'paddingRight': '0'}">
+                  <rz-textarea #textarea0 [readOnly]="true" [rows]="4" [style]="{'height': '146px', 'width': '100%'}" [(ngModel)]="dsoBenutzer && dsoBenutzer.Notiz" name="textarea0">
                   </rz-textarea>
                 </div>
               </div>

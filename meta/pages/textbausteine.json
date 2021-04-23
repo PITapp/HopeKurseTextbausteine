@@ -76,160 +76,469 @@
                 {
                   "components": [
                     {
-                      "class": "col-lg-6",
+                      "class": "col-md-2",
                       "components": [
                         {
-                          "content": "<p-editor [(ngModel)]=\"selectedTextbaustein\" [style]=\"{'height': '707px'}\">\n    <p-header>\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-font\">\n                <option selected>Aref Ruqaa</option>\n                <option value=\"mirza\">Mirza</option>\n                <option value=\"roboto\">Roboto</option>\n\t\t\t</select>\n\t\t</span>\n    \n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-header\">\n\t\t\t    <option value=\"1\">Titel 1</option>\n\t\t\t    <option value=\"2\">Titel 2</option>\n\t\t\t    <option value=\"3\">Titel 3</option>\n\t\t\t    <option value=\"4\">Titel 4</option>\n\t\t\t    <option value=\"5\">Titel 5</option>\n\t\t\t    <option value=\"6\">Titel 6</option>\n\t\t\t    <option selected>Normal</option>\n\t\t\t</select>\n\t\t</span>\n\t\t\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-bold\" aria-label=\"Bold\">Fett</button>\n\t\t\t<button class=\"ql-italic\" aria-label=\"Italic\"></button>\n\t\t\t<button class=\"ql-underline\" aria-label=\"Underline\"></button>\n\t\t</span>\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-blockquote\"></button>\n\t\t</span>\t\t\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-align\"></select>\n\t\t</span>\t\t\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-color\"></select>\n\t\t\t<select class=\"ql-background\"></select>\n\t\t</span>\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-list\" value=\"ordered\"></button>\n\t\t\t<button class=\"ql-list\" value=\"bullet\"></button>\n\t\t\t<button class=\"ql-indent\" value=\"-1\"></button>\n\t\t\t<button class=\"ql-indent\" value=\"+1\"></button>\n\t\t</span>\n    </p-header>\n</p-editor>",
-                          "name": "html0",
-                          "type": "html"
-                        }
-                      ],
-                      "name": "col1",
-                      "style": {},
-                      "type": "col"
-                    },
-                    {
-                      "class": "col-lg-6",
-                      "components": [
-                        {
-                          "events": {
-                            "change": []
-                          },
-                          "items": [
+                          "allowCollapse": false,
+                          "components": [
                             {
-                              "components": [],
-                              "selected": true,
-                              "text": "Bausteine"
+                              "attributes": [
+                                {
+                                  "name": "class",
+                                  "value": "testcss"
+                                }
+                              ],
+                              "data": "${getIbsiTextbausteineArtensResult}",
+                              "name": "listbox0",
+                              "style": {
+                                "border": "1px solid rgba(0, 0, 0, 0)",
+                                "width": "100%"
+                              },
+                              "template": "",
+                              "textProperty": "Bezeichnung",
+                              "type": "listbox",
+                              "valueProperty": "TextbausteinArtCode"
                             },
                             {
-                              "components": [],
-                              "icon": "",
-                              "selected": false,
-                              "text": "Metadaten"
+                              "allowFiltering": true,
+                              "name": "dropdown4",
+                              "placeholder": "Kurs",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "template": "",
+                              "type": "dropdown"
                             },
                             {
-                              "components": [],
-                              "icon": "",
-                              "selected": false,
-                              "text": "Bilder"
+                              "allowFiltering": true,
+                              "name": "dropdown5",
+                              "placeholder": "Kurs",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "template": "",
+                              "type": "dropdown"
                             },
                             {
-                              "components": [],
-                              "selected": false,
-                              "text": "Vorschau"
+                              "allowFiltering": true,
+                              "name": "dropdown6",
+                              "placeholder": "Kurs",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "template": "",
+                              "type": "dropdown"
+                            },
+                            {
+                              "allowFiltering": true,
+                              "name": "dropdown7",
+                              "placeholder": "Kurs",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "template": "",
+                              "type": "dropdown"
+                            },
+                            {
+                              "allowFiltering": true,
+                              "name": "dropdown8",
+                              "placeholder": "Kurs",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "template": "",
+                              "type": "dropdown"
+                            },
+                            {
+                              "allowFiltering": true,
+                              "name": "dropdown9",
+                              "placeholder": "Kurs",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "template": "",
+                              "type": "dropdown"
+                            },
+                            {
+                              "allowFiltering": true,
+                              "data": "${getIbsiTextbausteineArtensResult}",
+                              "name": "dropdown1",
+                              "placeholder": "Kurs",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "template": "",
+                              "textProperty": "Bezeichnung",
+                              "type": "dropdown",
+                              "valueProperty": "TextbausteinArtCode"
+                            },
+                            {
+                              "name": "radiobuttonlist0",
+                              "options": "${valTextbausteineArten}",
+                              "orientation": "vertical",
+                              "type": "radiobuttonlist",
+                              "value": ""
                             }
                           ],
-                          "name": "tabs2",
+                          "footerTemplate": "",
+                          "headerTemplate": [
+                            {
+                              "components": [
+                                {
+                                  "class": "col-md-12 align-items-start d-flex",
+                                  "components": [
+                                    {
+                                      "buttonStyle": "light",
+                                      "disabled": false,
+                                      "events": {
+                                        "click": []
+                                      },
+                                      "icon": "undo",
+                                      "name": "button7",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#D86E13",
+                                        "fontWeight": "normal",
+                                        "marginRight": "-9px",
+                                        "paddingLeft": ""
+                                      },
+                                      "text": "Zurücksetzen",
+                                      "tooltip": "Löschen Autor",
+                                      "type": "button"
+                                    }
+                                  ],
+                                  "name": "col1",
+                                  "type": "col"
+                                }
+                              ],
+                              "name": "row0",
+                              "type": "row"
+                            }
+                          ],
+                          "name": "panel0",
                           "style": {
+                            "border": "1px solid #e6ecef",
                             "height": "750px"
                           },
-                          "type": "tabs",
-                          "visible": true
+                          "text": "Filter",
+                          "type": "panel"
                         }
                       ],
-                      "name": "col2",
-                      "style": {
-                        "paddingLeft": "5px"
-                      },
+                      "name": "col5",
                       "type": "col"
-                    }
-                  ],
-                  "name": "row0",
-                  "style": {
-                    "visibility": "visible"
-                  },
-                  "type": "row"
-                }
-              ],
-              "selected": true,
-              "text": "Daten"
-            },
-            {
-              "components": [
-                {
-                  "components": [
+                    },
                     {
                       "class": "col-md-4",
                       "components": [
                         {
                           "allowCollapse": false,
-                          "components": [],
+                          "components": [
+                            {
+                              "addText": "",
+                              "allowAdd": false,
+                              "allowColumnResize": true,
+                              "allowDelete": false,
+                              "allowFiltering": false,
+                              "allowMultiSorting": false,
+                              "allowPaging": false,
+                              "allowSorting": false,
+                              "alwaysShowPager": false,
+                              "applyFilterText": "Apply",
+                              "clearFilterText": "Clear",
+                              "columns": [
+                                {
+                                  "format": "",
+                                  "property": "TitelTextbaustein",
+                                  "title": "Titel Textbaustein",
+                                  "type": "string",
+                                  "width": "60%"
+                                },
+                                {
+                                  "format": "",
+                                  "property": "UntertitelTextbaustein",
+                                  "title": "Untertitel Textbaustein",
+                                  "type": "string",
+                                  "width": "40%"
+                                }
+                              ],
+                              "confirmDelete": false,
+                              "confirmDeleteCancelText": "",
+                              "confirmDeleteOkText": "",
+                              "confirmDeleteText": "",
+                              "confirmDeleteTitle": "",
+                              "containsText": "Contains",
+                              "count": "",
+                              "data": "${rstTextbausteine}",
+                              "emptyText": "Keine Textbausteine vorhanden",
+                              "endsWithText": "Ends with",
+                              "equalsText": "Equals",
+                              "events": {
+                                "add": [],
+                                "delete": [],
+                                "loadData": [
+                                  {
+                                    "name": "dbHopeKurseTextbausteine.getIbsiTextbausteines",
+                                    "parameters": [
+                                      {
+                                        "name": "$filter",
+                                        "value": "KursNr eq -899890728"
+                                      }
+                                    ],
+                                    "then": [
+                                      {
+                                        "name": "rstTextbausteine",
+                                        "type": "set",
+                                        "value": "${result.value}"
+                                      },
+                                      {
+                                        "code": "this.gridTextbausteine.onSelect(this.rstTextbausteine[0]);",
+                                        "type": "execute"
+                                      }
+                                    ],
+                                    "type": "invoke"
+                                  }
+                                ],
+                                "rowSelect": [
+                                  {
+                                    "name": "strTextbausteinHTML",
+                                    "type": "set",
+                                    "value": "${event.TextbausteinHTML}"
+                                  }
+                                ]
+                              },
+                              "filterCaseSensitivity": "caseInsensitive",
+                              "greaterThanOrEqualsText": "Greater than or equals",
+                              "greaterThanText": "Greater than",
+                              "isLoading": "",
+                              "lessThanOrEqualsText": "Less than or equals",
+                              "lessThanText": "Less than",
+                              "name": "gridTextbausteine",
+                              "notEqualsText": "Not equals",
+                              "pageSize": 15,
+                              "startsWithText": "Starts with",
+                              "style": {
+                                "border": "1px solid rgba(0, 0, 0, 0)",
+                                "height": "700px",
+                                "marginLeft": "-10px",
+                                "marginRight": "-10px",
+                                "marginTop": "-13px"
+                              },
+                              "title": "",
+                              "type": "grid"
+                            }
+                          ],
                           "footerTemplate": "",
-                          "headerTemplate": "",
-                          "name": "panel2",
+                          "headerTemplate": [
+                            {
+                              "components": [
+                                {
+                                  "class": "col-md-12 align-items-start d-flex",
+                                  "components": [
+                                    {
+                                      "events": {
+                                        "click": []
+                                      },
+                                      "icon": "add",
+                                      "name": "button0",
+                                      "size": "sm",
+                                      "style": {},
+                                      "text": "Neu",
+                                      "tooltip": "",
+                                      "type": "button"
+                                    },
+                                    {
+                                      "buttonStyle": "light",
+                                      "events": {
+                                        "click": []
+                                      },
+                                      "icon": "content_copy",
+                                      "name": "button1",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#D86E13",
+                                        "marginLeft": "10px"
+                                      },
+                                      "text": "Duplizieren",
+                                      "type": "button"
+                                    },
+                                    {
+                                      "buttonStyle": "light",
+                                      "events": {
+                                        "click": []
+                                      },
+                                      "icon": "create",
+                                      "name": "button2",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#D86E13",
+                                        "marginLeft": "10px",
+                                        "paddingLeft": ""
+                                      },
+                                      "text": "",
+                                      "tooltip": "Bearbeiten Autor",
+                                      "type": "button"
+                                    },
+                                    {
+                                      "buttonStyle": "light",
+                                      "disabled": false,
+                                      "events": {
+                                        "click": []
+                                      },
+                                      "icon": "clear",
+                                      "name": "button3",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#D86E13",
+                                        "fontWeight": "normal",
+                                        "marginLeft": "10px",
+                                        "marginRight": "-9px",
+                                        "paddingLeft": ""
+                                      },
+                                      "text": "",
+                                      "tooltip": "Löschen Autor",
+                                      "type": "button"
+                                    }
+                                  ],
+                                  "name": "col0",
+                                  "type": "col"
+                                }
+                              ],
+                              "name": "row0",
+                              "type": "row"
+                            }
+                          ],
+                          "name": "panel4",
                           "style": {
                             "border": "1px solid #e6ecef",
                             "height": "750px"
                           },
-                          "text": "Weitere 1",
+                          "text": "Textbausteine",
                           "type": "panel"
                         }
                       ],
-                      "name": "col0",
-                      "type": "col"
-                    },
-                    {
-                      "class": "col-md-4",
-                      "components": [
-                        {
-                          "components": [],
-                          "icon": "",
-                          "name": "panel3",
-                          "style": {
-                            "border": "1px solid #e6ecef",
-                            "height": "360px"
-                          },
-                          "text": "Weitere 2",
-                          "type": "panel"
-                        },
-                        {
-                          "components": [],
-                          "icon": "",
-                          "name": "panel1",
-                          "style": {
-                            "border": "1px solid #e6ecef",
-                            "height": "370px",
-                            "marginTop": "20px"
-                          },
-                          "text": "Sonstiges",
-                          "type": "panel"
-                        }
-                      ],
-                      "name": "col4",
+                      "name": "col6",
                       "style": {
                         "paddingLeft": "5px"
                       },
                       "type": "col"
                     },
                     {
-                      "class": "col-md-4",
+                      "class": "col-md-6",
                       "components": [
                         {
-                          "components": [],
-                          "footerTemplate": "",
-                          "name": "Bild",
+                          "components": [
+                            {
+                              "components": [
+                                {
+                                  "class": "col-md-12",
+                                  "components": [
+                                    {
+                                      "content": "<p-editor [(ngModel)]=\"strTextbausteinHTML\" [style]=\"{'height': '645px'}\">\n    <p-header>\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-font\">\n                <option selected>Aref Ruqaa</option>\n                <option value=\"mirza\">Mirza</option>\n                <option value=\"roboto\">Roboto</option>\n\t\t\t</select>\n\t\t</span>\n    \n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-header\">\n\t\t\t    <option value=\"1\">Titel 1</option>\n\t\t\t    <option value=\"2\">Titel 2</option>\n\t\t\t    <option value=\"3\">Titel 3</option>\n\t\t\t    <option value=\"4\">Titel 4</option>\n\t\t\t    <option value=\"5\">Titel 5</option>\n\t\t\t    <option value=\"6\">Titel 6</option>\n\t\t\t    <option selected>Normal</option>\n\t\t\t</select>\n\t\t</span>\n\t\t\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-bold\" aria-label=\"Bold\">Fett</button>\n\t\t\t<button class=\"ql-italic\" aria-label=\"Italic\"></button>\n\t\t\t<button class=\"ql-underline\" aria-label=\"Underline\"></button>\n\t\t</span>\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-blockquote\"></button>\n\t\t</span>\t\t\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-align\"></select>\n\t\t</span>\t\t\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-color\"></select>\n\t\t\t<select class=\"ql-background\"></select>\n\t\t</span>\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-list\" value=\"ordered\"></button>\n\t\t\t<button class=\"ql-list\" value=\"bullet\"></button>\n\t\t\t<button class=\"ql-indent\" value=\"-1\"></button>\n\t\t\t<button class=\"ql-indent\" value=\"+1\"></button>\n\t\t</span>\n    </p-header>\n</p-editor>",
+                                      "name": "htmlEditorInfotexte",
+                                      "type": "html"
+                                    }
+                                  ],
+                                  "name": "col10",
+                                  "style": {},
+                                  "type": "col"
+                                }
+                              ],
+                              "name": "row4",
+                              "style": {
+                                "marginLeft": "-36px",
+                                "marginRight": "-36px",
+                                "marginTop": "-12px"
+                              },
+                              "type": "row"
+                            }
+                          ],
+                          "headerTemplate": [
+                            {
+                              "components": [
+                                {
+                                  "class": "col-md-12 align-items-start d-flex",
+                                  "components": [
+                                    {
+                                      "buttonStyle": "success",
+                                      "buttonType": "submit",
+                                      "events": {
+                                        "click": []
+                                      },
+                                      "icon": "save",
+                                      "name": "button4",
+                                      "size": "sm",
+                                      "style": {},
+                                      "text": "Speichern",
+                                      "tooltip": "",
+                                      "type": "button"
+                                    },
+                                    {
+                                      "buttonStyle": "light",
+                                      "events": {
+                                        "click": []
+                                      },
+                                      "icon": "open_in_browser",
+                                      "name": "buttonNeu",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#D86E13",
+                                        "marginLeft": "10px"
+                                      },
+                                      "text": "Dokument öffnen",
+                                      "tooltip": "",
+                                      "type": "button"
+                                    },
+                                    {
+                                      "buttonStyle": "light",
+                                      "disabled": false,
+                                      "events": {
+                                        "click": []
+                                      },
+                                      "icon": "content_paste",
+                                      "name": "buttonLoeschen",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#D86E13",
+                                        "fontWeight": "normal",
+                                        "marginLeft": "10px",
+                                        "marginRight": "-9px",
+                                        "paddingLeft": ""
+                                      },
+                                      "text": "Kopieren",
+                                      "tooltip": "Löschen Autor",
+                                      "type": "button"
+                                    }
+                                  ],
+                                  "name": "col2",
+                                  "type": "col"
+                                }
+                              ],
+                              "name": "row0",
+                              "type": "row"
+                            }
+                          ],
+                          "name": "panel6",
                           "style": {
                             "border": "1px solid #e6ecef",
                             "height": "750px"
                           },
-                          "text": "Weitere 3",
+                          "text": "Infotext für: ${dsoInfotexte.Titel}",
                           "type": "panel"
                         }
                       ],
-                      "name": "col3",
+                      "name": "col7",
                       "style": {
                         "paddingLeft": "5px"
                       },
                       "type": "col"
                     }
                   ],
-                  "name": "row1",
+                  "name": "row2",
                   "type": "row"
                 }
               ],
-              "icon": "",
-              "selected": false,
-              "text": "Weitere"
+              "selected": true,
+              "text": "Auswahl"
             }
           ],
           "name": "tabs0",
@@ -246,21 +555,25 @@
   "events": {
     "load": [
       {
-        "name": "dbHopeKurseTextbausteine.getInfotexteHtmls",
-        "parameters": [
-          {
-            "name": "$filter",
-            "value": "Code eq 'TestTextbaustein'"
-          }
-        ],
+        "code": "this.gridTextbausteine.load();",
+        "type": "execute"
+      },
+      {
+        "name": "dbHopeKurseTextbausteine.getIbsiTextbausteineArtens",
+        "parameters": [],
         "then": [
           {
-            "name": "selectedTextbaustein",
+            "name": "getIbsiTextbausteineArtensResult",
             "type": "set",
-            "value": "${result.value[0].Inhalt}"
+            "value": "${result.value}"
           }
         ],
         "type": "invoke"
+      },
+      {
+        "name": "valTextbausteineArten",
+        "type": "set",
+        "value": "[{text: 'Accounting', value: 'A'}, {text: 'Marketing', value: 'M'}, {text: 'Production', value: 'P'}, {text: 'Research', value: 'R'},{text: 'Accounting', value: 'A'}, {text: 'Marketing', value: 'M'}, {text: 'Production', value: 'P'}, {text: 'Research', value: 'R'},{text: 'Accounting', value: 'A'}, {text: 'Marketing', value: 'M'}, {text: 'Production', value: 'P'}, {text: 'Research', value: 'R'},{text: 'Accounting', value: 'A'}, {text: 'Marketing', value: 'M'}]"
       }
     ]
   },

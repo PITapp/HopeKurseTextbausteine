@@ -41,6 +41,8 @@ import { DataListModule } from '@radzen/angular/dist/datalist';
 import { HtmlModule } from '@radzen/angular/dist/html';
 import { LoginModule } from '@radzen/angular/dist/login';
 import { FormModule } from '@radzen/angular/dist/form';
+import { ListBoxModule } from '@radzen/angular/dist/listbox';
+import { RadioButtonListModule } from '@radzen/angular/dist/radiobuttonlist';
 import { UploadModule } from '@radzen/angular/dist/upload';
 import { NumericModule } from '@radzen/angular/dist/numeric';
 import { CheckBoxModule } from '@radzen/angular/dist/checkbox';
@@ -60,13 +62,7 @@ import { BenutzerComponent } from './benutzer/benutzer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EinstellungenComponent } from './einstellungen/einstellungen.component';
 import { BenutzerProfilComponent } from './benutzer-profil/benutzer-profil.component';
-import { ApplicationUsersComponent } from './application-users/application-users.component';
 import { LoginComponent } from './login/login.component';
-import { ApplicationRolesComponent } from './application-roles/application-roles.component';
-import { RegisterApplicationUserComponent } from './register-application-user/register-application-user.component';
-import { AddApplicationRoleComponent } from './add-application-role/add-application-role.component';
-import { AddApplicationUserComponent } from './add-application-user/add-application-user.component';
-import { EditApplicationUserComponent } from './edit-application-user/edit-application-user.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { ImpressumComponent } from './impressum/impressum.component';
@@ -89,11 +85,13 @@ import { KurseThemenBearbeitenComponent } from './kurse-themen-bearbeiten/kurse-
 import { EinstellungenInfotexteNeuComponent } from './einstellungen-infotexte-neu/einstellungen-infotexte-neu.component';
 import { EinstellungenInfotexteBearbeitenComponent } from './einstellungen-infotexte-bearbeiten/einstellungen-infotexte-bearbeiten.component';
 import { MeldungLoeschenComponent } from './meldung-loeschen/meldung-loeschen.component';
-import { IbsiKurseComponent } from './ibsi-kurse/ibsi-kurse.component';
-import { AddIbsiKurseThemenComponent } from './add-ibsi-kurse-themen/add-ibsi-kurse-themen.component';
-import { AddIbsiKurseComponent } from './add-ibsi-kurse/add-ibsi-kurse.component';
-import { EditIbsiKurseComponent } from './edit-ibsi-kurse/edit-ibsi-kurse.component';
-import { EditIbsiKurseThemenComponent } from './edit-ibsi-kurse-themen/edit-ibsi-kurse-themen.component';
+import { MeldungJaNeinComponent } from './meldung-ja-nein/meldung-ja-nein.component';
+import { ApplicationUsersComponent } from './application-users/application-users.component';
+import { ApplicationRolesComponent } from './application-roles/application-roles.component';
+import { RegisterApplicationUserComponent } from './register-application-user/register-application-user.component';
+import { AddApplicationRoleComponent } from './add-application-role/add-application-role.component';
+import { AddApplicationUserComponent } from './add-application-user/add-application-user.component';
+import { EditApplicationUserComponent } from './edit-application-user/edit-application-user.component';
 import { LoginLayoutComponent } from './login-layout/login-layout.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 
@@ -110,13 +108,7 @@ export const PageDeclarations = [
   DashboardComponent,
   EinstellungenComponent,
   BenutzerProfilComponent,
-  ApplicationUsersComponent,
   LoginComponent,
-  ApplicationRolesComponent,
-  RegisterApplicationUserComponent,
-  AddApplicationRoleComponent,
-  AddApplicationUserComponent,
-  EditApplicationUserComponent,
   ProfileComponent,
   UnauthorizedComponent,
   ImpressumComponent,
@@ -139,11 +131,13 @@ export const PageDeclarations = [
   EinstellungenInfotexteNeuComponent,
   EinstellungenInfotexteBearbeitenComponent,
   MeldungLoeschenComponent,
-  IbsiKurseComponent,
-  AddIbsiKurseThemenComponent,
-  AddIbsiKurseComponent,
-  EditIbsiKurseComponent,
-  EditIbsiKurseThemenComponent,
+  MeldungJaNeinComponent,
+  ApplicationUsersComponent,
+  ApplicationRolesComponent,
+  RegisterApplicationUserComponent,
+  AddApplicationRoleComponent,
+  AddApplicationUserComponent,
+  EditApplicationUserComponent,
 ];
 
 export const LayoutDeclarations = [
@@ -220,6 +214,8 @@ export const AppImports = [
   HtmlModule,
   LoginModule,
   FormModule,
+  ListBoxModule,
+  RadioButtonListModule,
   UploadModule,
   NumericModule,
   CheckBoxModule,

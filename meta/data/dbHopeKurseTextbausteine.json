@@ -272,9 +272,11 @@
           "type": "integer"
         },
         "Printkurs": {
+          "x-default-sql": "b'0'",
           "type": "boolean"
         },
         "Onlinekurs": {
+          "x-default-sql": "b'0'",
           "type": "boolean"
         },
         "IbsiKurseThemens": {
@@ -653,6 +655,14 @@
         "Bezeichnung": {
           "type": "string",
           "length": 40
+        },
+        "AuswahlKurs": {
+          "x-default-sql": "b'0'",
+          "type": "boolean"
+        },
+        "AuswahlThemaNummer": {
+          "x-default-sql": "b'0'",
+          "type": "boolean"
         },
         "Sortierung": {
           "type": "integer"

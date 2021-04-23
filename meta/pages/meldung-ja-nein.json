@@ -49,19 +49,19 @@
                           "class": "col offset-sm-3 justify-content-end d-flex",
                           "components": [
                             {
-                              "buttonStyle": "danger",
+                              "buttonStyle": "success",
                               "buttonType": "submit",
                               "events": {
                                 "click": [
                                   {
-                                    "result": "'Löschen'",
+                                    "result": "'Ja'",
                                     "type": "close-popup"
                                   }
                                 ]
                               },
                               "icon": "",
                               "name": "button0",
-                              "text": "Löschen",
+                              "text": "Ja",
                               "type": "button"
                             },
                             {
@@ -69,7 +69,7 @@
                               "events": {
                                 "click": [
                                   {
-                                    "result": "'Abbruch'",
+                                    "result": "'Nein'",
                                     "type": "close-popup"
                                   }
                                 ]
@@ -78,7 +78,8 @@
                               "style": {
                                 "marginLeft": "1rem"
                               },
-                              "text": "Abbruch",
+                              "text": "Nein",
+                              "tooltip": "",
                               "type": "button"
                             }
                           ],
@@ -114,5 +115,5 @@
     "load": []
   },
   "layout": "Main",
-  "name": "MeldungLoeschen"
+  "name": "MeldungJaNein"
 }

@@ -24,8 +24,7 @@
   "namespaces": [],
   "navigation": [
     "Dashboard",
-    "Kontakte",
-    "IbsiKurse"
+    "Kontakte"
   ],
   "pages": [
     "BenutzerNeu",
@@ -35,13 +34,7 @@
     "Dashboard",
     "Einstellungen",
     "BenutzerProfil",
-    "Application Users",
     "Login",
-    "Application Roles",
-    "Register Application User",
-    "Add Application Role",
-    "Add Application User",
-    "Edit Application User",
     "Profile",
     "Unauthorized",
     "Impressum",
@@ -64,11 +57,13 @@
     "EinstellungenInfotexteNeu",
     "EinstellungenInfotexteBearbeiten",
     "MeldungLoeschen",
-    "IbsiKurse",
-    "Add Ibsi Kurse Themen",
-    "Add IbsiKurse",
-    "Edit IbsiKurse",
-    "Edit Ibsi Kurse Themen"
+    "MeldungJaNein",
+    "Application Users",
+    "Application Roles",
+    "Register Application User",
+    "Add Application Role",
+    "Add Application User",
+    "Edit Application User"
   ],
   "port": 8000,
   "security": {
@@ -282,7 +277,7 @@
     "$scheduler-view-selected-color": "#ffffff",
     "$scrollbar-background-color": "#ffffff",
     "$scrollbar-border-radius": "8px",
-    "$scrollbar-color": "#479cc8",
+    "$scrollbar-color": "#DFE2E6",
     "$secondary": "#479cc8",
     "$selectbar-background-color": "#ffffff",
     "$selectbar-border": "1px solid #dadfe2",

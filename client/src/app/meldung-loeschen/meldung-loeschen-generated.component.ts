@@ -107,10 +107,6 @@ export class MeldungLoeschenGenerated implements AfterViewInit, OnInit, OnDestro
   }
 
   button1Click(event: any) {
-    if (this.dialogRef) {
-      this.dialogRef.close();
-    } else {
-      this._location.back();
-    }
+    this.dialogRef.close('Abbruch');
   }
 }

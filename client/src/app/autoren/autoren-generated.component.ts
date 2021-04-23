@@ -19,6 +19,7 @@ import { TextBoxComponent } from '@radzen/angular/dist/textbox';
 import { ButtonComponent } from '@radzen/angular/dist/button';
 
 import { ConfigService } from '../config.service';
+import { MeldungLoeschenComponent } from '../meldung-loeschen/meldung-loeschen.component';
 import { AutorenBearbeitenComponent } from '../autoren-bearbeiten/autoren-bearbeiten.component';
 import { AutorenNeuComponent } from '../autoren-neu/autoren-neu.component';
 
@@ -34,7 +35,9 @@ export class AutorenGenerated implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('tabs0') tabs0: TabsComponent;
   @ViewChild('panel1') panel1: PanelComponent;
   @ViewChild('gridAutoren') gridAutoren: GridComponent;
-  @ViewChild('button0') button0: ButtonComponent;
+  @ViewChild('buttonNeu') buttonNeu: ButtonComponent;
+  @ViewChild('buttonBearbeiten') buttonBearbeiten: ButtonComponent;
+  @ViewChild('buttonLoeschen') buttonLoeschen: ButtonComponent;
   @ViewChild('panel0') panel0: PanelComponent;
   @ViewChild('grid0') grid0: GridComponent;
 
@@ -64,13 +67,13 @@ export class AutorenGenerated implements AfterViewInit, OnInit, OnDestroy {
 
   security: SecurityService;
   parameters: any;
+  letzteAutorNr: any;
   rstAutoren: any;
   rstAutorenCount: any;
   dsoAutoren: any;
   rstTextbausteineLaden: any;
   rstTextbausteine: any;
   rstTextbausteineCount: any;
-  varAutorNr: any;
 
   constructor(private injector: Injector) {
   }
@@ -121,17 +124,6 @@ export class AutorenGenerated implements AfterViewInit, OnInit, OnDestroy {
 
   load() {
     this.gridAutoren.load();
-
-    console.log('Load - Autoren');
-  }
-
-  gridAutorenDelete(event: any) {
-    this.dbHopeKurseTextbausteine.deleteIbsiTextbausteineAutoren(event.AutorNr)
-    .subscribe((result: any) => {
-      this.notificationService.notify({ severity: "success", summary: `Autor erfolgreich gelöscht`, detail: `` });
-    }, (result: any) => {
-      this.notificationService.notify({ severity: "error", summary: `Autor konnte nicht gelöscht werden!`, detail: `` });
-    });
   }
 
   gridAutorenLoadData(event: any) {
@@ -141,12 +133,23 @@ export class AutorenGenerated implements AfterViewInit, OnInit, OnDestroy {
 
       this.rstAutorenCount = event.top != null && event.skip != null ? result['@odata.count'] : result.value.length;
 
-      this.gridAutoren.onSelect(result.value[0])
+      if (this.rstAutoren.find(p => p.AutorNr == this.letzteAutorNr) != null) {
+    // letzteAutorNr wurde in rstAutoren gefunden
+    this.gridAutoren.onSelect(this.rstAutoren.find(p => p.AutorNr == this.letzteAutorNr))
+} else {
+    // letzteAutorNr wurde in rstAutoren NICHT gefunden
+    this.letzteAutorNr = null;
+    this.gridAutoren.onSelect(this.rstAutoren[0]);
+}
     }, (result: any) => {
-      this.notificationService.notify({ severity: "error", summary: `Autoren konnten nicht geladen werden!`, detail: `` });
+      this.notificationService.notify({ severity: "error", summary: ``, detail: `Autoren konnten nicht geladen werden!` });
     });
+  }
 
-    console.log('LoadData');
+  gridAutorenRowDoubleClick(event: any) {
+    this.letzteAutorNr = this.dsoAutoren.AutorNr;
+
+    this.dialogService.open(AutorenBearbeitenComponent, { parameters: {AutorNr: this.dsoAutoren.AutorNr}, title: `Bearbeiten Autor` });
   }
 
   gridAutorenRowSelect(event: any) {
@@ -154,7 +157,7 @@ export class AutorenGenerated implements AfterViewInit, OnInit, OnDestroy {
 
     this.rstTextbausteineLaden = true;
 
-    this.dbHopeKurseTextbausteine.getIbsiTextbausteines(`AutorNr eq ${event.AutorNr}`, event.top, event.skip, `IbsiKurse/Titel, TitelTextbaustein`, event.top != null && event.skip != null, `IbsiKurse, IbsiTextbausteineArten`, null, null)
+    this.dbHopeKurseTextbausteine.getIbsiTextbausteines(`AutorNr eq ${event.AutorNr}`, event.top, event.skip, `IbsiKurse/Titel, TitelTextbaustein`, event.top != null && event.skip != null, `IbsiKurse, IbsiTextbausteineArten`, null, `TextbausteinNr, TitelTextbaustein, UntertitelTextbaustein`)
     .subscribe((result: any) => {
       this.rstTextbausteine = result.value;
 
@@ -165,27 +168,42 @@ export class AutorenGenerated implements AfterViewInit, OnInit, OnDestroy {
 
     });
 
-    console.log('RowSelect', event);
+    console.log(event);
   }
 
-  editButtonClick(event: any, data: any) {
-    this.varAutorNr = data.AutorNr;
+  buttonNeuClick(event: any) {
+    this.letzteAutorNr = this.dsoAutoren.AutorNr;
 
-    this.gridAutoren.onSelect(this.rstAutoren.find(p => p.AutorNr == this.varAutorNr))
-
-    this.dialogService.open(AutorenBearbeitenComponent, { parameters: {AutorNr: data.AutorNr}, title: `Bearbeiten Autor` })
+    this.dialogService.open(AutorenNeuComponent, { parameters: {}, title: `Neuer Autor ` })
         .afterClosed().subscribe(result => {
               if (result != null) {
-        this.gridAutoren.onSelect(this.rstAutoren.find(p => p.AutorNr == this.varAutorNr))
+            this.letzteAutorNr = result.AutorNr;
+      }
+
+      if (result != null) {
+        this.gridAutoren.load();
       }
     });
   }
 
-  button0Click(event: any) {
-    this.dialogService.open(AutorenNeuComponent, { parameters: {}, title: `Neuer Autor ` })
+  buttonBearbeitenClick(event: any) {
+    this.letzteAutorNr = this.dsoAutoren.AutorNr;
+
+    this.dialogService.open(AutorenBearbeitenComponent, { parameters: {AutorNr: this.dsoAutoren.AutorNr}, title: `Bearbeiten Autor` });
+  }
+
+  buttonLoeschenClick(event: any) {
+    this.letzteAutorNr = null;
+
+    this.dialogService.open(MeldungLoeschenComponent, { parameters: {strMeldung: "Soll der Autor '" + this.dsoAutoren.Name + "' gelöscht werden?"}, title: `Löschen Autor` })
         .afterClosed().subscribe(result => {
-              if (result != null) {
-        this.gridAutoren.load();
+              if (result == 'Löschen') {
+              this.dbHopeKurseTextbausteine.deleteIbsiTextbausteineAutoren(this.dsoAutoren.AutorNr)
+        .subscribe((result: any) => {
+              this.notificationService.notify({ severity: "success", summary: ``, detail: `Autor gelöscht` });
+        }, (result: any) => {
+              this.notificationService.notify({ severity: "error", summary: ``, detail: `Autor konnte nicht gelöscht werden!` });
+        });
       }
     });
   }

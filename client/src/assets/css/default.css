@@ -7498,6 +7498,64 @@ p-accordiontab {
   margin: 0 0.625rem 0 0;
 }
 
+.rz-menu-toggle-item {
+  display: none;
+  padding: 0.8125rem 0.625rem;
+  text-align: right;
+  width: 100%;
+  height: 100%;
+}
+
+.rz-menu-toggle {
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.rz-menu-toggle:active {
+  background-color: transparent;
+  color: inherit;
+}
+
+@media (max-width: 768px) {
+  .rz-menu-toggle-item {
+    display: block;
+  }
+  .menu:not(.profile-menu).rz-menu-closed .navigation-item {
+    display: none;
+  }
+  .menu:not(.profile-menu) .rz-menu-toggle .material-icons, .menu:not(.profile-menu) .rz-menu-toggle .fc-prev-button .ui-icon, .fc-prev-button .menu:not(.profile-menu) .rz-menu-toggle .ui-icon,
+.menu:not(.profile-menu) .rz-menu-toggle .fc-next-button .ui-icon,
+.fc-next-button .menu:not(.profile-menu) .rz-menu-toggle .ui-icon, .menu:not(.profile-menu) .rz-menu-toggle .ui-datatable-loading-content .fa-circle-o-notch, .ui-datatable-loading-content .menu:not(.profile-menu) .rz-menu-toggle .fa-circle-o-notch, .menu:not(.profile-menu) .rz-menu-toggle .ui-datatable-header .fa-plus, .ui-datatable-header .menu:not(.profile-menu) .rz-menu-toggle .fa-plus, .menu:not(.profile-menu) .rz-menu-toggle .ui-sortable-column .fa, .ui-sortable-column .menu:not(.profile-menu) .rz-menu-toggle .fa, .menu:not(.profile-menu) .rz-menu-toggle .ui-datatable .fa-chevron-circle-down, .ui-datatable .menu:not(.profile-menu) .rz-menu-toggle .fa-chevron-circle-down, .menu:not(.profile-menu) .rz-menu-toggle .ui-datatable .fa-chevron-circle-right, .ui-datatable .menu:not(.profile-menu) .rz-menu-toggle .fa-chevron-circle-right, .menu:not(.profile-menu) .rz-menu-toggle .ui-fileupload-row .ui-button .fa-close, .menu:not(.profile-menu) .rz-menu-toggle .ui-fileupload-row .ui-paginator-element .fa-close, .ui-fileupload-row .ui-button .menu:not(.profile-menu) .rz-menu-toggle .fa-close, .ui-fileupload-row .ui-paginator-element .menu:not(.profile-menu) .rz-menu-toggle .fa-close,
+.menu:not(.profile-menu) .rz-menu-toggle .ui-fileupload-row .ui-button .pi-times,
+.menu:not(.profile-menu) .rz-menu-toggle .ui-fileupload-row .ui-paginator-element .pi-times,
+.ui-fileupload-row .ui-button .menu:not(.profile-menu) .rz-menu-toggle .pi-times,
+.ui-fileupload-row .ui-paginator-element .menu:not(.profile-menu) .rz-menu-toggle .pi-times,
+.menu:not(.profile-menu) .rz-menu-toggle .ui-fileupload-row .ui-button .ui-icon-trash,
+.menu:not(.profile-menu) .rz-menu-toggle .ui-fileupload-row .ui-paginator-element .ui-icon-trash,
+.ui-fileupload-row .ui-button .menu:not(.profile-menu) .rz-menu-toggle .ui-icon-trash,
+.ui-fileupload-row .ui-paginator-element .menu:not(.profile-menu) .rz-menu-toggle .ui-icon-trash {
+    margin: 0;
+  }
+  .menu:not(.profile-menu).rz-menu-open {
+    display: block;
+  }
+  .menu:not(.profile-menu).rz-menu-open .navigation-item {
+    background-color: inherit;
+  }
+  .menu:not(.profile-menu).rz-menu-open .navigation-menu {
+    position: static;
+    box-shadow: none;
+  }
+  .menu:not(.profile-menu) .navigation-item-wrapper-active:before {
+    display: none !important;
+  }
+}
+
 .panel-menu {
   list-style: none;
   padding: 0;
@@ -10647,7 +10705,7 @@ body:not(.rz-default-scrollbars)::-webkit-scrollbar {
 }
 
 body:not(.rz-default-scrollbars)::-webkit-scrollbar-thumb {
-  background: #479cc8;
+  background: #DFE2E6;
   border: 4px solid rgba(0, 0, 0, 0);
   background-clip: padding-box;
   border-radius: 8px;
@@ -10662,7 +10720,7 @@ body:not(.rz-default-scrollbars) ::-webkit-scrollbar {
 }
 
 body:not(.rz-default-scrollbars) ::-webkit-scrollbar-thumb {
-  background: #479cc8;
+  background: #DFE2E6;
   border: 4px solid rgba(0, 0, 0, 0);
   background-clip: padding-box;
   border-radius: 8px;

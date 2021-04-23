@@ -196,9 +196,9 @@
                                   {
                                     "error": [
                                       {
-                                        "detail": "Daten können nicht geladen werden!",
+                                        "detail": "Kontakte können nicht geladen werden!",
                                         "severity": "error",
-                                        "summary": "Kontakte",
+                                        "summary": "",
                                         "type": "notify"
                                       }
                                     ],
@@ -241,19 +241,20 @@
                                         "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
                                       },
                                       {
-                                        "code": "${this.gridKontakte.onSelect(result.value[0])}",
+                                        "code": "if (this.rstBase.find(p => p.BaseID == this.letzteBaseID) != null) {\n    // letzteBaseID wurde in rstBase gefunden\n    this.gridKontakte.onSelect(this.rstBase.find(p => p.BaseID == this.letzteBaseID))\n} else {\n    // letzteBaseID wurde in rstBaseID NICHT gefunden\n    this.letzteBaseID = null;\n    this.gridKontakte.onSelect(this.rstBase[0]);\n}",
                                         "condition": "",
                                         "type": "execute"
                                       }
                                     ],
                                     "type": "invoke"
-                                  },
-                                  {
-                                    "code": "console.log('LoadData');",
-                                    "type": "execute"
                                   }
                                 ],
                                 "rowDoubleClick": [
+                                  {
+                                    "name": "letzteBaseID",
+                                    "type": "set",
+                                    "value": "${dsoBase.BaseID}"
+                                  },
                                   {
                                     "parameters": [
                                       {
@@ -262,20 +263,7 @@
                                       }
                                     ],
                                     "path": "kontakte-bearbeiten",
-                                    "then": [
-                                      {
-                                        "code": "console.log('fertig opendialog');",
-                                        "type": "execute"
-                                      },
-                                      {
-                                        "code": "console.log(${result});",
-                                        "type": "execute"
-                                      },
-                                      {
-                                        "code": "${this.gridKontakte.onSelect(null)}",
-                                        "type": "execute"
-                                      }
-                                    ],
+                                    "then": [],
                                     "title": "Bearbeiten Kontakt",
                                     "type": "popup"
                                   }
@@ -302,10 +290,6 @@
                                       }
                                     ],
                                     "type": "invoke"
-                                  },
-                                  {
-                                    "code": "console.log('RowSelect');",
-                                    "type": "execute"
                                   }
                                 ]
                               },
@@ -334,6 +318,7 @@
                           ],
                           "headerTemplate": [
                             {
+                              "class": "",
                               "components": [
                                 {
                                   "class": "col-md-12 align-items-start d-flex",
@@ -350,11 +335,15 @@
                                             "path": "kontakte-neu",
                                             "then": [
                                               {
+                                                "condition": "${result} != null",
+                                                "name": "letzteBaseID",
+                                                "type": "set",
+                                                "value": "${result.BaseID}"
+                                              },
+                                              {
                                                 "code": "this.gridKontakte.load();",
                                                 "condition": "${result} != null",
-                                                "then": [
-                                                  {}
-                                                ],
+                                                "then": [],
                                                 "type": "execute"
                                               }
                                             ],
@@ -378,6 +367,11 @@
                                       "events": {
                                         "click": [
                                           {
+                                            "name": "letzteBaseID",
+                                            "type": "set",
+                                            "value": "${dsoBase.BaseID}"
+                                          },
+                                          {
                                             "parameters": [
                                               {
                                                 "name": "BaseID",
@@ -385,6 +379,7 @@
                                               }
                                             ],
                                             "path": "kontakte-bearbeiten",
+                                            "then": [],
                                             "title": "Bearbeiten Kontakt",
                                             "type": "popup"
                                           }
@@ -408,6 +403,11 @@
                                       "events": {
                                         "click": [
                                           {
+                                            "name": "letzteBaseID",
+                                            "type": "set",
+                                            "value": "null"
+                                          },
+                                          {
                                             "parameters": [
                                               {
                                                 "name": "strMeldung",
@@ -417,7 +417,7 @@
                                             "path": "meldung-loeschen",
                                             "then": [
                                               {
-                                                "condition": "${result} != null",
+                                                "condition": "${result} == 'Löschen'",
                                                 "error": [
                                                   {
                                                     "detail": "Kontakt konnte nicht gelöscht werden!",
@@ -450,7 +450,7 @@
                                         ]
                                       },
                                       "icon": "clear",
-                                      "name": "button2",
+                                      "name": "buttonLoeschen",
                                       "size": "sm",
                                       "style": {
                                         "color": "#f9777f",
@@ -493,7 +493,7 @@
                 }
               ],
               "icon": "",
-              "selected": true,
+              "selected": false,
               "text": "Daten"
             },
             {
@@ -1280,6 +1280,9 @@
                                         }
                                       ],
                                       "name": "col7",
+                                      "style": {
+                                        "paddingLeft": "0"
+                                      },
                                       "type": "col"
                                     },
                                     {
@@ -1297,6 +1300,9 @@
                                         }
                                       ],
                                       "name": "col8",
+                                      "style": {
+                                        "paddingRight": "0"
+                                      },
                                       "type": "col"
                                     }
                                   ],
@@ -1322,6 +1328,9 @@
                                         }
                                       ],
                                       "name": "col9",
+                                      "style": {
+                                        "paddingLeft": "0"
+                                      },
                                       "type": "col"
                                     },
                                     {
@@ -1339,6 +1348,9 @@
                                         }
                                       ],
                                       "name": "col10",
+                                      "style": {
+                                        "paddingRight": "0"
+                                      },
                                       "type": "col"
                                     }
                                   ],
@@ -1364,6 +1376,9 @@
                                         }
                                       ],
                                       "name": "col11",
+                                      "style": {
+                                        "paddingLeft": "0"
+                                      },
                                       "type": "col"
                                     },
                                     {
@@ -1381,6 +1396,9 @@
                                         }
                                       ],
                                       "name": "col12",
+                                      "style": {
+                                        "paddingRight": "0"
+                                      },
                                       "type": "col"
                                     }
                                   ],
@@ -1406,6 +1424,9 @@
                                         }
                                       ],
                                       "name": "col13",
+                                      "style": {
+                                        "paddingLeft": "0"
+                                      },
                                       "type": "col"
                                     },
                                     {
@@ -1417,7 +1438,7 @@
                                           "readOnly": true,
                                           "rows": 4,
                                           "style": {
-                                            "height": "141px",
+                                            "height": "146px",
                                             "width": "100%"
                                           },
                                           "type": "textarea",
@@ -1425,6 +1446,9 @@
                                         }
                                       ],
                                       "name": "col14",
+                                      "style": {
+                                        "paddingRight": "0"
+                                      },
                                       "type": "col"
                                     }
                                   ],
@@ -1591,36 +1615,51 @@
                                       "events": {
                                         "click": [
                                           {
-                                            "code": "${dsoBase.BildURL} = 'https://hopekurse-textbausteine.app/upload/bilder/base/KeinBildPerson.png';",
-                                            "type": "execute"
-                                          },
-                                          {
-                                            "error": [
-                                              {
-                                                "detail": "Bild konnte nicht entfernt werden!",
-                                                "severity": "error",
-                                                "type": "notify"
-                                              }
-                                            ],
-                                            "name": "dbHopeKurseTextbausteine.updateBase",
                                             "parameters": [
                                               {
-                                                "name": "BaseID",
-                                                "value": "${dsoBase.BaseID}"
-                                              },
-                                              {
-                                                "name": "Base",
-                                                "value": "${dsoBase}"
+                                                "name": "strMeldung",
+                                                "value": "\"Soll das Bild von '\" + this.dsoBase.Name1 + \" \" + this.dsoBase.Name2 + \"' entfernt werden?\""
                                               }
                                             ],
+                                            "path": "meldung-ja-nein",
                                             "then": [
                                               {
-                                                "detail": "Bild entfernt",
-                                                "severity": "success",
-                                                "type": "notify"
+                                                "code": "${dsoBase.BildURL} = 'https://hopekurse-textbausteine.app/upload/bilder/base/KeinBildPerson.png';",
+                                                "condition": "${result} == 'Ja'",
+                                                "type": "execute"
+                                              },
+                                              {
+                                                "condition": "${result} == 'Ja'",
+                                                "error": [
+                                                  {
+                                                    "detail": "Bild konnte nicht entfernt werden!",
+                                                    "severity": "error",
+                                                    "type": "notify"
+                                                  }
+                                                ],
+                                                "name": "dbHopeKurseTextbausteine.updateBase",
+                                                "parameters": [
+                                                  {
+                                                    "name": "BaseID",
+                                                    "value": "${dsoBase.BaseID}"
+                                                  },
+                                                  {
+                                                    "name": "Base",
+                                                    "value": "${dsoBase}"
+                                                  }
+                                                ],
+                                                "then": [
+                                                  {
+                                                    "detail": "Bild entfernt",
+                                                    "severity": "success",
+                                                    "type": "notify"
+                                                  }
+                                                ],
+                                                "type": "invoke"
                                               }
                                             ],
-                                            "type": "invoke"
+                                            "title": "Bild entfernen",
+                                            "type": "popup"
                                           }
                                         ]
                                       },
@@ -1665,7 +1704,7 @@
                 }
               ],
               "icon": "",
-              "selected": false,
+              "selected": true,
               "text": "Details"
             }
           ],
@@ -1683,6 +1722,16 @@
   "events": {
     "load": [
       {
+        "name": "letzteBaseID",
+        "type": "set",
+        "value": "null"
+      },
+      {
+        "name": "strBildDateiName",
+        "type": "set",
+        "value": "'Unbekannt'"
+      },
+      {
         "name": "dbHopeKurseTextbausteine.getBaseAnredens",
         "parameters": [],
         "then": [
@@ -1696,15 +1745,7 @@
       },
       {
         "code": "this.gridKontakte.load();",
-        "type": "execute"
-      },
-      {
-        "name": "strBildDateiName",
-        "type": "set",
-        "value": "'Unbekannt'"
-      },
-      {
-        "code": "console.log('Load - Formular');",
+        "then": [],
         "type": "execute"
       }
     ]

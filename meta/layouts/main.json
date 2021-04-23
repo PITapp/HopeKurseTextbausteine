@@ -206,10 +206,6 @@
               "icon": "settings",
               "path": "einstellungen",
               "text": "Einstellungen"
-            },
-            {
-              "path": "ibsi-kurse",
-              "text": "Item 9"
             }
           ],
           "name": "panelmenu0",

@@ -26,6 +26,7 @@ import { ImageComponent } from '@radzen/angular/dist/image';
 import { UploadComponent } from '@radzen/angular/dist/upload';
 
 import { ConfigService } from '../config.service';
+import { MeldungJaNeinComponent } from '../meldung-ja-nein/meldung-ja-nein.component';
 import { MeldungLoeschenComponent } from '../meldung-loeschen/meldung-loeschen.component';
 import { KontakteBearbeitenComponent } from '../kontakte-bearbeiten/kontakte-bearbeiten.component';
 import { KontakteNeuComponent } from '../kontakte-neu/kontakte-neu.component';
@@ -44,7 +45,7 @@ export class KontakteGenerated implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('gridKontakte') gridKontakte: GridComponent;
   @ViewChild('buttonNeu') buttonNeu: ButtonComponent;
   @ViewChild('buttonBearbeiten') buttonBearbeiten: ButtonComponent;
-  @ViewChild('button2') button2: ButtonComponent;
+  @ViewChild('buttonLoeschen') buttonLoeschen: ButtonComponent;
   @ViewChild('panel2') panel2: PanelComponent;
   @ViewChild('templateFormKontakte') templateFormKontakte: TemplateFormComponent;
   @ViewChild('label7') label7: LabelComponent;
@@ -118,10 +119,10 @@ export class KontakteGenerated implements AfterViewInit, OnInit, OnDestroy {
   dbHopeKurseTextbausteine: DbHopeKurseTextbausteineService;
 
   security: SecurityService;
-  rstBaseAnreden: any;
-  strBildDateiName: any;
-  parameters: any;
   letzteBaseID: any;
+  strBildDateiName: any;
+  rstBaseAnreden: any;
+  parameters: any;
   rstBase: any;
   rstBaseCount: any;
   dsoBase: any;
@@ -175,6 +176,10 @@ export class KontakteGenerated implements AfterViewInit, OnInit, OnDestroy {
 
 
   load() {
+    this.letzteBaseID = null;
+
+    this.strBildDateiName = 'Unbekannt';
+
     this.dbHopeKurseTextbausteine.getBaseAnredens(null, null, null, null, null, null, null, null)
     .subscribe((result: any) => {
       this.rstBaseAnreden = result.value;
@@ -183,10 +188,6 @@ export class KontakteGenerated implements AfterViewInit, OnInit, OnDestroy {
     });
 
     this.gridKontakte.load();
-
-    this.strBildDateiName = 'Unbekannt';
-
-    console.log('Load - Formular');
   }
 
   gridKontakteLoadData(event: any) {
@@ -196,23 +197,23 @@ export class KontakteGenerated implements AfterViewInit, OnInit, OnDestroy {
 
       this.rstBaseCount = event.top != null && event.skip != null ? result['@odata.count'] : result.value.length;
 
-      this.gridKontakte.onSelect(result.value[0])
+      if (this.rstBase.find(p => p.BaseID == this.letzteBaseID) != null) {
+    // letzteBaseID wurde in rstBase gefunden
+    this.gridKontakte.onSelect(this.rstBase.find(p => p.BaseID == this.letzteBaseID))
+} else {
+    // letzteBaseID wurde in rstBaseID NICHT gefunden
+    this.letzteBaseID = null;
+    this.gridKontakte.onSelect(this.rstBase[0]);
+}
     }, (result: any) => {
-      this.notificationService.notify({ severity: "error", summary: `Kontakte`, detail: `Daten können nicht geladen werden!` });
+      this.notificationService.notify({ severity: "error", summary: ``, detail: `Kontakte können nicht geladen werden!` });
     });
-
-    console.log('LoadData');
   }
 
   gridKontakteRowDoubleClick(event: any) {
-    this.dialogService.open(KontakteBearbeitenComponent, { parameters: {BaseID: event.BaseID}, title: `Bearbeiten Kontakt` })
-        .afterClosed().subscribe(result => {
-              console.log('fertig opendialog');
+    this.letzteBaseID = this.dsoBase.BaseID;
 
-      console.log(result);
-
-      this.gridKontakte.onSelect(null)
-    });
+    this.dialogService.open(KontakteBearbeitenComponent, { parameters: {BaseID: event.BaseID}, title: `Bearbeiten Kontakt` });
   }
 
   gridKontakteRowSelect(event: any) {
@@ -224,8 +225,6 @@ export class KontakteGenerated implements AfterViewInit, OnInit, OnDestroy {
     }, (result: any) => {
 
     });
-
-    console.log('RowSelect');
   }
 
   buttonNeuClick(event: any) {
@@ -234,25 +233,27 @@ export class KontakteGenerated implements AfterViewInit, OnInit, OnDestroy {
     this.dialogService.open(KontakteNeuComponent, { parameters: {}, title: `Neuer Kontakt` })
         .afterClosed().subscribe(result => {
               if (result != null) {
-        Promise.resolve().then(() => {
-          this.gridKontakte.load();
-        }).then((result: any) => {
+            this.letzteBaseID = result.BaseID;
+      }
 
-        }, (result: any) => {
-
-        });
+      if (result != null) {
+        this.gridKontakte.load();
       }
     });
   }
 
   buttonBearbeitenClick(event: any) {
+    this.letzteBaseID = this.dsoBase.BaseID;
+
     this.dialogService.open(KontakteBearbeitenComponent, { parameters: {BaseID: this.dsoBase.BaseID}, title: `Bearbeiten Kontakt` });
   }
 
-  button2Click(event: any) {
+  buttonLoeschenClick(event: any) {
+    this.letzteBaseID = null;
+
     this.dialogService.open(MeldungLoeschenComponent, { parameters: {strMeldung: "Soll der Kontakt '" + this.dsoBase.Name1 + " " + this.dsoBase.Name2 + "' gelöscht werden?"}, title: `Löschen Kontakt` })
         .afterClosed().subscribe(result => {
-              if (result != null) {
+              if (result == 'Löschen') {
               this.dbHopeKurseTextbausteine.deleteBase(this.dsoBase.BaseID)
         .subscribe((result: any) => {
               this.notificationService.notify({ severity: "success", summary: ``, detail: `Kontakt gelöscht` });
@@ -298,13 +299,20 @@ this.dsoBase.BildURL = 'https://hopekurse-textbausteine.app/upload/bilder/base/'
   }
 
   buttonBildEntfernenClick(event: any) {
-    this.dsoBase.BildURL = 'https://hopekurse-textbausteine.app/upload/bilder/base/KeinBildPerson.png';
+    this.dialogService.open(MeldungJaNeinComponent, { parameters: {strMeldung: "Soll das Bild von '" + this.dsoBase.Name1 + " " + this.dsoBase.Name2 + "' entfernt werden?"}, title: `Bild entfernen` })
+        .afterClosed().subscribe(result => {
+              if (result == 'Ja') {
+        this.dsoBase.BildURL = 'https://hopekurse-textbausteine.app/upload/bilder/base/KeinBildPerson.png';
+      }
 
-    this.dbHopeKurseTextbausteine.updateBase(null, this.dsoBase.BaseID, this.dsoBase)
-    .subscribe((result: any) => {
-      this.notificationService.notify({ severity: "success", summary: ``, detail: `Bild entfernt` });
-    }, (result: any) => {
-      this.notificationService.notify({ severity: "error", summary: ``, detail: `Bild konnte nicht entfernt werden!` });
+      if (result == 'Ja') {
+              this.dbHopeKurseTextbausteine.updateBase(null, this.dsoBase.BaseID, this.dsoBase)
+        .subscribe((result: any) => {
+              this.notificationService.notify({ severity: "success", summary: ``, detail: `Bild entfernt` });
+        }, (result: any) => {
+              this.notificationService.notify({ severity: "error", summary: ``, detail: `Bild konnte nicht entfernt werden!` });
+        });
+      }
     });
   }
 }
