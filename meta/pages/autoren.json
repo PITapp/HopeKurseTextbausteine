@@ -45,7 +45,7 @@
                     "fontSize": "21px",
                     "fontWeight": "normal"
                   },
-                  "text": "${dsoAutoren.Name} • ${dsoAutoren.Krzel}",
+                  "text": "${dsoAutoren.Name} · ${dsoAutoren.Krzel}",
                   "type": "heading"
                 }
               ],
@@ -309,6 +309,7 @@
                                   "class": "col-md-12 align-items-start d-flex",
                                   "components": [
                                     {
+                                      "buttonStyle": "light",
                                       "events": {
                                         "click": [
                                           {
@@ -339,7 +340,9 @@
                                       "icon": "add",
                                       "name": "buttonNeu",
                                       "size": "sm",
-                                      "style": {},
+                                      "style": {
+                                        "color": "#D86E13"
+                                      },
                                       "text": "Neuer Autor",
                                       "type": "button"
                                     },
@@ -370,7 +373,7 @@
                                       "name": "buttonBearbeiten",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#ff6d41",
+                                        "color": "#D86E13",
                                         "marginLeft": "10px",
                                         "paddingLeft": ""
                                       },
@@ -434,7 +437,7 @@
                                       "name": "buttonLoeschen",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#f9777f",
+                                        "color": "#D86E13",
                                         "fontWeight": "normal",
                                         "marginLeft": "10px",
                                         "marginRight": "-9px",
@@ -459,7 +462,7 @@
                             "border": "1px solid #e6ecef",
                             "height": "750px"
                           },
-                          "text": "${dsoAutoren.Name} | ${dsoAutoren.Krzel}",
+                          "text": "1 von ${rstAutorenCount}",
                           "type": "panel"
                         }
                       ],
@@ -536,7 +539,7 @@
                               "lessThanText": "Less than",
                               "name": "grid0",
                               "notEqualsText": "Not equals",
-                              "pageSize": 15,
+                              "pageSize": 21,
                               "startsWithText": "Starts with",
                               "style": {
                                 "border": "1px solid rgba(0, 0, 0, 0)",
@@ -557,7 +560,7 @@
                             "border": "1px solid #e6ecef",
                             "height": "750px"
                           },
-                          "text": "Autor ${dsoAutoren.Name} hat ${rstTextbausteineCount} Textbausteine erstellt ",
+                          "text": "${dsoAutoren.Name} · ${rstTextbausteineCount} Textbausteine",
                           "type": "panel"
                         }
                       ],

@@ -5,7 +5,7 @@
       </rz-heading>
       <rz-heading #heading19 size="H3" [style]="{'color': '#e5ecef', 'display': 'inline-block', 'marginTop': '7px', 'paddingLeft': '10px', 'paddingRight': '10px'}" text="|">
       </rz-heading>
-      <rz-heading #heading21 size="H3" [style]="{'color': '#5d717b', 'display': 'inline', 'fontSize': '21px', 'fontWeight': 'normal'}" text="{{dsoAutoren?.Name}} • {{dsoAutoren?.Krzel}}" >
+      <rz-heading #heading21 size="H3" [style]="{'color': '#5d717b', 'display': 'inline', 'fontSize': '21px', 'fontWeight': 'normal'}" text="{{dsoAutoren?.Name}} · {{dsoAutoren?.Krzel}}" >
       </rz-heading>
     </div>
   </div>
@@ -13,7 +13,7 @@
     <rz-tabs-item [selected]="false" text="Daten">
       <div class="row">
         <div class="col-md-5">
-          <rz-panel #panel1 [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="{{dsoAutoren?.Name}} | {{dsoAutoren?.Krzel}}">
+          <rz-panel #panel1 [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="1 von {{rstAutorenCount}}">
             <rz-grid #gridAutoren [allowAdd]="false" [allowColumnResize]="true" [allowDelete]="false" [allowFiltering]="true" [allowMultiSorting]="false" [allowPaging]="false" [allowSorting]="true" applyFilterText="Apply" clearFilterText="Clear" [confirmDelete]="false" containsText="Contains" [count]="rstAutorenCount" [data]="rstAutoren" emptyText="Keine Autoren vorhanden" endsWithText="Ends with" equalsText="Equals" filterCaseSensitivity="caseInsensitive" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="15" startsWithText="Starts with" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'height': '700px', 'marginLeft': '-10px', 'marginRight': '-10px', 'marginTop': '-13px'}" (loadData)="gridAutorenLoadData($event)" (rowDoubleClick)="gridAutorenRowDoubleClick($event)" (rowSelect)="gridAutorenRowSelect($event)">
               <rz-grid-column property="Name" title="Autor" type="string">
                 <ng-template let-data gridColumnEditTemplate>
@@ -31,11 +31,11 @@
             <rz-panel-header>
               <div class="row">
                 <div class="col-md-12 align-items-start d-flex">
-                  <rz-button #buttonNeu icon="add" size="sm" [style]="{}" text="Neuer Autor" (click)="buttonNeuClick($event)">
+                  <rz-button #buttonNeu buttonStyle="light" icon="add" size="sm" [style]="{'color': '#D86E13'}" text="Neuer Autor" (click)="buttonNeuClick($event)">
                   </rz-button>
-                  <rz-button #buttonBearbeiten buttonStyle="light" icon="create" size="sm" [style]="{'color': '#ff6d41', 'marginLeft': '10px', 'paddingLeft': ''}" tooltip="Bearbeiten Autor" (click)="buttonBearbeitenClick($event)">
+                  <rz-button #buttonBearbeiten buttonStyle="light" icon="create" size="sm" [style]="{'color': '#D86E13', 'marginLeft': '10px', 'paddingLeft': ''}" tooltip="Bearbeiten Autor" (click)="buttonBearbeitenClick($event)">
                   </rz-button>
-                  <rz-button #buttonLoeschen buttonStyle="light" [disabled]="false" icon="clear" size="sm" [style]="{'color': '#f9777f', 'fontWeight': 'normal', 'marginLeft': '10px', 'marginRight': '-9px', 'paddingLeft': ''}" tooltip="Löschen Autor" (click)="buttonLoeschenClick($event)">
+                  <rz-button #buttonLoeschen buttonStyle="light" [disabled]="false" icon="clear" size="sm" [style]="{'color': '#D86E13', 'fontWeight': 'normal', 'marginLeft': '10px', 'marginRight': '-9px', 'paddingLeft': ''}" tooltip="Löschen Autor" (click)="buttonLoeschenClick($event)">
                   </rz-button>
                 </div>
               </div>
@@ -43,8 +43,8 @@
           </rz-panel>
         </div>
         <div class="col-md-7" [ngStyle]="{'paddingLeft': '5px'}">
-          <rz-panel #panel0 [allowCollapse]="false" [collapsed]="false" [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="Autor {{dsoAutoren?.Name}} hat {{rstTextbausteineCount}} Textbausteine erstellt ">
-            <rz-grid #grid0 [allowAdd]="false" [allowColumnResize]="true" [allowDelete]="false" [allowFiltering]="true" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="true" [alwaysShowPager]="false" applyFilterText="Apply" clearFilterText="Clear" [confirmDelete]="false" containsText="Contains" [count]="rstTextbausteineCount" [data]="rstTextbausteine" emptyText="Keine Textbausteine vorhanden" endsWithText="Ends with" equalsText="Equals" filterCaseSensitivity="caseInsensitive" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" [isLoading]="rstTextbausteineLaden" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="15" startsWithText="Starts with" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'height': '700px', 'marginLeft': '-10px', 'marginRight': '-10px', 'marginTop': '-8px'}">
+          <rz-panel #panel0 [allowCollapse]="false" [collapsed]="false" [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="{{dsoAutoren?.Name}} · {{rstTextbausteineCount}} Textbausteine">
+            <rz-grid #grid0 [allowAdd]="false" [allowColumnResize]="true" [allowDelete]="false" [allowFiltering]="true" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="true" [alwaysShowPager]="false" applyFilterText="Apply" clearFilterText="Clear" [confirmDelete]="false" containsText="Contains" [count]="rstTextbausteineCount" [data]="rstTextbausteine" emptyText="Keine Textbausteine vorhanden" endsWithText="Ends with" equalsText="Equals" filterCaseSensitivity="caseInsensitive" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" [isLoading]="rstTextbausteineLaden" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="21" startsWithText="Starts with" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'height': '700px', 'marginLeft': '-10px', 'marginRight': '-10px', 'marginTop': '-8px'}">
               <rz-grid-column property="IbsiKurse.Titel" title="Kurs" type="string">
               </rz-grid-column>
               <rz-grid-column property="IbsiTextbausteineArten.Bezeichnung" title="Art" type="string">

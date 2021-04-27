@@ -45,7 +45,7 @@
                     "fontSize": "21px",
                     "fontWeight": "normal"
                   },
-                  "text": "Hier entsteht was neues",
+                  "text": "${dsoTextbausteine.TitelTextbaustein} • ${dsoTextbausteine.UntertitelTextbaustein}",
                   "type": "heading"
                 }
               ],
@@ -82,102 +82,656 @@
                           "allowCollapse": false,
                           "components": [
                             {
-                              "attributes": [
+                              "components": [
                                 {
-                                  "name": "class",
-                                  "value": "testcss"
+                                  "class": "col-md-12",
+                                  "components": [
+                                    {
+                                      "attributes": [
+                                        {
+                                          "name": "class",
+                                          "value": "textbausteine-filter-listbox"
+                                        }
+                                      ],
+                                      "data": "${rstTextbausteineArten}",
+                                      "events": {
+                                        "change": [
+                                          {
+                                            "name": "dbHopeKurseTextbausteine.updateBenutzer",
+                                            "parameters": [
+                                              {
+                                                "name": "BenutzerID",
+                                                "value": "${dsoBenutzer.BenutzerID}"
+                                              },
+                                              {
+                                                "name": "Benutzer",
+                                                "value": "${dsoBenutzer}"
+                                              }
+                                            ],
+                                            "type": "invoke"
+                                          },
+                                          {
+                                            "code": "this.gridTextbausteine.load();",
+                                            "type": "execute"
+                                          }
+                                        ]
+                                      },
+                                      "name": "filterTextbausteinArtCode",
+                                      "style": {
+                                        "border": "1px solid rgba(0, 0, 0, 0)",
+                                        "marginBottom": "5px",
+                                        "width": "100%"
+                                      },
+                                      "template": "",
+                                      "textProperty": "Bezeichnung",
+                                      "type": "listbox",
+                                      "value": "${dsoBenutzer.FilterTextbausteinArtCode}",
+                                      "valueProperty": "TextbausteinArtCode"
+                                    }
+                                  ],
+                                  "name": "col3",
+                                  "type": "col"
                                 }
                               ],
-                              "data": "${getIbsiTextbausteineArtensResult}",
-                              "name": "listbox0",
+                              "name": "row0",
                               "style": {
-                                "border": "1px solid rgba(0, 0, 0, 0)",
-                                "width": "100%"
+                                "marginLeft": "-33px",
+                                "marginRight": "-35px",
+                                "marginTop": "-22px"
                               },
-                              "template": "",
-                              "textProperty": "Bezeichnung",
-                              "type": "listbox",
-                              "valueProperty": "TextbausteinArtCode"
+                              "type": "row"
                             },
                             {
-                              "allowFiltering": true,
-                              "name": "dropdown4",
-                              "placeholder": "Kurs",
+                              "components": [
+                                {
+                                  "class": "col-md-12",
+                                  "components": [
+                                    {
+                                      "component": null,
+                                      "name": "label4",
+                                      "style": {
+                                        "color": "#88989b",
+                                        "display": "block",
+                                        "fontSize": "12px",
+                                        "paddingLeft": "5px",
+                                        "width": "100%"
+                                      },
+                                      "text": "Kurs",
+                                      "type": "label"
+                                    }
+                                  ],
+                                  "name": "col16",
+                                  "style": {},
+                                  "type": "col"
+                                },
+                                {
+                                  "class": "col-md-12",
+                                  "components": [
+                                    {
+                                      "allowClear": true,
+                                      "allowFiltering": false,
+                                      "attributes": [
+                                        {
+                                          "name": "class",
+                                          "value": "textbausteine-filter-auswahl"
+                                        }
+                                      ],
+                                      "data": "${rstKurse}",
+                                      "emptyFilterText": "",
+                                      "events": {
+                                        "change": [
+                                          {
+                                            "name": "dbHopeKurseTextbausteine.updateBenutzer",
+                                            "parameters": [
+                                              {
+                                                "name": "BenutzerID",
+                                                "value": "${dsoBenutzer.BenutzerID}"
+                                              },
+                                              {
+                                                "name": "Benutzer",
+                                                "value": "${dsoBenutzer}"
+                                              }
+                                            ],
+                                            "type": "invoke"
+                                          },
+                                          {
+                                            "code": "this.gridTextbausteine.load();",
+                                            "type": "execute"
+                                          }
+                                        ]
+                                      },
+                                      "multiple": false,
+                                      "multipleItemsSelectedText": "",
+                                      "name": "filterKursNr",
+                                      "placeholder": "&nbsp;",
+                                      "style": {
+                                        "height": "28px",
+                                        "width": "100%"
+                                      },
+                                      "template": "",
+                                      "textProperty": "Titel",
+                                      "type": "dropdown",
+                                      "value": "${dsoBenutzer.FilterKursNr}",
+                                      "valueProperty": "KursNr"
+                                    }
+                                  ],
+                                  "name": "col17",
+                                  "style": {
+                                    "display": "block"
+                                  },
+                                  "type": "col"
+                                }
+                              ],
+                              "name": "row7",
                               "style": {
-                                "width": "100%"
+                                "marginLeft": "-25px",
+                                "marginRight": "-25px"
                               },
-                              "template": "",
-                              "type": "dropdown"
+                              "type": "row"
                             },
                             {
-                              "allowFiltering": true,
-                              "name": "dropdown5",
-                              "placeholder": "Kurs",
+                              "components": [
+                                {
+                                  "class": "col-md-12",
+                                  "components": [
+                                    {
+                                      "component": null,
+                                      "name": "label0",
+                                      "style": {
+                                        "color": "#88989b",
+                                        "display": "block",
+                                        "fontSize": "12px",
+                                        "paddingLeft": "5px",
+                                        "width": "100%"
+                                      },
+                                      "text": "Titel und Textinhalt",
+                                      "type": "label"
+                                    }
+                                  ],
+                                  "name": "col4",
+                                  "style": {},
+                                  "type": "col"
+                                },
+                                {
+                                  "class": "col-md-12",
+                                  "components": [
+                                    {
+                                      "attributes": [
+                                        {
+                                          "name": "class",
+                                          "value": "textbausteine-filter-auswahl"
+                                        }
+                                      ],
+                                      "events": {
+                                        "change": [
+                                          {
+                                            "name": "dbHopeKurseTextbausteine.updateBenutzer",
+                                            "parameters": [
+                                              {
+                                                "name": "BenutzerID",
+                                                "value": "${dsoBenutzer.BenutzerID}"
+                                              },
+                                              {
+                                                "name": "Benutzer",
+                                                "value": "${dsoBenutzer}"
+                                              }
+                                            ],
+                                            "type": "invoke"
+                                          },
+                                          {
+                                            "code": "this.gridTextbausteine.load();",
+                                            "type": "execute"
+                                          }
+                                        ]
+                                      },
+                                      "maxLength": 30,
+                                      "name": "textbox2",
+                                      "style": {
+                                        "display": "block",
+                                        "height": "28px",
+                                        "marginBottom": "6px",
+                                        "width": "100%"
+                                      },
+                                      "type": "textbox",
+                                      "value": ""
+                                    }
+                                  ],
+                                  "name": "col8",
+                                  "style": {
+                                    "display": "block"
+                                  },
+                                  "type": "col"
+                                }
+                              ],
+                              "name": "row1",
                               "style": {
-                                "width": "100%"
+                                "marginLeft": "-25px",
+                                "marginRight": "-25px"
                               },
-                              "template": "",
-                              "type": "dropdown"
+                              "type": "row"
                             },
                             {
-                              "allowFiltering": true,
-                              "name": "dropdown6",
-                              "placeholder": "Kurs",
+                              "components": [
+                                {
+                                  "class": "col-md-12",
+                                  "components": [
+                                    {
+                                      "component": null,
+                                      "name": "label6",
+                                      "style": {
+                                        "color": "#88989b",
+                                        "display": "block",
+                                        "fontSize": "12px",
+                                        "paddingLeft": "5px",
+                                        "width": "100%"
+                                      },
+                                      "text": "Autor",
+                                      "type": "label"
+                                    }
+                                  ],
+                                  "name": "col20",
+                                  "style": {},
+                                  "type": "col"
+                                },
+                                {
+                                  "class": "col-md-12",
+                                  "components": [
+                                    {
+                                      "allowClear": true,
+                                      "allowFiltering": false,
+                                      "attributes": [
+                                        {
+                                          "name": "class",
+                                          "value": "textbausteine-filter-auswahl"
+                                        }
+                                      ],
+                                      "data": "${rstAutoren}",
+                                      "emptyFilterText": "",
+                                      "events": {
+                                        "change": [
+                                          {
+                                            "name": "dbHopeKurseTextbausteine.updateBenutzer",
+                                            "parameters": [
+                                              {
+                                                "name": "BenutzerID",
+                                                "value": "${dsoBenutzer.BenutzerID}"
+                                              },
+                                              {
+                                                "name": "Benutzer",
+                                                "value": "${dsoBenutzer}"
+                                              }
+                                            ],
+                                            "type": "invoke"
+                                          },
+                                          {
+                                            "code": "this.gridTextbausteine.load();",
+                                            "type": "execute"
+                                          }
+                                        ]
+                                      },
+                                      "multiple": false,
+                                      "multipleItemsSelectedText": "",
+                                      "name": "dropdown4",
+                                      "placeholder": "&nbsp;",
+                                      "style": {
+                                        "height": "28px",
+                                        "width": "100%"
+                                      },
+                                      "template": "",
+                                      "textProperty": "Name",
+                                      "type": "dropdown",
+                                      "value": "",
+                                      "valueProperty": "AutorNr"
+                                    }
+                                  ],
+                                  "name": "col21",
+                                  "style": {
+                                    "display": "block"
+                                  },
+                                  "type": "col"
+                                }
+                              ],
+                              "name": "row9",
                               "style": {
-                                "width": "100%"
+                                "marginLeft": "-25px",
+                                "marginRight": "-25px"
                               },
-                              "template": "",
-                              "type": "dropdown"
+                              "type": "row"
                             },
                             {
-                              "allowFiltering": true,
-                              "name": "dropdown7",
-                              "placeholder": "Kurs",
+                              "components": [
+                                {
+                                  "class": "col-md-12",
+                                  "components": [
+                                    {
+                                      "component": null,
+                                      "name": "label1",
+                                      "style": {
+                                        "color": "#88989b",
+                                        "display": "block",
+                                        "fontSize": "12px",
+                                        "paddingLeft": "5px",
+                                        "width": "100%"
+                                      },
+                                      "text": "Thema Nummer",
+                                      "type": "label"
+                                    }
+                                  ],
+                                  "name": "col9",
+                                  "style": {},
+                                  "type": "col"
+                                },
+                                {
+                                  "class": "col-md-12",
+                                  "components": [
+                                    {
+                                      "attributes": [
+                                        {
+                                          "name": "class",
+                                          "value": "textbausteine-filter-auswahl"
+                                        }
+                                      ],
+                                      "events": {
+                                        "change": [
+                                          {
+                                            "name": "dbHopeKurseTextbausteine.updateBenutzer",
+                                            "parameters": [
+                                              {
+                                                "name": "BenutzerID",
+                                                "value": "${dsoBenutzer.BenutzerID}"
+                                              },
+                                              {
+                                                "name": "Benutzer",
+                                                "value": "${dsoBenutzer}"
+                                              }
+                                            ],
+                                            "type": "invoke"
+                                          },
+                                          {
+                                            "code": "this.gridTextbausteine.load();",
+                                            "type": "execute"
+                                          }
+                                        ]
+                                      },
+                                      "name": "numeric0",
+                                      "style": {
+                                        "height": "28px",
+                                        "width": "100%"
+                                      },
+                                      "type": "numeric"
+                                    }
+                                  ],
+                                  "name": "col11",
+                                  "style": {
+                                    "display": "block"
+                                  },
+                                  "type": "col"
+                                }
+                              ],
+                              "name": "row3",
                               "style": {
-                                "width": "100%"
+                                "marginLeft": "-25px",
+                                "marginRight": "-25px"
                               },
-                              "template": "",
-                              "type": "dropdown"
+                              "type": "row"
                             },
                             {
-                              "allowFiltering": true,
-                              "name": "dropdown8",
-                              "placeholder": "Kurs",
+                              "components": [
+                                {
+                                  "class": "col-md-12",
+                                  "components": [
+                                    {
+                                      "component": null,
+                                      "name": "label5",
+                                      "style": {
+                                        "color": "#88989b",
+                                        "display": "block",
+                                        "fontSize": "12px",
+                                        "paddingLeft": "5px",
+                                        "width": "100%"
+                                      },
+                                      "text": "Anrede",
+                                      "type": "label"
+                                    }
+                                  ],
+                                  "name": "col18",
+                                  "style": {},
+                                  "type": "col"
+                                },
+                                {
+                                  "class": "col-md-12",
+                                  "components": [
+                                    {
+                                      "allowClear": true,
+                                      "allowFiltering": false,
+                                      "attributes": [
+                                        {
+                                          "name": "class",
+                                          "value": "textbausteine-filter-auswahl"
+                                        }
+                                      ],
+                                      "data": "${valAnreden}",
+                                      "emptyFilterText": "",
+                                      "events": {
+                                        "change": [
+                                          {
+                                            "name": "dbHopeKurseTextbausteine.updateBenutzer",
+                                            "parameters": [
+                                              {
+                                                "name": "BenutzerID",
+                                                "value": "${dsoBenutzer.BenutzerID}"
+                                              },
+                                              {
+                                                "name": "Benutzer",
+                                                "value": "${dsoBenutzer}"
+                                              }
+                                            ],
+                                            "type": "invoke"
+                                          },
+                                          {
+                                            "code": "this.gridTextbausteine.load();",
+                                            "type": "execute"
+                                          }
+                                        ]
+                                      },
+                                      "multiple": false,
+                                      "multipleItemsSelectedText": "",
+                                      "name": "dropdown0",
+                                      "placeholder": "&nbsp;",
+                                      "style": {
+                                        "height": "28px",
+                                        "width": "100%"
+                                      },
+                                      "template": "",
+                                      "textProperty": "text",
+                                      "type": "dropdown",
+                                      "value": "",
+                                      "valueProperty": "value"
+                                    }
+                                  ],
+                                  "name": "col19",
+                                  "style": {
+                                    "display": "block"
+                                  },
+                                  "type": "col"
+                                }
+                              ],
+                              "name": "row8",
                               "style": {
-                                "width": "100%"
+                                "marginLeft": "-25px",
+                                "marginRight": "-25px"
                               },
-                              "template": "",
-                              "type": "dropdown"
+                              "type": "row"
                             },
                             {
-                              "allowFiltering": true,
-                              "name": "dropdown9",
-                              "placeholder": "Kurs",
+                              "components": [
+                                {
+                                  "class": "col-md-12",
+                                  "components": [
+                                    {
+                                      "component": null,
+                                      "name": "label3",
+                                      "style": {
+                                        "backgroundColor": "rgba(0, 0, 0, 0)",
+                                        "color": "#88989b",
+                                        "display": "block",
+                                        "fontSize": "12px",
+                                        "paddingLeft": "5px",
+                                        "width": "100%"
+                                      },
+                                      "text": "Dokument",
+                                      "type": "label"
+                                    }
+                                  ],
+                                  "name": "col14",
+                                  "style": {},
+                                  "type": "col"
+                                },
+                                {
+                                  "class": "col-md-12",
+                                  "components": [
+                                    {
+                                      "allowClear": true,
+                                      "allowFiltering": false,
+                                      "attributes": [
+                                        {
+                                          "name": "class",
+                                          "value": "textbausteine-filter-auswahl"
+                                        }
+                                      ],
+                                      "data": "${valDokumente}",
+                                      "emptyFilterText": "",
+                                      "events": {
+                                        "change": [
+                                          {
+                                            "name": "dbHopeKurseTextbausteine.updateBenutzer",
+                                            "parameters": [
+                                              {
+                                                "name": "BenutzerID",
+                                                "value": "${dsoBenutzer.BenutzerID}"
+                                              },
+                                              {
+                                                "name": "Benutzer",
+                                                "value": "${dsoBenutzer}"
+                                              }
+                                            ],
+                                            "type": "invoke"
+                                          },
+                                          {
+                                            "code": "this.gridTextbausteine.load();",
+                                            "type": "execute"
+                                          }
+                                        ]
+                                      },
+                                      "multiple": false,
+                                      "multipleItemsSelectedText": "",
+                                      "name": "dropdown1",
+                                      "placeholder": "&nbsp;",
+                                      "style": {
+                                        "height": "28px",
+                                        "width": "100%"
+                                      },
+                                      "template": "",
+                                      "textProperty": "text",
+                                      "type": "dropdown",
+                                      "value": "",
+                                      "valueProperty": "value"
+                                    }
+                                  ],
+                                  "name": "col15",
+                                  "style": {
+                                    "display": "block"
+                                  },
+                                  "type": "col"
+                                }
+                              ],
+                              "name": "row6",
                               "style": {
-                                "width": "100%"
+                                "marginLeft": "-25px",
+                                "marginRight": "-25px"
                               },
-                              "template": "",
-                              "type": "dropdown"
+                              "type": "row"
                             },
                             {
-                              "allowFiltering": true,
-                              "data": "${getIbsiTextbausteineArtensResult}",
-                              "name": "dropdown1",
-                              "placeholder": "Kurs",
+                              "components": [
+                                {
+                                  "class": "col-md-12",
+                                  "components": [
+                                    {
+                                      "component": null,
+                                      "name": "label2",
+                                      "style": {
+                                        "color": "#88989b",
+                                        "display": "block",
+                                        "fontSize": "12px",
+                                        "paddingLeft": "5px",
+                                        "width": "100%"
+                                      },
+                                      "text": "Info",
+                                      "type": "label"
+                                    }
+                                  ],
+                                  "name": "col12",
+                                  "style": {},
+                                  "type": "col"
+                                },
+                                {
+                                  "class": "col-md-12",
+                                  "components": [
+                                    {
+                                      "attributes": [
+                                        {
+                                          "name": "class",
+                                          "value": "textbausteine-filter-auswahl"
+                                        }
+                                      ],
+                                      "events": {
+                                        "change": [
+                                          {
+                                            "name": "dbHopeKurseTextbausteine.updateBenutzer",
+                                            "parameters": [
+                                              {
+                                                "name": "BenutzerID",
+                                                "value": "${dsoBenutzer.BenutzerID}"
+                                              },
+                                              {
+                                                "name": "Benutzer",
+                                                "value": "${dsoBenutzer}"
+                                              }
+                                            ],
+                                            "type": "invoke"
+                                          },
+                                          {
+                                            "code": "this.gridTextbausteine.load();",
+                                            "type": "execute"
+                                          }
+                                        ]
+                                      },
+                                      "maxLength": 30,
+                                      "name": "textbox0",
+                                      "style": {
+                                        "display": "block",
+                                        "height": "28px",
+                                        "marginBottom": "6px",
+                                        "width": "100%"
+                                      },
+                                      "type": "textbox",
+                                      "value": ""
+                                    }
+                                  ],
+                                  "name": "col13",
+                                  "style": {
+                                    "display": "block"
+                                  },
+                                  "type": "col"
+                                }
+                              ],
+                              "name": "row5",
                               "style": {
-                                "width": "100%"
+                                "marginLeft": "-25px",
+                                "marginRight": "-25px"
                               },
-                              "template": "",
-                              "textProperty": "Bezeichnung",
-                              "type": "dropdown",
-                              "valueProperty": "TextbausteinArtCode"
-                            },
-                            {
-                              "name": "radiobuttonlist0",
-                              "options": "${valTextbausteineArten}",
-                              "orientation": "vertical",
-                              "type": "radiobuttonlist",
-                              "value": ""
+                              "type": "row"
                             }
                           ],
                           "footerTemplate": "",
@@ -215,6 +769,7 @@
                               "type": "row"
                             }
                           ],
+                          "icon": "",
                           "name": "panel0",
                           "style": {
                             "border": "1px solid #e6ecef",
@@ -240,7 +795,7 @@
                               "allowDelete": false,
                               "allowFiltering": false,
                               "allowMultiSorting": false,
-                              "allowPaging": false,
+                              "allowPaging": true,
                               "allowSorting": false,
                               "alwaysShowPager": false,
                               "applyFilterText": "Apply",
@@ -248,15 +803,37 @@
                               "columns": [
                                 {
                                   "format": "",
+                                  "property": "IbsiTextbausteineAutoren.Krzel",
+                                  "title": "Autor",
+                                  "type": "string",
+                                  "width": "60px"
+                                },
+                                {
+                                  "format": "",
+                                  "property": "IbsiKurse.Kurzzeichen",
+                                  "title": "Kurs",
+                                  "type": "string",
+                                  "width": "60px"
+                                },
+                                {
+                                  "format": "",
+                                  "property": "Anrede",
+                                  "template": "${data.Anrede == 'Ohne' ? '' : data.Anrede}",
+                                  "title": "Anr.",
+                                  "type": "string",
+                                  "width": "40px"
+                                },
+                                {
+                                  "format": "",
                                   "property": "TitelTextbaustein",
-                                  "title": "Titel Textbaustein",
+                                  "title": "Titel",
                                   "type": "string",
                                   "width": "60%"
                                 },
                                 {
                                   "format": "",
                                   "property": "UntertitelTextbaustein",
-                                  "title": "Untertitel Textbaustein",
+                                  "title": "Untertitel",
                                   "type": "string",
                                   "width": "40%"
                                 }
@@ -267,7 +844,7 @@
                               "confirmDeleteText": "",
                               "confirmDeleteTitle": "",
                               "containsText": "Contains",
-                              "count": "",
+                              "count": "${rstTextbausteineCount}",
                               "data": "${rstTextbausteine}",
                               "emptyText": "Keine Textbausteine vorhanden",
                               "endsWithText": "Ends with",
@@ -281,7 +858,35 @@
                                     "parameters": [
                                       {
                                         "name": "$filter",
-                                        "value": "KursNr eq -899890728"
+                                        "value": [
+                                          {
+                                            "value": "TextbausteinArtCode eq '${this.dsoBenutzer.FilterTextbausteinArtCode}' \n${this.dsoBenutzer.FilterKursNr ? 'and KursNr eq ' + this.dsoBenutzer.FilterKursNr : ''}\n${this.dsoBenutzer.FilterAutorNr ? 'and AutorNr eq ' + this.dsoBenutzer.FilterAutorNr : ''}"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "name": "$expand",
+                                        "value": "IBSITextbausteineAutoren, IBSIKurse"
+                                      },
+                                      {
+                                        "name": "$top",
+                                        "value": "event.top"
+                                      },
+                                      {
+                                        "name": "$skip",
+                                        "value": "event.skip"
+                                      },
+                                      {
+                                        "name": "$count",
+                                        "value": "event.top != null && event.skip != null"
+                                      },
+                                      {
+                                        "name": "$orderby",
+                                        "value": [
+                                          {
+                                            "value": "${event.orderby || 'TitelTextbaustein'}"
+                                          }
+                                        ]
                                       }
                                     ],
                                     "then": [
@@ -289,6 +894,11 @@
                                         "name": "rstTextbausteine",
                                         "type": "set",
                                         "value": "${result.value}"
+                                      },
+                                      {
+                                        "name": "rstTextbausteineCount",
+                                        "type": "set",
+                                        "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
                                       },
                                       {
                                         "code": "this.gridTextbausteine.onSelect(this.rstTextbausteine[0]);",
@@ -303,6 +913,11 @@
                                     "name": "strTextbausteinHTML",
                                     "type": "set",
                                     "value": "${event.TextbausteinHTML}"
+                                  },
+                                  {
+                                    "name": "dsoTextbausteine",
+                                    "type": "set",
+                                    "value": "${event}"
                                   }
                                 ]
                               },
@@ -314,7 +929,7 @@
                               "lessThanText": "Less than",
                               "name": "gridTextbausteine",
                               "notEqualsText": "Not equals",
-                              "pageSize": 15,
+                              "pageSize": 22,
                               "startsWithText": "Starts with",
                               "style": {
                                 "border": "1px solid rgba(0, 0, 0, 0)",
@@ -335,13 +950,16 @@
                                   "class": "col-md-12 align-items-start d-flex",
                                   "components": [
                                     {
+                                      "buttonStyle": "light",
                                       "events": {
                                         "click": []
                                       },
                                       "icon": "add",
                                       "name": "button0",
                                       "size": "sm",
-                                      "style": {},
+                                      "style": {
+                                        "color": "#D86E13"
+                                      },
                                       "text": "Neu",
                                       "tooltip": "",
                                       "type": "button"
@@ -351,7 +969,7 @@
                                       "events": {
                                         "click": []
                                       },
-                                      "icon": "content_copy",
+                                      "icon": "control_point_duplicate",
                                       "name": "button1",
                                       "size": "sm",
                                       "style": {
@@ -412,7 +1030,7 @@
                             "border": "1px solid #e6ecef",
                             "height": "750px"
                           },
-                          "text": "Textbausteine",
+                          "text": "${rstTextbausteineCount} Textbausteine",
                           "type": "panel"
                         }
                       ],
@@ -459,15 +1077,17 @@
                                   "class": "col-md-12 align-items-start d-flex",
                                   "components": [
                                     {
-                                      "buttonStyle": "success",
+                                      "buttonStyle": "light",
                                       "buttonType": "submit",
                                       "events": {
                                         "click": []
                                       },
-                                      "icon": "save",
+                                      "icon": "done",
                                       "name": "button4",
                                       "size": "sm",
-                                      "style": {},
+                                      "style": {
+                                        "color": "#D86E13"
+                                      },
                                       "text": "Speichern",
                                       "tooltip": "",
                                       "type": "button"
@@ -477,14 +1097,14 @@
                                       "events": {
                                         "click": []
                                       },
-                                      "icon": "open_in_browser",
+                                      "icon": "folder_open",
                                       "name": "buttonNeu",
                                       "size": "sm",
                                       "style": {
                                         "color": "#D86E13",
                                         "marginLeft": "10px"
                                       },
-                                      "text": "Dokument öffnen",
+                                      "text": "Dokument",
                                       "tooltip": "",
                                       "type": "button"
                                     },
@@ -494,7 +1114,7 @@
                                       "events": {
                                         "click": []
                                       },
-                                      "icon": "content_paste",
+                                      "icon": "content_copy",
                                       "name": "buttonLoeschen",
                                       "size": "sm",
                                       "style": {
@@ -522,7 +1142,7 @@
                             "border": "1px solid #e6ecef",
                             "height": "750px"
                           },
-                          "text": "Infotext für: ${dsoInfotexte.Titel}",
+                          "text": "${dsoTextbausteine.TitelTextbaustein}",
                           "type": "panel"
                         }
                       ],
@@ -538,7 +1158,10 @@
                 }
               ],
               "selected": true,
-              "text": "Auswahl"
+              "text": "Daten"
+            },
+            {
+              "text": "Details"
             }
           ],
           "name": "tabs0",
@@ -555,25 +1178,86 @@
   "events": {
     "load": [
       {
-        "code": "this.gridTextbausteine.load();",
-        "type": "execute"
-      },
-      {
-        "name": "dbHopeKurseTextbausteine.getIbsiTextbausteineArtens",
-        "parameters": [],
+        "name": "dbHopeKurseTextbausteine.getBenutzers",
+        "parameters": [
+          {
+            "name": "$filter",
+            "value": "BenutzerName eq '${security.user.name}'"
+          }
+        ],
         "then": [
           {
-            "name": "getIbsiTextbausteineArtensResult",
+            "name": "dsoBenutzer",
             "type": "set",
-            "value": "${result.value}"
+            "value": "${result.value[0]}"
+          },
+          {
+            "name": "dbHopeKurseTextbausteine.getIbsiTextbausteineArtens",
+            "parameters": [
+              {
+                "name": "$orderby",
+                "value": "Sortierung"
+              }
+            ],
+            "then": [
+              {
+                "name": "rstTextbausteineArten",
+                "type": "set",
+                "value": "${result.value}"
+              },
+              {
+                "name": "dbHopeKurseTextbausteine.getIbsiKurses",
+                "parameters": [
+                  {
+                    "name": "$orderby",
+                    "value": "Titel"
+                  }
+                ],
+                "then": [
+                  {
+                    "name": "rstKurse",
+                    "type": "set",
+                    "value": "${result.value}"
+                  },
+                  {
+                    "name": "dbHopeKurseTextbausteine.getIbsiTextbausteineAutorens",
+                    "parameters": [
+                      {
+                        "name": "$orderby",
+                        "value": "Name"
+                      }
+                    ],
+                    "then": [
+                      {
+                        "name": "rstAutoren",
+                        "type": "set",
+                        "value": "${result.value}"
+                      },
+                      {
+                        "name": "valAnreden",
+                        "type": "set",
+                        "value": "[{text: 'Du', value: 'Du'}, {text: 'Sie', value: 'Sie'}, {text: 'Ohne', value: 'Ohne'}]"
+                      },
+                      {
+                        "name": "valDokumente",
+                        "type": "set",
+                        "value": "[{text: 'Mit', value: 'Mit Dokument'}, {text: 'Ohne', value: 'Ohne Dokument'}]"
+                      },
+                      {
+                        "code": "this.gridTextbausteine.load();",
+                        "type": "execute"
+                      }
+                    ],
+                    "type": "invoke"
+                  }
+                ],
+                "type": "invoke"
+              }
+            ],
+            "type": "invoke"
           }
         ],
         "type": "invoke"
-      },
-      {
-        "name": "valTextbausteineArten",
-        "type": "set",
-        "value": "[{text: 'Accounting', value: 'A'}, {text: 'Marketing', value: 'M'}, {text: 'Production', value: 'P'}, {text: 'Research', value: 'R'},{text: 'Accounting', value: 'A'}, {text: 'Marketing', value: 'M'}, {text: 'Production', value: 'P'}, {text: 'Research', value: 'R'},{text: 'Accounting', value: 'A'}, {text: 'Marketing', value: 'M'}, {text: 'Production', value: 'P'}, {text: 'Research', value: 'R'},{text: 'Accounting', value: 'A'}, {text: 'Marketing', value: 'M'}]"
       }
     ]
   },

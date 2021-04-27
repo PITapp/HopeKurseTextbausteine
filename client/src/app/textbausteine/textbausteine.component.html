@@ -5,33 +5,91 @@
       </rz-heading>
       <rz-heading #heading1 size="H3" [style]="{'color': '#e5ecef', 'display': 'inline-block', 'marginTop': '7px', 'paddingLeft': '10px', 'paddingRight': '10px'}" text="|">
       </rz-heading>
-      <rz-heading #heading2 size="H3" [style]="{'color': '#5d717b', 'display': 'inline', 'fontSize': '21px', 'fontWeight': 'normal'}" text="Hier entsteht was neues" >
+      <rz-heading #heading2 size="H3" [style]="{'color': '#5d717b', 'display': 'inline', 'fontSize': '21px', 'fontWeight': 'normal'}" text="{{dsoTextbausteine?.TitelTextbaustein}} • {{dsoTextbausteine?.UntertitelTextbaustein}}" >
       </rz-heading>
     </div>
   </div>
   <rz-tabs #tabs0 [style]="{'float': 'none'}">
-    <rz-tabs-item [selected]="true" text="Auswahl">
+    <rz-tabs-item [selected]="true" text="Daten">
       <div class="row">
         <div class="col-md-2">
           <rz-panel #panel0 [allowCollapse]="false" [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="Filter">
-            <rz-listbox #listbox0 [data]="getIbsiTextbausteineArtensResult" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'width': '100%'}" textProperty="Bezeichnung" valueProperty="TextbausteinArtCode" name="listbox0" class="testcss">
-            </rz-listbox>
-            <rz-dropdown #dropdown4 [allowFiltering]="true" placeholder="Kurs" [style]="{'width': '100%'}" name="dropdown4">
-            </rz-dropdown>
-            <rz-dropdown #dropdown5 [allowFiltering]="true" placeholder="Kurs" [style]="{'width': '100%'}" name="dropdown5">
-            </rz-dropdown>
-            <rz-dropdown #dropdown6 [allowFiltering]="true" placeholder="Kurs" [style]="{'width': '100%'}" name="dropdown6">
-            </rz-dropdown>
-            <rz-dropdown #dropdown7 [allowFiltering]="true" placeholder="Kurs" [style]="{'width': '100%'}" name="dropdown7">
-            </rz-dropdown>
-            <rz-dropdown #dropdown8 [allowFiltering]="true" placeholder="Kurs" [style]="{'width': '100%'}" name="dropdown8">
-            </rz-dropdown>
-            <rz-dropdown #dropdown9 [allowFiltering]="true" placeholder="Kurs" [style]="{'width': '100%'}" name="dropdown9">
-            </rz-dropdown>
-            <rz-dropdown #dropdown1 [allowFiltering]="true" [data]="getIbsiTextbausteineArtensResult" placeholder="Kurs" [style]="{'width': '100%'}" textProperty="Bezeichnung" valueProperty="TextbausteinArtCode" name="dropdown1">
-            </rz-dropdown>
-            <rz-radiobuttonlist #radiobuttonlist0 [options]="valTextbausteineArten" orientation="vertical" name="radiobuttonlist0">
-            </rz-radiobuttonlist>
+            <div [ngStyle]="{'marginLeft': '-33px', 'marginRight': '-35px', 'marginTop': '-22px'}" class="row">
+              <div class="col-md-12">
+                <rz-listbox #filterTextbausteinArtCode [data]="rstTextbausteineArten" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'marginBottom': '5px', 'width': '100%'}" textProperty="Bezeichnung" [(ngModel)]="dsoBenutzer && dsoBenutzer.FilterTextbausteinArtCode" valueProperty="TextbausteinArtCode" name="filterTextbausteinArtCode" (change)="filterTextbausteinArtCodeChange($event)" class="textbausteine-filter-listbox">
+                </rz-listbox>
+              </div>
+            </div>
+            <div [ngStyle]="{'marginLeft': '-25px', 'marginRight': '-25px'}" class="row">
+              <div class="col-md-12" [ngStyle]="{}">
+                <rz-label #label4 [style]="{'color': '#88989b', 'display': 'block', 'fontSize': '12px', 'paddingLeft': '5px', 'width': '100%'}" text="Kurs">
+                </rz-label>
+              </div>
+              <div class="col-md-12" [ngStyle]="{'display': 'block'}">
+                <rz-dropdown #filterKursNr [allowClear]="true" [allowFiltering]="false" [data]="rstKurse" [multiple]="false" placeholder="&nbsp;" [style]="{'height': '28px', 'width': '100%'}" textProperty="Titel" [(ngModel)]="dsoBenutzer && dsoBenutzer.FilterKursNr" valueProperty="KursNr" name="filterKursNr" (change)="filterKursNrChange($event)" class="textbausteine-filter-auswahl">
+                </rz-dropdown>
+              </div>
+            </div>
+            <div [ngStyle]="{'marginLeft': '-25px', 'marginRight': '-25px'}" class="row">
+              <div class="col-md-12" [ngStyle]="{}">
+                <rz-label #label0 [style]="{'color': '#88989b', 'display': 'block', 'fontSize': '12px', 'paddingLeft': '5px', 'width': '100%'}" text="Titel und Textinhalt">
+                </rz-label>
+              </div>
+              <div class="col-md-12" [ngStyle]="{'display': 'block'}">
+                <rz-textbox #textbox2 [maxLength]="30" [style]="{'display': 'block', 'height': '28px', 'marginBottom': '6px', 'width': '100%'}" name="textbox2" (change)="textbox2Change($event)" class="textbausteine-filter-auswahl">
+                </rz-textbox>
+              </div>
+            </div>
+            <div [ngStyle]="{'marginLeft': '-25px', 'marginRight': '-25px'}" class="row">
+              <div class="col-md-12" [ngStyle]="{}">
+                <rz-label #label6 [style]="{'color': '#88989b', 'display': 'block', 'fontSize': '12px', 'paddingLeft': '5px', 'width': '100%'}" text="Autor">
+                </rz-label>
+              </div>
+              <div class="col-md-12" [ngStyle]="{'display': 'block'}">
+                <rz-dropdown #dropdown4 [allowClear]="true" [allowFiltering]="false" [data]="rstAutoren" [multiple]="false" placeholder="&nbsp;" [style]="{'height': '28px', 'width': '100%'}" textProperty="Name" valueProperty="AutorNr" name="dropdown4" (change)="dropdown4Change($event)" class="textbausteine-filter-auswahl">
+                </rz-dropdown>
+              </div>
+            </div>
+            <div [ngStyle]="{'marginLeft': '-25px', 'marginRight': '-25px'}" class="row">
+              <div class="col-md-12" [ngStyle]="{}">
+                <rz-label #label1 [style]="{'color': '#88989b', 'display': 'block', 'fontSize': '12px', 'paddingLeft': '5px', 'width': '100%'}" text="Thema Nummer">
+                </rz-label>
+              </div>
+              <div class="col-md-12" [ngStyle]="{'display': 'block'}">
+                <rz-numeric #numeric0 [style]="{'height': '28px', 'width': '100%'}" name="numeric0" (change)="numeric0Change($event)" class="textbausteine-filter-auswahl">
+                </rz-numeric>
+              </div>
+            </div>
+            <div [ngStyle]="{'marginLeft': '-25px', 'marginRight': '-25px'}" class="row">
+              <div class="col-md-12" [ngStyle]="{}">
+                <rz-label #label5 [style]="{'color': '#88989b', 'display': 'block', 'fontSize': '12px', 'paddingLeft': '5px', 'width': '100%'}" text="Anrede">
+                </rz-label>
+              </div>
+              <div class="col-md-12" [ngStyle]="{'display': 'block'}">
+                <rz-dropdown #dropdown0 [allowClear]="true" [allowFiltering]="false" [data]="valAnreden" [multiple]="false" placeholder="&nbsp;" [style]="{'height': '28px', 'width': '100%'}" textProperty="text" valueProperty="value" name="dropdown0" (change)="dropdown0Change($event)" class="textbausteine-filter-auswahl">
+                </rz-dropdown>
+              </div>
+            </div>
+            <div [ngStyle]="{'marginLeft': '-25px', 'marginRight': '-25px'}" class="row">
+              <div class="col-md-12" [ngStyle]="{}">
+                <rz-label #label3 [style]="{'backgroundColor': 'rgba(0, 0, 0, 0)', 'color': '#88989b', 'display': 'block', 'fontSize': '12px', 'paddingLeft': '5px', 'width': '100%'}" text="Dokument">
+                </rz-label>
+              </div>
+              <div class="col-md-12" [ngStyle]="{'display': 'block'}">
+                <rz-dropdown #dropdown1 [allowClear]="true" [allowFiltering]="false" [data]="valDokumente" [multiple]="false" placeholder="&nbsp;" [style]="{'height': '28px', 'width': '100%'}" textProperty="text" valueProperty="value" name="dropdown1" (change)="dropdown1Change($event)" class="textbausteine-filter-auswahl">
+                </rz-dropdown>
+              </div>
+            </div>
+            <div [ngStyle]="{'marginLeft': '-25px', 'marginRight': '-25px'}" class="row">
+              <div class="col-md-12" [ngStyle]="{}">
+                <rz-label #label2 [style]="{'color': '#88989b', 'display': 'block', 'fontSize': '12px', 'paddingLeft': '5px', 'width': '100%'}" text="Info">
+                </rz-label>
+              </div>
+              <div class="col-md-12" [ngStyle]="{'display': 'block'}">
+                <rz-textbox #textbox0 [maxLength]="30" [style]="{'display': 'block', 'height': '28px', 'marginBottom': '6px', 'width': '100%'}" name="textbox0" (change)="textbox0Change($event)" class="textbausteine-filter-auswahl">
+                </rz-textbox>
+              </div>
+            </div>
             <rz-panel-header>
               <div class="row">
                 <div class="col-md-12 align-items-start d-flex">
@@ -43,19 +101,28 @@
           </rz-panel>
         </div>
         <div class="col-md-4" [ngStyle]="{'paddingLeft': '5px'}">
-          <rz-panel #panel4 [allowCollapse]="false" [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="Textbausteine">
-            <rz-grid #gridTextbausteine [allowAdd]="false" [allowColumnResize]="true" [allowDelete]="false" [allowFiltering]="false" [allowMultiSorting]="false" [allowPaging]="false" [allowSorting]="false" [alwaysShowPager]="false" applyFilterText="Apply" clearFilterText="Clear" [confirmDelete]="false" containsText="Contains" [data]="rstTextbausteine" emptyText="Keine Textbausteine vorhanden" endsWithText="Ends with" equalsText="Equals" filterCaseSensitivity="caseInsensitive" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="15" startsWithText="Starts with" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'height': '700px', 'marginLeft': '-10px', 'marginRight': '-10px', 'marginTop': '-13px'}" (loadData)="gridTextbausteineLoadData($event)" (rowSelect)="gridTextbausteineRowSelect($event)">
-              <rz-grid-column property="TitelTextbaustein" title="Titel Textbaustein" width="60%" type="string">
+          <rz-panel #panel4 [allowCollapse]="false" [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="{{rstTextbausteineCount}} Textbausteine">
+            <rz-grid #gridTextbausteine [allowAdd]="false" [allowColumnResize]="true" [allowDelete]="false" [allowFiltering]="false" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="false" [alwaysShowPager]="false" applyFilterText="Apply" clearFilterText="Clear" [confirmDelete]="false" containsText="Contains" [count]="rstTextbausteineCount" [data]="rstTextbausteine" emptyText="Keine Textbausteine vorhanden" endsWithText="Ends with" equalsText="Equals" filterCaseSensitivity="caseInsensitive" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="22" startsWithText="Starts with" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'height': '700px', 'marginLeft': '-10px', 'marginRight': '-10px', 'marginTop': '-13px'}" (loadData)="gridTextbausteineLoadData($event)" (rowSelect)="gridTextbausteineRowSelect($event)">
+              <rz-grid-column property="IbsiTextbausteineAutoren.Krzel" title="Autor" width="60px" type="string">
               </rz-grid-column>
-              <rz-grid-column property="UntertitelTextbaustein" title="Untertitel Textbaustein" width="40%" type="string">
+              <rz-grid-column property="IbsiKurse.Kurzzeichen" title="Kurs" width="60px" type="string">
+              </rz-grid-column>
+              <rz-grid-column property="Anrede" title="Anr." width="40px" type="string">
+                <ng-template let-data gridColumnTemplate>
+                {{((data?.Anrede == 'Ohne') ? ('') : (data?.Anrede))}}
+                </ng-template>
+              </rz-grid-column>
+              <rz-grid-column property="TitelTextbaustein" title="Titel" width="60%" type="string">
+              </rz-grid-column>
+              <rz-grid-column property="UntertitelTextbaustein" title="Untertitel" width="40%" type="string">
               </rz-grid-column>
             </rz-grid>
             <rz-panel-header>
               <div class="row">
                 <div class="col-md-12 align-items-start d-flex">
-                  <rz-button #button0 icon="add" size="sm" [style]="{}" text="Neu">
+                  <rz-button #button0 buttonStyle="light" icon="add" size="sm" [style]="{'color': '#D86E13'}" text="Neu">
                   </rz-button>
-                  <rz-button #button1 buttonStyle="light" icon="content_copy" size="sm" [style]="{'color': '#D86E13', 'marginLeft': '10px'}" text="Duplizieren">
+                  <rz-button #button1 buttonStyle="light" icon="control_point_duplicate" size="sm" [style]="{'color': '#D86E13', 'marginLeft': '10px'}" text="Duplizieren">
                   </rz-button>
                   <rz-button #button2 buttonStyle="light" icon="create" size="sm" [style]="{'color': '#D86E13', 'marginLeft': '10px', 'paddingLeft': ''}" tooltip="Bearbeiten Autor">
                   </rz-button>
@@ -67,7 +134,7 @@
           </rz-panel>
         </div>
         <div class="col-md-6" [ngStyle]="{'paddingLeft': '5px'}">
-          <rz-panel #panel6 [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="Infotext für: {{dsoInfotexte?.Titel}}">
+          <rz-panel #panel6 [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" [text]="dsoTextbausteine?.TitelTextbaustein">
             <div [ngStyle]="{'marginLeft': '-36px', 'marginRight': '-36px', 'marginTop': '-12px'}" class="row">
               <div class="col-md-12" [ngStyle]="{}">
                 <rz-html #htmlEditorInfotexte>
@@ -127,11 +194,11 @@
             <rz-panel-header>
               <div class="row">
                 <div class="col-md-12 align-items-start d-flex">
-                  <rz-button #button4 buttonStyle="success" buttonType="submit" icon="save" size="sm" [style]="{}" text="Speichern">
+                  <rz-button #button4 buttonStyle="light" buttonType="submit" icon="done" size="sm" [style]="{'color': '#D86E13'}" text="Speichern">
                   </rz-button>
-                  <rz-button #buttonNeu buttonStyle="light" icon="open_in_browser" size="sm" [style]="{'color': '#D86E13', 'marginLeft': '10px'}" text="Dokument öffnen">
+                  <rz-button #buttonNeu buttonStyle="light" icon="folder_open" size="sm" [style]="{'color': '#D86E13', 'marginLeft': '10px'}" text="Dokument">
                   </rz-button>
-                  <rz-button #buttonLoeschen buttonStyle="light" [disabled]="false" icon="content_paste" size="sm" [style]="{'color': '#D86E13', 'fontWeight': 'normal', 'marginLeft': '10px', 'marginRight': '-9px', 'paddingLeft': ''}" text="Kopieren" tooltip="Löschen Autor">
+                  <rz-button #buttonLoeschen buttonStyle="light" [disabled]="false" icon="content_copy" size="sm" [style]="{'color': '#D86E13', 'fontWeight': 'normal', 'marginLeft': '10px', 'marginRight': '-9px', 'paddingLeft': ''}" text="Kopieren" tooltip="Löschen Autor">
                   </rz-button>
                 </div>
               </div>
@@ -139,6 +206,8 @@
           </rz-panel>
         </div>
       </div>
+    </rz-tabs-item>
+    <rz-tabs-item text="Details">
     </rz-tabs-item>
   </rz-tabs>
 </rz-content>

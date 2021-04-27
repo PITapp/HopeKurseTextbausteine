@@ -10,7 +10,7 @@
     </div>
   </div>
   <rz-tabs #tabs0 [style]="{'float': 'none'}">
-    <rz-tabs-item [selected]="false" text="Daten">
+    <rz-tabs-item [selected]="true" text="Daten">
       <div [ngStyle]="{'height': '100%'}" class="row">
         <div class="col-md-12">
           <rz-panel #panel0 [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="{{dsoBase?.Name1}} {{dsoBase?.Name2}} | {{dsoBase?.NameKuerzel}}">
@@ -54,7 +54,7 @@
         </div>
       </div>
     </rz-tabs-item>
-    <rz-tabs-item [selected]="true" text="Details">
+    <rz-tabs-item [disabled]="false" [selected]="false" text="Details">
       <div class="row">
         <div class="col-md-4">
           <rz-panel #panel2 [allowCollapse]="false" [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="{{dsoBase?.Name1}} {{dsoBase?.Name2}} | {{dsoBase?.NameKuerzel}}">

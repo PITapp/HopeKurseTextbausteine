@@ -15,8 +15,10 @@ import { HeadingComponent } from '@radzen/angular/dist/heading';
 import { TabsComponent } from '@radzen/angular/dist/tabs';
 import { PanelComponent } from '@radzen/angular/dist/panel';
 import { ListBoxComponent } from '@radzen/angular/dist/listbox';
+import { LabelComponent } from '@radzen/angular/dist/label';
 import { DropDownComponent } from '@radzen/angular/dist/dropdown';
-import { RadioButtonListComponent } from '@radzen/angular/dist/radiobuttonlist';
+import { TextBoxComponent } from '@radzen/angular/dist/textbox';
+import { NumericComponent } from '@radzen/angular/dist/numeric';
 import { ButtonComponent } from '@radzen/angular/dist/button';
 import { GridComponent } from '@radzen/angular/dist/grid';
 import { HtmlComponent } from '@radzen/angular/dist/html';
@@ -34,15 +36,21 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
   @ViewChild('heading2') heading2: HeadingComponent;
   @ViewChild('tabs0') tabs0: TabsComponent;
   @ViewChild('panel0') panel0: PanelComponent;
-  @ViewChild('listbox0') listbox0: ListBoxComponent;
+  @ViewChild('filterTextbausteinArtCode') filterTextbausteinArtCode: ListBoxComponent;
+  @ViewChild('label4') label4: LabelComponent;
+  @ViewChild('filterKursNr') filterKursNr: DropDownComponent;
+  @ViewChild('label0') label0: LabelComponent;
+  @ViewChild('textbox2') textbox2: TextBoxComponent;
+  @ViewChild('label6') label6: LabelComponent;
   @ViewChild('dropdown4') dropdown4: DropDownComponent;
-  @ViewChild('dropdown5') dropdown5: DropDownComponent;
-  @ViewChild('dropdown6') dropdown6: DropDownComponent;
-  @ViewChild('dropdown7') dropdown7: DropDownComponent;
-  @ViewChild('dropdown8') dropdown8: DropDownComponent;
-  @ViewChild('dropdown9') dropdown9: DropDownComponent;
+  @ViewChild('label1') label1: LabelComponent;
+  @ViewChild('numeric0') numeric0: NumericComponent;
+  @ViewChild('label5') label5: LabelComponent;
+  @ViewChild('dropdown0') dropdown0: DropDownComponent;
+  @ViewChild('label3') label3: LabelComponent;
   @ViewChild('dropdown1') dropdown1: DropDownComponent;
-  @ViewChild('radiobuttonlist0') radiobuttonlist0: RadioButtonListComponent;
+  @ViewChild('label2') label2: LabelComponent;
+  @ViewChild('textbox0') textbox0: TextBoxComponent;
   @ViewChild('button7') button7: ButtonComponent;
   @ViewChild('panel4') panel4: PanelComponent;
   @ViewChild('gridTextbausteine') gridTextbausteine: GridComponent;
@@ -81,11 +89,17 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
   dbHopeKurseTextbausteine: DbHopeKurseTextbausteineService;
 
   security: SecurityService;
-  getIbsiTextbausteineArtensResult: any;
-  valTextbausteineArten: any;
+  dsoBenutzer: any;
+  rstTextbausteineArten: any;
+  rstKurse: any;
+  rstAutoren: any;
+  valAnreden: any;
+  valDokumente: any;
   parameters: any;
   rstTextbausteine: any;
+  rstTextbausteineCount: any;
   strTextbausteinHTML: any;
+  dsoTextbausteine: any;
 
   constructor(private injector: Injector) {
   }
@@ -135,22 +149,137 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
 
 
   load() {
-    this.gridTextbausteine.load();
-
-    this.dbHopeKurseTextbausteine.getIbsiTextbausteineArtens(null, null, null, null, null, null, null, null)
+    this.dbHopeKurseTextbausteine.getBenutzers(`BenutzerName eq '${this.security.user.name}'`, null, null, null, null, null, null, null)
     .subscribe((result: any) => {
-      this.getIbsiTextbausteineArtensResult = result.value;
+      this.dsoBenutzer = result.value[0];
+
+      this.dbHopeKurseTextbausteine.getIbsiTextbausteineArtens(null, null, null, `Sortierung`, null, null, null, null)
+      .subscribe((result: any) => {
+        this.rstTextbausteineArten = result.value;
+
+        this.dbHopeKurseTextbausteine.getIbsiKurses(null, null, null, `Titel`, null, null, null, null)
+        .subscribe((result: any) => {
+          this.rstKurse = result.value;
+
+          this.dbHopeKurseTextbausteine.getIbsiTextbausteineAutorens(null, null, null, `Name`, null, null, null, null)
+          .subscribe((result: any) => {
+            this.rstAutoren = result.value;
+
+            this.valAnreden = [{text: 'Du', value: 'Du'}, {text: 'Sie', value: 'Sie'}, {text: 'Ohne', value: 'Ohne'}];
+
+            this.valDokumente = [{text: 'Mit', value: 'Mit Dokument'}, {text: 'Ohne', value: 'Ohne Dokument'}];
+
+            this.gridTextbausteine.load();
+          }, (result: any) => {
+
+          });
+        }, (result: any) => {
+
+        });
+      }, (result: any) => {
+
+      });
+    }, (result: any) => {
+
+    });
+  }
+
+  filterTextbausteinArtCodeChange(event: any) {
+    this.dbHopeKurseTextbausteine.updateBenutzer(null, this.dsoBenutzer.BenutzerID, this.dsoBenutzer)
+    .subscribe((result: any) => {
+
     }, (result: any) => {
 
     });
 
-    this.valTextbausteineArten = [{text: 'Accounting', value: 'A'}, {text: 'Marketing', value: 'M'}, {text: 'Production', value: 'P'}, {text: 'Research', value: 'R'},{text: 'Accounting', value: 'A'}, {text: 'Marketing', value: 'M'}, {text: 'Production', value: 'P'}, {text: 'Research', value: 'R'},{text: 'Accounting', value: 'A'}, {text: 'Marketing', value: 'M'}, {text: 'Production', value: 'P'}, {text: 'Research', value: 'R'},{text: 'Accounting', value: 'A'}, {text: 'Marketing', value: 'M'}];
+    this.gridTextbausteine.load();
+  }
+
+  filterKursNrChange(event: any) {
+    this.dbHopeKurseTextbausteine.updateBenutzer(null, this.dsoBenutzer.BenutzerID, this.dsoBenutzer)
+    .subscribe((result: any) => {
+
+    }, (result: any) => {
+
+    });
+
+    this.gridTextbausteine.load();
+  }
+
+  textbox2Change(event: any) {
+    this.dbHopeKurseTextbausteine.updateBenutzer(null, this.dsoBenutzer.BenutzerID, this.dsoBenutzer)
+    .subscribe((result: any) => {
+
+    }, (result: any) => {
+
+    });
+
+    this.gridTextbausteine.load();
+  }
+
+  dropdown4Change(event: any) {
+    this.dbHopeKurseTextbausteine.updateBenutzer(null, this.dsoBenutzer.BenutzerID, this.dsoBenutzer)
+    .subscribe((result: any) => {
+
+    }, (result: any) => {
+
+    });
+
+    this.gridTextbausteine.load();
+  }
+
+  numeric0Change(event: any) {
+    this.dbHopeKurseTextbausteine.updateBenutzer(null, this.dsoBenutzer.BenutzerID, this.dsoBenutzer)
+    .subscribe((result: any) => {
+
+    }, (result: any) => {
+
+    });
+
+    this.gridTextbausteine.load();
+  }
+
+  dropdown0Change(event: any) {
+    this.dbHopeKurseTextbausteine.updateBenutzer(null, this.dsoBenutzer.BenutzerID, this.dsoBenutzer)
+    .subscribe((result: any) => {
+
+    }, (result: any) => {
+
+    });
+
+    this.gridTextbausteine.load();
+  }
+
+  dropdown1Change(event: any) {
+    this.dbHopeKurseTextbausteine.updateBenutzer(null, this.dsoBenutzer.BenutzerID, this.dsoBenutzer)
+    .subscribe((result: any) => {
+
+    }, (result: any) => {
+
+    });
+
+    this.gridTextbausteine.load();
+  }
+
+  textbox0Change(event: any) {
+    this.dbHopeKurseTextbausteine.updateBenutzer(null, this.dsoBenutzer.BenutzerID, this.dsoBenutzer)
+    .subscribe((result: any) => {
+
+    }, (result: any) => {
+
+    });
+
+    this.gridTextbausteine.load();
   }
 
   gridTextbausteineLoadData(event: any) {
-    this.dbHopeKurseTextbausteine.getIbsiTextbausteines(`KursNr eq -899890728`, null, null, null, null, null, null, null)
+    this.dbHopeKurseTextbausteine.getIbsiTextbausteines(`TextbausteinArtCode eq '${this.dsoBenutzer.FilterTextbausteinArtCode}' 
+${this.dsoBenutzer.FilterKursNr ? 'and KursNr eq ' + this.dsoBenutzer.FilterKursNr : ''}
+${this.dsoBenutzer.FilterAutorNr ? 'and AutorNr eq ' + this.dsoBenutzer.FilterAutorNr : ''}`, event.top, event.skip, `${event.orderby || 'TitelTextbaustein'}`, event.top != null && event.skip != null, `IBSITextbausteineAutoren, IBSIKurse`, null, null)
     .subscribe((result: any) => {
       this.rstTextbausteine = result.value;
+
+      this.rstTextbausteineCount = event.top != null && event.skip != null ? result['@odata.count'] : result.value.length;
 
       this.gridTextbausteine.onSelect(this.rstTextbausteine[0]);
     }, (result: any) => {
@@ -160,5 +289,7 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
 
   gridTextbausteineRowSelect(event: any) {
     this.strTextbausteinHTML = event.TextbausteinHTML;
+
+    this.dsoTextbausteine = event;
   }
 }

@@ -42,9 +42,8 @@ import { HtmlModule } from '@radzen/angular/dist/html';
 import { LoginModule } from '@radzen/angular/dist/login';
 import { FormModule } from '@radzen/angular/dist/form';
 import { ListBoxModule } from '@radzen/angular/dist/listbox';
-import { RadioButtonListModule } from '@radzen/angular/dist/radiobuttonlist';
-import { UploadModule } from '@radzen/angular/dist/upload';
 import { NumericModule } from '@radzen/angular/dist/numeric';
+import { UploadModule } from '@radzen/angular/dist/upload';
 import { CheckBoxModule } from '@radzen/angular/dist/checkbox';
 import { SharedModule } from '@radzen/angular/dist/shared';
 import { NotificationModule } from '@radzen/angular/dist/notification';
@@ -215,9 +214,8 @@ export const AppImports = [
   LoginModule,
   FormModule,
   ListBoxModule,
-  RadioButtonListModule,
-  UploadModule,
   NumericModule,
+  UploadModule,
   CheckBoxModule,
   SharedModule,
   NotificationModule,

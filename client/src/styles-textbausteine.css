@@ -230,11 +230,13 @@ input:focus, textarea:focus {
   right: 190px;
 }
 
-/* --- Panel: Die Farbe des Titels --- */
+/* --- Panel: Farbe des Titels und Abstand --- */
 .ui-panel-title {
   color: #479cc8;
   color: #5d717b;
   color: #D86E13;
+  color: #5d717b;
+  padding-top: 3px;
 }
 
 /* --- Den Überlauf im Panel unsichtbar machen --- */
@@ -271,12 +273,57 @@ input:focus, textarea:focus {
 
 /* --- Höhe der Zeilen in DataGrid --- */
 .ui-datatable-data td {
-  padding: 0.2rem 0.625rem 0.2rem 0.625rem;
+  padding: 3px 0.625rem 3px 0.625rem;
 }
 
-.testcss .ui-listbox-item {
-  padding: 0rem 0.625rem 0rem 0.625rem;
+/* --- Höhe der Kopfzeile in DataGrid --- */
+.ui-datatable-thead th {
+  padding: 1px 0 0 0;
+}
+
+/* --- Spaltennamen im DataGrid --- */
+.ui-datatable-thead th .ui-column-title {
+  text-transform: none;
+  padding: 0 0 6px 0.625rem;
+}
+
+/* --- DropDown Löschzeichen auf der linken Seite --- */
+.ui-dropdown-clear-icon {
+  /*
+  left: 0;
+  */
+  top: 1px;
+  font-size: 12px;
+  color: red;
+  color: #212529;
+  color: #D86E13;
+}
+
+/* --- Einstellungen für Textbausteine-Filter --- */
+.textbausteine-filter-listbox .ui-listbox-item {
+  padding: 0px 0.625rem 1px 0.625rem;
   white-space: nowrap; 
   overflow: hidden;
   text-overflow: ellipsis; 
+  font-size: 14px;
+}
+
+.textbausteine-filter-auswahl .ui-dropdown-label {
+  font-size: 14px;
+}
+
+.textbausteine-filter-auswahl .textbox {
+  font-size: 14px;
+}
+
+.textbausteine-filter-auswahl .ui-spinner input[type='number'] {
+  font-size: 14px;
+}
+
+.textbausteine-filter-auswahl .ui-spinner {
+  padding-top: 0;
+}
+
+.textbausteine-filter-auswahl .ui-spinner-button .pi {
+  font-size: 0.75rem;
 }

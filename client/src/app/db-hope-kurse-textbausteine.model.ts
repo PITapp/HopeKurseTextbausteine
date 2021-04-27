@@ -26,12 +26,20 @@ export interface BaseAnreden {
 
 export interface Benutzer {
   BenutzerID: number;
-  AspNetUsers_Id: string;
   BaseID: number;
   Benutzername: string;
+  AspNetUsers_Id: string;
   Initialen: string;
   BenutzerEMail: string;
   Notiz: string;
+  FilterTextbausteinArtCode: string;
+  FilterKursNr: number;
+  FilterTitelUndText: string;
+  FilterAutorNr: number;
+  FilterThemaNummer: number;
+  FilterAnrede: string;
+  FilterDokument: string;
+  FilterInfo: string;
 }
 
 export interface Einstellungen {
