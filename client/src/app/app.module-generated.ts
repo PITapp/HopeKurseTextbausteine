@@ -12,9 +12,9 @@ import { CardModule } from '@radzen/angular/dist/card';
 import { ImageModule } from '@radzen/angular/dist/image';
 import { ContentContainerModule } from '@radzen/angular/dist/content-container';
 import { HeaderModule } from '@radzen/angular/dist/header';
-import { SidebarToggleModule } from '@radzen/angular/dist/sidebar-toggle';
 import { LabelModule } from '@radzen/angular/dist/label';
 import { LinkModule } from '@radzen/angular/dist/link';
+import { SidebarToggleModule } from '@radzen/angular/dist/sidebar-toggle';
 import { ProfileMenuModule } from '@radzen/angular/dist/profilemenu';
 import { SidebarModule } from '@radzen/angular/dist/sidebar';
 import { PanelMenuModule } from '@radzen/angular/dist/panelmenu';
@@ -184,9 +184,9 @@ export const AppImports = [
   ImageModule,
   ContentContainerModule,
   HeaderModule,
-  SidebarToggleModule,
   LabelModule,
   LinkModule,
+  SidebarToggleModule,
   ProfileMenuModule,
   SidebarModule,
   PanelMenuModule,

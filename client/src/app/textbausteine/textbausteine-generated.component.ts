@@ -40,7 +40,7 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
   @ViewChild('label4') label4: LabelComponent;
   @ViewChild('filterKursNr') filterKursNr: DropDownComponent;
   @ViewChild('label0') label0: LabelComponent;
-  @ViewChild('textbox2') textbox2: TextBoxComponent;
+  @ViewChild('textboxTitelUndText') textboxTitelUndText: TextBoxComponent;
   @ViewChild('label6') label6: LabelComponent;
   @ViewChild('dropdown4') dropdown4: DropDownComponent;
   @ViewChild('label1') label1: LabelComponent;
@@ -167,7 +167,7 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
 
             this.valAnreden = [{text: 'Du', value: 'Du'}, {text: 'Sie', value: 'Sie'}, {text: 'Ohne', value: 'Ohne'}];
 
-            this.valDokumente = [{text: 'Mit', value: 'Mit Dokument'}, {text: 'Ohne', value: 'Ohne Dokument'}];
+            this.valDokumente = [{text: 'Mit Domument', value: 'MitDokument'}, {text: 'Ohne Dokument', value: 'OhneDokument'}];
 
             this.gridTextbausteine.load();
           }, (result: any) => {
@@ -191,8 +191,6 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
     }, (result: any) => {
 
     });
-
-    this.gridTextbausteine.load();
   }
 
   filterKursNrChange(event: any) {
@@ -202,19 +200,15 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
     }, (result: any) => {
 
     });
-
-    this.gridTextbausteine.load();
   }
 
-  textbox2Change(event: any) {
+  textboxTitelUndTextChange(event: any) {
     this.dbHopeKurseTextbausteine.updateBenutzer(null, this.dsoBenutzer.BenutzerID, this.dsoBenutzer)
     .subscribe((result: any) => {
 
     }, (result: any) => {
 
     });
-
-    this.gridTextbausteine.load();
   }
 
   dropdown4Change(event: any) {
@@ -224,8 +218,6 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
     }, (result: any) => {
 
     });
-
-    this.gridTextbausteine.load();
   }
 
   numeric0Change(event: any) {
@@ -235,8 +227,6 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
     }, (result: any) => {
 
     });
-
-    this.gridTextbausteine.load();
   }
 
   dropdown0Change(event: any) {
@@ -246,8 +236,6 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
     }, (result: any) => {
 
     });
-
-    this.gridTextbausteine.load();
   }
 
   dropdown1Change(event: any) {
@@ -257,8 +245,6 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
     }, (result: any) => {
 
     });
-
-    this.gridTextbausteine.load();
   }
 
   textbox0Change(event: any) {
@@ -268,20 +254,26 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
     }, (result: any) => {
 
     });
-
-    this.gridTextbausteine.load();
   }
 
   gridTextbausteineLoadData(event: any) {
     this.dbHopeKurseTextbausteine.getIbsiTextbausteines(`TextbausteinArtCode eq '${this.dsoBenutzer.FilterTextbausteinArtCode}' 
-${this.dsoBenutzer.FilterKursNr ? 'and KursNr eq ' + this.dsoBenutzer.FilterKursNr : ''}
-${this.dsoBenutzer.FilterAutorNr ? 'and AutorNr eq ' + this.dsoBenutzer.FilterAutorNr : ''}`, event.top, event.skip, `${event.orderby || 'TitelTextbaustein'}`, event.top != null && event.skip != null, `IBSITextbausteineAutoren, IBSIKurse`, null, null)
+${this.dsoBenutzer.FilterKursNr ? ' and KursNr eq ' + this.dsoBenutzer.FilterKursNr : ''} 
+${this.dsoBenutzer.FilterTitelUndText ? ' and ( contains(tolower(TitelTextbaustein),tolower(\'' + this.dsoBenutzer.FilterTitelUndText + '\')) OR contains(tolower(TextbausteinHTML),tolower(\'' + this.dsoBenutzer.FilterTitelUndText + '\')) )' : ''} 
+${this.dsoBenutzer.FilterAutorNr ? ' and AutorNr eq ' + this.dsoBenutzer.FilterAutorNr : ''}
+${this.dsoBenutzer.FilterThemaNummer ? ' and ThemaNummer eq ' + this.dsoBenutzer.FilterThemaNummer : ''}
+${this.dsoBenutzer.FilterAnrede ? ' and Anrede eq \'' + this.dsoBenutzer.FilterAnrede + '\'' : ''}
+${this.dsoBenutzer.FilterDokument == 'MitDokument' ? ' and length(DokumentTitel) gt 0' : ''}
+${this.dsoBenutzer.FilterDokument == 'OhneDokument' ? ' and length(DokumentTitel) eq null' : ''}
+${this.dsoBenutzer.FilterInfo ? ' and contains(tolower(InfoText),tolower(\'' + this.dsoBenutzer.FilterInfo + '\'))' : ''} `, event.top, event.skip, `${event.orderby || 'TitelTextbaustein'}`, event.top != null && event.skip != null, `IBSITextbausteineAutoren, IBSIKurse`, null, null)
     .subscribe((result: any) => {
       this.rstTextbausteine = result.value;
 
       this.rstTextbausteineCount = event.top != null && event.skip != null ? result['@odata.count'] : result.value.length;
 
-      this.gridTextbausteine.onSelect(this.rstTextbausteine[0]);
+      this.strTextbausteinHTML = null;
+
+      this.dsoTextbausteine = null;
     }, (result: any) => {
 
     });

@@ -45,7 +45,7 @@
                     "fontSize": "21px",
                     "fontWeight": "normal"
                   },
-                  "text": "${dsoTextbausteine.TitelTextbaustein} • ${dsoTextbausteine.UntertitelTextbaustein}",
+                  "text": "{{dsoTextbausteine?.TitelTextbaustein}}\n{{dsoTextbausteine?.UntertitelTextbaustein ? ' · ' + dsoTextbausteine?.UntertitelTextbaustein : ''}}\n{{dsoTextbausteine?.IbsiTextbausteineAutoren.Name ? ' · ' + dsoTextbausteine?.IbsiTextbausteineAutoren.Name : ''}}\n{{dsoTextbausteine?.IbsiKurse.Titel ? ' · ' + dsoTextbausteine?.IbsiKurse.Titel : ''}}",
                   "type": "heading"
                 }
               ],
@@ -109,10 +109,6 @@
                                               }
                                             ],
                                             "type": "invoke"
-                                          },
-                                          {
-                                            "code": "this.gridTextbausteine.load();",
-                                            "type": "execute"
                                           }
                                         ]
                                       },
@@ -193,10 +189,6 @@
                                               }
                                             ],
                                             "type": "invoke"
-                                          },
-                                          {
-                                            "code": "this.gridTextbausteine.load();",
-                                            "type": "execute"
                                           }
                                         ]
                                       },
@@ -244,7 +236,7 @@
                                         "paddingLeft": "5px",
                                         "width": "100%"
                                       },
-                                      "text": "Titel und Textinhalt",
+                                      "text": "Titel oder Textinhalt",
                                       "type": "label"
                                     }
                                   ],
@@ -277,15 +269,12 @@
                                               }
                                             ],
                                             "type": "invoke"
-                                          },
-                                          {
-                                            "code": "this.gridTextbausteine.load();",
-                                            "type": "execute"
                                           }
                                         ]
                                       },
                                       "maxLength": 30,
-                                      "name": "textbox2",
+                                      "name": "textboxTitelUndText",
+                                      "placeholder": "",
                                       "style": {
                                         "display": "block",
                                         "height": "28px",
@@ -293,7 +282,7 @@
                                         "width": "100%"
                                       },
                                       "type": "textbox",
-                                      "value": ""
+                                      "value": "${dsoBenutzer.FilterTitelUndText}"
                                     }
                                   ],
                                   "name": "col8",
@@ -362,10 +351,6 @@
                                               }
                                             ],
                                             "type": "invoke"
-                                          },
-                                          {
-                                            "code": "this.gridTextbausteine.load();",
-                                            "type": "execute"
                                           }
                                         ]
                                       },
@@ -380,7 +365,7 @@
                                       "template": "",
                                       "textProperty": "Name",
                                       "type": "dropdown",
-                                      "value": "",
+                                      "value": "${dsoBenutzer.FilterAutorNr}",
                                       "valueProperty": "AutorNr"
                                     }
                                   ],
@@ -446,10 +431,6 @@
                                               }
                                             ],
                                             "type": "invoke"
-                                          },
-                                          {
-                                            "code": "this.gridTextbausteine.load();",
-                                            "type": "execute"
                                           }
                                         ]
                                       },
@@ -458,7 +439,8 @@
                                         "height": "28px",
                                         "width": "100%"
                                       },
-                                      "type": "numeric"
+                                      "type": "numeric",
+                                      "value": "${dsoBenutzer.FilterThemaNummer}"
                                     }
                                   ],
                                   "name": "col11",
@@ -527,10 +509,6 @@
                                               }
                                             ],
                                             "type": "invoke"
-                                          },
-                                          {
-                                            "code": "this.gridTextbausteine.load();",
-                                            "type": "execute"
                                           }
                                         ]
                                       },
@@ -545,7 +523,7 @@
                                       "template": "",
                                       "textProperty": "text",
                                       "type": "dropdown",
-                                      "value": "",
+                                      "value": "${dsoBenutzer.FilterAnrede}",
                                       "valueProperty": "value"
                                     }
                                   ],
@@ -616,10 +594,6 @@
                                               }
                                             ],
                                             "type": "invoke"
-                                          },
-                                          {
-                                            "code": "this.gridTextbausteine.load();",
-                                            "type": "execute"
                                           }
                                         ]
                                       },
@@ -634,7 +608,7 @@
                                       "template": "",
                                       "textProperty": "text",
                                       "type": "dropdown",
-                                      "value": "",
+                                      "value": "${dsoBenutzer.FilterDokument}",
                                       "valueProperty": "value"
                                     }
                                   ],
@@ -700,10 +674,6 @@
                                               }
                                             ],
                                             "type": "invoke"
-                                          },
-                                          {
-                                            "code": "this.gridTextbausteine.load();",
-                                            "type": "execute"
                                           }
                                         ]
                                       },
@@ -716,7 +686,7 @@
                                         "width": "100%"
                                       },
                                       "type": "textbox",
-                                      "value": ""
+                                      "value": "${dsoBenutzer.FilterInfo}"
                                     }
                                   ],
                                   "name": "col13",
@@ -806,14 +776,14 @@
                                   "property": "IbsiTextbausteineAutoren.Krzel",
                                   "title": "Autor",
                                   "type": "string",
-                                  "width": "60px"
+                                  "width": "50px"
                                 },
                                 {
                                   "format": "",
                                   "property": "IbsiKurse.Kurzzeichen",
                                   "title": "Kurs",
                                   "type": "string",
-                                  "width": "60px"
+                                  "width": "50px"
                                 },
                                 {
                                   "format": "",
@@ -860,7 +830,7 @@
                                         "name": "$filter",
                                         "value": [
                                           {
-                                            "value": "TextbausteinArtCode eq '${this.dsoBenutzer.FilterTextbausteinArtCode}' \n${this.dsoBenutzer.FilterKursNr ? 'and KursNr eq ' + this.dsoBenutzer.FilterKursNr : ''}\n${this.dsoBenutzer.FilterAutorNr ? 'and AutorNr eq ' + this.dsoBenutzer.FilterAutorNr : ''}"
+                                            "value": "TextbausteinArtCode eq '${this.dsoBenutzer.FilterTextbausteinArtCode}' \n${this.dsoBenutzer.FilterKursNr ? ' and KursNr eq ' + this.dsoBenutzer.FilterKursNr : ''} \n${this.dsoBenutzer.FilterTitelUndText ? ' and ( contains(tolower(TitelTextbaustein),tolower(\\'' + this.dsoBenutzer.FilterTitelUndText + '\\')) OR contains(tolower(TextbausteinHTML),tolower(\\'' + this.dsoBenutzer.FilterTitelUndText + '\\')) )' : ''} \n${this.dsoBenutzer.FilterAutorNr ? ' and AutorNr eq ' + this.dsoBenutzer.FilterAutorNr : ''}\n${this.dsoBenutzer.FilterThemaNummer ? ' and ThemaNummer eq ' + this.dsoBenutzer.FilterThemaNummer : ''}\n${this.dsoBenutzer.FilterAnrede ? ' and Anrede eq \\'' + this.dsoBenutzer.FilterAnrede + '\\'' : ''}\n${this.dsoBenutzer.FilterDokument == 'MitDokument' ? ' and length(DokumentTitel) gt 0' : ''}\n${this.dsoBenutzer.FilterDokument == 'OhneDokument' ? ' and length(DokumentTitel) eq null' : ''}\n${this.dsoBenutzer.FilterInfo ? ' and contains(tolower(InfoText),tolower(\\'' + this.dsoBenutzer.FilterInfo + '\\'))' : ''} "
                                           }
                                         ]
                                       },
@@ -901,8 +871,14 @@
                                         "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
                                       },
                                       {
-                                        "code": "this.gridTextbausteine.onSelect(this.rstTextbausteine[0]);",
-                                        "type": "execute"
+                                        "name": "strTextbausteinHTML",
+                                        "type": "set",
+                                        "value": "null"
+                                      },
+                                      {
+                                        "name": "dsoTextbausteine",
+                                        "type": "set",
+                                        "value": "null"
                                       }
                                     ],
                                     "type": "invoke"
@@ -1030,7 +1006,7 @@
                             "border": "1px solid #e6ecef",
                             "height": "750px"
                           },
-                          "text": "${rstTextbausteineCount} Textbausteine",
+                          "text": "{{rstTextbausteineCount == 0 ? '' : rstTextbausteineCount}} Textbausteine",
                           "type": "panel"
                         }
                       ],
@@ -1086,9 +1062,10 @@
                                       "name": "button4",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#D86E13"
+                                        "color": "#D86E13",
+                                        "display": "flex"
                                       },
-                                      "text": "Speichern",
+                                      "text": "&nbsp;Speichern",
                                       "tooltip": "",
                                       "type": "button"
                                     },
@@ -1102,9 +1079,10 @@
                                       "size": "sm",
                                       "style": {
                                         "color": "#D86E13",
+                                        "display": "flex",
                                         "marginLeft": "10px"
                                       },
-                                      "text": "Dokument",
+                                      "text": "&nbsp;Dokument",
                                       "tooltip": "",
                                       "type": "button"
                                     },
@@ -1119,21 +1097,28 @@
                                       "size": "sm",
                                       "style": {
                                         "color": "#D86E13",
+                                        "display": "flex",
                                         "fontWeight": "normal",
                                         "marginLeft": "10px",
                                         "marginRight": "-9px",
                                         "paddingLeft": ""
                                       },
-                                      "text": "Kopieren",
+                                      "text": "&nbsp;Kopieren",
                                       "tooltip": "Löschen Autor",
                                       "type": "button"
                                     }
                                   ],
                                   "name": "col2",
+                                  "style": {
+                                    "display": "flex"
+                                  },
                                   "type": "col"
                                 }
                               ],
                               "name": "row0",
+                              "style": {
+                                "display": "inline-block"
+                              },
                               "type": "row"
                             }
                           ],
@@ -1142,7 +1127,7 @@
                             "border": "1px solid #e6ecef",
                             "height": "750px"
                           },
-                          "text": "${dsoTextbausteine.TitelTextbaustein}",
+                          "text": "{{dsoTextbausteine?.TitelTextbaustein}}\n{{dsoTextbausteine?.UntertitelTextbaustein ? ' • ' + dsoTextbausteine?.UntertitelTextbaustein : ''}}",
                           "type": "panel"
                         }
                       ],
@@ -1241,7 +1226,7 @@
                       {
                         "name": "valDokumente",
                         "type": "set",
-                        "value": "[{text: 'Mit', value: 'Mit Dokument'}, {text: 'Ohne', value: 'Ohne Dokument'}]"
+                        "value": "[{text: 'Mit Domument', value: 'MitDokument'}, {text: 'Ohne Dokument', value: 'OhneDokument'}]"
                       },
                       {
                         "code": "this.gridTextbausteine.load();",

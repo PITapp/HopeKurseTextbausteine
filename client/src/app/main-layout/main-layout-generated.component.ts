@@ -11,10 +11,10 @@ import { Subscription } from 'rxjs';
 import { DialogService, DIALOG_PARAMETERS, DialogRef } from '@radzen/angular/dist/dialog';
 import { NotificationService } from '@radzen/angular/dist/notification';
 import { HeaderComponent } from '@radzen/angular/dist/header';
-import { SidebarToggleComponent } from '@radzen/angular/dist/sidebar-toggle';
 import { ImageComponent } from '@radzen/angular/dist/image';
 import { LabelComponent } from '@radzen/angular/dist/label';
 import { LinkComponent } from '@radzen/angular/dist/link';
+import { SidebarToggleComponent } from '@radzen/angular/dist/sidebar-toggle';
 import { ProfileMenuComponent } from '@radzen/angular/dist/profilemenu';
 import { BodyComponent } from '@radzen/angular/dist/body';
 import { ContentContainerComponent } from '@radzen/angular/dist/content-container';
@@ -29,12 +29,11 @@ import { SecurityService } from '../security.service';
 export class MainLayoutGenerated implements AfterViewInit, OnInit, OnDestroy {
   // Components
   @ViewChild('header0') header0: HeaderComponent;
-  @ViewChild('sidebarToggle0') sidebarToggle0: SidebarToggleComponent;
   @ViewChild('image0') image0: ImageComponent;
   @ViewChild('label2') label2: LabelComponent;
   @ViewChild('label5') label5: LabelComponent;
-  @ViewChild('link0') link0: LinkComponent;
   @ViewChild('link1') link1: LinkComponent;
+  @ViewChild('sidebarToggle0') sidebarToggle0: SidebarToggleComponent;
   @ViewChild('profilemenu1') profilemenu1: ProfileMenuComponent;
   @ViewChild('body0') body0: BodyComponent;
   @ViewChild('main') main: ContentContainerComponent;

@@ -9,24 +9,6 @@
               "class": "d-flex align-items-center justify-content-start col-md-3",
               "components": [
                 {
-                  "attributes": [],
-                  "name": "sidebar-toggle0",
-                  "style": {
-                    "marginRight": "10px"
-                  },
-                  "type": "sidebar-toggle"
-                }
-              ],
-              "name": "leftCol",
-              "style": {
-                "float": "left"
-              },
-              "type": "col"
-            },
-            {
-              "class": "col-md-6 justify-content-center d-flex",
-              "components": [
-                {
                   "events": {
                     "click": [
                       {
@@ -69,6 +51,16 @@
                   "type": "label"
                 }
               ],
+              "name": "leftCol",
+              "style": {
+                "float": "left",
+                "paddingLeft": "25px"
+              },
+              "type": "col"
+            },
+            {
+              "class": "col-md-6 justify-content-center d-flex",
+              "components": [],
               "name": "col0",
               "style": {
                 "backgroundColor": "rgba(0, 0, 0, 0)",
@@ -80,26 +72,24 @@
               "class": "text-lg-right align-items-center d-flex justify-content-end col-md-3",
               "components": [
                 {
-                  "icon": "email",
-                  "name": "link0",
-                  "path": "nachrichten",
-                  "style": {
-                    "color": "#f5f5f5",
-                    "fontSize": "22px",
-                    "marginRight": "35px"
-                  },
-                  "type": "link"
-                },
-                {
-                  "icon": "widgets",
+                  "icon": "description",
                   "name": "link1",
-                  "path": "dashboard",
+                  "path": "textbausteine",
                   "style": {
                     "color": "#f5f5f5",
                     "fontSize": "22px",
                     "marginRight": "20px"
                   },
+                  "text": "",
                   "type": "link"
+                },
+                {
+                  "attributes": [],
+                  "name": "sidebar-toggle0",
+                  "style": {
+                    "marginRight": "10px"
+                  },
+                  "type": "sidebar-toggle"
                 },
                 {
                   "items": [
@@ -160,11 +150,6 @@
       "components": [
         {
           "items": [
-            {
-              "icon": "dashboard",
-              "path": "dashboard",
-              "text": "Dashboard"
-            },
             {
               "icon": "description",
               "items": [],

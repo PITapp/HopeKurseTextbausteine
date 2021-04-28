@@ -10,10 +10,11 @@
   border: none;
   background-color: transparent;
   color: whitesmoke;
-  font-size: 18px;
+  font-size: 16px;
 }
 .sidebar-toggle:hover {
   color: #D86E13;
+  color: whitesmoke;
   background: transparent;
   border-radius: 0; }
 
@@ -237,6 +238,9 @@ input:focus, textarea:focus {
   color: #D86E13;
   color: #5d717b;
   padding-top: 3px;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
 }
 
 /* --- Den Überlauf im Panel unsichtbar machen --- */
@@ -326,4 +330,9 @@ input:focus, textarea:focus {
 
 .textbausteine-filter-auswahl .ui-spinner-button .pi {
   font-size: 0.75rem;
+}
+
+.textbausteine-filter-auswahl .ui-dropdown-item, .ui-dropdown-items li {
+  padding: 1px 0.625rem;
+  font-size: 14px;
 }
