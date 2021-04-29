@@ -5,7 +5,7 @@
       </rz-heading>
       <rz-heading #heading19 size="H3" [style]="{'color': '#e5ecef', 'display': 'inline-block', 'marginTop': '7px', 'paddingLeft': '10px', 'paddingRight': '10px'}" text="|">
       </rz-heading>
-      <rz-heading #heading21 size="H3" [style]="{'color': '#5d717b', 'display': 'inline', 'fontSize': '21px', 'fontWeight': 'normal'}" text="Hier entsteht was neues" >
+      <rz-heading #heading21 size="H3" [style]="{'color': '#5d717b', 'display': 'inline', 'fontSize': '21px', 'fontWeight': 'normal'}" text="Modul in Arbeit" >
       </rz-heading>
     </div>
   </div>
@@ -13,17 +13,17 @@
     <rz-tabs-item [selected]="true" text="Daten">
       <div class="row">
         <div class="col-md-4">
-          <rz-panel #panel2 [allowCollapse]="false" [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="Daten 1">
+          <rz-panel #panelDokumente [allowCollapse]="false" [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="Dokumente">
           </rz-panel>
         </div>
         <div class="col-md-4" [ngStyle]="{'paddingLeft': '5px'}">
-          <rz-panel #panel3 [style]="{'border': '1px solid #e6ecef', 'height': '360px'}" text="Daten 2">
+          <rz-panel #panel3 [style]="{'border': '1px solid #e6ecef', 'height': '360px'}" text="Vorschau">
           </rz-panel>
           <rz-panel #panel1 [style]="{'border': '1px solid #e6ecef', 'height': '370px', 'marginTop': '20px'}" text="Sonstiges">
           </rz-panel>
         </div>
         <div class="col-md-4" [ngStyle]="{'paddingLeft': '5px'}">
-          <rz-panel #bild [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="Daten 3">
+          <rz-panel #panelTextbaustein [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="Textbaustein">
           </rz-panel>
         </div>
       </div>

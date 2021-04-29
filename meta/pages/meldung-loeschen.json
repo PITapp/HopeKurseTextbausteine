@@ -59,7 +59,7 @@
                                   }
                                 ]
                               },
-                              "icon": "",
+                              "icon": "delete_forever",
                               "name": "button0",
                               "text": "Löschen",
                               "type": "button"

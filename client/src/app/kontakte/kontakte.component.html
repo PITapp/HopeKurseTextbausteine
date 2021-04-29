@@ -5,7 +5,7 @@
       </rz-heading>
       <rz-heading #heading9 size="H3" [style]="{'color': '#e5ecef', 'display': 'inline-block', 'marginTop': '7px', 'paddingLeft': '10px', 'paddingRight': '10px'}" text="|">
       </rz-heading>
-      <rz-heading #heading2 size="H3" [style]="{'color': '#5d717b', 'display': 'inline', 'fontSize': '21px', 'fontWeight': 'normal'}" text="{{rstBaseCount}} Einträge" >
+      <rz-heading #heading2 size="H3" [style]="{'color': '#5d717b', 'display': 'inline', 'fontSize': '21px', 'fontWeight': 'normal'}" text="{{dsoBase?.Name1}} {{dsoBase?.Name2}} · {{dsoBase?.NameKuerzel}}" >
       </rz-heading>
     </div>
   </div>
@@ -13,8 +13,8 @@
     <rz-tabs-item [selected]="true" text="Daten">
       <div [ngStyle]="{'height': '100%'}" class="row">
         <div class="col-md-12">
-          <rz-panel #panel0 [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="{{dsoBase?.Name1}} {{dsoBase?.Name2}} | {{dsoBase?.NameKuerzel}}">
-            <rz-grid #gridKontakte [allowAdd]="false" [allowColumnReorder]="false" [allowColumnResize]="true" [allowDelete]="false" [allowFiltering]="true" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="true" [alwaysShowPager]="false" applyFilterText="Apply" clearFilterText="Clear" columnResizeMode="fit" columnWidth="auto" [confirmDelete]="false" containsText="Contains" [count]="rstBaseCount" [data]="rstBase" emptyText="Keine Kontakte vorhanden" endsWithText="Ends with" equalsText="Equals" filterCaseSensitivity="caseInsensitive" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="15" [responsive]="true" startsWithText="Starts with" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'height': '700px', 'marginLeft': '-10px', 'marginRight': '-10px', 'marginTop': '-13px'}" [(value)]="dsoBase" (loadData)="gridKontakteLoadData($event)" (rowDoubleClick)="gridKontakteRowDoubleClick($event)" (rowSelect)="gridKontakteRowSelect($event)">
+          <rz-panel #panel0 [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="{{rstBaseCount}} Kontakte">
+            <rz-grid #gridKontakte [allowAdd]="false" [allowColumnReorder]="false" [allowColumnResize]="true" [allowDelete]="false" [allowFiltering]="true" [allowMultiSorting]="false" [allowPaging]="false" [allowSorting]="true" [alwaysShowPager]="false" applyFilterText="Apply" clearFilterText="Clear" columnResizeMode="fit" columnWidth="auto" [confirmDelete]="false" containsText="Contains" [count]="rstBaseCount" [data]="rstBase" emptyText="Keine Kontakte vorhanden" endsWithText="Ends with" equalsText="Equals" filterCaseSensitivity="caseInsensitive" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="22" [responsive]="true" startsWithText="Starts with" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'height': '700px', 'marginLeft': '-10px', 'marginRight': '-10px', 'marginTop': '-13px'}" [(value)]="dsoBase" (loadData)="gridKontakteLoadData($event)" (rowDoubleClick)="gridKontakteRowDoubleClick($event)" (rowSelect)="gridKontakteRowSelect($event)">
               <rz-grid-column property="Name1" title="Name" width="120px" type="string">
               </rz-grid-column>
               <rz-grid-column property="Name2" title="Vorname" width="100px" type="string">
@@ -41,11 +41,11 @@
             <rz-panel-header>
               <div class="row">
                 <div class="col-md-12 align-items-start d-flex">
-                  <rz-button #buttonNeu icon="add" size="sm" [style]="{'marginRight': ''}" text="Neuer Kontakt" (click)="buttonNeuClick($event)">
+                  <rz-button #buttonNeu buttonStyle="light" icon="add" size="sm" [style]="{'color': '#D86E13', 'display': 'flex', 'marginRight': ''}" text="&nbsp;Neuer Kontakt" (click)="buttonNeuClick($event)">
                   </rz-button>
-                  <rz-button #buttonBearbeiten buttonStyle="light" icon="create" size="sm" [style]="{'color': '#ff6d41', 'marginLeft': '10px', 'paddingLeft': ''}" tooltip="Bearbeiten Kontakt" (click)="buttonBearbeitenClick($event)">
+                  <rz-button #buttonBearbeiten buttonStyle="light" icon="create" size="sm" [style]="{'color': '#D86E13', 'marginLeft': '10px', 'paddingLeft': ''}" tooltip="Bearbeiten Kontakt" (click)="buttonBearbeitenClick($event)">
                   </rz-button>
-                  <rz-button #buttonLoeschen buttonStyle="light" [disabled]="false" icon="clear" size="sm" [style]="{'color': '#f9777f', 'fontWeight': 'normal', 'marginLeft': '10px', 'marginRight': '-9px', 'paddingLeft': ''}" tooltip="Löschen Kontakt" (click)="buttonLoeschenClick($event)">
+                  <rz-button #buttonLoeschen buttonStyle="light" [disabled]="false" icon="clear" size="sm" [style]="{'color': '#D86E13', 'fontWeight': 'normal', 'marginLeft': '10px', 'marginRight': '-9px', 'paddingLeft': ''}" tooltip="Löschen Kontakt" (click)="buttonLoeschenClick($event)">
                   </rz-button>
                 </div>
               </div>
@@ -57,11 +57,11 @@
     <rz-tabs-item [disabled]="false" [selected]="false" text="Details">
       <div class="row">
         <div class="col-md-4">
-          <rz-panel #panel2 [allowCollapse]="false" [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="{{dsoBase?.Name1}} {{dsoBase?.Name2}} | {{dsoBase?.NameKuerzel}}">
+          <rz-panel #panel2 [allowCollapse]="false" [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="{{dsoBase?.Name1}} {{dsoBase?.Name2}} · {{dsoBase?.NameKuerzel}}">
             <rz-template-form #templateFormKontakte [style]="{}">
               <div [ngStyle]="{'marginBottom': '4px'}" class="row">
                 <div class="col-md-3" [ngStyle]="{'paddingLeft': '0'}">
-                  <rz-label #label7 component="AnredeID" [style]="{'width': '100%'}" text="Anrede">
+                  <rz-label #label7 component="AnredeID" [style]="{'textAlign': 'left', 'width': '100%'}" text="Anrede">
                   </rz-label>
                 </div>
                 <div class="col-md-5" [ngStyle]="{'paddingRight': '0'}">
@@ -71,9 +71,9 @@
               </div>
               <div [ngStyle]="{'marginBottom': '10px'}" class="row">
                 <div class="col-md-3" [ngStyle]="{'paddingLeft': '0'}">
-                  <rz-label #label8 component="Name1" [style]="{'display': 'block', 'width': '100%'}" text="Name">
+                  <rz-label #label8 component="Name1" [style]="{'display': 'block', 'textAlign': 'left', 'width': '100%'}" text="Name">
                   </rz-label>
-                  <rz-required-validator #requiredValidator0 [component]="name1" [style]="{'position': 'absolute'}" text="Name ist erforderlich">
+                  <rz-required-validator #requiredValidator0 [component]="name1" [style]="{'position': 'absolute', 'textAlign': 'left', 'width': '100%'}" text="Name erforderlich">
                   </rz-required-validator>
                 </div>
                 <div class="col-md-9" [ngStyle]="{'display': 'block', 'paddingRight': '0'}">
@@ -83,9 +83,9 @@
               </div>
               <div [ngStyle]="{'marginBottom': '10px'}" class="row">
                 <div class="col-md-3" [ngStyle]="{'paddingLeft': '0'}">
-                  <rz-label #label18 component="Name2" [style]="{'display': 'block', 'width': '100%'}" text="Vorname">
+                  <rz-label #label18 component="Name2" [style]="{'display': 'block', 'textAlign': 'left', 'width': '100%'}" text="Vorname">
                   </rz-label>
-                  <rz-required-validator #requiredValidator2 [component]="name2" [style]="{'position': 'absolute'}" text="Vorname ist erforderlich">
+                  <rz-required-validator #requiredValidator2 [component]="name2" [style]="{'position': 'absolute', 'textAlign': 'left', 'width': '100%'}" text="Vorname erforderlich">
                   </rz-required-validator>
                 </div>
                 <div class="col-md-9" [ngStyle]="{'display': 'block', 'paddingRight': '0'}">
@@ -95,9 +95,9 @@
               </div>
               <div [ngStyle]="{'marginBottom': '10px'}" class="row">
                 <div class="col-md-3" [ngStyle]="{'paddingLeft': '0'}">
-                  <rz-label #label9 component="NameKuerzel" [style]="{'display': 'block', 'width': '100%'}" text="Kürzel">
+                  <rz-label #label9 component="NameKuerzel" [style]="{'display': 'block', 'textAlign': 'left', 'width': '100%'}" text="Kürzel">
                   </rz-label>
-                  <rz-required-validator #requiredValidator1 [component]="nameKuerzel" [style]="{'position': 'absolute'}" text="Kürzel ist erforderlich">
+                  <rz-required-validator #requiredValidator1 [component]="nameKuerzel" [style]="{'position': 'absolute', 'textAlign': 'left', 'width': '100%'}" text="Kürzel erforderlich">
                   </rz-required-validator>
                 </div>
                 <div class="col-md-9" [ngStyle]="{'display': 'block', 'paddingRight': '0'}">
@@ -107,7 +107,7 @@
               </div>
               <div [ngStyle]="{'marginBottom': '10px'}" class="row">
                 <div class="col-md-3" [ngStyle]="{'paddingLeft': '0'}">
-                  <rz-label #label10 [style]="{'width': '100%'}" text="Titel">
+                  <rz-label #label10 [style]="{'textAlign': 'left', 'width': '100%'}" text="Titel">
                   </rz-label>
                 </div>
                 <div class="col-md-5" [ngStyle]="{'display': 'block', 'paddingRight': '0'}">
@@ -121,7 +121,7 @@
               </div>
               <div [ngStyle]="{'marginBottom': '10px'}" class="row">
                 <div class="col-md-3" [ngStyle]="{'paddingLeft': '0'}">
-                  <rz-label #label11 component="Strasse" [style]="{'width': '100%'}" text="Strasse">
+                  <rz-label #label11 component="Strasse" [style]="{'textAlign': 'left', 'width': '100%'}" text="Strasse">
                   </rz-label>
                 </div>
                 <div class="col-md-9" [ngStyle]="{'paddingRight': '0px'}">
@@ -130,22 +130,22 @@
                 </div>
               </div>
               <div [ngStyle]="{'marginBottom': '10px'}" class="row">
-                <div class="col-md-3" [ngStyle]="{'paddingLeft': '0'}">
-                  <rz-label #label12 [style]="{'width': '100%'}" text="PLZ | Ort">
+                <div class="col-md-3" [ngStyle]="{'paddingLeft': '0', 'textAlign': 'right'}">
+                  <rz-label #label12 [style]="{'textAlign': 'left', 'width': '100%'}" text="PLZ | Ort">
                   </rz-label>
                 </div>
-                <div class="col-md-5" [ngStyle]="{'display': 'block', 'paddingRight': '0'}">
+                <div class="col-md-3" [ngStyle]="{'display': 'block', 'paddingRight': '0'}">
                   <rz-textbox #plz [maxLength]="10" [style]="{'width': '100%'}" [(ngModel)]="dsoBase && dsoBase.PLZ" name="PLZ">
                   </rz-textbox>
                 </div>
-                <div class="col-md-4" [ngStyle]="{'paddingRight': '0'}">
+                <div class="col-md-6" [ngStyle]="{'paddingRight': '0'}">
                   <rz-textbox #ort [maxLength]="100" [style]="{'width': '100%'}" [(ngModel)]="dsoBase && dsoBase.Ort" name="Ort">
                   </rz-textbox>
                 </div>
               </div>
               <div [ngStyle]="{'marginBottom': '10px'}" class="row">
                 <div class="col-md-3" [ngStyle]="{'paddingLeft': '0'}">
-                  <rz-label #label13 [style]="{'width': '100%'}" text="Telefon 1">
+                  <rz-label #label13 [style]="{'textAlign': 'left', 'width': '100%'}" text="Telefon 1">
                   </rz-label>
                 </div>
                 <div class="col-md-9" [ngStyle]="{'display': 'block', 'paddingRight': '0'}">
@@ -155,7 +155,7 @@
               </div>
               <div [ngStyle]="{'marginBottom': '10px'}" class="row">
                 <div class="col-md-3" [ngStyle]="{'paddingLeft': '0'}">
-                  <rz-label #label14 [style]="{'width': '100%'}" text="Telefon 2">
+                  <rz-label #label14 [style]="{'textAlign': 'left', 'width': '100%'}" text="Telefon 2">
                   </rz-label>
                 </div>
                 <div class="col-md-9" [ngStyle]="{'display': 'block', 'paddingRight': '0'}">
@@ -165,7 +165,7 @@
               </div>
               <div [ngStyle]="{'marginBottom': '10px'}" class="row">
                 <div class="col-md-3" [ngStyle]="{'paddingLeft': '0'}">
-                  <rz-label #label15 [style]="{'width': '100%'}" text="E-Mail 1">
+                  <rz-label #label15 [style]="{'textAlign': 'left', 'width': '100%'}" text="E-Mail 1">
                   </rz-label>
                 </div>
                 <div class="col-md-9" [ngStyle]="{'display': 'block', 'paddingRight': '0'}">
@@ -175,7 +175,7 @@
               </div>
               <div [ngStyle]="{'marginBottom': '10px'}" class="row">
                 <div class="col-md-3" [ngStyle]="{'paddingLeft': '0'}">
-                  <rz-label #label16 [style]="{'width': '100%'}" text="E-Mail 2">
+                  <rz-label #label16 [style]="{'textAlign': 'left', 'width': '100%'}" text="E-Mail 2">
                   </rz-label>
                 </div>
                 <div class="col-md-9" [ngStyle]="{'display': 'block', 'paddingRight': '0'}">
@@ -184,12 +184,12 @@
                 </div>
               </div>
               <div [ngStyle]="{'marginBottom': '4px'}" class="row">
-                <div class="col-md-3" [ngStyle]="{'paddingLeft': '0'}">
-                  <rz-label #label19 component="Info" [style]="{'width': '100%'}" text="Notiz">
+                <div class="col-md-3" [ngStyle]="{'paddingLeft': '0', 'textAlign': 'right'}">
+                  <rz-label #label19 component="Info" [style]="{'textAlign': 'left', 'width': '100%'}" text="Notiz">
                   </rz-label>
                 </div>
                 <div class="col-md-9" [ngStyle]="{'paddingRight': '0'}">
-                  <rz-textarea #notiz [rows]="4" [style]="{'height': '171px', 'width': '100%'}" [(ngModel)]="dsoBase && dsoBase.Notiz" name="Notiz">
+                  <rz-textarea #notiz [rows]="4" [style]="{'height': '172px', 'width': '100%'}" [(ngModel)]="dsoBase && dsoBase.Notiz" name="Notiz">
                   </rz-textarea>
                 </div>
               </div>
@@ -201,7 +201,7 @@
             <rz-panel-header>
               <div class="row">
                 <div class="col-md-12 align-items-start d-flex">
-                  <rz-button #button4 buttonStyle="success" buttonType="submit" icon="save" size="sm" [style]="{'marginRight': '-9px'}" text="Speichern" (click)="button4Click($event)">
+                  <rz-button #button4 buttonStyle="light" buttonType="submit" icon="done" size="sm" [style]="{'color': '#D86E13', 'display': 'flex', 'marginRight': '-9px'}" text="&nbsp;Speichern" (click)="button4Click($event)">
                   </rz-button>
                 </div>
               </div>
@@ -210,10 +210,10 @@
         </div>
         <div class="col-md-4" [ngStyle]="{'paddingLeft': '5px'}">
           <rz-panel #panel3 [style]="{'border': '1px solid #e6ecef', 'height': '360px'}" text="Anmeldedaten">
-            <rz-template-form #formBenutzer>
+            <rz-template-form #formBenutzer [style]="{'paddingTop': '1px'}">
               <div [ngStyle]="{'marginBottom': '10px'}" class="row">
                 <div class="col-md-3" [ngStyle]="{'paddingLeft': '0'}">
-                  <rz-label #benutzernameLabel component="Benutzername" [style]="{'width': '100%'}" text="Benutzername">
+                  <rz-label #benutzernameLabel component="Benutzername" [style]="{'textAlign': 'left', 'width': '100%'}" text="Benutzername">
                   </rz-label>
                 </div>
                 <div class="col-md-9" [ngStyle]="{'paddingRight': '0'}">
@@ -223,7 +223,7 @@
               </div>
               <div [ngStyle]="{'marginBottom': '10px'}" class="row">
                 <div class="col-md-3" [ngStyle]="{'paddingLeft': '0'}">
-                  <rz-label #initialenLabel component="Initialen" [style]="{'width': '100%'}" text="Initialen">
+                  <rz-label #initialenLabel component="Initialen" [style]="{'textAlign': 'left', 'width': '100%'}" text="Initialen">
                   </rz-label>
                 </div>
                 <div class="col-md-9" [ngStyle]="{'paddingRight': '0'}">
@@ -233,7 +233,7 @@
               </div>
               <div [ngStyle]="{'marginBottom': '10px'}" class="row">
                 <div class="col-md-3" [ngStyle]="{'paddingLeft': '0'}">
-                  <rz-label #benutzerEMailLabel component="BenutzerEMail" [style]="{'width': '100%'}" text="E-Mail">
+                  <rz-label #benutzerEMailLabel component="BenutzerEMail" [style]="{'textAlign': 'left', 'width': '100%'}" text="E-Mail">
                   </rz-label>
                 </div>
                 <div class="col-md-9" [ngStyle]="{'paddingRight': '0'}">
@@ -243,7 +243,7 @@
               </div>
               <div [ngStyle]="{'marginBottom': '10px'}" class="row">
                 <div class="col-md-3" [ngStyle]="{'paddingLeft': '0'}">
-                  <rz-label #notizLabel component="Notiz" [style]="{'width': '100%'}" text="Notiz">
+                  <rz-label #notizLabel component="Notiz" [style]="{'textAlign': 'left', 'width': '100%'}" text="Notiz">
                   </rz-label>
                 </div>
                 <div class="col-md-9" [ngStyle]="{'paddingRight': '0'}">
@@ -258,7 +258,7 @@
         </div>
         <div class="col-md-4" [ngStyle]="{'paddingLeft': '5px'}">
           <rz-panel #bild [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="Profilbild">
-            <div [ngStyle]="{'marginBottom': '15px', 'marginTop': '-5px'}" class="row">
+            <div [ngStyle]="{'marginBottom': '15px'}" class="row">
               <div class="col-md-5">
                 <rz-image #bildUrl [path]="dsoBase?.BildURL" [style]="{'backgroundColor': 'rgba(0, 0, 0, 0)', 'border': '1px solid #dbdfe2', 'borderRadius': '4px', 'width': '120px'}">
                 </rz-image>
@@ -275,7 +275,7 @@
             <rz-panel-header>
               <div class="row">
                 <div class="col-md-12 align-items-start d-flex">
-                  <rz-button #buttonBildEntfernen buttonStyle="light" icon="phonelink_erase" size="sm" [style]="{'color': '#ff6d41', 'marginRight': '-9px'}" text="Bild entfernen" (click)="buttonBildEntfernenClick($event)">
+                  <rz-button #buttonBildEntfernen buttonStyle="light" icon="phonelink_erase" size="sm" [style]="{'color': '#D86E13', 'display': 'flex', 'marginRight': '-9px'}" text="&nbsp;Bild entfernen" (click)="buttonBildEntfernenClick($event)">
                   </rz-button>
                 </div>
               </div>

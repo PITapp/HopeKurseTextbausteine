@@ -8284,7 +8284,7 @@ p-radiobutton,
 }
 
 .ui-dropdown-item:hover, .ui-menuitem:hover, .ui-autocomplete-list-item:hover, .ui-multiselect-item:hover, .ui-dropdown-items li:hover, .ui-autocomplete-items li:hover, .ui-multiselect-items li:hover, .ui-dropdown-items li:hover, .ui-autocomplete-items li:hover, .ui-multiselect-items li:hover, .ui-multiselect-items li:hover {
-  background-color: #EAECEF;
+  background-color: #EFF1F8;
   color: #212529;
   border-radius: 0;
 }
@@ -8361,7 +8361,7 @@ p-radiobutton,
 }
 
 .ui-listbox:not(.ui-state-disabled) .ui-listbox-item:hover:hover {
-  background-color: #EAECEF;
+  background-color: #EFF1F8;
   color: #212529;
   border-radius: 4px;
 }
@@ -8445,7 +8445,7 @@ p-radiobutton,
 }
 
 .ui-picklist:not(.ui-state-disabled) .ui-picklist-item:hover:hover {
-  background-color: #EAECEF;
+  background-color: #EFF1F8;
   color: #212529;
   border-radius: 4px;
 }
@@ -9603,7 +9603,7 @@ p-radiobutton,
 
 .ui-selectable .ui-datatable-even:hover:not(.ui-state-highlight) > td,
 .ui-selectable .ui-datatable-odd:hover:not(.ui-state-highlight) > td {
-  background-color: #EAECEF;
+  background-color: #EFF1F8;
 }
 
 .ui-selectable .ui-datatable-even:hover:not(.ui-state-highlight) .ui-cell-data,
@@ -9638,7 +9638,7 @@ p-radiobutton,
 
 .ui-expanded-row > td {
   border-bottom: none;
-  background-color: #EAECEF;
+  background-color: #EFF1F8;
 }
 
 .ui-expanded-row > td .ui-cell-data,
@@ -12104,7 +12104,7 @@ a.fc-event .fc-content {
 }
 
 .rz-html-editor-dropdown-item:hover {
-  background-color: #EAECEF;
+  background-color: #EFF1F8;
   color: #212529;
   border-radius: 0;
 }

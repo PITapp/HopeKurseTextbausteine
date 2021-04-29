@@ -183,11 +183,11 @@ export class KontakteGenerated implements AfterViewInit, OnInit, OnDestroy {
     this.dbHopeKurseTextbausteine.getBaseAnredens(null, null, null, null, null, null, null, null)
     .subscribe((result: any) => {
       this.rstBaseAnreden = result.value;
+
+      this.gridKontakte.load();
     }, (result: any) => {
 
     });
-
-    this.gridKontakte.load();
   }
 
   gridKontakteLoadData(event: any) {

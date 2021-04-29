@@ -54,7 +54,7 @@
                               "style": {
                                 "position": "absolute"
                               },
-                              "text": "Kurs ist erforderlich",
+                              "text": "Kurs erforderlich",
                               "type": "required-validator"
                             }
                           ],
@@ -100,7 +100,7 @@
                               "style": {
                                 "position": "absolute"
                               },
-                              "text": "Nummer ist erforderlich",
+                              "text": "Nummer erforderlich",
                               "type": "required-validator"
                             }
                           ],
@@ -346,7 +346,7 @@
                             {
                               "buttonStyle": "success",
                               "buttonType": "submit",
-                              "icon": "save",
+                              "icon": "done",
                               "text": "Speichern",
                               "type": "button"
                             },

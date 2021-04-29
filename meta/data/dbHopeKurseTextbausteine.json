@@ -957,6 +957,7 @@
       "x-table": "def.vwBenutzerRollen",
       "resource": "VwBenutzerRollens",
       "required": [
+        "AspNetUsers_Id",
         "BaseID",
         "Benutzername",
         "RoleId"
@@ -967,19 +968,16 @@
           "x-nullable": false,
           "type": "integer"
         },
-        "BaseID": {
+        "AspNetUsers_Id": {
           "x-nullable": false,
-          "type": "integer",
+          "type": "string",
+          "length": 255,
           "x-key": true,
           "x-virtual": true
         },
-        "Name1": {
-          "type": "string",
-          "length": 100
-        },
-        "Name2": {
-          "type": "string",
-          "length": 30
+        "BaseID": {
+          "x-nullable": false,
+          "type": "integer"
         },
         "Benutzername": {
           "x-nullable": false,
@@ -994,12 +992,45 @@
           "type": "string",
           "length": 200
         },
+        "Notiz": {
+          "type": "string",
+          "length": 65535
+        },
+        "FilterTextbausteinArtCode": {
+          "type": "string",
+          "length": 3
+        },
+        "FilterKursNr": {
+          "type": "integer"
+        },
+        "FilterTitelUndText": {
+          "type": "string",
+          "length": 255
+        },
+        "FilterAutorNr": {
+          "type": "integer"
+        },
+        "FilterThemaNummer": {
+          "type": "integer"
+        },
+        "FilterAnrede": {
+          "type": "string",
+          "length": 5
+        },
+        "FilterDokument": {
+          "type": "string",
+          "length": 20
+        },
+        "FilterInfo": {
+          "type": "string",
+          "length": 255
+        },
         "RoleId": {
           "x-nullable": false,
           "type": "string",
           "length": 255
         },
-        "Benutzerrolle": {
+        "RolleTitel": {
           "type": "string",
           "length": 256
         }

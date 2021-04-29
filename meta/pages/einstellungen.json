@@ -45,7 +45,7 @@
                     "fontSize": "21px",
                     "fontWeight": "normal"
                   },
-                  "text": "Grundeinstellungen in Modulen",
+                  "text": "Grundeinstellungen für Module",
                   "type": "heading"
                 }
               ],
@@ -234,6 +234,7 @@
                                   "class": "col-md-12 align-items-start d-flex",
                                   "components": [
                                     {
+                                      "buttonStyle": "light",
                                       "events": {
                                         "click": [
                                           {
@@ -264,8 +265,12 @@
                                       "icon": "add",
                                       "name": "button0",
                                       "size": "sm",
-                                      "style": {},
-                                      "text": "Neuer Infotext",
+                                      "style": {
+                                        "color": "#D86E13",
+                                        "display": "flex"
+                                      },
+                                      "text": "&nbsp;Neuer Infotext",
+                                      "tooltip": "",
                                       "type": "button"
                                     },
                                     {
@@ -295,7 +300,7 @@
                                       "name": "buttonBearbeiten",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#ff6d41",
+                                        "color": "#D86E13",
                                         "marginLeft": "10px",
                                         "paddingLeft": ""
                                       },
@@ -359,7 +364,7 @@
                                       "name": "buttonLoeschen",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#f9777f",
+                                        "color": "#D86E13",
                                         "fontWeight": "normal",
                                         "marginLeft": "10px",
                                         "marginRight": "-9px",
@@ -384,7 +389,7 @@
                             "border": "1px solid #e6ecef",
                             "height": "750px"
                           },
-                          "text": " ${dsoInfotexte.Titel}",
+                          "text": "${rstInfotexteCount} Infotexte",
                           "type": "panel"
                         }
                       ],
@@ -428,7 +433,7 @@
                                   "class": "col-md-12 align-items-start d-flex",
                                   "components": [
                                     {
-                                      "buttonStyle": "success",
+                                      "buttonStyle": "light",
                                       "buttonType": "submit",
                                       "events": {
                                         "click": [
@@ -466,13 +471,15 @@
                                           }
                                         ]
                                       },
-                                      "icon": "save",
+                                      "icon": "done",
                                       "name": "button4",
                                       "size": "sm",
                                       "style": {
+                                        "color": "\n#D86E13",
+                                        "display": "flex",
                                         "marginRight": "-9px"
                                       },
-                                      "text": "Speichern",
+                                      "text": "&nbsp;Speichern",
                                       "tooltip": "",
                                       "type": "button"
                                     }
@@ -490,7 +497,7 @@
                             "border": "1px solid #e6ecef",
                             "height": "750px"
                           },
-                          "text": "Infotext für: ${dsoInfotexte.Titel}",
+                          "text": "${dsoInfotexte.Titel}",
                           "type": "panel"
                         }
                       ],

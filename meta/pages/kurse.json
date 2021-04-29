@@ -45,7 +45,7 @@
                     "fontSize": "21px",
                     "fontWeight": "normal"
                   },
-                  "text": "${dsoKurse.Titel}",
+                  "text": "{{dsoKurse?.Titel}}\n{{dsoKurse?.Untertitel ? ' · ' + dsoKurse?.Untertitel : ''}}",
                   "type": "heading"
                 }
               ],
@@ -81,12 +81,12 @@
                         {
                           "components": [
                             {
-                              "addText": "Add",
+                              "addText": "",
                               "allowAdd": false,
-                              "allowDelete": true,
+                              "allowDelete": false,
                               "allowFiltering": true,
                               "allowMultiSorting": false,
-                              "allowPaging": true,
+                              "allowPaging": false,
                               "allowSorting": true,
                               "applyFilterText": "Apply",
                               "clearFilterText": "Clear",
@@ -147,55 +147,13 @@
                                   "title": "Onlinekurs",
                                   "type": "string",
                                   "width": "100px"
-                                },
-                                {
-                                  "filterable": false,
-                                  "sortable": false,
-                                  "template": [
-                                    {
-                                      "buttonStyle": "light",
-                                      "events": {
-                                        "click": [
-                                          {
-                                            "code": "${this.gridKurse.onSelect(data)}",
-                                            "type": "execute"
-                                          },
-                                          {
-                                            "parameters": [
-                                              {
-                                                "name": "KursNr",
-                                                "value": "${data.KursNr}"
-                                              }
-                                            ],
-                                            "path": "kurse-bearbeiten",
-                                            "then": [
-                                              {
-                                                "code": "${this.gridKurse.onSelect(data)}",
-                                                "condition": "${result} != null",
-                                                "type": "execute"
-                                              }
-                                            ],
-                                            "title": "Bearbeiten Kurs",
-                                            "type": "popup"
-                                          }
-                                        ]
-                                      },
-                                      "icon": "edit",
-                                      "name": "editButtonKurse",
-                                      "size": "sm",
-                                      "text": "",
-                                      "type": "button"
-                                    }
-                                  ],
-                                  "textAlign": "center",
-                                  "width": "75px"
                                 }
                               ],
-                              "confirmDelete": true,
-                              "confirmDeleteCancelText": "Abbruch",
-                              "confirmDeleteOkText": "Löschen",
-                              "confirmDeleteText": "Bist du sicher, dass dieser Kurs gelöscht werden soll?",
-                              "confirmDeleteTitle": "Löschen Kurs",
+                              "confirmDelete": false,
+                              "confirmDeleteCancelText": "",
+                              "confirmDeleteOkText": "",
+                              "confirmDeleteText": "",
+                              "confirmDeleteTitle": "",
                               "containsText": "Contains",
                               "count": "${rstKurseCount}",
                               "data": "${rstKurse}",
@@ -204,41 +162,14 @@
                               "equalsText": "Equals",
                               "events": {
                                 "add": [],
-                                "delete": [
-                                  {
-                                    "error": [
-                                      {
-                                        "detail": "",
-                                        "severity": "error",
-                                        "summary": "Kurs konnte nicht gelöscht werden!",
-                                        "type": "notify"
-                                      }
-                                    ],
-                                    "name": "dbHopeKurseTextbausteine.deleteIbsiKurse",
-                                    "parameters": [
-                                      {
-                                        "name": "KursNr",
-                                        "value": "${event.KursNr}"
-                                      }
-                                    ],
-                                    "then": [
-                                      {
-                                        "detail": "",
-                                        "severity": "success",
-                                        "summary": "Kurs erfolgreich gelöscht",
-                                        "type": "notify"
-                                      }
-                                    ],
-                                    "type": "invoke"
-                                  }
-                                ],
+                                "delete": [],
                                 "loadData": [
                                   {
                                     "error": [
                                       {
-                                        "detail": "",
+                                        "detail": "Kurse können nicht geladen werden!",
                                         "severity": "error",
-                                        "summary": "Kurse konnten nicht geladen werden!",
+                                        "summary": "",
                                         "type": "notify"
                                       }
                                     ],
@@ -281,15 +212,32 @@
                                         "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
                                       },
                                       {
-                                        "code": "${this.gridKurse.onSelect(result.value[0])}",
-                                        "condition": "result.value.length && !this.gridKurse.value",
+                                        "code": "if (this.rstKurse.find(p => p.KursNr == this.letzteKursNr) != null) {\n    // letzteKursNr wurde in rstKurse gefunden\n    this.gridKurse.onSelect(this.rstKurse.find(p => p.KursNr == this.letzteKursNr));\n} else {\n    // letzteKursNr wurde in rstKursNr NICHT gefunden\n    this.letzteKursNr = null;\n    this.gridKurse.onSelect(this.rstKurse[0]);\n}",
+                                        "condition": "",
                                         "type": "execute"
                                       }
                                     ],
                                     "type": "invoke"
                                   }
                                 ],
-                                "rowDoubleClick": [],
+                                "rowDoubleClick": [
+                                  {
+                                    "name": "letzteKursNr",
+                                    "type": "set",
+                                    "value": "${dsoKurse.KursNr}"
+                                  },
+                                  {
+                                    "parameters": [
+                                      {
+                                        "name": "KursNr",
+                                        "value": "${event.KursNr}"
+                                      }
+                                    ],
+                                    "path": "kurse-bearbeiten",
+                                    "title": "Bearbeiten Kurs",
+                                    "type": "popup"
+                                  }
+                                ],
                                 "rowSelect": [
                                   {
                                     "name": "dsoKurse",
@@ -297,42 +245,8 @@
                                     "value": "${event}"
                                   },
                                   {
-                                    "name": "dbHopeKurseTextbausteine.getIbsiKurseThemens",
-                                    "parameters": [
-                                      {
-                                        "name": "$filter",
-                                        "value": "KursNr eq ${event.KursNr}"
-                                      },
-                                      {
-                                        "name": "$top",
-                                        "value": "event.top"
-                                      },
-                                      {
-                                        "name": "$skip",
-                                        "value": "event.skip"
-                                      },
-                                      {
-                                        "name": "$count",
-                                        "value": "event.top != null && event.skip != null"
-                                      },
-                                      {
-                                        "name": "$orderby",
-                                        "value": "${event.orderby || 'Nummer'}"
-                                      }
-                                    ],
-                                    "then": [
-                                      {
-                                        "name": "rstKurseThemen",
-                                        "type": "set",
-                                        "value": "${result.value}"
-                                      },
-                                      {
-                                        "name": "rstKurseThemenCount",
-                                        "type": "set",
-                                        "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
-                                      }
-                                    ],
-                                    "type": "invoke"
+                                    "code": "this.gridKurseThemen.load();",
+                                    "type": "execute"
                                   }
                                 ]
                               },
@@ -343,7 +257,7 @@
                               "lessThanText": "Less than",
                               "name": "gridKurse",
                               "notEqualsText": "Not equals",
-                              "pageSize": 15,
+                              "pageSize": 22,
                               "startsWithText": "Starts with",
                               "style": {
                                 "border": "1px solid rgba(0, 0, 0, 0)",
@@ -359,20 +273,33 @@
                           ],
                           "headerTemplate": [
                             {
+                              "class": "",
                               "components": [
                                 {
                                   "class": "col-md-12 align-items-start d-flex",
                                   "components": [
                                     {
+                                      "buttonStyle": "light",
                                       "events": {
                                         "click": [
                                           {
-                                            "parameters": [],
+                                            "name": "letzteKursNr",
+                                            "type": "set",
+                                            "value": "${dsoKurse.KursNr}"
+                                          },
+                                          {
                                             "path": "kurse-neu",
                                             "then": [
                                               {
+                                                "condition": "${result} != null",
+                                                "name": "letzteKursNr",
+                                                "type": "set",
+                                                "value": "${result.KursNr}"
+                                              },
+                                              {
                                                 "code": "this.gridKurse.load();",
                                                 "condition": "${result} != null",
+                                                "then": [],
                                                 "type": "execute"
                                               }
                                             ],
@@ -382,12 +309,116 @@
                                         ]
                                       },
                                       "icon": "add",
-                                      "name": "button0",
+                                      "name": "buttonNeu",
                                       "size": "sm",
                                       "style": {
-                                        "marginRight": "-9px"
+                                        "color": "#D86E13",
+                                        "display": "flex",
+                                        "marginRight": ""
                                       },
-                                      "text": "Neuer Kurs",
+                                      "text": "&nbsp;Neuer Kurs",
+                                      "tooltip": "",
+                                      "type": "button"
+                                    },
+                                    {
+                                      "buttonStyle": "light",
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "name": "letzteKursNr",
+                                            "type": "set",
+                                            "value": "${dsoKurse.KursNr}"
+                                          },
+                                          {
+                                            "parameters": [
+                                              {
+                                                "name": "KursNr",
+                                                "value": "${dsoKurse.KursNr}"
+                                              }
+                                            ],
+                                            "path": "kurse-bearbeiten",
+                                            "then": [],
+                                            "title": "Bearbeiten Kurs",
+                                            "type": "popup"
+                                          }
+                                        ]
+                                      },
+                                      "icon": "create",
+                                      "name": "buttonBearbeiten",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#D86E13",
+                                        "marginLeft": "10px",
+                                        "paddingLeft": ""
+                                      },
+                                      "text": "",
+                                      "tooltip": "Bearbeiten Kontakt",
+                                      "type": "button"
+                                    },
+                                    {
+                                      "buttonStyle": "light",
+                                      "disabled": false,
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "name": "letzteKursNr",
+                                            "type": "set",
+                                            "value": "null"
+                                          },
+                                          {
+                                            "parameters": [
+                                              {
+                                                "name": "strMeldung",
+                                                "value": "\"Soll der Kurs '\" + ${dsoKurse.Titel} + \"' gelöscht werden?\""
+                                              }
+                                            ],
+                                            "path": "meldung-loeschen",
+                                            "then": [
+                                              {
+                                                "condition": "${result} == 'Löschen'",
+                                                "error": [
+                                                  {
+                                                    "detail": "Kurs konnte nicht gelöscht werden!",
+                                                    "severity": "error",
+                                                    "summary": "",
+                                                    "type": "notify"
+                                                  }
+                                                ],
+                                                "name": "dbHopeKurseTextbausteine.deleteIbsiKurse",
+                                                "parameters": [
+                                                  {
+                                                    "name": "KursNr",
+                                                    "value": "${dsoKurse.KursNr}"
+                                                  }
+                                                ],
+                                                "then": [
+                                                  {
+                                                    "detail": "Kurs gelöscht",
+                                                    "severity": "success",
+                                                    "summary": "",
+                                                    "type": "notify"
+                                                  }
+                                                ],
+                                                "type": "invoke"
+                                              }
+                                            ],
+                                            "title": "Löschen Kurs",
+                                            "type": "popup"
+                                          }
+                                        ]
+                                      },
+                                      "icon": "clear",
+                                      "name": "buttonLoeschen",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#D86E13",
+                                        "fontWeight": "normal",
+                                        "marginLeft": "10px",
+                                        "marginRight": "-9px",
+                                        "paddingLeft": ""
+                                      },
+                                      "text": "",
+                                      "tooltip": "Löschen Kontakt",
                                       "type": "button"
                                     }
                                   ],
@@ -395,7 +426,7 @@
                                   "type": "col"
                                 }
                               ],
-                              "name": "row0",
+                              "name": "row1",
                               "type": "row"
                             }
                           ],
@@ -419,7 +450,7 @@
                           "collapsed": false,
                           "components": [
                             {
-                              "addText": "Add",
+                              "addText": "",
                               "allowAdd": false,
                               "allowDelete": false,
                               "allowFiltering": true,
@@ -446,11 +477,11 @@
                                   "width": "35%"
                                 }
                               ],
-                              "confirmDelete": true,
-                              "confirmDeleteCancelText": "Cancel",
-                              "confirmDeleteOkText": "Ok",
-                              "confirmDeleteText": "Are you sure you want to delete this record?",
-                              "confirmDeleteTitle": "Confirmation",
+                              "confirmDelete": false,
+                              "confirmDeleteCancelText": "",
+                              "confirmDeleteOkText": "",
+                              "confirmDeleteText": "",
+                              "confirmDeleteTitle": "",
                               "containsText": "Contains",
                               "count": "${rstKurseThemenCount}",
                               "data": "${rstKurseThemen}",
@@ -469,9 +500,9 @@
                               "isLoading": "",
                               "lessThanOrEqualsText": "Less than or equals",
                               "lessThanText": "Less than",
-                              "name": "gridKurseThemen",
+                              "name": "gridKurseThemenListe",
                               "notEqualsText": "Not equals",
-                              "pageSize": 100,
+                              "pageSize": 22,
                               "startsWithText": "Starts with",
                               "style": {
                                 "border": "1px solid rgba(0, 0, 0, 0)",
@@ -492,7 +523,7 @@
                             "border": "1px solid #e6ecef",
                             "height": "750px"
                           },
-                          "text": "${rstKurseThemenCount} Themen im Kurs: ${dsoKurse.Titel}",
+                          "text": "${rstKurseThemenCount} Themen",
                           "type": "panel"
                         }
                       ],
@@ -521,9 +552,9 @@
                   "collapsed": false,
                   "components": [
                     {
-                      "addText": "Add",
+                      "addText": "",
                       "allowAdd": false,
-                      "allowDelete": true,
+                      "allowDelete": false,
                       "allowFiltering": true,
                       "allowMultiSorting": false,
                       "allowPaging": true,
@@ -580,48 +611,13 @@
                           "title": "Notizen",
                           "type": "string",
                           "width": "20%"
-                        },
-                        {
-                          "filterable": false,
-                          "sortable": false,
-                          "template": [
-                            {
-                              "buttonStyle": "light",
-                              "events": {
-                                "click": [
-                                  {
-                                    "code": "${this.gridKurseThemen2.onSelect(data)}",
-                                    "type": "execute"
-                                  },
-                                  {
-                                    "parameters": [
-                                      {
-                                        "name": "KursThemaNr",
-                                        "value": "${data.KursThemaNr}"
-                                      }
-                                    ],
-                                    "path": "kurse-themen-bearbeiten",
-                                    "title": "Bearbeiten Thema",
-                                    "type": "popup"
-                                  }
-                                ]
-                              },
-                              "icon": "edit",
-                              "name": "editButtonKurseThemen",
-                              "size": "sm",
-                              "text": "",
-                              "type": "button"
-                            }
-                          ],
-                          "textAlign": "center",
-                          "width": "75px"
                         }
                       ],
-                      "confirmDelete": true,
-                      "confirmDeleteCancelText": "Abbruch",
-                      "confirmDeleteOkText": "Löschen",
-                      "confirmDeleteText": "Bist du sicher, dass dieses Thema gelöscht werden soll?",
-                      "confirmDeleteTitle": "Löschen Thema",
+                      "confirmDelete": false,
+                      "confirmDeleteCancelText": "",
+                      "confirmDeleteOkText": "",
+                      "confirmDeleteText": "",
+                      "confirmDeleteTitle": "",
                       "containsText": "Contains",
                       "count": "${rstKurseThemenCount}",
                       "data": "${rstKurseThemen}",
@@ -630,46 +626,89 @@
                       "equalsText": "Equals",
                       "events": {
                         "add": [],
-                        "delete": [
+                        "delete": [],
+                        "loadData": [
                           {
-                            "error": [
+                            "name": "dbHopeKurseTextbausteine.getIbsiKurseThemens",
+                            "parameters": [
                               {
-                                "detail": "",
-                                "severity": "error",
-                                "summary": "Thema konnte nicht gelöscht werden!",
-                                "type": "notify"
+                                "name": "$filter",
+                                "value": "KursNr eq ${dsoKurse.KursNr}"
+                              },
+                              {
+                                "name": "$top",
+                                "value": "event.top"
+                              },
+                              {
+                                "name": "$skip",
+                                "value": "event.skip"
+                              },
+                              {
+                                "name": "$count",
+                                "value": "event.top != null && event.skip != null"
+                              },
+                              {
+                                "name": "$orderby",
+                                "value": "${event.orderby || 'Nummer'}"
                               }
                             ],
-                            "name": "dbHopeKurseTextbausteine.deleteIbsiKurseThemen",
+                            "then": [
+                              {
+                                "name": "rstKurseThemen",
+                                "type": "set",
+                                "value": "${result.value}"
+                              },
+                              {
+                                "name": " rstKurseThemenCount",
+                                "type": "set",
+                                "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
+                              },
+                              {
+                                "code": "if (this.rstKurseThemen.find(p => p.KursThemaNr == this.letzteKursThemaNr) != null) {\n    // letzteKursThemaNr wurde in rstKurseThemen gefunden\n    this.gridKurseThemen.onSelect(this.rstKurseThemen.find(p => p.KursThemaNr == this.letzteKursThemaNr))\n} else {\n    // letzteKursThemaNr wurde in rstKursThemaNr NICHT gefunden\n    this.letzteKursThemaNr = null;\n    this.gridKurseThemen.onSelect(this.rstKurseThemen[0]);\n}",
+                                "type": "execute"
+                              }
+                            ],
+                            "type": "invoke"
+                          }
+                        ],
+                        "rowDoubleClick": [
+                          {
+                            "name": "letzteKursThemaNr",
+                            "type": "set",
+                            "value": "${dsoKurseThemen.KursThemaNr}"
+                          },
+                          {
                             "parameters": [
                               {
                                 "name": "KursThemaNr",
                                 "value": "${event.KursThemaNr}"
                               }
                             ],
-                            "then": [
-                              {
-                                "detail": "",
-                                "severity": "success",
-                                "summary": "Thema erfolgreich gelöscht",
-                                "type": "notify"
-                              }
-                            ],
-                            "type": "invoke"
+                            "path": "kurse-themen-bearbeiten",
+                            "type": "popup"
                           }
                         ],
-                        "loadData": [],
-                        "rowDoubleClick": [],
-                        "rowSelect": []
+                        "rowSelect": [
+                          {
+                            "name": "dsoKurseThemen",
+                            "type": "set",
+                            "value": "${event}"
+                          },
+                          {
+                            "name": "letzteKursThemaNr",
+                            "type": "set",
+                            "value": "${event.KursThemaNr}"
+                          }
+                        ]
                       },
                       "filterCaseSensitivity": "caseInsensitive",
                       "greaterThanOrEqualsText": "Greater than or equals",
                       "greaterThanText": "Greater than",
                       "lessThanOrEqualsText": "Less than or equals",
                       "lessThanText": "Less than",
-                      "name": "gridKurseThemen2",
+                      "name": "gridKurseThemen",
                       "notEqualsText": "Not equals",
-                      "pageSize": 15,
+                      "pageSize": 20,
                       "startsWithText": "Starts with",
                       "style": {
                         "border": "1px solid rgba(0, 0, 0, 0)",
@@ -686,25 +725,33 @@
                   "footerTemplate": "",
                   "headerTemplate": [
                     {
+                      "class": "",
                       "components": [
                         {
                           "class": "col-md-12 align-items-start d-flex",
                           "components": [
                             {
+                              "buttonStyle": "light",
                               "events": {
                                 "click": [
                                   {
-                                    "parameters": [
-                                      {
-                                        "name": "KursNr",
-                                        "value": "${dsoKurse.KursNr}"
-                                      }
-                                    ],
+                                    "name": "letzteKursThemaNr",
+                                    "type": "set",
+                                    "value": "${dsoKurseThemen.KursThemaNr}"
+                                  },
+                                  {
                                     "path": "kurse-themen-neu",
                                     "then": [
                                       {
-                                        "code": "this.gridKurseThemen2.load();",
                                         "condition": "${result} != null",
+                                        "name": "letzteKursThemaNr",
+                                        "type": "set",
+                                        "value": "${result.KursThemaNr}"
+                                      },
+                                      {
+                                        "code": "this.gridKurseThemen.load();",
+                                        "condition": "${result} != null",
+                                        "then": [],
                                         "type": "execute"
                                       }
                                     ],
@@ -714,12 +761,116 @@
                                 ]
                               },
                               "icon": "add",
+                              "name": "button0",
+                              "size": "sm",
+                              "style": {
+                                "color": "#D86E13",
+                                "display": "flex",
+                                "marginRight": ""
+                              },
+                              "text": "&nbsp;Neues Thema",
+                              "tooltip": "",
+                              "type": "button"
+                            },
+                            {
+                              "buttonStyle": "light",
+                              "events": {
+                                "click": [
+                                  {
+                                    "name": "letzteKursThemaNr",
+                                    "type": "set",
+                                    "value": "${dsoKurseThemen.KursThemaNr}"
+                                  },
+                                  {
+                                    "parameters": [
+                                      {
+                                        "name": "KursThemaNr",
+                                        "value": "${dsoKurseThemen.KursThemaNr}"
+                                      }
+                                    ],
+                                    "path": "kurse-themen-bearbeiten",
+                                    "then": [],
+                                    "title": "Bearbeiten Thema",
+                                    "type": "popup"
+                                  }
+                                ]
+                              },
+                              "icon": "create",
                               "name": "button1",
                               "size": "sm",
                               "style": {
-                                "marginRight": "-9px"
+                                "color": "#D86E13",
+                                "marginLeft": "10px",
+                                "paddingLeft": ""
                               },
-                              "text": "Neues Thema",
+                              "text": "",
+                              "tooltip": "Bearbeiten Kontakt",
+                              "type": "button"
+                            },
+                            {
+                              "buttonStyle": "light",
+                              "disabled": false,
+                              "events": {
+                                "click": [
+                                  {
+                                    "name": "letzteKursThemaNr",
+                                    "type": "set",
+                                    "value": "null"
+                                  },
+                                  {
+                                    "parameters": [
+                                      {
+                                        "name": "strMeldung",
+                                        "value": "\"Soll das Thema '\" + ${dsoKurseThemen.Titel} + \"' gelöscht werden?\""
+                                      }
+                                    ],
+                                    "path": "meldung-loeschen",
+                                    "then": [
+                                      {
+                                        "condition": "${result} == 'Löschen'",
+                                        "error": [
+                                          {
+                                            "detail": "Thema konnte nicht gelöscht werden!",
+                                            "severity": "error",
+                                            "summary": "",
+                                            "type": "notify"
+                                          }
+                                        ],
+                                        "name": "dbHopeKurseTextbausteine.deleteIbsiKurseThemen",
+                                        "parameters": [
+                                          {
+                                            "name": "KursThemaNr",
+                                            "value": "${dsoKurseThemen.KursThemaNr}"
+                                          }
+                                        ],
+                                        "then": [
+                                          {
+                                            "detail": "Thema gelöscht",
+                                            "severity": "success",
+                                            "summary": "",
+                                            "type": "notify"
+                                          }
+                                        ],
+                                        "type": "invoke"
+                                      }
+                                    ],
+                                    "title": "Löschen Thema",
+                                    "type": "popup"
+                                  }
+                                ]
+                              },
+                              "icon": "clear",
+                              "name": "button2",
+                              "size": "sm",
+                              "style": {
+                                "color": "#D86E13",
+                                "fontWeight": "normal",
+                                "marginLeft": "10px",
+                                "marginRight": "-9px",
+                                "paddingLeft": ""
+                              },
+                              "text": "",
+                              "tooltip": "Löschen Kontakt",
                               "type": "button"
                             }
                           ],
@@ -759,6 +910,16 @@
   ],
   "events": {
     "load": [
+      {
+        "name": "letzteKursNr",
+        "type": "set",
+        "value": "null"
+      },
+      {
+        "name": "letzteKursThemaNr",
+        "type": "set",
+        "value": "null"
+      },
       {
         "code": "this.gridKurse.load();",
         "type": "execute"

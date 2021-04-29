@@ -333,6 +333,6 @@ input:focus, textarea:focus {
 }
 
 .textbausteine-filter-auswahl .ui-dropdown-item, .ui-dropdown-items li {
-  padding: 1px 0.625rem;
+  padding: 3px 0.625rem;
   font-size: 14px;
 }

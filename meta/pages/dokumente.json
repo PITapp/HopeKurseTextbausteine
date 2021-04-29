@@ -45,7 +45,7 @@
                     "fontSize": "21px",
                     "fontWeight": "normal"
                   },
-                  "text": "Hier entsteht was neues",
+                  "text": "Modul in Arbeit",
                   "type": "heading"
                 }
               ],
@@ -83,12 +83,12 @@
                           "components": [],
                           "footerTemplate": "",
                           "headerTemplate": "",
-                          "name": "panel2",
+                          "name": "panelDokumente",
                           "style": {
                             "border": "1px solid #e6ecef",
                             "height": "750px"
                           },
-                          "text": "Daten 1",
+                          "text": "Dokumente",
                           "type": "panel"
                         }
                       ],
@@ -106,7 +106,7 @@
                             "border": "1px solid #e6ecef",
                             "height": "360px"
                           },
-                          "text": "Daten 2",
+                          "text": "Vorschau",
                           "type": "panel"
                         },
                         {
@@ -134,12 +134,12 @@
                         {
                           "components": [],
                           "footerTemplate": "",
-                          "name": "Bild",
+                          "name": "panelTextbaustein",
                           "style": {
                             "border": "1px solid #e6ecef",
                             "height": "750px"
                           },
-                          "text": "Daten 3",
+                          "text": "Textbaustein",
                           "type": "panel"
                         }
                       ],

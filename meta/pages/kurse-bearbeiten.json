@@ -54,7 +54,7 @@
                               "style": {
                                 "position": "absolute"
                               },
-                              "text": "Kursart ist erforderlich",
+                              "text": "Kursart erforderlich",
                               "type": "required-validator"
                             }
                           ],
@@ -242,7 +242,7 @@
                           "type": "col"
                         },
                         {
-                          "class": "col-md-9",
+                          "class": "col-md-3",
                           "components": [
                             {
                               "name": "AnzahlThemen",
@@ -339,7 +339,7 @@
                             {
                               "buttonStyle": "success",
                               "buttonType": "submit",
-                              "icon": "save",
+                              "icon": "done",
                               "text": "Speichern",
                               "type": "button"
                             },

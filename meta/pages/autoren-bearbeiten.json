@@ -96,7 +96,7 @@
                             {
                               "buttonStyle": "success",
                               "buttonType": "submit",
-                              "icon": "save",
+                              "icon": "done",
                               "text": "Speichern",
                               "type": "button"
                             },

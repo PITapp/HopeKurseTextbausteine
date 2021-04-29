@@ -45,7 +45,7 @@
                     "fontSize": "21px",
                     "fontWeight": "normal"
                   },
-                  "text": "${dsoAutoren.Name} · ${dsoAutoren.Krzel}",
+                  "text": "{{dsoAutoren?.Name}}\n{{dsoAutoren?.Krzel ? ' · ' + dsoAutoren?.Krzel : ''}}",
                   "type": "heading"
                 }
               ],
@@ -274,10 +274,6 @@
                                       }
                                     ],
                                     "type": "invoke"
-                                  },
-                                  {
-                                    "code": "console.log(${event});",
-                                    "type": "execute"
                                   }
                                 ],
                                 "update": []
@@ -289,7 +285,7 @@
                               "lessThanText": "Less than",
                               "name": "gridAutoren",
                               "notEqualsText": "Not equals",
-                              "pageSize": 15,
+                              "pageSize": 22,
                               "startsWithText": "Starts with",
                               "style": {
                                 "border": "1px solid rgba(0, 0, 0, 0)",
@@ -462,7 +458,7 @@
                             "border": "1px solid #e6ecef",
                             "height": "750px"
                           },
-                          "text": "1 von ${rstAutorenCount}",
+                          "text": "${rstAutorenCount} Autoren",
                           "type": "panel"
                         }
                       ],
@@ -537,16 +533,16 @@
                               "isLoading": "${rstTextbausteineLaden}",
                               "lessThanOrEqualsText": "Less than or equals",
                               "lessThanText": "Less than",
-                              "name": "grid0",
+                              "name": "gridTextbausteine",
                               "notEqualsText": "Not equals",
-                              "pageSize": 21,
+                              "pageSize": 22,
                               "startsWithText": "Starts with",
                               "style": {
                                 "border": "1px solid rgba(0, 0, 0, 0)",
                                 "height": "700px",
                                 "marginLeft": "-10px",
                                 "marginRight": "-10px",
-                                "marginTop": "-8px"
+                                "marginTop": "-11px"
                               },
                               "title": "",
                               "type": "grid"
@@ -560,7 +556,7 @@
                             "border": "1px solid #e6ecef",
                             "height": "750px"
                           },
-                          "text": "${dsoAutoren.Name} · ${rstTextbausteineCount} Textbausteine",
+                          "text": "${rstTextbausteineCount} Textbausteine · ${dsoAutoren.Name}",
                           "type": "panel"
                         }
                       ],

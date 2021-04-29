@@ -254,6 +254,7 @@
                                           "value": "textbausteine-filter-auswahl"
                                         }
                                       ],
+                                      "autoComplete": false,
                                       "events": {
                                         "change": [
                                           {
@@ -416,6 +417,7 @@
                                           "value": "textbausteine-filter-auswahl"
                                         }
                                       ],
+                                      "autoComplete": false,
                                       "events": {
                                         "change": [
                                           {
@@ -659,6 +661,7 @@
                                           "value": "textbausteine-filter-auswahl"
                                         }
                                       ],
+                                      "autoComplete": false,
                                       "events": {
                                         "change": [
                                           {

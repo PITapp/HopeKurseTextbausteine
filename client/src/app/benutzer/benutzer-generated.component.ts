@@ -13,20 +13,14 @@ import { NotificationService } from '@radzen/angular/dist/notification';
 import { ContentComponent } from '@radzen/angular/dist/content';
 import { HeadingComponent } from '@radzen/angular/dist/heading';
 import { TabsComponent } from '@radzen/angular/dist/tabs';
-import { GridComponent } from '@radzen/angular/dist/grid';
-import { TemplateFormComponent } from '@radzen/angular/dist/template-form';
-import { LabelComponent } from '@radzen/angular/dist/label';
-import { TextBoxComponent } from '@radzen/angular/dist/textbox';
-import { RequiredValidatorComponent } from '@radzen/angular/dist/required-validator';
-import { DropDownComponent } from '@radzen/angular/dist/dropdown';
-import { TextAreaComponent } from '@radzen/angular/dist/textarea';
-import { ButtonComponent } from '@radzen/angular/dist/button';
 import { PanelComponent } from '@radzen/angular/dist/panel';
+import { GridComponent } from '@radzen/angular/dist/grid';
+import { ButtonComponent } from '@radzen/angular/dist/button';
 
 import { ConfigService } from '../config.service';
-import { BenutzerNeuRolleComponent } from '../benutzer-neu-rolle/benutzer-neu-rolle.component';
-import { BenutzerNeuComponent } from '../benutzer-neu/benutzer-neu.component';
+import { MeldungLoeschenComponent } from '../meldung-loeschen/meldung-loeschen.component';
 import { BenutzerBearbeitenComponent } from '../benutzer-bearbeiten/benutzer-bearbeiten.component';
+import { BenutzerNeuComponent } from '../benutzer-neu/benutzer-neu.component';
 
 import { DbHopeKurseTextbausteineService } from '../db-hope-kurse-textbausteine.service';
 import { SecurityService } from '../security.service';
@@ -38,23 +32,13 @@ export class BenutzerGenerated implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('heading1') heading1: HeadingComponent;
   @ViewChild('heading2') heading2: HeadingComponent;
   @ViewChild('tabs0') tabs0: TabsComponent;
-  @ViewChild('gridUsers') gridUsers: GridComponent;
-  @ViewChild('formBenutzer') formBenutzer: TemplateFormComponent;
-  @ViewChild('benutzernameLabel') benutzernameLabel: LabelComponent;
-  @ViewChild('benutzername') benutzername: TextBoxComponent;
-  @ViewChild('benutzernameRequiredValidator') benutzernameRequiredValidator: RequiredValidatorComponent;
-  @ViewChild('initialenLabel') initialenLabel: LabelComponent;
-  @ViewChild('initialen') initialen: TextBoxComponent;
-  @ViewChild('initialenRequiredValidator') initialenRequiredValidator: RequiredValidatorComponent;
-  @ViewChild('eMailLabel') eMailLabel: LabelComponent;
-  @ViewChild('txbBenutzerEMail') txbBenutzerEMail: TextBoxComponent;
-  @ViewChild('roleNamesLabel') roleNamesLabel: LabelComponent;
-  @ViewChild('dpdRollen') dpdRollen: DropDownComponent;
-  @ViewChild('benutzerInfoLabel') benutzerInfoLabel: LabelComponent;
-  @ViewChild('txaNotiz') txaNotiz: TextAreaComponent;
-  @ViewChild('button1') button1: ButtonComponent;
-  @ViewChild('gridRoles') gridRoles: GridComponent;
   @ViewChild('panel0') panel0: PanelComponent;
+  @ViewChild('gridBenutzer') gridBenutzer: GridComponent;
+  @ViewChild('buttonNeu') buttonNeu: ButtonComponent;
+  @ViewChild('buttonBearbeiten') buttonBearbeiten: ButtonComponent;
+  @ViewChild('buttonLoeschen') buttonLoeschen: ButtonComponent;
+  @ViewChild('panel1') panel1: PanelComponent;
+  @ViewChild('gridBenutzerRollen') gridBenutzerRollen: GridComponent;
 
   router: Router;
 
@@ -81,13 +65,13 @@ export class BenutzerGenerated implements AfterViewInit, OnInit, OnDestroy {
   dbHopeKurseTextbausteine: DbHopeKurseTextbausteineService;
 
   security: SecurityService;
-  rstUsers: any;
-  rstRoles: any;
+  letzteBenutzerID: any;
   parameters: any;
   rstBenutzer: any;
-  rstUser: any;
+  rstBenutzerCount: any;
+  dsoBenutzer: any;
   rstBenutzerRollen: any;
-  varBenutzerrolleTitel: any;
+  rstBenutzerRollenCount: any;
 
   constructor(private injector: Injector) {
   }
@@ -137,92 +121,88 @@ export class BenutzerGenerated implements AfterViewInit, OnInit, OnDestroy {
 
 
   load() {
-    this.security.getUsers(null, null, null, `UserName`, null, null)
-    .subscribe((result: any) => {
-      this.rstUsers = result.value;
+    this.letzteBenutzerID = null;
 
-      if (result.value.length && !this.gridUsers.value) {
-        this.gridUsers.onSelect(result.value[0])
+    this.gridBenutzer.load();
+  }
+
+  gridBenutzerLoadData(event: any) {
+    this.dbHopeKurseTextbausteine.getBenutzers(`${event.filter}`, event.top, event.skip, `${event.orderby || 'Benutzername'}`, event.top != null && event.skip != null, null, null, null)
+    .subscribe((result: any) => {
+      this.rstBenutzer = result.value;
+
+      this.rstBenutzerCount = event.top != null && event.skip != null ? result['@odata.count'] : result.value.length;
+
+      if (this.rstBenutzer.find(p => p.BenutzerID == this.letzteBenutzerID) != null) {
+    // letzteBenutzerID wurde in rstBenutzer gefunden
+    this.gridBenutzer.onSelect(this.rstBenutzer.find(p => p.BenutzerID == this.letzteBenutzerID));
+} else {
+    // letzteBenutzerID wurde in rstBenutzerID NICHT gefunden
+    this.letzteBenutzerID = null;
+    this.gridBenutzer.onSelect(this.rstBenutzer[0]);
+}
+    }, (result: any) => {
+      this.notificationService.notify({ severity: "error", summary: ``, detail: `Benutzer können nicht geladen werden!` });
+    });
+  }
+
+  gridBenutzerRowDoubleClick(event: any) {
+    this.letzteBenutzerID = this.dsoBenutzer.BenutzerID;
+
+    this.dialogService.open(BenutzerBearbeitenComponent, { parameters: {BenutzerID: event.BenutzerID}, title: `Bearbeiten Benutzer` });
+  }
+
+  gridBenutzerRowSelect(event: any) {
+    this.dsoBenutzer = event;
+
+    this.gridBenutzerRollen.load();
+  }
+
+  buttonNeuClick(event: any) {
+    this.letzteBenutzerID = this.dsoBenutzer.BenutzerID;
+
+    this.dialogService.open(BenutzerNeuComponent, { parameters: {}, title: `Neuer Benutzer` })
+        .afterClosed().subscribe(result => {
+              if (result != null) {
+            this.letzteBenutzerID = result.BenutzerID;
       }
-    }, (result: any) => {
 
-    });
-
-    this.security.getRoles(null, null, null, `Name`, null, null)
-    .subscribe((result: any) => {
-      this.rstRoles = result.value;
-
-      if (result.value.length && !this.gridRoles.value) {
-        this.gridRoles.onSelect(result.value[0])
+      if (result != null) {
+        this.gridBenutzer.load();
       }
-    }, (result: any) => {
-
     });
   }
 
-  gridUsersAdd(event: any) {
-    this.dialogService.open(BenutzerNeuComponent, { parameters: {}, title: `Neuer Benutzer` });
+  buttonBearbeitenClick(event: any) {
+    this.letzteBenutzerID = this.dsoBenutzer.BenutzerID;
+
+    this.dialogService.open(BenutzerBearbeitenComponent, { parameters: {BenutzerID: this.dsoBenutzer.BenutzerID}, title: `Bearbeiten Benutzer` });
   }
 
-  gridUsersDelete(event: any) {
-    this.security.deleteUser(`${event.Id}`)
-    .subscribe((result: any) => {
-      this.notificationService.notify({ severity: "success", summary: `Löschen erfolgreich`, detail: `Der Benutzer '${event.UserName}' wurde gelöscht.` });
-    }, (result: any) => {
-      this.notificationService.notify({ severity: "error", summary: `Benutzer konnte nicht gelöscht werden!`, detail: `${result.error.message}` });
+  buttonLoeschenClick(event: any) {
+    this.letzteBenutzerID = null;
+
+    this.dialogService.open(MeldungLoeschenComponent, { parameters: {strMeldung: "Soll der Benutzer '" + this.dsoBenutzer.Benutzername + "' gelöscht werden?"}, title: `Löschen Benutzer` })
+        .afterClosed().subscribe(result => {
+              if (result == 'Löschen') {
+              this.dbHopeKurseTextbausteine.deleteBenutzer(this.dsoBenutzer.BenutzerID)
+        .subscribe((result: any) => {
+              this.notificationService.notify({ severity: "success", summary: ``, detail: `Benutzer gelöscht` });
+        }, (result: any) => {
+              this.notificationService.notify({ severity: "error", summary: ``, detail: `Benutzer konnte nicht gelöscht werden!` });
+        });
+      }
     });
   }
 
-  gridUsersRowDoubleClick(event: any) {
-    this.dialogService.open(BenutzerBearbeitenComponent, { parameters: {Id: event.Id}, title: `Bearbeiten Benutzer` });
-  }
-
-  gridUsersRowSelect(event: any) {
-    this.dbHopeKurseTextbausteine.getBenutzers(`AspNetUsers_Id eq '${event.Id}'`, null, null, null, null, null, null, null)
-    .subscribe((result: any) => {
-      this.rstBenutzer = result.value[0];
-    }, (result: any) => {
-
-    });
-
-    this.security.getUserById(`${event.Id}`)
-    .subscribe((result: any) => {
-      this.rstUser = result;
-    }, (result: any) => {
-
-    });
-  }
-
-  formBenutzerSubmit(event: any) {
-    this.dbHopeKurseTextbausteine.updateBenutzer(null, this.rstBenutzer.BenutzerID, this.rstBenutzer)
-    .subscribe((result: any) => {
-      this.notificationService.notify({ severity: "success", summary: `Benutzerdaten gespeichert`, detail: `` });
-    }, (result: any) => {
-      this.notificationService.notify({ severity: "error", summary: `Benutzerdaten nicht gespeichert`, detail: `` });
-    });
-  }
-
-  gridRolesAdd(event: any) {
-    this.dialogService.open(BenutzerNeuRolleComponent, { parameters: {}, title: `Neue Rolle` });
-  }
-
-  gridRolesDelete(event: any) {
-    this.security.deleteRole(`${event.Id}`)
-    .subscribe((result: any) => {
-      this.notificationService.notify({ severity: "info", summary: `Success`, detail: `Rolle '${event.Name}' erfolgreich gelöscht.` });
-    }, (result: any) => {
-      this.notificationService.notify({ severity: "error", summary: `Rolle '${event.Name}' kann nicht gelöscht werden!`, detail: `${result.error.message}` });
-    });
-  }
-
-  gridRolesRowSelect(event: any) {
-    this.security.getRoles(`RoleId eq '${event.Id}'`, null, null, null, null, null)
+  gridBenutzerRollenLoadData(event: any) {
+    this.dbHopeKurseTextbausteine.getVwBenutzerRollens(`BenutzerID eq ${this.dsoBenutzer.BenutzerID}`, null, null, null, null, null, null, null)
     .subscribe((result: any) => {
       this.rstBenutzerRollen = result.value;
+
+      this.rstBenutzerRollenCount = event.top != null && event.skip != null ? result['@odata.count'] : result.value.length;
     }, (result: any) => {
-
+      this.notificationService.notify({ severity: "error", summary: ``, detail: `Benutzer Rollen können nicht geladen werden!` });
     });
-
-    this.varBenutzerrolleTitel = event.Name;
   }
 }

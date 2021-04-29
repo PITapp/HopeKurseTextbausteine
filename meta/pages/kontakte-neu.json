@@ -53,9 +53,7 @@
                             }
                           ],
                           "name": "col31",
-                          "style": {
-                            "paddingRight": "0"
-                          },
+                          "style": {},
                           "type": "col"
                         }
                       ],
@@ -113,8 +111,7 @@
                           ],
                           "name": "col33",
                           "style": {
-                            "display": "block",
-                            "paddingRight": "0"
+                            "display": "block"
                           },
                           "type": "col"
                         }
@@ -172,8 +169,7 @@
                           ],
                           "name": "col63",
                           "style": {
-                            "display": "block",
-                            "paddingRight": "0"
+                            "display": "block"
                           },
                           "type": "col"
                         }
@@ -231,8 +227,7 @@
                           ],
                           "name": "col36",
                           "style": {
-                            "display": "block",
-                            "paddingRight": "0"
+                            "display": "block"
                           },
                           "type": "col"
                         }
@@ -279,8 +274,7 @@
                           ],
                           "name": "col38",
                           "style": {
-                            "display": "block",
-                            "paddingRight": "0"
+                            "display": "block"
                           },
                           "type": "col"
                         },
@@ -298,9 +292,7 @@
                             }
                           ],
                           "name": "col39",
-                          "style": {
-                            "paddingRight": "0"
-                          },
+                          "style": {},
                           "type": "col"
                         }
                       ],
@@ -345,9 +337,7 @@
                             }
                           ],
                           "name": "col41",
-                          "style": {
-                            "paddingRight": "0px"
-                          },
+                          "style": {},
                           "type": "col"
                         }
                       ],
@@ -393,8 +383,7 @@
                           ],
                           "name": "col50",
                           "style": {
-                            "display": "block",
-                            "paddingRight": "0"
+                            "display": "block"
                           },
                           "type": "col"
                         },
@@ -412,9 +401,7 @@
                             }
                           ],
                           "name": "col51",
-                          "style": {
-                            "paddingRight": "0"
-                          },
+                          "style": {},
                           "type": "col"
                         }
                       ],
@@ -460,8 +447,7 @@
                           ],
                           "name": "col53",
                           "style": {
-                            "display": "block",
-                            "paddingRight": "0"
+                            "display": "block"
                           },
                           "type": "col"
                         }
@@ -508,8 +494,7 @@
                           ],
                           "name": "col55",
                           "style": {
-                            "display": "block",
-                            "paddingRight": "0"
+                            "display": "block"
                           },
                           "type": "col"
                         }
@@ -556,8 +541,7 @@
                           ],
                           "name": "col57",
                           "style": {
-                            "display": "block",
-                            "paddingRight": "0"
+                            "display": "block"
                           },
                           "type": "col"
                         }
@@ -604,8 +588,7 @@
                           ],
                           "name": "col59",
                           "style": {
-                            "display": "block",
-                            "paddingRight": "0"
+                            "display": "block"
                           },
                           "type": "col"
                         }
@@ -652,9 +635,7 @@
                             }
                           ],
                           "name": "col65",
-                          "style": {
-                            "paddingRight": "0"
-                          },
+                          "style": {},
                           "type": "col"
                         }
                       ],
@@ -672,10 +653,11 @@
                             {
                               "buttonStyle": "success",
                               "buttonType": "submit",
-                              "icon": "save",
+                              "icon": "done",
                               "name": "button4",
                               "style": {},
                               "text": "Speichern",
+                              "tooltip": "",
                               "type": "button"
                             },
                             {
@@ -696,9 +678,7 @@
                             }
                           ],
                           "name": "col34",
-                          "style": {
-                            "paddingRight": "0"
-                          },
+                          "style": {},
                           "type": "col"
                         }
                       ],

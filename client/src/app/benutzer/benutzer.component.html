@@ -5,97 +5,45 @@
       </rz-heading>
       <rz-heading #heading1 size="H3" [style]="{'color': '#e5ecef', 'display': 'inline-block', 'marginTop': '7px', 'paddingLeft': '10px', 'paddingRight': '10px'}" text="|">
       </rz-heading>
-      <rz-heading #heading2 size="H3" [style]="{'color': '#5d717b', 'display': 'inline', 'fontSize': '21px', 'fontWeight': 'normal'}" text="Hier entsteht was neues" >
+      <rz-heading #heading2 size="H3" [style]="{'color': '#5d717b', 'display': 'inline', 'fontSize': '21px', 'fontWeight': 'normal'}" text="{{dsoBenutzer?.Benutzername}} · {{dsoBenutzer?.Initialen}}" >
       </rz-heading>
     </div>
   </div>
   <rz-tabs #tabs0 [style]="{'float': 'none'}">
     <rz-tabs-item [selected]="true" text="Daten">
-      <div class="row">
-        <div class="col-md-6">
-          <rz-grid #gridUsers addText="Neuer Benutzer" [allowAdd]="true" [allowDelete]="true" [allowFiltering]="true" [allowPaging]="true" [allowSorting]="true" [alwaysShowPager]="true" applyFilterText="Apply" clearFilterText="Clear" [confirmDelete]="true" confirmDeleteCancelText="Abbruch" confirmDeleteOkText="Löschen" confirmDeleteText="Bist du sicher, dass der Benutzer '${data.UserName}' gelöscht werden soll?" confirmDeleteTitle="Löschen Benutzer" containsText="Contains" [data]="rstUsers" emptyText="No records to display." endsWithText="Ends with" equalsText="Equals" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" [isLoading]="false" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="20" startsWithText="Starts with" [style]="{'height': '750px'}" (add)="gridUsersAdd($event)" (delete)="gridUsersDelete($event)" (rowDoubleClick)="gridUsersRowDoubleClick($event)" (rowSelect)="gridUsersRowSelect($event)">
-            <rz-grid-column property="UserName" title="Benutzername">
-            </rz-grid-column>
-            <rz-grid-column property="Email" title="E-Mail">
-            </rz-grid-column>
-          </rz-grid>
+      <div [ngStyle]="{'height': '100%'}" class="row">
+        <div class="col-md-9">
+          <rz-panel #panel0 [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="{{rstBenutzerCount}} Benutzer">
+            <rz-grid #gridBenutzer [allowAdd]="false" [allowDelete]="false" [allowFiltering]="true" [allowMultiSorting]="false" [allowPaging]="false" [allowSorting]="true" applyFilterText="Apply" clearFilterText="Clear" [confirmDelete]="false" containsText="Contains" [count]="rstBenutzerCount" [data]="rstBenutzer" emptyText="Keine Benutzer vorhanden" endsWithText="Ends with" equalsText="Equals" filterCaseSensitivity="caseInsensitive" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="22" startsWithText="Starts with" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'height': '700px', 'marginLeft': '-10px', 'marginRight': '-10px', 'marginTop': '-13px'}" (loadData)="gridBenutzerLoadData($event)" (rowDoubleClick)="gridBenutzerRowDoubleClick($event)" (rowSelect)="gridBenutzerRowSelect($event)">
+              <rz-grid-column property="Benutzername" title="Benutzername" type="string">
+              </rz-grid-column>
+              <rz-grid-column property="Initialen" title="Initialen" width="90px" type="string">
+              </rz-grid-column>
+              <rz-grid-column property="BenutzerEMail" title="E-Mail" width="30%" type="string">
+              </rz-grid-column>
+              <rz-grid-column property="Notiz" title="Notiz" width="40%" type="string">
+              </rz-grid-column>
+            </rz-grid>
+            <rz-panel-header>
+              <div class="row">
+                <div class="col-md-12 align-items-start d-flex">
+                  <rz-button #buttonNeu buttonStyle="light" icon="add" size="sm" [style]="{'color': '#D86E13', 'display': 'flex', 'marginRight': ''}" text="&nbsp;Neuer Benutzer" (click)="buttonNeuClick($event)">
+                  </rz-button>
+                  <rz-button #buttonBearbeiten buttonStyle="light" icon="create" size="sm" [style]="{'color': '#D86E13', 'marginLeft': '10px', 'paddingLeft': ''}" tooltip="Bearbeiten Kontakt" (click)="buttonBearbeitenClick($event)">
+                  </rz-button>
+                  <rz-button #buttonLoeschen buttonStyle="light" [disabled]="false" icon="clear" size="sm" [style]="{'color': '#D86E13', 'fontWeight': 'normal', 'marginLeft': '10px', 'marginRight': '-9px', 'paddingLeft': ''}" tooltip="Löschen Kontakt" (click)="buttonLoeschenClick($event)">
+                  </rz-button>
+                </div>
+              </div>
+            </rz-panel-header>
+          </rz-panel>
         </div>
-        <div class="col-md-6" [ngStyle]="{'paddingLeft': '5px'}">
-          <rz-template-form #formBenutzer (submit)="formBenutzerSubmit($event)">
-            <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
-              <div class="col-md-3" [ngStyle]="{'textAlign': 'right'}">
-                <rz-label #benutzernameLabel component="Benutzername" [style]="{'width': '100%'}" text="Benutzername">
-                </rz-label>
-              </div>
-              <div class="col-md-9">
-                <rz-textbox #benutzername [style]="{'display': 'block', 'width': '100%'}" [(ngModel)]="rstBenutzer && rstBenutzer.Benutzername" name="Benutzername">
-                </rz-textbox>
-                <rz-required-validator #benutzernameRequiredValidator [component]="benutzername" [style]="{'position': 'absolute'}" text="Benutzername is required">
-                </rz-required-validator>
-              </div>
-            </div>
-            <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
-              <div class="col-md-3">
-                <rz-label #initialenLabel component="Initialen" [style]="{'textAlign': 'right', 'width': '100%'}" text="Initialen">
-                </rz-label>
-              </div>
-              <div class="col-md-9">
-                <rz-textbox #initialen [style]="{'display': 'block', 'width': '100%'}" [(ngModel)]="rstBenutzer && rstBenutzer.Initialen" name="Initialen">
-                </rz-textbox>
-                <rz-required-validator #initialenRequiredValidator [component]="initialen" [style]="{'position': 'absolute'}" text="Initialen is required">
-                </rz-required-validator>
-              </div>
-            </div>
-            <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
-              <div class="col-md-3">
-                <rz-label #eMailLabel component="EMail" [style]="{'textAlign': 'right', 'width': '100%'}" text="EMail">
-                </rz-label>
-              </div>
-              <div class="col-md-9">
-                <rz-textbox #txbBenutzerEMail [style]="{'width': '100%'}" [(ngModel)]="rstBenutzer && rstBenutzer.BenutzerEMail" name="txbBenutzerEMail">
-                </rz-textbox>
-              </div>
-            </div>
-            <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
-              <div class="col-md-3">
-                <rz-label #roleNamesLabel component="RoleNames" [style]="{'textAlign': 'right', 'width': '100%'}" text="Rollen">
-                </rz-label>
-              </div>
-              <div class="col-md-9">
-                <rz-dropdown #dpdRollen [data]="rstRoles" emptyFilterText="No results found" [multiple]="true" multipleItemsSelectedText="{0} items selected" [style]="{'width': '100%'}" textProperty="Name" [(ngModel)]="rstUser && rstUser.RoleNames" valueProperty="Name" name="dpdRollen">
-                </rz-dropdown>
-              </div>
-            </div>
-            <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
-              <div class="col-md-3">
-                <rz-label #benutzerInfoLabel component="BenutzerInfo" [style]="{'textAlign': 'right', 'width': '100%'}" text="Notiz">
-                </rz-label>
-              </div>
-              <div class="col-md-9">
-                <rz-textarea #txaNotiz [rows]="7" [style]="{'width': '100%'}" [(ngModel)]="rstBenutzer && rstBenutzer.Notiz" name="txaNotiz">
-                </rz-textarea>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col offset-sm-3">
-                <rz-button #button1 buttonStyle="primary" buttonType="submit" icon="save" text="Speichern">
-                </rz-button>
-              </div>
-            </div>
-          </rz-template-form>
-        </div>
-      </div>
-    </rz-tabs-item>
-    <rz-tabs-item [selected]="false" text="Rollen">
-      <div class="row">
-        <div class="col-md-6" [ngStyle]="{}">
-          <rz-grid #gridRoles addText="Neue Rolle" [allowAdd]="true" [allowDelete]="true" [allowFiltering]="true" [allowPaging]="true" [allowSorting]="true" [alwaysShowPager]="true" applyFilterText="Apply" clearFilterText="Clear" [confirmDelete]="true" confirmDeleteCancelText="Abbruch" confirmDeleteOkText="Löschen" confirmDeleteText="Bist du sicher, dass die Rolle '${data.Name}' gelöscht werden soll?" confirmDeleteTitle="Confirmation" containsText="Contains" [data]="rstRoles" emptyText="No records to display." endsWithText="Ends with" equalsText="Equals" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="10" startsWithText="Starts with" [style]="{'height': '750px'}" (add)="gridRolesAdd($event)" (delete)="gridRolesDelete($event)" (rowSelect)="gridRolesRowSelect($event)">
-            <rz-grid-column property="Name" title="Benutzerrolle">
-            </rz-grid-column>
-          </rz-grid>
-        </div>
-        <div class="col-md-6" [ngStyle]="{'paddingLeft': '5px'}">
-          <rz-panel #panel0 [style]="{'border': '1px solid #e1e7eb', 'height': '750px'}" text="Rolle: {{varBenutzerrolleTitel}}">
+        <div class="col-md-3" [ngStyle]="{'paddingLeft': '5px'}">
+          <rz-panel #panel1 [allowCollapse]="false" [collapsed]="false" [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="{{rstBenutzerRollenCount}} Rollen">
+            <rz-grid #gridBenutzerRollen [allowAdd]="false" [allowDelete]="false" [allowFiltering]="true" [allowMultiSorting]="false" [allowPaging]="false" [allowSorting]="true" [alwaysShowPager]="false" applyFilterText="Apply" clearFilterText="Clear" [confirmDelete]="false" containsText="Contains" [count]="rstBenutzerRollenCount" [data]="rstBenutzerRollen" emptyText="Keine Rollen vorhanden" endsWithText="Ends with" equalsText="Equals" filterCaseSensitivity="caseInsensitive" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="22" startsWithText="Starts with" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'height': '700px', 'marginLeft': '-10px', 'marginRight': '-10px', 'marginTop': '-8px'}" (loadData)="gridBenutzerRollenLoadData($event)">
+              <rz-grid-column property="RolleTitel" title="Titel" type="string">
+              </rz-grid-column>
+            </rz-grid>
           </rz-panel>
         </div>
       </div>

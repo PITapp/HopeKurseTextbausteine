@@ -39,7 +39,7 @@ export class AutorenGenerated implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('buttonBearbeiten') buttonBearbeiten: ButtonComponent;
   @ViewChild('buttonLoeschen') buttonLoeschen: ButtonComponent;
   @ViewChild('panel0') panel0: PanelComponent;
-  @ViewChild('grid0') grid0: GridComponent;
+  @ViewChild('gridTextbausteine') gridTextbausteine: GridComponent;
 
   router: Router;
 
@@ -167,8 +167,6 @@ export class AutorenGenerated implements AfterViewInit, OnInit, OnDestroy {
     }, (result: any) => {
 
     });
-
-    console.log(event);
   }
 
   buttonNeuClick(event: any) {

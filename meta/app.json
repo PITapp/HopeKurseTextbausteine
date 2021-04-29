@@ -24,11 +24,11 @@
   "namespaces": [],
   "navigation": [
     "Dashboard",
-    "Kontakte"
+    "Kontakte",
+    "Benutzer222"
   ],
   "pages": [
     "BenutzerNeu",
-    "BenutzerNeuRolle",
     "BenutzerBearbeiten",
     "Benutzer",
     "Dashboard",
@@ -63,7 +63,10 @@
     "Register Application User",
     "Add Application Role",
     "Add Application User",
-    "Edit Application User"
+    "Edit Application User",
+    "Benutzer222",
+    "Add Benutzer222",
+    "Edit Benutzer222"
   ],
   "port": 8000,
   "security": {
@@ -127,7 +130,7 @@
     "$dialog-mask-background-color": "#3a474d",
     "$dialog-title-background-color": "rgba(243,245,247,.56)",
     "$dropdown-filter-border": "1px solid #979797",
-    "$dropdown-item-hover-background-color": "#EAECEF",
+    "$dropdown-item-hover-background-color": "#EFF1F8",
     "$dropdown-item-hover-color": "#212529",
     "$dropdown-item-selected-background-color": "#CBD5E8",
     "$dropdown-open-background-color": "#ffffff",
@@ -174,7 +177,7 @@
     "$grid-header-background-color": "#e6ecef",
     "$grid-header-color": "#3a474d",
     "$grid-header-sorted-background-color": "#e2e9ee",
-    "$grid-hover-background-color": "#EAECEF",
+    "$grid-hover-background-color": "#EFF1F8",
     "$grid-hover-color": "#212529",
     "$grid-loading-indicator-background-color": "rgba(136, 152, 155, 0.5)",
     "$grid-selected-background-color": "#6A80AA",

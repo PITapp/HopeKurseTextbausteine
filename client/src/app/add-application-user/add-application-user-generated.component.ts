@@ -11,7 +11,13 @@ import { Subscription } from 'rxjs';
 import { DialogService, DIALOG_PARAMETERS, DialogRef } from '@radzen/angular/dist/dialog';
 import { NotificationService } from '@radzen/angular/dist/notification';
 import { ContentComponent } from '@radzen/angular/dist/content';
-import { FormComponent } from '@radzen/angular/dist/form';
+import { TemplateFormComponent } from '@radzen/angular/dist/template-form';
+import { LabelComponent } from '@radzen/angular/dist/label';
+import { TextBoxComponent } from '@radzen/angular/dist/textbox';
+import { RequiredValidatorComponent } from '@radzen/angular/dist/required-validator';
+import { DropDownComponent } from '@radzen/angular/dist/dropdown';
+import { PasswordComponent } from '@radzen/angular/dist/password';
+import { ButtonComponent } from '@radzen/angular/dist/button';
 
 import { ConfigService } from '../config.service';
 
@@ -20,7 +26,20 @@ import { SecurityService } from '../security.service';
 export class AddApplicationUserGenerated implements AfterViewInit, OnInit, OnDestroy {
   // Components
   @ViewChild('content1') content1: ContentComponent;
-  @ViewChild('form0') form0: FormComponent;
+  @ViewChild('form0') form0: TemplateFormComponent;
+  @ViewChild('emailLabel') emailLabel: LabelComponent;
+  @ViewChild('email') email: TextBoxComponent;
+  @ViewChild('emailRequiredValidator') emailRequiredValidator: RequiredValidatorComponent;
+  @ViewChild('roleNamesLabel') roleNamesLabel: LabelComponent;
+  @ViewChild('roleNames') roleNames: DropDownComponent;
+  @ViewChild('passwordLabel') passwordLabel: LabelComponent;
+  @ViewChild('password') password: PasswordComponent;
+  @ViewChild('passwordRequiredValidator') passwordRequiredValidator: RequiredValidatorComponent;
+  @ViewChild('confirmPasswordLabel') confirmPasswordLabel: LabelComponent;
+  @ViewChild('confirmPassword') confirmPassword: PasswordComponent;
+  @ViewChild('confirmPasswordRequiredValidator') confirmPasswordRequiredValidator: RequiredValidatorComponent;
+  @ViewChild('button1') button1: ButtonComponent;
+  @ViewChild('button2') button2: ButtonComponent;
 
   router: Router;
 
@@ -114,5 +133,7 @@ export class AddApplicationUserGenerated implements AfterViewInit, OnInit, OnDes
     }, (result: any) => {
       this.notificationService.notify({ severity: "error", summary: `Cannot add user`, detail: `${result.error.message}` });
     });
+
+    console.log(event);
   }
 }

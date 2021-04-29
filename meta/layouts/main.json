@@ -158,14 +158,14 @@
               "text": "Textbausteine"
             },
             {
-              "icon": "school",
-              "path": "kurse",
-              "text": "Kurse"
-            },
-            {
               "icon": "rate_review",
               "path": "autoren",
               "text": "Autoren"
+            },
+            {
+              "icon": "school",
+              "path": "kurse",
+              "text": "Kurse"
             },
             {
               "icon": "create_new_folder",

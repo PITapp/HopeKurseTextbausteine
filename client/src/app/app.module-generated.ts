@@ -21,13 +21,13 @@ import { PanelMenuModule } from '@radzen/angular/dist/panelmenu';
 import { FooterModule } from '@radzen/angular/dist/footer';
 import { ContentModule } from '@radzen/angular/dist/content';
 import { TemplateFormModule } from '@radzen/angular/dist/template-form';
-import { TextBoxModule } from '@radzen/angular/dist/textbox';
-import { RequiredValidatorModule } from '@radzen/angular/dist/required-validator';
 import { DropDownModule } from '@radzen/angular/dist/dropdown';
+import { RequiredValidatorModule } from '@radzen/angular/dist/required-validator';
+import { TextBoxModule } from '@radzen/angular/dist/textbox';
 import { PasswordModule } from '@radzen/angular/dist/password';
+import { TextAreaModule } from '@radzen/angular/dist/textarea';
 import { ButtonModule } from '@radzen/angular/dist/button';
 import { PanelModule } from '@radzen/angular/dist/panel';
-import { TextAreaModule } from '@radzen/angular/dist/textarea';
 import { HeadingModule } from '@radzen/angular/dist/heading';
 import { TabsModule } from '@radzen/angular/dist/tabs';
 import { GridModule } from '@radzen/angular/dist/grid';
@@ -55,7 +55,6 @@ import { AppComponent } from './app.component';
 import { CacheInterceptor } from './cache.interceptor';
 export { AppComponent } from './app.component';
 import { BenutzerNeuComponent } from './benutzer-neu/benutzer-neu.component';
-import { BenutzerNeuRolleComponent } from './benutzer-neu-rolle/benutzer-neu-rolle.component';
 import { BenutzerBearbeitenComponent } from './benutzer-bearbeiten/benutzer-bearbeiten.component';
 import { BenutzerComponent } from './benutzer/benutzer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -91,6 +90,9 @@ import { RegisterApplicationUserComponent } from './register-application-user/re
 import { AddApplicationRoleComponent } from './add-application-role/add-application-role.component';
 import { AddApplicationUserComponent } from './add-application-user/add-application-user.component';
 import { EditApplicationUserComponent } from './edit-application-user/edit-application-user.component';
+import { Benutzer222Component } from './benutzer-222/benutzer-222.component';
+import { AddBenutzer222Component } from './add-benutzer-222/add-benutzer-222.component';
+import { EditBenutzer222Component } from './edit-benutzer-222/edit-benutzer-222.component';
 import { LoginLayoutComponent } from './login-layout/login-layout.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 
@@ -101,7 +103,6 @@ import { AuthGuard } from './auth.guard';
 
 export const PageDeclarations = [
   BenutzerNeuComponent,
-  BenutzerNeuRolleComponent,
   BenutzerBearbeitenComponent,
   BenutzerComponent,
   DashboardComponent,
@@ -137,6 +138,9 @@ export const PageDeclarations = [
   AddApplicationRoleComponent,
   AddApplicationUserComponent,
   EditApplicationUserComponent,
+  Benutzer222Component,
+  AddBenutzer222Component,
+  EditBenutzer222Component,
 ];
 
 export const LayoutDeclarations = [
@@ -193,13 +197,13 @@ export const AppImports = [
   FooterModule,
   ContentModule,
   TemplateFormModule,
-  TextBoxModule,
-  RequiredValidatorModule,
   DropDownModule,
+  RequiredValidatorModule,
+  TextBoxModule,
   PasswordModule,
+  TextAreaModule,
   ButtonModule,
   PanelModule,
-  TextAreaModule,
   HeadingModule,
   TabsModule,
   GridModule,

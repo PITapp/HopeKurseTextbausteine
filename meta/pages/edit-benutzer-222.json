@@ -1,0 +1,690 @@
+{
+  "components": [
+    {
+      "type": "content",
+      "container": "main",
+      "components": [
+        {
+          "type": "row",
+          "components": [
+            {
+              "type": "col",
+              "class": "col-md-12",
+              "components": [
+                {
+                  "type": "template-form",
+                  "name": "form0",
+                  "components": [
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Base",
+                              "component": "BaseID",
+                              "name": "BaseIDLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "data": "${getBasesResult}",
+                              "textProperty": "Name1",
+                              "valueProperty": "BaseID",
+                              "placeholder": "Choose Basis",
+                              "type": "dropdown",
+                              "name": "BaseID",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "value": "${benutzer.BaseID}"
+                            },
+                            {
+                              "type": "required-validator",
+                              "name": "BaseIDRequiredValidator",
+                              "component": "BaseID",
+                              "text": "BaseID is required",
+                              "style": {
+                                "position": "absolute"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Benutzername",
+                              "component": "Benutzername",
+                              "name": "BenutzernameLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 130,
+                              "type": "textbox",
+                              "name": "Benutzername",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "value": "${benutzer.Benutzername}"
+                            },
+                            {
+                              "type": "required-validator",
+                              "name": "BenutzernameRequiredValidator",
+                              "component": "Benutzername",
+                              "text": "Benutzername is required",
+                              "style": {
+                                "position": "absolute"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Asp Net Users Id",
+                              "component": "AspNetUsers_Id",
+                              "name": "AspNetUsers_IdLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 255,
+                              "type": "textbox",
+                              "name": "AspNetUsers_Id",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "value": "${benutzer.AspNetUsers_Id}"
+                            },
+                            {
+                              "type": "required-validator",
+                              "name": "AspNetUsers_IdRequiredValidator",
+                              "component": "AspNetUsers_Id",
+                              "text": "AspNetUsers_Id is required",
+                              "style": {
+                                "position": "absolute"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Initialen",
+                              "component": "Initialen",
+                              "name": "InitialenLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 2,
+                              "type": "textbox",
+                              "name": "Initialen",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "value": "${benutzer.Initialen}"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Benutzer E Mail",
+                              "component": "BenutzerEMail",
+                              "name": "BenutzerEMailLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 200,
+                              "type": "textbox",
+                              "name": "BenutzerEMail",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "value": "${benutzer.BenutzerEMail}"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Notiz",
+                              "component": "Notiz",
+                              "name": "NotizLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 65535,
+                              "type": "textbox",
+                              "name": "Notiz",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "value": "${benutzer.Notiz}"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Filter Textbaustein Art Code",
+                              "component": "FilterTextbausteinArtCode",
+                              "name": "FilterTextbausteinArtCodeLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 3,
+                              "type": "textbox",
+                              "name": "FilterTextbausteinArtCode",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "value": "${benutzer.FilterTextbausteinArtCode}"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Filter Kurs Nr",
+                              "component": "FilterKursNr",
+                              "name": "FilterKursNrLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "type": "numeric",
+                              "name": "FilterKursNr",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "value": "${benutzer.FilterKursNr}"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Filter Titel Und Text",
+                              "component": "FilterTitelUndText",
+                              "name": "FilterTitelUndTextLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 255,
+                              "type": "textbox",
+                              "name": "FilterTitelUndText",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "value": "${benutzer.FilterTitelUndText}"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Filter Autor Nr",
+                              "component": "FilterAutorNr",
+                              "name": "FilterAutorNrLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "type": "numeric",
+                              "name": "FilterAutorNr",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "value": "${benutzer.FilterAutorNr}"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Filter Thema Nummer",
+                              "component": "FilterThemaNummer",
+                              "name": "FilterThemaNummerLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "type": "numeric",
+                              "name": "FilterThemaNummer",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "value": "${benutzer.FilterThemaNummer}"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Filter Anrede",
+                              "component": "FilterAnrede",
+                              "name": "FilterAnredeLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 5,
+                              "type": "textbox",
+                              "name": "FilterAnrede",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "value": "${benutzer.FilterAnrede}"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Filter Dokument",
+                              "component": "FilterDokument",
+                              "name": "FilterDokumentLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 20,
+                              "type": "textbox",
+                              "name": "FilterDokument",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "value": "${benutzer.FilterDokument}"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "type": "label",
+                              "text": "Filter Info",
+                              "component": "FilterInfo",
+                              "name": "FilterInfoLabel",
+                              "style": {
+                                "width": "100%"
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "col",
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 255,
+                              "type": "textbox",
+                              "name": "FilterInfo",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "value": "${benutzer.FilterInfo}"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "row",
+                      "components": [
+                        {
+                          "type": "col",
+                          "class": "col offset-sm-3",
+                          "components": [
+                            {
+                              "type": "button",
+                              "buttonType": "submit",
+                              "icon": "save",
+                              "text": "Save",
+                              "buttonStyle": "primary"
+                            },
+                            {
+                              "type": "button",
+                              "buttonStyle": "light",
+                              "style": {
+                                "marginLeft": "1rem"
+                              },
+                              "text": "Cancel",
+                              "events": {
+                                "click": [
+                                  {
+                                    "type": "back"
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ],
+                  "events": {
+                    "submit": [
+                      {
+                        "error": [
+                          {
+                            "detail": "Unable to update Benutzer",
+                            "severity": "error",
+                            "summary": "Error",
+                            "type": "notify"
+                          }
+                        ],
+                        "name": "dbHopeKurseTextbausteine.updateBenutzer",
+                        "parameters": [
+                          {
+                            "name": "BenutzerID",
+                            "value": "${parameters.BenutzerID}"
+                          },
+                          {
+                            "name": "Benutzer",
+                            "value": "${event}"
+                          }
+                        ],
+                        "then": [
+                          {
+                            "type": "back"
+                          }
+                        ],
+                        "type": "invoke"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "dbHopeKurseTextbausteine.getBenutzerByBenutzerID",
+        "parameters": [
+          {
+            "name": "BenutzerID",
+            "value": "${parameters.BenutzerID}"
+          }
+        ],
+        "then": [
+          {
+            "name": "benutzer",
+            "type": "set",
+            "value": "${result}"
+          }
+        ],
+        "error": [],
+        "type": "invoke"
+      },
+      {
+        "name": "dbHopeKurseTextbausteine.getBases",
+        "parameters": [],
+        "then": [
+          {
+            "name": "getBasesResult",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "name": "Edit Benutzer 222",
+  "access": "Authenticated",
+  "layout": "Main"
+}

@@ -3,12 +3,48 @@
     <div class="col-md-12">
       <rz-template-form #form0 (submit)="form0Submit($event)">
         <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
-          <div class="col-md-3" [ngStyle]="{'textAlign': 'right'}">
-            <rz-label #label0 component="Email" [style]="{'width': '100%'}" text="E-Mail">
+          <div class="col-md-3">
+            <rz-label #label1 component="BaseID" [style]="{'textAlign': 'left', 'width': '100%'}" text="Kontakt">
             </rz-label>
           </div>
           <div class="col-md-9">
-            <rz-textbox #eMail [style]="{'display': 'block', 'width': '100%'}" name="EMail">
+            <rz-dropdown #baseId [data]="rstBase" emptyFilterText="No results found" [multiple]="false" multipleItemsSelectedText="{0} items selected" placeholder="Kontakt auswählen" [style]="{'display': 'block', 'width': '100%'}" textProperty="NameGesamt" valueProperty="BaseID" name="BaseID" (change)="BaseIDChange($event)">
+            </rz-dropdown>
+            <rz-required-validator #requiredValidator1 [component]="baseId" [style]="{'position': 'absolute'}" text="Benutzer erforderlich">
+            </rz-required-validator>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3" [ngStyle]="{'textAlign': 'right'}">
+            <rz-label #label2 component="Benutzername" [style]="{'width': '100%'}" text="Benutzername">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-textbox #benutzername [autoComplete]="false" [style]="{'display': 'block', 'width': '100%'}" name="Benutzername">
+            </rz-textbox>
+            <rz-required-validator #requiredValidator4 [component]="benutzername" [style]="{'position': 'absolute'}" text="Benutzername erforderlich">
+            </rz-required-validator>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3" [ngStyle]="{'textAlign': 'right'}">
+            <rz-label #label3 component="Initialen" [style]="{'textAlign': 'left', 'width': '100%'}" text="Initialen">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-textbox #initialen [autoComplete]="false" [style]="{'display': 'block', 'width': '100%'}" name="Initialen">
+            </rz-textbox>
+            <rz-required-validator #requiredValidator2 [component]="initialen" [style]="{'position': 'absolute'}" text="Initialien erforderlich">
+            </rz-required-validator>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3" [ngStyle]="{'textAlign': 'right'}">
+            <rz-label #label0 component="Email" [style]="{'textAlign': 'left', 'width': '100%'}" text="E-Mail">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-textbox #eMail [style]="{'display': 'block', 'width': '100%'}" name="EMail" (change)="EMailChange($event)">
             </rz-textbox>
             <rz-required-validator #requiredValidator0 [component]="eMail" [style]="{'position': 'absolute'}" text="E-Mail erforderlich">
             </rz-required-validator>
@@ -16,21 +52,23 @@
         </div>
         <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
           <div class="col-md-3">
-            <rz-label #roleNamesLabel component="RoleNames" [style]="{'textAlign': 'right', 'width': '100%'}" text="Rolen">
+            <rz-label #roleNamesLabel component="RoleNames" [style]="{'textAlign': 'left', 'width': '100%'}" text="Rollen">
             </rz-label>
           </div>
           <div class="col-md-9">
-            <rz-dropdown #roleNames [data]="rstRoles" emptyFilterText="No results found" [multiple]="true" multipleItemsSelectedText="{0} items selected" [style]="{'width': '100%'}" textProperty="Name" valueProperty="Name" name="RoleNames">
+            <rz-dropdown #roleNames [data]="rstBenutzerRollen" emptyFilterText="No results found" [multiple]="true" multipleItemsSelectedText="{0} items selected" [style]="{'display': 'block', 'width': '100%'}" textProperty="Name" valueProperty="Name" name="RoleNames">
             </rz-dropdown>
+            <rz-required-validator #requiredValidator3 [component]="roleNames" [style]="{'position': 'absolute'}" text="Rollen erforderlich">
+            </rz-required-validator>
           </div>
         </div>
         <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
           <div class="col-md-3">
-            <rz-label #passwordLabel component="Password" [style]="{'textAlign': 'right', 'width': '100%'}" text="Passwort">
+            <rz-label #passwordLabel component="Password" [style]="{'textAlign': 'left', 'width': '100%'}" text="Passwort">
             </rz-label>
           </div>
           <div class="col-md-9">
-            <rz-password #password [style]="{'display': 'block', 'width': '100%'}" name="Password">
+            <rz-password #password [autoComplete]="false" [style]="{'display': 'block', 'width': '100%'}" name="Password">
             </rz-password>
             <rz-required-validator #passwordRequiredValidator [component]="password" [style]="{'position': 'absolute'}" text="Passwort erforderlich">
             </rz-required-validator>
@@ -38,22 +76,52 @@
         </div>
         <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
           <div class="col-md-3">
-            <rz-label #confirmPasswordLabel component="ConfirmPassword" [style]="{'textAlign': 'right', 'width': '100%'}" text="Wiederholen">
+            <rz-label #confirmPasswordLabel component="ConfirmPassword" [style]="{'textAlign': 'left', 'width': '100%'}" text="Wiederholen">
             </rz-label>
           </div>
           <div class="col-md-9">
-            <rz-password #confirmPassword [style]="{'display': 'block', 'width': '100%'}" name="ConfirmPassword">
+            <rz-password #confirmPassword [autoComplete]="false" [style]="{'display': 'block', 'width': '100%'}" name="ConfirmPassword">
             </rz-password>
             <rz-required-validator #confirmPasswordRequiredValidator [component]="confirmPassword" [style]="{'position': 'absolute'}" text="Passwort wiederholen erforderlich">
             </rz-required-validator>
           </div>
         </div>
+        <div [ngStyle]="{'marginBottom': '14px'}" class="row">
+          <div class="col-md-3" [ngStyle]="{'paddingLeft': '0'}">
+            <rz-label #label19 component="Info" [style]="{'textAlign': 'left', 'width': '100%'}" text="Notizen">
+            </rz-label>
+          </div>
+          <div class="col-md-9" [ngStyle]="{}">
+            <rz-textarea #notiz [rows]="4" [style]="{'height': '136px', 'width': '100%'}" name="Notiz">
+            </rz-textarea>
+          </div>
+        </div>
         <div [ngStyle]="{'textAlign': 'right'}" class="row">
           <div class="col offset-sm-3">
-            <rz-button #button1 buttonStyle="primary" buttonType="submit" icon="save" text="Speichern">
+            <rz-button #button1 buttonStyle="success" buttonType="submit" icon="done" text="Speichern">
             </rz-button>
             <rz-button #button2 buttonStyle="light" [style]="{'marginLeft': '1rem'}" text="Abbruch" (click)="button2Click($event)">
             </rz-button>
+          </div>
+        </div>
+        <div [ngStyle]="{}" class="row">
+          <div class="col-md-3" [ngStyle]="{'textAlign': 'right'}">
+            <rz-label #label4 component="BenutzerEMail" [style]="{'textAlign': 'left', 'width': '100%'}" text="BenutzerEMail (nicht sichtbar)" *ngIf="false">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-textbox #benutzerEMail [style]="{'display': 'block', 'width': '100%'}" *ngIf="false" name="BenutzerEMail">
+            </rz-textbox>
+          </div>
+        </div>
+        <div [ngStyle]="{}" class="row">
+          <div class="col-md-3" [ngStyle]="{'textAlign': 'right'}">
+            <rz-label #label5 component="AspNetUsers_Id" [style]="{'textAlign': 'left', 'width': '100%'}" text="AspNetUsers_Id (nicht sichtbar)" *ngIf="false">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-textbox #aspNetUsersId [style]="{'display': 'block', 'width': '100%'}" *ngIf="false" name="AspNetUsers_Id">
+            </rz-textbox>
           </div>
         </div>
       </rz-template-form>

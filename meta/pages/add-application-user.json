@@ -2,68 +2,221 @@
   "access": [
     "Authenticated"
   ],
-  "events": {
-    "load": [
-      {
-        "type": "invoke",
-        "name": "Security.getRoles",
-        "then": [
-          {
-            "type": "set",
-            "name": "roles",
-            "value": "${result.value}"
-          }
-        ]
-      }
-    ]
-  },
   "components": [
     {
-      "type": "content",
-      "container": "main",
       "components": [
         {
-          "type": "row",
           "components": [
             {
-              "type": "col",
               "class": "col-md-12",
               "components": [
                 {
-                  "fields": [
+                  "components": [
                     {
-                      "property": "Email",
-                      "type": "string",
-                      "required": true,
-                      "title": "Email",
-                      "requiredText": "is required"
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Email",
+                              "name": "EmailLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Email",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "Email",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox"
+                            },
+                            {
+                              "component": "Email",
+                              "name": "EmailRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Email is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
                     },
                     {
-                      "title": "Roles",
-                      "property": "RoleNames",
-                      "type": "lookup",
-                      "data": "${roles}",
-                      "multiple": true,
-                      "textProperty": "Name",
-                      "valueProperty": "Name",
-                      "requiredText": "is required",
-                      "multipleItemsSelectedText": "{0} items selected",
-                      "emptyFilterText": "No results found"
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "RoleNames",
+                              "name": "RoleNamesLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Roles",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "data": "${roles}",
+                              "emptyFilterText": "No results found",
+                              "multiple": true,
+                              "multipleItemsSelectedText": "{0} items selected",
+                              "name": "RoleNames",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "textProperty": "Name",
+                              "type": "dropdown",
+                              "valueProperty": "Name"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
                     },
                     {
-                      "type": "password",
-                      "property": "Password",
-                      "required": true,
-                      "title": "Password",
-                      "requiredText": "is required"
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Password",
+                              "name": "PasswordLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Password",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "Password",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "password"
+                            },
+                            {
+                              "component": "Password",
+                              "name": "PasswordRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Password is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
                     },
                     {
-                      "type": "password",
-                      "property": "ConfirmPassword",
-                      "compare": "Password",
-                      "required": true,
-                      "title": "Confirm password",
-                      "requiredText": "is required"
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "ConfirmPassword",
+                              "name": "ConfirmPasswordLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Confirm password",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "ConfirmPassword",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "password"
+                            },
+                            {
+                              "component": "ConfirmPassword",
+                              "name": "ConfirmPasswordRequiredValidator",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "ConfirmPassword is required",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col offset-sm-3",
+                          "components": [
+                            {
+                              "buttonStyle": "primary",
+                              "buttonType": "submit",
+                              "icon": "save",
+                              "text": "Save",
+                              "type": "button"
+                            },
+                            {
+                              "buttonStyle": "light",
+                              "style": {
+                                "marginLeft": "1rem"
+                              },
+                              "text": "Cancel",
+                              "type": "button"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "type": "row"
                     }
                   ],
                   "events": {
@@ -77,11 +230,6 @@
                             "type": "notify"
                           }
                         ],
-                        "then": [
-                          {
-                            "type": "back"
-                          }
-                        ],
                         "name": "Security.createUser",
                         "parameters": [
                           {
@@ -89,21 +237,48 @@
                             "value": "${event}"
                           }
                         ],
+                        "then": [
+                          {
+                            "type": "back"
+                          }
+                        ],
                         "type": "invoke"
+                      },
+                      {
+                        "code": "console.log(${event});",
+                        "type": "execute"
                       }
                     ]
                   },
-                  "submitText": "Save",
                   "name": "form0",
-                  "type": "form"
+                  "type": "template-form"
                 }
-              ]
+              ],
+              "type": "col"
             }
-          ]
+          ],
+          "type": "row"
         }
-      ]
+      ],
+      "container": "main",
+      "type": "content"
     }
   ],
-  "name": "Add Application User",
-  "layout": "Main"
+  "events": {
+    "load": [
+      {
+        "name": "Security.getRoles",
+        "then": [
+          {
+            "name": "roles",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "Add Application User"
 }

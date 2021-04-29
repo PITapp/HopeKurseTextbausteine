@@ -36,9 +36,9 @@
   <rz-panelmenu #panelmenu0 [style]="{'height': '100%'}">
     <rz-panelmenu-item icon="description" [parameters]="[]" path="textbausteine" text="Textbausteine" *ngIf="security?.isInRole(['Authenticated'])">
     </rz-panelmenu-item>
-    <rz-panelmenu-item icon="school" path="kurse" text="Kurse" *ngIf="security?.isInRole(['Authenticated'])">
-    </rz-panelmenu-item>
     <rz-panelmenu-item icon="rate_review" path="autoren" text="Autoren" *ngIf="security?.isInRole(['Authenticated'])">
+    </rz-panelmenu-item>
+    <rz-panelmenu-item icon="school" path="kurse" text="Kurse" *ngIf="security?.isInRole(['Authenticated'])">
     </rz-panelmenu-item>
     <rz-panelmenu-item icon="create_new_folder" path="dokumente" text="Dokumente" *ngIf="security?.isInRole(['Authenticated'])">
     </rz-panelmenu-item>

@@ -18,9 +18,185 @@
                           "class": "col-md-3",
                           "components": [
                             {
+                              "component": "BaseID",
+                              "name": "label1",
+                              "style": {
+                                "textAlign": "left",
+                                "width": "100%"
+                              },
+                              "text": "Kontakt",
+                              "type": "label"
+                            }
+                          ],
+                          "name": "col2",
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "data": "${rstBase}",
+                              "emptyFilterText": "No results found",
+                              "events": {
+                                "change": [
+                                  {
+                                    "code": "this.benutzername.value = ${event.NameGesamt};",
+                                    "type": "execute"
+                                  }
+                                ]
+                              },
+                              "multiple": false,
+                              "multipleItemsSelectedText": "{0} items selected",
+                              "name": "BaseID",
+                              "placeholder": "Kontakt auswählen",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "template": "",
+                              "textProperty": "NameGesamt",
+                              "type": "dropdown",
+                              "valueProperty": "BaseID"
+                            },
+                            {
+                              "component": "BaseID",
+                              "name": "requiredValidator1",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Benutzer erforderlich",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "name": "col3",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row1",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Benutzername",
+                              "name": "label2",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Benutzername",
+                              "type": "label"
+                            }
+                          ],
+                          "name": "col6",
+                          "style": {
+                            "textAlign": "right"
+                          },
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "autoComplete": false,
+                              "name": "Benutzername",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "visible": true
+                            },
+                            {
+                              "component": "Benutzername",
+                              "name": "requiredValidator4",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Benutzername erforderlich",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "name": "col7",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row3",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Initialen",
+                              "name": "label3",
+                              "style": {
+                                "textAlign": "left",
+                                "width": "100%"
+                              },
+                              "text": "Initialen",
+                              "type": "label"
+                            }
+                          ],
+                          "name": "col4",
+                          "style": {
+                            "textAlign": "right"
+                          },
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "autoComplete": false,
+                              "name": "Initialen",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "visible": true
+                            },
+                            {
+                              "component": "Initialen",
+                              "name": "requiredValidator2",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Initialien erforderlich",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "name": "col5",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row2",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
                               "component": "Email",
                               "name": "label0",
                               "style": {
+                                "textAlign": "left",
                                 "width": "100%"
                               },
                               "text": "E-Mail",
@@ -37,6 +213,14 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "events": {
+                                "change": [
+                                  {
+                                    "code": "this.benutzerEMail.value = ${event};",
+                                    "type": "execute"
+                                  }
+                                ]
+                              },
                               "name": "EMail",
                               "style": {
                                 "display": "block",
@@ -73,10 +257,10 @@
                               "component": "RoleNames",
                               "name": "RoleNamesLabel",
                               "style": {
-                                "textAlign": "right",
+                                "textAlign": "left",
                                 "width": "100%"
                               },
-                              "text": "Rolen",
+                              "text": "Rollen",
                               "type": "label"
                             }
                           ],
@@ -86,17 +270,27 @@
                           "class": "col-md-9",
                           "components": [
                             {
-                              "data": "${rstRoles}",
+                              "data": "${rstBenutzerRollen}",
                               "emptyFilterText": "No results found",
                               "multiple": true,
                               "multipleItemsSelectedText": "{0} items selected",
                               "name": "RoleNames",
                               "style": {
+                                "display": "block",
                                 "width": "100%"
                               },
                               "textProperty": "Name",
                               "type": "dropdown",
                               "valueProperty": "Name"
+                            },
+                            {
+                              "component": "RoleNames",
+                              "name": "requiredValidator3",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Rollen erforderlich",
+                              "type": "required-validator"
                             }
                           ],
                           "type": "col"
@@ -116,7 +310,7 @@
                               "component": "Password",
                               "name": "PasswordLabel",
                               "style": {
-                                "textAlign": "right",
+                                "textAlign": "left",
                                 "width": "100%"
                               },
                               "text": "Passwort",
@@ -129,6 +323,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "autoComplete": false,
                               "name": "Password",
                               "style": {
                                 "display": "block",
@@ -163,7 +358,7 @@
                               "component": "ConfirmPassword",
                               "name": "ConfirmPasswordLabel",
                               "style": {
-                                "textAlign": "right",
+                                "textAlign": "left",
                                 "width": "100%"
                               },
                               "text": "Wiederholen",
@@ -176,6 +371,7 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "autoComplete": false,
                               "name": "ConfirmPassword",
                               "style": {
                                 "display": "block",
@@ -204,12 +400,59 @@
                     {
                       "components": [
                         {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Info",
+                              "name": "label19",
+                              "style": {
+                                "textAlign": "left",
+                                "width": "100%"
+                              },
+                              "text": "Notizen",
+                              "type": "label"
+                            }
+                          ],
+                          "name": "col64",
+                          "style": {
+                            "paddingLeft": "0"
+                          },
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "Notiz",
+                              "rows": 4,
+                              "style": {
+                                "height": "136px",
+                                "width": "100%"
+                              },
+                              "type": "textarea",
+                              "value": ""
+                            }
+                          ],
+                          "name": "col65",
+                          "style": {},
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row31",
+                      "style": {
+                        "marginBottom": "14px"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
                           "class": "col offset-sm-3",
                           "components": [
                             {
-                              "buttonStyle": "primary",
+                              "buttonStyle": "success",
                               "buttonType": "submit",
-                              "icon": "save",
+                              "icon": "done",
                               "text": "Speichern",
                               "type": "button"
                             },
@@ -236,6 +479,94 @@
                         "textAlign": "right"
                       },
                       "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "BenutzerEMail",
+                              "name": "label4",
+                              "style": {
+                                "textAlign": "left",
+                                "width": "100%"
+                              },
+                              "text": "BenutzerEMail (nicht sichtbar)",
+                              "type": "label",
+                              "visible": false
+                            }
+                          ],
+                          "name": "col8",
+                          "style": {
+                            "textAlign": "right"
+                          },
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "BenutzerEMail",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "visible": false
+                            }
+                          ],
+                          "name": "col9",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row4",
+                      "style": {},
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "AspNetUsers_Id",
+                              "name": "label5",
+                              "style": {
+                                "textAlign": "left",
+                                "width": "100%"
+                              },
+                              "text": "AspNetUsers_Id (nicht sichtbar)",
+                              "type": "label",
+                              "visible": false
+                            }
+                          ],
+                          "name": "col10",
+                          "style": {
+                            "textAlign": "right"
+                          },
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "AspNetUsers_Id",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "visible": false
+                            }
+                          ],
+                          "name": "col11",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row5",
+                      "style": {},
+                      "type": "row"
                     }
                   ],
                   "events": {
@@ -244,10 +575,14 @@
                         "condition": "",
                         "error": [
                           {
-                            "detail": "${result.error.message}",
+                            "detail": "Benutzer konnte nicht erstellt werden!",
                             "severity": "error",
-                            "summary": "Neuanlage Benutzer nicht möglich",
+                            "summary": "",
                             "type": "notify"
+                          },
+                          {
+                            "code": "console.log(\"result: \", result)",
+                            "type": "execute"
                           }
                         ],
                         "name": "Security.createUser",
@@ -263,7 +598,13 @@
                             "type": "execute"
                           },
                           {
-                            "type": "back"
+                            "result": "${result}",
+                            "type": "close-popup"
+                          },
+                          {
+                            "detail": "Benutzer erstellt",
+                            "severity": "success",
+                            "type": "notify"
                           }
                         ],
                         "type": "invoke"
@@ -292,9 +633,26 @@
     "load": [
       {
         "name": "Security.getRoles",
+        "parameters": [
+          {
+            "name": "$orderby",
+            "value": "Name"
+          }
+        ],
         "then": [
           {
-            "name": "rstRoles",
+            "name": "rstBenutzerRollen",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "dbHopeKurseTextbausteine.getVwBaseAlles",
+        "then": [
+          {
+            "name": "rstBase",
             "type": "set",
             "value": "${result.value}"
           }

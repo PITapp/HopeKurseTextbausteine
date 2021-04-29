@@ -13,17 +13,12 @@ namespace HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine
       set;
     }
     [Key]
+    public string AspNetUsers_Id
+    {
+      get;
+      set;
+    }
     public int BaseID
-    {
-      get;
-      set;
-    }
-    public string Name1
-    {
-      get;
-      set;
-    }
-    public string Name2
     {
       get;
       set;
@@ -43,12 +38,57 @@ namespace HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine
       get;
       set;
     }
+    public string Notiz
+    {
+      get;
+      set;
+    }
+    public string FilterTextbausteinArtCode
+    {
+      get;
+      set;
+    }
+    public int? FilterKursNr
+    {
+      get;
+      set;
+    }
+    public string FilterTitelUndText
+    {
+      get;
+      set;
+    }
+    public int? FilterAutorNr
+    {
+      get;
+      set;
+    }
+    public int? FilterThemaNummer
+    {
+      get;
+      set;
+    }
+    public string FilterAnrede
+    {
+      get;
+      set;
+    }
+    public string FilterDokument
+    {
+      get;
+      set;
+    }
+    public string FilterInfo
+    {
+      get;
+      set;
+    }
     public string RoleId
     {
       get;
       set;
     }
-    public string Benutzerrolle
+    public string RolleTitel
     {
       get;
       set;

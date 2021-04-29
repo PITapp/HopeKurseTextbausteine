@@ -4,7 +4,6 @@ import { Routes, RouterModule, ActivatedRoute } from '@angular/router';
 import { LoginLayoutComponent } from './login-layout/login-layout.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { BenutzerNeuComponent } from './benutzer-neu/benutzer-neu.component';
-import { BenutzerNeuRolleComponent } from './benutzer-neu-rolle/benutzer-neu-rolle.component';
 import { BenutzerBearbeitenComponent } from './benutzer-bearbeiten/benutzer-bearbeiten.component';
 import { BenutzerComponent } from './benutzer/benutzer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -40,6 +39,9 @@ import { RegisterApplicationUserComponent } from './register-application-user/re
 import { AddApplicationRoleComponent } from './add-application-role/add-application-role.component';
 import { AddApplicationUserComponent } from './add-application-user/add-application-user.component';
 import { EditApplicationUserComponent } from './edit-application-user/edit-application-user.component';
+import { Benutzer222Component } from './benutzer-222/benutzer-222.component';
+import { AddBenutzer222Component } from './add-benutzer-222/add-benutzer-222.component';
+import { EditBenutzer222Component } from './edit-benutzer-222/edit-benutzer-222.component';
 
 import { SecurityService } from './security.service';
 import { AuthGuard } from './auth.guard';
@@ -58,15 +60,7 @@ export const routes: Routes = [
         component: BenutzerNeuComponent
       },
       {
-        path: 'benutzer-neu-rolle',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: BenutzerNeuRolleComponent
-      },
-      {
-        path: 'benutzer-bearbeiten/:Id',
+        path: 'benutzer-bearbeiten/:BenutzerID',
         canActivate: [AuthGuard],
         data: {
           roles: ['Authenticated'],
@@ -241,7 +235,7 @@ export const routes: Routes = [
         component: KurseComponent
       },
       {
-        path: 'kurse-themen-neu/:KursNr',
+        path: 'kurse-themen-neu',
         canActivate: [AuthGuard],
         data: {
           roles: ['Authenticated'],
@@ -334,6 +328,30 @@ export const routes: Routes = [
           roles: ['Authenticated'],
         },
         component: EditApplicationUserComponent
+      },
+      {
+        path: 'benutzer-222',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: Benutzer222Component
+      },
+      {
+        path: 'add-benutzer-222',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: AddBenutzer222Component
+      },
+      {
+        path: 'edit-benutzer-222/:BenutzerID',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: EditBenutzer222Component
       },
     ]
   },

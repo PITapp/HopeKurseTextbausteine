@@ -39,7 +39,7 @@
                 </rz-label>
               </div>
               <div class="col-md-12" [ngStyle]="{'display': 'block'}">
-                <rz-textbox #textboxTitelUndText [maxLength]="30" [style]="{'display': 'block', 'height': '28px', 'marginBottom': '6px', 'width': '100%'}" [(ngModel)]="dsoBenutzer && dsoBenutzer.FilterTitelUndText" name="textboxTitelUndText" (change)="textboxTitelUndTextChange($event)" class="textbausteine-filter-auswahl">
+                <rz-textbox #textboxTitelUndText [autoComplete]="false" [maxLength]="30" [style]="{'display': 'block', 'height': '28px', 'marginBottom': '6px', 'width': '100%'}" [(ngModel)]="dsoBenutzer && dsoBenutzer.FilterTitelUndText" name="textboxTitelUndText" (change)="textboxTitelUndTextChange($event)" class="textbausteine-filter-auswahl">
                 </rz-textbox>
               </div>
             </div>
@@ -59,7 +59,7 @@
                 </rz-label>
               </div>
               <div class="col-md-12" [ngStyle]="{'display': 'block'}">
-                <rz-numeric #numeric0 [style]="{'height': '28px', 'width': '100%'}" [(ngModel)]="dsoBenutzer && dsoBenutzer.FilterThemaNummer" name="numeric0" (change)="numeric0Change($event)" class="textbausteine-filter-auswahl">
+                <rz-numeric #numeric0 [autoComplete]="false" [style]="{'height': '28px', 'width': '100%'}" [(ngModel)]="dsoBenutzer && dsoBenutzer.FilterThemaNummer" name="numeric0" (change)="numeric0Change($event)" class="textbausteine-filter-auswahl">
                 </rz-numeric>
               </div>
             </div>
@@ -89,7 +89,7 @@
                 </rz-label>
               </div>
               <div class="col-md-12" [ngStyle]="{'display': 'block'}">
-                <rz-textbox #textbox0 [maxLength]="30" [style]="{'display': 'block', 'height': '28px', 'marginBottom': '6px', 'width': '100%'}" [(ngModel)]="dsoBenutzer && dsoBenutzer.FilterInfo" name="textbox0" (change)="textbox0Change($event)" class="textbausteine-filter-auswahl">
+                <rz-textbox #textbox0 [autoComplete]="false" [maxLength]="30" [style]="{'display': 'block', 'height': '28px', 'marginBottom': '6px', 'width': '100%'}" [(ngModel)]="dsoBenutzer && dsoBenutzer.FilterInfo" name="textbox0" (change)="textbox0Change($event)" class="textbausteine-filter-auswahl">
                 </rz-textbox>
               </div>
             </div>

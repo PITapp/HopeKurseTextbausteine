@@ -173,12 +173,20 @@ export interface VwBaseAlle {
 
 export interface VwBenutzerRollen {
   BenutzerID: number;
+  AspNetUsers_Id: string;
   BaseID: number;
-  Name1: string;
-  Name2: string;
   Benutzername: string;
   Initialen: string;
   BenutzerEMail: string;
+  Notiz: string;
+  FilterTextbausteinArtCode: string;
+  FilterKursNr: number;
+  FilterTitelUndText: string;
+  FilterAutorNr: number;
+  FilterThemaNummer: number;
+  FilterAnrede: string;
+  FilterDokument: string;
+  FilterInfo: string;
   RoleId: string;
-  Benutzerrolle: string;
+  RolleTitel: string;
 }

@@ -26,10 +26,10 @@ export class DokumenteGenerated implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('heading19') heading19: HeadingComponent;
   @ViewChild('heading21') heading21: HeadingComponent;
   @ViewChild('tabs0') tabs0: TabsComponent;
-  @ViewChild('panel2') panel2: PanelComponent;
+  @ViewChild('panelDokumente') panelDokumente: PanelComponent;
   @ViewChild('panel3') panel3: PanelComponent;
   @ViewChild('panel1') panel1: PanelComponent;
-  @ViewChild('bild') bild: PanelComponent;
+  @ViewChild('panelTextbaustein') panelTextbaustein: PanelComponent;
   @ViewChild('panel0') panel0: PanelComponent;
   @ViewChild('panel4') panel4: PanelComponent;
   @ViewChild('panel5') panel5: PanelComponent;
