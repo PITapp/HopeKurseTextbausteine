@@ -23,7 +23,7 @@
   "name": "HopeKurseTextbausteine",
   "namespaces": [],
   "navigation": [
-    "Dashboard",
+    "Textbausteine",
     "Kontakte",
     "Benutzer222"
   ],
@@ -89,7 +89,7 @@
   "serverPort": 5000,
   "serverProject": true,
   "serverVersion": "3",
-  "startPage": "Dashboard",
+  "startPage": "Textbausteine",
   "theme": "default",
   "themeSettings": {
     "$accordion-border-radius": "4px",

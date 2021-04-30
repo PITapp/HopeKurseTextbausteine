@@ -46,7 +46,7 @@ import { BenutzerBearbeitenComponent } from './benutzer-bearbeiten/benutzer-bear
 import { SecurityService } from './security.service';
 import { AuthGuard } from './auth.guard';
 export const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: '/textbausteine', pathMatch: 'full' },
   {
     path: '',
     component: MainLayoutComponent,

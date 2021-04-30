@@ -34,7 +34,7 @@
 </rz-body>
 <rz-sidebar #sidebar0>
   <rz-panelmenu #panelmenu0 [style]="{'height': '100%'}">
-    <rz-panelmenu-item icon="description" [parameters]="[]" path="textbausteine" text="Textbausteine" *ngIf="security?.isInRole(['Authenticated'])">
+    <rz-panelmenu-item icon="description" [parameters]="[]" path="textbausteine" [selected]="false" text="Textbausteine" *ngIf="security?.isInRole(['Authenticated'])">
     </rz-panelmenu-item>
     <rz-panelmenu-item icon="rate_review" path="autoren" text="Autoren" *ngIf="security?.isInRole(['Authenticated'])">
     </rz-panelmenu-item>
