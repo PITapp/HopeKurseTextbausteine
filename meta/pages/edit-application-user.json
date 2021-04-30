@@ -2,98 +2,243 @@
   "access": [
     "Authenticated"
   ],
-  "events": {
-    "load": [
-      {
-        "type": "invoke",
-        "name": "Security.getUserById",
-        "parameters": [
-          {
-            "name": "Id",
-            "value": "${parameters.Id}"
-          }
-        ],
-        "then": [
-          {
-            "type": "set",
-            "name": "user",
-            "value": "${result}"
-          }
-        ]
-      },
-      {
-        "type": "invoke",
-        "name": "Security.getRoles",
-        "then": [
-          {
-            "type": "set",
-            "name": "roles",
-            "value": "${result.value}"
-          }
-        ]
-      }
-    ]
-  },
   "components": [
     {
-      "type": "content",
-      "container": "main",
       "components": [
         {
-          "type": "row",
           "components": [
             {
-              "type": "col",
               "class": "col-md-12",
               "components": [
                 {
-                  "data": "${user}",
-                  "fields": [
+                  "components": [
                     {
-                      "property": "UserName",
-                      "type": "string",
-                      "disabled": true,
-                      "title": "User Name",
-                      "requiredText": "is required"
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "UserName",
+                              "name": "UserNameLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "User Name",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "disabled": true,
+                              "name": "UserName",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${user.UserName}"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
                     },
                     {
-                      "property": "Email",
-                      "type": "string",
-                      "title": "Email",
-                      "requiredText": "is required"
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Email",
+                              "name": "EmailLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Email",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "Email",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${user.Email}"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
                     },
                     {
-                      "title": "Roles",
-                      "property": "RoleNames",
-                      "type": "lookup",
-                      "data": "${roles}",
-                      "multiple": true,
-                      "textProperty": "Name",
-                      "valueProperty": "Name",
-                      "requiredText": "is required",
-                      "multipleItemsSelectedText": "{0} items selected",
-                      "emptyFilterText": "No results found"
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "RoleNames",
+                              "name": "RoleNamesLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Roles",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "data": "${roles}",
+                              "emptyFilterText": "No results found",
+                              "multiple": true,
+                              "multipleItemsSelectedText": "{0} items selected",
+                              "name": "RoleNames",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "textProperty": "Name",
+                              "type": "dropdown",
+                              "value": "${user.RoleNames}",
+                              "valueProperty": "Name"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
                     },
                     {
-                      "type": "password",
-                      "property": "Password",
-                      "title": "Password",
-                      "requiredText": "is required"
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Password",
+                              "name": "PasswordLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Password",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "Password",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "password",
+                              "value": "${user.Password}"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
                     },
                     {
-                      "type": "password",
-                      "property": "ConfirmPassword",
-                      "compare": "Password",
-                      "title": "Confirm password",
-                      "requiredText": "is required"
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "ConfirmPassword",
+                              "name": "ConfirmPasswordLabel",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Confirm password",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "ConfirmPassword",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "password",
+                              "value": "${user.ConfirmPassword}"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col offset-sm-3",
+                          "components": [
+                            {
+                              "buttonStyle": "primary",
+                              "buttonType": "submit",
+                              "icon": "save",
+                              "text": "Save",
+                              "type": "button"
+                            },
+                            {
+                              "buttonStyle": "light",
+                              "events": {
+                                "click": [
+                                  {
+                                    "type": "back"
+                                  }
+                                ]
+                              },
+                              "style": {
+                                "marginLeft": "1rem"
+                              },
+                              "text": "Cancel",
+                              "type": "button"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "type": "row"
                     }
                   ],
                   "events": {
-                    "cancel": [
-                      {
-                        "type": "back"
-                      }
-                    ],
                     "submit": [
                       {
                         "error": [
@@ -102,11 +247,6 @@
                             "severity": "error",
                             "summary": "Cannot update user",
                             "type": "notify"
-                          }
-                        ],
-                        "then": [
-                          {
-                            "type": "back"
                           }
                         ],
                         "name": "Security.updateUser",
@@ -120,21 +260,61 @@
                             "value": "${event}"
                           }
                         ],
+                        "then": [
+                          {
+                            "type": "back"
+                          }
+                        ],
                         "type": "invoke"
                       }
                     ]
                   },
-                  "submitText": "Save",
                   "name": "form0",
-                  "type": "form"
+                  "type": "template-form"
                 }
-              ]
+              ],
+              "type": "col"
             }
-          ]
+          ],
+          "type": "row"
         }
-      ]
+      ],
+      "container": "main",
+      "type": "content"
     }
   ],
-  "name": "Edit Application User",
-  "layout": "Main"
+  "events": {
+    "load": [
+      {
+        "name": "Security.getUserById",
+        "parameters": [
+          {
+            "name": "Id",
+            "value": "${parameters.Id}"
+          }
+        ],
+        "then": [
+          {
+            "name": "user",
+            "type": "set",
+            "value": "${result}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "Security.getRoles",
+        "then": [
+          {
+            "name": "roles",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "Edit Application User"
 }

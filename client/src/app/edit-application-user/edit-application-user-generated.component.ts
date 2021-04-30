@@ -11,7 +11,12 @@ import { Subscription } from 'rxjs';
 import { DialogService, DIALOG_PARAMETERS, DialogRef } from '@radzen/angular/dist/dialog';
 import { NotificationService } from '@radzen/angular/dist/notification';
 import { ContentComponent } from '@radzen/angular/dist/content';
-import { FormComponent } from '@radzen/angular/dist/form';
+import { TemplateFormComponent } from '@radzen/angular/dist/template-form';
+import { LabelComponent } from '@radzen/angular/dist/label';
+import { TextBoxComponent } from '@radzen/angular/dist/textbox';
+import { DropDownComponent } from '@radzen/angular/dist/dropdown';
+import { PasswordComponent } from '@radzen/angular/dist/password';
+import { ButtonComponent } from '@radzen/angular/dist/button';
 
 import { ConfigService } from '../config.service';
 
@@ -20,7 +25,19 @@ import { SecurityService } from '../security.service';
 export class EditApplicationUserGenerated implements AfterViewInit, OnInit, OnDestroy {
   // Components
   @ViewChild('content1') content1: ContentComponent;
-  @ViewChild('form0') form0: FormComponent;
+  @ViewChild('form0') form0: TemplateFormComponent;
+  @ViewChild('userNameLabel') userNameLabel: LabelComponent;
+  @ViewChild('userName') userName: TextBoxComponent;
+  @ViewChild('emailLabel') emailLabel: LabelComponent;
+  @ViewChild('email') email: TextBoxComponent;
+  @ViewChild('roleNamesLabel') roleNamesLabel: LabelComponent;
+  @ViewChild('roleNames') roleNames: DropDownComponent;
+  @ViewChild('passwordLabel') passwordLabel: LabelComponent;
+  @ViewChild('password') password: PasswordComponent;
+  @ViewChild('confirmPasswordLabel') confirmPasswordLabel: LabelComponent;
+  @ViewChild('confirmPassword') confirmPassword: PasswordComponent;
+  @ViewChild('button1') button1: ButtonComponent;
+  @ViewChild('button2') button2: ButtonComponent;
 
   router: Router;
 
@@ -111,14 +128,6 @@ export class EditApplicationUserGenerated implements AfterViewInit, OnInit, OnDe
     });
   }
 
-  form0Cancel(event: any) {
-    if (this.dialogRef) {
-      this.dialogRef.close();
-    } else {
-      this._location.back();
-    }
-  }
-
   form0Submit(event: any) {
     this.security.updateUser(`${this.parameters.Id}`, event)
     .subscribe((result: any) => {
@@ -130,5 +139,13 @@ export class EditApplicationUserGenerated implements AfterViewInit, OnInit, OnDe
     }, (result: any) => {
       this.notificationService.notify({ severity: "error", summary: `Cannot update user`, detail: `${result.error.message}` });
     });
+  }
+
+  button2Click(event: any) {
+    if (this.dialogRef) {
+      this.dialogRef.close();
+    } else {
+      this._location.back();
+    }
   }
 }

@@ -185,11 +185,17 @@ export class BenutzerGenerated implements AfterViewInit, OnInit, OnDestroy {
     this.dialogService.open(MeldungLoeschenComponent, { parameters: {strMeldung: "Soll der Benutzer '" + this.dsoBenutzer.Benutzername + "' gelöscht werden?"}, title: `Löschen Benutzer` })
         .afterClosed().subscribe(result => {
               if (result == 'Löschen') {
-              this.dbHopeKurseTextbausteine.deleteBenutzer(this.dsoBenutzer.BenutzerID)
+              this.dbHopeKurseTextbausteine.deleteBenutzer(
+this.dsoBenutzer.BenutzerID)
         .subscribe((result: any) => {
-              this.notificationService.notify({ severity: "success", summary: ``, detail: `Benutzer gelöscht` });
+              this.security.deleteUser(`${this.dsoBenutzer.AspNetUsers_Id}`)
+        .subscribe((result: any) => {
+          this.notificationService.notify({ severity: "success", summary: ``, detail: `Benutzer gelöscht` });
         }, (result: any) => {
-              this.notificationService.notify({ severity: "error", summary: ``, detail: `Benutzer konnte nicht gelöscht werden!` });
+          this.notificationService.notify({ severity: "error", summary: ``, detail: `Benutzer (Schritt 2) konnte nicht gelöscht werden!` });
+        });
+        }, (result: any) => {
+              this.notificationService.notify({ severity: "error", summary: ``, detail: `Benutzer (Schritt 1) konnte nicht gelöscht werden!` });
         });
       }
     });

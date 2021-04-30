@@ -4,77 +4,95 @@
       <rz-template-form #form0 (submit)="form0Submit($event)">
         <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
           <div class="col-md-3" [ngStyle]="{'textAlign': 'right'}">
-            <rz-label #emailLabel component="Email" [style]="{'width': '100%'}" text="E-Mail">
+            <rz-label #label4 component="textbox0" [style]="{'textAlign': 'left', 'width': '100%'}" text="Kontakt">
             </rz-label>
           </div>
           <div class="col-md-9">
-            <rz-textbox #email [style]="{'width': '100%'}" [(ngModel)]="rstUser && rstUser.Email" name="Email">
+            <rz-textbox #textbox0 [autoComplete]="false" [disabled]="true" [style]="{'display': 'block', 'width': '100%'}" [(ngModel)]="strNameKontakt" name="textbox0">
             </rz-textbox>
           </div>
         </div>
         <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
           <div class="col-md-3" [ngStyle]="{'textAlign': 'right'}">
-            <rz-label #label1 component="Benutzername" [style]="{'width': '100%'}" text="Benutzername">
+            <rz-label #label2 component="Benutzername" [style]="{'textAlign': 'left', 'width': '100%'}" text="Anmeldename">
             </rz-label>
           </div>
           <div class="col-md-9">
-            <rz-textbox #benutzername [style]="{'width': '100%'}" [(ngModel)]="rstBenutzer && rstBenutzer.Benutzername" name="Benutzername">
+            <rz-textbox #benutzername [autoComplete]="false" [style]="{'display': 'block', 'width': '100%'}" [(ngModel)]="dsoBenutzer && dsoBenutzer.Benutzername" name="Benutzername">
             </rz-textbox>
+            <rz-required-validator #requiredValidator4 [component]="benutzername" [style]="{'position': 'absolute'}" text="Benutzername erforderlich">
+            </rz-required-validator>
           </div>
         </div>
         <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
           <div class="col-md-3" [ngStyle]="{'textAlign': 'right'}">
-            <rz-label #label0 component="Notiz" [style]="{'width': '100%'}" text="Notiz">
+            <rz-label #label3 component="Initialen" [style]="{'textAlign': 'left', 'width': '100%'}" text="Initialen">
             </rz-label>
           </div>
           <div class="col-md-9">
-            <rz-textbox #notiz [style]="{'width': '100%'}" [(ngModel)]="rstBenutzer && rstBenutzer.Notiz" name="Notiz">
+            <rz-textbox #initialen [autoComplete]="false" [style]="{'display': 'block', 'width': '100%'}" [(ngModel)]="dsoBenutzer && dsoBenutzer.Initialen" name="Initialen">
             </rz-textbox>
+            <rz-required-validator #requiredValidator2 [component]="initialen" [style]="{'position': 'absolute'}" text="Initialien erforderlich">
+            </rz-required-validator>
           </div>
         </div>
         <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
           <div class="col-md-3" [ngStyle]="{'textAlign': 'right'}">
-            <rz-label #label2 component="textboxKennwort" [style]="{'width': '100%'}" text="Kennwort">
+            <rz-label #label0 component="Email" [style]="{'textAlign': 'left', 'width': '100%'}" text="E-Mail">
             </rz-label>
           </div>
           <div class="col-md-9">
-            <rz-textbox #textboxKennwort [style]="{'width': '100%'}" [(ngModel)]="rstBenutzer && rstBenutzer.Kennwort" name="textboxKennwort">
+            <rz-textbox #benutzerEMail [style]="{'display': 'block', 'width': '100%'}" [(ngModel)]="dsoBenutzer && dsoBenutzer.BenutzerEMail" name="BenutzerEMail">
             </rz-textbox>
+            <rz-required-validator #requiredValidator0 [component]="eMail" [style]="{'position': 'absolute'}" text="E-Mail erforderlich">
+            </rz-required-validator>
           </div>
         </div>
         <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
           <div class="col-md-3">
-            <rz-label #roleNamesLabel component="RoleNames" [style]="{'textAlign': 'right', 'width': '100%'}" text="Rolen">
+            <rz-label #roleNamesLabel component="RoleNames" [style]="{'textAlign': 'left', 'width': '100%'}" text="Rollen">
             </rz-label>
           </div>
           <div class="col-md-9">
-            <rz-dropdown #roleNames [data]="rstRoles" emptyFilterText="No results found" [multiple]="true" multipleItemsSelectedText="{0} items selected" [style]="{'width': '100%'}" textProperty="Name" [(ngModel)]="rstUser && rstUser.RoleNames" valueProperty="Name" name="RoleNames">
-            </rz-dropdown>
+            <rz-listbox #roleNames [allowFiltering]="false" [checkbox]="true" [data]="rstRollen" [multiple]="true" [showToggleAll]="false" [style]="{'display': 'block', 'width': '100%'}" textProperty="Titel" [(ngModel)]="dsoUser && dsoUser.RoleNames" valueProperty="Titel" name="RoleNames">
+            </rz-listbox>
+            <rz-required-validator #requiredValidator3 [component]="roleNames" [style]="{'position': 'absolute'}" text="Rollen erforderlich">
+            </rz-required-validator>
           </div>
         </div>
         <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
           <div class="col-md-3">
-            <rz-label #passwordLabel component="Password" [style]="{'textAlign': 'right', 'width': '100%'}" text="Passwort">
+            <rz-label #passwordLabel component="Password" [style]="{'textAlign': 'left', 'width': '100%'}" text="Passwort">
             </rz-label>
           </div>
           <div class="col-md-9">
-            <rz-password #password [style]="{'width': '100%'}" [(ngModel)]="rstUser && rstUser.Password" name="Password" (change)="PasswordChange($event)">
+            <rz-password #password [autoComplete]="false" [style]="{'display': 'block', 'width': '100%'}" [(ngModel)]="dsoUser && dsoUser.Password" name="Password">
             </rz-password>
           </div>
         </div>
         <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
           <div class="col-md-3">
-            <rz-label #confirmPasswordLabel component="ConfirmPassword" [style]="{'textAlign': 'right', 'width': '100%'}" text="Wiederholen">
+            <rz-label #confirmPasswordLabel component="ConfirmPassword" [style]="{'textAlign': 'left', 'width': '100%'}" text="Wiederholen">
             </rz-label>
           </div>
           <div class="col-md-9">
-            <rz-password #confirmPassword [style]="{'width': '100%'}" [(ngModel)]="rstUser && rstUser.ConfirmPassword" name="ConfirmPassword">
+            <rz-password #confirmPassword [autoComplete]="false" [style]="{'display': 'block', 'width': '100%'}" [(ngModel)]="dsoUser && dsoUser.ConfirmPassword" name="ConfirmPassword">
             </rz-password>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '14px'}" class="row">
+          <div class="col-md-3" [ngStyle]="{}">
+            <rz-label #label19 component="Info" [style]="{'textAlign': 'left', 'width': '100%'}" text="Notizen">
+            </rz-label>
+          </div>
+          <div class="col-md-9" [ngStyle]="{}">
+            <rz-textarea #notiz [rows]="4" [style]="{'height': '136px', 'width': '100%'}" [(ngModel)]="dsoBenutzer && dsoBenutzer.Notiz" name="Notiz">
+            </rz-textarea>
           </div>
         </div>
         <div [ngStyle]="{'textAlign': 'right'}" class="row">
           <div class="col offset-sm-3">
-            <rz-button #button1 buttonStyle="primary" buttonType="submit" icon="save" text="Speichern">
+            <rz-button #button1 buttonStyle="success" buttonType="submit" icon="done" text="Speichern">
             </rz-button>
             <rz-button #button2 buttonStyle="light" [style]="{'marginLeft': '1rem'}" text="Abbruch" (click)="button2Click($event)">
             </rz-button>
@@ -83,31 +101,29 @@
       </rz-template-form>
     </div>
   </div>
-  <rz-panel #panel0 [allowCollapse]="false" [collapsed]="false" [style]="{'marginTop': '20px'}" text="Funktionsbeschreibung - BenutzerBearbeiten" *ngIf="false" >
-    <div class="row">
-      <div class="col-md-6">
-        <rz-textarea #textarea0 placeholder="Die Adventgemeinde Voitsberg von ihrer Entstehung bis heute
-        
-        Eventuell kurzen Abschnitt über die allgemeine Adventbewegung Ende des 18., Anfang des 19. Jahrhunderts mit Gründung der STA 1863 von enttäuschten Männern und Frauen der Millerbewegung voranstellen. Bald erfolgt eine weltweite Mission der Evangeliums Botschaft, sowie Bemühungen um eine gesunde Lebensweise und Verkündigung der beginnenden Endzeit und der baldigen Wiederkunft Christi.
-        
-        Man schreibt das Jahr 1909, ein junger Mann aus Köflach nimmt die Adventbotschaft an und schließt sich durch die biblische Erwachsenen Taufe, der Kirche der Siebenten Tags Adventisten an. Sein Name ist Vinzenz Suchanek. Er geht bald danach nach Deutschland und lässt sich am theologischen Seminar in Friedensau zum Verkünder der Botschaft von der Erlösung durch Jesus Christus und seiner in der ganzen Bibel verheißenen Wiederkunft ausbilden. Als junger Prediger arbeitet er einige Jahre im Friaul. Durch den ersten Weltkrieg wird dieser für die Voitsberger Adventgemeinde später wichtige Mann plötzlich aus seiner Arbeit gerissen. Nach jahrelangem Kriegseinsatz, kehrt er schwer gezeichnet und leidend in seine Heimat zurück, nicht mehr in der Lage den schweren Dienst als Missionar auszufüllen.
-        
-        In den letzten Jahren vor dem ersten Weltkrieg tauchen zwei andere Männer, die von der Adventbotschaft ergriffen wurden, in Voitsberg auf. Es sind dies der spätere Buchevangelist Franz Petrowitsch und der Landwirt Wenzel Häntschel. Auch ihre Tätigkeit wird durch den Krieg jäh unterbrochen, aber noch während des Krieges im Jahre 1916 schlossen sie sich durch die Taufe der Adventgemeinde in Österreich an, während die Frauen dieser beiden Männer sich schon i915 der Advent-Bewegung angeschlossen hatten.
-        
-        Als bei Kriegsende die Gruppe der Siebenten Tags Adventisten im Bezirk Voitsberg die Zahl 18 erreichte, wurde die Adventgemeinde Voitsberg gegründet. Im alten Berichtsbuch heißt es dazu: &quot;Durch des Herrn Gnade konnten wir am 28. Dezember 1918 unsere Gemeinde in Voitsberg gründen, zu dessen Vorrecht wir den Herrn loben und preisen möchten.&quot; Die Gründung der Advent Gemeinde Voitsberg erfolgte durch Pastor Werner aus Graz. Der erste Leiter der kleinen Kirchengemeinde war Wenzel Häntschel aus Kowald. Die schweren Kriegs- und Nachkriegsjahre waren für die Verbreitung der Adventbotschaft sehr fruchtbar. Bereits im Jahre 1925 betrug die Gliederzahl der Adventgemeinde Voitsberg über 50. Die Gottesdienste fanden in diesen Jahren im alten Kinosaal statt. Auch die Inflation nach dem ersten Weltkrieg fand ihren Niederschlag in den Berichtsbüchern. So heißt es im Jahresabschluss für das Jahr 1923 etwa: Zehnter 23.829.588,-- Kronen, Sabbatschulgaben 1.331.269,-- Kronen, Geburtstagsgaben 2.030.000,-- Kronen
-        
-        Am 29. Juli 1927 konnte mit Unterstützung von Bürgermeister Fripertinger, aus dem Gebäudekomplex der stillgelegten Papierfabrik, das Haus Nr. 10 in der Rosseggergasse für die Adventgemeinde erworben werden. Für die Gottesdienste wurden die Räume im ersten Stock ausgebaut. Der große Versammlungsraum bot bis zu 100 Besuchern Platz. Im Erdgeschoß des Hauses wurde eine Wohnung und Werkstättenräume eingerichtet, dort gründete im Jahre 1930, Rudolf Bauer einen kleinen Betrieb, der nach dem zweiten Weltkrieg einen großen Aufschwung erlebte.
-        
-        In all diesen Jahren hatte die kleine aber aktive Gemeinde keinen eigenen Pastor. Betreut wurde die Adventgemeinde Voitsberg bis Anfang der 70iger Jahre von einem Prediger aus Graz. Dieser konnte natürlich nur alle 3 bis 4 Wochen bei den Gottesdiensten an Samstagen anwesend sein. Die Gestaltung der Gottesdienste, auch die wöchentlichen Predigten, oblag also weitgehend einigen Laiengliedern. Auch die Unterweisung von Freunden der Adventbotschaft in wichtigen biblischen Wahrheiten erfolgte zu einem guten Teil durch befähigte Laien der örtlichen Gemeinde.
-         
-        
-        
-        
-        " [style]="{'height': '400px', 'width': '100%'}" name="textarea0">
-        </rz-textarea>
-      </div>
-      <div class="col-md-6">
-      </div>
+  <div class="row">
+    <div class="col-md-3">
     </div>
-  </rz-panel>
+    <div class="col-md-9">
+      <rz-textarea #textarea0 placeholder="Funktionsbeschreibung - BenutzerBearbeiten
+      
+      Wenn die Tabelle Benutzer aktualisiert wird, werden der Benutzername und die E-Mail-Adresse in der Tabelle AspNetUsers auch aktualisiert. Wir verwenden aber für den Benutzernamen den Vornamen und Familiennamen. Diese Aktualisierung wird beim Ändern in der Tabelle Benutzer in der Tabelle AspNetUsers aktualisiert.
+      
+      Funktion in MySQL:
+      
+      AFTER UPDATE ON `web9_db2`.`Benutzer`
+      FOR EACH ROW
+      BEGIN
+      
+      	-- Den Benutzernamen aus der Tabelle 'Benutzer' in der Tabelle 'AspNetUsers' eintragen
+      	UPDATE AspNetUsers 
+      		SET UserName = NEW.Benutzername, 
+                  NormalizedUserName = Upper(NEW.Benutzername),
+      		    Email = NEW.BenutzerEMail, 
+                  NormalizedEmail = Upper(NEW.BenutzerEMail)
+      		WHERE Id = NEW.AspNetUsers_Id;
+      END" [style]="{'backgroundColor': '#ffeca3', 'height': '200px', 'width': '100%'}" *ngIf="false" name="textarea0">
+      </rz-textarea>
+    </div>
+  </div>
 </rz-content>

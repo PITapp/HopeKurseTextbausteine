@@ -215,5 +215,11 @@ namespace HopeKurseTextbausteine.Data
           get;
           set;
         }
+
+        public DbSet<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.VwRollen> VwRollens
+        {
+          get;
+          set;
+        }
     }
 }

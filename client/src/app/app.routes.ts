@@ -4,7 +4,6 @@ import { Routes, RouterModule, ActivatedRoute } from '@angular/router';
 import { LoginLayoutComponent } from './login-layout/login-layout.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { BenutzerNeuComponent } from './benutzer-neu/benutzer-neu.component';
-import { BenutzerBearbeitenComponent } from './benutzer-bearbeiten/benutzer-bearbeiten.component';
 import { BenutzerComponent } from './benutzer/benutzer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EinstellungenComponent } from './einstellungen/einstellungen.component';
@@ -42,6 +41,7 @@ import { EditApplicationUserComponent } from './edit-application-user/edit-appli
 import { Benutzer222Component } from './benutzer-222/benutzer-222.component';
 import { AddBenutzer222Component } from './add-benutzer-222/add-benutzer-222.component';
 import { EditBenutzer222Component } from './edit-benutzer-222/edit-benutzer-222.component';
+import { BenutzerBearbeitenComponent } from './benutzer-bearbeiten/benutzer-bearbeiten.component';
 
 import { SecurityService } from './security.service';
 import { AuthGuard } from './auth.guard';
@@ -58,14 +58,6 @@ export const routes: Routes = [
           roles: ['Authenticated'],
         },
         component: BenutzerNeuComponent
-      },
-      {
-        path: 'benutzer-bearbeiten/:BenutzerID',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: BenutzerBearbeitenComponent
       },
       {
         path: 'benutzer',
@@ -352,6 +344,14 @@ export const routes: Routes = [
           roles: ['Authenticated'],
         },
         component: EditBenutzer222Component
+      },
+      {
+        path: 'benutzer-bearbeiten/:BenutzerID',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: BenutzerBearbeitenComponent
       },
     ]
   },

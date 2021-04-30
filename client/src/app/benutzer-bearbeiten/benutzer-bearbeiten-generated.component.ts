@@ -14,11 +14,11 @@ import { ContentComponent } from '@radzen/angular/dist/content';
 import { TemplateFormComponent } from '@radzen/angular/dist/template-form';
 import { LabelComponent } from '@radzen/angular/dist/label';
 import { TextBoxComponent } from '@radzen/angular/dist/textbox';
-import { DropDownComponent } from '@radzen/angular/dist/dropdown';
+import { RequiredValidatorComponent } from '@radzen/angular/dist/required-validator';
+import { ListBoxComponent } from '@radzen/angular/dist/listbox';
 import { PasswordComponent } from '@radzen/angular/dist/password';
-import { ButtonComponent } from '@radzen/angular/dist/button';
-import { PanelComponent } from '@radzen/angular/dist/panel';
 import { TextAreaComponent } from '@radzen/angular/dist/textarea';
+import { ButtonComponent } from '@radzen/angular/dist/button';
 
 import { ConfigService } from '../config.service';
 
@@ -29,23 +29,28 @@ export class BenutzerBearbeitenGenerated implements AfterViewInit, OnInit, OnDes
   // Components
   @ViewChild('content1') content1: ContentComponent;
   @ViewChild('form0') form0: TemplateFormComponent;
-  @ViewChild('emailLabel') emailLabel: LabelComponent;
-  @ViewChild('email') email: TextBoxComponent;
-  @ViewChild('label1') label1: LabelComponent;
-  @ViewChild('benutzername') benutzername: TextBoxComponent;
-  @ViewChild('label0') label0: LabelComponent;
-  @ViewChild('notiz') notiz: TextBoxComponent;
+  @ViewChild('label4') label4: LabelComponent;
+  @ViewChild('textbox0') textbox0: TextBoxComponent;
   @ViewChild('label2') label2: LabelComponent;
-  @ViewChild('textboxKennwort') textboxKennwort: TextBoxComponent;
+  @ViewChild('benutzername') benutzername: TextBoxComponent;
+  @ViewChild('requiredValidator4') requiredValidator4: RequiredValidatorComponent;
+  @ViewChild('label3') label3: LabelComponent;
+  @ViewChild('initialen') initialen: TextBoxComponent;
+  @ViewChild('requiredValidator2') requiredValidator2: RequiredValidatorComponent;
+  @ViewChild('label0') label0: LabelComponent;
+  @ViewChild('benutzerEMail') benutzerEMail: TextBoxComponent;
+  @ViewChild('requiredValidator0') requiredValidator0: RequiredValidatorComponent;
   @ViewChild('roleNamesLabel') roleNamesLabel: LabelComponent;
-  @ViewChild('roleNames') roleNames: DropDownComponent;
+  @ViewChild('roleNames') roleNames: ListBoxComponent;
+  @ViewChild('requiredValidator3') requiredValidator3: RequiredValidatorComponent;
   @ViewChild('passwordLabel') passwordLabel: LabelComponent;
   @ViewChild('password') password: PasswordComponent;
   @ViewChild('confirmPasswordLabel') confirmPasswordLabel: LabelComponent;
   @ViewChild('confirmPassword') confirmPassword: PasswordComponent;
+  @ViewChild('label19') label19: LabelComponent;
+  @ViewChild('notiz') notiz: TextAreaComponent;
   @ViewChild('button1') button1: ButtonComponent;
   @ViewChild('button2') button2: ButtonComponent;
-  @ViewChild('panel0') panel0: PanelComponent;
   @ViewChild('textarea0') textarea0: TextAreaComponent;
 
   router: Router;
@@ -73,9 +78,10 @@ export class BenutzerBearbeitenGenerated implements AfterViewInit, OnInit, OnDes
   dbHopeKurseTextbausteine: DbHopeKurseTextbausteineService;
 
   security: SecurityService;
-  rstUser: any;
-  rstRoles: any;
-  rstBenutzer: any;
+  rstRollen: any;
+  dsoBenutzer: any;
+  strNameKontakt: any;
+  dsoUser: any;
   parameters: any;
 
   constructor(private injector: Injector) {
@@ -126,52 +132,49 @@ export class BenutzerBearbeitenGenerated implements AfterViewInit, OnInit, OnDes
 
 
   load() {
-    this.security.getUserById(`${this.parameters.Id}`)
+    this.dbHopeKurseTextbausteine.getVwRollens(null, null, null, null, null, null, null, null)
     .subscribe((result: any) => {
-      this.rstUser = result;
-
-      this.rstUser.UserName = 'TempUserName'
+      this.rstRollen = result.value;
     }, (result: any) => {
 
     });
 
-    this.security.getRoles(null, null, null, null, null, null)
+    this.dbHopeKurseTextbausteine.getBenutzerByBenutzerId(`Base`, this.parameters.BenutzerID)
     .subscribe((result: any) => {
-      this.rstRoles = result.value;
-    }, (result: any) => {
+      this.dsoBenutzer = result;
 
-    });
+      this.strNameKontakt = result.Base.Name1 + ' ' + result.Base.Name2;
 
-    this.dbHopeKurseTextbausteine.getBenutzers(`AspNetUsers_Id eq '${this.parameters.Id}'`, null, null, null, null, null, null, null)
-    .subscribe((result: any) => {
-      this.rstBenutzer = result.value[0];
+      this.security.getUserById(`${result.AspNetUsers_Id}`)
+      .subscribe((result: any) => {
+        this.dsoUser = result;
+      }, (result: any) => {
+
+      });
     }, (result: any) => {
 
     });
   }
 
   form0Submit(event: any) {
-    this.security.updateUser(`${this.rstUser.Id}`, this.rstUser)
-    .subscribe((result: any) => {
-      this.dbHopeKurseTextbausteine.updateBenutzer(null, this.rstBenutzer.BenutzerID, this.rstBenutzer)
-      .subscribe((result: any) => {
-        this.notificationService.notify({ severity: "success", summary: `Benutzer erfolgreich aktualisiert!`, detail: `` });
+    this.dsoUser.UserName = this.dsoBenutzer.BenutzerEMail 
 
-        if (this.dialogRef) {
-          this.dialogRef.close();
-        } else {
-          this._location.back();
-        }
+    this.security.updateUser(`${this.dsoBenutzer.AspNetUsers_Id}`, this.dsoUser)
+    .subscribe((result: any) => {
+      this.dbHopeKurseTextbausteine.updateBenutzer(null, this.dsoBenutzer.BenutzerID, this.dsoBenutzer)
+      .subscribe((result: any) => {
+        this.notificationService.notify({ severity: "success", summary: ``, detail: `Benutzer aktualisiert` });
+
+        this.dialogRef.close(result);
       }, (result: any) => {
-        this.notificationService.notify({ severity: "error", summary: `Benutzer konnte nicht aktualisiert werden!`, detail: `${result.error.message}` });
+        this.notificationService.notify({ severity: "error", summary: ``, detail: `Benutzer (Schritt 2) konnte nicht aktualisiert werden!` })
+        .subscribe(() => {
+
+        });
       });
     }, (result: any) => {
-      this.notificationService.notify({ severity: "error", summary: `Benutzer (Net) konnte nicht aktualisiert werden!`, detail: `${result.error.message}` });
+      this.notificationService.notify({ severity: "error", summary: ``, detail: `Benutzer (Schritt 1) konnte nicht aktualisiert werden!` });
     });
-  }
-
-  PasswordChange(event: any) {
-    this.rstBenutzer.Kennwort = event
   }
 
   button2Click(event: any) {

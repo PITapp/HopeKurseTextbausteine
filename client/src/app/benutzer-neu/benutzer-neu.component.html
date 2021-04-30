@@ -16,7 +16,7 @@
         </div>
         <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
           <div class="col-md-3" [ngStyle]="{'textAlign': 'right'}">
-            <rz-label #label2 component="Benutzername" [style]="{'width': '100%'}" text="Benutzername">
+            <rz-label #label2 component="Benutzername" [style]="{'textAlign': 'left', 'width': '100%'}" text="Anmeldename">
             </rz-label>
           </div>
           <div class="col-md-9">
@@ -44,7 +44,7 @@
             </rz-label>
           </div>
           <div class="col-md-9">
-            <rz-textbox #eMail [style]="{'display': 'block', 'width': '100%'}" name="EMail" (change)="EMailChange($event)">
+            <rz-textbox #eMail [style]="{'display': 'block', 'width': '100%'}" name="EMail">
             </rz-textbox>
             <rz-required-validator #requiredValidator0 [component]="eMail" [style]="{'position': 'absolute'}" text="E-Mail erforderlich">
             </rz-required-validator>
@@ -56,8 +56,8 @@
             </rz-label>
           </div>
           <div class="col-md-9">
-            <rz-dropdown #roleNames [data]="rstBenutzerRollen" emptyFilterText="No results found" [multiple]="true" multipleItemsSelectedText="{0} items selected" [style]="{'display': 'block', 'width': '100%'}" textProperty="Name" valueProperty="Name" name="RoleNames">
-            </rz-dropdown>
+            <rz-listbox #roleNames [allowFiltering]="false" [checkbox]="true" [data]="rstRollen" [multiple]="true" [showToggleAll]="false" [style]="{'display': 'block', 'width': '100%'}" textProperty="Titel" valueProperty="Titel" name="RoleNames">
+            </rz-listbox>
             <rz-required-validator #requiredValidator3 [component]="roleNames" [style]="{'position': 'absolute'}" text="Rollen erforderlich">
             </rz-required-validator>
           </div>
@@ -87,7 +87,7 @@
           </div>
         </div>
         <div [ngStyle]="{'marginBottom': '14px'}" class="row">
-          <div class="col-md-3" [ngStyle]="{'paddingLeft': '0'}">
+          <div class="col-md-3" [ngStyle]="{}">
             <rz-label #label19 component="Info" [style]="{'textAlign': 'left', 'width': '100%'}" text="Notizen">
             </rz-label>
           </div>
@@ -104,27 +104,31 @@
             </rz-button>
           </div>
         </div>
-        <div [ngStyle]="{}" class="row">
-          <div class="col-md-3" [ngStyle]="{'textAlign': 'right'}">
-            <rz-label #label4 component="BenutzerEMail" [style]="{'textAlign': 'left', 'width': '100%'}" text="BenutzerEMail (nicht sichtbar)" *ngIf="false">
-            </rz-label>
-          </div>
-          <div class="col-md-9">
-            <rz-textbox #benutzerEMail [style]="{'display': 'block', 'width': '100%'}" *ngIf="false" name="BenutzerEMail">
-            </rz-textbox>
-          </div>
-        </div>
-        <div [ngStyle]="{}" class="row">
-          <div class="col-md-3" [ngStyle]="{'textAlign': 'right'}">
-            <rz-label #label5 component="AspNetUsers_Id" [style]="{'textAlign': 'left', 'width': '100%'}" text="AspNetUsers_Id (nicht sichtbar)" *ngIf="false">
-            </rz-label>
-          </div>
-          <div class="col-md-9">
-            <rz-textbox #aspNetUsersId [style]="{'display': 'block', 'width': '100%'}" *ngIf="false" name="AspNetUsers_Id">
-            </rz-textbox>
-          </div>
-        </div>
       </rz-template-form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-9">
+      <rz-textarea #textarea0 placeholder="Funktionsbeschreibung - BenutzerNeu
+      
+      Zuerst wird über die Funktion crateUser der Benutzer und seine Rollen in AspNetUsers und AspNetUsersRoles eingetragen. Die Funktion liefert die UserID zurück. Mit dieser ID werden dann in der Tabelle Benutzer die Daten (Benutzername, E-Mail, …) eingetragen. Beim eintragen des Benutzernamens und der E-Mail werden diese Daten dann wieder in die Tabelle AspNetUsers übertragen und dort aktualisiert. Dies geschieht deswegen, weil standardmäßig über die Funktion createUser der Benutzername eine E-Mail-Adresse sein muss. Wir verwenden aber für den Benutzernamen den Vornamen und Familiennamen. Diese Aktualisierung wird beim Ändern in der Tabelle Benutzer in der Tabelle AspNetUsers aktualisiert.
+      
+      Funktion in MySQL:
+      AFTER INSERT ON `web9_db2`.`Benutzer`
+      FOR EACH ROW
+      BEGIN
+      
+      	-- Den Benutzernamen aus der Tabelle 'Benutzer' in der Tabelle 'AspNetUsers' eintragen
+      	UPDATE AspNetUsers 
+      		SET UserName = NEW.Benutzername, 
+                  NormalizedUserName = Upper(NEW.Benutzername)
+      		WHERE Id = NEW.AspNetUsers_Id;
+              
+      END
+      " [style]="{'backgroundColor': '#ffeca3', 'height': '200px', 'width': '100%'}" *ngIf="false" name="textarea0">
+      </rz-textarea>
     </div>
   </div>
 </rz-content>

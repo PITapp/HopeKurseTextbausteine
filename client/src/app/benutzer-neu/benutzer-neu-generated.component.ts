@@ -16,6 +16,7 @@ import { LabelComponent } from '@radzen/angular/dist/label';
 import { DropDownComponent } from '@radzen/angular/dist/dropdown';
 import { RequiredValidatorComponent } from '@radzen/angular/dist/required-validator';
 import { TextBoxComponent } from '@radzen/angular/dist/textbox';
+import { ListBoxComponent } from '@radzen/angular/dist/listbox';
 import { PasswordComponent } from '@radzen/angular/dist/password';
 import { TextAreaComponent } from '@radzen/angular/dist/textarea';
 import { ButtonComponent } from '@radzen/angular/dist/button';
@@ -42,7 +43,7 @@ export class BenutzerNeuGenerated implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('eMail') eMail: TextBoxComponent;
   @ViewChild('requiredValidator0') requiredValidator0: RequiredValidatorComponent;
   @ViewChild('roleNamesLabel') roleNamesLabel: LabelComponent;
-  @ViewChild('roleNames') roleNames: DropDownComponent;
+  @ViewChild('roleNames') roleNames: ListBoxComponent;
   @ViewChild('requiredValidator3') requiredValidator3: RequiredValidatorComponent;
   @ViewChild('passwordLabel') passwordLabel: LabelComponent;
   @ViewChild('password') password: PasswordComponent;
@@ -54,10 +55,7 @@ export class BenutzerNeuGenerated implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('notiz') notiz: TextAreaComponent;
   @ViewChild('button1') button1: ButtonComponent;
   @ViewChild('button2') button2: ButtonComponent;
-  @ViewChild('label4') label4: LabelComponent;
-  @ViewChild('benutzerEMail') benutzerEMail: TextBoxComponent;
-  @ViewChild('label5') label5: LabelComponent;
-  @ViewChild('aspNetUsersId') aspNetUsersId: TextBoxComponent;
+  @ViewChild('textarea0') textarea0: TextAreaComponent;
 
   router: Router;
 
@@ -84,8 +82,9 @@ export class BenutzerNeuGenerated implements AfterViewInit, OnInit, OnDestroy {
   dbHopeKurseTextbausteine: DbHopeKurseTextbausteineService;
 
   security: SecurityService;
-  rstBenutzerRollen: any;
+  rstRollen: any;
   rstBase: any;
+  dsoBenutzer: any;
   parameters: any;
 
   constructor(private injector: Injector) {
@@ -136,9 +135,9 @@ export class BenutzerNeuGenerated implements AfterViewInit, OnInit, OnDestroy {
 
 
   load() {
-    this.security.getRoles(null, null, null, `Name`, null, null)
+    this.dbHopeKurseTextbausteine.getVwRollens(null, null, null, null, null, null, null, null)
     .subscribe((result: any) => {
-      this.rstBenutzerRollen = result.value;
+      this.rstRollen = result.value;
     }, (result: any) => {
 
     });
@@ -149,31 +148,45 @@ export class BenutzerNeuGenerated implements AfterViewInit, OnInit, OnDestroy {
     }, (result: any) => {
 
     });
+
+    this.dsoBenutzer = {
+    "BaseID": 0,
+    "AspNetUsers_Id": "",
+    "Benutzername": "",
+    "Initialen": "",
+    "BenutzerEMail": "",
+    "Notiz": ""
+};
   }
 
   form0Submit(event: any) {
     this.security.createUser(event)
     .subscribe((result: any) => {
-      console.log("result: ", result)
+      this.dsoBenutzer.BaseID = event.BaseID
+this.dsoBenutzer.AspNetUsers_Id = result.Id;
+this.dsoBenutzer.Benutzername = event.Benutzername
+this.dsoBenutzer.Initialen = event.Initialen
+this.dsoBenutzer.BenutzerEMail = event.EMail
+this.dsoBenutzer.Notiz = event.Notiz
 
-      this.dialogRef.close(result);
+      this.dbHopeKurseTextbausteine.createBenutzer(null, this.dsoBenutzer)
+      .subscribe((result: any) => {
+        this.notificationService.notify({ severity: "success", summary: ``, detail: `Benutzer erstellt` });
 
-      this.notificationService.notify({ severity: "success", summary: ``, detail: `Benutzer erstellt` });
+        this.dialogRef.close(result);
+      }, (result: any) => {
+        this.notificationService.notify({ severity: "error", summary: ``, detail: `Benutzer (Schritt 2) konnte nicht erstellt werden!` })
+        .subscribe(() => {
+
+        });
+      });
     }, (result: any) => {
-      this.notificationService.notify({ severity: "error", summary: ``, detail: `Benutzer konnte nicht erstellt werden!` });
-
-      console.log("result: ", result)
+      this.notificationService.notify({ severity: "error", summary: ``, detail: `Benutzer (Schritt 1) konnte nicht erstellt werden!` });
     });
-
-    console.log("event: ", event)
   }
 
   BaseIDChange(event: any) {
     this.benutzername.value = event.NameGesamt;
-  }
-
-  EMailChange(event: any) {
-    this.benutzerEMail.value = event;
   }
 
   button2Click(event: any) {

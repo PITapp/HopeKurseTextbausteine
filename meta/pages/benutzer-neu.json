@@ -40,7 +40,7 @@
                               "events": {
                                 "change": [
                                   {
-                                    "code": "this.benutzername.value = ${event.NameGesamt};",
+                                    "code": "this.benutzername.value = event.NameGesamt;",
                                     "type": "execute"
                                   }
                                 ]
@@ -87,9 +87,10 @@
                               "component": "Benutzername",
                               "name": "label2",
                               "style": {
+                                "textAlign": "left",
                                 "width": "100%"
                               },
-                              "text": "Benutzername",
+                              "text": "Anmeldename",
                               "type": "label"
                             }
                           ],
@@ -214,12 +215,7 @@
                           "components": [
                             {
                               "events": {
-                                "change": [
-                                  {
-                                    "code": "this.benutzerEMail.value = ${event};",
-                                    "type": "execute"
-                                  }
-                                ]
+                                "change": []
                               },
                               "name": "EMail",
                               "style": {
@@ -270,18 +266,19 @@
                           "class": "col-md-9",
                           "components": [
                             {
-                              "data": "${rstBenutzerRollen}",
-                              "emptyFilterText": "No results found",
+                              "allowFiltering": false,
+                              "checkbox": true,
+                              "data": "${rstRollen}",
                               "multiple": true,
-                              "multipleItemsSelectedText": "{0} items selected",
                               "name": "RoleNames",
+                              "showToggleAll": false,
                               "style": {
                                 "display": "block",
                                 "width": "100%"
                               },
-                              "textProperty": "Name",
-                              "type": "dropdown",
-                              "valueProperty": "Name"
+                              "textProperty": "Titel",
+                              "type": "listbox",
+                              "valueProperty": "Titel"
                             },
                             {
                               "component": "RoleNames",
@@ -414,9 +411,7 @@
                             }
                           ],
                           "name": "col64",
-                          "style": {
-                            "paddingLeft": "0"
-                          },
+                          "style": {},
                           "type": "col"
                         },
                         {
@@ -479,94 +474,6 @@
                         "textAlign": "right"
                       },
                       "type": "row"
-                    },
-                    {
-                      "components": [
-                        {
-                          "class": "col-md-3",
-                          "components": [
-                            {
-                              "component": "BenutzerEMail",
-                              "name": "label4",
-                              "style": {
-                                "textAlign": "left",
-                                "width": "100%"
-                              },
-                              "text": "BenutzerEMail (nicht sichtbar)",
-                              "type": "label",
-                              "visible": false
-                            }
-                          ],
-                          "name": "col8",
-                          "style": {
-                            "textAlign": "right"
-                          },
-                          "type": "col"
-                        },
-                        {
-                          "class": "col-md-9",
-                          "components": [
-                            {
-                              "name": "BenutzerEMail",
-                              "style": {
-                                "display": "block",
-                                "width": "100%"
-                              },
-                              "type": "textbox",
-                              "visible": false
-                            }
-                          ],
-                          "name": "col9",
-                          "type": "col"
-                        }
-                      ],
-                      "name": "row4",
-                      "style": {},
-                      "type": "row"
-                    },
-                    {
-                      "components": [
-                        {
-                          "class": "col-md-3",
-                          "components": [
-                            {
-                              "component": "AspNetUsers_Id",
-                              "name": "label5",
-                              "style": {
-                                "textAlign": "left",
-                                "width": "100%"
-                              },
-                              "text": "AspNetUsers_Id (nicht sichtbar)",
-                              "type": "label",
-                              "visible": false
-                            }
-                          ],
-                          "name": "col10",
-                          "style": {
-                            "textAlign": "right"
-                          },
-                          "type": "col"
-                        },
-                        {
-                          "class": "col-md-9",
-                          "components": [
-                            {
-                              "name": "AspNetUsers_Id",
-                              "style": {
-                                "display": "block",
-                                "width": "100%"
-                              },
-                              "type": "textbox",
-                              "visible": false
-                            }
-                          ],
-                          "name": "col11",
-                          "type": "col"
-                        }
-                      ],
-                      "name": "row5",
-                      "style": {},
-                      "type": "row"
                     }
                   ],
                   "events": {
@@ -575,14 +482,10 @@
                         "condition": "",
                         "error": [
                           {
-                            "detail": "Benutzer konnte nicht erstellt werden!",
+                            "detail": "Benutzer (Schritt 1) konnte nicht erstellt werden!",
                             "severity": "error",
                             "summary": "",
                             "type": "notify"
-                          },
-                          {
-                            "code": "console.log(\"result: \", result)",
-                            "type": "execute"
                           }
                         ],
                         "name": "Security.createUser",
@@ -594,24 +497,40 @@
                         ],
                         "then": [
                           {
-                            "code": "console.log(\"result: \", result)",
+                            "code": "${dsoBenutzer.BaseID} = ${event.BaseID}\n${dsoBenutzer.AspNetUsers_Id} = ${result.Id};\n${dsoBenutzer.Benutzername} = ${event.Benutzername}\n${dsoBenutzer.Initialen} = ${event.Initialen}\n${dsoBenutzer.BenutzerEMail} = ${event.EMail}\n${dsoBenutzer.Notiz} = ${event.Notiz}",
                             "type": "execute"
                           },
                           {
-                            "result": "${result}",
-                            "type": "close-popup"
-                          },
-                          {
-                            "detail": "Benutzer erstellt",
-                            "severity": "success",
-                            "type": "notify"
+                            "error": [
+                              {
+                                "detail": "Benutzer (Schritt 2) konnte nicht erstellt werden!",
+                                "severity": "error",
+                                "then": [],
+                                "type": "notify"
+                              }
+                            ],
+                            "name": "dbHopeKurseTextbausteine.createBenutzer",
+                            "parameters": [
+                              {
+                                "name": "Benutzer",
+                                "value": "${dsoBenutzer}"
+                              }
+                            ],
+                            "then": [
+                              {
+                                "detail": "Benutzer erstellt",
+                                "severity": "success",
+                                "type": "notify"
+                              },
+                              {
+                                "result": "${result}",
+                                "type": "close-popup"
+                              }
+                            ],
+                            "type": "invoke"
                           }
                         ],
                         "type": "invoke"
-                      },
-                      {
-                        "code": "console.log(\"event: \", event)",
-                        "type": "execute"
                       }
                     ]
                   },
@@ -623,6 +542,36 @@
             }
           ],
           "type": "row"
+        },
+        {
+          "components": [
+            {
+              "class": "col-md-3",
+              "name": "col10",
+              "type": "col"
+            },
+            {
+              "class": "col-md-9",
+              "components": [
+                {
+                  "name": "textarea0",
+                  "placeholder": "Funktionsbeschreibung - BenutzerNeu\n\nZuerst wird über die Funktion crateUser der Benutzer und seine Rollen in AspNetUsers und AspNetUsersRoles eingetragen. Die Funktion liefert die UserID zurück. Mit dieser ID werden dann in der Tabelle Benutzer die Daten (Benutzername, E-Mail, …) eingetragen. Beim eintragen des Benutzernamens und der E-Mail werden diese Daten dann wieder in die Tabelle AspNetUsers übertragen und dort aktualisiert. Dies geschieht deswegen, weil standardmäßig über die Funktion createUser der Benutzername eine E-Mail-Adresse sein muss. Wir verwenden aber für den Benutzernamen den Vornamen und Familiennamen. Diese Aktualisierung wird beim Ändern in der Tabelle Benutzer in der Tabelle AspNetUsers aktualisiert.\n\nFunktion in MySQL:\nAFTER INSERT ON `web9_db2`.`Benutzer`\nFOR EACH ROW\nBEGIN\n\n\t-- Den Benutzernamen aus der Tabelle 'Benutzer' in der Tabelle 'AspNetUsers' eintragen\n\tUPDATE AspNetUsers \n\t\tSET UserName = NEW.Benutzername, \n            NormalizedUserName = Upper(NEW.Benutzername)\n\t\tWHERE Id = NEW.AspNetUsers_Id;\n        \nEND\n",
+                  "style": {
+                    "backgroundColor": "#ffeca3",
+                    "height": "200px",
+                    "width": "100%"
+                  },
+                  "type": "textarea",
+                  "value": "",
+                  "visible": false
+                }
+              ],
+              "name": "col11",
+              "type": "col"
+            }
+          ],
+          "name": "row5",
+          "type": "row"
         }
       ],
       "container": "main",
@@ -632,16 +581,11 @@
   "events": {
     "load": [
       {
-        "name": "Security.getRoles",
-        "parameters": [
-          {
-            "name": "$orderby",
-            "value": "Name"
-          }
-        ],
+        "name": "dbHopeKurseTextbausteine.getVwRollens",
+        "parameters": [],
         "then": [
           {
-            "name": "rstBenutzerRollen",
+            "name": "rstRollen",
             "type": "set",
             "value": "${result.value}"
           }
@@ -658,6 +602,11 @@
           }
         ],
         "type": "invoke"
+      },
+      {
+        "name": "dsoBenutzer",
+        "type": "set",
+        "value": "{\n    \"BaseID\": 0,\n    \"AspNetUsers_Id\": \"\",\n    \"Benutzername\": \"\",\n    \"Initialen\": \"\",\n    \"BenutzerEMail\": \"\",\n    \"Notiz\": \"\"\n}"
       }
     ]
   },

@@ -18,15 +18,17 @@
                           "class": "col-md-3",
                           "components": [
                             {
-                              "component": "Email",
-                              "name": "EmailLabel",
+                              "component": "textbox0",
+                              "name": "label4",
                               "style": {
+                                "textAlign": "left",
                                 "width": "100%"
                               },
-                              "text": "E-Mail",
+                              "text": "Kontakt",
                               "type": "label"
                             }
                           ],
+                          "name": "col8",
                           "style": {
                             "textAlign": "right"
                           },
@@ -36,17 +38,24 @@
                           "class": "col-md-9",
                           "components": [
                             {
-                              "name": "Email",
+                              "autoComplete": false,
+                              "disabled": true,
+                              "name": "textbox0",
+                              "placeholder": "",
                               "style": {
+                                "display": "block",
                                 "width": "100%"
                               },
                               "type": "textbox",
-                              "value": "${rstUser.Email}"
+                              "value": "${strNameKontakt}",
+                              "visible": true
                             }
                           ],
+                          "name": "col9",
                           "type": "col"
                         }
                       ],
+                      "name": "row4",
                       "style": {
                         "marginBottom": "1rem"
                       },
@@ -59,98 +68,68 @@
                           "components": [
                             {
                               "component": "Benutzername",
-                              "name": "label1",
-                              "style": {
-                                "width": "100%"
-                              },
-                              "text": "Benutzername",
-                              "type": "label"
-                            }
-                          ],
-                          "name": "col2",
-                          "style": {
-                            "textAlign": "right"
-                          },
-                          "type": "col"
-                        },
-                        {
-                          "class": "col-md-9",
-                          "components": [
-                            {
-                              "name": "Benutzername",
-                              "placeholder": "",
-                              "style": {
-                                "width": "100%"
-                              },
-                              "type": "textbox",
-                              "value": "${rstBenutzer.Benutzername}"
-                            }
-                          ],
-                          "name": "col3",
-                          "type": "col"
-                        }
-                      ],
-                      "name": "row1",
-                      "style": {
-                        "marginBottom": "1rem"
-                      },
-                      "type": "row"
-                    },
-                    {
-                      "components": [
-                        {
-                          "class": "col-md-3",
-                          "components": [
-                            {
-                              "component": "Notiz",
-                              "name": "label0",
-                              "style": {
-                                "width": "100%"
-                              },
-                              "text": "Notiz",
-                              "type": "label"
-                            }
-                          ],
-                          "name": "col0",
-                          "style": {
-                            "textAlign": "right"
-                          },
-                          "type": "col"
-                        },
-                        {
-                          "class": "col-md-9",
-                          "components": [
-                            {
-                              "name": "Notiz",
-                              "style": {
-                                "width": "100%"
-                              },
-                              "type": "textbox",
-                              "value": "${rstBenutzer.Notiz}"
-                            }
-                          ],
-                          "name": "col1",
-                          "type": "col"
-                        }
-                      ],
-                      "name": "row0",
-                      "style": {
-                        "marginBottom": "1rem"
-                      },
-                      "type": "row"
-                    },
-                    {
-                      "components": [
-                        {
-                          "class": "col-md-3",
-                          "components": [
-                            {
-                              "component": "textboxKennwort",
                               "name": "label2",
                               "style": {
+                                "textAlign": "left",
                                 "width": "100%"
                               },
-                              "text": "Kennwort",
+                              "text": "Anmeldename",
+                              "type": "label"
+                            }
+                          ],
+                          "name": "col6",
+                          "style": {
+                            "textAlign": "right"
+                          },
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "autoComplete": false,
+                              "name": "Benutzername",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${dsoBenutzer.Benutzername}",
+                              "visible": true
+                            },
+                            {
+                              "component": "Benutzername",
+                              "name": "requiredValidator4",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Benutzername erforderlich",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "name": "col7",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row3",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Initialen",
+                              "name": "label3",
+                              "style": {
+                                "textAlign": "left",
+                                "width": "100%"
+                              },
+                              "text": "Initialen",
                               "type": "label"
                             }
                           ],
@@ -164,12 +143,24 @@
                           "class": "col-md-9",
                           "components": [
                             {
-                              "name": "textboxKennwort",
+                              "autoComplete": false,
+                              "name": "Initialen",
                               "style": {
+                                "display": "block",
                                 "width": "100%"
                               },
                               "type": "textbox",
-                              "value": "${rstBenutzer.Kennwort}"
+                              "value": "${dsoBenutzer.Initialen}",
+                              "visible": true
+                            },
+                            {
+                              "component": "Initialen",
+                              "name": "requiredValidator2",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Initialien erforderlich",
+                              "type": "required-validator"
                             }
                           ],
                           "name": "col5",
@@ -188,13 +179,70 @@
                           "class": "col-md-3",
                           "components": [
                             {
+                              "component": "Email",
+                              "name": "label0",
+                              "style": {
+                                "textAlign": "left",
+                                "width": "100%"
+                              },
+                              "text": "E-Mail",
+                              "type": "label"
+                            }
+                          ],
+                          "name": "col0",
+                          "style": {
+                            "textAlign": "right"
+                          },
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "events": {
+                                "change": []
+                              },
+                              "name": "BenutzerEMail",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${dsoBenutzer.BenutzerEMail}"
+                            },
+                            {
+                              "component": "EMail",
+                              "name": "requiredValidator0",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "E-Mail erforderlich",
+                              "type": "required-validator"
+                            }
+                          ],
+                          "name": "col1",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row0",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
                               "component": "RoleNames",
                               "name": "RoleNamesLabel",
                               "style": {
-                                "textAlign": "right",
+                                "textAlign": "left",
                                 "width": "100%"
                               },
-                              "text": "Rolen",
+                              "text": "Rollen",
                               "type": "label"
                             }
                           ],
@@ -204,18 +252,30 @@
                           "class": "col-md-9",
                           "components": [
                             {
-                              "data": "${rstRoles}",
-                              "emptyFilterText": "No results found",
+                              "allowFiltering": false,
+                              "checkbox": true,
+                              "data": "${rstRollen}",
                               "multiple": true,
-                              "multipleItemsSelectedText": "{0} items selected",
                               "name": "RoleNames",
+                              "showToggleAll": false,
                               "style": {
+                                "display": "block",
                                 "width": "100%"
                               },
-                              "textProperty": "Name",
-                              "type": "dropdown",
-                              "value": "${rstUser.RoleNames}",
-                              "valueProperty": "Name"
+                              "template": "",
+                              "textProperty": "Titel",
+                              "type": "listbox",
+                              "value": "${dsoUser.RoleNames}",
+                              "valueProperty": "Titel"
+                            },
+                            {
+                              "component": "RoleNames",
+                              "name": "requiredValidator3",
+                              "style": {
+                                "position": "absolute"
+                              },
+                              "text": "Rollen erforderlich",
+                              "type": "required-validator"
                             }
                           ],
                           "type": "col"
@@ -235,7 +295,7 @@
                               "component": "Password",
                               "name": "PasswordLabel",
                               "style": {
-                                "textAlign": "right",
+                                "textAlign": "left",
                                 "width": "100%"
                               },
                               "text": "Passwort",
@@ -248,20 +308,14 @@
                           "class": "col-md-9",
                           "components": [
                             {
-                              "events": {
-                                "change": [
-                                  {
-                                    "code": "this.rstBenutzer.Kennwort = ${event}",
-                                    "type": "execute"
-                                  }
-                                ]
-                              },
+                              "autoComplete": false,
                               "name": "Password",
                               "style": {
+                                "display": "block",
                                 "width": "100%"
                               },
                               "type": "password",
-                              "value": "${rstUser.Password}"
+                              "value": "${dsoUser.Password}"
                             }
                           ],
                           "type": "col"
@@ -281,7 +335,7 @@
                               "component": "ConfirmPassword",
                               "name": "ConfirmPasswordLabel",
                               "style": {
-                                "textAlign": "right",
+                                "textAlign": "left",
                                 "width": "100%"
                               },
                               "text": "Wiederholen",
@@ -294,12 +348,14 @@
                           "class": "col-md-9",
                           "components": [
                             {
+                              "autoComplete": false,
                               "name": "ConfirmPassword",
                               "style": {
+                                "display": "block",
                                 "width": "100%"
                               },
                               "type": "password",
-                              "value": "${rstUser.ConfirmPassword}"
+                              "value": "${dsoUser.ConfirmPassword}"
                             }
                           ],
                           "type": "col"
@@ -313,12 +369,57 @@
                     {
                       "components": [
                         {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "Info",
+                              "name": "label19",
+                              "style": {
+                                "textAlign": "left",
+                                "width": "100%"
+                              },
+                              "text": "Notizen",
+                              "type": "label"
+                            }
+                          ],
+                          "name": "col64",
+                          "style": {},
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "name": "Notiz",
+                              "rows": 4,
+                              "style": {
+                                "height": "136px",
+                                "width": "100%"
+                              },
+                              "type": "textarea",
+                              "value": "${dsoBenutzer.Notiz}"
+                            }
+                          ],
+                          "name": "col65",
+                          "style": {},
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row31",
+                      "style": {
+                        "marginBottom": "14px"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
                           "class": "col offset-sm-3",
                           "components": [
                             {
-                              "buttonStyle": "primary",
+                              "buttonStyle": "success",
                               "buttonType": "submit",
-                              "icon": "save",
+                              "icon": "done",
                               "text": "Speichern",
                               "type": "button"
                             },
@@ -350,54 +451,60 @@
                   "events": {
                     "submit": [
                       {
+                        "code": "${dsoUser.UserName} = ${dsoBenutzer.BenutzerEMail} ",
+                        "type": "execute"
+                      },
+                      {
+                        "condition": "",
                         "error": [
                           {
-                            "detail": "${result.error.message}",
+                            "detail": "Benutzer (Schritt 1) konnte nicht aktualisiert werden!",
                             "severity": "error",
-                            "summary": "Benutzer (Net) konnte nicht aktualisiert werden!",
+                            "summary": "",
                             "type": "notify"
                           }
                         ],
                         "name": "Security.updateUser",
                         "parameters": [
                           {
-                            "name": "Id",
-                            "value": "${rstUser.Id}"
+                            "name": "User",
+                            "value": "${dsoUser}"
                           },
                           {
-                            "name": "User",
-                            "value": "${rstUser}"
+                            "name": "Id",
+                            "value": "${dsoBenutzer.AspNetUsers_Id}"
                           }
                         ],
                         "then": [
                           {
                             "error": [
                               {
-                                "detail": "${result.error.message}",
+                                "detail": "Benutzer (Schritt 2) konnte nicht aktualisiert werden!",
                                 "severity": "error",
-                                "summary": "Benutzer konnte nicht aktualisiert werden!",
+                                "then": [],
                                 "type": "notify"
                               }
                             ],
                             "name": "dbHopeKurseTextbausteine.updateBenutzer",
                             "parameters": [
                               {
-                                "name": "BenutzerID",
-                                "value": "${rstBenutzer.BenutzerID}"
+                                "name": "Benutzer",
+                                "value": "${dsoBenutzer}"
                               },
                               {
-                                "name": "Benutzer",
-                                "value": "${rstBenutzer}"
+                                "name": "BenutzerID",
+                                "value": "${dsoBenutzer.BenutzerID}"
                               }
                             ],
                             "then": [
                               {
+                                "detail": "Benutzer aktualisiert",
                                 "severity": "success",
-                                "summary": "Benutzer erfolgreich aktualisiert!",
                                 "type": "notify"
                               },
                               {
-                                "type": "back"
+                                "result": "${result}",
+                                "type": "close-popup"
                               }
                             ],
                             "type": "invoke"
@@ -417,48 +524,34 @@
           "type": "row"
         },
         {
-          "allowCollapse": false,
-          "attributes": [
-            {}
-          ],
-          "collapsed": false,
           "components": [
             {
+              "class": "col-md-3",
+              "name": "col10",
+              "type": "col"
+            },
+            {
+              "class": "col-md-9",
               "components": [
                 {
-                  "class": "col-md-6",
-                  "components": [
-                    {
-                      "name": "textarea0",
-                      "placeholder": "Die Adventgemeinde Voitsberg von ihrer Entstehung bis heute\n\nEventuell kurzen Abschnitt über die allgemeine Adventbewegung Ende des 18., Anfang des 19. Jahrhunderts mit Gründung der STA 1863 von enttäuschten Männern und Frauen der Millerbewegung voranstellen. Bald erfolgt eine weltweite Mission der Evangeliums Botschaft, sowie Bemühungen um eine gesunde Lebensweise und Verkündigung der beginnenden Endzeit und der baldigen Wiederkunft Christi.\n\nMan schreibt das Jahr 1909, ein junger Mann aus Köflach nimmt die Adventbotschaft an und schließt sich durch die biblische Erwachsenen Taufe, der Kirche der Siebenten Tags Adventisten an. Sein Name ist Vinzenz Suchanek. Er geht bald danach nach Deutschland und lässt sich am theologischen Seminar in Friedensau zum Verkünder der Botschaft von der Erlösung durch Jesus Christus und seiner in der ganzen Bibel verheißenen Wiederkunft ausbilden. Als junger Prediger arbeitet er einige Jahre im Friaul. Durch den ersten Weltkrieg wird dieser für die Voitsberger Adventgemeinde später wichtige Mann plötzlich aus seiner Arbeit gerissen. Nach jahrelangem Kriegseinsatz, kehrt er schwer gezeichnet und leidend in seine Heimat zurück, nicht mehr in der Lage den schweren Dienst als Missionar auszufüllen.\n\nIn den letzten Jahren vor dem ersten Weltkrieg tauchen zwei andere Männer, die von der Adventbotschaft ergriffen wurden, in Voitsberg auf. Es sind dies der spätere Buchevangelist Franz Petrowitsch und der Landwirt Wenzel Häntschel. Auch ihre Tätigkeit wird durch den Krieg jäh unterbrochen, aber noch während des Krieges im Jahre 1916 schlossen sie sich durch die Taufe der Adventgemeinde in Österreich an, während die Frauen dieser beiden Männer sich schon i915 der Advent-Bewegung angeschlossen hatten.\n\nAls bei Kriegsende die Gruppe der Siebenten Tags Adventisten im Bezirk Voitsberg die Zahl 18 erreichte, wurde die Adventgemeinde Voitsberg gegründet. Im alten Berichtsbuch heißt es dazu: \"Durch des Herrn Gnade konnten wir am 28. Dezember 1918 unsere Gemeinde in Voitsberg gründen, zu dessen Vorrecht wir den Herrn loben und preisen möchten.\" Die Gründung der Advent Gemeinde Voitsberg erfolgte durch Pastor Werner aus Graz. Der erste Leiter der kleinen Kirchengemeinde war Wenzel Häntschel aus Kowald. Die schweren Kriegs- und Nachkriegsjahre waren für die Verbreitung der Adventbotschaft sehr fruchtbar. Bereits im Jahre 1925 betrug die Gliederzahl der Adventgemeinde Voitsberg über 50. Die Gottesdienste fanden in diesen Jahren im alten Kinosaal statt. Auch die Inflation nach dem ersten Weltkrieg fand ihren Niederschlag in den Berichtsbüchern. So heißt es im Jahresabschluss für das Jahr 1923 etwa: Zehnter 23.829.588,-- Kronen, Sabbatschulgaben 1.331.269,-- Kronen, Geburtstagsgaben 2.030.000,-- Kronen\n\nAm 29. Juli 1927 konnte mit Unterstützung von Bürgermeister Fripertinger, aus dem Gebäudekomplex der stillgelegten Papierfabrik, das Haus Nr. 10 in der Rosseggergasse für die Adventgemeinde erworben werden. Für die Gottesdienste wurden die Räume im ersten Stock ausgebaut. Der große Versammlungsraum bot bis zu 100 Besuchern Platz. Im Erdgeschoß des Hauses wurde eine Wohnung und Werkstättenräume eingerichtet, dort gründete im Jahre 1930, Rudolf Bauer einen kleinen Betrieb, der nach dem zweiten Weltkrieg einen großen Aufschwung erlebte.\n\nIn all diesen Jahren hatte die kleine aber aktive Gemeinde keinen eigenen Pastor. Betreut wurde die Adventgemeinde Voitsberg bis Anfang der 70iger Jahre von einem Prediger aus Graz. Dieser konnte natürlich nur alle 3 bis 4 Wochen bei den Gottesdiensten an Samstagen anwesend sein. Die Gestaltung der Gottesdienste, auch die wöchentlichen Predigten, oblag also weitgehend einigen Laiengliedern. Auch die Unterweisung von Freunden der Adventbotschaft in wichtigen biblischen Wahrheiten erfolgte zu einem guten Teil durch befähigte Laien der örtlichen Gemeinde.\n \n\n\n\n",
-                      "style": {
-                        "height": "400px",
-                        "width": "100%"
-                      },
-                      "type": "textarea",
-                      "value": ""
-                    }
-                  ],
-                  "name": "col6",
-                  "type": "col"
-                },
-                {
-                  "class": "col-md-6",
-                  "name": "col7",
-                  "type": "col"
+                  "name": "textarea0",
+                  "placeholder": "Funktionsbeschreibung - BenutzerBearbeiten\n\nWenn die Tabelle Benutzer aktualisiert wird, werden der Benutzername und die E-Mail-Adresse in der Tabelle AspNetUsers auch aktualisiert. Wir verwenden aber für den Benutzernamen den Vornamen und Familiennamen. Diese Aktualisierung wird beim Ändern in der Tabelle Benutzer in der Tabelle AspNetUsers aktualisiert.\n\nFunktion in MySQL:\n\nAFTER UPDATE ON `web9_db2`.`Benutzer`\nFOR EACH ROW\nBEGIN\n\n\t-- Den Benutzernamen aus der Tabelle 'Benutzer' in der Tabelle 'AspNetUsers' eintragen\n\tUPDATE AspNetUsers \n\t\tSET UserName = NEW.Benutzername, \n            NormalizedUserName = Upper(NEW.Benutzername),\n\t\t    Email = NEW.BenutzerEMail, \n            NormalizedEmail = Upper(NEW.BenutzerEMail)\n\t\tWHERE Id = NEW.AspNetUsers_Id;\nEND",
+                  "style": {
+                    "backgroundColor": "#ffeca3",
+                    "height": "200px",
+                    "width": "100%"
+                  },
+                  "type": "textarea",
+                  "value": "",
+                  "visible": false
                 }
               ],
-              "name": "row3",
-              "type": "row"
+              "name": "col11",
+              "type": "col"
             }
           ],
-          "name": "panel0",
-          "style": {
-            "marginTop": "20px"
-          },
-          "text": "Funktionsbeschreibung - BenutzerBearbeiten",
-          "type": "panel",
-          "visible": false
+          "name": "row5",
+          "type": "row"
         }
       ],
       "container": "main",
@@ -468,31 +561,10 @@
   "events": {
     "load": [
       {
-        "name": "Security.getUserById",
-        "parameters": [
-          {
-            "name": "Id",
-            "value": "${parameters.Id}"
-          }
-        ],
+        "name": "dbHopeKurseTextbausteine.getVwRollens",
         "then": [
           {
-            "name": "rstUser",
-            "type": "set",
-            "value": "${result}"
-          },
-          {
-            "code": "this.rstUser.UserName = 'TempUserName'",
-            "type": "execute"
-          }
-        ],
-        "type": "invoke"
-      },
-      {
-        "name": "Security.getRoles",
-        "then": [
-          {
-            "name": "rstRoles",
+            "name": "rstRollen",
             "type": "set",
             "value": "${result.value}"
           }
@@ -500,18 +572,44 @@
         "type": "invoke"
       },
       {
-        "name": "dbHopeKurseTextbausteine.getBenutzers",
+        "name": "dbHopeKurseTextbausteine.getBenutzerByBenutzerID",
         "parameters": [
           {
-            "name": "$filter",
-            "value": "AspNetUsers_Id eq '${parameters.Id}'"
+            "name": "BenutzerID",
+            "value": "${parameters.BenutzerID}"
+          },
+          {
+            "name": "$expand",
+            "value": "Base"
           }
         ],
         "then": [
           {
-            "name": "rstBenutzer",
+            "name": "dsoBenutzer",
             "type": "set",
-            "value": "${result.value[0]}"
+            "value": "${result}"
+          },
+          {
+            "name": "strNameKontakt",
+            "type": "set",
+            "value": "${result.Base.Name1} + ' ' + ${result.Base.Name2}"
+          },
+          {
+            "name": "Security.getUserById",
+            "parameters": [
+              {
+                "name": "Id",
+                "value": "${result.AspNetUsers_Id}"
+              }
+            ],
+            "then": [
+              {
+                "name": "dsoUser",
+                "type": "set",
+                "value": "${result}"
+              }
+            ],
+            "type": "invoke"
           }
         ],
         "type": "invoke"

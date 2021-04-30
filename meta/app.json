@@ -29,7 +29,6 @@
   ],
   "pages": [
     "BenutzerNeu",
-    "BenutzerBearbeiten",
     "Benutzer",
     "Dashboard",
     "Einstellungen",
@@ -66,7 +65,8 @@
     "Edit Application User",
     "Benutzer222",
     "Add Benutzer222",
-    "Edit Benutzer222"
+    "Edit Benutzer222",
+    "BenutzerBearbeiten"
   ],
   "port": 8000,
   "security": {

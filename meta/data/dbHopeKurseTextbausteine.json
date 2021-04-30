@@ -1035,6 +1035,27 @@
           "length": 256
         }
       }
+    },
+    "VwRollen": {
+      "x-view": true,
+      "x-table": "def.vwRollen",
+      "resource": "VwRollens",
+      "required": [
+        "Id"
+      ],
+      "properties": {
+        "Id": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 255,
+          "x-key": true,
+          "x-virtual": true
+        },
+        "Titel": {
+          "type": "string",
+          "length": 256
+        }
+      }
     }
   },
   "paths": {
@@ -2597,6 +2618,73 @@
                 "value": {
                   "items": {
                     "$ref": "#/definitions/VwBenutzerRollen"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/VwRollens": {
+      "get": {
+        "operationId": "getVwRollens",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/VwRollen"
                   },
                   "type": "array"
                 }

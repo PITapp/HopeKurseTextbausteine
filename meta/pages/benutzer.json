@@ -340,7 +340,7 @@
                                                 "condition": "${result} == 'Löschen'",
                                                 "error": [
                                                   {
-                                                    "detail": "Benutzer konnte nicht gelöscht werden!",
+                                                    "detail": "Benutzer (Schritt 1) konnte nicht gelöscht werden!",
                                                     "severity": "error",
                                                     "summary": "",
                                                     "type": "notify"
@@ -350,15 +350,33 @@
                                                 "parameters": [
                                                   {
                                                     "name": "BenutzerID",
-                                                    "value": "${dsoBenutzer.BenutzerID}"
+                                                    "value": "\n${dsoBenutzer.BenutzerID}"
                                                   }
                                                 ],
                                                 "then": [
                                                   {
-                                                    "detail": "Benutzer gelöscht",
-                                                    "severity": "success",
-                                                    "summary": "",
-                                                    "type": "notify"
+                                                    "error": [
+                                                      {
+                                                        "detail": "Benutzer (Schritt 2) konnte nicht gelöscht werden!",
+                                                        "severity": "error",
+                                                        "type": "notify"
+                                                      }
+                                                    ],
+                                                    "name": "Security.deleteUser",
+                                                    "parameters": [
+                                                      {
+                                                        "name": "id",
+                                                        "value": "${dsoBenutzer.AspNetUsers_Id}"
+                                                      }
+                                                    ],
+                                                    "then": [
+                                                      {
+                                                        "detail": "Benutzer gelöscht",
+                                                        "severity": "success",
+                                                        "type": "notify"
+                                                      }
+                                                    ],
+                                                    "type": "invoke"
                                                   }
                                                 ],
                                                 "type": "invoke"
@@ -505,7 +523,7 @@
                             "border": "1px solid #e6ecef",
                             "height": "750px"
                           },
-                          "text": "${rstBenutzerRollenCount} Rollen",
+                          "text": "{{rstBenutzerRollenCount == 1 ? rstBenutzerRollenCount + ' Rolle' : rstBenutzerRollenCount + ' Rollen'}}",
                           "type": "panel"
                         }
                       ],

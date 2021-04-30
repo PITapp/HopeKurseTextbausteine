@@ -24,12 +24,13 @@ import { TemplateFormModule } from '@radzen/angular/dist/template-form';
 import { DropDownModule } from '@radzen/angular/dist/dropdown';
 import { RequiredValidatorModule } from '@radzen/angular/dist/required-validator';
 import { TextBoxModule } from '@radzen/angular/dist/textbox';
+import { ListBoxModule } from '@radzen/angular/dist/listbox';
 import { PasswordModule } from '@radzen/angular/dist/password';
 import { TextAreaModule } from '@radzen/angular/dist/textarea';
 import { ButtonModule } from '@radzen/angular/dist/button';
-import { PanelModule } from '@radzen/angular/dist/panel';
 import { HeadingModule } from '@radzen/angular/dist/heading';
 import { TabsModule } from '@radzen/angular/dist/tabs';
+import { PanelModule } from '@radzen/angular/dist/panel';
 import { GridModule } from '@radzen/angular/dist/grid';
 import { ProgressBarModule } from '@radzen/angular/dist/progressbar';
 import { GaugeModule } from '@radzen/angular/dist/gauge';
@@ -41,7 +42,6 @@ import { DataListModule } from '@radzen/angular/dist/datalist';
 import { HtmlModule } from '@radzen/angular/dist/html';
 import { LoginModule } from '@radzen/angular/dist/login';
 import { FormModule } from '@radzen/angular/dist/form';
-import { ListBoxModule } from '@radzen/angular/dist/listbox';
 import { NumericModule } from '@radzen/angular/dist/numeric';
 import { UploadModule } from '@radzen/angular/dist/upload';
 import { CheckBoxModule } from '@radzen/angular/dist/checkbox';
@@ -55,7 +55,6 @@ import { AppComponent } from './app.component';
 import { CacheInterceptor } from './cache.interceptor';
 export { AppComponent } from './app.component';
 import { BenutzerNeuComponent } from './benutzer-neu/benutzer-neu.component';
-import { BenutzerBearbeitenComponent } from './benutzer-bearbeiten/benutzer-bearbeiten.component';
 import { BenutzerComponent } from './benutzer/benutzer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EinstellungenComponent } from './einstellungen/einstellungen.component';
@@ -93,6 +92,7 @@ import { EditApplicationUserComponent } from './edit-application-user/edit-appli
 import { Benutzer222Component } from './benutzer-222/benutzer-222.component';
 import { AddBenutzer222Component } from './add-benutzer-222/add-benutzer-222.component';
 import { EditBenutzer222Component } from './edit-benutzer-222/edit-benutzer-222.component';
+import { BenutzerBearbeitenComponent } from './benutzer-bearbeiten/benutzer-bearbeiten.component';
 import { LoginLayoutComponent } from './login-layout/login-layout.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 
@@ -103,7 +103,6 @@ import { AuthGuard } from './auth.guard';
 
 export const PageDeclarations = [
   BenutzerNeuComponent,
-  BenutzerBearbeitenComponent,
   BenutzerComponent,
   DashboardComponent,
   EinstellungenComponent,
@@ -141,6 +140,7 @@ export const PageDeclarations = [
   Benutzer222Component,
   AddBenutzer222Component,
   EditBenutzer222Component,
+  BenutzerBearbeitenComponent,
 ];
 
 export const LayoutDeclarations = [
@@ -200,12 +200,13 @@ export const AppImports = [
   DropDownModule,
   RequiredValidatorModule,
   TextBoxModule,
+  ListBoxModule,
   PasswordModule,
   TextAreaModule,
   ButtonModule,
-  PanelModule,
   HeadingModule,
   TabsModule,
+  PanelModule,
   GridModule,
   ProgressBarModule,
   GaugeModule,
@@ -217,7 +218,6 @@ export const AppImports = [
   HtmlModule,
   LoginModule,
   FormModule,
-  ListBoxModule,
   NumericModule,
   UploadModule,
   CheckBoxModule,

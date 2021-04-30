@@ -178,6 +178,7 @@ namespace HopeKurseTextbausteine
           oDataBuilder.EntitySet<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.InfotexteHtml>("InfotexteHtmls");
           oDataBuilder.EntitySet<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.VwBaseAlle>("VwBaseAlles");
           oDataBuilder.EntitySet<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.VwBenutzerRollen>("VwBenutzerRollens");
+          oDataBuilder.EntitySet<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.VwRollen>("VwRollens");
 
           this.OnConfigureOData(oDataBuilder);
 

@@ -190,3 +190,8 @@ export interface VwBenutzerRollen {
   RoleId: string;
   RolleTitel: string;
 }
+
+export interface VwRollen {
+  Id: string;
+  Titel: string;
+}

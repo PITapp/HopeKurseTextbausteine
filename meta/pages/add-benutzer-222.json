@@ -50,7 +50,9 @@
                               "style": {
                                 "display": "block",
                                 "width": "100%"
-                              }
+                              },
+                              "multipleItemsSelectedText": "{0} items selected",
+                              "emptyFilterText": "No results found"
                             },
                             {
                               "type": "required-validator",
@@ -649,6 +651,8 @@
     ]
   },
   "name": "Add Benutzer 222",
-  "access": "Authenticated",
+  "access": [
+    "Authenticated"
+  ],
   "layout": "Main"
 }

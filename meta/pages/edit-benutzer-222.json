@@ -51,7 +51,9 @@
                                 "display": "block",
                                 "width": "100%"
                               },
-                              "value": "${benutzer.BaseID}"
+                              "value": "${benutzer.BaseID}",
+                              "multipleItemsSelectedText": "{0} items selected",
+                              "emptyFilterText": "No results found"
                             },
                             {
                               "type": "required-validator",
@@ -685,6 +687,8 @@
     ]
   },
   "name": "Edit Benutzer 222",
-  "access": "Authenticated",
+  "access": [
+    "Authenticated"
+  ],
   "layout": "Main"
 }

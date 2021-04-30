@@ -144,17 +144,9 @@
                 <rz-html #htmlEditorInfotexte>
                   <p-editor [(ngModel)]="strTextbausteinHTML" [style]="{'height': '645px'}">
                       <p-header>
-                  
                   		<span class="ql-formats">
-                  			<select class="ql-font">
-                                  <option selected>Aref Ruqaa</option>
-                                  <option value="mirza">Mirza</option>
-                                  <option value="roboto">Roboto</option>
-                  			</select>
-                  		</span>
-                      
-                  		<span class="ql-formats">
-                  			<select class="ql-header">
+                             <select class="ql-font"></select>
+                  		   <select class="ql-header">
                   			    <option value="1">Titel 1</option>
                   			    <option value="2">Titel 2</option>
                   			    <option value="3">Titel 3</option>
@@ -172,17 +164,8 @@
                   		</span>
                   
                   		<span class="ql-formats">
-                  			<button class="ql-blockquote"></button>
-                  		</span>		
-                  
-                  		<span class="ql-formats">
                   			<select class="ql-align"></select>
                   		</span>		
-                  
-                  		<span class="ql-formats">
-                  			<select class="ql-color"></select>
-                  			<select class="ql-background"></select>
-                  		</span>
                   
                   		<span class="ql-formats">
                   			<button class="ql-list" value="ordered"></button>
@@ -190,7 +173,18 @@
                   			<button class="ql-indent" value="-1"></button>
                   			<button class="ql-indent" value="+1"></button>
                   		</span>
+                  
+                  		<span class="ql-formats">
+                  			<button class="ql-blockquote"></button>
+                  		</span>		
+                  
+                  		<span class="ql-formats">
+                  			<select class="ql-color"></select>
+                  			<select class="ql-background"></select>
+                  		</span>
+                  
                       </p-header>
+                  
                   </p-editor>
                 </rz-html>
               </div>
