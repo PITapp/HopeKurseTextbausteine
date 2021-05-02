@@ -96,7 +96,7 @@
             <rz-panel-header>
               <div class="row">
                 <div class="col-md-12 align-items-start d-flex">
-                  <rz-button #button7 buttonStyle="light" [disabled]="false" icon="undo" size="sm" [style]="{'color': '#D86E13', 'fontWeight': 'normal', 'marginRight': '-9px', 'paddingLeft': ''}" text="Zurücksetzen" tooltip="Löschen Autor">
+                  <rz-button #button7 buttonStyle="light" [disabled]="false" icon="undo" size="sm" [style]="{'color': '#D86E13', 'fontWeight': 'normal', 'marginRight': '-9px', 'paddingLeft': ''}" text="Zurücksetzen" tooltip="Löschen Autor" (click)="button7Click($event)">
                   </rz-button>
                 </div>
               </div>
@@ -105,31 +105,31 @@
         </div>
         <div class="col-md-4" [ngStyle]="{'paddingLeft': '5px'}">
           <rz-panel #panel4 [allowCollapse]="false" [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="{{rstTextbausteineCount == 0 ? '' : rstTextbausteineCount}} Textbausteine">
-            <rz-grid #gridTextbausteine [allowAdd]="false" [allowColumnResize]="true" [allowDelete]="false" [allowFiltering]="false" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="false" [alwaysShowPager]="false" applyFilterText="Apply" clearFilterText="Clear" [confirmDelete]="false" containsText="Contains" [count]="rstTextbausteineCount" [data]="rstTextbausteine" emptyText="Keine Textbausteine vorhanden" endsWithText="Ends with" equalsText="Equals" filterCaseSensitivity="caseInsensitive" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="22" startsWithText="Starts with" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'height': '700px', 'marginLeft': '-10px', 'marginRight': '-10px', 'marginTop': '-13px'}" (loadData)="gridTextbausteineLoadData($event)" (rowSelect)="gridTextbausteineRowSelect($event)">
-              <rz-grid-column property="IbsiTextbausteineAutoren.Krzel" title="Autor" width="50px" type="string">
+            <rz-grid #gridTextbausteine [allowAdd]="false" [allowColumnResize]="true" [allowDelete]="false" [allowFiltering]="false" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="false" [alwaysShowPager]="false" applyFilterText="Apply" clearFilterText="Clear" [confirmDelete]="false" containsText="Contains" [count]="rstTextbausteineCount" [data]="rstTextbausteine" emptyText="Keine Textbausteine vorhanden" endsWithText="Ends with" equalsText="Equals" filterCaseSensitivity="caseInsensitive" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="22" startsWithText="Starts with" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'height': '700px', 'marginLeft': '-10px', 'marginRight': '-10px', 'marginTop': '-13px'}" (loadData)="gridTextbausteineLoadData($event)" (rowDoubleClick)="gridTextbausteineRowDoubleClick($event)" (rowSelect)="gridTextbausteineRowSelect($event)">
+              <rz-grid-column property="IbsiTextbausteineAutoren.Krzel" title="Autor" width="70px" type="string">
               </rz-grid-column>
-              <rz-grid-column property="IbsiKurse.Kurzzeichen" title="Kurs" width="50px" type="string">
+              <rz-grid-column property="IbsiKurse.Kurzzeichen" title="Kurs" width="70px" type="string">
               </rz-grid-column>
               <rz-grid-column property="Anrede" title="Anr." width="40px" type="string">
                 <ng-template let-data gridColumnTemplate>
                 {{((data?.Anrede == 'Ohne') ? ('') : (data?.Anrede))}}
                 </ng-template>
               </rz-grid-column>
-              <rz-grid-column property="TitelTextbaustein" title="Titel" width="60%" type="string">
+              <rz-grid-column property="TitelTextbaustein" title="Titel" width="70%" type="string">
               </rz-grid-column>
-              <rz-grid-column property="UntertitelTextbaustein" title="Untertitel" width="40%" type="string">
+              <rz-grid-column property="UntertitelTextbaustein" title="Untertitel" width="30%" type="string">
               </rz-grid-column>
             </rz-grid>
             <rz-panel-header>
               <div class="row">
                 <div class="col-md-12 align-items-start d-flex">
-                  <rz-button #button0 buttonStyle="light" icon="add" size="sm" [style]="{'color': '#D86E13'}" text="Neu">
+                  <rz-button #buttonNeu buttonStyle="light" icon="add" size="sm" [style]="{'color': '#D86E13'}" text="Neu" (click)="buttonNeuClick($event)">
                   </rz-button>
-                  <rz-button #button1 buttonStyle="light" icon="control_point_duplicate" size="sm" [style]="{'color': '#D86E13', 'marginLeft': '10px'}" text="Duplizieren">
+                  <rz-button #buttonDuplizieren buttonStyle="light" icon="control_point_duplicate" size="sm" [style]="{'color': '#D86E13', 'marginLeft': '10px'}" text="Duplizieren" (click)="buttonDuplizierenClick($event)">
                   </rz-button>
-                  <rz-button #button2 buttonStyle="light" icon="create" size="sm" [style]="{'color': '#D86E13', 'marginLeft': '10px', 'paddingLeft': ''}" tooltip="Bearbeiten Autor">
+                  <rz-button #buttonBearbeiten buttonStyle="light" icon="create" size="sm" [style]="{'color': '#D86E13', 'marginLeft': '10px', 'paddingLeft': ''}" tooltip="Bearbeiten Textbaustein" (click)="buttonBearbeitenClick($event)">
                   </rz-button>
-                  <rz-button #button3 buttonStyle="light" [disabled]="false" icon="clear" size="sm" [style]="{'color': '#D86E13', 'fontWeight': 'normal', 'marginLeft': '10px', 'marginRight': '-9px', 'paddingLeft': ''}" tooltip="Löschen Autor">
+                  <rz-button #buttonLoeschen buttonStyle="light" [disabled]="false" icon="clear" size="sm" [style]="{'color': '#D86E13', 'fontWeight': 'normal', 'marginLeft': '10px', 'marginRight': '-9px', 'paddingLeft': ''}" tooltip="Löschen Textbaustein" (click)="buttonLoeschenClick($event)">
                   </rz-button>
                 </div>
               </div>
@@ -137,12 +137,11 @@
           </rz-panel>
         </div>
         <div class="col-md-6" [ngStyle]="{'paddingLeft': '5px'}">
-          <rz-panel #panel6 [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="{{dsoTextbausteine?.TitelTextbaustein}}
-          {{dsoTextbausteine?.UntertitelTextbaustein ? ' • ' + dsoTextbausteine?.UntertitelTextbaustein : ''}}">
+          <rz-panel #panel6 [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="&nbsp;">
             <div [ngStyle]="{'marginLeft': '-36px', 'marginRight': '-36px', 'marginTop': '-12px'}" class="row">
               <div class="col-md-12" [ngStyle]="{}">
-                <rz-html #htmlEditorInfotexte>
-                  <p-editor [(ngModel)]="strTextbausteinHTML" [style]="{'height': '645px'}">
+                <rz-html #htmlEditorTextbausteine>
+                  <p-editor id="editorTextbausteine" [(ngModel)]="strTextbausteinHTML" [style]="{'height': '645px'}">
                       <p-header>
                   		<span class="ql-formats">
                              <select class="ql-font"></select>
@@ -192,11 +191,17 @@
             <rz-panel-header>
               <div [ngStyle]="{'display': 'inline-block'}" class="row">
                 <div class="col-md-12 align-items-start d-flex" [ngStyle]="{'display': 'flex'}">
-                  <rz-button #button4 buttonStyle="light" buttonType="submit" icon="done" size="sm" [style]="{'color': '#D86E13', 'display': 'flex'}" text="&nbsp;Speichern">
+                  <rz-button #buttonSpeichern buttonStyle="light" buttonType="submit" icon="done" size="sm" [style]="{'color': '#D86E13', 'display': 'flex'}" text="&nbsp;Speichern" (click)="buttonSpeichernClick($event)">
                   </rz-button>
-                  <rz-button #buttonNeu buttonStyle="light" icon="folder_open" size="sm" [style]="{'color': '#D86E13', 'display': 'flex', 'marginLeft': '10px'}" text="&nbsp;Dokument">
+                  <rz-button #buttonFavorit buttonStyle="light" icon="star_outline" size="sm" [style]="{'color': '#D86E13', 'display': 'flex', 'marginLeft': '10px'}" text="&nbsp;Favorit" (click)="buttonFavoritClick($event)">
                   </rz-button>
-                  <rz-button #buttonLoeschen buttonStyle="light" [disabled]="false" icon="content_copy" size="sm" [style]="{'color': '#D86E13', 'display': 'flex', 'fontWeight': 'normal', 'marginLeft': '10px', 'marginRight': '-9px', 'paddingLeft': ''}" text="&nbsp;Kopieren" tooltip="Löschen Autor">
+                  <rz-button #buttonFelder buttonStyle="light" icon="settings_ethernet" size="sm" [style]="{'color': '#D86E13', 'display': 'flex', 'marginLeft': '10px'}" text="&nbsp;Felder" (click)="buttonFelderClick($event)">
+                  </rz-button>
+                  <rz-button #buttonMischen buttonStyle="light" icon="playlist_add_check" size="sm" [style]="{'color': '#D86E13', 'display': 'flex', 'marginLeft': '10px'}" text="&nbsp;Mischen" (click)="buttonMischenClick($event)">
+                  </rz-button>
+                  <rz-button #buttonDokument buttonStyle="light" icon="folder_open" size="sm" [style]="{'color': '#D86E13', 'display': 'flex', 'marginLeft': '10px'}" text="&nbsp;Dokument" (click)="buttonDokumentClick($event)">
+                  </rz-button>
+                  <rz-button #buttonKopieren buttonStyle="light" [disabled]="false" icon="content_copy" size="sm" [style]="{'color': '#D86E13', 'display': 'flex', 'fontWeight': 'normal', 'marginLeft': '10px', 'marginRight': '-9px', 'paddingLeft': ''}" text="&nbsp;Kopieren" tooltip="Löschen Autor" (click)="buttonKopierenClick($event)">
                   </rz-button>
                 </div>
               </div>
@@ -205,7 +210,106 @@
         </div>
       </div>
     </rz-tabs-item>
-    <rz-tabs-item text="Details">
+    <rz-tabs-item [selected]="false" text="Favoriten">
+      <div class="row">
+        <div class="col-md-6" [ngStyle]="{'paddingLeft': '5px'}">
+          <rz-panel #panel2 [allowCollapse]="false" [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="{{rstFavoritenCount == 0 ? '' : rstFavoritenCount}} Favoriten">
+            <rz-grid #gridFavoriten [allowAdd]="false" [allowColumnResize]="true" [allowDelete]="false" [allowFiltering]="false" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="false" [alwaysShowPager]="false" applyFilterText="Apply" clearFilterText="Clear" [confirmDelete]="false" containsText="Contains" [count]="rstFavoritenCount" [data]="rstFavoriten" emptyText="Keine Favoriten vorhanden" endsWithText="Ends with" equalsText="Equals" filterCaseSensitivity="caseInsensitive" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="22" startsWithText="Starts with" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'height': '700px', 'marginLeft': '-10px', 'marginRight': '-10px', 'marginTop': '-13px'}" (loadData)="gridFavoritenLoadData($event)" (rowSelect)="gridFavoritenRowSelect($event)">
+              <rz-grid-column property="AutorKrzel" title="Autor" width="50px" type="string">
+              </rz-grid-column>
+              <rz-grid-column property="KursKurzzeichen" title="Kurs" width="50px" type="string">
+              </rz-grid-column>
+              <rz-grid-column property="Anrede" title="Anr." width="40px" type="string">
+                <ng-template let-data gridColumnTemplate>
+                {{((data?.Anrede == 'Ohne') ? ('') : (data?.Anrede))}}
+                </ng-template>
+              </rz-grid-column>
+              <rz-grid-column property="TitelTextbaustein" title="Titel" width="40%" type="string">
+              </rz-grid-column>
+              <rz-grid-column property="UntertitelTextbaustein" title="Untertitel" width="30%" type="string">
+              </rz-grid-column>
+              <rz-grid-column property="InfoText" title="Notiz" type="string">
+              </rz-grid-column>
+            </rz-grid>
+            <rz-panel-header>
+              <div class="row">
+                <div class="col-md-12 align-items-start d-flex">
+                  <rz-button #buttonFavoritEntfernen buttonStyle="light" [disabled]="false" icon="clear" size="sm" [style]="{'color': '#D86E13', 'fontWeight': 'normal', 'marginLeft': '10px', 'marginRight': '-9px', 'paddingLeft': ''}" text="Favorit entfernen" tooltip="Löschen Favorit" (click)="buttonFavoritEntfernenClick($event)">
+                  </rz-button>
+                </div>
+              </div>
+            </rz-panel-header>
+          </rz-panel>
+        </div>
+        <div class="col-md-6" [ngStyle]="{'paddingLeft': '5px'}">
+          <rz-panel #panel3 [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="&nbsp;">
+            <div [ngStyle]="{'marginLeft': '-36px', 'marginRight': '-36px', 'marginTop': '-12px'}" class="row">
+              <div class="col-md-12" [ngStyle]="{}">
+                <rz-html #htmlEditorTextbausteineFavoriten>
+                  <p-editor [(ngModel)]="strTextbausteinHTMLFavoriten" [style]="{'height': '645px'}">
+                      <p-header>
+                  		<span class="ql-formats">
+                             <select class="ql-font"></select>
+                  		   <select class="ql-header">
+                  			    <option value="1">Titel 1</option>
+                  			    <option value="2">Titel 2</option>
+                  			    <option value="3">Titel 3</option>
+                  			    <option value="4">Titel 4</option>
+                  			    <option value="5">Titel 5</option>
+                  			    <option value="6">Titel 6</option>
+                  			    <option selected>Normal</option>
+                  			</select>
+                  		</span>
+                  		
+                  		<span class="ql-formats">
+                  			<button class="ql-bold" aria-label="Bold">Fett</button>
+                  			<button class="ql-italic" aria-label="Italic"></button>
+                  			<button class="ql-underline" aria-label="Underline"></button>
+                  		</span>
+                  
+                  		<span class="ql-formats">
+                  			<select class="ql-align"></select>
+                  		</span>		
+                  
+                  		<span class="ql-formats">
+                  			<button class="ql-list" value="ordered"></button>
+                  			<button class="ql-list" value="bullet"></button>
+                  			<button class="ql-indent" value="-1"></button>
+                  			<button class="ql-indent" value="+1"></button>
+                  		</span>
+                  
+                  		<span class="ql-formats">
+                  			<button class="ql-blockquote"></button>
+                  		</span>		
+                  
+                  		<span class="ql-formats">
+                  			<select class="ql-color"></select>
+                  			<select class="ql-background"></select>
+                  		</span>
+                  
+                      </p-header>
+                  
+                  </p-editor>
+                </rz-html>
+              </div>
+            </div>
+            <rz-panel-header>
+              <div [ngStyle]="{'display': 'inline-block'}" class="row">
+                <div class="col-md-12 align-items-start d-flex" [ngStyle]="{'display': 'flex'}">
+                  <rz-button #buttonFavoritenMischen buttonStyle="light" icon="playlist_add_check" size="sm" [style]="{'color': '#D86E13', 'display': 'flex', 'marginLeft': '10px'}" text="&nbsp;Mischen" (click)="buttonFavoritenMischenClick($event)">
+                  </rz-button>
+                  <rz-button #buttonFavoritenDokument buttonStyle="light" icon="folder_open" size="sm" [style]="{'color': '#D86E13', 'display': 'flex', 'marginLeft': '10px'}" text="&nbsp;Dokument" (click)="buttonFavoritenDokumentClick($event)">
+                  </rz-button>
+                  <rz-button #buttonFavoritenKopieren buttonStyle="light" [disabled]="false" icon="content_copy" size="sm" [style]="{'color': '#D86E13', 'display': 'flex', 'fontWeight': 'normal', 'marginLeft': '10px', 'marginRight': '-9px', 'paddingLeft': ''}" text="&nbsp;Kopieren" tooltip="Löschen Autor">
+                  </rz-button>
+                </div>
+              </div>
+            </rz-panel-header>
+          </rz-panel>
+        </div>
+      </div>
+    </rz-tabs-item>
+    <rz-tabs-item [selected]="false" text="Verlauf">
     </rz-tabs-item>
   </rz-tabs>
 </rz-content>

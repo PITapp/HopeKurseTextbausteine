@@ -109,6 +109,14 @@
                                   "width": "30%"
                                 },
                                 {
+                                  "filterProperty": "",
+                                  "format": "",
+                                  "property": "LKZ",
+                                  "title": "LKZ",
+                                  "type": "string",
+                                  "width": "70px"
+                                },
+                                {
                                   "property": "Notiz",
                                   "title": "Notiz",
                                   "type": "string",

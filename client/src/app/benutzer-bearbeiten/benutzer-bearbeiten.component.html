@@ -44,8 +44,18 @@
           <div class="col-md-9">
             <rz-textbox #benutzerEMail [style]="{'display': 'block', 'width': '100%'}" [(ngModel)]="dsoBenutzer && dsoBenutzer.BenutzerEMail" name="BenutzerEMail">
             </rz-textbox>
-            <rz-required-validator #requiredValidator0 [component]="eMail" [style]="{'position': 'absolute'}" text="E-Mail erforderlich">
+            <rz-required-validator #requiredValidator0 [component]="benutzerEMail" [style]="{'position': 'absolute'}" text="E-Mail erforderlich">
             </rz-required-validator>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3" [ngStyle]="{'textAlign': 'right'}">
+            <rz-label #label1 component="LKZ" [style]="{'textAlign': 'left', 'width': '100%'}" text="LKZ">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-textbox #lkz [style]="{'display': 'block', 'width': '100%'}" [(ngModel)]="dsoBenutzer && dsoBenutzer.LKZ" name="LKZ">
+            </rz-textbox>
           </div>
         </div>
         <div [ngStyle]="{'marginBottom': '1rem'}" class="row">

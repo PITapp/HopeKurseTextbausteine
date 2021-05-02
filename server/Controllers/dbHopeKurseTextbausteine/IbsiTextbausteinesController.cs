@@ -70,6 +70,8 @@ namespace HopeKurseTextbausteine.Controllers.DbHopeKurseTextbausteine
 
             var itemToDelete = this.context.IbsiTextbausteines
                 .Where(i => i.TextbausteinNr == key)
+                .Include(i => i.BenutzerTextbausteineFavoritens)
+                .Include(i => i.BenutzerTextbausteineVerlaufs)
                 .FirstOrDefault();
 
             if (itemToDelete == null)

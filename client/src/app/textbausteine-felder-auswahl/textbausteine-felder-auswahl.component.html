@@ -1,0 +1,26 @@
+<rz-content #content1 container="main">
+  <div class="row">
+    <div class="col-md-12">
+      <rz-template-form #form0 (submit)="form0Submit($event)">
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #nameFelder component="listboxFelder" [style]="{'width': '100%'}" text="Felder">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-listbox #listboxFelder [data]="rstFelder" [style]="{'height': '700px', 'width': '100%'}" textProperty="Titel" valueProperty="FeldID" name="listboxFelder" class="listbox-mit-auswahl">
+            </rz-listbox>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col offset-sm-3 justify-content-end d-flex">
+            <rz-button #button1 buttonStyle="success" buttonType="submit" icon="done" text="Übernehmen">
+            </rz-button>
+            <rz-button #button2 buttonStyle="light" [style]="{'marginLeft': '1rem'}" text="Abbruch" (click)="button2Click($event)">
+            </rz-button>
+          </div>
+        </div>
+      </rz-template-form>
+    </div>
+  </div>
+</rz-content>

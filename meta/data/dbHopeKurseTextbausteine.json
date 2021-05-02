@@ -154,7 +154,19 @@
           "x-key": true,
           "x-identity": true,
           "x-nullable": false,
-          "type": "integer"
+          "type": "integer",
+          "x-navigation": [
+            {
+              "inversePropertyName": "Benutzer",
+              "name": "BenutzerTextbausteineFavoritens",
+              "type": "BenutzerTextbausteineFavoriten"
+            },
+            {
+              "inversePropertyName": "Benutzer",
+              "name": "BenutzerTextbausteineVerlaufs",
+              "type": "BenutzerTextbausteineVerlauf"
+            }
+          ]
         },
         "Base": {
           "type": "object",
@@ -191,6 +203,10 @@
           "type": "string",
           "length": 200
         },
+        "LKZ": {
+          "type": "string",
+          "length": 3
+        },
         "Notiz": {
           "type": "string",
           "length": 65535
@@ -223,6 +239,130 @@
         "FilterInfo": {
           "type": "string",
           "length": 255
+        },
+        "BenutzerTextbausteineFavoritens": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BenutzerTextbausteineFavoriten"
+          }
+        },
+        "BenutzerTextbausteineVerlaufs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BenutzerTextbausteineVerlauf"
+          }
+        }
+      }
+    },
+    "BenutzerTextbausteineFavoriten": {
+      "x-table": "def.BenutzerTextbausteineFavoriten",
+      "resource": "BenutzerTextbausteineFavoritens",
+      "required": [
+        "BenutzerID",
+        "TextbausteinNr",
+        "Am"
+      ],
+      "properties": {
+        "TextbausteineFavoritID": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "type": "integer"
+        },
+        "Benutzer": {
+          "type": "object",
+          "$ref": "#/definitions/Benutzer"
+        },
+        "BenutzerID": {
+          "x-nullable": false,
+          "type": "integer",
+          "x-foreignKey": {
+            "parentTable": "Benutzer",
+            "parentEntityType": "Benutzer",
+            "type": "Benutzer",
+            "principalKey": "BenutzerID",
+            "name": "Benutzer",
+            "textProperty": "Benutzername",
+            "navigationProperty": "BenutzerTextbausteineFavoritens"
+          }
+        },
+        "IbsiTextbausteine": {
+          "type": "object",
+          "$ref": "#/definitions/IbsiTextbausteine"
+        },
+        "TextbausteinNr": {
+          "x-nullable": false,
+          "type": "integer",
+          "x-foreignKey": {
+            "parentTable": "IBSITextbausteine",
+            "parentEntityType": "IbsiTextbausteine",
+            "type": "IbsiTextbausteine",
+            "principalKey": "TextbausteinNr",
+            "name": "IbsiTextbausteine",
+            "textProperty": "Anrede",
+            "navigationProperty": "BenutzerTextbausteineFavoritens"
+          }
+        },
+        "Am": {
+          "x-nullable": false,
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "BenutzerTextbausteineVerlauf": {
+      "x-table": "def.BenutzerTextbausteineVerlauf",
+      "resource": "BenutzerTextbausteineVerlaufs",
+      "required": [
+        "BenutzerID",
+        "TextbausteinNr",
+        "Am"
+      ],
+      "properties": {
+        "TextbausteineVerlaufID": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "type": "integer"
+        },
+        "Benutzer": {
+          "type": "object",
+          "$ref": "#/definitions/Benutzer"
+        },
+        "BenutzerID": {
+          "x-nullable": false,
+          "type": "integer",
+          "x-foreignKey": {
+            "parentTable": "Benutzer",
+            "parentEntityType": "Benutzer",
+            "type": "Benutzer",
+            "principalKey": "BenutzerID",
+            "name": "Benutzer",
+            "textProperty": "Benutzername",
+            "navigationProperty": "BenutzerTextbausteineVerlaufs"
+          }
+        },
+        "IbsiTextbausteine": {
+          "type": "object",
+          "$ref": "#/definitions/IbsiTextbausteine"
+        },
+        "TextbausteinNr": {
+          "x-nullable": false,
+          "type": "integer",
+          "x-foreignKey": {
+            "parentTable": "IBSITextbausteine",
+            "parentEntityType": "IbsiTextbausteine",
+            "type": "IbsiTextbausteine",
+            "principalKey": "TextbausteinNr",
+            "name": "IbsiTextbausteine",
+            "textProperty": "Anrede",
+            "navigationProperty": "BenutzerTextbausteineVerlaufs"
+          }
+        },
+        "Am": {
+          "x-nullable": false,
+          "type": "string",
+          "format": "date-time"
         }
       }
     },
@@ -434,7 +574,19 @@
           "x-key": true,
           "x-identity": true,
           "x-nullable": false,
-          "type": "integer"
+          "type": "integer",
+          "x-navigation": [
+            {
+              "inversePropertyName": "IbsiTextbausteine",
+              "name": "BenutzerTextbausteineFavoritens",
+              "type": "BenutzerTextbausteineFavoriten"
+            },
+            {
+              "inversePropertyName": "IbsiTextbausteine",
+              "name": "BenutzerTextbausteineVerlaufs",
+              "type": "BenutzerTextbausteineVerlauf"
+            }
+          ]
         },
         "IbsiTextbausteineAnreden": {
           "type": "object",
@@ -543,6 +695,7 @@
           "$ref": "#/definitions/IbsiTextbausteineTypen"
         },
         "Typ": {
+          "x-default-sql": "B",
           "type": "string",
           "length": 1,
           "x-foreignKey": {
@@ -627,6 +780,18 @@
         "InfoText": {
           "type": "string",
           "length": 16777215
+        },
+        "BenutzerTextbausteineFavoritens": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BenutzerTextbausteineFavoriten"
+          }
+        },
+        "BenutzerTextbausteineVerlaufs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BenutzerTextbausteineVerlauf"
+          }
         }
       }
     },
@@ -740,6 +905,29 @@
           "items": {
             "$ref": "#/definitions/IbsiTextbausteine"
           }
+        }
+      }
+    },
+    "IbsiTextbausteineFelder": {
+      "x-table": "def.IBSITextbausteineFelder",
+      "resource": "IbsiTextbausteineFelders",
+      "required": [
+        "Titel"
+      ],
+      "properties": {
+        "FeldID": {
+          "x-key": true,
+          "x-identity": true,
+          "x-nullable": false,
+          "type": "integer"
+        },
+        "Titel": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 100
+        },
+        "Sortierung": {
+          "type": "integer"
         }
       }
     },
@@ -1033,6 +1221,242 @@
         "RolleTitel": {
           "type": "string",
           "length": 256
+        }
+      }
+    },
+    "VwBenutzerTextbausteineFavoriten": {
+      "x-view": true,
+      "x-table": "def.vwBenutzerTextbausteineFavoriten",
+      "resource": "VwBenutzerTextbausteineFavoritens",
+      "required": [
+        "BenutzerID",
+        "Am",
+        "TextbausteinNr",
+        "Benutzername",
+        "TextbausteinArtCode"
+      ],
+      "properties": {
+        "TextbausteineFavoritID": {
+          "x-default-sql": "0",
+          "x-nullable": false,
+          "type": "integer"
+        },
+        "BenutzerID": {
+          "x-nullable": false,
+          "type": "integer",
+          "x-key": true,
+          "x-virtual": true
+        },
+        "Am": {
+          "x-nullable": false,
+          "type": "string",
+          "format": "date-time"
+        },
+        "TextbausteinNr": {
+          "x-nullable": false,
+          "type": "integer"
+        },
+        "Benutzername": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 130
+        },
+        "TitelTextbaustein": {
+          "type": "string",
+          "length": 100
+        },
+        "UntertitelTextbaustein": {
+          "type": "string",
+          "length": 100
+        },
+        "TextbausteinArtCode": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 3
+        },
+        "Anrede": {
+          "type": "string",
+          "length": 5
+        },
+        "ThemaNummer": {
+          "type": "integer"
+        },
+        "Land": {
+          "type": "string",
+          "length": 5
+        },
+        "InfoText": {
+          "type": "string",
+          "length": 16777215
+        },
+        "Art": {
+          "type": "string",
+          "length": 40
+        },
+        "TextbausteinHTML": {
+          "type": "string",
+          "length": 16777215
+        },
+        "DokumentTitel": {
+          "type": "string",
+          "length": 255
+        },
+        "DokumentName": {
+          "type": "string",
+          "length": 200
+        },
+        "DokumentTyp": {
+          "type": "string",
+          "length": 5
+        },
+        "AutorNr": {
+          "x-default-sql": "0",
+          "x-nullable": false,
+          "type": "integer"
+        },
+        "AutorName": {
+          "type": "string",
+          "length": 250
+        },
+        "AutorKrzel": {
+          "x-original-name": "AutorKürzel",
+          "type": "string",
+          "length": 50
+        },
+        "KursNr": {
+          "x-default-sql": "0",
+          "x-nullable": false,
+          "type": "integer"
+        },
+        "KursTitel": {
+          "type": "string",
+          "length": 50
+        },
+        "KursUntertitel": {
+          "type": "string",
+          "length": 50
+        },
+        "KursKurzzeichen": {
+          "type": "string",
+          "length": 10
+        }
+      }
+    },
+    "VwBenutzerTextbausteineVerlauf": {
+      "x-view": true,
+      "x-table": "def.vwBenutzerTextbausteineVerlauf",
+      "resource": "VwBenutzerTextbausteineVerlaufs",
+      "required": [
+        "BenutzerID",
+        "Am",
+        "TextbausteinNr",
+        "Benutzername",
+        "TextbausteinArtCode"
+      ],
+      "properties": {
+        "TextbausteineVerlaufID": {
+          "x-default-sql": "0",
+          "x-nullable": false,
+          "type": "integer"
+        },
+        "BenutzerID": {
+          "x-nullable": false,
+          "type": "integer",
+          "x-key": true,
+          "x-virtual": true
+        },
+        "Am": {
+          "x-nullable": false,
+          "type": "string",
+          "format": "date-time"
+        },
+        "TextbausteinNr": {
+          "x-nullable": false,
+          "type": "integer"
+        },
+        "Benutzername": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 130
+        },
+        "TitelTextbaustein": {
+          "type": "string",
+          "length": 100
+        },
+        "UntertitelTextbaustein": {
+          "type": "string",
+          "length": 100
+        },
+        "TextbausteinArtCode": {
+          "x-nullable": false,
+          "type": "string",
+          "length": 3
+        },
+        "Anrede": {
+          "type": "string",
+          "length": 5
+        },
+        "ThemaNummer": {
+          "type": "integer"
+        },
+        "Land": {
+          "type": "string",
+          "length": 5
+        },
+        "InfoText": {
+          "type": "string",
+          "length": 16777215
+        },
+        "Art": {
+          "type": "string",
+          "length": 40
+        },
+        "TextbausteinHTML": {
+          "type": "string",
+          "length": 16777215
+        },
+        "DokumentTitel": {
+          "type": "string",
+          "length": 255
+        },
+        "DokumentName": {
+          "type": "string",
+          "length": 200
+        },
+        "DokumentTyp": {
+          "type": "string",
+          "length": 5
+        },
+        "AutorNr": {
+          "x-default-sql": "0",
+          "x-nullable": false,
+          "type": "integer"
+        },
+        "AutorName": {
+          "type": "string",
+          "length": 250
+        },
+        "AutorKrzel": {
+          "x-original-name": "AutorKürzel",
+          "type": "string",
+          "length": 50
+        },
+        "KursNr": {
+          "x-default-sql": "0",
+          "x-nullable": false,
+          "type": "integer"
+        },
+        "KursTitel": {
+          "type": "string",
+          "length": 50
+        },
+        "KursUntertitel": {
+          "type": "string",
+          "length": 50
+        },
+        "KursKurzzeichen": {
+          "type": "string",
+          "length": 10
         }
       }
     },
@@ -1337,6 +1761,198 @@
           "201": {
             "schema": {
               "$ref": "#/definitions/Benutzer"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/BenutzerTextbausteineFavoritens": {
+      "get": {
+        "operationId": "getBenutzerTextbausteineFavoritens",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/BenutzerTextbausteineFavoriten"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createBenutzerTextbausteineFavoriten",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "BenutzerTextbausteineFavoriten",
+            "schema": {
+              "$ref": "#/definitions/BenutzerTextbausteineFavoriten"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/BenutzerTextbausteineFavoriten"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/BenutzerTextbausteineVerlaufs": {
+      "get": {
+        "operationId": "getBenutzerTextbausteineVerlaufs",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/BenutzerTextbausteineVerlauf"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createBenutzerTextbausteineVerlauf",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "BenutzerTextbausteineVerlauf",
+            "schema": {
+              "$ref": "#/definitions/BenutzerTextbausteineVerlauf"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/BenutzerTextbausteineVerlauf"
             }
           },
           "default": {
@@ -2115,6 +2731,102 @@
         }
       }
     },
+    "/IbsiTextbausteineFelders": {
+      "get": {
+        "operationId": "getIbsiTextbausteineFelders",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/IbsiTextbausteineFelder"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "createIbsiTextbausteineFelder",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "IbsiTextbausteineFelder",
+            "schema": {
+              "$ref": "#/definitions/IbsiTextbausteineFelder"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "schema": {
+              "$ref": "#/definitions/IbsiTextbausteineFelder"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
     "/IbsiTextbausteineStatusForms": {
       "get": {
         "operationId": "getIbsiTextbausteineStatusForms",
@@ -2633,6 +3345,140 @@
         }
       }
     },
+    "/VwBenutzerTextbausteineFavoritens": {
+      "get": {
+        "operationId": "getVwBenutzerTextbausteineFavoritens",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/VwBenutzerTextbausteineFavoriten"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/VwBenutzerTextbausteineVerlaufs": {
+      "get": {
+        "operationId": "getVwBenutzerTextbausteineVerlaufs",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$filter",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$top",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$skip",
+            "type": "integer"
+          },
+          {
+            "in": "query",
+            "name": "$orderby",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$count",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$format",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "$select",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "properties": {
+                "value": {
+                  "items": {
+                    "$ref": "#/definitions/VwBenutzerTextbausteineVerlauf"
+                  },
+                  "type": "array"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
     "/VwRollens": {
       "get": {
         "operationId": "getVwRollens",
@@ -2918,6 +3764,160 @@
             "name": "Benutzer",
             "schema": {
               "$ref": "#/definitions/Benutzer"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/BenutzerTextbausteineFavoritens({TextbausteineFavoritID})": {
+      "delete": {
+        "operationId": "deleteBenutzerTextbausteineFavoriten",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "TextbausteineFavoritID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getBenutzerTextbausteineFavoritenByTextbausteineFavoritID",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "TextbausteineFavoritID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/BenutzerTextbausteineFavoriten"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateBenutzerTextbausteineFavoriten",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "TextbausteineFavoritID",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "BenutzerTextbausteineFavoriten",
+            "schema": {
+              "$ref": "#/definitions/BenutzerTextbausteineFavoriten"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/BenutzerTextbausteineVerlaufs({TextbausteineVerlaufID})": {
+      "delete": {
+        "operationId": "deleteBenutzerTextbausteineVerlauf",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "TextbausteineVerlaufID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getBenutzerTextbausteineVerlaufByTextbausteineVerlaufID",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "TextbausteineVerlaufID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/BenutzerTextbausteineVerlauf"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateBenutzerTextbausteineVerlauf",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "TextbausteineVerlaufID",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "BenutzerTextbausteineVerlauf",
+            "schema": {
+              "$ref": "#/definitions/BenutzerTextbausteineVerlauf"
             }
           }
         ],
@@ -3534,6 +4534,83 @@
             "name": "IbsiTextbausteineAutoren",
             "schema": {
               "$ref": "#/definitions/IbsiTextbausteineAutoren"
+            }
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/IbsiTextbausteineFelders({FeldID})": {
+      "delete": {
+        "operationId": "deleteIbsiTextbausteineFelder",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "FeldID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "204": {},
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getIbsiTextbausteineFelderByFeldID",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "FeldID",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/IbsiTextbausteineFelder"
+            }
+          },
+          "default": {
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateIbsiTextbausteineFelder",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "$expand",
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "FeldID",
+            "type": "integer"
+          },
+          {
+            "in": "body",
+            "name": "IbsiTextbausteineFelder",
+            "schema": {
+              "$ref": "#/definitions/IbsiTextbausteineFelder"
             }
           }
         ],

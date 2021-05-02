@@ -102,7 +102,7 @@ export class LoginGenerated implements AfterViewInit, OnInit, OnDestroy {
     .subscribe((result: any) => {
 
     }, (result: any) => {
-      this.notificationService.notify({ severity: "error", summary: `Error`, detail: `${result.error.message}` });
+      this.notificationService.notify({ severity: "error", summary: ``, detail: `${result.error.message}` });
     });
   }
 }

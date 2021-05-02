@@ -24,8 +24,7 @@
   "namespaces": [],
   "navigation": [
     "Textbausteine",
-    "Kontakte",
-    "Benutzer222"
+    "Kontakte"
   ],
   "pages": [
     "BenutzerNeu",
@@ -63,10 +62,11 @@
     "Add Application Role",
     "Add Application User",
     "Edit Application User",
-    "Benutzer222",
-    "Add Benutzer222",
-    "Edit Benutzer222",
-    "BenutzerBearbeiten"
+    "BenutzerBearbeiten",
+    "TextbausteineNeu",
+    "TextbausteineBearbeiten",
+    "TextbausteineDuplizieren",
+    "TextbausteineFelderAuswahl"
   ],
   "port": 8000,
   "security": {

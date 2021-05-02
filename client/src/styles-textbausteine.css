@@ -5,6 +5,11 @@
   background-image: linear-gradient(#455B65, #212C36);
 }
 
+.kopfzeileVerlaufend  {
+  background-image: linear-gradient(#455B65, #212C36);
+}
+
+
 /* --- Umschalter für Seitenmenü links --- */
 .sidebar-toggle {
   border: none;
@@ -312,6 +317,10 @@ input:focus, textarea:focus {
   font-size: 14px;
 }
 
+.textbausteine-filter-listbox .ui-listbox-item.ui-state-highlight {
+  background-color: #CBD5E8;
+}
+
 .textbausteine-filter-auswahl .ui-dropdown-label {
   font-size: 14px;
 }
@@ -335,4 +344,19 @@ input:focus, textarea:focus {
 .textbausteine-filter-auswahl .ui-dropdown-item, .ui-dropdown-items li {
   padding: 3px 0.625rem;
   font-size: 14px;
+}
+
+/* --- Login Button auf die rechte Seite --- */
+.login .login-buttons {
+  justify-content: flex-end !important;
+}
+
+/* --- Background für Listbox mit Markirungshacken --- */
+.ui-listbox-item.ui-state-highlight {
+  background-color: white;
+}
+
+/* --- Listbox Auswahhl mit Einfärbung --- */
+.listbox-mit-auswahl .ui-listbox-item.ui-state-highlight {
+  background-color: #CBD5E8;
 }

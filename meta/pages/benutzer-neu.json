@@ -250,6 +250,53 @@
                           "class": "col-md-3",
                           "components": [
                             {
+                              "component": "LKZ",
+                              "name": "label4",
+                              "style": {
+                                "textAlign": "left",
+                                "width": "100%"
+                              },
+                              "text": "LKZ",
+                              "type": "label"
+                            }
+                          ],
+                          "name": "col8",
+                          "style": {
+                            "textAlign": "right"
+                          },
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "events": {
+                                "change": []
+                              },
+                              "name": "LKZ",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox"
+                            }
+                          ],
+                          "name": "col9",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row4",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
                               "component": "RoleNames",
                               "name": "RoleNamesLabel",
                               "style": {

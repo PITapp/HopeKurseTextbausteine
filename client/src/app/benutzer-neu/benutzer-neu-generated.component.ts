@@ -42,6 +42,8 @@ export class BenutzerNeuGenerated implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('label0') label0: LabelComponent;
   @ViewChild('eMail') eMail: TextBoxComponent;
   @ViewChild('requiredValidator0') requiredValidator0: RequiredValidatorComponent;
+  @ViewChild('label4') label4: LabelComponent;
+  @ViewChild('lkz') lkz: TextBoxComponent;
   @ViewChild('roleNamesLabel') roleNamesLabel: LabelComponent;
   @ViewChild('roleNames') roleNames: ListBoxComponent;
   @ViewChild('requiredValidator3') requiredValidator3: RequiredValidatorComponent;

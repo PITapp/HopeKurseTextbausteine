@@ -31,6 +31,7 @@ export interface Benutzer {
   AspNetUsers_Id: string;
   Initialen: string;
   BenutzerEMail: string;
+  LKZ: string;
   Notiz: string;
   FilterTextbausteinArtCode: string;
   FilterKursNr: number;
@@ -40,6 +41,20 @@ export interface Benutzer {
   FilterAnrede: string;
   FilterDokument: string;
   FilterInfo: string;
+}
+
+export interface BenutzerTextbausteineFavoriten {
+  TextbausteineFavoritID: number;
+  BenutzerID: number;
+  TextbausteinNr: number;
+  Am: string;
+}
+
+export interface BenutzerTextbausteineVerlauf {
+  TextbausteineVerlaufID: number;
+  BenutzerID: number;
+  TextbausteinNr: number;
+  Am: string;
 }
 
 export interface Einstellungen {
@@ -126,6 +141,12 @@ export interface IbsiTextbausteineAutoren {
   Krzel: string;
 }
 
+export interface IbsiTextbausteineFelder {
+  FeldID: number;
+  Titel: string;
+  Sortierung: number;
+}
+
 export interface IbsiTextbausteineStatusForm {
   Status: number;
   Bezeichnung: string;
@@ -189,6 +210,60 @@ export interface VwBenutzerRollen {
   FilterInfo: string;
   RoleId: string;
   RolleTitel: string;
+}
+
+export interface VwBenutzerTextbausteineFavoriten {
+  TextbausteineFavoritID: number;
+  BenutzerID: number;
+  Am: string;
+  TextbausteinNr: number;
+  Benutzername: string;
+  TitelTextbaustein: string;
+  UntertitelTextbaustein: string;
+  TextbausteinArtCode: string;
+  Anrede: string;
+  ThemaNummer: number;
+  Land: string;
+  InfoText: string;
+  Art: string;
+  TextbausteinHTML: string;
+  DokumentTitel: string;
+  DokumentName: string;
+  DokumentTyp: string;
+  AutorNr: number;
+  AutorName: string;
+  AutorKrzel: string;
+  KursNr: number;
+  KursTitel: string;
+  KursUntertitel: string;
+  KursKurzzeichen: string;
+}
+
+export interface VwBenutzerTextbausteineVerlauf {
+  TextbausteineVerlaufID: number;
+  BenutzerID: number;
+  Am: string;
+  TextbausteinNr: number;
+  Benutzername: string;
+  TitelTextbaustein: string;
+  UntertitelTextbaustein: string;
+  TextbausteinArtCode: string;
+  Anrede: string;
+  ThemaNummer: number;
+  Land: string;
+  InfoText: string;
+  Art: string;
+  TextbausteinHTML: string;
+  DokumentTitel: string;
+  DokumentName: string;
+  DokumentTyp: string;
+  AutorNr: number;
+  AutorName: string;
+  AutorKrzel: string;
+  KursNr: number;
+  KursTitel: string;
+  KursUntertitel: string;
+  KursKurzzeichen: string;
 }
 
 export interface VwRollen {

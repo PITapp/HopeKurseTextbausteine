@@ -20,7 +20,7 @@
                           {
                             "detail": "${result.error.message}",
                             "severity": "error",
-                            "summary": "Error",
+                            "summary": "",
                             "type": "notify"
                           }
                         ],
@@ -44,8 +44,8 @@
                   "name": "login0",
                   "passwordRequired": "Passwort erfoderlich",
                   "passwordText": "Passwort",
-                  "registerMessageText": "Don't have an account yet?",
-                  "registerText": "Sign up",
+                  "registerMessageText": "",
+                  "registerText": "",
                   "resetPasswordText": "Forgot password",
                   "type": "login",
                   "userRequired": "Benutzername erforderlich",

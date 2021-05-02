@@ -1,0 +1,128 @@
+<rz-content #content1 container="main">
+  <div class="row">
+    <div class="col-md-12">
+      <rz-template-form #form0 (submit)="form0Submit($event)">
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #textbausteinArtCodeLabel component="TextbausteinArtCode" [style]="{'width': '100%'}" text="Art">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-dropdown #textbausteinArtCode [data]="rstTextbausteineArten" placeholder="Art auswählen" [style]="{'display': 'block', 'width': '100%'}" textProperty="Bezeichnung" valueProperty="TextbausteinArtCode" name="TextbausteinArtCode">
+            </rz-dropdown>
+            <rz-required-validator #requiredValidator0 [component]="textbausteinArtCode" [style]="{'position': 'absolute'}" text="Art erforderlich">
+            </rz-required-validator>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #autorNrLabel component="AutorNr" [style]="{'width': '100%'}" text="Autor">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-dropdown #autorNr [data]="rstTextbausteineAutoren" placeholder="Autor auswählen" [style]="{'display': 'block', 'width': '100%'}" textProperty="Name" valueProperty="AutorNr" name="AutorNr">
+            </rz-dropdown>
+            <rz-required-validator #autorNrRequiredValidator [component]="autorNr" [style]="{'position': 'absolute'}" text="Autor erforderlich">
+            </rz-required-validator>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #kursNrLabel component="KursNr" [style]="{'width': '100%'}" text="Kurs">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-dropdown #kursNr [data]="rstKurse" placeholder="Kurs auswählen" [style]="{'display': 'block', 'width': '100%'}" textProperty="Titel" valueProperty="KursNr" name="KursNr">
+            </rz-dropdown>
+            <rz-required-validator #kursNrRequiredValidator [component]="kursNr" [style]="{'position': 'absolute'}" text="Kurs erforderlich">
+            </rz-required-validator>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #anredeLabel component="Anrede" [style]="{'width': '100%'}" text="Anrede">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-dropdown #anrede [data]="rstTextbausteineAnreden" placeholder="Anrede auswählen" [style]="{'display': 'block', 'width': '100%'}" textProperty="Bezeichnung" valueProperty="Anrede" name="Anrede">
+            </rz-dropdown>
+            <rz-required-validator #requiredValidator2 [component]="anrede" [style]="{'position': 'absolute'}" text="Anrede erforderlich">
+            </rz-required-validator>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #titelTextbausteinLabel component="TitelTextbaustein" [style]="{'width': '100%'}" text="Titel">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-textbox #titelTextbaustein [maxLength]="100" [style]="{'display': 'block', 'width': '100%'}" name="TitelTextbaustein">
+            </rz-textbox>
+            <rz-required-validator #requiredValidator1 [component]="titelTextbaustein" [style]="{'position': 'absolute'}" text="Titel erforderlich">
+            </rz-required-validator>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #untertitelTextbausteinLabel component="UntertitelTextbaustein" [style]="{'width': '100%'}" text="Untertitel">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-textbox #untertitelTextbaustein [maxLength]="100" [style]="{'width': '100%'}" name="UntertitelTextbaustein">
+            </rz-textbox>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #themaNummerLabel component="ThemaNummer" [style]="{'width': '100%'}" text="Thema Nummer">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-numeric #themaNummer [style]="{'width': '100%'}" name="ThemaNummer">
+            </rz-numeric>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #dokumentTitelLabel component="DokumentTitel" [style]="{'width': '100%'}" text="Dokument">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-textbox #dokumentTitel [maxLength]="255" [style]="{'display': 'block', 'width': '100%'}" name="DokumentTitel">
+            </rz-textbox>
+            <rz-upload #upload0 chooseText="Dokument auswählen" [showCancelButton]="false" [style]="{'width': '100%'}" uploadText="Hochladen">
+            </rz-upload>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #landLabel component="Land" [style]="{'width': '100%'}" text="Land">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-dropdown #land [data]="rstLaender" placeholder="Land auswählen" [style]="{'display': 'block', 'width': '100%'}" textProperty="Titel" valueProperty="LKZ" name="Land">
+            </rz-dropdown>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '14px'}" class="row">
+          <div class="col-md-3" [ngStyle]="{}">
+            <rz-label #label19 component="Info" [style]="{'width': '100%'}" text="Notizen">
+            </rz-label>
+          </div>
+          <div class="col-md-9" [ngStyle]="{}">
+            <rz-textarea #infoText [rows]="4" [style]="{'height': '136px', 'width': '100%'}" name="InfoText">
+            </rz-textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col offset-sm-3 justify-content-end d-flex">
+            <rz-button #button0 buttonStyle="success" buttonType="submit" icon="done" text="Speichern">
+            </rz-button>
+            <rz-button #button1 buttonStyle="light" [style]="{'marginLeft': '1rem'}" text="Abbruch" (click)="button1Click($event)">
+            </rz-button>
+          </div>
+        </div>
+      </rz-template-form>
+    </div>
+  </div>
+</rz-content>

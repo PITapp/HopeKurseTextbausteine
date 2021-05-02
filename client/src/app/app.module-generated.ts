@@ -10,9 +10,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BodyModule } from '@radzen/angular/dist/body';
 import { CardModule } from '@radzen/angular/dist/card';
 import { ImageModule } from '@radzen/angular/dist/image';
+import { LabelModule } from '@radzen/angular/dist/label';
 import { ContentContainerModule } from '@radzen/angular/dist/content-container';
 import { HeaderModule } from '@radzen/angular/dist/header';
-import { LabelModule } from '@radzen/angular/dist/label';
 import { LinkModule } from '@radzen/angular/dist/link';
 import { SidebarToggleModule } from '@radzen/angular/dist/sidebar-toggle';
 import { ProfileMenuModule } from '@radzen/angular/dist/profilemenu';
@@ -89,10 +89,11 @@ import { RegisterApplicationUserComponent } from './register-application-user/re
 import { AddApplicationRoleComponent } from './add-application-role/add-application-role.component';
 import { AddApplicationUserComponent } from './add-application-user/add-application-user.component';
 import { EditApplicationUserComponent } from './edit-application-user/edit-application-user.component';
-import { Benutzer222Component } from './benutzer-222/benutzer-222.component';
-import { AddBenutzer222Component } from './add-benutzer-222/add-benutzer-222.component';
-import { EditBenutzer222Component } from './edit-benutzer-222/edit-benutzer-222.component';
 import { BenutzerBearbeitenComponent } from './benutzer-bearbeiten/benutzer-bearbeiten.component';
+import { TextbausteineNeuComponent } from './textbausteine-neu/textbausteine-neu.component';
+import { TextbausteineBearbeitenComponent } from './textbausteine-bearbeiten/textbausteine-bearbeiten.component';
+import { TextbausteineDuplizierenComponent } from './textbausteine-duplizieren/textbausteine-duplizieren.component';
+import { TextbausteineFelderAuswahlComponent } from './textbausteine-felder-auswahl/textbausteine-felder-auswahl.component';
 import { LoginLayoutComponent } from './login-layout/login-layout.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 
@@ -137,10 +138,11 @@ export const PageDeclarations = [
   AddApplicationRoleComponent,
   AddApplicationUserComponent,
   EditApplicationUserComponent,
-  Benutzer222Component,
-  AddBenutzer222Component,
-  EditBenutzer222Component,
   BenutzerBearbeitenComponent,
+  TextbausteineNeuComponent,
+  TextbausteineBearbeitenComponent,
+  TextbausteineDuplizierenComponent,
+  TextbausteineFelderAuswahlComponent,
 ];
 
 export const LayoutDeclarations = [
@@ -186,9 +188,9 @@ export const AppImports = [
   BodyModule,
   CardModule,
   ImageModule,
+  LabelModule,
   ContentContainerModule,
   HeaderModule,
-  LabelModule,
   LinkModule,
   SidebarToggleModule,
   ProfileMenuModule,

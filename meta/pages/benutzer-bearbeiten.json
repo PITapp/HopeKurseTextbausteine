@@ -211,7 +211,7 @@
                               "value": "${dsoBenutzer.BenutzerEMail}"
                             },
                             {
-                              "component": "EMail",
+                              "component": "BenutzerEMail",
                               "name": "requiredValidator0",
                               "style": {
                                 "position": "absolute"
@@ -225,6 +225,54 @@
                         }
                       ],
                       "name": "row0",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "LKZ",
+                              "name": "label1",
+                              "style": {
+                                "textAlign": "left",
+                                "width": "100%"
+                              },
+                              "text": "LKZ",
+                              "type": "label"
+                            }
+                          ],
+                          "name": "col2",
+                          "style": {
+                            "textAlign": "right"
+                          },
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "events": {
+                                "change": []
+                              },
+                              "name": "LKZ",
+                              "style": {
+                                "display": "block",
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${dsoBenutzer.LKZ}"
+                            }
+                          ],
+                          "name": "col3",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row1",
                       "style": {
                         "marginBottom": "1rem"
                       },

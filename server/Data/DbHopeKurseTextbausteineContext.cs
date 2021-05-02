@@ -40,6 +40,26 @@ namespace HopeKurseTextbausteine.Data
                   .WithMany(i => i.Benutzers)
                   .HasForeignKey(i => i.BaseID)
                   .HasPrincipalKey(i => i.BaseID);
+            builder.Entity<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.BenutzerTextbausteineFavoriten>()
+                  .HasOne(i => i.Benutzer)
+                  .WithMany(i => i.BenutzerTextbausteineFavoritens)
+                  .HasForeignKey(i => i.BenutzerID)
+                  .HasPrincipalKey(i => i.BenutzerID);
+            builder.Entity<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.BenutzerTextbausteineFavoriten>()
+                  .HasOne(i => i.IbsiTextbausteine)
+                  .WithMany(i => i.BenutzerTextbausteineFavoritens)
+                  .HasForeignKey(i => i.TextbausteinNr)
+                  .HasPrincipalKey(i => i.TextbausteinNr);
+            builder.Entity<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.BenutzerTextbausteineVerlauf>()
+                  .HasOne(i => i.Benutzer)
+                  .WithMany(i => i.BenutzerTextbausteineVerlaufs)
+                  .HasForeignKey(i => i.BenutzerID)
+                  .HasPrincipalKey(i => i.BenutzerID);
+            builder.Entity<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.BenutzerTextbausteineVerlauf>()
+                  .HasOne(i => i.IbsiTextbausteine)
+                  .WithMany(i => i.BenutzerTextbausteineVerlaufs)
+                  .HasForeignKey(i => i.TextbausteinNr)
+                  .HasPrincipalKey(i => i.TextbausteinNr);
             builder.Entity<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.IbsiKurse>()
                   .HasOne(i => i.IbsiKurseArten)
                   .WithMany(i => i.IbsiKurses)
@@ -94,6 +114,10 @@ namespace HopeKurseTextbausteine.Data
                   .Property(p => p.Onlinekurs)
                   .HasDefaultValueSql("b'0'");
 
+            builder.Entity<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.IbsiTextbausteine>()
+                  .Property(p => p.Typ)
+                  .HasDefaultValueSql("B");
+
             builder.Entity<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.IbsiTextbausteineArten>()
                   .Property(p => p.AuswahlKurs)
                   .HasDefaultValueSql("b'0'");
@@ -108,6 +132,30 @@ namespace HopeKurseTextbausteine.Data
 
             builder.Entity<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.VwBenutzerRollen>()
                   .Property(p => p.BenutzerID)
+                  .HasDefaultValueSql("0");
+
+            builder.Entity<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.VwBenutzerTextbausteineFavoriten>()
+                  .Property(p => p.TextbausteineFavoritID)
+                  .HasDefaultValueSql("0");
+
+            builder.Entity<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.VwBenutzerTextbausteineFavoriten>()
+                  .Property(p => p.AutorNr)
+                  .HasDefaultValueSql("0");
+
+            builder.Entity<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.VwBenutzerTextbausteineFavoriten>()
+                  .Property(p => p.KursNr)
+                  .HasDefaultValueSql("0");
+
+            builder.Entity<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.VwBenutzerTextbausteineVerlauf>()
+                  .Property(p => p.TextbausteineVerlaufID)
+                  .HasDefaultValueSql("0");
+
+            builder.Entity<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.VwBenutzerTextbausteineVerlauf>()
+                  .Property(p => p.AutorNr)
+                  .HasDefaultValueSql("0");
+
+            builder.Entity<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.VwBenutzerTextbausteineVerlauf>()
+                  .Property(p => p.KursNr)
                   .HasDefaultValueSql("0");
 
             this.OnModelBuilding(builder);
@@ -127,6 +175,18 @@ namespace HopeKurseTextbausteine.Data
         }
 
         public DbSet<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.Benutzer> Benutzers
+        {
+          get;
+          set;
+        }
+
+        public DbSet<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.BenutzerTextbausteineFavoriten> BenutzerTextbausteineFavoritens
+        {
+          get;
+          set;
+        }
+
+        public DbSet<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.BenutzerTextbausteineVerlauf> BenutzerTextbausteineVerlaufs
         {
           get;
           set;
@@ -180,6 +240,12 @@ namespace HopeKurseTextbausteine.Data
           set;
         }
 
+        public DbSet<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.IbsiTextbausteineFelder> IbsiTextbausteineFelders
+        {
+          get;
+          set;
+        }
+
         public DbSet<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.IbsiTextbausteineStatusForm> IbsiTextbausteineStatusForms
         {
           get;
@@ -211,6 +277,18 @@ namespace HopeKurseTextbausteine.Data
         }
 
         public DbSet<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.VwBenutzerRollen> VwBenutzerRollens
+        {
+          get;
+          set;
+        }
+
+        public DbSet<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.VwBenutzerTextbausteineFavoriten> VwBenutzerTextbausteineFavoritens
+        {
+          get;
+          set;
+        }
+
+        public DbSet<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.VwBenutzerTextbausteineVerlauf> VwBenutzerTextbausteineVerlaufs
         {
           get;
           set;

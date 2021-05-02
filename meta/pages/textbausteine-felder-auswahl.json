@@ -1,0 +1,145 @@
+{
+  "access": [
+    "Authenticated"
+  ],
+  "components": [
+    {
+      "components": [
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "listboxFelder",
+                              "name": "NameFelder",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Felder",
+                              "type": "label"
+                            }
+                          ],
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "attributes": [
+                                {
+                                  "name": "class",
+                                  "value": "listbox-mit-auswahl"
+                                }
+                              ],
+                              "data": "${rstFelder}",
+                              "name": "listboxFelder",
+                              "style": {
+                                "height": "700px",
+                                "width": "100%"
+                              },
+                              "textProperty": "Titel",
+                              "type": "listbox",
+                              "valueProperty": "FeldID"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col offset-sm-3 justify-content-end d-flex",
+                          "components": [
+                            {
+                              "buttonStyle": "success",
+                              "buttonType": "submit",
+                              "icon": "done",
+                              "text": "Übernehmen",
+                              "type": "button"
+                            },
+                            {
+                              "buttonStyle": "light",
+                              "events": {
+                                "click": [
+                                  {
+                                    "type": "back"
+                                  }
+                                ]
+                              },
+                              "style": {
+                                "marginLeft": "1rem"
+                              },
+                              "text": "Abbruch",
+                              "tooltip": "",
+                              "type": "button"
+                            }
+                          ],
+                          "type": "col"
+                        }
+                      ],
+                      "type": "row"
+                    }
+                  ],
+                  "events": {
+                    "submit": [
+                      {
+                        "detail": "Diese Funktion ist in Arbeit",
+                        "severity": "warn",
+                        "type": "notify"
+                      },
+                      {
+                        "type": "close-popup"
+                      }
+                    ]
+                  },
+                  "name": "form0",
+                  "type": "template-form"
+                }
+              ],
+              "type": "col"
+            }
+          ],
+          "type": "row"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "dbHopeKurseTextbausteine.getIbsiTextbausteineFelders",
+        "parameters": [
+          {
+            "name": "$orderby",
+            "value": "Sortierung, Titel"
+          }
+        ],
+        "then": [
+          {
+            "name": "rstFelder",
+            "type": "set",
+            "value": "${result.value}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "TextbausteineFelderAuswahl"
+}

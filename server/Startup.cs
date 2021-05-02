@@ -164,6 +164,8 @@ namespace HopeKurseTextbausteine
           oDataBuilder.EntitySet<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.Base>("Bases");
           oDataBuilder.EntitySet<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.BaseAnreden>("BaseAnredens");
           oDataBuilder.EntitySet<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.Benutzer>("Benutzers");
+          oDataBuilder.EntitySet<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.BenutzerTextbausteineFavoriten>("BenutzerTextbausteineFavoritens");
+          oDataBuilder.EntitySet<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.BenutzerTextbausteineVerlauf>("BenutzerTextbausteineVerlaufs");
           oDataBuilder.EntitySet<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.Einstellungen>("Einstellungens");
           oDataBuilder.EntitySet<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.IbsiKurse>("IbsiKurses");
           oDataBuilder.EntitySet<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.IbsiKurseArten>("IbsiKurseArtens");
@@ -172,12 +174,15 @@ namespace HopeKurseTextbausteine
           oDataBuilder.EntitySet<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.IbsiTextbausteineAnreden>("IbsiTextbausteineAnredens");
           oDataBuilder.EntitySet<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.IbsiTextbausteineArten>("IbsiTextbausteineArtens");
           oDataBuilder.EntitySet<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.IbsiTextbausteineAutoren>("IbsiTextbausteineAutorens");
+          oDataBuilder.EntitySet<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.IbsiTextbausteineFelder>("IbsiTextbausteineFelders");
           oDataBuilder.EntitySet<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.IbsiTextbausteineStatusForm>("IbsiTextbausteineStatusForms");
           oDataBuilder.EntitySet<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.IbsiTextbausteineStatusInhalt>("IbsiTextbausteineStatusInhalts");
           oDataBuilder.EntitySet<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.IbsiTextbausteineTypen>("IbsiTextbausteineTypens");
           oDataBuilder.EntitySet<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.InfotexteHtml>("InfotexteHtmls");
           oDataBuilder.EntitySet<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.VwBaseAlle>("VwBaseAlles");
           oDataBuilder.EntitySet<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.VwBenutzerRollen>("VwBenutzerRollens");
+          oDataBuilder.EntitySet<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.VwBenutzerTextbausteineFavoriten>("VwBenutzerTextbausteineFavoritens");
+          oDataBuilder.EntitySet<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.VwBenutzerTextbausteineVerlauf>("VwBenutzerTextbausteineVerlaufs");
           oDataBuilder.EntitySet<HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine.VwRollen>("VwRollens");
 
           this.OnConfigureOData(oDataBuilder);

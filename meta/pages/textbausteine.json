@@ -718,7 +718,28 @@
                                       "buttonStyle": "light",
                                       "disabled": false,
                                       "events": {
-                                        "click": []
+                                        "click": [
+                                          {
+                                            "code": "${dsoBenutzer.FilterTextbausteinArtCode} = null\n${dsoBenutzer.FilterKursNr} = null\n${dsoBenutzer.FilterTitelUndText} = null\n${dsoBenutzer.FilterAutorNr} = null\n${dsoBenutzer.FilterThemaNummer} = null\n${dsoBenutzer.FilterAnrede} = null\n${dsoBenutzer.FilterDokument} = null\n${dsoBenutzer.FilterInfo} = null",
+                                            "then": [
+                                              {
+                                                "name": "dbHopeKurseTextbausteine.updateBenutzer",
+                                                "parameters": [
+                                                  {
+                                                    "name": "BenutzerID",
+                                                    "value": "${dsoBenutzer.BenutzerID}"
+                                                  },
+                                                  {
+                                                    "name": "Benutzer",
+                                                    "value": "${dsoBenutzer}"
+                                                  }
+                                                ],
+                                                "type": "invoke"
+                                              }
+                                            ],
+                                            "type": "execute"
+                                          }
+                                        ]
                                       },
                                       "icon": "undo",
                                       "name": "button7",
@@ -777,16 +798,17 @@
                                 {
                                   "format": "",
                                   "property": "IbsiTextbausteineAutoren.Krzel",
+                                  "template": "",
                                   "title": "Autor",
                                   "type": "string",
-                                  "width": "50px"
+                                  "width": "70px"
                                 },
                                 {
                                   "format": "",
                                   "property": "IbsiKurse.Kurzzeichen",
                                   "title": "Kurs",
                                   "type": "string",
-                                  "width": "50px"
+                                  "width": "70px"
                                 },
                                 {
                                   "format": "",
@@ -801,14 +823,14 @@
                                   "property": "TitelTextbaustein",
                                   "title": "Titel",
                                   "type": "string",
-                                  "width": "60%"
+                                  "width": "70%"
                                 },
                                 {
                                   "format": "",
                                   "property": "UntertitelTextbaustein",
                                   "title": "Untertitel",
                                   "type": "string",
-                                  "width": "40%"
+                                  "width": "30%"
                                 }
                               ],
                               "confirmDelete": false,
@@ -833,7 +855,7 @@
                                         "name": "$filter",
                                         "value": [
                                           {
-                                            "value": "TextbausteinArtCode eq '${this.dsoBenutzer.FilterTextbausteinArtCode}' \n${this.dsoBenutzer.FilterKursNr ? ' and KursNr eq ' + this.dsoBenutzer.FilterKursNr : ''} \n${this.dsoBenutzer.FilterTitelUndText ? ' and ( contains(tolower(TitelTextbaustein),tolower(\\'' + this.dsoBenutzer.FilterTitelUndText + '\\')) OR contains(tolower(TextbausteinHTML),tolower(\\'' + this.dsoBenutzer.FilterTitelUndText + '\\')) )' : ''} \n${this.dsoBenutzer.FilterAutorNr ? ' and AutorNr eq ' + this.dsoBenutzer.FilterAutorNr : ''}\n${this.dsoBenutzer.FilterThemaNummer ? ' and ThemaNummer eq ' + this.dsoBenutzer.FilterThemaNummer : ''}\n${this.dsoBenutzer.FilterAnrede ? ' and Anrede eq \\'' + this.dsoBenutzer.FilterAnrede + '\\'' : ''}\n${this.dsoBenutzer.FilterDokument == 'MitDokument' ? ' and length(DokumentTitel) gt 0' : ''}\n${this.dsoBenutzer.FilterDokument == 'OhneDokument' ? ' and length(DokumentTitel) eq null' : ''}\n${this.dsoBenutzer.FilterInfo ? ' and contains(tolower(InfoText),tolower(\\'' + this.dsoBenutzer.FilterInfo + '\\'))' : ''} "
+                                            "value": "${this.dsoBenutzer.FilterTextbausteinArtCode ? 'TextbausteinArtCode eq \\'' + this.dsoBenutzer.FilterTextbausteinArtCode + '\\'' : 'TextbausteinArtCode ne null'} \n${this.dsoBenutzer.FilterKursNr ? ' and KursNr eq ' + this.dsoBenutzer.FilterKursNr : ''} \n${this.dsoBenutzer.FilterTitelUndText ? ' and ( contains(tolower(TitelTextbaustein),tolower(\\'' + this.dsoBenutzer.FilterTitelUndText + '\\')) OR contains(tolower(TextbausteinHTML),tolower(\\'' + this.dsoBenutzer.FilterTitelUndText + '\\')) )' : ''} \n${this.dsoBenutzer.FilterAutorNr ? ' and AutorNr eq ' + this.dsoBenutzer.FilterAutorNr : ''}\n${this.dsoBenutzer.FilterThemaNummer ? ' and ThemaNummer eq ' + this.dsoBenutzer.FilterThemaNummer : ''}\n${this.dsoBenutzer.FilterAnrede ? ' and Anrede eq \\'' + this.dsoBenutzer.FilterAnrede + '\\'' : ''}\n${this.dsoBenutzer.FilterDokument == 'MitDokument' ? ' and length(DokumentTitel) gt 0' : ''}\n${this.dsoBenutzer.FilterDokument == 'OhneDokument' ? ' and length(DokumentTitel) eq null' : ''}\n${this.dsoBenutzer.FilterInfo ? ' and contains(tolower(InfoText),tolower(\\'' + this.dsoBenutzer.FilterInfo + '\\'))' : ''} "
                                           }
                                         ]
                                       },
@@ -874,17 +896,29 @@
                                         "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
                                       },
                                       {
-                                        "name": "strTextbausteinHTML",
-                                        "type": "set",
-                                        "value": "null"
-                                      },
-                                      {
-                                        "name": "dsoTextbausteine",
-                                        "type": "set",
-                                        "value": "null"
+                                        "code": "if (this.rstTextbausteine.find(p => p.TextbausteinNr == this.letzteTextbausteinNr) != null) {\n    // letzteTextbausteinNr wurde in rstTextbausteine gefunden\n    this.gridTextbausteine.onSelect(this.rstTextbausteine.find(p => p.TextbausteinNr == this.letzteTextbausteinNr));\n} else {\n    // letzteTextbausteinNr wurde in rstTextbausteine NICHT gefunden\n    this.letzteTextbausteinNr = null;\n    this.strTextbausteinHTML = null;\n    this.dsoTextbausteine = null;\n    this.gridTextbausteine.onSelect(this.rstTextbausteine[0]);\n}",
+                                        "type": "execute"
                                       }
                                     ],
                                     "type": "invoke"
+                                  }
+                                ],
+                                "rowDoubleClick": [
+                                  {
+                                    "name": "letzteTextbausteinNr",
+                                    "type": "set",
+                                    "value": "${dsoTextbausteine.TextbausteinNr}"
+                                  },
+                                  {
+                                    "parameters": [
+                                      {
+                                        "name": "TextbausteinNr",
+                                        "value": "${dsoTextbausteine.TextbausteinNr}"
+                                      }
+                                    ],
+                                    "path": "textbausteine-bearbeiten",
+                                    "title": "Bearbeiten Textbaustein",
+                                    "type": "popup"
                                   }
                                 ],
                                 "rowSelect": [
@@ -931,10 +965,35 @@
                                     {
                                       "buttonStyle": "light",
                                       "events": {
-                                        "click": []
+                                        "click": [
+                                          {
+                                            "condition": "${dsoTextbausteine} != null",
+                                            "name": "letzteTextbausteinNr",
+                                            "type": "set",
+                                            "value": "${dsoTextbausteine.TextbausteinNr}"
+                                          },
+                                          {
+                                            "path": "textbausteine-neu",
+                                            "then": [
+                                              {
+                                                "condition": "${result} != null",
+                                                "name": "letzteTextbausteinNr",
+                                                "type": "set",
+                                                "value": "${result.TextbausteinNr}"
+                                              },
+                                              {
+                                                "code": "this.gridTextbausteine.load();",
+                                                "condition": "${result} != null",
+                                                "type": "execute"
+                                              }
+                                            ],
+                                            "title": "Neuer Textbaustein",
+                                            "type": "popup"
+                                          }
+                                        ]
                                       },
                                       "icon": "add",
-                                      "name": "button0",
+                                      "name": "buttonNeu",
                                       "size": "sm",
                                       "style": {
                                         "color": "#D86E13"
@@ -946,25 +1005,76 @@
                                     {
                                       "buttonStyle": "light",
                                       "events": {
-                                        "click": []
+                                        "click": [
+                                          {
+                                            "condition": "${dsoTextbausteine} != null",
+                                            "name": "letzteTextbausteinNr",
+                                            "type": "set",
+                                            "value": "${dsoTextbausteine.TextbausteinNr}"
+                                          },
+                                          {
+                                            "condition": "${dsoTextbausteine} != null",
+                                            "parameters": [
+                                              {
+                                                "name": "TextbausteinNr",
+                                                "value": "${dsoTextbausteine.TextbausteinNr}"
+                                              }
+                                            ],
+                                            "path": "textbausteine-duplizieren",
+                                            "then": [
+                                              {
+                                                "condition": "${result} != null",
+                                                "name": "letzteTextbausteinNr",
+                                                "type": "set",
+                                                "value": "${result.TextbausteinNr}"
+                                              },
+                                              {
+                                                "code": "this.gridTextbausteine.load();",
+                                                "condition": "${result} != null",
+                                                "type": "execute"
+                                              }
+                                            ],
+                                            "title": "Duplizieren Textbaustein",
+                                            "type": "popup"
+                                          }
+                                        ]
                                       },
                                       "icon": "control_point_duplicate",
-                                      "name": "button1",
+                                      "name": "buttonDuplizieren",
                                       "size": "sm",
                                       "style": {
                                         "color": "#D86E13",
                                         "marginLeft": "10px"
                                       },
                                       "text": "Duplizieren",
+                                      "tooltip": "",
                                       "type": "button"
                                     },
                                     {
                                       "buttonStyle": "light",
                                       "events": {
-                                        "click": []
+                                        "click": [
+                                          {
+                                            "name": "letzteTextbausteinNr",
+                                            "type": "set",
+                                            "value": "${dsoTextbausteine.TextbausteinNr}"
+                                          },
+                                          {
+                                            "parameters": [
+                                              {
+                                                "name": "TextbausteinNr",
+                                                "value": "${dsoTextbausteine.TextbausteinNr}"
+                                              }
+                                            ],
+                                            "path": "textbausteine-bearbeiten",
+                                            "then": [],
+                                            "title": "Bearbeiten Textbaustein",
+                                            "type": "popup"
+                                          }
+                                        ]
                                       },
                                       "icon": "create",
-                                      "name": "button2",
+                                      "name": "buttonBearbeiten",
                                       "size": "sm",
                                       "style": {
                                         "color": "#D86E13",
@@ -972,17 +1082,63 @@
                                         "paddingLeft": ""
                                       },
                                       "text": "",
-                                      "tooltip": "Bearbeiten Autor",
+                                      "tooltip": "Bearbeiten Textbaustein",
                                       "type": "button"
                                     },
                                     {
                                       "buttonStyle": "light",
                                       "disabled": false,
                                       "events": {
-                                        "click": []
+                                        "click": [
+                                          {
+                                            "name": "letzteTextbausteinNr",
+                                            "type": "set",
+                                            "value": "null"
+                                          },
+                                          {
+                                            "parameters": [
+                                              {
+                                                "name": "strMeldung",
+                                                "value": "\"Soll der Textbaustein '\" + ${dsoTextbausteine.TitelTextbaustein} + \"' gelöscht werden?\""
+                                              }
+                                            ],
+                                            "path": "meldung-loeschen",
+                                            "then": [
+                                              {
+                                                "condition": "${result} == 'Löschen'",
+                                                "error": [
+                                                  {
+                                                    "detail": "Textbaustein konnte nicht gelöscht werden!",
+                                                    "severity": "error",
+                                                    "summary": "",
+                                                    "type": "notify"
+                                                  }
+                                                ],
+                                                "name": "dbHopeKurseTextbausteine.deleteIbsiTextbausteine",
+                                                "parameters": [
+                                                  {
+                                                    "name": "TextbausteinNr",
+                                                    "value": "${dsoTextbausteine.TextbausteinNr}"
+                                                  }
+                                                ],
+                                                "then": [
+                                                  {
+                                                    "detail": "Textbaustein gelöscht",
+                                                    "severity": "success",
+                                                    "summary": "",
+                                                    "type": "notify"
+                                                  }
+                                                ],
+                                                "type": "invoke"
+                                              }
+                                            ],
+                                            "title": "Löschen Textbaustein",
+                                            "type": "popup"
+                                          }
+                                        ]
                                       },
                                       "icon": "clear",
-                                      "name": "button3",
+                                      "name": "buttonLoeschen",
                                       "size": "sm",
                                       "style": {
                                         "color": "#D86E13",
@@ -992,7 +1148,7 @@
                                         "paddingLeft": ""
                                       },
                                       "text": "",
-                                      "tooltip": "Löschen Autor",
+                                      "tooltip": "Löschen Textbaustein",
                                       "type": "button"
                                     }
                                   ],
@@ -1030,8 +1186,8 @@
                                   "class": "col-md-12",
                                   "components": [
                                     {
-                                      "content": "<p-editor [(ngModel)]=\"strTextbausteinHTML\" [style]=\"{'height': '645px'}\">\n    <p-header>\n\t\t<span class=\"ql-formats\">\n           <select class=\"ql-font\"></select>\n\t\t   <select class=\"ql-header\">\n\t\t\t    <option value=\"1\">Titel 1</option>\n\t\t\t    <option value=\"2\">Titel 2</option>\n\t\t\t    <option value=\"3\">Titel 3</option>\n\t\t\t    <option value=\"4\">Titel 4</option>\n\t\t\t    <option value=\"5\">Titel 5</option>\n\t\t\t    <option value=\"6\">Titel 6</option>\n\t\t\t    <option selected>Normal</option>\n\t\t\t</select>\n\t\t</span>\n\t\t\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-bold\" aria-label=\"Bold\">Fett</button>\n\t\t\t<button class=\"ql-italic\" aria-label=\"Italic\"></button>\n\t\t\t<button class=\"ql-underline\" aria-label=\"Underline\"></button>\n\t\t</span>\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-align\"></select>\n\t\t</span>\t\t\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-list\" value=\"ordered\"></button>\n\t\t\t<button class=\"ql-list\" value=\"bullet\"></button>\n\t\t\t<button class=\"ql-indent\" value=\"-1\"></button>\n\t\t\t<button class=\"ql-indent\" value=\"+1\"></button>\n\t\t</span>\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-blockquote\"></button>\n\t\t</span>\t\t\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-color\"></select>\n\t\t\t<select class=\"ql-background\"></select>\n\t\t</span>\n\n    </p-header>\n\n</p-editor>",
-                                      "name": "htmlEditorInfotexte",
+                                      "content": "<p-editor id=\"editorTextbausteine\" [(ngModel)]=\"strTextbausteinHTML\" [style]=\"{'height': '645px'}\">\n    <p-header>\n\t\t<span class=\"ql-formats\">\n           <select class=\"ql-font\"></select>\n\t\t   <select class=\"ql-header\">\n\t\t\t    <option value=\"1\">Titel 1</option>\n\t\t\t    <option value=\"2\">Titel 2</option>\n\t\t\t    <option value=\"3\">Titel 3</option>\n\t\t\t    <option value=\"4\">Titel 4</option>\n\t\t\t    <option value=\"5\">Titel 5</option>\n\t\t\t    <option value=\"6\">Titel 6</option>\n\t\t\t    <option selected>Normal</option>\n\t\t\t</select>\n\t\t</span>\n\t\t\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-bold\" aria-label=\"Bold\">Fett</button>\n\t\t\t<button class=\"ql-italic\" aria-label=\"Italic\"></button>\n\t\t\t<button class=\"ql-underline\" aria-label=\"Underline\"></button>\n\t\t</span>\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-align\"></select>\n\t\t</span>\t\t\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-list\" value=\"ordered\"></button>\n\t\t\t<button class=\"ql-list\" value=\"bullet\"></button>\n\t\t\t<button class=\"ql-indent\" value=\"-1\"></button>\n\t\t\t<button class=\"ql-indent\" value=\"+1\"></button>\n\t\t</span>\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-blockquote\"></button>\n\t\t</span>\t\t\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-color\"></select>\n\t\t\t<select class=\"ql-background\"></select>\n\t\t</span>\n\n    </p-header>\n\n</p-editor>",
+                                      "name": "htmlEditorTextbausteine",
                                       "type": "html"
                                     }
                                   ],
@@ -1059,10 +1215,48 @@
                                       "buttonStyle": "light",
                                       "buttonType": "submit",
                                       "events": {
-                                        "click": []
+                                        "click": [
+                                          {
+                                            "name": "letzteTextbausteinNr",
+                                            "type": "set",
+                                            "value": "${dsoTextbausteine.TextbausteinNr}"
+                                          },
+                                          {
+                                            "code": "${dsoTextbausteine.TextbausteinHTML} = ${strTextbausteinHTML}",
+                                            "type": "execute"
+                                          },
+                                          {
+                                            "error": [
+                                              {
+                                                "detail": "Textbaustein konnte nicht gespeichert werden!",
+                                                "severity": "error",
+                                                "type": "notify"
+                                              }
+                                            ],
+                                            "name": "dbHopeKurseTextbausteine.updateIbsiTextbausteine",
+                                            "parameters": [
+                                              {
+                                                "name": "TextbausteinNr",
+                                                "value": "${dsoTextbausteine.TextbausteinNr}"
+                                              },
+                                              {
+                                                "name": "IbsiTextbausteine",
+                                                "value": "${dsoTextbausteine}"
+                                              }
+                                            ],
+                                            "then": [
+                                              {
+                                                "detail": "Textbaustein gespeichert",
+                                                "severity": "success",
+                                                "type": "notify"
+                                              }
+                                            ],
+                                            "type": "invoke"
+                                          }
+                                        ]
                                       },
                                       "icon": "done",
-                                      "name": "button4",
+                                      "name": "buttonSpeichern",
                                       "size": "sm",
                                       "style": {
                                         "color": "#D86E13",
@@ -1075,10 +1269,120 @@
                                     {
                                       "buttonStyle": "light",
                                       "events": {
-                                        "click": []
+                                        "click": [
+                                          {
+                                            "name": "letzteTextbausteinNr",
+                                            "type": "set",
+                                            "value": "${dsoTextbausteine.TextbausteinNr}"
+                                          },
+                                          {
+                                            "code": "${dsoFavoriten.BenutzerID} = ${dsoBenutzer.BenutzerID};\n${dsoFavoriten.Am} = new Date().toISOString();\n${dsoFavoriten.TextbausteinNr} = ${dsoTextbausteine.TextbausteinNr};",
+                                            "error": [],
+                                            "then": [
+                                              {
+                                                "error": [
+                                                  {
+                                                    "detail": "Textbaustein ist schon als Favorit markiert",
+                                                    "severity": "info",
+                                                    "type": "notify"
+                                                  }
+                                                ],
+                                                "name": "dbHopeKurseTextbausteine.createBenutzerTextbausteineFavoriten",
+                                                "parameters": [
+                                                  {
+                                                    "name": "BenutzerTextbausteineFavoriten",
+                                                    "value": "${dsoFavoriten}"
+                                                  }
+                                                ],
+                                                "then": [
+                                                  {
+                                                    "code": "this.gridFavoriten.load();",
+                                                    "type": "execute"
+                                                  },
+                                                  {
+                                                    "detail": "Textbaustein als Favorit markiert",
+                                                    "severity": "success",
+                                                    "type": "notify"
+                                                  }
+                                                ],
+                                                "type": "invoke"
+                                              }
+                                            ],
+                                            "type": "execute"
+                                          }
+                                        ]
+                                      },
+                                      "icon": "star_outline",
+                                      "name": "buttonFavorit",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#D86E13",
+                                        "display": "flex",
+                                        "marginLeft": "10px"
+                                      },
+                                      "text": "&nbsp;Favorit",
+                                      "tooltip": "",
+                                      "type": "button"
+                                    },
+                                    {
+                                      "buttonStyle": "light",
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "path": "textbausteine-felder-auswahl",
+                                            "title": "Auswahl Feld",
+                                            "type": "popup"
+                                          }
+                                        ]
+                                      },
+                                      "icon": "settings_ethernet",
+                                      "name": "buttonFelder",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#D86E13",
+                                        "display": "flex",
+                                        "marginLeft": "10px"
+                                      },
+                                      "text": "&nbsp;Felder",
+                                      "tooltip": "",
+                                      "type": "button"
+                                    },
+                                    {
+                                      "buttonStyle": "light",
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "detail": "Diese Funktion ist in Arbeit",
+                                            "severity": "warn",
+                                            "type": "notify"
+                                          }
+                                        ]
+                                      },
+                                      "icon": "playlist_add_check",
+                                      "name": "buttonMischen",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#D86E13",
+                                        "display": "flex",
+                                        "marginLeft": "10px"
+                                      },
+                                      "text": "&nbsp;Mischen",
+                                      "tooltip": "",
+                                      "type": "button"
+                                    },
+                                    {
+                                      "buttonStyle": "light",
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "detail": "Diese Funktion ist in Arbeit",
+                                            "severity": "warn",
+                                            "type": "notify"
+                                          }
+                                        ]
                                       },
                                       "icon": "folder_open",
-                                      "name": "buttonNeu",
+                                      "name": "buttonDokument",
                                       "size": "sm",
                                       "style": {
                                         "color": "#D86E13",
@@ -1093,10 +1397,15 @@
                                       "buttonStyle": "light",
                                       "disabled": false,
                                       "events": {
-                                        "click": []
+                                        "click": [
+                                          {
+                                            "code": "var textArea = document.createElement(\"textarea\");\ntextArea.value = this.dsoTextbausteine.TextbausteinHTML;\ndocument.body.appendChild(textArea);\ntextArea.focus();\ntextArea.select();\n\ntry {\n    var successful = document.execCommand('copy');\n    var msg = successful ? 'successful' : 'unsuccessful';\n    console.log('Copying text command was ' + msg);\n} catch (err) {\n    console.log('Oops, unable to copy');\n}\n\ndocument.body.removeChild(textArea);",
+                                            "type": "execute"
+                                          }
+                                        ]
                                       },
                                       "icon": "content_copy",
-                                      "name": "buttonLoeschen",
+                                      "name": "buttonKopieren",
                                       "size": "sm",
                                       "style": {
                                         "color": "#D86E13",
@@ -1130,7 +1439,7 @@
                             "border": "1px solid #e6ecef",
                             "height": "750px"
                           },
-                          "text": "{{dsoTextbausteine?.TitelTextbaustein}}\n{{dsoTextbausteine?.UntertitelTextbaustein ? ' • ' + dsoTextbausteine?.UntertitelTextbaustein : ''}}",
+                          "text": "&nbsp;",
                           "type": "panel"
                         }
                       ],
@@ -1149,14 +1458,404 @@
               "text": "Daten"
             },
             {
-              "text": "Details"
+              "components": [
+                {
+                  "components": [
+                    {
+                      "class": "col-md-6",
+                      "components": [
+                        {
+                          "allowCollapse": false,
+                          "components": [
+                            {
+                              "addText": "",
+                              "allowAdd": false,
+                              "allowColumnResize": true,
+                              "allowDelete": false,
+                              "allowFiltering": false,
+                              "allowMultiSorting": false,
+                              "allowPaging": true,
+                              "allowSorting": false,
+                              "alwaysShowPager": false,
+                              "applyFilterText": "Apply",
+                              "clearFilterText": "Clear",
+                              "columns": [
+                                {
+                                  "format": "",
+                                  "property": "AutorKrzel",
+                                  "title": "Autor",
+                                  "type": "string",
+                                  "width": "50px"
+                                },
+                                {
+                                  "format": "",
+                                  "property": "KursKurzzeichen",
+                                  "title": "Kurs",
+                                  "type": "string",
+                                  "width": "50px"
+                                },
+                                {
+                                  "format": "",
+                                  "property": "Anrede",
+                                  "template": "${data.Anrede == 'Ohne' ? '' : data.Anrede}",
+                                  "title": "Anr.",
+                                  "type": "string",
+                                  "width": "40px"
+                                },
+                                {
+                                  "format": "",
+                                  "property": "TitelTextbaustein",
+                                  "title": "Titel",
+                                  "type": "string",
+                                  "width": "40%"
+                                },
+                                {
+                                  "format": "",
+                                  "property": "UntertitelTextbaustein",
+                                  "title": "Untertitel",
+                                  "type": "string",
+                                  "width": "30%"
+                                },
+                                {
+                                  "format": "",
+                                  "property": "InfoText",
+                                  "title": "Notiz",
+                                  "type": "string"
+                                }
+                              ],
+                              "confirmDelete": false,
+                              "confirmDeleteCancelText": "",
+                              "confirmDeleteOkText": "",
+                              "confirmDeleteText": "",
+                              "confirmDeleteTitle": "",
+                              "containsText": "Contains",
+                              "count": "${rstFavoritenCount}",
+                              "data": "${rstFavoriten}",
+                              "emptyText": "Keine Favoriten vorhanden",
+                              "endsWithText": "Ends with",
+                              "equalsText": "Equals",
+                              "events": {
+                                "add": [],
+                                "delete": [],
+                                "loadData": [
+                                  {
+                                    "name": "dbHopeKurseTextbausteine.getVwBenutzerTextbausteineFavoritens",
+                                    "parameters": [
+                                      {
+                                        "name": "$top",
+                                        "value": "event.top"
+                                      },
+                                      {
+                                        "name": "$skip",
+                                        "value": "event.skip"
+                                      },
+                                      {
+                                        "name": "$count",
+                                        "value": "event.top != null && event.skip != null"
+                                      }
+                                    ],
+                                    "then": [
+                                      {
+                                        "name": "rstFavoriten",
+                                        "type": "set",
+                                        "value": "${result.value}"
+                                      },
+                                      {
+                                        "name": "rstFavoritenCount",
+                                        "type": "set",
+                                        "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
+                                      },
+                                      {
+                                        "code": "this.gridFavoriten.onSelect(this.rstFavoriten[0]);",
+                                        "type": "execute"
+                                      }
+                                    ],
+                                    "type": "invoke"
+                                  }
+                                ],
+                                "rowDoubleClick": [],
+                                "rowSelect": [
+                                  {
+                                    "name": "strTextbausteinHTMLFavoriten",
+                                    "type": "set",
+                                    "value": "${event.TextbausteinHTML}"
+                                  },
+                                  {
+                                    "name": "dsoBenutzerTextbausteineFavoriten",
+                                    "type": "set",
+                                    "value": "${event}"
+                                  }
+                                ]
+                              },
+                              "filterCaseSensitivity": "caseInsensitive",
+                              "greaterThanOrEqualsText": "Greater than or equals",
+                              "greaterThanText": "Greater than",
+                              "isLoading": "",
+                              "lessThanOrEqualsText": "Less than or equals",
+                              "lessThanText": "Less than",
+                              "name": "gridFavoriten",
+                              "notEqualsText": "Not equals",
+                              "pageSize": 22,
+                              "startsWithText": "Starts with",
+                              "style": {
+                                "border": "1px solid rgba(0, 0, 0, 0)",
+                                "height": "700px",
+                                "marginLeft": "-10px",
+                                "marginRight": "-10px",
+                                "marginTop": "-13px"
+                              },
+                              "title": "",
+                              "type": "grid"
+                            }
+                          ],
+                          "footerTemplate": "",
+                          "headerTemplate": [
+                            {
+                              "components": [
+                                {
+                                  "class": "col-md-12 align-items-start d-flex",
+                                  "components": [
+                                    {
+                                      "buttonStyle": "light",
+                                      "disabled": false,
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "parameters": [
+                                              {
+                                                "name": "strMeldung",
+                                                "value": "\"Soll der Favorit '\" + ${dsoBenutzerTextbausteineFavoriten.TitelTextbaustein} + \"' gelöscht werden?\""
+                                              }
+                                            ],
+                                            "path": "meldung-loeschen",
+                                            "then": [
+                                              {
+                                                "condition": "${result} == 'Löschen'",
+                                                "error": [
+                                                  {
+                                                    "detail": "Favorit konnte nicht gelöscht werden!",
+                                                    "severity": "error",
+                                                    "summary": "",
+                                                    "type": "notify"
+                                                  }
+                                                ],
+                                                "name": "dbHopeKurseTextbausteine.deleteBenutzerTextbausteineFavoriten",
+                                                "parameters": [
+                                                  {
+                                                    "name": "TextbausteineFavoritID",
+                                                    "value": "${dsoBenutzerTextbausteineFavoriten.TextbausteineFavoritID}"
+                                                  }
+                                                ],
+                                                "then": [
+                                                  {
+                                                    "code": "this.gridFavoriten.load();",
+                                                    "type": "execute"
+                                                  },
+                                                  {
+                                                    "detail": "Favorit gelöscht",
+                                                    "severity": "success",
+                                                    "summary": "",
+                                                    "type": "notify"
+                                                  }
+                                                ],
+                                                "type": "invoke"
+                                              }
+                                            ],
+                                            "title": "Löschen Favorit",
+                                            "type": "popup"
+                                          }
+                                        ]
+                                      },
+                                      "icon": "clear",
+                                      "name": "buttonFavoritEntfernen",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#D86E13",
+                                        "fontWeight": "normal",
+                                        "marginLeft": "10px",
+                                        "marginRight": "-9px",
+                                        "paddingLeft": ""
+                                      },
+                                      "text": "Favorit entfernen",
+                                      "tooltip": "Löschen Favorit",
+                                      "type": "button"
+                                    }
+                                  ],
+                                  "name": "col0",
+                                  "type": "col"
+                                }
+                              ],
+                              "name": "row0",
+                              "type": "row"
+                            }
+                          ],
+                          "name": "panel2",
+                          "style": {
+                            "border": "1px solid #e6ecef",
+                            "height": "750px"
+                          },
+                          "text": "{{rstFavoritenCount == 0 ? '' : rstFavoritenCount}} Favoriten",
+                          "type": "panel"
+                        }
+                      ],
+                      "name": "col38",
+                      "style": {
+                        "paddingLeft": "5px"
+                      },
+                      "type": "col"
+                    },
+                    {
+                      "class": "col-md-6",
+                      "components": [
+                        {
+                          "components": [
+                            {
+                              "components": [
+                                {
+                                  "class": "col-md-12",
+                                  "components": [
+                                    {
+                                      "content": "<p-editor [(ngModel)]=\"strTextbausteinHTMLFavoriten\" [style]=\"{'height': '645px'}\">\n    <p-header>\n\t\t<span class=\"ql-formats\">\n           <select class=\"ql-font\"></select>\n\t\t   <select class=\"ql-header\">\n\t\t\t    <option value=\"1\">Titel 1</option>\n\t\t\t    <option value=\"2\">Titel 2</option>\n\t\t\t    <option value=\"3\">Titel 3</option>\n\t\t\t    <option value=\"4\">Titel 4</option>\n\t\t\t    <option value=\"5\">Titel 5</option>\n\t\t\t    <option value=\"6\">Titel 6</option>\n\t\t\t    <option selected>Normal</option>\n\t\t\t</select>\n\t\t</span>\n\t\t\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-bold\" aria-label=\"Bold\">Fett</button>\n\t\t\t<button class=\"ql-italic\" aria-label=\"Italic\"></button>\n\t\t\t<button class=\"ql-underline\" aria-label=\"Underline\"></button>\n\t\t</span>\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-align\"></select>\n\t\t</span>\t\t\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-list\" value=\"ordered\"></button>\n\t\t\t<button class=\"ql-list\" value=\"bullet\"></button>\n\t\t\t<button class=\"ql-indent\" value=\"-1\"></button>\n\t\t\t<button class=\"ql-indent\" value=\"+1\"></button>\n\t\t</span>\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-blockquote\"></button>\n\t\t</span>\t\t\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-color\"></select>\n\t\t\t<select class=\"ql-background\"></select>\n\t\t</span>\n\n    </p-header>\n\n</p-editor>",
+                                      "name": "htmlEditorTextbausteineFavoriten",
+                                      "type": "html"
+                                    }
+                                  ],
+                                  "name": "col40",
+                                  "style": {},
+                                  "type": "col"
+                                }
+                              ],
+                              "name": "row19",
+                              "style": {
+                                "marginLeft": "-36px",
+                                "marginRight": "-36px",
+                                "marginTop": "-12px"
+                              },
+                              "type": "row"
+                            }
+                          ],
+                          "headerTemplate": [
+                            {
+                              "components": [
+                                {
+                                  "class": "col-md-12 align-items-start d-flex",
+                                  "components": [
+                                    {
+                                      "buttonStyle": "light",
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "detail": "Diese Funktion ist in Arbeit",
+                                            "severity": "warn",
+                                            "type": "notify"
+                                          }
+                                        ]
+                                      },
+                                      "icon": "playlist_add_check",
+                                      "name": "buttonFavoritenMischen",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#D86E13",
+                                        "display": "flex",
+                                        "marginLeft": "10px"
+                                      },
+                                      "text": "&nbsp;Mischen",
+                                      "tooltip": "",
+                                      "type": "button"
+                                    },
+                                    {
+                                      "buttonStyle": "light",
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "detail": "Diese Funktion ist in Arbeit",
+                                            "severity": "warn",
+                                            "type": "notify"
+                                          }
+                                        ]
+                                      },
+                                      "icon": "folder_open",
+                                      "name": "buttonFavoritenDokument",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#D86E13",
+                                        "display": "flex",
+                                        "marginLeft": "10px"
+                                      },
+                                      "text": "&nbsp;Dokument",
+                                      "tooltip": "",
+                                      "type": "button"
+                                    },
+                                    {
+                                      "buttonStyle": "light",
+                                      "disabled": false,
+                                      "events": {
+                                        "click": []
+                                      },
+                                      "icon": "content_copy",
+                                      "name": "buttonFavoritenKopieren",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#D86E13",
+                                        "display": "flex",
+                                        "fontWeight": "normal",
+                                        "marginLeft": "10px",
+                                        "marginRight": "-9px",
+                                        "paddingLeft": ""
+                                      },
+                                      "text": "&nbsp;Kopieren",
+                                      "tooltip": "Löschen Autor",
+                                      "type": "button"
+                                    }
+                                  ],
+                                  "name": "col2",
+                                  "style": {
+                                    "display": "flex"
+                                  },
+                                  "type": "col"
+                                }
+                              ],
+                              "name": "row0",
+                              "style": {
+                                "display": "inline-block"
+                              },
+                              "type": "row"
+                            }
+                          ],
+                          "name": "panel3",
+                          "style": {
+                            "border": "1px solid #e6ecef",
+                            "height": "750px"
+                          },
+                          "text": "&nbsp;",
+                          "type": "panel"
+                        }
+                      ],
+                      "name": "col39",
+                      "style": {
+                        "paddingLeft": "5px"
+                      },
+                      "type": "col"
+                    }
+                  ],
+                  "name": "row10",
+                  "type": "row"
+                }
+              ],
+              "selected": false,
+              "text": "Favoriten"
+            },
+            {
+              "selected": false,
+              "text": "Verlauf"
             }
           ],
           "name": "tabs0",
           "style": {
             "float": "none"
           },
-          "type": "tabs"
+          "type": "tabs",
+          "visible": true
         }
       ],
       "container": "main",
@@ -1243,9 +1942,18 @@
               }
             ],
             "type": "invoke"
+          },
+          {
+            "code": "this.gridFavoriten.load();",
+            "type": "execute"
           }
         ],
         "type": "invoke"
+      },
+      {
+        "name": "dsoFavoriten",
+        "type": "set",
+        "value": "{BenutzerID: '', Am: '', TextbausteinNr: ''}"
       }
     ]
   },

@@ -40,6 +40,8 @@ export class BenutzerBearbeitenGenerated implements AfterViewInit, OnInit, OnDes
   @ViewChild('label0') label0: LabelComponent;
   @ViewChild('benutzerEMail') benutzerEMail: TextBoxComponent;
   @ViewChild('requiredValidator0') requiredValidator0: RequiredValidatorComponent;
+  @ViewChild('label1') label1: LabelComponent;
+  @ViewChild('lkz') lkz: TextBoxComponent;
   @ViewChild('roleNamesLabel') roleNamesLabel: LabelComponent;
   @ViewChild('roleNames') roleNames: ListBoxComponent;
   @ViewChild('requiredValidator3') requiredValidator3: RequiredValidatorComponent;

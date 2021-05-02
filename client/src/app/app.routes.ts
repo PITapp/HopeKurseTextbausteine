@@ -38,10 +38,11 @@ import { RegisterApplicationUserComponent } from './register-application-user/re
 import { AddApplicationRoleComponent } from './add-application-role/add-application-role.component';
 import { AddApplicationUserComponent } from './add-application-user/add-application-user.component';
 import { EditApplicationUserComponent } from './edit-application-user/edit-application-user.component';
-import { Benutzer222Component } from './benutzer-222/benutzer-222.component';
-import { AddBenutzer222Component } from './add-benutzer-222/add-benutzer-222.component';
-import { EditBenutzer222Component } from './edit-benutzer-222/edit-benutzer-222.component';
 import { BenutzerBearbeitenComponent } from './benutzer-bearbeiten/benutzer-bearbeiten.component';
+import { TextbausteineNeuComponent } from './textbausteine-neu/textbausteine-neu.component';
+import { TextbausteineBearbeitenComponent } from './textbausteine-bearbeiten/textbausteine-bearbeiten.component';
+import { TextbausteineDuplizierenComponent } from './textbausteine-duplizieren/textbausteine-duplizieren.component';
+import { TextbausteineFelderAuswahlComponent } from './textbausteine-felder-auswahl/textbausteine-felder-auswahl.component';
 
 import { SecurityService } from './security.service';
 import { AuthGuard } from './auth.guard';
@@ -322,36 +323,44 @@ export const routes: Routes = [
         component: EditApplicationUserComponent
       },
       {
-        path: 'benutzer-222',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: Benutzer222Component
-      },
-      {
-        path: 'add-benutzer-222',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: AddBenutzer222Component
-      },
-      {
-        path: 'edit-benutzer-222/:BenutzerID',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: EditBenutzer222Component
-      },
-      {
         path: 'benutzer-bearbeiten/:BenutzerID',
         canActivate: [AuthGuard],
         data: {
           roles: ['Authenticated'],
         },
         component: BenutzerBearbeitenComponent
+      },
+      {
+        path: 'textbausteine-neu',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: TextbausteineNeuComponent
+      },
+      {
+        path: 'textbausteine-bearbeiten/:TextbausteinNr',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: TextbausteineBearbeitenComponent
+      },
+      {
+        path: 'textbausteine-duplizieren/:TextbausteinNr',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: TextbausteineDuplizierenComponent
+      },
+      {
+        path: 'textbausteine-felder-auswahl',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: TextbausteineFelderAuswahlComponent
       },
     ]
   },

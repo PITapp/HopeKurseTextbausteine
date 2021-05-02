@@ -77,6 +77,46 @@ export class DbHopeKurseTextbausteineService {
     return this.odata.patch(`/Benutzers(${benutzerId})`, benutzer, item => item.BenutzerID == benutzerId, { expand }, ['Base']);
   }
 
+  getBenutzerTextbausteineFavoritens(filter: string | null, top: number | null, skip: number | null, orderby: string | null, count: boolean | null, expand: string | null, format: string | null, select: string | null) : Observable<any> {
+    return this.odata.get(`/BenutzerTextbausteineFavoritens`, { filter, top, skip, orderby, count, expand, format, select });
+  }
+
+  createBenutzerTextbausteineFavoriten(expand: string | null, benutzerTextbausteineFavoriten: models.BenutzerTextbausteineFavoriten | null) : Observable<any> {
+    return this.odata.post(`/BenutzerTextbausteineFavoritens`, benutzerTextbausteineFavoriten, { expand }, ['Benutzer', 'IbsiTextbausteine']);
+  }
+
+  deleteBenutzerTextbausteineFavoriten(textbausteineFavoritId: number | null) : Observable<any> {
+    return this.odata.delete(`/BenutzerTextbausteineFavoritens(${textbausteineFavoritId})`, item => !(item.TextbausteineFavoritID == textbausteineFavoritId));
+  }
+
+  getBenutzerTextbausteineFavoritenByTextbausteineFavoritId(expand: string | null, textbausteineFavoritId: number | null) : Observable<any> {
+    return this.odata.getById(`/BenutzerTextbausteineFavoritens(${textbausteineFavoritId})`, { expand });
+  }
+
+  updateBenutzerTextbausteineFavoriten(expand: string | null, textbausteineFavoritId: number | null, benutzerTextbausteineFavoriten: models.BenutzerTextbausteineFavoriten | null) : Observable<any> {
+    return this.odata.patch(`/BenutzerTextbausteineFavoritens(${textbausteineFavoritId})`, benutzerTextbausteineFavoriten, item => item.TextbausteineFavoritID == textbausteineFavoritId, { expand }, ['Benutzer','IbsiTextbausteine']);
+  }
+
+  getBenutzerTextbausteineVerlaufs(filter: string | null, top: number | null, skip: number | null, orderby: string | null, count: boolean | null, expand: string | null, format: string | null, select: string | null) : Observable<any> {
+    return this.odata.get(`/BenutzerTextbausteineVerlaufs`, { filter, top, skip, orderby, count, expand, format, select });
+  }
+
+  createBenutzerTextbausteineVerlauf(expand: string | null, benutzerTextbausteineVerlauf: models.BenutzerTextbausteineVerlauf | null) : Observable<any> {
+    return this.odata.post(`/BenutzerTextbausteineVerlaufs`, benutzerTextbausteineVerlauf, { expand }, ['Benutzer', 'IbsiTextbausteine']);
+  }
+
+  deleteBenutzerTextbausteineVerlauf(textbausteineVerlaufId: number | null) : Observable<any> {
+    return this.odata.delete(`/BenutzerTextbausteineVerlaufs(${textbausteineVerlaufId})`, item => !(item.TextbausteineVerlaufID == textbausteineVerlaufId));
+  }
+
+  getBenutzerTextbausteineVerlaufByTextbausteineVerlaufId(expand: string | null, textbausteineVerlaufId: number | null) : Observable<any> {
+    return this.odata.getById(`/BenutzerTextbausteineVerlaufs(${textbausteineVerlaufId})`, { expand });
+  }
+
+  updateBenutzerTextbausteineVerlauf(expand: string | null, textbausteineVerlaufId: number | null, benutzerTextbausteineVerlauf: models.BenutzerTextbausteineVerlauf | null) : Observable<any> {
+    return this.odata.patch(`/BenutzerTextbausteineVerlaufs(${textbausteineVerlaufId})`, benutzerTextbausteineVerlauf, item => item.TextbausteineVerlaufID == textbausteineVerlaufId, { expand }, ['Benutzer','IbsiTextbausteine']);
+  }
+
   getEinstellungens(filter: string | null, top: number | null, skip: number | null, orderby: string | null, count: boolean | null, expand: string | null, format: string | null, select: string | null) : Observable<any> {
     return this.odata.get(`/Einstellungens`, { filter, top, skip, orderby, count, expand, format, select });
   }
@@ -237,6 +277,26 @@ export class DbHopeKurseTextbausteineService {
     return this.odata.patch(`/IbsiTextbausteineAutorens(${autorNr})`, ibsiTextbausteineAutoren, item => item.AutorNr == autorNr, { expand }, []);
   }
 
+  getIbsiTextbausteineFelders(filter: string | null, top: number | null, skip: number | null, orderby: string | null, count: boolean | null, expand: string | null, format: string | null, select: string | null) : Observable<any> {
+    return this.odata.get(`/IbsiTextbausteineFelders`, { filter, top, skip, orderby, count, expand, format, select });
+  }
+
+  createIbsiTextbausteineFelder(expand: string | null, ibsiTextbausteineFelder: models.IbsiTextbausteineFelder | null) : Observable<any> {
+    return this.odata.post(`/IbsiTextbausteineFelders`, ibsiTextbausteineFelder, { expand }, []);
+  }
+
+  deleteIbsiTextbausteineFelder(feldId: number | null) : Observable<any> {
+    return this.odata.delete(`/IbsiTextbausteineFelders(${feldId})`, item => !(item.FeldID == feldId));
+  }
+
+  getIbsiTextbausteineFelderByFeldId(expand: string | null, feldId: number | null) : Observable<any> {
+    return this.odata.getById(`/IbsiTextbausteineFelders(${feldId})`, { expand });
+  }
+
+  updateIbsiTextbausteineFelder(expand: string | null, feldId: number | null, ibsiTextbausteineFelder: models.IbsiTextbausteineFelder | null) : Observable<any> {
+    return this.odata.patch(`/IbsiTextbausteineFelders(${feldId})`, ibsiTextbausteineFelder, item => item.FeldID == feldId, { expand }, []);
+  }
+
   getIbsiTextbausteineStatusForms(filter: string | null, top: number | null, skip: number | null, orderby: string | null, count: boolean | null, expand: string | null, format: string | null, select: string | null) : Observable<any> {
     return this.odata.get(`/IbsiTextbausteineStatusForms`, { filter, top, skip, orderby, count, expand, format, select });
   }
@@ -323,6 +383,14 @@ export class DbHopeKurseTextbausteineService {
 
   getVwBenutzerRollens(filter: string | null, top: number | null, skip: number | null, orderby: string | null, count: boolean | null, expand: string | null, format: string | null, select: string | null) : Observable<any> {
     return this.odata.get(`/VwBenutzerRollens`, { filter, top, skip, orderby, count, expand, format, select });
+  }
+
+  getVwBenutzerTextbausteineFavoritens(filter: string | null, top: number | null, skip: number | null, orderby: string | null, count: boolean | null, expand: string | null, format: string | null, select: string | null) : Observable<any> {
+    return this.odata.get(`/VwBenutzerTextbausteineFavoritens`, { filter, top, skip, orderby, count, expand, format, select });
+  }
+
+  getVwBenutzerTextbausteineVerlaufs(filter: string | null, top: number | null, skip: number | null, orderby: string | null, count: boolean | null, expand: string | null, format: string | null, select: string | null) : Observable<any> {
+    return this.odata.get(`/VwBenutzerTextbausteineVerlaufs`, { filter, top, skip, orderby, count, expand, format, select });
   }
 
   getVwRollens(filter: string | null, top: number | null, skip: number | null, orderby: string | null, count: boolean | null, expand: string | null, format: string | null, select: string | null) : Observable<any> {

@@ -51,6 +51,16 @@
           </div>
         </div>
         <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3" [ngStyle]="{'textAlign': 'right'}">
+            <rz-label #label4 component="LKZ" [style]="{'textAlign': 'left', 'width': '100%'}" text="LKZ">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-textbox #lkz [style]="{'display': 'block', 'width': '100%'}" name="LKZ">
+            </rz-textbox>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
           <div class="col-md-3">
             <rz-label #roleNamesLabel component="RoleNames" [style]="{'textAlign': 'left', 'width': '100%'}" text="Rollen">
             </rz-label>

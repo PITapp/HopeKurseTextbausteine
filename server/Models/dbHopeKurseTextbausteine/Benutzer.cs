@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -14,6 +15,11 @@ namespace HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine
       get;
       set;
     }
+
+
+    public ICollection<BenutzerTextbausteineFavoriten> BenutzerTextbausteineFavoritens { get; set; }
+
+    public ICollection<BenutzerTextbausteineVerlauf> BenutzerTextbausteineVerlaufs { get; set; }
     public int BaseID
     {
       get;
@@ -37,6 +43,11 @@ namespace HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine
       set;
     }
     public string BenutzerEMail
+    {
+      get;
+      set;
+    }
+    public string LKZ
     {
       get;
       set;
