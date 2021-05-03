@@ -313,10 +313,10 @@
                                       "size": "sm",
                                       "style": {
                                         "color": "#D86E13",
-                                        "display": "flex",
+                                        "display": "block",
                                         "marginRight": ""
                                       },
-                                      "text": "&nbsp;Neuer Kurs",
+                                      "text": "Neuer Kurs",
                                       "tooltip": "",
                                       "type": "button"
                                     },
@@ -467,14 +467,14 @@
                                   "textAlign": "center",
                                   "title": "Nummer",
                                   "type": "integer",
-                                  "width": "40px"
+                                  "width": "100px"
                                 },
                                 {
                                   "format": "",
                                   "property": "Titel",
                                   "title": "Titel",
                                   "type": "string",
-                                  "width": "35%"
+                                  "width": ""
                                 }
                               ],
                               "confirmDelete": false,
@@ -765,10 +765,10 @@
                               "size": "sm",
                               "style": {
                                 "color": "#D86E13",
-                                "display": "flex",
+                                "display": "block",
                                 "marginRight": ""
                               },
-                              "text": "&nbsp;Neues Thema",
+                              "text": "Neues Thema",
                               "tooltip": "",
                               "type": "button"
                             },

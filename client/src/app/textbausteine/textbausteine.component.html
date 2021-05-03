@@ -19,7 +19,7 @@
           <rz-panel #panel0 [allowCollapse]="false" [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="Filter">
             <div [ngStyle]="{'marginLeft': '-33px', 'marginRight': '-35px', 'marginTop': '-22px'}" class="row">
               <div class="col-md-12">
-                <rz-listbox #filterTextbausteinArtCode [data]="rstTextbausteineArten" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'marginBottom': '5px', 'width': '100%'}" textProperty="Bezeichnung" [(ngModel)]="dsoBenutzer && dsoBenutzer.FilterTextbausteinArtCode" valueProperty="TextbausteinArtCode" name="filterTextbausteinArtCode" (change)="filterTextbausteinArtCodeChange($event)" class="textbausteine-filter-listbox">
+                <rz-listbox #filterTextbausteinArtCode [data]="rstTextbausteineArten" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'marginBottom': '5px', 'width': '100%'}" textProperty="Bezeichnung" [(ngModel)]="dsoBenutzer && dsoBenutzer.FilterTextbausteinArtCode" valueProperty="TextbausteinArtCode" name="filterTextbausteinArtCode" class="textbausteine-filter-listbox">
                 </rz-listbox>
               </div>
             </div>
@@ -29,7 +29,7 @@
                 </rz-label>
               </div>
               <div class="col-md-12" [ngStyle]="{'display': 'block'}">
-                <rz-dropdown #filterKursNr [allowClear]="true" [allowFiltering]="false" [data]="rstKurse" [multiple]="false" placeholder="&nbsp;" [style]="{'height': '28px', 'width': '100%'}" textProperty="Titel" [(ngModel)]="dsoBenutzer && dsoBenutzer.FilterKursNr" valueProperty="KursNr" name="filterKursNr" (change)="filterKursNrChange($event)" class="textbausteine-filter-auswahl">
+                <rz-dropdown #filterKursNr [allowClear]="true" [allowFiltering]="false" [data]="rstKurse" [multiple]="false" placeholder="&nbsp;" [style]="{'height': '28px', 'width': '100%'}" textProperty="Titel" [(ngModel)]="dsoBenutzer && dsoBenutzer.FilterKursNr" valueProperty="KursNr" name="filterKursNr" class="textbausteine-filter-auswahl">
                 </rz-dropdown>
               </div>
             </div>
@@ -39,7 +39,7 @@
                 </rz-label>
               </div>
               <div class="col-md-12" [ngStyle]="{'display': 'block'}">
-                <rz-textbox #textboxTitelUndText [autoComplete]="false" [maxLength]="30" [style]="{'display': 'block', 'height': '28px', 'marginBottom': '6px', 'width': '100%'}" [(ngModel)]="dsoBenutzer && dsoBenutzer.FilterTitelUndText" name="textboxTitelUndText" (change)="textboxTitelUndTextChange($event)" class="textbausteine-filter-auswahl">
+                <rz-textbox #textboxTitelUndText [autoComplete]="false" [maxLength]="30" [style]="{'display': 'block', 'height': '28px', 'marginBottom': '6px', 'width': '100%'}" [(ngModel)]="dsoBenutzer && dsoBenutzer.FilterTitelUndText" name="textboxTitelUndText" class="textbausteine-filter-auswahl" (keydown.enter)="onKeyEnterFilterText()">
                 </rz-textbox>
               </div>
             </div>
@@ -49,7 +49,7 @@
                 </rz-label>
               </div>
               <div class="col-md-12" [ngStyle]="{'display': 'block'}">
-                <rz-dropdown #dropdown4 [allowClear]="true" [allowFiltering]="false" [data]="rstAutoren" [multiple]="false" placeholder="&nbsp;" [style]="{'height': '28px', 'width': '100%'}" textProperty="Name" [(ngModel)]="dsoBenutzer && dsoBenutzer.FilterAutorNr" valueProperty="AutorNr" name="dropdown4" (change)="dropdown4Change($event)" class="textbausteine-filter-auswahl">
+                <rz-dropdown #dropdown4 [allowClear]="true" [allowFiltering]="false" [data]="rstAutoren" [multiple]="false" placeholder="&nbsp;" [style]="{'height': '28px', 'width': '100%'}" textProperty="Name" [(ngModel)]="dsoBenutzer && dsoBenutzer.FilterAutorNr" valueProperty="AutorNr" name="dropdown4" class="textbausteine-filter-auswahl">
                 </rz-dropdown>
               </div>
             </div>
@@ -59,7 +59,7 @@
                 </rz-label>
               </div>
               <div class="col-md-12" [ngStyle]="{'display': 'block'}">
-                <rz-numeric #numeric0 [autoComplete]="false" [style]="{'height': '28px', 'width': '100%'}" [(ngModel)]="dsoBenutzer && dsoBenutzer.FilterThemaNummer" name="numeric0" (change)="numeric0Change($event)" class="textbausteine-filter-auswahl">
+                <rz-numeric #numeric0 [autoComplete]="false" [style]="{'height': '28px', 'width': '100%'}" [(ngModel)]="dsoBenutzer && dsoBenutzer.FilterThemaNummer" name="numeric0" class="textbausteine-filter-auswahl">
                 </rz-numeric>
               </div>
             </div>
@@ -69,7 +69,7 @@
                 </rz-label>
               </div>
               <div class="col-md-12" [ngStyle]="{'display': 'block'}">
-                <rz-dropdown #dropdown0 [allowClear]="true" [allowFiltering]="false" [data]="valAnreden" [multiple]="false" placeholder="&nbsp;" [style]="{'height': '28px', 'width': '100%'}" textProperty="text" [(ngModel)]="dsoBenutzer && dsoBenutzer.FilterAnrede" valueProperty="value" name="dropdown0" (change)="dropdown0Change($event)" class="textbausteine-filter-auswahl">
+                <rz-dropdown #dropdown0 [allowClear]="true" [allowFiltering]="false" [data]="valAnreden" [multiple]="false" placeholder="&nbsp;" [style]="{'height': '28px', 'width': '100%'}" textProperty="text" [(ngModel)]="dsoBenutzer && dsoBenutzer.FilterAnrede" valueProperty="value" name="dropdown0" class="textbausteine-filter-auswahl">
                 </rz-dropdown>
               </div>
             </div>
@@ -79,7 +79,7 @@
                 </rz-label>
               </div>
               <div class="col-md-12" [ngStyle]="{'display': 'block'}">
-                <rz-dropdown #dropdown1 [allowClear]="true" [allowFiltering]="false" [data]="valDokumente" [multiple]="false" placeholder="&nbsp;" [style]="{'height': '28px', 'width': '100%'}" textProperty="text" [(ngModel)]="dsoBenutzer && dsoBenutzer.FilterDokument" valueProperty="value" name="dropdown1" (change)="dropdown1Change($event)" class="textbausteine-filter-auswahl">
+                <rz-dropdown #dropdown1 [allowClear]="true" [allowFiltering]="false" [data]="valDokumente" [multiple]="false" placeholder="&nbsp;" [style]="{'height': '28px', 'width': '100%'}" textProperty="text" [(ngModel)]="dsoBenutzer && dsoBenutzer.FilterDokument" valueProperty="value" name="dropdown1" class="textbausteine-filter-auswahl">
                 </rz-dropdown>
               </div>
             </div>
@@ -89,23 +89,23 @@
                 </rz-label>
               </div>
               <div class="col-md-12" [ngStyle]="{'display': 'block'}">
-                <rz-textbox #textbox0 [autoComplete]="false" [maxLength]="30" [style]="{'display': 'block', 'height': '28px', 'marginBottom': '6px', 'width': '100%'}" [(ngModel)]="dsoBenutzer && dsoBenutzer.FilterInfo" name="textbox0" (change)="textbox0Change($event)" class="textbausteine-filter-auswahl">
+                <rz-textbox #textbox0 [autoComplete]="false" [maxLength]="30" [style]="{'display': 'block', 'height': '28px', 'marginBottom': '6px', 'width': '100%'}" [(ngModel)]="dsoBenutzer && dsoBenutzer.FilterInfo" name="textbox0" class="textbausteine-filter-auswahl">
                 </rz-textbox>
               </div>
             </div>
             <rz-panel-header>
               <div class="row">
                 <div class="col-md-12 align-items-start d-flex">
-                  <rz-button #button7 buttonStyle="light" [disabled]="false" icon="undo" size="sm" [style]="{'color': '#D86E13', 'fontWeight': 'normal', 'marginRight': '-9px', 'paddingLeft': ''}" text="Zurücksetzen" tooltip="Löschen Autor" (click)="button7Click($event)">
+                  <rz-button #buttonZuruecksetzen buttonStyle="light" [disabled]="false" icon="undo" size="sm" [style]="{'color': '#D86E13', 'display': 'block', 'fontWeight': 'normal', 'marginLeft': '10px', 'marginRight': '-9px', 'paddingLeft': ''}" text="Zurücksetzen" tooltip="Filter zurücksetzen" (click)="buttonZuruecksetzenClick($event)">
                   </rz-button>
                 </div>
               </div>
             </rz-panel-header>
           </rz-panel>
         </div>
-        <div class="col-md-4" [ngStyle]="{'paddingLeft': '5px'}">
+        <div class="col-md-5" [ngStyle]="{'paddingLeft': '5px'}">
           <rz-panel #panel4 [allowCollapse]="false" [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="{{rstTextbausteineCount == 0 ? '' : rstTextbausteineCount}} Textbausteine">
-            <rz-grid #gridTextbausteine [allowAdd]="false" [allowColumnResize]="true" [allowDelete]="false" [allowFiltering]="false" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="false" [alwaysShowPager]="false" applyFilterText="Apply" clearFilterText="Clear" [confirmDelete]="false" containsText="Contains" [count]="rstTextbausteineCount" [data]="rstTextbausteine" emptyText="Keine Textbausteine vorhanden" endsWithText="Ends with" equalsText="Equals" filterCaseSensitivity="caseInsensitive" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="22" startsWithText="Starts with" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'height': '700px', 'marginLeft': '-10px', 'marginRight': '-10px', 'marginTop': '-13px'}" (loadData)="gridTextbausteineLoadData($event)" (rowDoubleClick)="gridTextbausteineRowDoubleClick($event)" (rowSelect)="gridTextbausteineRowSelect($event)">
+            <rz-grid #gridTextbausteine [allowAdd]="false" [allowColumnReorder]="true" [allowColumnResize]="true" [allowDelete]="false" [allowFiltering]="false" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="false" [alwaysShowPager]="false" applyFilterText="Apply" clearFilterText="Clear" columnResizeMode="fit" [confirmDelete]="false" containsText="Contains" [count]="rstTextbausteineCount" [data]="rstTextbausteine" emptyText="Keine Textbausteine vorhanden" endsWithText="Ends with" equalsText="Equals" filterCaseSensitivity="caseInsensitive" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="22" startsWithText="Starts with" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'height': '700px', 'marginLeft': '-10px', 'marginRight': '-10px', 'marginTop': '-13px'}" (loadData)="gridTextbausteineLoadData($event)" (rowDoubleClick)="gridTextbausteineRowDoubleClick($event)" (rowSelect)="gridTextbausteineRowSelect($event)">
               <rz-grid-column property="IbsiTextbausteineAutoren.Krzel" title="Autor" width="70px" type="string">
               </rz-grid-column>
               <rz-grid-column property="IbsiKurse.Kurzzeichen" title="Kurs" width="70px" type="string">
@@ -123,9 +123,9 @@
             <rz-panel-header>
               <div class="row">
                 <div class="col-md-12 align-items-start d-flex">
-                  <rz-button #buttonNeu buttonStyle="light" icon="add" size="sm" [style]="{'color': '#D86E13'}" text="Neu" (click)="buttonNeuClick($event)">
+                  <rz-button #buttonNeu buttonStyle="light" icon="add" size="sm" [style]="{'color': '#D86E13', 'display': 'block'}" text="Neu" (click)="buttonNeuClick($event)">
                   </rz-button>
-                  <rz-button #buttonDuplizieren buttonStyle="light" icon="control_point_duplicate" size="sm" [style]="{'color': '#D86E13', 'marginLeft': '10px'}" text="Duplizieren" (click)="buttonDuplizierenClick($event)">
+                  <rz-button #buttonDuplizieren buttonStyle="light" icon="control_point_duplicate" size="sm" [style]="{'color': '#D86E13', 'display': 'block', 'marginLeft': '10px'}" text="Duplizieren" (click)="buttonDuplizierenClick($event)">
                   </rz-button>
                   <rz-button #buttonBearbeiten buttonStyle="light" icon="create" size="sm" [style]="{'color': '#D86E13', 'marginLeft': '10px', 'paddingLeft': ''}" tooltip="Bearbeiten Textbaustein" (click)="buttonBearbeitenClick($event)">
                   </rz-button>
@@ -136,8 +136,8 @@
             </rz-panel-header>
           </rz-panel>
         </div>
-        <div class="col-md-6" [ngStyle]="{'paddingLeft': '5px'}">
-          <rz-panel #panel6 [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="&nbsp;">
+        <div class="col-md-5" [ngStyle]="{'paddingLeft': '5px'}">
+          <rz-panel #panel6 [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="Text">
             <div [ngStyle]="{'marginLeft': '-36px', 'marginRight': '-36px', 'marginTop': '-12px'}" class="row">
               <div class="col-md-12" [ngStyle]="{}">
                 <rz-html #htmlEditorTextbausteine>
@@ -174,10 +174,6 @@
                   		</span>
                   
                   		<span class="ql-formats">
-                  			<button class="ql-blockquote"></button>
-                  		</span>		
-                  
-                  		<span class="ql-formats">
                   			<select class="ql-color"></select>
                   			<select class="ql-background"></select>
                   		</span>
@@ -191,17 +187,13 @@
             <rz-panel-header>
               <div [ngStyle]="{'display': 'inline-block'}" class="row">
                 <div class="col-md-12 align-items-start d-flex" [ngStyle]="{'display': 'flex'}">
-                  <rz-button #buttonSpeichern buttonStyle="light" buttonType="submit" icon="done" size="sm" [style]="{'color': '#D86E13', 'display': 'flex'}" text="&nbsp;Speichern" (click)="buttonSpeichernClick($event)">
+                  <rz-button #buttonKopieren buttonStyle="light" icon="content_copy" size="sm" [style]="{'color': '#D86E13', 'display': 'inline-block', 'float': 'none'}" text="&nbsp;Kopieren" (click)="buttonKopierenClick($event)">
                   </rz-button>
-                  <rz-button #buttonFavorit buttonStyle="light" icon="star_outline" size="sm" [style]="{'color': '#D86E13', 'display': 'flex', 'marginLeft': '10px'}" text="&nbsp;Favorit" (click)="buttonFavoritClick($event)">
+                  <rz-button #buttonDokument buttonStyle="light" icon="folder_open" size="sm" [style]="{'color': '#D86E13', 'display': 'inline-block', 'marginLeft': '10px'}" text="&nbsp;Dokument" (click)="buttonDokumentClick($event)">
                   </rz-button>
-                  <rz-button #buttonFelder buttonStyle="light" icon="settings_ethernet" size="sm" [style]="{'color': '#D86E13', 'display': 'flex', 'marginLeft': '10px'}" text="&nbsp;Felder" (click)="buttonFelderClick($event)">
+                  <rz-button #buttonFavorit buttonStyle="light" icon="star_outline" size="sm" [style]="{'color': '#D86E13', 'display': 'inline-block', 'marginLeft': '10px'}" text="&nbsp;Favorit" (click)="buttonFavoritClick($event)">
                   </rz-button>
-                  <rz-button #buttonMischen buttonStyle="light" icon="playlist_add_check" size="sm" [style]="{'color': '#D86E13', 'display': 'flex', 'marginLeft': '10px'}" text="&nbsp;Mischen" (click)="buttonMischenClick($event)">
-                  </rz-button>
-                  <rz-button #buttonDokument buttonStyle="light" icon="folder_open" size="sm" [style]="{'color': '#D86E13', 'display': 'flex', 'marginLeft': '10px'}" text="&nbsp;Dokument" (click)="buttonDokumentClick($event)">
-                  </rz-button>
-                  <rz-button #buttonKopieren buttonStyle="light" [disabled]="false" icon="content_copy" size="sm" [style]="{'color': '#D86E13', 'display': 'flex', 'fontWeight': 'normal', 'marginLeft': '10px', 'marginRight': '-9px', 'paddingLeft': ''}" text="&nbsp;Kopieren" tooltip="Löschen Autor" (click)="buttonKopierenClick($event)">
+                  <rz-button #buttonSpeichern buttonStyle="light" buttonType="submit" icon="done" size="sm" [style]="{'color': '#5dbf74', 'display': 'inline-block', 'marginLeft': '10px', 'marginRight': '-9px'}" text="&nbsp;Speichern" (click)="buttonSpeichernClick($event)">
                   </rz-button>
                 </div>
               </div>
@@ -234,7 +226,7 @@
             <rz-panel-header>
               <div class="row">
                 <div class="col-md-12 align-items-start d-flex">
-                  <rz-button #buttonFavoritEntfernen buttonStyle="light" [disabled]="false" icon="clear" size="sm" [style]="{'color': '#D86E13', 'fontWeight': 'normal', 'marginLeft': '10px', 'marginRight': '-9px', 'paddingLeft': ''}" text="Favorit entfernen" tooltip="Löschen Favorit" (click)="buttonFavoritEntfernenClick($event)">
+                  <rz-button #buttonFavoritEntfernen buttonStyle="light" [disabled]="false" icon="clear" size="sm" [style]="{'color': '#D86E13', 'fontWeight': 'normal', 'marginRight': '-9px', 'paddingLeft': ''}" text="Favorit entfernen" tooltip="Löschen Favorit" (click)="buttonFavoritEntfernenClick($event)">
                   </rz-button>
                 </div>
               </div>
@@ -242,7 +234,7 @@
           </rz-panel>
         </div>
         <div class="col-md-6" [ngStyle]="{'paddingLeft': '5px'}">
-          <rz-panel #panel3 [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="&nbsp;">
+          <rz-panel #panel3 [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" [text]="dsoBenutzerTextbausteineFavoriten?.TitelTextbaustein">
             <div [ngStyle]="{'marginLeft': '-36px', 'marginRight': '-36px', 'marginTop': '-12px'}" class="row">
               <div class="col-md-12" [ngStyle]="{}">
                 <rz-html #htmlEditorTextbausteineFavoriten>
@@ -279,10 +271,6 @@
                   		</span>
                   
                   		<span class="ql-formats">
-                  			<button class="ql-blockquote"></button>
-                  		</span>		
-                  
-                  		<span class="ql-formats">
                   			<select class="ql-color"></select>
                   			<select class="ql-background"></select>
                   		</span>
@@ -296,11 +284,9 @@
             <rz-panel-header>
               <div [ngStyle]="{'display': 'inline-block'}" class="row">
                 <div class="col-md-12 align-items-start d-flex" [ngStyle]="{'display': 'flex'}">
-                  <rz-button #buttonFavoritenMischen buttonStyle="light" icon="playlist_add_check" size="sm" [style]="{'color': '#D86E13', 'display': 'flex', 'marginLeft': '10px'}" text="&nbsp;Mischen" (click)="buttonFavoritenMischenClick($event)">
+                  <rz-button #buttonFavoritenKopieren buttonStyle="light" [disabled]="false" icon="content_copy" size="sm" [style]="{'color': '#D86E13', 'display': 'block', 'fontWeight': 'normal', 'paddingLeft': ''}" text="Kopieren" tooltip="Löschen Autor">
                   </rz-button>
-                  <rz-button #buttonFavoritenDokument buttonStyle="light" icon="folder_open" size="sm" [style]="{'color': '#D86E13', 'display': 'flex', 'marginLeft': '10px'}" text="&nbsp;Dokument" (click)="buttonFavoritenDokumentClick($event)">
-                  </rz-button>
-                  <rz-button #buttonFavoritenKopieren buttonStyle="light" [disabled]="false" icon="content_copy" size="sm" [style]="{'color': '#D86E13', 'display': 'flex', 'fontWeight': 'normal', 'marginLeft': '10px', 'marginRight': '-9px', 'paddingLeft': ''}" text="&nbsp;Kopieren" tooltip="Löschen Autor">
+                  <rz-button #buttonFavoritenDokument buttonStyle="light" icon="folder_open" size="sm" [style]="{'color': '#D86E13', 'display': 'block', 'marginLeft': '10px', 'marginRight': '-9px'}" text="Dokument" (click)="buttonFavoritenDokumentClick($event)">
                   </rz-button>
                 </div>
               </div>
@@ -310,6 +296,96 @@
       </div>
     </rz-tabs-item>
     <rz-tabs-item [selected]="false" text="Verlauf">
+      <div class="row">
+        <div class="col-md-6" [ngStyle]="{'paddingLeft': '5px'}">
+          <rz-panel #panel1 [allowCollapse]="false" [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="{{rstVerlaufCount == 0 ? '' : rstVerlaufCount}} Verlauf">
+            <rz-grid #gridVerlauf [allowAdd]="false" [allowColumnResize]="true" [allowDelete]="false" [allowFiltering]="false" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="false" [alwaysShowPager]="false" applyFilterText="Apply" clearFilterText="Clear" [confirmDelete]="false" containsText="Contains" [count]="rstVerlaufCount" [data]="rstVerlauf" emptyText="Kein Verlauf vorhanden" endsWithText="Ends with" equalsText="Equals" filterCaseSensitivity="caseInsensitive" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="22" startsWithText="Starts with" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'height': '700px', 'marginLeft': '-10px', 'marginRight': '-10px', 'marginTop': '-13px'}" (loadData)="gridVerlaufLoadData($event)" (rowSelect)="gridVerlaufRowSelect($event)">
+              <rz-grid-column property="AutorKrzel" title="Autor" width="50px" type="string">
+              </rz-grid-column>
+              <rz-grid-column property="KursKurzzeichen" title="Kurs" width="50px" type="string">
+              </rz-grid-column>
+              <rz-grid-column property="Anrede" title="Anr." width="40px" type="string">
+                <ng-template let-data gridColumnTemplate>
+                {{((data?.Anrede == 'Ohne') ? ('') : (data?.Anrede))}}
+                </ng-template>
+              </rz-grid-column>
+              <rz-grid-column property="TitelTextbaustein" title="Titel" width="40%" type="string">
+              </rz-grid-column>
+              <rz-grid-column property="UntertitelTextbaustein" title="Untertitel" width="30%" type="string">
+              </rz-grid-column>
+              <rz-grid-column format="date-time" formatString="dd.MM.yyyy hh:mm" property="Am" title="Am" width="120px" type="string">
+              </rz-grid-column>
+            </rz-grid>
+            <rz-panel-header>
+              <div class="row">
+                <div class="col-md-12 align-items-start d-flex">
+                  <rz-button #buttonVerlaufEntfernen buttonStyle="light" [disabled]="false" icon="clear" size="sm" [style]="{'color': '#D86E13', 'fontWeight': 'normal', 'marginRight': '-9px', 'paddingLeft': ''}" text="Verlauf entfernen" (click)="buttonVerlaufEntfernenClick($event)">
+                  </rz-button>
+                </div>
+              </div>
+            </rz-panel-header>
+          </rz-panel>
+        </div>
+        <div class="col-md-6" [ngStyle]="{'paddingLeft': '5px'}">
+          <rz-panel #panel5 [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" [text]="dsoBenutzerTextbausteineVerlauf?.TitelTextbaustein">
+            <div [ngStyle]="{'marginLeft': '-36px', 'marginRight': '-36px', 'marginTop': '-12px'}" class="row">
+              <div class="col-md-12" [ngStyle]="{}">
+                <rz-html #html0>
+                  <p-editor [(ngModel)]="strTextbausteinHTMLVerlauf" [style]="{'height': '645px'}">
+                      <p-header>
+                  		<span class="ql-formats">
+                             <select class="ql-font"></select>
+                  		   <select class="ql-header">
+                  			    <option value="1">Titel 1</option>
+                  			    <option value="2">Titel 2</option>
+                  			    <option value="3">Titel 3</option>
+                  			    <option value="4">Titel 4</option>
+                  			    <option value="5">Titel 5</option>
+                  			    <option value="6">Titel 6</option>
+                  			    <option selected>Normal</option>
+                  			</select>
+                  		</span>
+                  		
+                  		<span class="ql-formats">
+                  			<button class="ql-bold" aria-label="Bold">Fett</button>
+                  			<button class="ql-italic" aria-label="Italic"></button>
+                  			<button class="ql-underline" aria-label="Underline"></button>
+                  		</span>
+                  
+                  		<span class="ql-formats">
+                  			<select class="ql-align"></select>
+                  		</span>		
+                  
+                  		<span class="ql-formats">
+                  			<button class="ql-list" value="ordered"></button>
+                  			<button class="ql-list" value="bullet"></button>
+                  			<button class="ql-indent" value="-1"></button>
+                  			<button class="ql-indent" value="+1"></button>
+                  		</span>
+                  
+                  		<span class="ql-formats">
+                  			<select class="ql-color"></select>
+                  			<select class="ql-background"></select>
+                  		</span>
+                  
+                      </p-header>
+                  </p-editor>
+                </rz-html>
+              </div>
+            </div>
+            <rz-panel-header>
+              <div [ngStyle]="{'display': 'inline-block'}" class="row">
+                <div class="col-md-12 align-items-start d-flex" [ngStyle]="{'display': 'flex'}">
+                  <rz-button #buttonVerlaufKopieren buttonStyle="light" [disabled]="false" icon="content_copy" size="sm" [style]="{'color': '#D86E13', 'display': 'block', 'fontWeight': 'normal', 'paddingLeft': ''}" text="Kopieren" tooltip="Löschen Autor">
+                  </rz-button>
+                  <rz-button #buttonVerlaufDokument buttonStyle="light" icon="folder_open" size="sm" [style]="{'color': '#D86E13', 'display': 'block', 'marginLeft': '10px', 'marginRight': '-9px'}" text="Dokument" (click)="buttonVerlaufDokumentClick($event)">
+                  </rz-button>
+                </div>
+              </div>
+            </rz-panel-header>
+          </rz-panel>
+        </div>
+      </div>
     </rz-tabs-item>
   </rz-tabs>
 </rz-content>

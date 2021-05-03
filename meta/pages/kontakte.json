@@ -358,10 +358,10 @@
                                       "size": "sm",
                                       "style": {
                                         "color": "#D86E13",
-                                        "display": "flex",
+                                        "display": "block",
                                         "marginRight": ""
                                       },
-                                      "text": "&nbsp;Neuer Kontakt",
+                                      "text": "Neuer Kontakt",
                                       "tooltip": "",
                                       "type": "button"
                                     },
@@ -1253,11 +1253,11 @@
                                       "name": "button4",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#D86E13",
-                                        "display": "flex",
+                                        "color": "#5dbf74",
+                                        "display": "block",
                                         "marginRight": "-9px"
                                       },
-                                      "text": "&nbsp;Speichern",
+                                      "text": "Speichern",
                                       "tooltip": "",
                                       "type": "button"
                                     }
@@ -1701,10 +1701,10 @@
                                       "size": "sm",
                                       "style": {
                                         "color": "#D86E13",
-                                        "display": "flex",
+                                        "display": "block",
                                         "marginRight": "-9px"
                                       },
-                                      "text": "&nbsp;Bild entfernen",
+                                      "text": "Bild entfernen",
                                       "tooltip": "",
                                       "type": "button"
                                     }

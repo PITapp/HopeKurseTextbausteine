@@ -25,7 +25,6 @@ import { HtmlComponent } from '@radzen/angular/dist/html';
 
 import { ConfigService } from '../config.service';
 import { MeldungLoeschenComponent } from '../meldung-loeschen/meldung-loeschen.component';
-import { TextbausteineFelderAuswahlComponent } from '../textbausteine-felder-auswahl/textbausteine-felder-auswahl.component';
 import { TextbausteineBearbeitenComponent } from '../textbausteine-bearbeiten/textbausteine-bearbeiten.component';
 import { TextbausteineDuplizierenComponent } from '../textbausteine-duplizieren/textbausteine-duplizieren.component';
 import { TextbausteineNeuComponent } from '../textbausteine-neu/textbausteine-neu.component';
@@ -56,7 +55,7 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
   @ViewChild('dropdown1') dropdown1: DropDownComponent;
   @ViewChild('label2') label2: LabelComponent;
   @ViewChild('textbox0') textbox0: TextBoxComponent;
-  @ViewChild('button7') button7: ButtonComponent;
+  @ViewChild('buttonZuruecksetzen') buttonZuruecksetzen: ButtonComponent;
   @ViewChild('panel4') panel4: PanelComponent;
   @ViewChild('gridTextbausteine') gridTextbausteine: GridComponent;
   @ViewChild('buttonNeu') buttonNeu: ButtonComponent;
@@ -65,20 +64,24 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
   @ViewChild('buttonLoeschen') buttonLoeschen: ButtonComponent;
   @ViewChild('panel6') panel6: PanelComponent;
   @ViewChild('htmlEditorTextbausteine') htmlEditorTextbausteine: HtmlComponent;
-  @ViewChild('buttonSpeichern') buttonSpeichern: ButtonComponent;
-  @ViewChild('buttonFavorit') buttonFavorit: ButtonComponent;
-  @ViewChild('buttonFelder') buttonFelder: ButtonComponent;
-  @ViewChild('buttonMischen') buttonMischen: ButtonComponent;
-  @ViewChild('buttonDokument') buttonDokument: ButtonComponent;
   @ViewChild('buttonKopieren') buttonKopieren: ButtonComponent;
+  @ViewChild('buttonDokument') buttonDokument: ButtonComponent;
+  @ViewChild('buttonFavorit') buttonFavorit: ButtonComponent;
+  @ViewChild('buttonSpeichern') buttonSpeichern: ButtonComponent;
   @ViewChild('panel2') panel2: PanelComponent;
   @ViewChild('gridFavoriten') gridFavoriten: GridComponent;
   @ViewChild('buttonFavoritEntfernen') buttonFavoritEntfernen: ButtonComponent;
   @ViewChild('panel3') panel3: PanelComponent;
   @ViewChild('htmlEditorTextbausteineFavoriten') htmlEditorTextbausteineFavoriten: HtmlComponent;
-  @ViewChild('buttonFavoritenMischen') buttonFavoritenMischen: ButtonComponent;
-  @ViewChild('buttonFavoritenDokument') buttonFavoritenDokument: ButtonComponent;
   @ViewChild('buttonFavoritenKopieren') buttonFavoritenKopieren: ButtonComponent;
+  @ViewChild('buttonFavoritenDokument') buttonFavoritenDokument: ButtonComponent;
+  @ViewChild('panel1') panel1: PanelComponent;
+  @ViewChild('gridVerlauf') gridVerlauf: GridComponent;
+  @ViewChild('buttonVerlaufEntfernen') buttonVerlaufEntfernen: ButtonComponent;
+  @ViewChild('panel5') panel5: PanelComponent;
+  @ViewChild('html0') html0: HtmlComponent;
+  @ViewChild('buttonVerlaufKopieren') buttonVerlaufKopieren: ButtonComponent;
+  @ViewChild('buttonVerlaufDokument') buttonVerlaufDokument: ButtonComponent;
 
   router: Router;
 
@@ -112,6 +115,8 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
   valAnreden: any;
   valDokumente: any;
   dsoFavoriten: any;
+  dsoVerlauf: any;
+  onKeyEnterFilterText: any;
   parameters: any;
   letzteTextbausteinNr: any;
   rstTextbausteine: any;
@@ -122,6 +127,10 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
   rstFavoritenCount: any;
   strTextbausteinHTMLFavoriten: any;
   dsoBenutzerTextbausteineFavoriten: any;
+  rstVerlauf: any;
+  rstVerlaufCount: any;
+  strTextbausteinHTMLVerlauf: any;
+  dsoBenutzerTextbausteineVerlauf: any;
 
   constructor(private injector: Injector) {
   }
@@ -203,86 +212,20 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
       });
 
       this.gridFavoriten.load();
+
+      this.gridVerlauf.load();
     }, (result: any) => {
 
     });
 
     this.dsoFavoriten = {BenutzerID: '', Am: '', TextbausteinNr: ''};
+
+    this.dsoVerlauf = {BenutzerID: '', Am: '', TextbausteinNr: ''};
+
+    this.onKeyEnterFilterText = () => { console.log('Enter gedrückt'); };
   }
 
-  filterTextbausteinArtCodeChange(event: any) {
-    this.dbHopeKurseTextbausteine.updateBenutzer(null, this.dsoBenutzer.BenutzerID, this.dsoBenutzer)
-    .subscribe((result: any) => {
-
-    }, (result: any) => {
-
-    });
-  }
-
-  filterKursNrChange(event: any) {
-    this.dbHopeKurseTextbausteine.updateBenutzer(null, this.dsoBenutzer.BenutzerID, this.dsoBenutzer)
-    .subscribe((result: any) => {
-
-    }, (result: any) => {
-
-    });
-  }
-
-  textboxTitelUndTextChange(event: any) {
-    this.dbHopeKurseTextbausteine.updateBenutzer(null, this.dsoBenutzer.BenutzerID, this.dsoBenutzer)
-    .subscribe((result: any) => {
-
-    }, (result: any) => {
-
-    });
-  }
-
-  dropdown4Change(event: any) {
-    this.dbHopeKurseTextbausteine.updateBenutzer(null, this.dsoBenutzer.BenutzerID, this.dsoBenutzer)
-    .subscribe((result: any) => {
-
-    }, (result: any) => {
-
-    });
-  }
-
-  numeric0Change(event: any) {
-    this.dbHopeKurseTextbausteine.updateBenutzer(null, this.dsoBenutzer.BenutzerID, this.dsoBenutzer)
-    .subscribe((result: any) => {
-
-    }, (result: any) => {
-
-    });
-  }
-
-  dropdown0Change(event: any) {
-    this.dbHopeKurseTextbausteine.updateBenutzer(null, this.dsoBenutzer.BenutzerID, this.dsoBenutzer)
-    .subscribe((result: any) => {
-
-    }, (result: any) => {
-
-    });
-  }
-
-  dropdown1Change(event: any) {
-    this.dbHopeKurseTextbausteine.updateBenutzer(null, this.dsoBenutzer.BenutzerID, this.dsoBenutzer)
-    .subscribe((result: any) => {
-
-    }, (result: any) => {
-
-    });
-  }
-
-  textbox0Change(event: any) {
-    this.dbHopeKurseTextbausteine.updateBenutzer(null, this.dsoBenutzer.BenutzerID, this.dsoBenutzer)
-    .subscribe((result: any) => {
-
-    }, (result: any) => {
-
-    });
-  }
-
-  button7Click(event: any) {
+  buttonZuruecksetzenClick(event: any) {
     Promise.resolve().then(() => {
       this.dsoBenutzer.FilterTextbausteinArtCode = null
 this.dsoBenutzer.FilterKursNr = null
@@ -327,7 +270,6 @@ ${this.dsoBenutzer.FilterInfo ? ' and contains(tolower(InfoText),tolower(\'' + t
     this.letzteTextbausteinNr = null;
     this.strTextbausteinHTML = null;
     this.dsoTextbausteine = null;
-    this.gridTextbausteine.onSelect(this.rstTextbausteine[0]);
 }
     }, (result: any) => {
 
@@ -404,52 +346,6 @@ ${this.dsoBenutzer.FilterInfo ? ' and contains(tolower(InfoText),tolower(\'' + t
     });
   }
 
-  buttonSpeichernClick(event: any) {
-    this.letzteTextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
-
-    this.dsoTextbausteine.TextbausteinHTML = this.strTextbausteinHTML
-
-    this.dbHopeKurseTextbausteine.updateIbsiTextbausteine(null, this.dsoTextbausteine.TextbausteinNr, this.dsoTextbausteine)
-    .subscribe((result: any) => {
-      this.notificationService.notify({ severity: "success", summary: ``, detail: `Textbaustein gespeichert` });
-    }, (result: any) => {
-      this.notificationService.notify({ severity: "error", summary: ``, detail: `Textbaustein konnte nicht gespeichert werden!` });
-    });
-  }
-
-  buttonFavoritClick(event: any) {
-    this.letzteTextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
-
-    Promise.resolve().then(() => {
-      this.dsoFavoriten.BenutzerID = this.dsoBenutzer.BenutzerID;
-this.dsoFavoriten.Am = new Date().toISOString();
-this.dsoFavoriten.TextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
-    }).then((result: any) => {
-      this.dbHopeKurseTextbausteine.createBenutzerTextbausteineFavoriten(null, this.dsoFavoriten)
-      .subscribe((result: any) => {
-        this.gridFavoriten.load();
-
-        this.notificationService.notify({ severity: "success", summary: ``, detail: `Textbaustein als Favorit markiert` });
-      }, (result: any) => {
-        this.notificationService.notify({ severity: "info", summary: ``, detail: `Textbaustein ist schon als Favorit markiert` });
-      });
-    }, (result: any) => {
-
-    });
-  }
-
-  buttonFelderClick(event: any) {
-    this.dialogService.open(TextbausteineFelderAuswahlComponent, { parameters: {}, title: `Auswahl Feld` });
-  }
-
-  buttonMischenClick(event: any) {
-    this.notificationService.notify({ severity: "warn", summary: ``, detail: `Diese Funktion ist in Arbeit` });
-  }
-
-  buttonDokumentClick(event: any) {
-    this.notificationService.notify({ severity: "warn", summary: ``, detail: `Diese Funktion ist in Arbeit` });
-  }
-
   buttonKopierenClick(event: any) {
     var textArea = document.createElement("textarea");
 textArea.value = this.dsoTextbausteine.TextbausteinHTML;
@@ -466,10 +362,61 @@ try {
 }
 
 document.body.removeChild(textArea);
+
+    Promise.resolve().then(() => {
+      this.dsoVerlauf.BenutzerID = this.dsoBenutzer.BenutzerID;
+this.dsoVerlauf.Am = new Date();
+this.dsoVerlauf.TextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
+    }).then((result: any) => {
+      this.dbHopeKurseTextbausteine.createBenutzerTextbausteineVerlauf(null, this.dsoVerlauf)
+      .subscribe((result: any) => {
+        this.gridVerlauf.load();
+      }, (result: any) => {
+
+      });
+    }, (result: any) => {
+
+    });
+  }
+
+  buttonDokumentClick(event: any) {
+    this.notificationService.notify({ severity: "warn", summary: ``, detail: `Diese Funktion ist in Arbeit` });
+  }
+
+  buttonFavoritClick(event: any) {
+    Promise.resolve().then(() => {
+      this.dsoFavoriten.BenutzerID = this.dsoBenutzer.BenutzerID;
+this.dsoFavoriten.Am = new Date();
+this.dsoFavoriten.TextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
+    }).then((result: any) => {
+      this.dbHopeKurseTextbausteine.createBenutzerTextbausteineFavoriten(null, this.dsoFavoriten)
+      .subscribe((result: any) => {
+        this.gridFavoriten.load();
+
+        this.notificationService.notify({ severity: "success", summary: ``, detail: `Textbaustein als Favorit markiert` });
+      }, (result: any) => {
+        this.notificationService.notify({ severity: "info", summary: ``, detail: `Textbaustein ist schon als Favorit markiert` });
+      });
+    }, (result: any) => {
+
+    });
+  }
+
+  buttonSpeichernClick(event: any) {
+    this.letzteTextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
+
+    this.dsoTextbausteine.TextbausteinHTML = this.strTextbausteinHTML
+
+    this.dbHopeKurseTextbausteine.updateIbsiTextbausteine(null, this.dsoTextbausteine.TextbausteinNr, this.dsoTextbausteine)
+    .subscribe((result: any) => {
+      this.notificationService.notify({ severity: "success", summary: ``, detail: `Textbaustein gespeichert` });
+    }, (result: any) => {
+      this.notificationService.notify({ severity: "error", summary: ``, detail: `Textbaustein konnte nicht gespeichert werden!` });
+    });
   }
 
   gridFavoritenLoadData(event: any) {
-    this.dbHopeKurseTextbausteine.getVwBenutzerTextbausteineFavoritens(null, event.top, event.skip, null, event.top != null && event.skip != null, null, null, null)
+    this.dbHopeKurseTextbausteine.getVwBenutzerTextbausteineFavoritens(`Benutzername eq '${this.security.user.name}'`, event.top, event.skip, null, event.top != null && event.skip != null, null, null, null)
     .subscribe((result: any) => {
       this.rstFavoriten = result.value;
 
@@ -503,11 +450,46 @@ document.body.removeChild(textArea);
     });
   }
 
-  buttonFavoritenMischenClick(event: any) {
+  buttonFavoritenDokumentClick(event: any) {
     this.notificationService.notify({ severity: "warn", summary: ``, detail: `Diese Funktion ist in Arbeit` });
   }
 
-  buttonFavoritenDokumentClick(event: any) {
+  gridVerlaufLoadData(event: any) {
+    this.dbHopeKurseTextbausteine.getVwBenutzerTextbausteineVerlaufs(`Benutzername eq '${this.security.user.name}'`, event.top, event.skip, null, event.top != null && event.skip != null, null, null, null)
+    .subscribe((result: any) => {
+      this.rstVerlauf = result.value;
+
+      this.rstVerlaufCount = event.top != null && event.skip != null ? result['@odata.count'] : result.value.length;
+
+      this.gridVerlauf.onSelect(this.rstVerlauf[0]);
+    }, (result: any) => {
+
+    });
+  }
+
+  gridVerlaufRowSelect(event: any) {
+    this.strTextbausteinHTMLVerlauf = event.TextbausteinHTML;
+
+    this.dsoBenutzerTextbausteineVerlauf = event;
+  }
+
+  buttonVerlaufEntfernenClick(event: any) {
+    this.dialogService.open(MeldungLoeschenComponent, { parameters: {strMeldung: "Soll der Verlauf '" + this.dsoBenutzerTextbausteineVerlauf.TitelTextbaustein + "' gelöscht werden?"}, title: `Löschen Verlauf` })
+        .afterClosed().subscribe(result => {
+              if (result == 'Löschen') {
+              this.dbHopeKurseTextbausteine.deleteBenutzerTextbausteineVerlauf(this.dsoBenutzerTextbausteineVerlauf.TextbausteineVerlaufID)
+        .subscribe((result: any) => {
+              this.gridVerlauf.load();
+
+        this.notificationService.notify({ severity: "success", summary: ``, detail: `Verlauf gelöscht` });
+        }, (result: any) => {
+              this.notificationService.notify({ severity: "error", summary: ``, detail: `Verlauf konnte nicht gelöscht werden!` });
+        });
+      }
+    });
+  }
+
+  buttonVerlaufDokumentClick(event: any) {
     this.notificationService.notify({ severity: "warn", summary: ``, detail: `Diese Funktion ist in Arbeit` });
   }
 }

@@ -283,10 +283,10 @@
                                       "size": "sm",
                                       "style": {
                                         "color": "#D86E13",
-                                        "display": "flex",
+                                        "display": "block",
                                         "marginRight": ""
                                       },
-                                      "text": "&nbsp;Neuer Benutzer",
+                                      "text": "Neuer Benutzer",
                                       "tooltip": "",
                                       "type": "button"
                                     },
@@ -322,7 +322,7 @@
                                         "paddingLeft": ""
                                       },
                                       "text": "",
-                                      "tooltip": "Bearbeiten Kontakt",
+                                      "tooltip": "Bearbeiten Benutzer",
                                       "type": "button"
                                     },
                                     {
@@ -411,7 +411,7 @@
                                         "paddingLeft": ""
                                       },
                                       "text": "",
-                                      "tooltip": "Löschen Kontakt",
+                                      "tooltip": "Löschen Benutzer",
                                       "type": "button"
                                     }
                                   ],

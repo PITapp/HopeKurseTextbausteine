@@ -9,10 +9,16 @@
               "class": "d-flex align-items-center justify-content-start col-md-3",
               "components": [
                 {
+                  "attributes": [],
+                  "name": "sidebar-toggle0",
+                  "style": {},
+                  "type": "sidebar-toggle"
+                },
+                {
                   "events": {
                     "click": [
                       {
-                        "path": "dashboard",
+                        "path": "textbausteine",
                         "type": "navigate"
                       }
                     ]
@@ -36,7 +42,8 @@
                     "paddingTop": "8px"
                   },
                   "text": "|",
-                  "type": "label"
+                  "type": "label",
+                  "visible": false
                 },
                 {
                   "name": "label5",
@@ -48,7 +55,8 @@
                     "paddingTop": "6px"
                   },
                   "text": "Textbausteine",
-                  "type": "label"
+                  "type": "label",
+                  "visible": false
                 }
               ],
               "name": "leftCol",
@@ -81,15 +89,8 @@
                     "marginRight": "20px"
                   },
                   "text": "",
-                  "type": "link"
-                },
-                {
-                  "attributes": [],
-                  "name": "sidebar-toggle0",
-                  "style": {
-                    "marginRight": "10px"
-                  },
-                  "type": "sidebar-toggle"
+                  "type": "link",
+                  "visible": false
                 },
                 {
                   "items": [
@@ -105,16 +106,40 @@
                     }
                   ],
                   "name": "profilemenu1",
+                  "style": {
+                    "display": "block"
+                  },
                   "template": [
                     {
-                      "name": "image1",
-                      "path": "/assets/images/KeinBildPerson.png",
-                      "style": {
-                        "borderRadius": "50%",
-                        "height": "32px",
-                        "width": "32px"
-                      },
-                      "type": "image"
+                      "class": "col-md-12  d-flex justify-content-end",
+                      "components": [
+                        {
+                          "name": "label7",
+                          "style": {
+                            "color": "#88989b",
+                            "display": "inline-block",
+                            "fontSize": "12px",
+                            "marginRight": "20px",
+                            "verticalAlign": "bottom"
+                          },
+                          "text": "${security.user.name}",
+                          "type": "label"
+                        },
+                        {
+                          "name": "image1",
+                          "path": "{{dsoBenutzer?.Base?.BildURL ? dsoBenutzer.Base.BildURL : '/assets/images/KeinBildPerson.png'}}",
+                          "style": {
+                            "borderRadius": "50%",
+                            "display": "block",
+                            "float": "none",
+                            "height": "32px",
+                            "width": "32px"
+                          },
+                          "type": "image"
+                        }
+                      ],
+                      "name": "col1",
+                      "type": "col"
                     }
                   ],
                   "type": "profilemenu",
@@ -301,5 +326,30 @@
       "type": "footer"
     }
   ],
+  "events": {
+    "load": [
+      {
+        "name": "dbHopeKurseTextbausteine.getBenutzers",
+        "parameters": [
+          {
+            "name": "$filter",
+            "value": "Benutzername eq '${security.user.name}'"
+          },
+          {
+            "name": "$expand",
+            "value": "Base"
+          }
+        ],
+        "then": [
+          {
+            "name": "dsoBenutzer",
+            "type": "set",
+            "value": "${result.value[0]}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
   "name": "Main"
 }

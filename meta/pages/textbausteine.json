@@ -95,22 +95,7 @@
                                       ],
                                       "data": "${rstTextbausteineArten}",
                                       "events": {
-                                        "change": [
-                                          {
-                                            "name": "dbHopeKurseTextbausteine.updateBenutzer",
-                                            "parameters": [
-                                              {
-                                                "name": "BenutzerID",
-                                                "value": "${dsoBenutzer.BenutzerID}"
-                                              },
-                                              {
-                                                "name": "Benutzer",
-                                                "value": "${dsoBenutzer}"
-                                              }
-                                            ],
-                                            "type": "invoke"
-                                          }
-                                        ]
+                                        "change": []
                                       },
                                       "name": "filterTextbausteinArtCode",
                                       "style": {
@@ -175,22 +160,7 @@
                                       "data": "${rstKurse}",
                                       "emptyFilterText": "",
                                       "events": {
-                                        "change": [
-                                          {
-                                            "name": "dbHopeKurseTextbausteine.updateBenutzer",
-                                            "parameters": [
-                                              {
-                                                "name": "BenutzerID",
-                                                "value": "${dsoBenutzer.BenutzerID}"
-                                              },
-                                              {
-                                                "name": "Benutzer",
-                                                "value": "${dsoBenutzer}"
-                                              }
-                                            ],
-                                            "type": "invoke"
-                                          }
-                                        ]
+                                        "change": []
                                       },
                                       "multiple": false,
                                       "multipleItemsSelectedText": "",
@@ -252,26 +222,15 @@
                                         {
                                           "name": "class",
                                           "value": "textbausteine-filter-auswahl"
+                                        },
+                                        {
+                                          "name": "(keydown.enter)",
+                                          "value": "onKeyEnterFilterText()"
                                         }
                                       ],
                                       "autoComplete": false,
                                       "events": {
-                                        "change": [
-                                          {
-                                            "name": "dbHopeKurseTextbausteine.updateBenutzer",
-                                            "parameters": [
-                                              {
-                                                "name": "BenutzerID",
-                                                "value": "${dsoBenutzer.BenutzerID}"
-                                              },
-                                              {
-                                                "name": "Benutzer",
-                                                "value": "${dsoBenutzer}"
-                                              }
-                                            ],
-                                            "type": "invoke"
-                                          }
-                                        ]
+                                        "change": []
                                       },
                                       "maxLength": 30,
                                       "name": "textboxTitelUndText",
@@ -338,22 +297,7 @@
                                       "data": "${rstAutoren}",
                                       "emptyFilterText": "",
                                       "events": {
-                                        "change": [
-                                          {
-                                            "name": "dbHopeKurseTextbausteine.updateBenutzer",
-                                            "parameters": [
-                                              {
-                                                "name": "BenutzerID",
-                                                "value": "${dsoBenutzer.BenutzerID}"
-                                              },
-                                              {
-                                                "name": "Benutzer",
-                                                "value": "${dsoBenutzer}"
-                                              }
-                                            ],
-                                            "type": "invoke"
-                                          }
-                                        ]
+                                        "change": []
                                       },
                                       "multiple": false,
                                       "multipleItemsSelectedText": "",
@@ -419,22 +363,7 @@
                                       ],
                                       "autoComplete": false,
                                       "events": {
-                                        "change": [
-                                          {
-                                            "name": "dbHopeKurseTextbausteine.updateBenutzer",
-                                            "parameters": [
-                                              {
-                                                "name": "BenutzerID",
-                                                "value": "${dsoBenutzer.BenutzerID}"
-                                              },
-                                              {
-                                                "name": "Benutzer",
-                                                "value": "${dsoBenutzer}"
-                                              }
-                                            ],
-                                            "type": "invoke"
-                                          }
-                                        ]
+                                        "change": []
                                       },
                                       "name": "numeric0",
                                       "style": {
@@ -497,22 +426,7 @@
                                       "data": "${valAnreden}",
                                       "emptyFilterText": "",
                                       "events": {
-                                        "change": [
-                                          {
-                                            "name": "dbHopeKurseTextbausteine.updateBenutzer",
-                                            "parameters": [
-                                              {
-                                                "name": "BenutzerID",
-                                                "value": "${dsoBenutzer.BenutzerID}"
-                                              },
-                                              {
-                                                "name": "Benutzer",
-                                                "value": "${dsoBenutzer}"
-                                              }
-                                            ],
-                                            "type": "invoke"
-                                          }
-                                        ]
+                                        "change": []
                                       },
                                       "multiple": false,
                                       "multipleItemsSelectedText": "",
@@ -582,22 +496,7 @@
                                       "data": "${valDokumente}",
                                       "emptyFilterText": "",
                                       "events": {
-                                        "change": [
-                                          {
-                                            "name": "dbHopeKurseTextbausteine.updateBenutzer",
-                                            "parameters": [
-                                              {
-                                                "name": "BenutzerID",
-                                                "value": "${dsoBenutzer.BenutzerID}"
-                                              },
-                                              {
-                                                "name": "Benutzer",
-                                                "value": "${dsoBenutzer}"
-                                              }
-                                            ],
-                                            "type": "invoke"
-                                          }
-                                        ]
+                                        "change": []
                                       },
                                       "multiple": false,
                                       "multipleItemsSelectedText": "",
@@ -663,22 +562,7 @@
                                       ],
                                       "autoComplete": false,
                                       "events": {
-                                        "change": [
-                                          {
-                                            "name": "dbHopeKurseTextbausteine.updateBenutzer",
-                                            "parameters": [
-                                              {
-                                                "name": "BenutzerID",
-                                                "value": "${dsoBenutzer.BenutzerID}"
-                                              },
-                                              {
-                                                "name": "Benutzer",
-                                                "value": "${dsoBenutzer}"
-                                              }
-                                            ],
-                                            "type": "invoke"
-                                          }
-                                        ]
+                                        "change": []
                                       },
                                       "maxLength": 30,
                                       "name": "textbox0",
@@ -742,16 +626,18 @@
                                         ]
                                       },
                                       "icon": "undo",
-                                      "name": "button7",
+                                      "name": "buttonZuruecksetzen",
                                       "size": "sm",
                                       "style": {
                                         "color": "#D86E13",
+                                        "display": "block",
                                         "fontWeight": "normal",
+                                        "marginLeft": "10px",
                                         "marginRight": "-9px",
                                         "paddingLeft": ""
                                       },
                                       "text": "Zurücksetzen",
-                                      "tooltip": "Löschen Autor",
+                                      "tooltip": "Filter zurücksetzen",
                                       "type": "button"
                                     }
                                   ],
@@ -777,7 +663,7 @@
                       "type": "col"
                     },
                     {
-                      "class": "col-md-4",
+                      "class": "col-md-5",
                       "components": [
                         {
                           "allowCollapse": false,
@@ -785,6 +671,7 @@
                             {
                               "addText": "",
                               "allowAdd": false,
+                              "allowColumnReorder": true,
                               "allowColumnResize": true,
                               "allowDelete": false,
                               "allowFiltering": false,
@@ -794,6 +681,7 @@
                               "alwaysShowPager": false,
                               "applyFilterText": "Apply",
                               "clearFilterText": "Clear",
+                              "columnResizeMode": "fit",
                               "columns": [
                                 {
                                   "format": "",
@@ -896,7 +784,7 @@
                                         "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
                                       },
                                       {
-                                        "code": "if (this.rstTextbausteine.find(p => p.TextbausteinNr == this.letzteTextbausteinNr) != null) {\n    // letzteTextbausteinNr wurde in rstTextbausteine gefunden\n    this.gridTextbausteine.onSelect(this.rstTextbausteine.find(p => p.TextbausteinNr == this.letzteTextbausteinNr));\n} else {\n    // letzteTextbausteinNr wurde in rstTextbausteine NICHT gefunden\n    this.letzteTextbausteinNr = null;\n    this.strTextbausteinHTML = null;\n    this.dsoTextbausteine = null;\n    this.gridTextbausteine.onSelect(this.rstTextbausteine[0]);\n}",
+                                        "code": "if (this.rstTextbausteine.find(p => p.TextbausteinNr == this.letzteTextbausteinNr) != null) {\n    // letzteTextbausteinNr wurde in rstTextbausteine gefunden\n    this.gridTextbausteine.onSelect(this.rstTextbausteine.find(p => p.TextbausteinNr == this.letzteTextbausteinNr));\n} else {\n    // letzteTextbausteinNr wurde in rstTextbausteine NICHT gefunden\n    this.letzteTextbausteinNr = null;\n    this.strTextbausteinHTML = null;\n    this.dsoTextbausteine = null;\n}",
                                         "type": "execute"
                                       }
                                     ],
@@ -996,7 +884,8 @@
                                       "name": "buttonNeu",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#D86E13"
+                                        "color": "#D86E13",
+                                        "display": "block"
                                       },
                                       "text": "Neu",
                                       "tooltip": "",
@@ -1044,6 +933,7 @@
                                       "size": "sm",
                                       "style": {
                                         "color": "#D86E13",
+                                        "display": "block",
                                         "marginLeft": "10px"
                                       },
                                       "text": "Duplizieren",
@@ -1176,7 +1066,7 @@
                       "type": "col"
                     },
                     {
-                      "class": "col-md-6",
+                      "class": "col-md-5",
                       "components": [
                         {
                           "components": [
@@ -1186,7 +1076,7 @@
                                   "class": "col-md-12",
                                   "components": [
                                     {
-                                      "content": "<p-editor id=\"editorTextbausteine\" [(ngModel)]=\"strTextbausteinHTML\" [style]=\"{'height': '645px'}\">\n    <p-header>\n\t\t<span class=\"ql-formats\">\n           <select class=\"ql-font\"></select>\n\t\t   <select class=\"ql-header\">\n\t\t\t    <option value=\"1\">Titel 1</option>\n\t\t\t    <option value=\"2\">Titel 2</option>\n\t\t\t    <option value=\"3\">Titel 3</option>\n\t\t\t    <option value=\"4\">Titel 4</option>\n\t\t\t    <option value=\"5\">Titel 5</option>\n\t\t\t    <option value=\"6\">Titel 6</option>\n\t\t\t    <option selected>Normal</option>\n\t\t\t</select>\n\t\t</span>\n\t\t\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-bold\" aria-label=\"Bold\">Fett</button>\n\t\t\t<button class=\"ql-italic\" aria-label=\"Italic\"></button>\n\t\t\t<button class=\"ql-underline\" aria-label=\"Underline\"></button>\n\t\t</span>\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-align\"></select>\n\t\t</span>\t\t\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-list\" value=\"ordered\"></button>\n\t\t\t<button class=\"ql-list\" value=\"bullet\"></button>\n\t\t\t<button class=\"ql-indent\" value=\"-1\"></button>\n\t\t\t<button class=\"ql-indent\" value=\"+1\"></button>\n\t\t</span>\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-blockquote\"></button>\n\t\t</span>\t\t\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-color\"></select>\n\t\t\t<select class=\"ql-background\"></select>\n\t\t</span>\n\n    </p-header>\n\n</p-editor>",
+                                      "content": "<p-editor id=\"editorTextbausteine\" [(ngModel)]=\"strTextbausteinHTML\" [style]=\"{'height': '645px'}\">\n    <p-header>\n\t\t<span class=\"ql-formats\">\n           <select class=\"ql-font\"></select>\n\t\t   <select class=\"ql-header\">\n\t\t\t    <option value=\"1\">Titel 1</option>\n\t\t\t    <option value=\"2\">Titel 2</option>\n\t\t\t    <option value=\"3\">Titel 3</option>\n\t\t\t    <option value=\"4\">Titel 4</option>\n\t\t\t    <option value=\"5\">Titel 5</option>\n\t\t\t    <option value=\"6\">Titel 6</option>\n\t\t\t    <option selected>Normal</option>\n\t\t\t</select>\n\t\t</span>\n\t\t\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-bold\" aria-label=\"Bold\">Fett</button>\n\t\t\t<button class=\"ql-italic\" aria-label=\"Italic\"></button>\n\t\t\t<button class=\"ql-underline\" aria-label=\"Underline\"></button>\n\t\t</span>\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-align\"></select>\n\t\t</span>\t\t\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-list\" value=\"ordered\"></button>\n\t\t\t<button class=\"ql-list\" value=\"bullet\"></button>\n\t\t\t<button class=\"ql-indent\" value=\"-1\"></button>\n\t\t\t<button class=\"ql-indent\" value=\"+1\"></button>\n\t\t</span>\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-color\"></select>\n\t\t\t<select class=\"ql-background\"></select>\n\t\t</span>\n\n    </p-header>\n\n</p-editor>",
                                       "name": "htmlEditorTextbausteine",
                                       "type": "html"
                                     }
@@ -1211,6 +1101,128 @@
                                 {
                                   "class": "col-md-12 align-items-start d-flex",
                                   "components": [
+                                    {
+                                      "buttonStyle": "light",
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "code": "var textArea = document.createElement(\"textarea\");\ntextArea.value = this.dsoTextbausteine.TextbausteinHTML;\ndocument.body.appendChild(textArea);\ntextArea.focus();\ntextArea.select();\n\ntry {\n    var successful = document.execCommand('copy');\n    var msg = successful ? 'successful' : 'unsuccessful';\n    console.log('Copying text command was ' + msg);\n} catch (err) {\n    console.log('Oops, unable to copy');\n}\n\ndocument.body.removeChild(textArea);",
+                                            "type": "execute"
+                                          },
+                                          {
+                                            "code": "${dsoVerlauf.BenutzerID} = ${dsoBenutzer.BenutzerID};\n${dsoVerlauf.Am} = new Date();\n${dsoVerlauf.TextbausteinNr} = ${dsoTextbausteine.TextbausteinNr};",
+                                            "error": [],
+                                            "then": [
+                                              {
+                                                "error": [],
+                                                "name": "dbHopeKurseTextbausteine.createBenutzerTextbausteineVerlauf",
+                                                "parameters": [
+                                                  {
+                                                    "name": "BenutzerTextbausteineVerlauf",
+                                                    "value": "${dsoVerlauf}"
+                                                  }
+                                                ],
+                                                "then": [
+                                                  {
+                                                    "code": "this.gridVerlauf.load();",
+                                                    "type": "execute"
+                                                  }
+                                                ],
+                                                "type": "invoke"
+                                              }
+                                            ],
+                                            "type": "execute"
+                                          }
+                                        ]
+                                      },
+                                      "icon": "content_copy",
+                                      "name": "buttonKopieren",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#D86E13",
+                                        "display": "inline-block",
+                                        "float": "none"
+                                      },
+                                      "text": "&nbsp;Kopieren",
+                                      "tooltip": "",
+                                      "type": "button"
+                                    },
+                                    {
+                                      "buttonStyle": "light",
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "detail": "Diese Funktion ist in Arbeit",
+                                            "severity": "warn",
+                                            "type": "notify"
+                                          }
+                                        ]
+                                      },
+                                      "icon": "folder_open",
+                                      "name": "buttonDokument",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#D86E13",
+                                        "display": "inline-block",
+                                        "marginLeft": "10px"
+                                      },
+                                      "text": "&nbsp;Dokument",
+                                      "tooltip": "",
+                                      "type": "button"
+                                    },
+                                    {
+                                      "buttonStyle": "light",
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "code": "${dsoFavoriten.BenutzerID} = ${dsoBenutzer.BenutzerID};\n${dsoFavoriten.Am} = new Date();\n${dsoFavoriten.TextbausteinNr} = ${dsoTextbausteine.TextbausteinNr};",
+                                            "error": [],
+                                            "then": [
+                                              {
+                                                "error": [
+                                                  {
+                                                    "detail": "Textbaustein ist schon als Favorit markiert",
+                                                    "severity": "info",
+                                                    "type": "notify"
+                                                  }
+                                                ],
+                                                "name": "dbHopeKurseTextbausteine.createBenutzerTextbausteineFavoriten",
+                                                "parameters": [
+                                                  {
+                                                    "name": "BenutzerTextbausteineFavoriten",
+                                                    "value": "${dsoFavoriten}"
+                                                  }
+                                                ],
+                                                "then": [
+                                                  {
+                                                    "code": "this.gridFavoriten.load();",
+                                                    "type": "execute"
+                                                  },
+                                                  {
+                                                    "detail": "Textbaustein als Favorit markiert",
+                                                    "severity": "success",
+                                                    "type": "notify"
+                                                  }
+                                                ],
+                                                "type": "invoke"
+                                              }
+                                            ],
+                                            "type": "execute"
+                                          }
+                                        ]
+                                      },
+                                      "icon": "star_outline",
+                                      "name": "buttonFavorit",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#D86E13",
+                                        "display": "inline-block",
+                                        "marginLeft": "10px"
+                                      },
+                                      "text": "&nbsp;Favorit",
+                                      "tooltip": "",
+                                      "type": "button"
+                                    },
                                     {
                                       "buttonStyle": "light",
                                       "buttonType": "submit",
@@ -1259,164 +1271,13 @@
                                       "name": "buttonSpeichern",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#D86E13",
-                                        "display": "flex"
+                                        "color": "#5dbf74",
+                                        "display": "inline-block",
+                                        "marginLeft": "10px",
+                                        "marginRight": "-9px"
                                       },
                                       "text": "&nbsp;Speichern",
                                       "tooltip": "",
-                                      "type": "button"
-                                    },
-                                    {
-                                      "buttonStyle": "light",
-                                      "events": {
-                                        "click": [
-                                          {
-                                            "name": "letzteTextbausteinNr",
-                                            "type": "set",
-                                            "value": "${dsoTextbausteine.TextbausteinNr}"
-                                          },
-                                          {
-                                            "code": "${dsoFavoriten.BenutzerID} = ${dsoBenutzer.BenutzerID};\n${dsoFavoriten.Am} = new Date().toISOString();\n${dsoFavoriten.TextbausteinNr} = ${dsoTextbausteine.TextbausteinNr};",
-                                            "error": [],
-                                            "then": [
-                                              {
-                                                "error": [
-                                                  {
-                                                    "detail": "Textbaustein ist schon als Favorit markiert",
-                                                    "severity": "info",
-                                                    "type": "notify"
-                                                  }
-                                                ],
-                                                "name": "dbHopeKurseTextbausteine.createBenutzerTextbausteineFavoriten",
-                                                "parameters": [
-                                                  {
-                                                    "name": "BenutzerTextbausteineFavoriten",
-                                                    "value": "${dsoFavoriten}"
-                                                  }
-                                                ],
-                                                "then": [
-                                                  {
-                                                    "code": "this.gridFavoriten.load();",
-                                                    "type": "execute"
-                                                  },
-                                                  {
-                                                    "detail": "Textbaustein als Favorit markiert",
-                                                    "severity": "success",
-                                                    "type": "notify"
-                                                  }
-                                                ],
-                                                "type": "invoke"
-                                              }
-                                            ],
-                                            "type": "execute"
-                                          }
-                                        ]
-                                      },
-                                      "icon": "star_outline",
-                                      "name": "buttonFavorit",
-                                      "size": "sm",
-                                      "style": {
-                                        "color": "#D86E13",
-                                        "display": "flex",
-                                        "marginLeft": "10px"
-                                      },
-                                      "text": "&nbsp;Favorit",
-                                      "tooltip": "",
-                                      "type": "button"
-                                    },
-                                    {
-                                      "buttonStyle": "light",
-                                      "events": {
-                                        "click": [
-                                          {
-                                            "path": "textbausteine-felder-auswahl",
-                                            "title": "Auswahl Feld",
-                                            "type": "popup"
-                                          }
-                                        ]
-                                      },
-                                      "icon": "settings_ethernet",
-                                      "name": "buttonFelder",
-                                      "size": "sm",
-                                      "style": {
-                                        "color": "#D86E13",
-                                        "display": "flex",
-                                        "marginLeft": "10px"
-                                      },
-                                      "text": "&nbsp;Felder",
-                                      "tooltip": "",
-                                      "type": "button"
-                                    },
-                                    {
-                                      "buttonStyle": "light",
-                                      "events": {
-                                        "click": [
-                                          {
-                                            "detail": "Diese Funktion ist in Arbeit",
-                                            "severity": "warn",
-                                            "type": "notify"
-                                          }
-                                        ]
-                                      },
-                                      "icon": "playlist_add_check",
-                                      "name": "buttonMischen",
-                                      "size": "sm",
-                                      "style": {
-                                        "color": "#D86E13",
-                                        "display": "flex",
-                                        "marginLeft": "10px"
-                                      },
-                                      "text": "&nbsp;Mischen",
-                                      "tooltip": "",
-                                      "type": "button"
-                                    },
-                                    {
-                                      "buttonStyle": "light",
-                                      "events": {
-                                        "click": [
-                                          {
-                                            "detail": "Diese Funktion ist in Arbeit",
-                                            "severity": "warn",
-                                            "type": "notify"
-                                          }
-                                        ]
-                                      },
-                                      "icon": "folder_open",
-                                      "name": "buttonDokument",
-                                      "size": "sm",
-                                      "style": {
-                                        "color": "#D86E13",
-                                        "display": "flex",
-                                        "marginLeft": "10px"
-                                      },
-                                      "text": "&nbsp;Dokument",
-                                      "tooltip": "",
-                                      "type": "button"
-                                    },
-                                    {
-                                      "buttonStyle": "light",
-                                      "disabled": false,
-                                      "events": {
-                                        "click": [
-                                          {
-                                            "code": "var textArea = document.createElement(\"textarea\");\ntextArea.value = this.dsoTextbausteine.TextbausteinHTML;\ndocument.body.appendChild(textArea);\ntextArea.focus();\ntextArea.select();\n\ntry {\n    var successful = document.execCommand('copy');\n    var msg = successful ? 'successful' : 'unsuccessful';\n    console.log('Copying text command was ' + msg);\n} catch (err) {\n    console.log('Oops, unable to copy');\n}\n\ndocument.body.removeChild(textArea);",
-                                            "type": "execute"
-                                          }
-                                        ]
-                                      },
-                                      "icon": "content_copy",
-                                      "name": "buttonKopieren",
-                                      "size": "sm",
-                                      "style": {
-                                        "color": "#D86E13",
-                                        "display": "flex",
-                                        "fontWeight": "normal",
-                                        "marginLeft": "10px",
-                                        "marginRight": "-9px",
-                                        "paddingLeft": ""
-                                      },
-                                      "text": "&nbsp;Kopieren",
-                                      "tooltip": "Löschen Autor",
                                       "type": "button"
                                     }
                                   ],
@@ -1439,7 +1300,7 @@
                             "border": "1px solid #e6ecef",
                             "height": "750px"
                           },
-                          "text": "&nbsp;",
+                          "text": "Text",
                           "type": "panel"
                         }
                       ],
@@ -1552,6 +1413,10 @@
                                       {
                                         "name": "$count",
                                         "value": "event.top != null && event.skip != null"
+                                      },
+                                      {
+                                        "name": "$filter",
+                                        "value": "Benutzername eq '${security.user.name}'"
                                       }
                                     ],
                                     "then": [
@@ -1672,7 +1537,6 @@
                                       "style": {
                                         "color": "#D86E13",
                                         "fontWeight": "normal",
-                                        "marginLeft": "10px",
                                         "marginRight": "-9px",
                                         "paddingLeft": ""
                                       },
@@ -1715,7 +1579,7 @@
                                   "class": "col-md-12",
                                   "components": [
                                     {
-                                      "content": "<p-editor [(ngModel)]=\"strTextbausteinHTMLFavoriten\" [style]=\"{'height': '645px'}\">\n    <p-header>\n\t\t<span class=\"ql-formats\">\n           <select class=\"ql-font\"></select>\n\t\t   <select class=\"ql-header\">\n\t\t\t    <option value=\"1\">Titel 1</option>\n\t\t\t    <option value=\"2\">Titel 2</option>\n\t\t\t    <option value=\"3\">Titel 3</option>\n\t\t\t    <option value=\"4\">Titel 4</option>\n\t\t\t    <option value=\"5\">Titel 5</option>\n\t\t\t    <option value=\"6\">Titel 6</option>\n\t\t\t    <option selected>Normal</option>\n\t\t\t</select>\n\t\t</span>\n\t\t\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-bold\" aria-label=\"Bold\">Fett</button>\n\t\t\t<button class=\"ql-italic\" aria-label=\"Italic\"></button>\n\t\t\t<button class=\"ql-underline\" aria-label=\"Underline\"></button>\n\t\t</span>\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-align\"></select>\n\t\t</span>\t\t\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-list\" value=\"ordered\"></button>\n\t\t\t<button class=\"ql-list\" value=\"bullet\"></button>\n\t\t\t<button class=\"ql-indent\" value=\"-1\"></button>\n\t\t\t<button class=\"ql-indent\" value=\"+1\"></button>\n\t\t</span>\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-blockquote\"></button>\n\t\t</span>\t\t\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-color\"></select>\n\t\t\t<select class=\"ql-background\"></select>\n\t\t</span>\n\n    </p-header>\n\n</p-editor>",
+                                      "content": "<p-editor [(ngModel)]=\"strTextbausteinHTMLFavoriten\" [style]=\"{'height': '645px'}\">\n    <p-header>\n\t\t<span class=\"ql-formats\">\n           <select class=\"ql-font\"></select>\n\t\t   <select class=\"ql-header\">\n\t\t\t    <option value=\"1\">Titel 1</option>\n\t\t\t    <option value=\"2\">Titel 2</option>\n\t\t\t    <option value=\"3\">Titel 3</option>\n\t\t\t    <option value=\"4\">Titel 4</option>\n\t\t\t    <option value=\"5\">Titel 5</option>\n\t\t\t    <option value=\"6\">Titel 6</option>\n\t\t\t    <option selected>Normal</option>\n\t\t\t</select>\n\t\t</span>\n\t\t\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-bold\" aria-label=\"Bold\">Fett</button>\n\t\t\t<button class=\"ql-italic\" aria-label=\"Italic\"></button>\n\t\t\t<button class=\"ql-underline\" aria-label=\"Underline\"></button>\n\t\t</span>\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-align\"></select>\n\t\t</span>\t\t\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-list\" value=\"ordered\"></button>\n\t\t\t<button class=\"ql-list\" value=\"bullet\"></button>\n\t\t\t<button class=\"ql-indent\" value=\"-1\"></button>\n\t\t\t<button class=\"ql-indent\" value=\"+1\"></button>\n\t\t</span>\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-color\"></select>\n\t\t\t<select class=\"ql-background\"></select>\n\t\t</span>\n\n    </p-header>\n\n</p-editor>",
                                       "name": "htmlEditorTextbausteineFavoriten",
                                       "type": "html"
                                     }
@@ -1742,25 +1606,21 @@
                                   "components": [
                                     {
                                       "buttonStyle": "light",
+                                      "disabled": false,
                                       "events": {
-                                        "click": [
-                                          {
-                                            "detail": "Diese Funktion ist in Arbeit",
-                                            "severity": "warn",
-                                            "type": "notify"
-                                          }
-                                        ]
+                                        "click": []
                                       },
-                                      "icon": "playlist_add_check",
-                                      "name": "buttonFavoritenMischen",
+                                      "icon": "content_copy",
+                                      "name": "buttonFavoritenKopieren",
                                       "size": "sm",
                                       "style": {
                                         "color": "#D86E13",
-                                        "display": "flex",
-                                        "marginLeft": "10px"
+                                        "display": "block",
+                                        "fontWeight": "normal",
+                                        "paddingLeft": ""
                                       },
-                                      "text": "&nbsp;Mischen",
-                                      "tooltip": "",
+                                      "text": "Kopieren",
+                                      "tooltip": "Löschen Autor",
                                       "type": "button"
                                     },
                                     {
@@ -1779,32 +1639,12 @@
                                       "size": "sm",
                                       "style": {
                                         "color": "#D86E13",
-                                        "display": "flex",
-                                        "marginLeft": "10px"
-                                      },
-                                      "text": "&nbsp;Dokument",
-                                      "tooltip": "",
-                                      "type": "button"
-                                    },
-                                    {
-                                      "buttonStyle": "light",
-                                      "disabled": false,
-                                      "events": {
-                                        "click": []
-                                      },
-                                      "icon": "content_copy",
-                                      "name": "buttonFavoritenKopieren",
-                                      "size": "sm",
-                                      "style": {
-                                        "color": "#D86E13",
-                                        "display": "flex",
-                                        "fontWeight": "normal",
+                                        "display": "block",
                                         "marginLeft": "10px",
-                                        "marginRight": "-9px",
-                                        "paddingLeft": ""
+                                        "marginRight": "-9px"
                                       },
-                                      "text": "&nbsp;Kopieren",
-                                      "tooltip": "Löschen Autor",
+                                      "text": "Dokument",
+                                      "tooltip": "",
                                       "type": "button"
                                     }
                                   ],
@@ -1827,7 +1667,7 @@
                             "border": "1px solid #e6ecef",
                             "height": "750px"
                           },
-                          "text": "&nbsp;",
+                          "text": "${dsoBenutzerTextbausteineFavoriten.TitelTextbaustein}",
                           "type": "panel"
                         }
                       ],
@@ -1846,6 +1686,375 @@
               "text": "Favoriten"
             },
             {
+              "components": [
+                {
+                  "components": [
+                    {
+                      "class": "col-md-6",
+                      "components": [
+                        {
+                          "allowCollapse": false,
+                          "components": [
+                            {
+                              "addText": "",
+                              "allowAdd": false,
+                              "allowColumnResize": true,
+                              "allowDelete": false,
+                              "allowFiltering": false,
+                              "allowMultiSorting": false,
+                              "allowPaging": true,
+                              "allowSorting": false,
+                              "alwaysShowPager": false,
+                              "applyFilterText": "Apply",
+                              "clearFilterText": "Clear",
+                              "columns": [
+                                {
+                                  "format": "",
+                                  "property": "AutorKrzel",
+                                  "title": "Autor",
+                                  "type": "string",
+                                  "width": "50px"
+                                },
+                                {
+                                  "format": "",
+                                  "property": "KursKurzzeichen",
+                                  "title": "Kurs",
+                                  "type": "string",
+                                  "width": "50px"
+                                },
+                                {
+                                  "format": "",
+                                  "property": "Anrede",
+                                  "template": "${data.Anrede == 'Ohne' ? '' : data.Anrede}",
+                                  "title": "Anr.",
+                                  "type": "string",
+                                  "width": "40px"
+                                },
+                                {
+                                  "format": "",
+                                  "property": "TitelTextbaustein",
+                                  "title": "Titel",
+                                  "type": "string",
+                                  "width": "40%"
+                                },
+                                {
+                                  "format": "",
+                                  "property": "UntertitelTextbaustein",
+                                  "title": "Untertitel",
+                                  "type": "string",
+                                  "width": "30%"
+                                },
+                                {
+                                  "filterProperty": "",
+                                  "footerTemplate": "",
+                                  "format": "date-time",
+                                  "formatString": "dd.MM.yyyy hh:mm",
+                                  "headerTemplate": "",
+                                  "property": "Am",
+                                  "template": "",
+                                  "title": "Am",
+                                  "type": "string",
+                                  "width": "120px"
+                                }
+                              ],
+                              "confirmDelete": false,
+                              "confirmDeleteCancelText": "",
+                              "confirmDeleteOkText": "",
+                              "confirmDeleteText": "",
+                              "confirmDeleteTitle": "",
+                              "containsText": "Contains",
+                              "count": "${rstVerlaufCount}",
+                              "data": "${rstVerlauf}",
+                              "emptyText": "Kein Verlauf vorhanden",
+                              "endsWithText": "Ends with",
+                              "equalsText": "Equals",
+                              "events": {
+                                "add": [],
+                                "delete": [],
+                                "loadData": [
+                                  {
+                                    "name": "dbHopeKurseTextbausteine.getVwBenutzerTextbausteineVerlaufs",
+                                    "parameters": [
+                                      {
+                                        "name": "$top",
+                                        "value": "event.top"
+                                      },
+                                      {
+                                        "name": "$skip",
+                                        "value": "event.skip"
+                                      },
+                                      {
+                                        "name": "$count",
+                                        "value": "event.top != null && event.skip != null"
+                                      },
+                                      {
+                                        "name": "$filter",
+                                        "value": "Benutzername eq '${security.user.name}'"
+                                      }
+                                    ],
+                                    "then": [
+                                      {
+                                        "name": "rstVerlauf",
+                                        "type": "set",
+                                        "value": "${result.value}"
+                                      },
+                                      {
+                                        "name": "rstVerlaufCount",
+                                        "type": "set",
+                                        "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
+                                      },
+                                      {
+                                        "code": "this.gridVerlauf.onSelect(this.rstVerlauf[0]);",
+                                        "type": "execute"
+                                      }
+                                    ],
+                                    "type": "invoke"
+                                  }
+                                ],
+                                "rowDoubleClick": [],
+                                "rowSelect": [
+                                  {
+                                    "name": "strTextbausteinHTMLVerlauf",
+                                    "type": "set",
+                                    "value": "${event.TextbausteinHTML}"
+                                  },
+                                  {
+                                    "name": "dsoBenutzerTextbausteineVerlauf",
+                                    "type": "set",
+                                    "value": "${event}"
+                                  }
+                                ]
+                              },
+                              "filterCaseSensitivity": "caseInsensitive",
+                              "greaterThanOrEqualsText": "Greater than or equals",
+                              "greaterThanText": "Greater than",
+                              "isLoading": "",
+                              "lessThanOrEqualsText": "Less than or equals",
+                              "lessThanText": "Less than",
+                              "name": "gridVerlauf",
+                              "notEqualsText": "Not equals",
+                              "pageSize": 22,
+                              "startsWithText": "Starts with",
+                              "style": {
+                                "border": "1px solid rgba(0, 0, 0, 0)",
+                                "height": "700px",
+                                "marginLeft": "-10px",
+                                "marginRight": "-10px",
+                                "marginTop": "-13px"
+                              },
+                              "title": "",
+                              "type": "grid"
+                            }
+                          ],
+                          "footerTemplate": "",
+                          "headerTemplate": [
+                            {
+                              "components": [
+                                {
+                                  "class": "col-md-12 align-items-start d-flex",
+                                  "components": [
+                                    {
+                                      "buttonStyle": "light",
+                                      "disabled": false,
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "parameters": [
+                                              {
+                                                "name": "strMeldung",
+                                                "value": "\"Soll der Verlauf '\" + ${dsoBenutzerTextbausteineVerlauf.TitelTextbaustein} + \"' gelöscht werden?\""
+                                              }
+                                            ],
+                                            "path": "meldung-loeschen",
+                                            "then": [
+                                              {
+                                                "condition": "${result} == 'Löschen'",
+                                                "error": [
+                                                  {
+                                                    "detail": "Verlauf konnte nicht gelöscht werden!",
+                                                    "severity": "error",
+                                                    "summary": "",
+                                                    "type": "notify"
+                                                  }
+                                                ],
+                                                "name": "dbHopeKurseTextbausteine.deleteBenutzerTextbausteineVerlauf",
+                                                "parameters": [
+                                                  {
+                                                    "name": "TextbausteineVerlaufID",
+                                                    "value": "${dsoBenutzerTextbausteineVerlauf.TextbausteineVerlaufID}"
+                                                  }
+                                                ],
+                                                "then": [
+                                                  {
+                                                    "code": "this.gridVerlauf.load();",
+                                                    "type": "execute"
+                                                  },
+                                                  {
+                                                    "detail": "Verlauf gelöscht",
+                                                    "severity": "success",
+                                                    "summary": "",
+                                                    "type": "notify"
+                                                  }
+                                                ],
+                                                "type": "invoke"
+                                              }
+                                            ],
+                                            "title": "Löschen Verlauf",
+                                            "type": "popup"
+                                          }
+                                        ]
+                                      },
+                                      "icon": "clear",
+                                      "name": "buttonVerlaufEntfernen",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#D86E13",
+                                        "fontWeight": "normal",
+                                        "marginRight": "-9px",
+                                        "paddingLeft": ""
+                                      },
+                                      "text": "Verlauf entfernen",
+                                      "tooltip": "",
+                                      "type": "button"
+                                    }
+                                  ],
+                                  "name": "col0",
+                                  "type": "col"
+                                }
+                              ],
+                              "name": "row0",
+                              "type": "row"
+                            }
+                          ],
+                          "name": "panel1",
+                          "style": {
+                            "border": "1px solid #e6ecef",
+                            "height": "750px"
+                          },
+                          "text": "{{rstVerlaufCount == 0 ? '' : rstVerlaufCount}} Verlauf",
+                          "type": "panel"
+                        }
+                      ],
+                      "name": "col22",
+                      "style": {
+                        "paddingLeft": "5px"
+                      },
+                      "type": "col"
+                    },
+                    {
+                      "class": "col-md-6",
+                      "components": [
+                        {
+                          "components": [
+                            {
+                              "components": [
+                                {
+                                  "class": "col-md-12",
+                                  "components": [
+                                    {
+                                      "content": "<p-editor [(ngModel)]=\"strTextbausteinHTMLVerlauf\" [style]=\"{'height': '645px'}\">\n    <p-header>\n\t\t<span class=\"ql-formats\">\n           <select class=\"ql-font\"></select>\n\t\t   <select class=\"ql-header\">\n\t\t\t    <option value=\"1\">Titel 1</option>\n\t\t\t    <option value=\"2\">Titel 2</option>\n\t\t\t    <option value=\"3\">Titel 3</option>\n\t\t\t    <option value=\"4\">Titel 4</option>\n\t\t\t    <option value=\"5\">Titel 5</option>\n\t\t\t    <option value=\"6\">Titel 6</option>\n\t\t\t    <option selected>Normal</option>\n\t\t\t</select>\n\t\t</span>\n\t\t\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-bold\" aria-label=\"Bold\">Fett</button>\n\t\t\t<button class=\"ql-italic\" aria-label=\"Italic\"></button>\n\t\t\t<button class=\"ql-underline\" aria-label=\"Underline\"></button>\n\t\t</span>\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-align\"></select>\n\t\t</span>\t\t\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-list\" value=\"ordered\"></button>\n\t\t\t<button class=\"ql-list\" value=\"bullet\"></button>\n\t\t\t<button class=\"ql-indent\" value=\"-1\"></button>\n\t\t\t<button class=\"ql-indent\" value=\"+1\"></button>\n\t\t</span>\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-color\"></select>\n\t\t\t<select class=\"ql-background\"></select>\n\t\t</span>\n\n    </p-header>\n</p-editor>",
+                                      "name": "html0",
+                                      "type": "html"
+                                    }
+                                  ],
+                                  "name": "col24",
+                                  "style": {},
+                                  "type": "col"
+                                }
+                              ],
+                              "name": "row12",
+                              "style": {
+                                "marginLeft": "-36px",
+                                "marginRight": "-36px",
+                                "marginTop": "-12px"
+                              },
+                              "type": "row"
+                            }
+                          ],
+                          "headerTemplate": [
+                            {
+                              "components": [
+                                {
+                                  "class": "col-md-12 align-items-start d-flex",
+                                  "components": [
+                                    {
+                                      "buttonStyle": "light",
+                                      "disabled": false,
+                                      "events": {
+                                        "click": []
+                                      },
+                                      "icon": "content_copy",
+                                      "name": "buttonVerlaufKopieren",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#D86E13",
+                                        "display": "block",
+                                        "fontWeight": "normal",
+                                        "paddingLeft": ""
+                                      },
+                                      "text": "Kopieren",
+                                      "tooltip": "Löschen Autor",
+                                      "type": "button"
+                                    },
+                                    {
+                                      "buttonStyle": "light",
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "detail": "Diese Funktion ist in Arbeit",
+                                            "severity": "warn",
+                                            "type": "notify"
+                                          }
+                                        ]
+                                      },
+                                      "icon": "folder_open",
+                                      "name": "buttonVerlaufDokument",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#D86E13",
+                                        "display": "block",
+                                        "marginLeft": "10px",
+                                        "marginRight": "-9px"
+                                      },
+                                      "text": "Dokument",
+                                      "tooltip": "",
+                                      "type": "button"
+                                    }
+                                  ],
+                                  "name": "col2",
+                                  "style": {
+                                    "display": "flex"
+                                  },
+                                  "type": "col"
+                                }
+                              ],
+                              "name": "row0",
+                              "style": {
+                                "display": "inline-block"
+                              },
+                              "type": "row"
+                            }
+                          ],
+                          "name": "panel5",
+                          "style": {
+                            "border": "1px solid #e6ecef",
+                            "height": "750px"
+                          },
+                          "text": "${dsoBenutzerTextbausteineVerlauf.TitelTextbaustein}",
+                          "type": "panel"
+                        }
+                      ],
+                      "name": "col23",
+                      "style": {
+                        "paddingLeft": "5px"
+                      },
+                      "type": "col"
+                    }
+                  ],
+                  "name": "row11",
+                  "type": "row"
+                }
+              ],
               "selected": false,
               "text": "Verlauf"
             }
@@ -1946,6 +2155,10 @@
           {
             "code": "this.gridFavoriten.load();",
             "type": "execute"
+          },
+          {
+            "code": "this.gridVerlauf.load();",
+            "type": "execute"
           }
         ],
         "type": "invoke"
@@ -1954,6 +2167,16 @@
         "name": "dsoFavoriten",
         "type": "set",
         "value": "{BenutzerID: '', Am: '', TextbausteinNr: ''}"
+      },
+      {
+        "name": "dsoVerlauf",
+        "type": "set",
+        "value": "{BenutzerID: '', Am: '', TextbausteinNr: ''}"
+      },
+      {
+        "name": "onKeyEnterFilterText",
+        "type": "set",
+        "value": "() => { console.log('Enter gedrückt'); }"
       }
     ]
   },

@@ -11,10 +11,10 @@ import { Subscription } from 'rxjs';
 import { DialogService, DIALOG_PARAMETERS, DialogRef } from '@radzen/angular/dist/dialog';
 import { NotificationService } from '@radzen/angular/dist/notification';
 import { HeaderComponent } from '@radzen/angular/dist/header';
+import { SidebarToggleComponent } from '@radzen/angular/dist/sidebar-toggle';
 import { ImageComponent } from '@radzen/angular/dist/image';
 import { LabelComponent } from '@radzen/angular/dist/label';
 import { LinkComponent } from '@radzen/angular/dist/link';
-import { SidebarToggleComponent } from '@radzen/angular/dist/sidebar-toggle';
 import { ProfileMenuComponent } from '@radzen/angular/dist/profilemenu';
 import { BodyComponent } from '@radzen/angular/dist/body';
 import { ContentContainerComponent } from '@radzen/angular/dist/content-container';
@@ -24,16 +24,17 @@ import { FooterComponent } from '@radzen/angular/dist/footer';
 
 import { ConfigService } from '../config.service';
 
+import { DbHopeKurseTextbausteineService } from '../db-hope-kurse-textbausteine.service';
 import { SecurityService } from '../security.service';
 
 export class MainLayoutGenerated implements AfterViewInit, OnInit, OnDestroy {
   // Components
   @ViewChild('header0') header0: HeaderComponent;
+  @ViewChild('sidebarToggle0') sidebarToggle0: SidebarToggleComponent;
   @ViewChild('image0') image0: ImageComponent;
   @ViewChild('label2') label2: LabelComponent;
   @ViewChild('label5') label5: LabelComponent;
   @ViewChild('link1') link1: LinkComponent;
-  @ViewChild('sidebarToggle0') sidebarToggle0: SidebarToggleComponent;
   @ViewChild('profilemenu1') profilemenu1: ProfileMenuComponent;
   @ViewChild('body0') body0: BodyComponent;
   @ViewChild('main') main: ContentContainerComponent;
@@ -71,7 +72,10 @@ export class MainLayoutGenerated implements AfterViewInit, OnInit, OnDestroy {
 
   _subscription: Subscription;
 
+  dbHopeKurseTextbausteine: DbHopeKurseTextbausteineService;
+
   security: SecurityService;
+  dsoBenutzer: any;
   parameters: any;
 
   constructor(private injector: Injector) {
@@ -98,6 +102,7 @@ export class MainLayoutGenerated implements AfterViewInit, OnInit, OnDestroy {
 
     this.httpClient = this.injector.get(HttpClient);
 
+    this.dbHopeKurseTextbausteine = this.injector.get(DbHopeKurseTextbausteineService);
     this.security = this.injector.get(SecurityService);
   }
 
@@ -108,6 +113,7 @@ export class MainLayoutGenerated implements AfterViewInit, OnInit, OnDestroy {
       } else {
         this.parameters = parameters;
       }
+      this.load();
       this.cd.detectChanges();
     });
   }
@@ -119,11 +125,20 @@ export class MainLayoutGenerated implements AfterViewInit, OnInit, OnDestroy {
   }
 
 
+  load() {
+    this.dbHopeKurseTextbausteine.getBenutzers(`Benutzername eq '${this.security.user.name}'`, null, null, null, null, `Base`, null, null)
+    .subscribe((result: any) => {
+      this.dsoBenutzer = result.value[0];
+    }, (result: any) => {
+
+    });
+  }
+
   image0Click(event: any) {
     if (this.dialogRef) {
       this.dialogRef.close();
     }
-    this.router.navigate(['dashboard']);
+    this.router.navigate(['textbausteine']);
   }
 
   profilemenu1Click(event: any) {

@@ -23,11 +23,11 @@
             <rz-panel-header>
               <div class="row">
                 <div class="col-md-12 align-items-start d-flex">
-                  <rz-button #button0 buttonStyle="light" icon="add" size="sm" [style]="{'color': '#D86E13', 'display': 'flex'}" text="&nbsp;Neuer Infotext" (click)="button0Click($event)">
+                  <rz-button #button0 buttonStyle="light" icon="add" size="sm" [style]="{'color': '#D86E13', 'display': 'block'}" text="Neuer Infotext" (click)="button0Click($event)">
                   </rz-button>
-                  <rz-button #buttonBearbeiten buttonStyle="light" icon="create" size="sm" [style]="{'color': '#D86E13', 'marginLeft': '10px', 'paddingLeft': ''}" tooltip="Bearbeiten Kontakt" (click)="buttonBearbeitenClick($event)">
+                  <rz-button #buttonBearbeiten buttonStyle="light" icon="create" size="sm" [style]="{'color': '#D86E13', 'marginLeft': '10px', 'paddingLeft': ''}" tooltip="Bearbeiten Infotext" (click)="buttonBearbeitenClick($event)">
                   </rz-button>
-                  <rz-button #buttonLoeschen buttonStyle="light" [disabled]="false" icon="clear" size="sm" [style]="{'color': '#D86E13', 'fontWeight': 'normal', 'marginLeft': '10px', 'marginRight': '-9px', 'paddingLeft': ''}" tooltip="Löschen Kontakt" (click)="buttonLoeschenClick($event)">
+                  <rz-button #buttonLoeschen buttonStyle="light" [disabled]="false" icon="clear" size="sm" [style]="{'color': '#D86E13', 'fontWeight': 'normal', 'marginLeft': '10px', 'marginRight': '-9px', 'paddingLeft': ''}" tooltip="Löschen Infotext" (click)="buttonLoeschenClick($event)">
                   </rz-button>
                 </div>
               </div>
@@ -41,17 +41,9 @@
                 <rz-html #htmlEditorInfotexte>
                   <p-editor [(ngModel)]="strInfotext" [style]="{'height': '645px'}">
                       <p-header>
-                  
                   		<span class="ql-formats">
-                  			<select class="ql-font">
-                                  <option selected>Aref Ruqaa</option>
-                                  <option value="mirza">Mirza</option>
-                                  <option value="roboto">Roboto</option>
-                  			</select>
-                  		</span>
-                      
-                  		<span class="ql-formats">
-                  			<select class="ql-header">
+                             <select class="ql-font"></select>
+                  		   <select class="ql-header">
                   			    <option value="1">Titel 1</option>
                   			    <option value="2">Titel 2</option>
                   			    <option value="3">Titel 3</option>
@@ -69,17 +61,8 @@
                   		</span>
                   
                   		<span class="ql-formats">
-                  			<button class="ql-blockquote"></button>
-                  		</span>		
-                  
-                  		<span class="ql-formats">
                   			<select class="ql-align"></select>
                   		</span>		
-                  
-                  		<span class="ql-formats">
-                  			<select class="ql-color"></select>
-                  			<select class="ql-background"></select>
-                  		</span>
                   
                   		<span class="ql-formats">
                   			<button class="ql-list" value="ordered"></button>
@@ -87,6 +70,16 @@
                   			<button class="ql-indent" value="-1"></button>
                   			<button class="ql-indent" value="+1"></button>
                   		</span>
+                  
+                  		<span class="ql-formats">
+                  			<button class="ql-blockquote"></button>
+                  		</span>		
+                  
+                  		<span class="ql-formats">
+                  			<select class="ql-color"></select>
+                  			<select class="ql-background"></select>
+                  		</span>
+                  
                       </p-header>
                   </p-editor>
                 </rz-html>
@@ -95,7 +88,7 @@
             <rz-panel-header>
               <div class="row">
                 <div class="col-md-12 align-items-start d-flex">
-                  <rz-button #button4 buttonStyle="light" buttonType="submit" icon="done" size="sm" [style]="{'color': '\n#D86E13', 'display': 'flex', 'marginRight': '-9px'}" text="&nbsp;Speichern" (click)="button4Click($event)">
+                  <rz-button #button4 buttonStyle="light" buttonType="submit" icon="done" size="sm" [style]="{'color': '#5dbf74', 'display': 'block', 'marginRight': '-9px'}" text="Speichern" (click)="button4Click($event)">
                   </rz-button>
                 </div>
               </div>
