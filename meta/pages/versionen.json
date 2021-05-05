@@ -17,7 +17,7 @@
                     "color": "#5d717b",
                     "display": "inline-block"
                   },
-                  "text": "Kontakt",
+                  "text": "Version",
                   "type": "heading"
                 },
                 {
@@ -77,35 +77,17 @@
                   "class": "col-md-12",
                   "components": [
                     {
-                      "content": "<div innerHTML='${kontaktHtml}'></div>",
+                      "content": "<div innerHTML='${versionenHtml}'></div>",
                       "name": "html0",
                       "type": "html"
                     }
                   ],
-                  "name": "col2",
-                  "type": "col"
-                },
-                {
-                  "class": "col-md-12",
-                  "components": [
-                    {
-                      "name": "image0",
-                      "path": "/assets/images/Large - Logo links 1 - transparent.png",
-                      "style": {
-                        "height": "60px"
-                      },
-                      "type": "image"
-                    }
-                  ],
                   "name": "col0",
-                  "style": {
-                    "marginTop": "30px"
-                  },
                   "type": "col"
                 }
               ],
               "selected": false,
-              "text": "Kontakt"
+              "text": "Version"
             }
           ],
           "name": "tabs0",
@@ -128,12 +110,12 @@
         "parameters": [
           {
             "name": "$filter",
-            "value": "Code eq 'KontaktWeb'"
+            "value": "Code eq 'VersionenWeb'"
           }
         ],
         "then": [
           {
-            "name": "kontaktHtml",
+            "name": "versionenHtml",
             "type": "set",
             "value": "${result.value[0].Inhalt}"
           }
@@ -143,5 +125,5 @@
     ]
   },
   "layout": "Main",
-  "name": "Kontakt"
+  "name": "Versionen"
 }

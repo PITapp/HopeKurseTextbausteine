@@ -8,15 +8,11 @@ import { BenutzerComponent } from './benutzer/benutzer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EinstellungenComponent } from './einstellungen/einstellungen.component';
 import { BenutzerProfilComponent } from './benutzer-profil/benutzer-profil.component';
-import { LoginComponent } from './login/login.component';
-import { ProfileComponent } from './profile/profile.component';
-import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { ImpressumComponent } from './impressum/impressum.component';
 import { DatenschutzComponent } from './datenschutz/datenschutz.component';
 import { KontaktComponent } from './kontakt/kontakt.component';
 import { TextbausteineComponent } from './textbausteine/textbausteine.component';
 import { DokumenteComponent } from './dokumente/dokumente.component';
-import { NachrichtenComponent } from './nachrichten/nachrichten.component';
 import { KontakteComponent } from './kontakte/kontakte.component';
 import { KontakteNeuComponent } from './kontakte-neu/kontakte-neu.component';
 import { KontakteBearbeitenComponent } from './kontakte-bearbeiten/kontakte-bearbeiten.component';
@@ -32,17 +28,13 @@ import { EinstellungenInfotexteNeuComponent } from './einstellungen-infotexte-ne
 import { EinstellungenInfotexteBearbeitenComponent } from './einstellungen-infotexte-bearbeiten/einstellungen-infotexte-bearbeiten.component';
 import { MeldungLoeschenComponent } from './meldung-loeschen/meldung-loeschen.component';
 import { MeldungJaNeinComponent } from './meldung-ja-nein/meldung-ja-nein.component';
-import { ApplicationUsersComponent } from './application-users/application-users.component';
-import { ApplicationRolesComponent } from './application-roles/application-roles.component';
-import { RegisterApplicationUserComponent } from './register-application-user/register-application-user.component';
-import { AddApplicationRoleComponent } from './add-application-role/add-application-role.component';
-import { AddApplicationUserComponent } from './add-application-user/add-application-user.component';
-import { EditApplicationUserComponent } from './edit-application-user/edit-application-user.component';
 import { BenutzerBearbeitenComponent } from './benutzer-bearbeiten/benutzer-bearbeiten.component';
 import { TextbausteineNeuComponent } from './textbausteine-neu/textbausteine-neu.component';
 import { TextbausteineBearbeitenComponent } from './textbausteine-bearbeiten/textbausteine-bearbeiten.component';
 import { TextbausteineDuplizierenComponent } from './textbausteine-duplizieren/textbausteine-duplizieren.component';
 import { TextbausteineFelderAuswahlComponent } from './textbausteine-felder-auswahl/textbausteine-felder-auswahl.component';
+import { LoginComponent } from './login/login.component';
+import { VersionenComponent } from './versionen/versionen.component';
 
 import { SecurityService } from './security.service';
 import { AuthGuard } from './auth.guard';
@@ -80,7 +72,7 @@ export const routes: Routes = [
         path: 'einstellungen',
         canActivate: [AuthGuard],
         data: {
-          roles: ['Authenticated'],
+          roles: ['Administrator'],
         },
         component: EinstellungenComponent
       },
@@ -91,21 +83,6 @@ export const routes: Routes = [
           roles: ['Authenticated'],
         },
         component: BenutzerProfilComponent
-      },
-      {
-        path: 'profile',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: ProfileComponent
-      },
-      {
-        path: 'unauthorized',
-        data: {
-          roles: ['Everybody'],
-        },
-        component: UnauthorizedComponent
       },
       {
         path: 'impressum',
@@ -146,14 +123,6 @@ export const routes: Routes = [
           roles: ['Authenticated'],
         },
         component: DokumenteComponent
-      },
-      {
-        path: 'nachrichten',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: NachrichtenComponent
       },
       {
         path: 'kontakte',
@@ -276,53 +245,6 @@ export const routes: Routes = [
         component: MeldungJaNeinComponent
       },
       {
-        path: 'application-users',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: ApplicationUsersComponent
-      },
-      {
-        path: 'application-roles',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: ApplicationRolesComponent
-      },
-      {
-        path: 'register-application-user',
-        data: {
-          roles: ['Everybody'],
-        },
-        component: RegisterApplicationUserComponent
-      },
-      {
-        path: 'add-application-role',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: AddApplicationRoleComponent
-      },
-      {
-        path: 'add-application-user',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: AddApplicationUserComponent
-      },
-      {
-        path: 'edit-application-user/:Id',
-        canActivate: [AuthGuard],
-        data: {
-          roles: ['Authenticated'],
-        },
-        component: EditApplicationUserComponent
-      },
-      {
         path: 'benutzer-bearbeiten/:BenutzerID',
         canActivate: [AuthGuard],
         data: {
@@ -361,6 +283,14 @@ export const routes: Routes = [
           roles: ['Authenticated'],
         },
         component: TextbausteineFelderAuswahlComponent
+      },
+      {
+        path: 'versionen',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: VersionenComponent
       },
     ]
   },

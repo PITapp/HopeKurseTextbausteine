@@ -52,7 +52,7 @@
     </rz-panelmenu-item>
     <rz-panelmenu-item icon="face" path="benutzer-profil" text="Benutzerprofil" *ngIf="security?.isInRole(['Authenticated'])">
     </rz-panelmenu-item>
-    <rz-panelmenu-item icon="settings" path="einstellungen" text="Einstellungen" *ngIf="security?.isInRole(['Authenticated'])">
+    <rz-panelmenu-item icon="settings" path="einstellungen" text="Einstellungen" *ngIf="security?.isInRole(['Administrator'])">
     </rz-panelmenu-item>
   </rz-panelmenu>
 </rz-sidebar>
@@ -63,9 +63,13 @@
   </rz-label>
   <rz-label #label4 [style]="{'color': '#6d787d', 'float': 'none'}" text="Deutschland · Österreich · Schweiz">
   </rz-label>
-  <rz-link #linkKontakt path="kontakt" [style]="{'float': 'right', 'marginTop': '-2px'}" text="Kontakt">
+  <rz-link #linkVersion path="versionen" [style]="{'float': 'right', 'marginTop': '-2px'}" text="Version 1.21.057">
   </rz-link>
   <rz-label #label1 [style]="{'color': '#88989b', 'float': 'right', 'marginTop': '-2px', 'paddingLeft': '10px', 'paddingRight': '10px'}" text="|">
+  </rz-label>
+  <rz-link #linkKontakt path="kontakt" [style]="{'float': 'right', 'marginTop': '-2px'}" text="Kontakt">
+  </rz-link>
+  <rz-label #label6 [style]="{'color': '#88989b', 'float': 'right', 'marginTop': '-2px', 'paddingLeft': '10px', 'paddingRight': '10px'}" text="|">
   </rz-label>
   <rz-link #linkDatenschutz path="datenschutz" [style]="{'float': 'right', 'marginTop': '-2px'}" text="Datenschutz">
   </rz-link>

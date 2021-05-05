@@ -40,12 +40,12 @@
                   "name": "heading2",
                   "size": "H3",
                   "style": {
-                    "color": "#5d717b",
+                    "color": "#789BC0",
                     "display": "inline",
                     "fontSize": "21px",
                     "fontWeight": "normal"
                   },
-                  "text": "{{dsoKurse?.Titel}}\n{{dsoKurse?.Untertitel ? ' · ' + dsoKurse?.Untertitel : ''}}",
+                  "text": "{{dsoKurse?.Titel}}\n{{dsoKurse?.Untertitel ? '&nbsp; ⁞ &nbsp;&nbsp;' + dsoKurse?.Untertitel : ''}}",
                   "type": "heading"
                 }
               ],

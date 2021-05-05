@@ -19,9 +19,14 @@ import { LabelComponent } from '@radzen/angular/dist/label';
 import { TextBoxComponent } from '@radzen/angular/dist/textbox';
 import { RequiredValidatorComponent } from '@radzen/angular/dist/required-validator';
 import { ListBoxComponent } from '@radzen/angular/dist/listbox';
+import { PasswordComponent } from '@radzen/angular/dist/password';
 import { TextAreaComponent } from '@radzen/angular/dist/textarea';
+import { ButtonComponent } from '@radzen/angular/dist/button';
+import { ImageComponent } from '@radzen/angular/dist/image';
+import { UploadComponent } from '@radzen/angular/dist/upload';
 
 import { ConfigService } from '../config.service';
+import { MeldungJaNeinComponent } from '../meldung-ja-nein/meldung-ja-nein.component';
 
 import { DbHopeKurseTextbausteineService } from '../db-hope-kurse-textbausteine.service';
 import { SecurityService } from '../security.service';
@@ -33,7 +38,7 @@ export class BenutzerProfilGenerated implements AfterViewInit, OnInit, OnDestroy
   @ViewChild('heading2') heading2: HeadingComponent;
   @ViewChild('heading3') heading3: HeadingComponent;
   @ViewChild('tabs0') tabs0: TabsComponent;
-  @ViewChild('panel2') panel2: PanelComponent;
+  @ViewChild('panel0') panel0: PanelComponent;
   @ViewChild('form0') form0: TemplateFormComponent;
   @ViewChild('label4') label4: LabelComponent;
   @ViewChild('textbox0') textbox0: TextBoxComponent;
@@ -51,11 +56,18 @@ export class BenutzerProfilGenerated implements AfterViewInit, OnInit, OnDestroy
   @ViewChild('roleNamesLabel') roleNamesLabel: LabelComponent;
   @ViewChild('roleNames') roleNames: ListBoxComponent;
   @ViewChild('requiredValidator3') requiredValidator3: RequiredValidatorComponent;
+  @ViewChild('passwordLabel') passwordLabel: LabelComponent;
+  @ViewChild('password') password: PasswordComponent;
+  @ViewChild('confirmPasswordLabel') confirmPasswordLabel: LabelComponent;
+  @ViewChild('confirmPassword') confirmPassword: PasswordComponent;
   @ViewChild('label19') label19: LabelComponent;
   @ViewChild('notiz') notiz: TextAreaComponent;
-  @ViewChild('panel3') panel3: PanelComponent;
-  @ViewChild('panel1') panel1: PanelComponent;
+  @ViewChild('button4') button4: ButtonComponent;
   @ViewChild('bild') bild: PanelComponent;
+  @ViewChild('bildUrl') bildUrl: ImageComponent;
+  @ViewChild('uploadBildBase') uploadBildBase: UploadComponent;
+  @ViewChild('buttonBildEntfernen') buttonBildEntfernen: ButtonComponent;
+  @ViewChild('panel1') panel1: PanelComponent;
 
   router: Router;
 
@@ -82,10 +94,12 @@ export class BenutzerProfilGenerated implements AfterViewInit, OnInit, OnDestroy
   dbHopeKurseTextbausteine: DbHopeKurseTextbausteineService;
 
   security: SecurityService;
+  strBildDateiName: any;
   rstRollen: any;
   dsoBenutzer: any;
   strNameKontakt: any;
   dsoUser: any;
+  dsoBase: any;
   parameters: any;
 
   constructor(private injector: Injector) {
@@ -136,6 +150,8 @@ export class BenutzerProfilGenerated implements AfterViewInit, OnInit, OnDestroy
 
 
   load() {
+    this.strBildDateiName = 'Unbekannt';
+
     this.dbHopeKurseTextbausteine.getVwRollens(null, null, null, null, null, null, null, null)
     .subscribe((result: any) => {
       this.rstRollen = result.value;
@@ -152,6 +168,13 @@ export class BenutzerProfilGenerated implements AfterViewInit, OnInit, OnDestroy
       this.security.getUserById(`${this.dsoBenutzer.AspNetUsers_Id}`)
       .subscribe((result: any) => {
         this.dsoUser = result;
+      }, (result: any) => {
+
+      });
+
+      this.dbHopeKurseTextbausteine.getBaseByBaseId(null, this.dsoBenutzer.BaseID)
+      .subscribe((result: any) => {
+        this.dsoBase = result;
       }, (result: any) => {
 
       });
@@ -178,6 +201,68 @@ export class BenutzerProfilGenerated implements AfterViewInit, OnInit, OnDestroy
       });
     }, (result: any) => {
       this.notificationService.notify({ severity: "error", summary: ``, detail: `Benutzer (Schritt 1) konnte nicht aktualisiert werden!` });
+    });
+  }
+
+  button4Click(event: any) {
+    this.dsoUser.UserName = this.dsoBenutzer.BenutzerEMail 
+
+    this.security.updateUser(`${this.dsoBenutzer.AspNetUsers_Id}`, this.dsoUser)
+    .subscribe((result: any) => {
+      this.dbHopeKurseTextbausteine.updateBenutzer(null, this.dsoBenutzer.BenutzerID, this.dsoBenutzer)
+      .subscribe((result: any) => {
+        this.notificationService.notify({ severity: "success", summary: ``, detail: `Benutzer aktualisiert` });
+      }, (result: any) => {
+        this.notificationService.notify({ severity: "error", summary: ``, detail: `Benutzer (Schritt 2) konnte nicht aktualisiert werden!` })
+        .subscribe(() => {
+
+        });
+      });
+    }, (result: any) => {
+      this.notificationService.notify({ severity: "error", summary: ``, detail: `Benutzer (Schritt 1) konnte nicht aktualisiert werden!` });
+    });
+  }
+
+  uploadBildBaseBeforeUpload(event: any) {
+    var strDateiName = this.uploadBildBase.fileUpload.files[0].name;
+
+var strDateiEndung = strDateiName.substring(strDateiName.indexOf("."));
+
+this.strBildDateiName = this.dsoBase.BaseID + strDateiEndung;
+
+this.dsoBase.BildURL = 'https://hopekurse-textbausteine.app/upload/bilder/base/' + this.strBildDateiName;
+  }
+
+  uploadBildBaseError(event: any) {
+    this.notificationService.notify({ severity: "error", summary: `Bild`, detail: `Hochladen fehlgeschlagen!` });
+  }
+
+  uploadBildBaseUpload(event: any) {
+    this.dbHopeKurseTextbausteine.updateBase(null, this.dsoBase.BaseID, this.dsoBase)
+    .subscribe((result: any) => {
+
+    }, (result: any) => {
+
+    });
+
+    this.notificationService.notify({ severity: "success", summary: `Bild`, detail: `Erfolgreich hochgeladen!` });
+  }
+
+  buttonBildEntfernenClick(event: any) {
+    this.dialogService.open(MeldungJaNeinComponent, { parameters: {strMeldung: "Soll das Bild von '" + this.dsoBase.Name1 + " " + this.dsoBase.Name2 + "' entfernt werden?"}, title: `Bild entfernen` })
+        .afterClosed().subscribe(result => {
+              if (result == 'Ja') {
+        this.dsoBase.BildURL = 'https://hopekurse-textbausteine.app/upload/bilder/base/KeinBildPerson.png';
+      }
+
+      if (result == 'Ja') {
+              this.dbHopeKurseTextbausteine.updateBase(null, this.dsoBase.BaseID, this.dsoBase)
+        .subscribe((result: any) => {
+              this.notificationService.notify({ severity: "success", summary: ``, detail: `Bild entfernt` });
+        }, (result: any) => {
+              this.notificationService.notify({ severity: "error", summary: ``, detail: `Bild konnte nicht entfernt werden!` });
+        });
+      }
     });
   }
 }

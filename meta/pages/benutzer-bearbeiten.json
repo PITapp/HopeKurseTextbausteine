@@ -73,7 +73,7 @@
                                 "textAlign": "left",
                                 "width": "100%"
                               },
-                              "text": "Anmeldename",
+                              "text": "Benutzername",
                               "type": "label"
                             }
                           ],

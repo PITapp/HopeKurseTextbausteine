@@ -5,14 +5,14 @@
       </rz-heading>
       <rz-heading #heading1 size="H3" [style]="{'color': '#e5ecef', 'display': 'inline-block', 'marginTop': '7px', 'paddingLeft': '10px', 'paddingRight': '10px'}" text="|">
       </rz-heading>
-      <rz-heading #heading2 size="H3" [style]="{'color': '#5d717b', 'display': 'inline', 'fontSize': '21px', 'fontWeight': 'normal'}" text="{{dsoTextbausteine?.TitelTextbaustein}}
-      {{dsoTextbausteine?.UntertitelTextbaustein ? ' · ' + dsoTextbausteine?.UntertitelTextbaustein : ''}}
-      {{dsoTextbausteine?.IbsiTextbausteineAutoren.Name ? ' · ' + dsoTextbausteine?.IbsiTextbausteineAutoren.Name : ''}}
-      {{dsoTextbausteine?.IbsiKurse.Titel ? ' · ' + dsoTextbausteine?.IbsiKurse.Titel : ''}}" >
+      <rz-heading #heading2 size="H3" [style]="{'color': '#789BC0', 'display': 'inline', 'fontSize': '21px', 'fontWeight': 'normal'}" text="{{dsoTextbausteine?.TitelTextbaustein ? dsoTextbausteine?.TitelTextbaustein : 'Kein Textbaustein ausgewählt!'}}
+      {{dsoTextbausteine?.UntertitelTextbaustein ? '&nbsp; ⁞ &nbsp;&nbsp;' + dsoTextbausteine?.UntertitelTextbaustein : ''}}
+      {{dsoTextbausteine?.IbsiTextbausteineAutoren.Name ? '&nbsp; ⁞ &nbsp;&nbsp;' + dsoTextbausteine?.IbsiTextbausteineAutoren.Name : ''}}
+      {{dsoTextbausteine?.IbsiKurse.Titel ? '&nbsp; ⁞ &nbsp;&nbsp;' + dsoTextbausteine?.IbsiKurse.Titel : ''}}" *ngIf="bolAnzeigenTitelTextbaustein" >
       </rz-heading>
     </div>
   </div>
-  <rz-tabs #tabs0 [style]="{'float': 'none'}">
+  <rz-tabs #tabsTextbausteine [style]="{'float': 'none'}" (change)="tabsTextbausteineChange($event)">
     <rz-tabs-item [selected]="true" text="Daten">
       <div class="row">
         <div class="col-md-2">
@@ -29,7 +29,7 @@
                 </rz-label>
               </div>
               <div class="col-md-12" [ngStyle]="{'display': 'block'}">
-                <rz-dropdown #filterKursNr [allowClear]="true" [allowFiltering]="false" [data]="rstKurse" [multiple]="false" placeholder="&nbsp;" [style]="{'height': '28px', 'width': '100%'}" textProperty="Titel" [(ngModel)]="dsoBenutzer && dsoBenutzer.FilterKursNr" valueProperty="KursNr" name="filterKursNr" class="textbausteine-filter-auswahl">
+                <rz-dropdown #filterKursNr [allowClear]="true" [allowFiltering]="false" [data]="rstKurse" [multiple]="false" placeholder="&nbsp;" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'height': '28px', 'width': '100%'}" textProperty="Titel" [(ngModel)]="dsoBenutzer && dsoBenutzer.FilterKursNr" valueProperty="KursNr" name="filterKursNr" class="textbausteine-filter-auswahl">
                 </rz-dropdown>
               </div>
             </div>
@@ -141,7 +141,7 @@
             <div [ngStyle]="{'marginLeft': '-36px', 'marginRight': '-36px', 'marginTop': '-12px'}" class="row">
               <div class="col-md-12" [ngStyle]="{}">
                 <rz-html #htmlEditorTextbausteine>
-                  <p-editor id="editorTextbausteine" [(ngModel)]="strTextbausteinHTML" [style]="{'height': '645px'}">
+                  <p-editor [(ngModel)]="strTextbausteinHTML" [style]="{'height': '645px'}">
                       <p-header>
                   		<span class="ql-formats">
                              <select class="ql-font"></select>
@@ -187,13 +187,13 @@
             <rz-panel-header>
               <div [ngStyle]="{'display': 'inline-block'}" class="row">
                 <div class="col-md-12 align-items-start d-flex" [ngStyle]="{'display': 'flex'}">
-                  <rz-button #buttonKopieren buttonStyle="light" icon="content_copy" size="sm" [style]="{'color': '#D86E13', 'display': 'inline-block', 'float': 'none'}" text="&nbsp;Kopieren" (click)="buttonKopierenClick($event)">
+                  <rz-button #buttonKopieren buttonStyle="light" icon="content_copy" size="sm" [style]="{'color': '#D86E13', 'display': 'inline-block', 'float': 'none'}" text="Kopieren" (click)="buttonKopierenClick($event)">
                   </rz-button>
-                  <rz-button #buttonDokument buttonStyle="light" icon="folder_open" size="sm" [style]="{'color': '#D86E13', 'display': 'inline-block', 'marginLeft': '10px'}" text="&nbsp;Dokument" (click)="buttonDokumentClick($event)">
+                  <rz-button #buttonDokument buttonStyle="light" icon="folder_open" size="sm" [style]="{'color': '#D86E13', 'display': 'inline-block', 'marginLeft': '10px'}" text="Dokument" (click)="buttonDokumentClick($event)">
                   </rz-button>
-                  <rz-button #buttonFavorit buttonStyle="light" icon="star_outline" size="sm" [style]="{'color': '#D86E13', 'display': 'inline-block', 'marginLeft': '10px'}" text="&nbsp;Favorit" (click)="buttonFavoritClick($event)">
+                  <rz-button #buttonFavorit buttonStyle="light" icon="star_outline" size="sm" [style]="{'color': '#D86E13', 'display': 'inline-block', 'marginLeft': '10px'}" text="Favorit" (click)="buttonFavoritClick($event)">
                   </rz-button>
-                  <rz-button #buttonSpeichern buttonStyle="light" buttonType="submit" icon="done" size="sm" [style]="{'color': '#5dbf74', 'display': 'inline-block', 'marginLeft': '10px', 'marginRight': '-9px'}" text="&nbsp;Speichern" (click)="buttonSpeichernClick($event)">
+                  <rz-button #buttonSpeichern buttonStyle="light" buttonType="submit" icon="done" size="sm" [style]="{'color': '#5dbf74', 'display': 'inline-block', 'marginLeft': '10px', 'marginRight': '-9px'}" text="Speichern" (click)="buttonSpeichernClick($event)">
                   </rz-button>
                 </div>
               </div>
@@ -204,7 +204,7 @@
     </rz-tabs-item>
     <rz-tabs-item [selected]="false" text="Favoriten">
       <div class="row">
-        <div class="col-md-6" [ngStyle]="{'paddingLeft': '5px'}">
+        <div class="col-md-7" [ngStyle]="{}">
           <rz-panel #panel2 [allowCollapse]="false" [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="{{rstFavoritenCount == 0 ? '' : rstFavoritenCount}} Favoriten">
             <rz-grid #gridFavoriten [allowAdd]="false" [allowColumnResize]="true" [allowDelete]="false" [allowFiltering]="false" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="false" [alwaysShowPager]="false" applyFilterText="Apply" clearFilterText="Clear" [confirmDelete]="false" containsText="Contains" [count]="rstFavoritenCount" [data]="rstFavoriten" emptyText="Keine Favoriten vorhanden" endsWithText="Ends with" equalsText="Equals" filterCaseSensitivity="caseInsensitive" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="22" startsWithText="Starts with" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'height': '700px', 'marginLeft': '-10px', 'marginRight': '-10px', 'marginTop': '-13px'}" (loadData)="gridFavoritenLoadData($event)" (rowSelect)="gridFavoritenRowSelect($event)">
               <rz-grid-column property="AutorKrzel" title="Autor" width="50px" type="string">
@@ -233,7 +233,7 @@
             </rz-panel-header>
           </rz-panel>
         </div>
-        <div class="col-md-6" [ngStyle]="{'paddingLeft': '5px'}">
+        <div class="col-md-5" [ngStyle]="{'paddingLeft': '5px'}">
           <rz-panel #panel3 [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" [text]="dsoBenutzerTextbausteineFavoriten?.TitelTextbaustein">
             <div [ngStyle]="{'marginLeft': '-36px', 'marginRight': '-36px', 'marginTop': '-12px'}" class="row">
               <div class="col-md-12" [ngStyle]="{}">
@@ -297,7 +297,7 @@
     </rz-tabs-item>
     <rz-tabs-item [selected]="false" text="Verlauf">
       <div class="row">
-        <div class="col-md-6" [ngStyle]="{'paddingLeft': '5px'}">
+        <div class="col-md-7" [ngStyle]="{}">
           <rz-panel #panel1 [allowCollapse]="false" [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="{{rstVerlaufCount == 0 ? '' : rstVerlaufCount}} Verlauf">
             <rz-grid #gridVerlauf [allowAdd]="false" [allowColumnResize]="true" [allowDelete]="false" [allowFiltering]="false" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="false" [alwaysShowPager]="false" applyFilterText="Apply" clearFilterText="Clear" [confirmDelete]="false" containsText="Contains" [count]="rstVerlaufCount" [data]="rstVerlauf" emptyText="Kein Verlauf vorhanden" endsWithText="Ends with" equalsText="Equals" filterCaseSensitivity="caseInsensitive" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="22" startsWithText="Starts with" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'height': '700px', 'marginLeft': '-10px', 'marginRight': '-10px', 'marginTop': '-13px'}" (loadData)="gridVerlaufLoadData($event)" (rowSelect)="gridVerlaufRowSelect($event)">
               <rz-grid-column property="AutorKrzel" title="Autor" width="50px" type="string">
@@ -326,7 +326,7 @@
             </rz-panel-header>
           </rz-panel>
         </div>
-        <div class="col-md-6" [ngStyle]="{'paddingLeft': '5px'}">
+        <div class="col-md-5" [ngStyle]="{'paddingLeft': '5px'}">
           <rz-panel #panel5 [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" [text]="dsoBenutzerTextbausteineVerlauf?.TitelTextbaustein">
             <div [ngStyle]="{'marginLeft': '-36px', 'marginRight': '-36px', 'marginTop': '-12px'}" class="row">
               <div class="col-md-12" [ngStyle]="{}">

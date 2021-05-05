@@ -40,13 +40,14 @@
                   "name": "heading2",
                   "size": "H3",
                   "style": {
-                    "color": "#5d717b",
+                    "color": "#789BC0",
                     "display": "inline",
                     "fontSize": "21px",
                     "fontWeight": "normal"
                   },
-                  "text": "{{dsoTextbausteine?.TitelTextbaustein}}\n{{dsoTextbausteine?.UntertitelTextbaustein ? ' · ' + dsoTextbausteine?.UntertitelTextbaustein : ''}}\n{{dsoTextbausteine?.IbsiTextbausteineAutoren.Name ? ' · ' + dsoTextbausteine?.IbsiTextbausteineAutoren.Name : ''}}\n{{dsoTextbausteine?.IbsiKurse.Titel ? ' · ' + dsoTextbausteine?.IbsiKurse.Titel : ''}}",
-                  "type": "heading"
+                  "text": "{{dsoTextbausteine?.TitelTextbaustein ? dsoTextbausteine?.TitelTextbaustein : 'Kein Textbaustein ausgewählt!'}}\n{{dsoTextbausteine?.UntertitelTextbaustein ? '&nbsp; ⁞ &nbsp;&nbsp;' + dsoTextbausteine?.UntertitelTextbaustein : ''}}\n{{dsoTextbausteine?.IbsiTextbausteineAutoren.Name ? '&nbsp; ⁞ &nbsp;&nbsp;' + dsoTextbausteine?.IbsiTextbausteineAutoren.Name : ''}}\n{{dsoTextbausteine?.IbsiKurse.Titel ? '&nbsp; ⁞ &nbsp;&nbsp;' + dsoTextbausteine?.IbsiKurse.Titel : ''}}",
+                  "type": "heading",
+                  "visible": "${bolAnzeigenTitelTextbaustein}"
                 }
               ],
               "name": "col46",
@@ -70,6 +71,14 @@
           "type": "row"
         },
         {
+          "events": {
+            "change": [
+              {
+                "code": "switch (${event.index}) {\n  case 0:\n    ${bolAnzeigenTitelTextbaustein} = true\n    break;\n\n  case 1:\n    ${bolAnzeigenTitelTextbaustein} = false\n    break;\n\n  case 2:\n    ${bolAnzeigenTitelTextbaustein} = false\n    break;\n}",
+                "type": "execute"
+              }
+            ]
+          },
           "items": [
             {
               "components": [
@@ -167,6 +176,7 @@
                                       "name": "filterKursNr",
                                       "placeholder": "&nbsp;",
                                       "style": {
+                                        "border": "1px solid rgba(0, 0, 0, 0)",
                                         "height": "28px",
                                         "width": "100%"
                                       },
@@ -1076,7 +1086,7 @@
                                   "class": "col-md-12",
                                   "components": [
                                     {
-                                      "content": "<p-editor id=\"editorTextbausteine\" [(ngModel)]=\"strTextbausteinHTML\" [style]=\"{'height': '645px'}\">\n    <p-header>\n\t\t<span class=\"ql-formats\">\n           <select class=\"ql-font\"></select>\n\t\t   <select class=\"ql-header\">\n\t\t\t    <option value=\"1\">Titel 1</option>\n\t\t\t    <option value=\"2\">Titel 2</option>\n\t\t\t    <option value=\"3\">Titel 3</option>\n\t\t\t    <option value=\"4\">Titel 4</option>\n\t\t\t    <option value=\"5\">Titel 5</option>\n\t\t\t    <option value=\"6\">Titel 6</option>\n\t\t\t    <option selected>Normal</option>\n\t\t\t</select>\n\t\t</span>\n\t\t\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-bold\" aria-label=\"Bold\">Fett</button>\n\t\t\t<button class=\"ql-italic\" aria-label=\"Italic\"></button>\n\t\t\t<button class=\"ql-underline\" aria-label=\"Underline\"></button>\n\t\t</span>\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-align\"></select>\n\t\t</span>\t\t\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-list\" value=\"ordered\"></button>\n\t\t\t<button class=\"ql-list\" value=\"bullet\"></button>\n\t\t\t<button class=\"ql-indent\" value=\"-1\"></button>\n\t\t\t<button class=\"ql-indent\" value=\"+1\"></button>\n\t\t</span>\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-color\"></select>\n\t\t\t<select class=\"ql-background\"></select>\n\t\t</span>\n\n    </p-header>\n\n</p-editor>",
+                                      "content": "<p-editor [(ngModel)]=\"strTextbausteinHTML\" [style]=\"{'height': '645px'}\">\n    <p-header>\n\t\t<span class=\"ql-formats\">\n           <select class=\"ql-font\"></select>\n\t\t   <select class=\"ql-header\">\n\t\t\t    <option value=\"1\">Titel 1</option>\n\t\t\t    <option value=\"2\">Titel 2</option>\n\t\t\t    <option value=\"3\">Titel 3</option>\n\t\t\t    <option value=\"4\">Titel 4</option>\n\t\t\t    <option value=\"5\">Titel 5</option>\n\t\t\t    <option value=\"6\">Titel 6</option>\n\t\t\t    <option selected>Normal</option>\n\t\t\t</select>\n\t\t</span>\n\t\t\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-bold\" aria-label=\"Bold\">Fett</button>\n\t\t\t<button class=\"ql-italic\" aria-label=\"Italic\"></button>\n\t\t\t<button class=\"ql-underline\" aria-label=\"Underline\"></button>\n\t\t</span>\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-align\"></select>\n\t\t</span>\t\t\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-list\" value=\"ordered\"></button>\n\t\t\t<button class=\"ql-list\" value=\"bullet\"></button>\n\t\t\t<button class=\"ql-indent\" value=\"-1\"></button>\n\t\t\t<button class=\"ql-indent\" value=\"+1\"></button>\n\t\t</span>\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-color\"></select>\n\t\t\t<select class=\"ql-background\"></select>\n\t\t</span>\n\n    </p-header>\n\n</p-editor>",
                                       "name": "htmlEditorTextbausteine",
                                       "type": "html"
                                     }
@@ -1106,32 +1116,33 @@
                                       "events": {
                                         "click": [
                                           {
-                                            "code": "var textArea = document.createElement(\"textarea\");\ntextArea.value = this.dsoTextbausteine.TextbausteinHTML;\ndocument.body.appendChild(textArea);\ntextArea.focus();\ntextArea.select();\n\ntry {\n    var successful = document.execCommand('copy');\n    var msg = successful ? 'successful' : 'unsuccessful';\n    console.log('Copying text command was ' + msg);\n} catch (err) {\n    console.log('Oops, unable to copy');\n}\n\ndocument.body.removeChild(textArea);",
+                                            "code": "// Create container for the HTML\n  // [1]\n  var container = document.createElement('div')\n  container.innerHTML = this.strTextbausteinHTML\n\n  // Hide element\n  // [2]\n  container.style.position = 'fixed'\n  container.style.pointerEvents = 'none'\n  container.style.opacity = 0\n\n  // Mount the container to the DOM to make `contentWindow` available\n  // [3]\n  document.body.appendChild(container)\n\n  // Copy to clipboard\n  // [4]\n  window.getSelection().removeAllRanges()\n\n  var range = document.createRange()\n  range.selectNode(container)\n  window.getSelection().addRange(range)\n\n  // [5]\n  document.execCommand('copy')\n  \n  // Remove the container\n  // [6]\n  document.body.removeChild(container)",
                                             "type": "execute"
                                           },
                                           {
+                                            "detail": "Text wurde kopiert",
+                                            "severity": "success",
+                                            "type": "notify"
+                                          },
+                                          {
                                             "code": "${dsoVerlauf.BenutzerID} = ${dsoBenutzer.BenutzerID};\n${dsoVerlauf.Am} = new Date();\n${dsoVerlauf.TextbausteinNr} = ${dsoTextbausteine.TextbausteinNr};",
-                                            "error": [],
-                                            "then": [
+                                            "type": "execute"
+                                          },
+                                          {
+                                            "name": "dbHopeKurseTextbausteine.createBenutzerTextbausteineVerlauf",
+                                            "parameters": [
                                               {
-                                                "error": [],
-                                                "name": "dbHopeKurseTextbausteine.createBenutzerTextbausteineVerlauf",
-                                                "parameters": [
-                                                  {
-                                                    "name": "BenutzerTextbausteineVerlauf",
-                                                    "value": "${dsoVerlauf}"
-                                                  }
-                                                ],
-                                                "then": [
-                                                  {
-                                                    "code": "this.gridVerlauf.load();",
-                                                    "type": "execute"
-                                                  }
-                                                ],
-                                                "type": "invoke"
+                                                "name": "BenutzerTextbausteineVerlauf",
+                                                "value": "${dsoVerlauf}"
                                               }
                                             ],
-                                            "type": "execute"
+                                            "then": [
+                                              {
+                                                "code": "this.gridVerlauf.load();",
+                                                "type": "execute"
+                                              }
+                                            ],
+                                            "type": "invoke"
                                           }
                                         ]
                                       },
@@ -1143,7 +1154,7 @@
                                         "display": "inline-block",
                                         "float": "none"
                                       },
-                                      "text": "&nbsp;Kopieren",
+                                      "text": "Kopieren",
                                       "tooltip": "",
                                       "type": "button"
                                     },
@@ -1166,7 +1177,7 @@
                                         "display": "inline-block",
                                         "marginLeft": "10px"
                                       },
-                                      "text": "&nbsp;Dokument",
+                                      "text": "Dokument",
                                       "tooltip": "",
                                       "type": "button"
                                     },
@@ -1177,37 +1188,36 @@
                                           {
                                             "code": "${dsoFavoriten.BenutzerID} = ${dsoBenutzer.BenutzerID};\n${dsoFavoriten.Am} = new Date();\n${dsoFavoriten.TextbausteinNr} = ${dsoTextbausteine.TextbausteinNr};",
                                             "error": [],
-                                            "then": [
+                                            "then": [],
+                                            "type": "execute"
+                                          },
+                                          {
+                                            "error": [
                                               {
-                                                "error": [
-                                                  {
-                                                    "detail": "Textbaustein ist schon als Favorit markiert",
-                                                    "severity": "info",
-                                                    "type": "notify"
-                                                  }
-                                                ],
-                                                "name": "dbHopeKurseTextbausteine.createBenutzerTextbausteineFavoriten",
-                                                "parameters": [
-                                                  {
-                                                    "name": "BenutzerTextbausteineFavoriten",
-                                                    "value": "${dsoFavoriten}"
-                                                  }
-                                                ],
-                                                "then": [
-                                                  {
-                                                    "code": "this.gridFavoriten.load();",
-                                                    "type": "execute"
-                                                  },
-                                                  {
-                                                    "detail": "Textbaustein als Favorit markiert",
-                                                    "severity": "success",
-                                                    "type": "notify"
-                                                  }
-                                                ],
-                                                "type": "invoke"
+                                                "detail": "Textbaustein ist schon Favorit",
+                                                "severity": "info",
+                                                "type": "notify"
                                               }
                                             ],
-                                            "type": "execute"
+                                            "name": "dbHopeKurseTextbausteine.createBenutzerTextbausteineFavoriten",
+                                            "parameters": [
+                                              {
+                                                "name": "BenutzerTextbausteineFavoriten",
+                                                "value": "${dsoFavoriten}"
+                                              }
+                                            ],
+                                            "then": [
+                                              {
+                                                "detail": "Textbaustein als Favorit markiert",
+                                                "severity": "success",
+                                                "type": "notify"
+                                              },
+                                              {
+                                                "code": "this.gridFavoriten.load();",
+                                                "type": "execute"
+                                              }
+                                            ],
+                                            "type": "invoke"
                                           }
                                         ]
                                       },
@@ -1219,7 +1229,7 @@
                                         "display": "inline-block",
                                         "marginLeft": "10px"
                                       },
-                                      "text": "&nbsp;Favorit",
+                                      "text": "Favorit",
                                       "tooltip": "",
                                       "type": "button"
                                     },
@@ -1276,7 +1286,7 @@
                                         "marginLeft": "10px",
                                         "marginRight": "-9px"
                                       },
-                                      "text": "&nbsp;Speichern",
+                                      "text": "Speichern",
                                       "tooltip": "",
                                       "type": "button"
                                     }
@@ -1323,7 +1333,7 @@
                 {
                   "components": [
                     {
-                      "class": "col-md-6",
+                      "class": "col-md-7",
                       "components": [
                         {
                           "allowCollapse": false,
@@ -1432,7 +1442,14 @@
                                       },
                                       {
                                         "code": "this.gridFavoriten.onSelect(this.rstFavoriten[0]);",
+                                        "error": [],
                                         "type": "execute"
+                                      },
+                                      {
+                                        "condition": "${rstFavoritenCount} == 0",
+                                        "name": "strTextbausteinHTMLFavoriten",
+                                        "type": "set",
+                                        "value": "null"
                                       }
                                     ],
                                     "type": "invoke"
@@ -1563,13 +1580,11 @@
                         }
                       ],
                       "name": "col38",
-                      "style": {
-                        "paddingLeft": "5px"
-                      },
+                      "style": {},
                       "type": "col"
                     },
                     {
-                      "class": "col-md-6",
+                      "class": "col-md-5",
                       "components": [
                         {
                           "components": [
@@ -1690,7 +1705,7 @@
                 {
                   "components": [
                     {
-                      "class": "col-md-6",
+                      "class": "col-md-7",
                       "components": [
                         {
                           "allowCollapse": false,
@@ -1806,6 +1821,12 @@
                                       {
                                         "code": "this.gridVerlauf.onSelect(this.rstVerlauf[0]);",
                                         "type": "execute"
+                                      },
+                                      {
+                                        "condition": "${rstVerlaufCount} == 0",
+                                        "name": "strTextbausteinHTMLVerlauf",
+                                        "type": "set",
+                                        "value": "null"
                                       }
                                     ],
                                     "type": "invoke"
@@ -1936,13 +1957,11 @@
                         }
                       ],
                       "name": "col22",
-                      "style": {
-                        "paddingLeft": "5px"
-                      },
+                      "style": {},
                       "type": "col"
                     },
                     {
-                      "class": "col-md-6",
+                      "class": "col-md-5",
                       "components": [
                         {
                           "components": [
@@ -2059,7 +2078,7 @@
               "text": "Verlauf"
             }
           ],
-          "name": "tabs0",
+          "name": "tabsTextbausteine",
           "style": {
             "float": "none"
           },
@@ -2073,6 +2092,11 @@
   ],
   "events": {
     "load": [
+      {
+        "name": "varTest",
+        "type": "set",
+        "value": "{\"theme\": \"bubble\"}"
+      },
       {
         "name": "dbHopeKurseTextbausteine.getBenutzers",
         "parameters": [
@@ -2177,6 +2201,11 @@
         "name": "onKeyEnterFilterText",
         "type": "set",
         "value": "() => { console.log('Enter gedrückt'); }"
+      },
+      {
+        "name": "bolAnzeigenTitelTextbaustein",
+        "type": "set",
+        "value": "true"
       }
     ]
   },

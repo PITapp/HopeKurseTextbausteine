@@ -38,7 +38,7 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
   @ViewChild('heading0') heading0: HeadingComponent;
   @ViewChild('heading1') heading1: HeadingComponent;
   @ViewChild('heading2') heading2: HeadingComponent;
-  @ViewChild('tabs0') tabs0: TabsComponent;
+  @ViewChild('tabsTextbausteine') tabsTextbausteine: TabsComponent;
   @ViewChild('panel0') panel0: PanelComponent;
   @ViewChild('filterTextbausteinArtCode') filterTextbausteinArtCode: ListBoxComponent;
   @ViewChild('label4') label4: LabelComponent;
@@ -108,6 +108,7 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
   dbHopeKurseTextbausteine: DbHopeKurseTextbausteineService;
 
   security: SecurityService;
+  varTest: any;
   dsoBenutzer: any;
   rstTextbausteineArten: any;
   rstKurse: any;
@@ -117,6 +118,7 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
   dsoFavoriten: any;
   dsoVerlauf: any;
   onKeyEnterFilterText: any;
+  bolAnzeigenTitelTextbaustein: any;
   parameters: any;
   letzteTextbausteinNr: any;
   rstTextbausteine: any;
@@ -180,6 +182,8 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
 
 
   load() {
+    this.varTest = {"theme": "bubble"};
+
     this.dbHopeKurseTextbausteine.getBenutzers(`BenutzerName eq '${this.security.user.name}'`, null, null, null, null, null, null, null)
     .subscribe((result: any) => {
       this.dsoBenutzer = result.value[0];
@@ -223,6 +227,24 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
     this.dsoVerlauf = {BenutzerID: '', Am: '', TextbausteinNr: ''};
 
     this.onKeyEnterFilterText = () => { console.log('Enter gedrückt'); };
+
+    this.bolAnzeigenTitelTextbaustein = true;
+  }
+
+  tabsTextbausteineChange(event: any) {
+    switch (event.index) {
+  case 0:
+    this.bolAnzeigenTitelTextbaustein = true
+    break;
+
+  case 1:
+    this.bolAnzeigenTitelTextbaustein = false
+    break;
+
+  case 2:
+    this.bolAnzeigenTitelTextbaustein = false
+    break;
+}
   }
 
   buttonZuruecksetzenClick(event: any) {
@@ -347,33 +369,45 @@ ${this.dsoBenutzer.FilterInfo ? ' and contains(tolower(InfoText),tolower(\'' + t
   }
 
   buttonKopierenClick(event: any) {
-    var textArea = document.createElement("textarea");
-textArea.value = this.dsoTextbausteine.TextbausteinHTML;
-document.body.appendChild(textArea);
-textArea.focus();
-textArea.select();
+    // Create container for the HTML
+  // [1]
+  var container = document.createElement('div')
+  container.innerHTML = this.strTextbausteinHTML
 
-try {
-    var successful = document.execCommand('copy');
-    var msg = successful ? 'successful' : 'unsuccessful';
-    console.log('Copying text command was ' + msg);
-} catch (err) {
-    console.log('Oops, unable to copy');
-}
+  // Hide element
+  // [2]
+  container.style.position = 'fixed'
+  container.style.pointerEvents = 'none'
+  container.style.opacity = 0
 
-document.body.removeChild(textArea);
+  // Mount the container to the DOM to make `contentWindow` available
+  // [3]
+  document.body.appendChild(container)
 
-    Promise.resolve().then(() => {
-      this.dsoVerlauf.BenutzerID = this.dsoBenutzer.BenutzerID;
+  // Copy to clipboard
+  // [4]
+  window.getSelection().removeAllRanges()
+
+  var range = document.createRange()
+  range.selectNode(container)
+  window.getSelection().addRange(range)
+
+  // [5]
+  document.execCommand('copy')
+  
+  // Remove the container
+  // [6]
+  document.body.removeChild(container)
+
+    this.notificationService.notify({ severity: "success", summary: ``, detail: `Text wurde kopiert` });
+
+    this.dsoVerlauf.BenutzerID = this.dsoBenutzer.BenutzerID;
 this.dsoVerlauf.Am = new Date();
 this.dsoVerlauf.TextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
-    }).then((result: any) => {
-      this.dbHopeKurseTextbausteine.createBenutzerTextbausteineVerlauf(null, this.dsoVerlauf)
-      .subscribe((result: any) => {
-        this.gridVerlauf.load();
-      }, (result: any) => {
 
-      });
+    this.dbHopeKurseTextbausteine.createBenutzerTextbausteineVerlauf(null, this.dsoVerlauf)
+    .subscribe((result: any) => {
+      this.gridVerlauf.load();
     }, (result: any) => {
 
     });
@@ -384,21 +418,17 @@ this.dsoVerlauf.TextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
   }
 
   buttonFavoritClick(event: any) {
-    Promise.resolve().then(() => {
-      this.dsoFavoriten.BenutzerID = this.dsoBenutzer.BenutzerID;
+    this.dsoFavoriten.BenutzerID = this.dsoBenutzer.BenutzerID;
 this.dsoFavoriten.Am = new Date();
 this.dsoFavoriten.TextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
-    }).then((result: any) => {
-      this.dbHopeKurseTextbausteine.createBenutzerTextbausteineFavoriten(null, this.dsoFavoriten)
-      .subscribe((result: any) => {
-        this.gridFavoriten.load();
 
-        this.notificationService.notify({ severity: "success", summary: ``, detail: `Textbaustein als Favorit markiert` });
-      }, (result: any) => {
-        this.notificationService.notify({ severity: "info", summary: ``, detail: `Textbaustein ist schon als Favorit markiert` });
-      });
+    this.dbHopeKurseTextbausteine.createBenutzerTextbausteineFavoriten(null, this.dsoFavoriten)
+    .subscribe((result: any) => {
+      this.notificationService.notify({ severity: "success", summary: ``, detail: `Textbaustein als Favorit markiert` });
+
+      this.gridFavoriten.load();
     }, (result: any) => {
-
+      this.notificationService.notify({ severity: "info", summary: ``, detail: `Textbaustein ist schon Favorit` });
     });
   }
 
@@ -423,6 +453,10 @@ this.dsoFavoriten.TextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
       this.rstFavoritenCount = event.top != null && event.skip != null ? result['@odata.count'] : result.value.length;
 
       this.gridFavoriten.onSelect(this.rstFavoriten[0]);
+
+      if (this.rstFavoritenCount == 0) {
+            this.strTextbausteinHTMLFavoriten = null;
+      }
     }, (result: any) => {
 
     });
@@ -462,6 +496,10 @@ this.dsoFavoriten.TextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
       this.rstVerlaufCount = event.top != null && event.skip != null ? result['@odata.count'] : result.value.length;
 
       this.gridVerlauf.onSelect(this.rstVerlauf[0]);
+
+      if (this.rstVerlaufCount == 0) {
+            this.strTextbausteinHTMLVerlauf = null;
+      }
     }, (result: any) => {
 
     });

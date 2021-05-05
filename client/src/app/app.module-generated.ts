@@ -40,11 +40,10 @@ import { ChartModule } from '@radzen/angular/dist/chart';
 import { SchedulerModule } from '@radzen/angular/dist/scheduler';
 import { DataListModule } from '@radzen/angular/dist/datalist';
 import { HtmlModule } from '@radzen/angular/dist/html';
-import { LoginModule } from '@radzen/angular/dist/login';
-import { FormModule } from '@radzen/angular/dist/form';
-import { NumericModule } from '@radzen/angular/dist/numeric';
 import { UploadModule } from '@radzen/angular/dist/upload';
+import { NumericModule } from '@radzen/angular/dist/numeric';
 import { CheckBoxModule } from '@radzen/angular/dist/checkbox';
+import { LoginModule } from '@radzen/angular/dist/login';
 import { SharedModule } from '@radzen/angular/dist/shared';
 import { NotificationModule } from '@radzen/angular/dist/notification';
 import { DialogModule } from '@radzen/angular/dist/dialog';
@@ -59,15 +58,11 @@ import { BenutzerComponent } from './benutzer/benutzer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EinstellungenComponent } from './einstellungen/einstellungen.component';
 import { BenutzerProfilComponent } from './benutzer-profil/benutzer-profil.component';
-import { LoginComponent } from './login/login.component';
-import { ProfileComponent } from './profile/profile.component';
-import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { ImpressumComponent } from './impressum/impressum.component';
 import { DatenschutzComponent } from './datenschutz/datenschutz.component';
 import { KontaktComponent } from './kontakt/kontakt.component';
 import { TextbausteineComponent } from './textbausteine/textbausteine.component';
 import { DokumenteComponent } from './dokumente/dokumente.component';
-import { NachrichtenComponent } from './nachrichten/nachrichten.component';
 import { KontakteComponent } from './kontakte/kontakte.component';
 import { KontakteNeuComponent } from './kontakte-neu/kontakte-neu.component';
 import { KontakteBearbeitenComponent } from './kontakte-bearbeiten/kontakte-bearbeiten.component';
@@ -83,17 +78,13 @@ import { EinstellungenInfotexteNeuComponent } from './einstellungen-infotexte-ne
 import { EinstellungenInfotexteBearbeitenComponent } from './einstellungen-infotexte-bearbeiten/einstellungen-infotexte-bearbeiten.component';
 import { MeldungLoeschenComponent } from './meldung-loeschen/meldung-loeschen.component';
 import { MeldungJaNeinComponent } from './meldung-ja-nein/meldung-ja-nein.component';
-import { ApplicationUsersComponent } from './application-users/application-users.component';
-import { ApplicationRolesComponent } from './application-roles/application-roles.component';
-import { RegisterApplicationUserComponent } from './register-application-user/register-application-user.component';
-import { AddApplicationRoleComponent } from './add-application-role/add-application-role.component';
-import { AddApplicationUserComponent } from './add-application-user/add-application-user.component';
-import { EditApplicationUserComponent } from './edit-application-user/edit-application-user.component';
 import { BenutzerBearbeitenComponent } from './benutzer-bearbeiten/benutzer-bearbeiten.component';
 import { TextbausteineNeuComponent } from './textbausteine-neu/textbausteine-neu.component';
 import { TextbausteineBearbeitenComponent } from './textbausteine-bearbeiten/textbausteine-bearbeiten.component';
 import { TextbausteineDuplizierenComponent } from './textbausteine-duplizieren/textbausteine-duplizieren.component';
 import { TextbausteineFelderAuswahlComponent } from './textbausteine-felder-auswahl/textbausteine-felder-auswahl.component';
+import { LoginComponent } from './login/login.component';
+import { VersionenComponent } from './versionen/versionen.component';
 import { LoginLayoutComponent } from './login-layout/login-layout.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 
@@ -108,15 +99,11 @@ export const PageDeclarations = [
   DashboardComponent,
   EinstellungenComponent,
   BenutzerProfilComponent,
-  LoginComponent,
-  ProfileComponent,
-  UnauthorizedComponent,
   ImpressumComponent,
   DatenschutzComponent,
   KontaktComponent,
   TextbausteineComponent,
   DokumenteComponent,
-  NachrichtenComponent,
   KontakteComponent,
   KontakteNeuComponent,
   KontakteBearbeitenComponent,
@@ -132,17 +119,13 @@ export const PageDeclarations = [
   EinstellungenInfotexteBearbeitenComponent,
   MeldungLoeschenComponent,
   MeldungJaNeinComponent,
-  ApplicationUsersComponent,
-  ApplicationRolesComponent,
-  RegisterApplicationUserComponent,
-  AddApplicationRoleComponent,
-  AddApplicationUserComponent,
-  EditApplicationUserComponent,
   BenutzerBearbeitenComponent,
   TextbausteineNeuComponent,
   TextbausteineBearbeitenComponent,
   TextbausteineDuplizierenComponent,
   TextbausteineFelderAuswahlComponent,
+  LoginComponent,
+  VersionenComponent,
 ];
 
 export const LayoutDeclarations = [
@@ -218,11 +201,10 @@ export const AppImports = [
   SchedulerModule,
   DataListModule,
   HtmlModule,
-  LoginModule,
-  FormModule,
-  NumericModule,
   UploadModule,
+  NumericModule,
   CheckBoxModule,
+  LoginModule,
   SharedModule,
   NotificationModule,
   DialogModule,

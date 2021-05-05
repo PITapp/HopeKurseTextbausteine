@@ -263,6 +263,29 @@
         },
         {
           "icon": "",
+          "name": "linkVersion",
+          "path": "versionen",
+          "style": {
+            "float": "right",
+            "marginTop": "-2px"
+          },
+          "text": "Version 1.21.057",
+          "type": "link"
+        },
+        {
+          "name": "label1",
+          "style": {
+            "color": "#88989b",
+            "float": "right",
+            "marginTop": "-2px",
+            "paddingLeft": "10px",
+            "paddingRight": "10px"
+          },
+          "text": "|",
+          "type": "label"
+        },
+        {
+          "icon": "",
           "name": "linkKontakt",
           "path": "kontakt",
           "style": {
@@ -273,7 +296,7 @@
           "type": "link"
         },
         {
-          "name": "label1",
+          "name": "label6",
           "style": {
             "color": "#88989b",
             "float": "right",

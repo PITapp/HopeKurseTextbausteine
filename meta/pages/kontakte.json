@@ -40,12 +40,12 @@
                   "name": "heading2",
                   "size": "H3",
                   "style": {
-                    "color": "#5d717b",
+                    "color": "#789BC0",
                     "display": "inline",
                     "fontSize": "21px",
                     "fontWeight": "normal"
                   },
-                  "text": "${dsoBase.Name1} ${dsoBase.Name2} · ${dsoBase.NameKuerzel}",
+                  "text": "${dsoBase.Name1} ${dsoBase.Name2}",
                   "type": "heading"
                 }
               ],

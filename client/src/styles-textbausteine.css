@@ -360,3 +360,14 @@ input:focus, textarea:focus {
 .listbox-mit-auswahl .ui-listbox-item.ui-state-highlight {
   background-color: #CBD5E8;
 }
+
+/* --- Auswahlhacken in Listbox einstellen --- */
+.ui-chkbox-box.ui-state-active {
+  border-color: #98BED7;
+  background: #98BED7;
+}
+
+.ui-chkbox-box.ui-state-active:hover {
+  border-color: #789BC0;
+  background: #789BC0;
+}

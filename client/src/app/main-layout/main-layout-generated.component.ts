@@ -44,8 +44,10 @@ export class MainLayoutGenerated implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('footerTextLeft') footerTextLeft: LabelComponent;
   @ViewChild('label0') label0: LabelComponent;
   @ViewChild('label4') label4: LabelComponent;
-  @ViewChild('linkKontakt') linkKontakt: LinkComponent;
+  @ViewChild('linkVersion') linkVersion: LinkComponent;
   @ViewChild('label1') label1: LabelComponent;
+  @ViewChild('linkKontakt') linkKontakt: LinkComponent;
+  @ViewChild('label6') label6: LabelComponent;
   @ViewChild('linkDatenschutz') linkDatenschutz: LinkComponent;
   @ViewChild('label3') label3: LabelComponent;
   @ViewChild('linkImpressum') linkImpressum: LinkComponent;
