@@ -19,6 +19,8 @@
           <rz-panel #panel0 [allowCollapse]="false" [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="Filter">
             <div [ngStyle]="{'marginLeft': '-33px', 'marginRight': '-35px', 'marginTop': '-22px'}" class="row">
               <div class="col-md-12">
+                <rz-datepicker #datepicker0 dateFormat="dd.mm.yy" [inline]="false" [showTime]="true" name="datepicker0">
+                </rz-datepicker>
                 <rz-listbox #filterTextbausteinArtCode [data]="rstTextbausteineArten" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'marginBottom': '5px', 'width': '100%'}" textProperty="Bezeichnung" [(ngModel)]="dsoBenutzer && dsoBenutzer.FilterTextbausteinArtCode" valueProperty="TextbausteinArtCode" name="filterTextbausteinArtCode" class="textbausteine-filter-listbox">
                 </rz-listbox>
               </div>
@@ -313,7 +315,7 @@
               </rz-grid-column>
               <rz-grid-column property="UntertitelTextbaustein" title="Untertitel" width="30%" type="string">
               </rz-grid-column>
-              <rz-grid-column format="date-time" formatString="dd.MM.yyyy hh:mm" property="Am" title="Am" width="120px" type="string">
+              <rz-grid-column format="date-time" formatString="dd.MM.yyyy HH:mm" property="Am" title="Am" width="120px" type="string">
               </rz-grid-column>
             </rz-grid>
             <rz-panel-header>

@@ -96,6 +96,13 @@
                                   "class": "col-md-12",
                                   "components": [
                                     {
+                                      "dateFormat": "dd.mm.yy",
+                                      "inline": false,
+                                      "name": "datepicker0",
+                                      "showTime": true,
+                                      "type": "datepicker"
+                                    },
+                                    {
                                       "attributes": [
                                         {
                                           "name": "class",
@@ -706,6 +713,7 @@
                                   "property": "IbsiKurse.Kurzzeichen",
                                   "title": "Kurs",
                                   "type": "string",
+                                  "visible": "",
                                   "width": "70px"
                                 },
                                 {
@@ -1116,7 +1124,7 @@
                                       "events": {
                                         "click": [
                                           {
-                                            "code": "// Create container for the HTML\n  // [1]\n  var container = document.createElement('div')\n  container.innerHTML = this.strTextbausteinHTML\n\n  // Hide element\n  // [2]\n  container.style.position = 'fixed'\n  container.style.pointerEvents = 'none'\n  container.style.opacity = 0\n\n  // Mount the container to the DOM to make `contentWindow` available\n  // [3]\n  document.body.appendChild(container)\n\n  // Copy to clipboard\n  // [4]\n  window.getSelection().removeAllRanges()\n\n  var range = document.createRange()\n  range.selectNode(container)\n  window.getSelection().addRange(range)\n\n  // [5]\n  document.execCommand('copy')\n  \n  // Remove the container\n  // [6]\n  document.body.removeChild(container)",
+                                            "code": "// Create container for the HTML\n  // [1]\n  var container = document.createElement('div')\n  container.innerHTML = this.strTextbausteinHTML\n\n  // Hide element\n  // [2]\n  container.style.position = 'fixed'\n  container.style.pointerEvents = 'none'\n  container.style.opacity = '0'\n\n  // Mount the container to the DOM to make `contentWindow` available\n  // [3]\n  document.body.appendChild(container)\n\n  // Copy to clipboard\n  // [4]\n  window.getSelection().removeAllRanges()\n\n  var range = document.createRange()\n  range.selectNode(container)\n  window.getSelection().addRange(range)\n\n  // [5]\n  document.execCommand('copy')\n  \n  // Remove the container\n  // [6]\n  document.body.removeChild(container)",
                                             "type": "execute"
                                           },
                                           {
@@ -1125,7 +1133,7 @@
                                             "type": "notify"
                                           },
                                           {
-                                            "code": "${dsoVerlauf.BenutzerID} = ${dsoBenutzer.BenutzerID};\n${dsoVerlauf.Am} = new Date();\n${dsoVerlauf.TextbausteinNr} = ${dsoTextbausteine.TextbausteinNr};",
+                                            "code": "${dsoVerlauf.BenutzerID} = ${dsoBenutzer.BenutzerID};\n${dsoVerlauf.Am} = \"'\" + Date();\n${dsoVerlauf.TextbausteinNr} = ${dsoTextbausteine.TextbausteinNr};",
                                             "type": "execute"
                                           },
                                           {
@@ -1271,6 +1279,26 @@
                                                 "detail": "Textbaustein gespeichert",
                                                 "severity": "success",
                                                 "type": "notify"
+                                              },
+                                              {
+                                                "code": "${dsoVerlauf.BenutzerID} = ${dsoBenutzer.BenutzerID};\n${dsoVerlauf.Am} = new Date();\n${dsoVerlauf.TextbausteinNr} = ${dsoTextbausteine.TextbausteinNr};",
+                                                "type": "execute"
+                                              },
+                                              {
+                                                "name": "dbHopeKurseTextbausteine.createBenutzerTextbausteineVerlauf",
+                                                "parameters": [
+                                                  {
+                                                    "name": "BenutzerTextbausteineVerlauf",
+                                                    "value": "${dsoVerlauf}"
+                                                  }
+                                                ],
+                                                "then": [
+                                                  {
+                                                    "code": "this.gridVerlauf.load();",
+                                                    "type": "execute"
+                                                  }
+                                                ],
+                                                "type": "invoke"
                                               }
                                             ],
                                             "type": "invoke"
@@ -1763,7 +1791,7 @@
                                   "filterProperty": "",
                                   "footerTemplate": "",
                                   "format": "date-time",
-                                  "formatString": "dd.MM.yyyy hh:mm",
+                                  "formatString": "dd.MM.yyyy HH:mm",
                                   "headerTemplate": "",
                                   "property": "Am",
                                   "template": "",

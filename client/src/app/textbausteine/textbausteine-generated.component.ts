@@ -14,6 +14,7 @@ import { ContentComponent } from '@radzen/angular/dist/content';
 import { HeadingComponent } from '@radzen/angular/dist/heading';
 import { TabsComponent } from '@radzen/angular/dist/tabs';
 import { PanelComponent } from '@radzen/angular/dist/panel';
+import { DatePickerComponent } from '@radzen/angular/dist/datepicker';
 import { ListBoxComponent } from '@radzen/angular/dist/listbox';
 import { LabelComponent } from '@radzen/angular/dist/label';
 import { DropDownComponent } from '@radzen/angular/dist/dropdown';
@@ -40,6 +41,7 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
   @ViewChild('heading2') heading2: HeadingComponent;
   @ViewChild('tabsTextbausteine') tabsTextbausteine: TabsComponent;
   @ViewChild('panel0') panel0: PanelComponent;
+  @ViewChild('datepicker0') datepicker0: DatePickerComponent;
   @ViewChild('filterTextbausteinArtCode') filterTextbausteinArtCode: ListBoxComponent;
   @ViewChild('label4') label4: LabelComponent;
   @ViewChild('filterKursNr') filterKursNr: DropDownComponent;
@@ -378,7 +380,7 @@ ${this.dsoBenutzer.FilterInfo ? ' and contains(tolower(InfoText),tolower(\'' + t
   // [2]
   container.style.position = 'fixed'
   container.style.pointerEvents = 'none'
-  container.style.opacity = 0
+  container.style.opacity = '0'
 
   // Mount the container to the DOM to make `contentWindow` available
   // [3]
@@ -402,7 +404,7 @@ ${this.dsoBenutzer.FilterInfo ? ' and contains(tolower(InfoText),tolower(\'' + t
     this.notificationService.notify({ severity: "success", summary: ``, detail: `Text wurde kopiert` });
 
     this.dsoVerlauf.BenutzerID = this.dsoBenutzer.BenutzerID;
-this.dsoVerlauf.Am = new Date();
+this.dsoVerlauf.Am = "'" + Date();
 this.dsoVerlauf.TextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
 
     this.dbHopeKurseTextbausteine.createBenutzerTextbausteineVerlauf(null, this.dsoVerlauf)
@@ -440,6 +442,17 @@ this.dsoFavoriten.TextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
     this.dbHopeKurseTextbausteine.updateIbsiTextbausteine(null, this.dsoTextbausteine.TextbausteinNr, this.dsoTextbausteine)
     .subscribe((result: any) => {
       this.notificationService.notify({ severity: "success", summary: ``, detail: `Textbaustein gespeichert` });
+
+      this.dsoVerlauf.BenutzerID = this.dsoBenutzer.BenutzerID;
+this.dsoVerlauf.Am = new Date();
+this.dsoVerlauf.TextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
+
+      this.dbHopeKurseTextbausteine.createBenutzerTextbausteineVerlauf(null, this.dsoVerlauf)
+      .subscribe((result: any) => {
+        this.gridVerlauf.load();
+      }, (result: any) => {
+
+      });
     }, (result: any) => {
       this.notificationService.notify({ severity: "error", summary: ``, detail: `Textbaustein konnte nicht gespeichert werden!` });
     });

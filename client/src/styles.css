@@ -9,7 +9,6 @@
 /* Import Einstellungen für Quill Editor */
 @import '../node_modules/quill/dist/quill.core.css';
 @import '../node_modules/quill/dist/quill.snow.css';
-@import '../node_modules/quill/dist/quill.bubble.css';
 
 /* Import Spezielle Einstellungen */
 @import './styles-textbausteine.css';
