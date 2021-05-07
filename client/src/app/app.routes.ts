@@ -35,6 +35,7 @@ import { TextbausteineDuplizierenComponent } from './textbausteine-duplizieren/t
 import { TextbausteineFelderAuswahlComponent } from './textbausteine-felder-auswahl/textbausteine-felder-auswahl.component';
 import { LoginComponent } from './login/login.component';
 import { VersionenComponent } from './versionen/versionen.component';
+import { InfoboxTextbausteineFilterTextComponent } from './infobox-textbausteine-filter-text/infobox-textbausteine-filter-text.component';
 
 import { SecurityService } from './security.service';
 import { AuthGuard } from './auth.guard';
@@ -291,6 +292,14 @@ export const routes: Routes = [
           roles: ['Authenticated'],
         },
         component: VersionenComponent
+      },
+      {
+        path: 'infobox-textbausteine-filter-text',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: InfoboxTextbausteineFilterTextComponent
       },
     ]
   },

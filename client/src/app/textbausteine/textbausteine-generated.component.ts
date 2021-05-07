@@ -14,21 +14,22 @@ import { ContentComponent } from '@radzen/angular/dist/content';
 import { HeadingComponent } from '@radzen/angular/dist/heading';
 import { TabsComponent } from '@radzen/angular/dist/tabs';
 import { PanelComponent } from '@radzen/angular/dist/panel';
-import { DatePickerComponent } from '@radzen/angular/dist/datepicker';
-import { ListBoxComponent } from '@radzen/angular/dist/listbox';
 import { LabelComponent } from '@radzen/angular/dist/label';
-import { DropDownComponent } from '@radzen/angular/dist/dropdown';
-import { TextBoxComponent } from '@radzen/angular/dist/textbox';
-import { NumericComponent } from '@radzen/angular/dist/numeric';
 import { ButtonComponent } from '@radzen/angular/dist/button';
+import { TextBoxComponent } from '@radzen/angular/dist/textbox';
+import { ListBoxComponent } from '@radzen/angular/dist/listbox';
+import { DropDownComponent } from '@radzen/angular/dist/dropdown';
+import { NumericComponent } from '@radzen/angular/dist/numeric';
 import { GridComponent } from '@radzen/angular/dist/grid';
 import { HtmlComponent } from '@radzen/angular/dist/html';
+import { LinkComponent } from '@radzen/angular/dist/link';
 
 import { ConfigService } from '../config.service';
 import { MeldungLoeschenComponent } from '../meldung-loeschen/meldung-loeschen.component';
 import { TextbausteineBearbeitenComponent } from '../textbausteine-bearbeiten/textbausteine-bearbeiten.component';
 import { TextbausteineDuplizierenComponent } from '../textbausteine-duplizieren/textbausteine-duplizieren.component';
 import { TextbausteineNeuComponent } from '../textbausteine-neu/textbausteine-neu.component';
+import { InfoboxTextbausteineFilterTextComponent } from '../infobox-textbausteine-filter-text/infobox-textbausteine-filter-text.component';
 
 import { DbHopeKurseTextbausteineService } from '../db-hope-kurse-textbausteine.service';
 import { SecurityService } from '../security.service';
@@ -41,12 +42,13 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
   @ViewChild('heading2') heading2: HeadingComponent;
   @ViewChild('tabsTextbausteine') tabsTextbausteine: TabsComponent;
   @ViewChild('panel0') panel0: PanelComponent;
-  @ViewChild('datepicker0') datepicker0: DatePickerComponent;
+  @ViewChild('label0') label0: LabelComponent;
+  @ViewChild('button0') button0: ButtonComponent;
+  @ViewChild('textboxTitelUndText') textboxTitelUndText: TextBoxComponent;
+  @ViewChild('label7') label7: LabelComponent;
   @ViewChild('filterTextbausteinArtCode') filterTextbausteinArtCode: ListBoxComponent;
   @ViewChild('label4') label4: LabelComponent;
   @ViewChild('filterKursNr') filterKursNr: DropDownComponent;
-  @ViewChild('label0') label0: LabelComponent;
-  @ViewChild('textboxTitelUndText') textboxTitelUndText: TextBoxComponent;
   @ViewChild('label6') label6: LabelComponent;
   @ViewChild('dropdown4') dropdown4: DropDownComponent;
   @ViewChild('label1') label1: LabelComponent;
@@ -55,8 +57,7 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
   @ViewChild('dropdown0') dropdown0: DropDownComponent;
   @ViewChild('label3') label3: LabelComponent;
   @ViewChild('dropdown1') dropdown1: DropDownComponent;
-  @ViewChild('label2') label2: LabelComponent;
-  @ViewChild('textbox0') textbox0: TextBoxComponent;
+  @ViewChild('buttonFilterInfo') buttonFilterInfo: ButtonComponent;
   @ViewChild('buttonZuruecksetzen') buttonZuruecksetzen: ButtonComponent;
   @ViewChild('panel4') panel4: PanelComponent;
   @ViewChild('gridTextbausteine') gridTextbausteine: GridComponent;
@@ -66,6 +67,7 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
   @ViewChild('buttonLoeschen') buttonLoeschen: ButtonComponent;
   @ViewChild('panel6') panel6: PanelComponent;
   @ViewChild('htmlEditorTextbausteine') htmlEditorTextbausteine: HtmlComponent;
+  @ViewChild('linkFilterInfo') linkFilterInfo: LinkComponent;
   @ViewChild('buttonKopieren') buttonKopieren: ButtonComponent;
   @ViewChild('buttonDokument') buttonDokument: ButtonComponent;
   @ViewChild('buttonFavorit') buttonFavorit: ButtonComponent;
@@ -121,6 +123,7 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
   dsoVerlauf: any;
   onKeyEnterFilterText: any;
   bolAnzeigenTitelTextbaustein: any;
+  onFocusOutFilterText: any;
   parameters: any;
   letzteTextbausteinNr: any;
   rstTextbausteine: any;
@@ -231,6 +234,8 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
     this.onKeyEnterFilterText = () => { console.log('Enter gedrückt'); };
 
     this.bolAnzeigenTitelTextbaustein = true;
+
+    this.onFocusOutFilterText = () => { console.log('Focus verlassen'); };
   }
 
   tabsTextbausteineChange(event: any) {
@@ -247,6 +252,32 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
     this.bolAnzeigenTitelTextbaustein = false
     break;
 }
+  }
+
+  button0Click(event: any) {
+    this.dialogService.open(InfoboxTextbausteineFilterTextComponent, { parameters: {}, title: 'InfoboxTextbausteineFilterText' });
+  }
+
+  buttonFilterInfoClick(event: any) {
+    Promise.resolve().then(() => {
+      this.dsoBenutzer.FilterTextbausteinArtCode = null
+this.dsoBenutzer.FilterKursNr = null
+this.dsoBenutzer.FilterTitelUndText = null
+this.dsoBenutzer.FilterAutorNr = null
+this.dsoBenutzer.FilterThemaNummer = null
+this.dsoBenutzer.FilterAnrede = null
+this.dsoBenutzer.FilterDokument = null
+this.dsoBenutzer.FilterInfo = null
+    }).then((result: any) => {
+      this.dbHopeKurseTextbausteine.updateBenutzer(null, this.dsoBenutzer.BenutzerID, this.dsoBenutzer)
+      .subscribe((result: any) => {
+
+      }, (result: any) => {
+
+      });
+    }, (result: any) => {
+
+    });
   }
 
   buttonZuruecksetzenClick(event: any) {
@@ -403,8 +434,17 @@ ${this.dsoBenutzer.FilterInfo ? ' and contains(tolower(InfoText),tolower(\'' + t
 
     this.notificationService.notify({ severity: "success", summary: ``, detail: `Text wurde kopiert` });
 
-    this.dsoVerlauf.BenutzerID = this.dsoBenutzer.BenutzerID;
-this.dsoVerlauf.Am = "'" + Date();
+    var date = new Date();
+
+this.dsoVerlauf.Am = new Date(Date.UTC(date.getFullYear(),
+                                       date.getMonth(),
+                                       date.getDate(),
+                                       date.getHours(),
+                                       date.getMinutes(),
+                                       date.getSeconds(),
+                                       date.getMilliseconds() ))
+
+this.dsoVerlauf.BenutzerID = this.dsoBenutzer.BenutzerID;
 this.dsoVerlauf.TextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
 
     this.dbHopeKurseTextbausteine.createBenutzerTextbausteineVerlauf(null, this.dsoVerlauf)
@@ -420,8 +460,17 @@ this.dsoVerlauf.TextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
   }
 
   buttonFavoritClick(event: any) {
-    this.dsoFavoriten.BenutzerID = this.dsoBenutzer.BenutzerID;
-this.dsoFavoriten.Am = new Date();
+    var date = new Date();
+
+this.dsoFavoriten.Am = new Date(Date.UTC(date.getFullYear(),
+                                         date.getMonth(),
+                                         date.getDate(),
+                                         date.getHours(),
+                                         date.getMinutes(),
+                                         date.getSeconds(),
+                                         date.getMilliseconds() ))
+
+this.dsoFavoriten.BenutzerID = this.dsoBenutzer.BenutzerID;
 this.dsoFavoriten.TextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
 
     this.dbHopeKurseTextbausteine.createBenutzerTextbausteineFavoriten(null, this.dsoFavoriten)
@@ -443,8 +492,17 @@ this.dsoFavoriten.TextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
     .subscribe((result: any) => {
       this.notificationService.notify({ severity: "success", summary: ``, detail: `Textbaustein gespeichert` });
 
-      this.dsoVerlauf.BenutzerID = this.dsoBenutzer.BenutzerID;
-this.dsoVerlauf.Am = new Date();
+      var date = new Date();
+
+this.dsoVerlauf.Am = new Date(Date.UTC(date.getFullYear(),
+                                       date.getMonth(),
+                                       date.getDate(),
+                                       date.getHours(),
+                                       date.getMinutes(),
+                                       date.getSeconds(),
+                                       date.getMilliseconds() ))
+
+this.dsoVerlauf.BenutzerID = this.dsoBenutzer.BenutzerID;
 this.dsoVerlauf.TextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
 
       this.dbHopeKurseTextbausteine.createBenutzerTextbausteineVerlauf(null, this.dsoVerlauf)

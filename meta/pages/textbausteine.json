@@ -93,15 +93,135 @@
                             {
                               "components": [
                                 {
+                                  "class": "col-md-7",
+                                  "components": [
+                                    {
+                                      "component": null,
+                                      "name": "label0",
+                                      "style": {
+                                        "color": "#88989b",
+                                        "display": "block",
+                                        "fontSize": "12px",
+                                        "paddingLeft": "5px",
+                                        "width": "100%"
+                                      },
+                                      "text": "Titel · Text · Notizen",
+                                      "type": "label"
+                                    }
+                                  ],
+                                  "name": "col4",
+                                  "style": {},
+                                  "type": "col"
+                                },
+                                {
+                                  "class": "col-md-5 justify-content-end d-flex",
+                                  "components": [
+                                    {
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "path": "infobox-textbausteine-filter-text",
+                                            "type": "popup"
+                                          }
+                                        ]
+                                      },
+                                      "icon": "",
+                                      "name": "button0",
+                                      "size": "sm",
+                                      "style": {
+                                        "backgroundColor": "rgba(0, 0, 0, 0)",
+                                        "color": "#479cc8",
+                                        "fontSize": "12px",
+                                        "paddingLeft": "5px",
+                                        "paddingRight": "5px"
+                                      },
+                                      "text": "Info",
+                                      "type": "button"
+                                    }
+                                  ],
+                                  "name": "col25",
+                                  "style": {
+                                    "height": "20px",
+                                    "marginTop": "-5px"
+                                  },
+                                  "type": "col"
+                                },
+                                {
                                   "class": "col-md-12",
                                   "components": [
                                     {
-                                      "dateFormat": "dd.mm.yy",
-                                      "inline": false,
-                                      "name": "datepicker0",
-                                      "showTime": true,
-                                      "type": "datepicker"
-                                    },
+                                      "attributes": [
+                                        {
+                                          "name": "class",
+                                          "value": "textbausteine-filter-auswahl"
+                                        },
+                                        {
+                                          "name": "(keydown.enter)",
+                                          "value": "onKeyEnterFilterText()"
+                                        },
+                                        {
+                                          "name": "(onfocusout)",
+                                          "value": "onFocusOutFilterText()"
+                                        }
+                                      ],
+                                      "autoComplete": false,
+                                      "events": {
+                                        "change": []
+                                      },
+                                      "maxLength": 30,
+                                      "name": "textboxTitelUndText",
+                                      "placeholder": "",
+                                      "style": {
+                                        "display": "inline-block",
+                                        "height": "28px",
+                                        "marginBottom": "6px",
+                                        "width": "100%"
+                                      },
+                                      "type": "textbox",
+                                      "value": "${dsoBenutzer.FilterTitelUndText}"
+                                    }
+                                  ],
+                                  "name": "col8",
+                                  "style": {
+                                    "display": "block"
+                                  },
+                                  "type": "col"
+                                }
+                              ],
+                              "name": "row1",
+                              "style": {
+                                "marginLeft": "-25px",
+                                "marginRight": "-25px",
+                                "marginTop": "-16px"
+                              },
+                              "type": "row"
+                            },
+                            {
+                              "components": [
+                                {
+                                  "class": "col-md-12",
+                                  "components": [
+                                    {
+                                      "component": null,
+                                      "name": "label7",
+                                      "style": {
+                                        "color": "#88989b",
+                                        "display": "block",
+                                        "fontSize": "12px",
+                                        "paddingLeft": "5px",
+                                        "width": "100%"
+                                      },
+                                      "text": "Art",
+                                      "type": "label"
+                                    }
+                                  ],
+                                  "name": "col26",
+                                  "style": {},
+                                  "type": "col"
+                                },
+                                {
+                                  "class": "col-md-12",
+                                  "components": [
                                     {
                                       "attributes": [
                                         {
@@ -115,7 +235,6 @@
                                       },
                                       "name": "filterTextbausteinArtCode",
                                       "style": {
-                                        "border": "1px solid rgba(0, 0, 0, 0)",
                                         "marginBottom": "5px",
                                         "width": "100%"
                                       },
@@ -126,15 +245,17 @@
                                       "valueProperty": "TextbausteinArtCode"
                                     }
                                   ],
-                                  "name": "col3",
+                                  "name": "col27",
+                                  "style": {
+                                    "display": "block"
+                                  },
                                   "type": "col"
                                 }
                               ],
-                              "name": "row0",
+                              "name": "row13",
                               "style": {
-                                "marginLeft": "-33px",
-                                "marginRight": "-35px",
-                                "marginTop": "-22px"
+                                "marginLeft": "-25px",
+                                "marginRight": "-25px"
                               },
                               "type": "row"
                             },
@@ -183,7 +304,6 @@
                                       "name": "filterKursNr",
                                       "placeholder": "&nbsp;",
                                       "style": {
-                                        "border": "1px solid rgba(0, 0, 0, 0)",
                                         "height": "28px",
                                         "width": "100%"
                                       },
@@ -202,74 +322,6 @@
                                 }
                               ],
                               "name": "row7",
-                              "style": {
-                                "marginLeft": "-25px",
-                                "marginRight": "-25px"
-                              },
-                              "type": "row"
-                            },
-                            {
-                              "components": [
-                                {
-                                  "class": "col-md-12",
-                                  "components": [
-                                    {
-                                      "component": null,
-                                      "name": "label0",
-                                      "style": {
-                                        "color": "#88989b",
-                                        "display": "block",
-                                        "fontSize": "12px",
-                                        "paddingLeft": "5px",
-                                        "width": "100%"
-                                      },
-                                      "text": "Titel oder Textinhalt",
-                                      "type": "label"
-                                    }
-                                  ],
-                                  "name": "col4",
-                                  "style": {},
-                                  "type": "col"
-                                },
-                                {
-                                  "class": "col-md-12",
-                                  "components": [
-                                    {
-                                      "attributes": [
-                                        {
-                                          "name": "class",
-                                          "value": "textbausteine-filter-auswahl"
-                                        },
-                                        {
-                                          "name": "(keydown.enter)",
-                                          "value": "onKeyEnterFilterText()"
-                                        }
-                                      ],
-                                      "autoComplete": false,
-                                      "events": {
-                                        "change": []
-                                      },
-                                      "maxLength": 30,
-                                      "name": "textboxTitelUndText",
-                                      "placeholder": "",
-                                      "style": {
-                                        "display": "block",
-                                        "height": "28px",
-                                        "marginBottom": "6px",
-                                        "width": "100%"
-                                      },
-                                      "type": "textbox",
-                                      "value": "${dsoBenutzer.FilterTitelUndText}"
-                                    }
-                                  ],
-                                  "name": "col8",
-                                  "style": {
-                                    "display": "block"
-                                  },
-                                  "type": "col"
-                                }
-                              ],
-                              "name": "row1",
                               "style": {
                                 "marginLeft": "-25px",
                                 "marginRight": "-25px"
@@ -400,6 +452,7 @@
                               ],
                               "name": "row3",
                               "style": {
+                                "marginBottom": "5px",
                                 "marginLeft": "-25px",
                                 "marginRight": "-25px"
                               },
@@ -543,69 +596,6 @@
                                 "marginRight": "-25px"
                               },
                               "type": "row"
-                            },
-                            {
-                              "components": [
-                                {
-                                  "class": "col-md-12",
-                                  "components": [
-                                    {
-                                      "component": null,
-                                      "name": "label2",
-                                      "style": {
-                                        "color": "#88989b",
-                                        "display": "block",
-                                        "fontSize": "12px",
-                                        "paddingLeft": "5px",
-                                        "width": "100%"
-                                      },
-                                      "text": "Info",
-                                      "type": "label"
-                                    }
-                                  ],
-                                  "name": "col12",
-                                  "style": {},
-                                  "type": "col"
-                                },
-                                {
-                                  "class": "col-md-12",
-                                  "components": [
-                                    {
-                                      "attributes": [
-                                        {
-                                          "name": "class",
-                                          "value": "textbausteine-filter-auswahl"
-                                        }
-                                      ],
-                                      "autoComplete": false,
-                                      "events": {
-                                        "change": []
-                                      },
-                                      "maxLength": 30,
-                                      "name": "textbox0",
-                                      "style": {
-                                        "display": "block",
-                                        "height": "28px",
-                                        "marginBottom": "6px",
-                                        "width": "100%"
-                                      },
-                                      "type": "textbox",
-                                      "value": "${dsoBenutzer.FilterInfo}"
-                                    }
-                                  ],
-                                  "name": "col13",
-                                  "style": {
-                                    "display": "block"
-                                  },
-                                  "type": "col"
-                                }
-                              ],
-                              "name": "row5",
-                              "style": {
-                                "marginLeft": "-25px",
-                                "marginRight": "-25px"
-                              },
-                              "type": "row"
                             }
                           ],
                           "footerTemplate": "",
@@ -642,7 +632,47 @@
                                           }
                                         ]
                                       },
-                                      "icon": "undo",
+                                      "icon": "live_help",
+                                      "name": "buttonFilterInfo",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#D86E13",
+                                        "display": "block",
+                                        "fontWeight": "normal",
+                                        "paddingLeft": ""
+                                      },
+                                      "text": "Info",
+                                      "tooltip": "",
+                                      "type": "button"
+                                    },
+                                    {
+                                      "buttonStyle": "light",
+                                      "disabled": false,
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "code": "${dsoBenutzer.FilterTextbausteinArtCode} = null\n${dsoBenutzer.FilterKursNr} = null\n${dsoBenutzer.FilterTitelUndText} = null\n${dsoBenutzer.FilterAutorNr} = null\n${dsoBenutzer.FilterThemaNummer} = null\n${dsoBenutzer.FilterAnrede} = null\n${dsoBenutzer.FilterDokument} = null\n${dsoBenutzer.FilterInfo} = null",
+                                            "then": [
+                                              {
+                                                "name": "dbHopeKurseTextbausteine.updateBenutzer",
+                                                "parameters": [
+                                                  {
+                                                    "name": "BenutzerID",
+                                                    "value": "${dsoBenutzer.BenutzerID}"
+                                                  },
+                                                  {
+                                                    "name": "Benutzer",
+                                                    "value": "${dsoBenutzer}"
+                                                  }
+                                                ],
+                                                "type": "invoke"
+                                              }
+                                            ],
+                                            "type": "execute"
+                                          }
+                                        ]
+                                      },
+                                      "icon": "clear",
                                       "name": "buttonZuruecksetzen",
                                       "size": "sm",
                                       "style": {
@@ -653,7 +683,7 @@
                                         "marginRight": "-9px",
                                         "paddingLeft": ""
                                       },
-                                      "text": "Zurücksetzen",
+                                      "text": "",
                                       "tooltip": "Filter zurücksetzen",
                                       "type": "button"
                                     }
@@ -1111,6 +1141,18 @@
                                 "marginTop": "-12px"
                               },
                               "type": "row"
+                            },
+                            {
+                              "icon": "info",
+                              "name": "linkFilterInfo",
+                              "path": "infobox-textbausteine-filter-text",
+                              "style": {
+                                "float": "right",
+                                "fontSize": "12px",
+                                "marginTop": "-2px"
+                              },
+                              "text": "&nbsp;Info",
+                              "type": "link"
                             }
                           ],
                           "headerTemplate": [
@@ -1133,7 +1175,7 @@
                                             "type": "notify"
                                           },
                                           {
-                                            "code": "${dsoVerlauf.BenutzerID} = ${dsoBenutzer.BenutzerID};\n${dsoVerlauf.Am} = \"'\" + Date();\n${dsoVerlauf.TextbausteinNr} = ${dsoTextbausteine.TextbausteinNr};",
+                                            "code": "var date = new Date();\n\nthis.dsoVerlauf.Am = new Date(Date.UTC(date.getFullYear(),\n                                       date.getMonth(),\n                                       date.getDate(),\n                                       date.getHours(),\n                                       date.getMinutes(),\n                                       date.getSeconds(),\n                                       date.getMilliseconds() ))\n\n${dsoVerlauf.BenutzerID} = ${dsoBenutzer.BenutzerID};\n${dsoVerlauf.TextbausteinNr} = ${dsoTextbausteine.TextbausteinNr};",
                                             "type": "execute"
                                           },
                                           {
@@ -1194,7 +1236,7 @@
                                       "events": {
                                         "click": [
                                           {
-                                            "code": "${dsoFavoriten.BenutzerID} = ${dsoBenutzer.BenutzerID};\n${dsoFavoriten.Am} = new Date();\n${dsoFavoriten.TextbausteinNr} = ${dsoTextbausteine.TextbausteinNr};",
+                                            "code": "var date = new Date();\n\nthis.dsoFavoriten.Am = new Date(Date.UTC(date.getFullYear(),\n                                         date.getMonth(),\n                                         date.getDate(),\n                                         date.getHours(),\n                                         date.getMinutes(),\n                                         date.getSeconds(),\n                                         date.getMilliseconds() ))\n\n${dsoFavoriten.BenutzerID} = ${dsoBenutzer.BenutzerID};\n${dsoFavoriten.TextbausteinNr} = ${dsoTextbausteine.TextbausteinNr};",
                                             "error": [],
                                             "then": [],
                                             "type": "execute"
@@ -1281,7 +1323,7 @@
                                                 "type": "notify"
                                               },
                                               {
-                                                "code": "${dsoVerlauf.BenutzerID} = ${dsoBenutzer.BenutzerID};\n${dsoVerlauf.Am} = new Date();\n${dsoVerlauf.TextbausteinNr} = ${dsoTextbausteine.TextbausteinNr};",
+                                                "code": "var date = new Date();\n\nthis.dsoVerlauf.Am = new Date(Date.UTC(date.getFullYear(),\n                                       date.getMonth(),\n                                       date.getDate(),\n                                       date.getHours(),\n                                       date.getMinutes(),\n                                       date.getSeconds(),\n                                       date.getMilliseconds() ))\n\n${dsoVerlauf.BenutzerID} = ${dsoBenutzer.BenutzerID};\n${dsoVerlauf.TextbausteinNr} = ${dsoTextbausteine.TextbausteinNr};",
                                                 "type": "execute"
                                               },
                                               {
@@ -2104,6 +2146,10 @@
               ],
               "selected": false,
               "text": "Verlauf"
+            },
+            {
+              "text": "Papierkorb",
+              "visible": "${security.user.isInRole('Administrator')}"
             }
           ],
           "name": "tabsTextbausteine",
@@ -2234,6 +2280,11 @@
         "name": "bolAnzeigenTitelTextbaustein",
         "type": "set",
         "value": "true"
+      },
+      {
+        "name": "onFocusOutFilterText",
+        "type": "set",
+        "value": "() => { console.log('Focus verlassen'); }"
       }
     ]
   },

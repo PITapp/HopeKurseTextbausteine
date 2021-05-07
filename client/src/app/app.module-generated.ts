@@ -41,7 +41,6 @@ import { SchedulerModule } from '@radzen/angular/dist/scheduler';
 import { DataListModule } from '@radzen/angular/dist/datalist';
 import { HtmlModule } from '@radzen/angular/dist/html';
 import { UploadModule } from '@radzen/angular/dist/upload';
-import { DatePickerModule } from '@radzen/angular/dist/datepicker';
 import { NumericModule } from '@radzen/angular/dist/numeric';
 import { CheckBoxModule } from '@radzen/angular/dist/checkbox';
 import { LoginModule } from '@radzen/angular/dist/login';
@@ -86,6 +85,7 @@ import { TextbausteineDuplizierenComponent } from './textbausteine-duplizieren/t
 import { TextbausteineFelderAuswahlComponent } from './textbausteine-felder-auswahl/textbausteine-felder-auswahl.component';
 import { LoginComponent } from './login/login.component';
 import { VersionenComponent } from './versionen/versionen.component';
+import { InfoboxTextbausteineFilterTextComponent } from './infobox-textbausteine-filter-text/infobox-textbausteine-filter-text.component';
 import { LoginLayoutComponent } from './login-layout/login-layout.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 
@@ -127,6 +127,7 @@ export const PageDeclarations = [
   TextbausteineFelderAuswahlComponent,
   LoginComponent,
   VersionenComponent,
+  InfoboxTextbausteineFilterTextComponent,
 ];
 
 export const LayoutDeclarations = [
@@ -203,7 +204,6 @@ export const AppImports = [
   DataListModule,
   HtmlModule,
   UploadModule,
-  DatePickerModule,
   NumericModule,
   CheckBoxModule,
   LoginModule,
