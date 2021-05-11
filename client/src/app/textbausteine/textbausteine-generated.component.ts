@@ -15,21 +15,19 @@ import { HeadingComponent } from '@radzen/angular/dist/heading';
 import { TabsComponent } from '@radzen/angular/dist/tabs';
 import { PanelComponent } from '@radzen/angular/dist/panel';
 import { LabelComponent } from '@radzen/angular/dist/label';
-import { ButtonComponent } from '@radzen/angular/dist/button';
 import { TextBoxComponent } from '@radzen/angular/dist/textbox';
 import { ListBoxComponent } from '@radzen/angular/dist/listbox';
 import { DropDownComponent } from '@radzen/angular/dist/dropdown';
 import { NumericComponent } from '@radzen/angular/dist/numeric';
+import { ButtonComponent } from '@radzen/angular/dist/button';
 import { GridComponent } from '@radzen/angular/dist/grid';
 import { HtmlComponent } from '@radzen/angular/dist/html';
-import { LinkComponent } from '@radzen/angular/dist/link';
 
 import { ConfigService } from '../config.service';
 import { MeldungLoeschenComponent } from '../meldung-loeschen/meldung-loeschen.component';
 import { TextbausteineBearbeitenComponent } from '../textbausteine-bearbeiten/textbausteine-bearbeiten.component';
 import { TextbausteineDuplizierenComponent } from '../textbausteine-duplizieren/textbausteine-duplizieren.component';
 import { TextbausteineNeuComponent } from '../textbausteine-neu/textbausteine-neu.component';
-import { InfoboxTextbausteineFilterTextComponent } from '../infobox-textbausteine-filter-text/infobox-textbausteine-filter-text.component';
 
 import { DbHopeKurseTextbausteineService } from '../db-hope-kurse-textbausteine.service';
 import { SecurityService } from '../security.service';
@@ -43,7 +41,6 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
   @ViewChild('tabsTextbausteine') tabsTextbausteine: TabsComponent;
   @ViewChild('panel0') panel0: PanelComponent;
   @ViewChild('label0') label0: LabelComponent;
-  @ViewChild('button0') button0: ButtonComponent;
   @ViewChild('textboxTitelUndText') textboxTitelUndText: TextBoxComponent;
   @ViewChild('label7') label7: LabelComponent;
   @ViewChild('filterTextbausteinArtCode') filterTextbausteinArtCode: ListBoxComponent;
@@ -67,7 +64,6 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
   @ViewChild('buttonLoeschen') buttonLoeschen: ButtonComponent;
   @ViewChild('panel6') panel6: PanelComponent;
   @ViewChild('htmlEditorTextbausteine') htmlEditorTextbausteine: HtmlComponent;
-  @ViewChild('linkFilterInfo') linkFilterInfo: LinkComponent;
   @ViewChild('buttonKopieren') buttonKopieren: ButtonComponent;
   @ViewChild('buttonDokument') buttonDokument: ButtonComponent;
   @ViewChild('buttonFavorit') buttonFavorit: ButtonComponent;
@@ -252,10 +248,6 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
     this.bolAnzeigenTitelTextbaustein = false
     break;
 }
-  }
-
-  button0Click(event: any) {
-    this.dialogService.open(InfoboxTextbausteineFilterTextComponent, { parameters: {}, title: 'InfoboxTextbausteineFilterText' });
   }
 
   buttonFilterInfoClick(event: any) {

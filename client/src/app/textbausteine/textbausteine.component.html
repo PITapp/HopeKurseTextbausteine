@@ -17,31 +17,27 @@
       <div class="row">
         <div class="col-md-2">
           <rz-panel #panel0 [allowCollapse]="false" [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="Filter">
-            <div [ngStyle]="{'marginLeft': '-25px', 'marginRight': '-25px', 'marginTop': '-16px'}" class="row">
-              <div class="col-md-7" [ngStyle]="{}">
+            <div [ngStyle]="{'marginLeft': '-25px', 'marginRight': '-25px', 'paddingBottom': '1px', 'paddingTop': '0px'}" class="row">
+              <div class="col-md-12" [ngStyle]="{}">
                 <rz-label #label0 [style]="{'color': '#88989b', 'display': 'block', 'fontSize': '12px', 'paddingLeft': '5px', 'width': '100%'}" text="Titel · Text · Notizen">
                 </rz-label>
-              </div>
-              <div class="col-md-5 justify-content-end d-flex" [ngStyle]="{'height': '20px', 'marginTop': '-5px'}">
-                <rz-button #button0 size="sm" [style]="{'backgroundColor': 'rgba(0, 0, 0, 0)', 'color': '#479cc8', 'fontSize': '12px', 'paddingLeft': '5px', 'paddingRight': '5px'}" text="Info" (click)="button0Click($event)">
-                </rz-button>
               </div>
               <div class="col-md-12" [ngStyle]="{'display': 'block'}">
                 <rz-textbox #textboxTitelUndText [autoComplete]="false" [maxLength]="30" [style]="{'display': 'inline-block', 'height': '28px', 'marginBottom': '6px', 'width': '100%'}" [(ngModel)]="dsoBenutzer && dsoBenutzer.FilterTitelUndText" name="textboxTitelUndText" class="textbausteine-filter-auswahl" (keydown.enter)="onKeyEnterFilterText()" (onfocusout)="onFocusOutFilterText()">
                 </rz-textbox>
               </div>
             </div>
-            <div [ngStyle]="{'marginLeft': '-25px', 'marginRight': '-25px'}" class="row">
+            <div [ngStyle]="{'marginLeft': '-25px', 'marginRight': '-25px', 'paddingBottom': '2px'}" class="row">
               <div class="col-md-12" [ngStyle]="{}">
                 <rz-label #label7 [style]="{'color': '#88989b', 'display': 'block', 'fontSize': '12px', 'paddingLeft': '5px', 'width': '100%'}" text="Art">
                 </rz-label>
               </div>
               <div class="col-md-12" [ngStyle]="{'display': 'block'}">
-                <rz-listbox #filterTextbausteinArtCode [data]="rstTextbausteineArten" [style]="{'marginBottom': '5px', 'width': '100%'}" textProperty="Bezeichnung" [(ngModel)]="dsoBenutzer && dsoBenutzer.FilterTextbausteinArtCode" valueProperty="TextbausteinArtCode" name="filterTextbausteinArtCode" class="textbausteine-filter-listbox">
+                <rz-listbox #filterTextbausteinArtCode [allowFiltering]="false" [checkbox]="false" [data]="rstTextbausteineArten" [metaKeySelection]="true" [multiple]="false" [showToggleAll]="false" [style]="{'marginBottom': '5px', 'width': '100%'}" textProperty="Bezeichnung" [(ngModel)]="dsoBenutzer && dsoBenutzer.FilterTextbausteinArtCode" valueProperty="TextbausteinArtCode" name="filterTextbausteinArtCode" class="textbausteine-filter-listbox">
                 </rz-listbox>
               </div>
             </div>
-            <div [ngStyle]="{'marginLeft': '-25px', 'marginRight': '-25px'}" class="row">
+            <div [ngStyle]="{'marginLeft': '-25px', 'marginRight': '-25px', 'paddingBottom': '1px'}" class="row">
               <div class="col-md-12" [ngStyle]="{}">
                 <rz-label #label4 [style]="{'color': '#88989b', 'display': 'block', 'fontSize': '12px', 'paddingLeft': '5px', 'width': '100%'}" text="Kurs">
                 </rz-label>
@@ -51,7 +47,7 @@
                 </rz-dropdown>
               </div>
             </div>
-            <div [ngStyle]="{'marginLeft': '-25px', 'marginRight': '-25px'}" class="row">
+            <div [ngStyle]="{'marginLeft': '-25px', 'marginRight': '-25px', 'paddingBottom': '1px'}" class="row">
               <div class="col-md-12" [ngStyle]="{}">
                 <rz-label #label6 [style]="{'color': '#88989b', 'display': 'block', 'fontSize': '12px', 'paddingLeft': '5px', 'width': '100%'}" text="Autor">
                 </rz-label>
@@ -61,7 +57,7 @@
                 </rz-dropdown>
               </div>
             </div>
-            <div [ngStyle]="{'marginBottom': '5px', 'marginLeft': '-25px', 'marginRight': '-25px'}" class="row">
+            <div [ngStyle]="{'marginBottom': '5px', 'marginLeft': '-25px', 'marginRight': '-25px', 'paddingBottom': '2px'}" class="row">
               <div class="col-md-12" [ngStyle]="{}">
                 <rz-label #label1 [style]="{'color': '#88989b', 'display': 'block', 'fontSize': '12px', 'paddingLeft': '5px', 'width': '100%'}" text="Thema Nummer">
                 </rz-label>
@@ -71,7 +67,7 @@
                 </rz-numeric>
               </div>
             </div>
-            <div [ngStyle]="{'marginLeft': '-25px', 'marginRight': '-25px'}" class="row">
+            <div [ngStyle]="{'marginLeft': '-25px', 'marginRight': '-25px', 'paddingBottom': '1px'}" class="row">
               <div class="col-md-12" [ngStyle]="{}">
                 <rz-label #label5 [style]="{'color': '#88989b', 'display': 'block', 'fontSize': '12px', 'paddingLeft': '5px', 'width': '100%'}" text="Anrede">
                 </rz-label>
@@ -94,7 +90,7 @@
             <rz-panel-header>
               <div class="row">
                 <div class="col-md-12 align-items-start d-flex">
-                  <rz-button #buttonFilterInfo buttonStyle="light" [disabled]="false" icon="live_help" size="sm" [style]="{'color': '#D86E13', 'display': 'block', 'fontWeight': 'normal', 'paddingLeft': ''}" text="Info" (click)="buttonFilterInfoClick($event)">
+                  <rz-button #buttonFilterInfo buttonStyle="light" [disabled]="false" icon="filter_list" size="sm" [style]="{'color': '#D86E13', 'display': 'block', 'fontWeight': 'normal', 'paddingLeft': ''}" text="Info" (click)="buttonFilterInfoClick($event)">
                   </rz-button>
                   <rz-button #buttonZuruecksetzen buttonStyle="light" [disabled]="false" icon="clear" size="sm" [style]="{'color': '#D86E13', 'display': 'block', 'fontWeight': 'normal', 'marginLeft': '10px', 'marginRight': '-9px', 'paddingLeft': ''}" tooltip="Filter zurücksetzen" (click)="buttonZuruecksetzenClick($event)">
                   </rz-button>
@@ -184,8 +180,6 @@
                 </rz-html>
               </div>
             </div>
-            <rz-link #linkFilterInfo icon="info" path="infobox-textbausteine-filter-text" [style]="{'float': 'right', 'fontSize': '12px', 'marginTop': '-2px'}" text="&nbsp;Info">
-            </rz-link>
             <rz-panel-header>
               <div [ngStyle]="{'display': 'inline-block'}" class="row">
                 <div class="col-md-12 align-items-start d-flex" [ngStyle]="{'display': 'flex'}">

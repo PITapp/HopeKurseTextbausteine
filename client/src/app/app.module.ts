@@ -7,6 +7,7 @@ import * as Quill from 'quill/dist/quill';
 (<any>window).Quill = Quill;
 import { EditorModule } from 'primeng/editor';
 
+
 @NgModule({
   declarations: [
     ...AppDeclarations

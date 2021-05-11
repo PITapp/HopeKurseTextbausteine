@@ -93,7 +93,7 @@
                             {
                               "components": [
                                 {
-                                  "class": "col-md-7",
+                                  "class": "col-md-12",
                                   "components": [
                                     {
                                       "component": null,
@@ -111,39 +111,6 @@
                                   ],
                                   "name": "col4",
                                   "style": {},
-                                  "type": "col"
-                                },
-                                {
-                                  "class": "col-md-5 justify-content-end d-flex",
-                                  "components": [
-                                    {
-                                      "events": {
-                                        "click": [
-                                          {
-                                            "path": "infobox-textbausteine-filter-text",
-                                            "type": "popup"
-                                          }
-                                        ]
-                                      },
-                                      "icon": "",
-                                      "name": "button0",
-                                      "size": "sm",
-                                      "style": {
-                                        "backgroundColor": "rgba(0, 0, 0, 0)",
-                                        "color": "#479cc8",
-                                        "fontSize": "12px",
-                                        "paddingLeft": "5px",
-                                        "paddingRight": "5px"
-                                      },
-                                      "text": "Info",
-                                      "type": "button"
-                                    }
-                                  ],
-                                  "name": "col25",
-                                  "style": {
-                                    "height": "20px",
-                                    "marginTop": "-5px"
-                                  },
                                   "type": "col"
                                 },
                                 {
@@ -192,7 +159,8 @@
                               "style": {
                                 "marginLeft": "-25px",
                                 "marginRight": "-25px",
-                                "marginTop": "-16px"
+                                "paddingBottom": "1px",
+                                "paddingTop": "0px"
                               },
                               "type": "row"
                             },
@@ -223,17 +191,22 @@
                                   "class": "col-md-12",
                                   "components": [
                                     {
+                                      "allowFiltering": false,
                                       "attributes": [
                                         {
                                           "name": "class",
                                           "value": "textbausteine-filter-listbox"
                                         }
                                       ],
+                                      "checkbox": false,
                                       "data": "${rstTextbausteineArten}",
                                       "events": {
                                         "change": []
                                       },
+                                      "metaKeySelection": true,
+                                      "multiple": false,
                                       "name": "filterTextbausteinArtCode",
+                                      "showToggleAll": false,
                                       "style": {
                                         "marginBottom": "5px",
                                         "width": "100%"
@@ -255,7 +228,8 @@
                               "name": "row13",
                               "style": {
                                 "marginLeft": "-25px",
-                                "marginRight": "-25px"
+                                "marginRight": "-25px",
+                                "paddingBottom": "2px"
                               },
                               "type": "row"
                             },
@@ -324,7 +298,8 @@
                               "name": "row7",
                               "style": {
                                 "marginLeft": "-25px",
-                                "marginRight": "-25px"
+                                "marginRight": "-25px",
+                                "paddingBottom": "1px"
                               },
                               "type": "row"
                             },
@@ -393,7 +368,8 @@
                               "name": "row9",
                               "style": {
                                 "marginLeft": "-25px",
-                                "marginRight": "-25px"
+                                "marginRight": "-25px",
+                                "paddingBottom": "1px"
                               },
                               "type": "row"
                             },
@@ -454,7 +430,8 @@
                               "style": {
                                 "marginBottom": "5px",
                                 "marginLeft": "-25px",
-                                "marginRight": "-25px"
+                                "marginRight": "-25px",
+                                "paddingBottom": "2px"
                               },
                               "type": "row"
                             },
@@ -523,7 +500,8 @@
                               "name": "row8",
                               "style": {
                                 "marginLeft": "-25px",
-                                "marginRight": "-25px"
+                                "marginRight": "-25px",
+                                "paddingBottom": "1px"
                               },
                               "type": "row"
                             },
@@ -632,7 +610,7 @@
                                           }
                                         ]
                                       },
-                                      "icon": "live_help",
+                                      "icon": "filter_list",
                                       "name": "buttonFilterInfo",
                                       "size": "sm",
                                       "style": {
@@ -1141,18 +1119,6 @@
                                 "marginTop": "-12px"
                               },
                               "type": "row"
-                            },
-                            {
-                              "icon": "info",
-                              "name": "linkFilterInfo",
-                              "path": "infobox-textbausteine-filter-text",
-                              "style": {
-                                "float": "right",
-                                "fontSize": "12px",
-                                "marginTop": "-2px"
-                              },
-                              "text": "&nbsp;Info",
-                              "type": "link"
                             }
                           ],
                           "headerTemplate": [
