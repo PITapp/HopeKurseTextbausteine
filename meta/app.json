@@ -57,9 +57,9 @@
     "TextbausteineBearbeiten",
     "TextbausteineDuplizieren",
     "TextbausteineFelderAuswahl",
-    "Login",
     "Versionen",
-    "InfoboxTextbausteineFilterText"
+    "InfoboxTextbausteineFilterText",
+    "TextbausteineInfo"
   ],
   "port": 8000,
   "security": {
