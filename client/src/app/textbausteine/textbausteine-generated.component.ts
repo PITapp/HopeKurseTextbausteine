@@ -25,6 +25,7 @@ import { HtmlComponent } from '@radzen/angular/dist/html';
 
 import { ConfigService } from '../config.service';
 import { MeldungLoeschenComponent } from '../meldung-loeschen/meldung-loeschen.component';
+import { TextbausteineInfoComponent } from '../textbausteine-info/textbausteine-info.component';
 import { TextbausteineBearbeitenComponent } from '../textbausteine-bearbeiten/textbausteine-bearbeiten.component';
 import { TextbausteineDuplizierenComponent } from '../textbausteine-duplizieren/textbausteine-duplizieren.component';
 import { TextbausteineNeuComponent } from '../textbausteine-neu/textbausteine-neu.component';
@@ -55,7 +56,7 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
   @ViewChild('label3') label3: LabelComponent;
   @ViewChild('dropdown1') dropdown1: DropDownComponent;
   @ViewChild('buttonFilterInfo') buttonFilterInfo: ButtonComponent;
-  @ViewChild('buttonZuruecksetzen') buttonZuruecksetzen: ButtonComponent;
+  @ViewChild('buttonFilterLoeschen') buttonFilterLoeschen: ButtonComponent;
   @ViewChild('panel4') panel4: PanelComponent;
   @ViewChild('gridTextbausteine') gridTextbausteine: GridComponent;
   @ViewChild('buttonNeu') buttonNeu: ButtonComponent;
@@ -70,6 +71,7 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
   @ViewChild('buttonSpeichern') buttonSpeichern: ButtonComponent;
   @ViewChild('panel2') panel2: PanelComponent;
   @ViewChild('gridFavoriten') gridFavoriten: GridComponent;
+  @ViewChild('button0') button0: ButtonComponent;
   @ViewChild('buttonFavoritEntfernen') buttonFavoritEntfernen: ButtonComponent;
   @ViewChild('panel3') panel3: PanelComponent;
   @ViewChild('htmlEditorTextbausteineFavoriten') htmlEditorTextbausteineFavoriten: HtmlComponent;
@@ -77,6 +79,7 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
   @ViewChild('buttonFavoritenDokument') buttonFavoritenDokument: ButtonComponent;
   @ViewChild('panel1') panel1: PanelComponent;
   @ViewChild('gridVerlauf') gridVerlauf: GridComponent;
+  @ViewChild('button1') button1: ButtonComponent;
   @ViewChild('buttonVerlaufEntfernen') buttonVerlaufEntfernen: ButtonComponent;
   @ViewChild('panel5') panel5: PanelComponent;
   @ViewChild('html0') html0: HtmlComponent;
@@ -272,7 +275,7 @@ this.dsoBenutzer.FilterInfo = null
     });
   }
 
-  buttonZuruecksetzenClick(event: any) {
+  buttonFilterLoeschenClick(event: any) {
     Promise.resolve().then(() => {
       this.dsoBenutzer.FilterTextbausteinArtCode = null
 this.dsoBenutzer.FilterKursNr = null
@@ -525,10 +528,18 @@ this.dsoVerlauf.TextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
     });
   }
 
+  gridFavoritenRowDoubleClick(event: any) {
+    this.dialogService.open(TextbausteineInfoComponent, { parameters: {TextbausteinNr: this.dsoBenutzerTextbausteineFavoriten.TextbausteinNr}, title: `Info Textbaustein` });
+  }
+
   gridFavoritenRowSelect(event: any) {
     this.strTextbausteinHTMLFavoriten = event.TextbausteinHTML;
 
     this.dsoBenutzerTextbausteineFavoriten = event;
+  }
+
+  button0Click(event: any) {
+    this.dialogService.open(TextbausteineInfoComponent, { parameters: {TextbausteinNr: this.dsoBenutzerTextbausteineFavoriten.TextbausteinNr}, title: `Info Textbaustein` });
   }
 
   buttonFavoritEntfernenClick(event: any) {
@@ -568,10 +579,18 @@ this.dsoVerlauf.TextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
     });
   }
 
+  gridVerlaufRowDoubleClick(event: any) {
+    this.dialogService.open(TextbausteineInfoComponent, { parameters: {TextbausteinNr: this.dsoBenutzerTextbausteineVerlauf.TextbausteinNr}, title: `Info Verlauf` });
+  }
+
   gridVerlaufRowSelect(event: any) {
     this.strTextbausteinHTMLVerlauf = event.TextbausteinHTML;
 
     this.dsoBenutzerTextbausteineVerlauf = event;
+  }
+
+  button1Click(event: any) {
+    this.dialogService.open(TextbausteineInfoComponent, { parameters: {TextbausteinNr: this.dsoBenutzerTextbausteineVerlauf.TextbausteinNr}, title: `Info Verlauf` });
   }
 
   buttonVerlaufEntfernenClick(event: any) {

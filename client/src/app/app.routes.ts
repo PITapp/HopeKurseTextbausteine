@@ -36,6 +36,7 @@ import { TextbausteineFelderAuswahlComponent } from './textbausteine-felder-ausw
 import { LoginComponent } from './login/login.component';
 import { VersionenComponent } from './versionen/versionen.component';
 import { InfoboxTextbausteineFilterTextComponent } from './infobox-textbausteine-filter-text/infobox-textbausteine-filter-text.component';
+import { TextbausteineInfoComponent } from './textbausteine-info/textbausteine-info.component';
 
 import { SecurityService } from './security.service';
 import { AuthGuard } from './auth.guard';
@@ -300,6 +301,14 @@ export const routes: Routes = [
           roles: ['Authenticated'],
         },
         component: InfoboxTextbausteineFilterTextComponent
+      },
+      {
+        path: 'textbausteine-info/:TextbausteinNr',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: TextbausteineInfoComponent
       },
     ]
   },

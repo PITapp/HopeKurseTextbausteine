@@ -300,7 +300,7 @@
                                       "name": "buttonBearbeiten",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#D86E13",
+                                        "color": "#598087",
                                         "marginLeft": "10px",
                                         "paddingLeft": ""
                                       },
@@ -360,15 +360,15 @@
                                           }
                                         ]
                                       },
-                                      "icon": "clear",
+                                      "icon": "cancel",
                                       "name": "buttonLoeschen",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#D86E13",
+                                        "color": "#598087",
+                                        "fontStyle": "normal",
                                         "fontWeight": "normal",
                                         "marginLeft": "10px",
-                                        "marginRight": "-9px",
-                                        "paddingLeft": ""
+                                        "marginRight": "-9px"
                                       },
                                       "text": "",
                                       "tooltip": "Löschen Infotext",
@@ -475,7 +475,7 @@
                                       "name": "button4",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#5dbf74",
+                                        "color": "#598087",
                                         "display": "block",
                                         "marginRight": "-9px"
                                       },

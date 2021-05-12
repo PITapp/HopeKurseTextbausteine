@@ -730,7 +730,7 @@
                                       "name": "button4",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#5dbf74",
+                                        "color": "#598087",
                                         "display": "block",
                                         "marginRight": "-9px"
                                       },
@@ -930,16 +930,16 @@
                                           }
                                         ]
                                       },
-                                      "icon": "phonelink_erase",
+                                      "icon": "cancel",
                                       "name": "buttonBildEntfernen",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#D86E13",
+                                        "color": "#598087",
                                         "display": "block",
                                         "marginRight": "-9px"
                                       },
-                                      "text": "Bild entfernen",
-                                      "tooltip": "",
+                                      "text": "",
+                                      "tooltip": "Löschen Profilbild",
                                       "type": "button"
                                     }
                                   ],

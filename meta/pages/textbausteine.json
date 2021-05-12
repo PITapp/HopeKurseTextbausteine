@@ -610,7 +610,7 @@
                                           }
                                         ]
                                       },
-                                      "icon": "filter_list",
+                                      "icon": "short_text",
                                       "name": "buttonFilterInfo",
                                       "size": "sm",
                                       "style": {
@@ -650,19 +650,18 @@
                                           }
                                         ]
                                       },
-                                      "icon": "clear",
-                                      "name": "buttonZuruecksetzen",
+                                      "icon": "cancel",
+                                      "name": "buttonFilterLoeschen",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#D86E13",
+                                        "color": "#598087",
                                         "display": "block",
                                         "fontWeight": "normal",
                                         "marginLeft": "10px",
-                                        "marginRight": "-9px",
-                                        "paddingLeft": ""
+                                        "marginRight": "-9px"
                                       },
                                       "text": "",
-                                      "tooltip": "Filter zurücksetzen",
+                                      "tooltip": "Löschen Filter",
                                       "type": "button"
                                     }
                                   ],
@@ -993,7 +992,7 @@
                                       "name": "buttonBearbeiten",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#D86E13",
+                                        "color": "#598087",
                                         "marginLeft": "10px",
                                         "paddingLeft": ""
                                       },
@@ -1053,11 +1052,11 @@
                                           }
                                         ]
                                       },
-                                      "icon": "clear",
+                                      "icon": "cancel",
                                       "name": "buttonLoeschen",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#D86E13",
+                                        "color": "#598087",
                                         "fontWeight": "normal",
                                         "marginLeft": "10px",
                                         "marginRight": "-9px",
@@ -1317,7 +1316,7 @@
                                       "name": "buttonSpeichern",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#5dbf74",
+                                        "color": "#598087",
                                         "display": "inline-block",
                                         "marginLeft": "10px",
                                         "marginRight": "-9px"
@@ -1491,7 +1490,19 @@
                                     "type": "invoke"
                                   }
                                 ],
-                                "rowDoubleClick": [],
+                                "rowDoubleClick": [
+                                  {
+                                    "parameters": [
+                                      {
+                                        "name": "TextbausteinNr",
+                                        "value": "${dsoBenutzerTextbausteineFavoriten.TextbausteinNr}"
+                                      }
+                                    ],
+                                    "path": "textbausteine-info",
+                                    "title": "Info Textbaustein",
+                                    "type": "popup"
+                                  }
+                                ],
                                 "rowSelect": [
                                   {
                                     "name": "strTextbausteinHTMLFavoriten",
@@ -1533,6 +1544,37 @@
                                 {
                                   "class": "col-md-12 align-items-start d-flex",
                                   "components": [
+                                    {
+                                      "buttonStyle": "light",
+                                      "disabled": false,
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "parameters": [
+                                              {
+                                                "name": "TextbausteinNr",
+                                                "value": "${dsoBenutzerTextbausteineFavoriten.TextbausteinNr}"
+                                              }
+                                            ],
+                                            "path": "textbausteine-info",
+                                            "title": "Info Textbaustein",
+                                            "type": "popup"
+                                          }
+                                        ]
+                                      },
+                                      "icon": "short_text",
+                                      "name": "button0",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#D86E13",
+                                        "display": "block",
+                                        "fontWeight": "normal",
+                                        "paddingLeft": ""
+                                      },
+                                      "text": "Info",
+                                      "tooltip": "",
+                                      "type": "button"
+                                    },
                                     {
                                       "buttonStyle": "light",
                                       "disabled": false,
@@ -1584,16 +1626,17 @@
                                           }
                                         ]
                                       },
-                                      "icon": "clear",
+                                      "icon": "cancel",
                                       "name": "buttonFavoritEntfernen",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#D86E13",
+                                        "color": "#598087",
                                         "fontWeight": "normal",
+                                        "marginLeft": "10px",
                                         "marginRight": "-9px",
                                         "paddingLeft": ""
                                       },
-                                      "text": "Favorit entfernen",
+                                      "text": "",
                                       "tooltip": "Löschen Favorit",
                                       "type": "button"
                                     }
@@ -1868,7 +1911,19 @@
                                     "type": "invoke"
                                   }
                                 ],
-                                "rowDoubleClick": [],
+                                "rowDoubleClick": [
+                                  {
+                                    "parameters": [
+                                      {
+                                        "name": "TextbausteinNr",
+                                        "value": "${dsoBenutzerTextbausteineVerlauf.TextbausteinNr}"
+                                      }
+                                    ],
+                                    "path": "textbausteine-info",
+                                    "title": "Info Verlauf",
+                                    "type": "popup"
+                                  }
+                                ],
                                 "rowSelect": [
                                   {
                                     "name": "strTextbausteinHTMLVerlauf",
@@ -1910,6 +1965,37 @@
                                 {
                                   "class": "col-md-12 align-items-start d-flex",
                                   "components": [
+                                    {
+                                      "buttonStyle": "light",
+                                      "disabled": false,
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "parameters": [
+                                              {
+                                                "name": "TextbausteinNr",
+                                                "value": "${dsoBenutzerTextbausteineVerlauf.TextbausteinNr}"
+                                              }
+                                            ],
+                                            "path": "textbausteine-info",
+                                            "title": "Info Verlauf",
+                                            "type": "popup"
+                                          }
+                                        ]
+                                      },
+                                      "icon": "short_text",
+                                      "name": "button1",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#D86E13",
+                                        "display": "block",
+                                        "fontWeight": "normal",
+                                        "paddingLeft": ""
+                                      },
+                                      "text": "Info",
+                                      "tooltip": "",
+                                      "type": "button"
+                                    },
                                     {
                                       "buttonStyle": "light",
                                       "disabled": false,
@@ -1961,17 +2047,18 @@
                                           }
                                         ]
                                       },
-                                      "icon": "clear",
+                                      "icon": "cancel",
                                       "name": "buttonVerlaufEntfernen",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#D86E13",
+                                        "color": "#598087",
                                         "fontWeight": "normal",
+                                        "marginLeft": "10px",
                                         "marginRight": "-9px",
                                         "paddingLeft": ""
                                       },
-                                      "text": "Verlauf entfernen",
-                                      "tooltip": "",
+                                      "text": "",
+                                      "tooltip": "Löschen Verlauf",
                                       "type": "button"
                                     }
                                   ],

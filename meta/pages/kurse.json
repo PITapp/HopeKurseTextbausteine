@@ -347,12 +347,12 @@
                                       "name": "buttonBearbeiten",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#D86E13",
+                                        "color": "#598087",
                                         "marginLeft": "10px",
                                         "paddingLeft": ""
                                       },
                                       "text": "",
-                                      "tooltip": "Bearbeiten Kontakt",
+                                      "tooltip": "Bearbeiten Kurs",
                                       "type": "button"
                                     },
                                     {
@@ -407,18 +407,18 @@
                                           }
                                         ]
                                       },
-                                      "icon": "clear",
+                                      "icon": "cancel",
                                       "name": "buttonLoeschen",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#D86E13",
+                                        "color": "#598087",
                                         "fontWeight": "normal",
                                         "marginLeft": "10px",
                                         "marginRight": "-9px",
                                         "paddingLeft": ""
                                       },
                                       "text": "",
-                                      "tooltip": "Löschen Kontakt",
+                                      "tooltip": "Löschen Kurs",
                                       "type": "button"
                                     }
                                   ],
@@ -799,12 +799,12 @@
                               "name": "button1",
                               "size": "sm",
                               "style": {
-                                "color": "#D86E13",
+                                "color": "#598087",
                                 "marginLeft": "10px",
                                 "paddingLeft": ""
                               },
                               "text": "",
-                              "tooltip": "Bearbeiten Kontakt",
+                              "tooltip": "Bearbeiten Thema",
                               "type": "button"
                             },
                             {
@@ -859,18 +859,18 @@
                                   }
                                 ]
                               },
-                              "icon": "clear",
+                              "icon": "cancel",
                               "name": "button2",
                               "size": "sm",
                               "style": {
-                                "color": "#D86E13",
+                                "color": "#598087",
                                 "fontWeight": "normal",
                                 "marginLeft": "10px",
                                 "marginRight": "-9px",
                                 "paddingLeft": ""
                               },
                               "text": "",
-                              "tooltip": "Löschen Kontakt",
+                              "tooltip": "Löschen Thema",
                               "type": "button"
                             }
                           ],

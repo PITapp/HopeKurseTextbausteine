@@ -90,9 +90,9 @@
             <rz-panel-header>
               <div class="row">
                 <div class="col-md-12 align-items-start d-flex">
-                  <rz-button #buttonFilterInfo buttonStyle="light" [disabled]="false" icon="filter_list" size="sm" [style]="{'color': '#D86E13', 'display': 'block', 'fontWeight': 'normal', 'paddingLeft': ''}" text="Info" (click)="buttonFilterInfoClick($event)">
+                  <rz-button #buttonFilterInfo buttonStyle="light" [disabled]="false" icon="short_text" size="sm" [style]="{'color': '#D86E13', 'display': 'block', 'fontWeight': 'normal', 'paddingLeft': ''}" text="Info" (click)="buttonFilterInfoClick($event)">
                   </rz-button>
-                  <rz-button #buttonZuruecksetzen buttonStyle="light" [disabled]="false" icon="clear" size="sm" [style]="{'color': '#D86E13', 'display': 'block', 'fontWeight': 'normal', 'marginLeft': '10px', 'marginRight': '-9px', 'paddingLeft': ''}" tooltip="Filter zurücksetzen" (click)="buttonZuruecksetzenClick($event)">
+                  <rz-button #buttonFilterLoeschen buttonStyle="light" [disabled]="false" icon="cancel" size="sm" [style]="{'color': '#598087', 'display': 'block', 'fontWeight': 'normal', 'marginLeft': '10px', 'marginRight': '-9px'}" tooltip="Löschen Filter" (click)="buttonFilterLoeschenClick($event)">
                   </rz-button>
                 </div>
               </div>
@@ -123,9 +123,9 @@
                   </rz-button>
                   <rz-button #buttonDuplizieren buttonStyle="light" icon="control_point_duplicate" size="sm" [style]="{'color': '#D86E13', 'display': 'block', 'marginLeft': '10px'}" text="Duplizieren" (click)="buttonDuplizierenClick($event)">
                   </rz-button>
-                  <rz-button #buttonBearbeiten buttonStyle="light" icon="create" size="sm" [style]="{'color': '#D86E13', 'marginLeft': '10px', 'paddingLeft': ''}" tooltip="Bearbeiten Textbaustein" (click)="buttonBearbeitenClick($event)">
+                  <rz-button #buttonBearbeiten buttonStyle="light" icon="create" size="sm" [style]="{'color': '#598087', 'marginLeft': '10px', 'paddingLeft': ''}" tooltip="Bearbeiten Textbaustein" (click)="buttonBearbeitenClick($event)">
                   </rz-button>
-                  <rz-button #buttonLoeschen buttonStyle="light" [disabled]="false" icon="clear" size="sm" [style]="{'color': '#D86E13', 'fontWeight': 'normal', 'marginLeft': '10px', 'marginRight': '-9px', 'paddingLeft': ''}" tooltip="Löschen Textbaustein" (click)="buttonLoeschenClick($event)">
+                  <rz-button #buttonLoeschen buttonStyle="light" [disabled]="false" icon="cancel" size="sm" [style]="{'color': '#598087', 'fontWeight': 'normal', 'marginLeft': '10px', 'marginRight': '-9px', 'paddingLeft': ''}" tooltip="Löschen Textbaustein" (click)="buttonLoeschenClick($event)">
                   </rz-button>
                 </div>
               </div>
@@ -189,7 +189,7 @@
                   </rz-button>
                   <rz-button #buttonFavorit buttonStyle="light" icon="star_outline" size="sm" [style]="{'color': '#D86E13', 'display': 'inline-block', 'marginLeft': '10px'}" text="Favorit" (click)="buttonFavoritClick($event)">
                   </rz-button>
-                  <rz-button #buttonSpeichern buttonStyle="light" buttonType="submit" icon="done" size="sm" [style]="{'color': '#5dbf74', 'display': 'inline-block', 'marginLeft': '10px', 'marginRight': '-9px'}" text="Speichern" (click)="buttonSpeichernClick($event)">
+                  <rz-button #buttonSpeichern buttonStyle="light" buttonType="submit" icon="done" size="sm" [style]="{'color': '#598087', 'display': 'inline-block', 'marginLeft': '10px', 'marginRight': '-9px'}" text="Speichern" (click)="buttonSpeichernClick($event)">
                   </rz-button>
                 </div>
               </div>
@@ -202,7 +202,7 @@
       <div class="row">
         <div class="col-md-7" [ngStyle]="{}">
           <rz-panel #panel2 [allowCollapse]="false" [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="{{rstFavoritenCount == 0 ? '' : rstFavoritenCount}} Favoriten">
-            <rz-grid #gridFavoriten [allowAdd]="false" [allowColumnResize]="true" [allowDelete]="false" [allowFiltering]="false" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="false" [alwaysShowPager]="false" applyFilterText="Apply" clearFilterText="Clear" [confirmDelete]="false" containsText="Contains" [count]="rstFavoritenCount" [data]="rstFavoriten" emptyText="Keine Favoriten vorhanden" endsWithText="Ends with" equalsText="Equals" filterCaseSensitivity="caseInsensitive" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="22" startsWithText="Starts with" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'height': '700px', 'marginLeft': '-10px', 'marginRight': '-10px', 'marginTop': '-13px'}" (loadData)="gridFavoritenLoadData($event)" (rowSelect)="gridFavoritenRowSelect($event)">
+            <rz-grid #gridFavoriten [allowAdd]="false" [allowColumnResize]="true" [allowDelete]="false" [allowFiltering]="false" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="false" [alwaysShowPager]="false" applyFilterText="Apply" clearFilterText="Clear" [confirmDelete]="false" containsText="Contains" [count]="rstFavoritenCount" [data]="rstFavoriten" emptyText="Keine Favoriten vorhanden" endsWithText="Ends with" equalsText="Equals" filterCaseSensitivity="caseInsensitive" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="22" startsWithText="Starts with" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'height': '700px', 'marginLeft': '-10px', 'marginRight': '-10px', 'marginTop': '-13px'}" (loadData)="gridFavoritenLoadData($event)" (rowDoubleClick)="gridFavoritenRowDoubleClick($event)" (rowSelect)="gridFavoritenRowSelect($event)">
               <rz-grid-column property="AutorKrzel" title="Autor" width="50px" type="string">
               </rz-grid-column>
               <rz-grid-column property="KursKurzzeichen" title="Kurs" width="50px" type="string">
@@ -222,7 +222,9 @@
             <rz-panel-header>
               <div class="row">
                 <div class="col-md-12 align-items-start d-flex">
-                  <rz-button #buttonFavoritEntfernen buttonStyle="light" [disabled]="false" icon="clear" size="sm" [style]="{'color': '#D86E13', 'fontWeight': 'normal', 'marginRight': '-9px', 'paddingLeft': ''}" text="Favorit entfernen" tooltip="Löschen Favorit" (click)="buttonFavoritEntfernenClick($event)">
+                  <rz-button #button0 buttonStyle="light" [disabled]="false" icon="short_text" size="sm" [style]="{'color': '#D86E13', 'display': 'block', 'fontWeight': 'normal', 'paddingLeft': ''}" text="Info" (click)="button0Click($event)">
+                  </rz-button>
+                  <rz-button #buttonFavoritEntfernen buttonStyle="light" [disabled]="false" icon="cancel" size="sm" [style]="{'color': '#598087', 'fontWeight': 'normal', 'marginLeft': '10px', 'marginRight': '-9px', 'paddingLeft': ''}" tooltip="Löschen Favorit" (click)="buttonFavoritEntfernenClick($event)">
                   </rz-button>
                 </div>
               </div>
@@ -295,7 +297,7 @@
       <div class="row">
         <div class="col-md-7" [ngStyle]="{}">
           <rz-panel #panel1 [allowCollapse]="false" [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="{{rstVerlaufCount == 0 ? '' : rstVerlaufCount}} Verlauf">
-            <rz-grid #gridVerlauf [allowAdd]="false" [allowColumnResize]="true" [allowDelete]="false" [allowFiltering]="false" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="false" [alwaysShowPager]="false" applyFilterText="Apply" clearFilterText="Clear" [confirmDelete]="false" containsText="Contains" [count]="rstVerlaufCount" [data]="rstVerlauf" emptyText="Kein Verlauf vorhanden" endsWithText="Ends with" equalsText="Equals" filterCaseSensitivity="caseInsensitive" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="22" startsWithText="Starts with" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'height': '700px', 'marginLeft': '-10px', 'marginRight': '-10px', 'marginTop': '-13px'}" (loadData)="gridVerlaufLoadData($event)" (rowSelect)="gridVerlaufRowSelect($event)">
+            <rz-grid #gridVerlauf [allowAdd]="false" [allowColumnResize]="true" [allowDelete]="false" [allowFiltering]="false" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="false" [alwaysShowPager]="false" applyFilterText="Apply" clearFilterText="Clear" [confirmDelete]="false" containsText="Contains" [count]="rstVerlaufCount" [data]="rstVerlauf" emptyText="Kein Verlauf vorhanden" endsWithText="Ends with" equalsText="Equals" filterCaseSensitivity="caseInsensitive" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="22" startsWithText="Starts with" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'height': '700px', 'marginLeft': '-10px', 'marginRight': '-10px', 'marginTop': '-13px'}" (loadData)="gridVerlaufLoadData($event)" (rowDoubleClick)="gridVerlaufRowDoubleClick($event)" (rowSelect)="gridVerlaufRowSelect($event)">
               <rz-grid-column property="AutorKrzel" title="Autor" width="50px" type="string">
               </rz-grid-column>
               <rz-grid-column property="KursKurzzeichen" title="Kurs" width="50px" type="string">
@@ -315,7 +317,9 @@
             <rz-panel-header>
               <div class="row">
                 <div class="col-md-12 align-items-start d-flex">
-                  <rz-button #buttonVerlaufEntfernen buttonStyle="light" [disabled]="false" icon="clear" size="sm" [style]="{'color': '#D86E13', 'fontWeight': 'normal', 'marginRight': '-9px', 'paddingLeft': ''}" text="Verlauf entfernen" (click)="buttonVerlaufEntfernenClick($event)">
+                  <rz-button #button1 buttonStyle="light" [disabled]="false" icon="short_text" size="sm" [style]="{'color': '#D86E13', 'display': 'block', 'fontWeight': 'normal', 'paddingLeft': ''}" text="Info" (click)="button1Click($event)">
+                  </rz-button>
+                  <rz-button #buttonVerlaufEntfernen buttonStyle="light" [disabled]="false" icon="cancel" size="sm" [style]="{'color': '#598087', 'fontWeight': 'normal', 'marginLeft': '10px', 'marginRight': '-9px', 'paddingLeft': ''}" tooltip="Löschen Verlauf" (click)="buttonVerlaufEntfernenClick($event)">
                   </rz-button>
                 </div>
               </div>

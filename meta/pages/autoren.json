@@ -369,7 +369,7 @@
                                       "name": "buttonBearbeiten",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#D86E13",
+                                        "color": "#598087",
                                         "marginLeft": "10px",
                                         "paddingLeft": ""
                                       },
@@ -429,11 +429,11 @@
                                           }
                                         ]
                                       },
-                                      "icon": "clear",
+                                      "icon": "cancel",
                                       "name": "buttonLoeschen",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#D86E13",
+                                        "color": "#598087",
                                         "fontWeight": "normal",
                                         "marginLeft": "10px",
                                         "marginRight": "-9px",
