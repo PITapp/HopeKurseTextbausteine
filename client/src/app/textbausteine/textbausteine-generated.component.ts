@@ -25,10 +25,11 @@ import { HtmlComponent } from '@radzen/angular/dist/html';
 
 import { ConfigService } from '../config.service';
 import { MeldungLoeschenComponent } from '../meldung-loeschen/meldung-loeschen.component';
-import { TextbausteineInfoComponent } from '../textbausteine-info/textbausteine-info.component';
 import { TextbausteineBearbeitenComponent } from '../textbausteine-bearbeiten/textbausteine-bearbeiten.component';
+import { TextbausteineInfoComponent } from '../textbausteine-info/textbausteine-info.component';
 import { TextbausteineDuplizierenComponent } from '../textbausteine-duplizieren/textbausteine-duplizieren.component';
 import { TextbausteineNeuComponent } from '../textbausteine-neu/textbausteine-neu.component';
+import { TextbausteineFilterInfoComponent } from '../textbausteine-filter-info/textbausteine-filter-info.component';
 
 import { DbHopeKurseTextbausteineService } from '../db-hope-kurse-textbausteine.service';
 import { SecurityService } from '../security.service';
@@ -85,6 +86,14 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
   @ViewChild('html0') html0: HtmlComponent;
   @ViewChild('buttonVerlaufKopieren') buttonVerlaufKopieren: ButtonComponent;
   @ViewChild('buttonVerlaufDokument') buttonVerlaufDokument: ButtonComponent;
+  @ViewChild('panel8') panel8: PanelComponent;
+  @ViewChild('gridTextbausteinePapierkorb') gridTextbausteinePapierkorb: GridComponent;
+  @ViewChild('buttonPapierkorbBearbeiten') buttonPapierkorbBearbeiten: ButtonComponent;
+  @ViewChild('buttonPapierkorbLoeschen') buttonPapierkorbLoeschen: ButtonComponent;
+  @ViewChild('panel9') panel9: PanelComponent;
+  @ViewChild('html1') html1: HtmlComponent;
+  @ViewChild('buttonPapierkorbDokument') buttonPapierkorbDokument: ButtonComponent;
+  @ViewChild('buttonPapierkorbSpeichern') buttonPapierkorbSpeichern: ButtonComponent;
 
   router: Router;
 
@@ -111,17 +120,16 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
   dbHopeKurseTextbausteine: DbHopeKurseTextbausteineService;
 
   security: SecurityService;
-  varTest: any;
   dsoBenutzer: any;
   rstTextbausteineArten: any;
   rstKurse: any;
   rstAutoren: any;
   valAnreden: any;
   valDokumente: any;
+  bolAnzeigenTitelTextbaustein: any;
   dsoFavoriten: any;
   dsoVerlauf: any;
   onKeyEnterFilterText: any;
-  bolAnzeigenTitelTextbaustein: any;
   onFocusOutFilterText: any;
   parameters: any;
   letzteTextbausteinNr: any;
@@ -137,6 +145,10 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
   rstVerlaufCount: any;
   strTextbausteinHTMLVerlauf: any;
   dsoBenutzerTextbausteineVerlauf: any;
+  rstTextbausteinePapierkorb: any;
+  rstTextbausteinePapierkorbCount: any;
+  strTextbausteinPapierkorbHTML: any;
+  dsoTextbausteinePapierkorb: any;
 
   constructor(private injector: Injector) {
   }
@@ -186,55 +198,73 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
 
 
   load() {
-    this.varTest = {"theme": "bubble"};
-
     this.dbHopeKurseTextbausteine.getBenutzers(`BenutzerName eq '${this.security.user.name}'`, null, null, null, null, null, null, null)
     .subscribe((result: any) => {
       this.dsoBenutzer = result.value[0];
+    }, (result: any) => {
 
-      this.dbHopeKurseTextbausteine.getIbsiTextbausteineArtens(null, null, null, `Sortierung`, null, null, null, null)
+    });
+
+    this.dbHopeKurseTextbausteine.getIbsiTextbausteineArtens(null, null, null, `Sortierung`, null, null, null, null)
+    .subscribe((result: any) => {
+      this.rstTextbausteineArten = result.value;
+
+      this.dbHopeKurseTextbausteine.getIbsiKurses(null, null, null, `Titel`, null, null, null, null)
       .subscribe((result: any) => {
-        this.rstTextbausteineArten = result.value;
+        this.rstKurse = result.value;
 
-        this.dbHopeKurseTextbausteine.getIbsiKurses(null, null, null, `Titel`, null, null, null, null)
+        this.dbHopeKurseTextbausteine.getIbsiTextbausteineAutorens(null, null, null, `Name`, null, null, null, null)
         .subscribe((result: any) => {
-          this.rstKurse = result.value;
+          this.rstAutoren = result.value;
 
-          this.dbHopeKurseTextbausteine.getIbsiTextbausteineAutorens(null, null, null, `Name`, null, null, null, null)
-          .subscribe((result: any) => {
-            this.rstAutoren = result.value;
+          this.valAnreden = [{text: 'Du', value: 'Du'}, {text: 'Sie', value: 'Sie'}, {text: 'Ohne', value: 'Ohne'}];
 
-            this.valAnreden = [{text: 'Du', value: 'Du'}, {text: 'Sie', value: 'Sie'}, {text: 'Ohne', value: 'Ohne'}];
+          this.valDokumente = [{text: 'Mit Domument', value: 'MitDokument'}, {text: 'Ohne Dokument', value: 'OhneDokument'}];
 
-            this.valDokumente = [{text: 'Mit Domument', value: 'MitDokument'}, {text: 'Ohne Dokument', value: 'OhneDokument'}];
-
-            this.gridTextbausteine.load();
-          }, (result: any) => {
-
-          });
+          this.gridTextbausteine.load();
         }, (result: any) => {
 
         });
       }, (result: any) => {
 
       });
-
-      this.gridFavoriten.load();
-
-      this.gridVerlauf.load();
     }, (result: any) => {
 
     });
+
+    this.gridFavoriten.load();
+
+    this.gridVerlauf.load();
+
+    this.gridTextbausteinePapierkorb.load();
+
+    this.bolAnzeigenTitelTextbaustein = true;
 
     this.dsoFavoriten = {BenutzerID: '', Am: '', TextbausteinNr: ''};
 
     this.dsoVerlauf = {BenutzerID: '', Am: '', TextbausteinNr: ''};
 
-    this.onKeyEnterFilterText = () => { console.log('Enter gedrückt'); };
+    this.onKeyEnterFilterText = () => {
+    this.dbHopeKurseTextbausteine.updateBenutzer(null, this.dsoBenutzer.BenutzerID, this.dsoBenutzer)
+    .subscribe((result: any) => {
 
-    this.bolAnzeigenTitelTextbaustein = true;
+    }, (result: any) => {
 
-    this.onFocusOutFilterText = () => { console.log('Focus verlassen'); };
+    });
+    
+    this.gridTextbausteine.load();
+ };
+
+    this.onFocusOutFilterText = () => {     
+    this.dbHopeKurseTextbausteine.updateBenutzer(null, this.dsoBenutzer.BenutzerID, this.dsoBenutzer)
+    .subscribe((result: any) => {
+
+    }, (result: any) => {
+
+    });
+    
+    this.gridTextbausteine.load();
+ };
   }
 
   tabsTextbausteineChange(event: any) {
@@ -253,60 +283,104 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
 }
   }
 
-  buttonFilterInfoClick(event: any) {
-    Promise.resolve().then(() => {
-      this.dsoBenutzer.FilterTextbausteinArtCode = null
-this.dsoBenutzer.FilterKursNr = null
-this.dsoBenutzer.FilterTitelUndText = null
-this.dsoBenutzer.FilterAutorNr = null
-this.dsoBenutzer.FilterThemaNummer = null
-this.dsoBenutzer.FilterAnrede = null
-this.dsoBenutzer.FilterDokument = null
-this.dsoBenutzer.FilterInfo = null
-    }).then((result: any) => {
-      this.dbHopeKurseTextbausteine.updateBenutzer(null, this.dsoBenutzer.BenutzerID, this.dsoBenutzer)
-      .subscribe((result: any) => {
+  filterTextbausteinArtCodeChange(event: any) {
+    this.dbHopeKurseTextbausteine.updateBenutzer(null, this.dsoBenutzer.BenutzerID, this.dsoBenutzer)
+    .subscribe((result: any) => {
 
-      }, (result: any) => {
-
-      });
     }, (result: any) => {
 
     });
+
+    this.gridTextbausteine.load();
+  }
+
+  filterKursNrChange(event: any) {
+    this.dbHopeKurseTextbausteine.updateBenutzer(null, this.dsoBenutzer.BenutzerID, this.dsoBenutzer)
+    .subscribe((result: any) => {
+
+    }, (result: any) => {
+
+    });
+
+    this.gridTextbausteine.load();
+  }
+
+  dropdown4Change(event: any) {
+    this.dbHopeKurseTextbausteine.updateBenutzer(null, this.dsoBenutzer.BenutzerID, this.dsoBenutzer)
+    .subscribe((result: any) => {
+
+    }, (result: any) => {
+
+    });
+
+    this.gridTextbausteine.load();
+  }
+
+  numeric0Change(event: any) {
+    this.dbHopeKurseTextbausteine.updateBenutzer(null, this.dsoBenutzer.BenutzerID, this.dsoBenutzer)
+    .subscribe((result: any) => {
+
+    }, (result: any) => {
+
+    });
+
+    this.gridTextbausteine.load();
+  }
+
+  dropdown0Change(event: any) {
+    this.dbHopeKurseTextbausteine.updateBenutzer(null, this.dsoBenutzer.BenutzerID, this.dsoBenutzer)
+    .subscribe((result: any) => {
+
+    }, (result: any) => {
+
+    });
+
+    this.gridTextbausteine.load();
+  }
+
+  dropdown1Change(event: any) {
+    this.dbHopeKurseTextbausteine.updateBenutzer(null, this.dsoBenutzer.BenutzerID, null)
+    .subscribe((result: any) => {
+
+    }, (result: any) => {
+
+    });
+
+    this.gridTextbausteine.load();
+  }
+
+  buttonFilterInfoClick(event: any) {
+    this.dialogService.open(TextbausteineFilterInfoComponent, { parameters: {}, title: `Info Filter` });
   }
 
   buttonFilterLoeschenClick(event: any) {
-    Promise.resolve().then(() => {
-      this.dsoBenutzer.FilterTextbausteinArtCode = null
+    this.dsoBenutzer.FilterTextbausteinArtCode = null
 this.dsoBenutzer.FilterKursNr = null
 this.dsoBenutzer.FilterTitelUndText = null
 this.dsoBenutzer.FilterAutorNr = null
 this.dsoBenutzer.FilterThemaNummer = null
 this.dsoBenutzer.FilterAnrede = null
 this.dsoBenutzer.FilterDokument = null
-this.dsoBenutzer.FilterInfo = null
-    }).then((result: any) => {
-      this.dbHopeKurseTextbausteine.updateBenutzer(null, this.dsoBenutzer.BenutzerID, this.dsoBenutzer)
-      .subscribe((result: any) => {
 
-      }, (result: any) => {
+    this.dbHopeKurseTextbausteine.updateBenutzer(null, this.dsoBenutzer.BenutzerID, this.dsoBenutzer)
+    .subscribe((result: any) => {
 
-      });
     }, (result: any) => {
 
     });
+
+    this.gridTextbausteine.load();
   }
 
   gridTextbausteineLoadData(event: any) {
     this.dbHopeKurseTextbausteine.getIbsiTextbausteines(`${this.dsoBenutzer.FilterTextbausteinArtCode ? 'TextbausteinArtCode eq \'' + this.dsoBenutzer.FilterTextbausteinArtCode + '\'' : 'TextbausteinArtCode ne null'} 
+${this.dsoBenutzer.FilterTitelUndText ? ' and ( contains(tolower(TitelTextbaustein),tolower(\'' + this.dsoBenutzer.FilterTitelUndText + '\')) OR contains(tolower(UntertitelTextbaustein),tolower(\'' + this.dsoBenutzer.FilterTitelUndText + '\')) OR contains(tolower(TextbausteinHTML),tolower(\'' + this.dsoBenutzer.FilterTitelUndText + '\')) OR contains(tolower(InfoText),tolower(\'' + this.dsoBenutzer.FilterTitelUndText + '\')) )' : ''} 
 ${this.dsoBenutzer.FilterKursNr ? ' and KursNr eq ' + this.dsoBenutzer.FilterKursNr : ''} 
-${this.dsoBenutzer.FilterTitelUndText ? ' and ( contains(tolower(TitelTextbaustein),tolower(\'' + this.dsoBenutzer.FilterTitelUndText + '\')) OR contains(tolower(TextbausteinHTML),tolower(\'' + this.dsoBenutzer.FilterTitelUndText + '\')) )' : ''} 
 ${this.dsoBenutzer.FilterAutorNr ? ' and AutorNr eq ' + this.dsoBenutzer.FilterAutorNr : ''}
 ${this.dsoBenutzer.FilterThemaNummer ? ' and ThemaNummer eq ' + this.dsoBenutzer.FilterThemaNummer : ''}
 ${this.dsoBenutzer.FilterAnrede ? ' and Anrede eq \'' + this.dsoBenutzer.FilterAnrede + '\'' : ''}
 ${this.dsoBenutzer.FilterDokument == 'MitDokument' ? ' and length(DokumentTitel) gt 0' : ''}
-${this.dsoBenutzer.FilterDokument == 'OhneDokument' ? ' and length(DokumentTitel) eq null' : ''}
-${this.dsoBenutzer.FilterInfo ? ' and contains(tolower(InfoText),tolower(\'' + this.dsoBenutzer.FilterInfo + '\'))' : ''} `, event.top, event.skip, `${event.orderby || 'TitelTextbaustein'}`, event.top != null && event.skip != null, `IBSITextbausteineAutoren, IBSIKurse`, null, null)
+${this.dsoBenutzer.FilterDokument == 'OhneDokument' ? ' and length(DokumentTitel) eq null' : ''} and Ordner ne 'Papierkorb'`, event.top, event.skip, `${event.orderby || 'TitelTextbaustein'}`, event.top != null && event.skip != null, `IBSITextbausteineAutoren, IBSIKurse`, null, null)
     .subscribe((result: any) => {
       this.rstTextbausteine = result.value;
 
@@ -343,15 +417,30 @@ ${this.dsoBenutzer.FilterInfo ? ' and contains(tolower(InfoText),tolower(\'' + t
         this.letzteTextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
     }
 
-    this.dialogService.open(TextbausteineNeuComponent, { parameters: {}, title: `Neuer Textbaustein` })
+    this.dialogService.open(TextbausteineNeuComponent, { parameters: {FilterTextbausteinArtCode: this.dsoBenutzer.FilterTextbausteinArtCode}, title: `Neuer Textbaustein` })
         .afterClosed().subscribe(result => {
               if (result != null) {
             this.letzteTextbausteinNr = result.TextbausteinNr;
       }
 
+      this.dsoBenutzer.FilterTextbausteinArtCode = result.TextbausteinArtCode
+this.dsoBenutzer.FilterKursNr = result.KursNr
+this.dsoBenutzer.FilterTitelUndText = result.TitelTextbaustein
+this.dsoBenutzer.FilterAutorNr = result.AutorNr
+this.dsoBenutzer.FilterThemaNummer = result.ThemaNummer
+this.dsoBenutzer.FilterAnrede = result.Anrede
+this.dsoBenutzer.FilterDokument = null
+
       if (result != null) {
         this.gridTextbausteine.load();
       }
+
+      this.dbHopeKurseTextbausteine.updateBenutzer(null, this.dsoBenutzer.BenutzerID, this.dsoBenutzer)
+      .subscribe((result: any) => {
+
+      }, (result: any) => {
+
+      });
     });
   }
 
@@ -367,9 +456,24 @@ ${this.dsoBenutzer.FilterInfo ? ' and contains(tolower(InfoText),tolower(\'' + t
                 this.letzteTextbausteinNr = result.TextbausteinNr;
         }
 
+        this.dsoBenutzer.FilterTextbausteinArtCode = result.TextbausteinArtCode
+this.dsoBenutzer.FilterKursNr = result.KursNr
+this.dsoBenutzer.FilterTitelUndText = result.TitelTextbaustein
+this.dsoBenutzer.FilterAutorNr = result.AutorNr
+this.dsoBenutzer.FilterThemaNummer = result.ThemaNummer
+this.dsoBenutzer.FilterAnrede = result.Anrede
+this.dsoBenutzer.FilterDokument = null
+
         if (result != null) {
           this.gridTextbausteine.load();
         }
+
+        this.dbHopeKurseTextbausteine.updateBenutzer(null, this.dsoBenutzer.BenutzerID, this.dsoBenutzer)
+        .subscribe((result: any) => {
+
+        }, (result: any) => {
+
+        });
       });
     }
   }
@@ -383,12 +487,20 @@ ${this.dsoBenutzer.FilterInfo ? ' and contains(tolower(InfoText),tolower(\'' + t
   buttonLoeschenClick(event: any) {
     this.letzteTextbausteinNr = null;
 
-    this.dialogService.open(MeldungLoeschenComponent, { parameters: {strMeldung: "Soll der Textbaustein '" + this.dsoTextbausteine.TitelTextbaustein + "' gelöscht werden?"}, title: `Löschen Textbaustein` })
+    this.dialogService.open(MeldungLoeschenComponent, { parameters: {strMeldung: "Soll der Textbaustein '" + this.dsoTextbausteine.TitelTextbaustein + "' gelöscht (in den Papierkorb) werden?"}, title: `Löschen Textbaustein` })
         .afterClosed().subscribe(result => {
               if (result == 'Löschen') {
-              this.dbHopeKurseTextbausteine.deleteIbsiTextbausteine(this.dsoTextbausteine.TextbausteinNr)
+        this.dsoTextbausteine.Ordner = 'Papierkorb'
+      }
+
+      if (result == 'Löschen') {
+              this.dbHopeKurseTextbausteine.updateIbsiTextbausteine(null, this.dsoTextbausteine.TextbausteinNr, this.dsoTextbausteine)
         .subscribe((result: any) => {
-              this.notificationService.notify({ severity: "success", summary: ``, detail: `Textbaustein gelöscht` });
+              this.gridTextbausteine.load();
+
+        this.gridTextbausteinePapierkorb.load();
+
+        this.notificationService.notify({ severity: "success", summary: ``, detail: `Textbaustein gelöscht` });
         }, (result: any) => {
               this.notificationService.notify({ severity: "error", summary: ``, detail: `Textbaustein konnte nicht gelöscht werden!` });
         });
@@ -611,5 +723,61 @@ this.dsoVerlauf.TextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
 
   buttonVerlaufDokumentClick(event: any) {
     this.notificationService.notify({ severity: "warn", summary: ``, detail: `Diese Funktion ist in Arbeit` });
+  }
+
+  gridTextbausteinePapierkorbLoadData(event: any) {
+    this.dbHopeKurseTextbausteine.getIbsiTextbausteines(`Ordner eq 'Papierkorb'`, event.top, event.skip, `${event.orderby || 'TitelTextbaustein'}`, event.top != null && event.skip != null, `IBSITextbausteineAutoren, IBSIKurse`, null, null)
+    .subscribe((result: any) => {
+      this.rstTextbausteinePapierkorb = result.value;
+
+      this.rstTextbausteinePapierkorbCount = event.top != null && event.skip != null ? result['@odata.count'] : result.value.length;
+    }, (result: any) => {
+
+    });
+  }
+
+  gridTextbausteinePapierkorbRowDoubleClick(event: any) {
+    this.dialogService.open(TextbausteineBearbeitenComponent, { parameters: {TextbausteinNr: this.dsoTextbausteinePapierkorb.TextbausteinNr}, title: `Bearbeiten Textbaustein` });
+  }
+
+  gridTextbausteinePapierkorbRowSelect(event: any) {
+    this.strTextbausteinPapierkorbHTML = event.TextbausteinHTML;
+
+    this.dsoTextbausteinePapierkorb = event;
+  }
+
+  buttonPapierkorbBearbeitenClick(event: any) {
+    this.dialogService.open(TextbausteineBearbeitenComponent, { parameters: {TextbausteinNr: this.dsoTextbausteinePapierkorb.TextbausteinNr}, title: `Bearbeiten Textbaustein` });
+  }
+
+  buttonPapierkorbLoeschenClick(event: any) {
+    this.dialogService.open(MeldungLoeschenComponent, { parameters: {strMeldung: "Soll der Textbaustein '" + this.dsoTextbausteinePapierkorb.TitelTextbaustein + "' entgültig gelöscht werden?"}, title: `Löschen Textbaustein` })
+        .afterClosed().subscribe(result => {
+              if (result == 'Löschen') {
+              this.dbHopeKurseTextbausteine.deleteIbsiTextbausteine(this.dsoTextbausteinePapierkorb.TextbausteinNr)
+        .subscribe((result: any) => {
+              this.gridTextbausteinePapierkorb.load();
+
+        this.notificationService.notify({ severity: "success", summary: ``, detail: `Textbaustein gelöscht` });
+        }, (result: any) => {
+              this.notificationService.notify({ severity: "error", summary: ``, detail: `Textbaustein konnte nicht gelöscht werden!` });
+        });
+      }
+    });
+  }
+
+  buttonPapierkorbDokumentClick(event: any) {
+    this.notificationService.notify({ severity: "warn", summary: ``, detail: `Diese Funktion ist in Arbeit` });
+  }
+
+  buttonPapierkorbSpeichernClick(event: any) {
+    this.dsoTextbausteinePapierkorb.TextbausteinHTML = this.strTextbausteinPapierkorbHTML
+
+    this.dbHopeKurseTextbausteine.updateIbsiTextbausteine(null, this.dsoTextbausteinePapierkorb.TextbausteinNr, this.dsoTextbausteinePapierkorb)
+    .subscribe((result: any) => {
+      this.notificationService.notify({ severity: "success", summary: ``, detail: `Textbaustein gespeichert` });
+    }, (result: any) => {
+      this.notificationService.notify({ severity: "error", summary: ``, detail: `Textbaustein konnte nicht gespeichert werden!` });
+    });
   }
 }

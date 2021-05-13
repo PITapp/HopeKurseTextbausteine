@@ -68,10 +68,13 @@ export interface IbsiKurse {
   Titel: string;
   Untertitel: string;
   Kurzzeichen: string;
+  KurzzeichenD: string;
+  KurzzeichenCH: string;
   Beschreibung: string;
   AnzahlThemen: number;
   Printkurs: boolean;
   Onlinekurs: boolean;
+  KursinhaltAnrede: string;
 }
 
 export interface IbsiKurseArten {
@@ -118,6 +121,7 @@ export interface IbsiTextbausteine {
   RandUnten: number;
   RandLinks: number;
   nderungsdatum: string;
+  Ordner: string;
   InfoText: string;
 }
 

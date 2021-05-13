@@ -155,7 +155,7 @@
                               "style": {
                                 "width": "100%"
                               },
-                              "text": "Kurzzeichen",
+                              "text": "Kurzzeichen A",
                               "type": "label"
                             }
                           ],
@@ -177,6 +177,88 @@
                           "type": "col"
                         }
                       ],
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "KurzzeichenD",
+                              "name": "labeKurzzeichenD",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Kurzzeichen D",
+                              "type": "label"
+                            }
+                          ],
+                          "name": "col6",
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 10,
+                              "name": "KurzzeichenD",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${dsoKurse.KurzzeichenD}"
+                            }
+                          ],
+                          "name": "col7",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row3",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
+                              "component": "KurzzeichenCH",
+                              "name": "label1",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Kurzzeichen CH",
+                              "type": "label"
+                            }
+                          ],
+                          "name": "col4",
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 10,
+                              "name": "KurzzeichenCH",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${dsoKurse.KurzzeichenCH}"
+                            }
+                          ],
+                          "name": "col5",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row2",
                       "style": {
                         "marginBottom": "1rem"
                       },

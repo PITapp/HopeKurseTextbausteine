@@ -437,6 +437,14 @@
           "type": "string",
           "length": 10
         },
+        "KurzzeichenD": {
+          "type": "string",
+          "length": 10
+        },
+        "KurzzeichenCH": {
+          "type": "string",
+          "length": 10
+        },
         "Beschreibung": {
           "type": "string",
           "length": 16777215
@@ -451,6 +459,10 @@
         "Onlinekurs": {
           "x-default-sql": "b'0'",
           "type": "boolean"
+        },
+        "KursinhaltAnrede": {
+          "type": "string",
+          "length": 10
         },
         "IbsiKurseThemens": {
           "type": "array",
@@ -776,6 +788,10 @@
           "x-original-name": "Änderungsdatum",
           "type": "string",
           "format": "date-time"
+        },
+        "Ordner": {
+          "type": "string",
+          "length": 10
         },
         "InfoText": {
           "type": "string",

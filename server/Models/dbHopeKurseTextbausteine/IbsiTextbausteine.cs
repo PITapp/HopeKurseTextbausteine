@@ -158,6 +158,11 @@ namespace HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine
       get;
       set;
     }
+    public string Ordner
+    {
+      get;
+      set;
+    }
     public string InfoText
     {
       get;

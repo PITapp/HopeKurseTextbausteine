@@ -127,7 +127,7 @@
                                           "value": "onKeyEnterFilterText()"
                                         },
                                         {
-                                          "name": "(onfocusout)",
+                                          "name": "(focusout)",
                                           "value": "onFocusOutFilterText()"
                                         }
                                       ],
@@ -201,7 +201,26 @@
                                       "checkbox": false,
                                       "data": "${rstTextbausteineArten}",
                                       "events": {
-                                        "change": []
+                                        "change": [
+                                          {
+                                            "name": "dbHopeKurseTextbausteine.updateBenutzer",
+                                            "parameters": [
+                                              {
+                                                "name": "BenutzerID",
+                                                "value": "${dsoBenutzer.BenutzerID}"
+                                              },
+                                              {
+                                                "name": "Benutzer",
+                                                "value": "${dsoBenutzer}"
+                                              }
+                                            ],
+                                            "type": "invoke"
+                                          },
+                                          {
+                                            "code": "this.gridTextbausteine.load();",
+                                            "type": "execute"
+                                          }
+                                        ]
                                       },
                                       "metaKeySelection": true,
                                       "multiple": false,
@@ -271,7 +290,26 @@
                                       "data": "${rstKurse}",
                                       "emptyFilterText": "",
                                       "events": {
-                                        "change": []
+                                        "change": [
+                                          {
+                                            "name": "dbHopeKurseTextbausteine.updateBenutzer",
+                                            "parameters": [
+                                              {
+                                                "name": "BenutzerID",
+                                                "value": "${dsoBenutzer.BenutzerID}"
+                                              },
+                                              {
+                                                "name": "Benutzer",
+                                                "value": "${dsoBenutzer}"
+                                              }
+                                            ],
+                                            "type": "invoke"
+                                          },
+                                          {
+                                            "code": "this.gridTextbausteine.load();",
+                                            "type": "execute"
+                                          }
+                                        ]
                                       },
                                       "multiple": false,
                                       "multipleItemsSelectedText": "",
@@ -341,7 +379,26 @@
                                       "data": "${rstAutoren}",
                                       "emptyFilterText": "",
                                       "events": {
-                                        "change": []
+                                        "change": [
+                                          {
+                                            "name": "dbHopeKurseTextbausteine.updateBenutzer",
+                                            "parameters": [
+                                              {
+                                                "name": "BenutzerID",
+                                                "value": "${dsoBenutzer.BenutzerID}"
+                                              },
+                                              {
+                                                "name": "Benutzer",
+                                                "value": "${dsoBenutzer}"
+                                              }
+                                            ],
+                                            "type": "invoke"
+                                          },
+                                          {
+                                            "code": "this.gridTextbausteine.load();",
+                                            "type": "execute"
+                                          }
+                                        ]
                                       },
                                       "multiple": false,
                                       "multipleItemsSelectedText": "",
@@ -408,7 +465,26 @@
                                       ],
                                       "autoComplete": false,
                                       "events": {
-                                        "change": []
+                                        "change": [
+                                          {
+                                            "name": "dbHopeKurseTextbausteine.updateBenutzer",
+                                            "parameters": [
+                                              {
+                                                "name": "BenutzerID",
+                                                "value": "${dsoBenutzer.BenutzerID}"
+                                              },
+                                              {
+                                                "name": "Benutzer",
+                                                "value": "${dsoBenutzer}"
+                                              }
+                                            ],
+                                            "type": "invoke"
+                                          },
+                                          {
+                                            "code": "this.gridTextbausteine.load();",
+                                            "type": "execute"
+                                          }
+                                        ]
                                       },
                                       "name": "numeric0",
                                       "style": {
@@ -473,7 +549,26 @@
                                       "data": "${valAnreden}",
                                       "emptyFilterText": "",
                                       "events": {
-                                        "change": []
+                                        "change": [
+                                          {
+                                            "name": "dbHopeKurseTextbausteine.updateBenutzer",
+                                            "parameters": [
+                                              {
+                                                "name": "BenutzerID",
+                                                "value": "${dsoBenutzer.BenutzerID}"
+                                              },
+                                              {
+                                                "name": "Benutzer",
+                                                "value": "${dsoBenutzer}"
+                                              }
+                                            ],
+                                            "type": "invoke"
+                                          },
+                                          {
+                                            "code": "this.gridTextbausteine.load();",
+                                            "type": "execute"
+                                          }
+                                        ]
                                       },
                                       "multiple": false,
                                       "multipleItemsSelectedText": "",
@@ -544,7 +639,25 @@
                                       "data": "${valDokumente}",
                                       "emptyFilterText": "",
                                       "events": {
-                                        "change": []
+                                        "change": [
+                                          {
+                                            "name": "dbHopeKurseTextbausteine.updateBenutzer",
+                                            "parameters": [
+                                              {
+                                                "name": "BenutzerID",
+                                                "value": "${dsoBenutzer.BenutzerID}"
+                                              },
+                                              {
+                                                "value": "${dsoBenutzer}"
+                                              }
+                                            ],
+                                            "type": "invoke"
+                                          },
+                                          {
+                                            "code": "this.gridTextbausteine.load();",
+                                            "type": "execute"
+                                          }
+                                        ]
                                       },
                                       "multiple": false,
                                       "multipleItemsSelectedText": "",
@@ -589,24 +702,10 @@
                                       "events": {
                                         "click": [
                                           {
-                                            "code": "${dsoBenutzer.FilterTextbausteinArtCode} = null\n${dsoBenutzer.FilterKursNr} = null\n${dsoBenutzer.FilterTitelUndText} = null\n${dsoBenutzer.FilterAutorNr} = null\n${dsoBenutzer.FilterThemaNummer} = null\n${dsoBenutzer.FilterAnrede} = null\n${dsoBenutzer.FilterDokument} = null\n${dsoBenutzer.FilterInfo} = null",
-                                            "then": [
-                                              {
-                                                "name": "dbHopeKurseTextbausteine.updateBenutzer",
-                                                "parameters": [
-                                                  {
-                                                    "name": "BenutzerID",
-                                                    "value": "${dsoBenutzer.BenutzerID}"
-                                                  },
-                                                  {
-                                                    "name": "Benutzer",
-                                                    "value": "${dsoBenutzer}"
-                                                  }
-                                                ],
-                                                "type": "invoke"
-                                              }
-                                            ],
-                                            "type": "execute"
+                                            "height": "",
+                                            "path": "textbausteine-filter-info",
+                                            "title": "Info Filter",
+                                            "type": "popup"
                                           }
                                         ]
                                       },
@@ -629,23 +728,26 @@
                                       "events": {
                                         "click": [
                                           {
-                                            "code": "${dsoBenutzer.FilterTextbausteinArtCode} = null\n${dsoBenutzer.FilterKursNr} = null\n${dsoBenutzer.FilterTitelUndText} = null\n${dsoBenutzer.FilterAutorNr} = null\n${dsoBenutzer.FilterThemaNummer} = null\n${dsoBenutzer.FilterAnrede} = null\n${dsoBenutzer.FilterDokument} = null\n${dsoBenutzer.FilterInfo} = null",
-                                            "then": [
+                                            "code": "${dsoBenutzer.FilterTextbausteinArtCode} = null\n${dsoBenutzer.FilterKursNr} = null\n${dsoBenutzer.FilterTitelUndText} = null\n${dsoBenutzer.FilterAutorNr} = null\n${dsoBenutzer.FilterThemaNummer} = null\n${dsoBenutzer.FilterAnrede} = null\n${dsoBenutzer.FilterDokument} = null",
+                                            "then": [],
+                                            "type": "execute"
+                                          },
+                                          {
+                                            "name": "dbHopeKurseTextbausteine.updateBenutzer",
+                                            "parameters": [
                                               {
-                                                "name": "dbHopeKurseTextbausteine.updateBenutzer",
-                                                "parameters": [
-                                                  {
-                                                    "name": "BenutzerID",
-                                                    "value": "${dsoBenutzer.BenutzerID}"
-                                                  },
-                                                  {
-                                                    "name": "Benutzer",
-                                                    "value": "${dsoBenutzer}"
-                                                  }
-                                                ],
-                                                "type": "invoke"
+                                                "name": "BenutzerID",
+                                                "value": "${dsoBenutzer.BenutzerID}"
+                                              },
+                                              {
+                                                "name": "Benutzer",
+                                                "value": "${dsoBenutzer}"
                                               }
                                             ],
+                                            "type": "invoke"
+                                          },
+                                          {
+                                            "code": "this.gridTextbausteine.load();",
                                             "type": "execute"
                                           }
                                         ]
@@ -709,19 +811,34 @@
                               "columns": [
                                 {
                                   "format": "",
+                                  "property": "TitelTextbaustein",
+                                  "title": "Titel",
+                                  "type": "string",
+                                  "width": "60%"
+                                },
+                                {
+                                  "format": "",
+                                  "property": "UntertitelTextbaustein",
+                                  "title": "Untertitel",
+                                  "type": "string",
+                                  "width": "40%"
+                                },
+                                {
+                                  "format": "",
                                   "property": "IbsiTextbausteineAutoren.Krzel",
                                   "template": "",
                                   "title": "Autor",
                                   "type": "string",
-                                  "width": "70px"
+                                  "width": "80px"
                                 },
                                 {
                                   "format": "",
                                   "property": "IbsiKurse.Kurzzeichen",
+                                  "template": "${dsoBenutzer.LKZ == 'A' ? data.IbsiKurse.Kurzzeichen :''}\n${dsoBenutzer.LKZ == 'D' ? data.IbsiKurse.KurzzeichenD :''}\n${dsoBenutzer.LKZ == 'CH' ? data.IbsiKurse.KurzzeichenCH :''}",
                                   "title": "Kurs",
                                   "type": "string",
                                   "visible": "",
-                                  "width": "70px"
+                                  "width": "80px"
                                 },
                                 {
                                   "format": "",
@@ -730,20 +847,6 @@
                                   "title": "Anr.",
                                   "type": "string",
                                   "width": "40px"
-                                },
-                                {
-                                  "format": "",
-                                  "property": "TitelTextbaustein",
-                                  "title": "Titel",
-                                  "type": "string",
-                                  "width": "70%"
-                                },
-                                {
-                                  "format": "",
-                                  "property": "UntertitelTextbaustein",
-                                  "title": "Untertitel",
-                                  "type": "string",
-                                  "width": "30%"
                                 }
                               ],
                               "confirmDelete": false,
@@ -768,7 +871,13 @@
                                         "name": "$filter",
                                         "value": [
                                           {
-                                            "value": "${this.dsoBenutzer.FilterTextbausteinArtCode ? 'TextbausteinArtCode eq \\'' + this.dsoBenutzer.FilterTextbausteinArtCode + '\\'' : 'TextbausteinArtCode ne null'} \n${this.dsoBenutzer.FilterKursNr ? ' and KursNr eq ' + this.dsoBenutzer.FilterKursNr : ''} \n${this.dsoBenutzer.FilterTitelUndText ? ' and ( contains(tolower(TitelTextbaustein),tolower(\\'' + this.dsoBenutzer.FilterTitelUndText + '\\')) OR contains(tolower(TextbausteinHTML),tolower(\\'' + this.dsoBenutzer.FilterTitelUndText + '\\')) )' : ''} \n${this.dsoBenutzer.FilterAutorNr ? ' and AutorNr eq ' + this.dsoBenutzer.FilterAutorNr : ''}\n${this.dsoBenutzer.FilterThemaNummer ? ' and ThemaNummer eq ' + this.dsoBenutzer.FilterThemaNummer : ''}\n${this.dsoBenutzer.FilterAnrede ? ' and Anrede eq \\'' + this.dsoBenutzer.FilterAnrede + '\\'' : ''}\n${this.dsoBenutzer.FilterDokument == 'MitDokument' ? ' and length(DokumentTitel) gt 0' : ''}\n${this.dsoBenutzer.FilterDokument == 'OhneDokument' ? ' and length(DokumentTitel) eq null' : ''}\n${this.dsoBenutzer.FilterInfo ? ' and contains(tolower(InfoText),tolower(\\'' + this.dsoBenutzer.FilterInfo + '\\'))' : ''} "
+                                            "value": "${this.dsoBenutzer.FilterTextbausteinArtCode ? 'TextbausteinArtCode eq \\'' + this.dsoBenutzer.FilterTextbausteinArtCode + '\\'' : 'TextbausteinArtCode ne null'} \n${this.dsoBenutzer.FilterTitelUndText ? ' and ( contains(tolower(TitelTextbaustein),tolower(\\'' + this.dsoBenutzer.FilterTitelUndText + '\\')) OR contains(tolower(UntertitelTextbaustein),tolower(\\'' + this.dsoBenutzer.FilterTitelUndText + '\\')) OR contains(tolower(TextbausteinHTML),tolower(\\'' + this.dsoBenutzer.FilterTitelUndText + '\\')) OR contains(tolower(InfoText),tolower(\\'' + this.dsoBenutzer.FilterTitelUndText + '\\')) )' : ''} \n${this.dsoBenutzer.FilterKursNr ? ' and KursNr eq ' + this.dsoBenutzer.FilterKursNr : ''} \n${this.dsoBenutzer.FilterAutorNr ? ' and AutorNr eq ' + this.dsoBenutzer.FilterAutorNr : ''}\n${this.dsoBenutzer.FilterThemaNummer ? ' and ThemaNummer eq ' + this.dsoBenutzer.FilterThemaNummer : ''}\n${this.dsoBenutzer.FilterAnrede ? ' and Anrede eq \\'' + this.dsoBenutzer.FilterAnrede + '\\'' : ''}\n${this.dsoBenutzer.FilterDokument == 'MitDokument' ? ' and length(DokumentTitel) gt 0' : ''}\n${this.dsoBenutzer.FilterDokument == 'OhneDokument' ? ' and length(DokumentTitel) eq null' : ''}"
+                                          },
+                                          {
+                                            "operation": "ne",
+                                            "property": "Ordner",
+                                            "type": "string",
+                                            "value": "'Papierkorb'"
                                           }
                                         ]
                                       },
@@ -886,6 +995,12 @@
                                             "value": "${dsoTextbausteine.TextbausteinNr}"
                                           },
                                           {
+                                            "parameters": [
+                                              {
+                                                "name": "FilterTextbausteinArtCode",
+                                                "value": "${dsoBenutzer.FilterTextbausteinArtCode}"
+                                              }
+                                            ],
                                             "path": "textbausteine-neu",
                                             "then": [
                                               {
@@ -895,9 +1010,27 @@
                                                 "value": "${result.TextbausteinNr}"
                                               },
                                               {
+                                                "code": "${dsoBenutzer.FilterTextbausteinArtCode} = ${result.TextbausteinArtCode}\n${dsoBenutzer.FilterKursNr} = ${result.KursNr}\n${dsoBenutzer.FilterTitelUndText} = ${result.TitelTextbaustein}\n${dsoBenutzer.FilterAutorNr} = ${result.AutorNr}\n${dsoBenutzer.FilterThemaNummer} = ${result.ThemaNummer}\n${dsoBenutzer.FilterAnrede} = ${result.Anrede}\n${dsoBenutzer.FilterDokument} = null",
+                                                "type": "execute"
+                                              },
+                                              {
                                                 "code": "this.gridTextbausteine.load();",
                                                 "condition": "${result} != null",
                                                 "type": "execute"
+                                              },
+                                              {
+                                                "name": "dbHopeKurseTextbausteine.updateBenutzer",
+                                                "parameters": [
+                                                  {
+                                                    "name": "BenutzerID",
+                                                    "value": "${dsoBenutzer.BenutzerID}"
+                                                  },
+                                                  {
+                                                    "name": "Benutzer",
+                                                    "value": "${dsoBenutzer}"
+                                                  }
+                                                ],
+                                                "type": "invoke"
                                               }
                                             ],
                                             "title": "Neuer Textbaustein",
@@ -943,9 +1076,27 @@
                                                 "value": "${result.TextbausteinNr}"
                                               },
                                               {
+                                                "code": "${dsoBenutzer.FilterTextbausteinArtCode} = ${result.TextbausteinArtCode}\n${dsoBenutzer.FilterKursNr} = ${result.KursNr}\n${dsoBenutzer.FilterTitelUndText} = ${result.TitelTextbaustein}\n${dsoBenutzer.FilterAutorNr} = ${result.AutorNr}\n${dsoBenutzer.FilterThemaNummer} = ${result.ThemaNummer}\n${dsoBenutzer.FilterAnrede} = ${result.Anrede}\n${dsoBenutzer.FilterDokument} = null",
+                                                "type": "execute"
+                                              },
+                                              {
                                                 "code": "this.gridTextbausteine.load();",
                                                 "condition": "${result} != null",
                                                 "type": "execute"
+                                              },
+                                              {
+                                                "name": "dbHopeKurseTextbausteine.updateBenutzer",
+                                                "parameters": [
+                                                  {
+                                                    "name": "BenutzerID",
+                                                    "value": "${dsoBenutzer.BenutzerID}"
+                                                  },
+                                                  {
+                                                    "name": "Benutzer",
+                                                    "value": "${dsoBenutzer}"
+                                                  }
+                                                ],
+                                                "type": "invoke"
                                               }
                                             ],
                                             "title": "Duplizieren Textbaustein",
@@ -1014,11 +1165,16 @@
                                             "parameters": [
                                               {
                                                 "name": "strMeldung",
-                                                "value": "\"Soll der Textbaustein '\" + ${dsoTextbausteine.TitelTextbaustein} + \"' gelöscht werden?\""
+                                                "value": "\"Soll der Textbaustein '\" + ${dsoTextbausteine.TitelTextbaustein} + \"' gelöscht (in den Papierkorb) werden?\""
                                               }
                                             ],
                                             "path": "meldung-loeschen",
                                             "then": [
+                                              {
+                                                "code": "${dsoTextbausteine.Ordner} = 'Papierkorb'",
+                                                "condition": "${result} == 'Löschen'",
+                                                "type": "execute"
+                                              },
                                               {
                                                 "condition": "${result} == 'Löschen'",
                                                 "error": [
@@ -1029,14 +1185,26 @@
                                                     "type": "notify"
                                                   }
                                                 ],
-                                                "name": "dbHopeKurseTextbausteine.deleteIbsiTextbausteine",
+                                                "name": "dbHopeKurseTextbausteine.updateIbsiTextbausteine",
                                                 "parameters": [
                                                   {
                                                     "name": "TextbausteinNr",
                                                     "value": "${dsoTextbausteine.TextbausteinNr}"
+                                                  },
+                                                  {
+                                                    "name": "IbsiTextbausteine",
+                                                    "value": "${dsoTextbausteine}"
                                                   }
                                                 ],
                                                 "then": [
+                                                  {
+                                                    "code": "this.gridTextbausteine.load();",
+                                                    "type": "execute"
+                                                  },
+                                                  {
+                                                    "code": "this.gridTextbausteinePapierkorb.load();",
+                                                    "type": "execute"
+                                                  },
                                                   {
                                                     "detail": "Textbaustein gelöscht",
                                                     "severity": "success",
@@ -2201,6 +2369,457 @@
               "text": "Verlauf"
             },
             {
+              "components": [
+                {
+                  "components": [
+                    {
+                      "class": "col-md-7",
+                      "components": [
+                        {
+                          "allowCollapse": false,
+                          "components": [
+                            {
+                              "addText": "",
+                              "allowAdd": false,
+                              "allowColumnReorder": true,
+                              "allowColumnResize": true,
+                              "allowDelete": false,
+                              "allowFiltering": false,
+                              "allowMultiSorting": false,
+                              "allowPaging": true,
+                              "allowSorting": false,
+                              "alwaysShowPager": false,
+                              "applyFilterText": "Apply",
+                              "clearFilterText": "Clear",
+                              "columnResizeMode": "fit",
+                              "columns": [
+                                {
+                                  "format": "",
+                                  "property": "TitelTextbaustein",
+                                  "title": "Titel",
+                                  "type": "string",
+                                  "width": "60%"
+                                },
+                                {
+                                  "format": "",
+                                  "property": "UntertitelTextbaustein",
+                                  "title": "Untertitel",
+                                  "type": "string",
+                                  "width": "40%"
+                                },
+                                {
+                                  "format": "",
+                                  "property": "IbsiTextbausteineAutoren.Krzel",
+                                  "template": "",
+                                  "title": "Autor",
+                                  "type": "string",
+                                  "width": "80px"
+                                },
+                                {
+                                  "format": "",
+                                  "property": "IbsiKurse.Kurzzeichen",
+                                  "template": "${dsoBenutzer.LKZ == 'A' ? data.IbsiKurse.Kurzzeichen :''}\n${dsoBenutzer.LKZ == 'D' ? data.IbsiKurse.KurzzeichenD :''}\n${dsoBenutzer.LKZ == 'CH' ? data.IbsiKurse.KurzzeichenCH :''}",
+                                  "title": "Kurs",
+                                  "type": "string",
+                                  "visible": "",
+                                  "width": "80px"
+                                },
+                                {
+                                  "format": "",
+                                  "property": "Anrede",
+                                  "template": "${data.Anrede == 'Ohne' ? '' : data.Anrede}",
+                                  "title": "Anr.",
+                                  "type": "string",
+                                  "width": "40px"
+                                }
+                              ],
+                              "confirmDelete": false,
+                              "confirmDeleteCancelText": "",
+                              "confirmDeleteOkText": "",
+                              "confirmDeleteText": "",
+                              "confirmDeleteTitle": "",
+                              "containsText": "Contains",
+                              "count": "${rstTextbausteinePapierkorbCount}",
+                              "data": "${rstTextbausteinePapierkorb}",
+                              "emptyText": "Keine Textbausteine vorhanden",
+                              "endsWithText": "Ends with",
+                              "equalsText": "Equals",
+                              "events": {
+                                "add": [],
+                                "delete": [],
+                                "loadData": [
+                                  {
+                                    "name": "dbHopeKurseTextbausteine.getIbsiTextbausteines",
+                                    "parameters": [
+                                      {
+                                        "name": "$filter",
+                                        "value": [
+                                          {
+                                            "operation": "eq",
+                                            "property": "Ordner",
+                                            "type": "string",
+                                            "value": "'Papierkorb'"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "name": "$expand",
+                                        "value": "IBSITextbausteineAutoren, IBSIKurse"
+                                      },
+                                      {
+                                        "name": "$top",
+                                        "value": "event.top"
+                                      },
+                                      {
+                                        "name": "$skip",
+                                        "value": "event.skip"
+                                      },
+                                      {
+                                        "name": "$count",
+                                        "value": "event.top != null && event.skip != null"
+                                      },
+                                      {
+                                        "name": "$orderby",
+                                        "value": [
+                                          {
+                                            "value": "${event.orderby || 'TitelTextbaustein'}"
+                                          }
+                                        ]
+                                      }
+                                    ],
+                                    "then": [
+                                      {
+                                        "name": "rstTextbausteinePapierkorb",
+                                        "type": "set",
+                                        "value": "${result.value}"
+                                      },
+                                      {
+                                        "name": "rstTextbausteinePapierkorbCount",
+                                        "type": "set",
+                                        "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
+                                      }
+                                    ],
+                                    "type": "invoke"
+                                  }
+                                ],
+                                "rowDoubleClick": [
+                                  {
+                                    "parameters": [
+                                      {
+                                        "name": "TextbausteinNr",
+                                        "value": "${dsoTextbausteinePapierkorb.TextbausteinNr}"
+                                      }
+                                    ],
+                                    "path": "textbausteine-bearbeiten",
+                                    "title": "Bearbeiten Textbaustein",
+                                    "type": "popup"
+                                  }
+                                ],
+                                "rowSelect": [
+                                  {
+                                    "name": "strTextbausteinPapierkorbHTML",
+                                    "type": "set",
+                                    "value": "${event.TextbausteinHTML}"
+                                  },
+                                  {
+                                    "name": "dsoTextbausteinePapierkorb",
+                                    "type": "set",
+                                    "value": "${event}"
+                                  }
+                                ]
+                              },
+                              "filterCaseSensitivity": "caseInsensitive",
+                              "greaterThanOrEqualsText": "Greater than or equals",
+                              "greaterThanText": "Greater than",
+                              "isLoading": "",
+                              "lessThanOrEqualsText": "Less than or equals",
+                              "lessThanText": "Less than",
+                              "name": "gridTextbausteinePapierkorb",
+                              "notEqualsText": "Not equals",
+                              "pageSize": 22,
+                              "startsWithText": "Starts with",
+                              "style": {
+                                "border": "1px solid rgba(0, 0, 0, 0)",
+                                "height": "700px",
+                                "marginLeft": "-10px",
+                                "marginRight": "-10px",
+                                "marginTop": "-13px"
+                              },
+                              "title": "",
+                              "type": "grid"
+                            }
+                          ],
+                          "footerTemplate": "",
+                          "headerTemplate": [
+                            {
+                              "components": [
+                                {
+                                  "class": "col-md-12 align-items-start d-flex",
+                                  "components": [
+                                    {
+                                      "buttonStyle": "light",
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "parameters": [
+                                              {
+                                                "name": "TextbausteinNr",
+                                                "value": "${dsoTextbausteinePapierkorb.TextbausteinNr}"
+                                              }
+                                            ],
+                                            "path": "textbausteine-bearbeiten",
+                                            "then": [],
+                                            "title": "Bearbeiten Textbaustein",
+                                            "type": "popup"
+                                          }
+                                        ]
+                                      },
+                                      "icon": "create",
+                                      "name": "buttonPapierkorbBearbeiten",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#598087",
+                                        "paddingLeft": ""
+                                      },
+                                      "text": "",
+                                      "tooltip": "Bearbeiten Textbaustein",
+                                      "type": "button"
+                                    },
+                                    {
+                                      "buttonStyle": "light",
+                                      "disabled": false,
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "parameters": [
+                                              {
+                                                "name": "strMeldung",
+                                                "value": "\"Soll der Textbaustein '\" + ${dsoTextbausteinePapierkorb.TitelTextbaustein} + \"' entgültig gelöscht werden?\""
+                                              }
+                                            ],
+                                            "path": "meldung-loeschen",
+                                            "then": [
+                                              {
+                                                "condition": "${result} == 'Löschen'",
+                                                "error": [
+                                                  {
+                                                    "detail": "Textbaustein konnte nicht gelöscht werden!",
+                                                    "severity": "error",
+                                                    "summary": "",
+                                                    "type": "notify"
+                                                  }
+                                                ],
+                                                "name": "dbHopeKurseTextbausteine.deleteIbsiTextbausteine",
+                                                "parameters": [
+                                                  {
+                                                    "name": "TextbausteinNr",
+                                                    "value": "${dsoTextbausteinePapierkorb.TextbausteinNr}"
+                                                  }
+                                                ],
+                                                "then": [
+                                                  {
+                                                    "code": "this.gridTextbausteinePapierkorb.load();",
+                                                    "type": "execute"
+                                                  },
+                                                  {
+                                                    "detail": "Textbaustein gelöscht",
+                                                    "severity": "success",
+                                                    "summary": "",
+                                                    "type": "notify"
+                                                  }
+                                                ],
+                                                "type": "invoke"
+                                              }
+                                            ],
+                                            "title": "Löschen Textbaustein",
+                                            "type": "popup"
+                                          }
+                                        ]
+                                      },
+                                      "icon": "cancel",
+                                      "name": "buttonPapierkorbLoeschen",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#598087",
+                                        "fontWeight": "normal",
+                                        "marginLeft": "10px",
+                                        "marginRight": "-9px",
+                                        "paddingLeft": ""
+                                      },
+                                      "text": "",
+                                      "tooltip": "Löschen Textbaustein",
+                                      "type": "button"
+                                    }
+                                  ],
+                                  "name": "col0",
+                                  "type": "col"
+                                }
+                              ],
+                              "name": "row0",
+                              "type": "row"
+                            }
+                          ],
+                          "name": "panel8",
+                          "style": {
+                            "border": "1px solid #e6ecef",
+                            "height": "750px"
+                          },
+                          "text": "{{rstTextbausteineCount == 0 ? '' : rstTextbausteineCount}} Textbausteine",
+                          "type": "panel"
+                        }
+                      ],
+                      "name": "col42",
+                      "style": {
+                        "paddingLeft": "5px"
+                      },
+                      "type": "col"
+                    },
+                    {
+                      "class": "col-md-5",
+                      "components": [
+                        {
+                          "components": [
+                            {
+                              "components": [
+                                {
+                                  "class": "col-md-12",
+                                  "components": [
+                                    {
+                                      "content": "<p-editor [(ngModel)]=\"strTextbausteinPapierkorbHTML\" [style]=\"{'height': '645px'}\">\n    <p-header>\n\t\t<span class=\"ql-formats\">\n           <select class=\"ql-font\"></select>\n\t\t   <select class=\"ql-header\">\n\t\t\t    <option value=\"1\">Titel 1</option>\n\t\t\t    <option value=\"2\">Titel 2</option>\n\t\t\t    <option value=\"3\">Titel 3</option>\n\t\t\t    <option value=\"4\">Titel 4</option>\n\t\t\t    <option value=\"5\">Titel 5</option>\n\t\t\t    <option value=\"6\">Titel 6</option>\n\t\t\t    <option selected>Normal</option>\n\t\t\t</select>\n\t\t</span>\n\t\t\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-bold\" aria-label=\"Bold\">Fett</button>\n\t\t\t<button class=\"ql-italic\" aria-label=\"Italic\"></button>\n\t\t\t<button class=\"ql-underline\" aria-label=\"Underline\"></button>\n\t\t</span>\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-align\"></select>\n\t\t</span>\t\t\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-list\" value=\"ordered\"></button>\n\t\t\t<button class=\"ql-list\" value=\"bullet\"></button>\n\t\t\t<button class=\"ql-indent\" value=\"-1\"></button>\n\t\t\t<button class=\"ql-indent\" value=\"+1\"></button>\n\t\t</span>\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-color\"></select>\n\t\t\t<select class=\"ql-background\"></select>\n\t\t</span>\n\n    </p-header>\n\n</p-editor>",
+                                      "name": "html1",
+                                      "type": "html"
+                                    }
+                                  ],
+                                  "name": "col44",
+                                  "style": {},
+                                  "type": "col"
+                                }
+                              ],
+                              "name": "row21",
+                              "style": {
+                                "marginLeft": "-36px",
+                                "marginRight": "-36px",
+                                "marginTop": "-12px"
+                              },
+                              "type": "row"
+                            }
+                          ],
+                          "headerTemplate": [
+                            {
+                              "components": [
+                                {
+                                  "class": "col-md-12 align-items-start d-flex",
+                                  "components": [
+                                    {
+                                      "buttonStyle": "light",
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "detail": "Diese Funktion ist in Arbeit",
+                                            "severity": "warn",
+                                            "type": "notify"
+                                          }
+                                        ]
+                                      },
+                                      "icon": "folder_open",
+                                      "name": "buttonPapierkorbDokument",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#D86E13",
+                                        "display": "inline-block"
+                                      },
+                                      "text": "Dokument",
+                                      "tooltip": "",
+                                      "type": "button"
+                                    },
+                                    {
+                                      "buttonStyle": "light",
+                                      "buttonType": "submit",
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "code": "${dsoTextbausteinePapierkorb.TextbausteinHTML} = ${strTextbausteinPapierkorbHTML}",
+                                            "type": "execute"
+                                          },
+                                          {
+                                            "error": [
+                                              {
+                                                "detail": "Textbaustein konnte nicht gespeichert werden!",
+                                                "severity": "error",
+                                                "type": "notify"
+                                              }
+                                            ],
+                                            "name": "dbHopeKurseTextbausteine.updateIbsiTextbausteine",
+                                            "parameters": [
+                                              {
+                                                "name": "TextbausteinNr",
+                                                "value": "${dsoTextbausteinePapierkorb.TextbausteinNr}"
+                                              },
+                                              {
+                                                "name": "IbsiTextbausteine",
+                                                "value": "${dsoTextbausteinePapierkorb}"
+                                              }
+                                            ],
+                                            "then": [
+                                              {
+                                                "detail": "Textbaustein gespeichert",
+                                                "severity": "success",
+                                                "type": "notify"
+                                              }
+                                            ],
+                                            "type": "invoke"
+                                          }
+                                        ]
+                                      },
+                                      "icon": "done",
+                                      "name": "buttonPapierkorbSpeichern",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#598087",
+                                        "display": "inline-block",
+                                        "marginLeft": "10px",
+                                        "marginRight": "-9px"
+                                      },
+                                      "text": "Speichern",
+                                      "tooltip": "",
+                                      "type": "button"
+                                    }
+                                  ],
+                                  "name": "col2",
+                                  "style": {
+                                    "display": "flex"
+                                  },
+                                  "type": "col"
+                                }
+                              ],
+                              "name": "row0",
+                              "style": {
+                                "display": "inline-block"
+                              },
+                              "type": "row"
+                            }
+                          ],
+                          "name": "panel9",
+                          "style": {
+                            "border": "1px solid #e6ecef",
+                            "height": "750px"
+                          },
+                          "text": "Text",
+                          "type": "panel"
+                        }
+                      ],
+                      "name": "col43",
+                      "style": {
+                        "paddingLeft": "5px"
+                      },
+                      "type": "col"
+                    }
+                  ],
+                  "name": "row0",
+                  "type": "row"
+                }
+              ],
+              "selected": false,
               "text": "Papierkorb",
               "visible": "${security.user.isInRole('Administrator')}"
             }
@@ -2220,11 +2839,6 @@
   "events": {
     "load": [
       {
-        "name": "varTest",
-        "type": "set",
-        "value": "{\"theme\": \"bubble\"}"
-      },
-      {
         "name": "dbHopeKurseTextbausteine.getBenutzers",
         "parameters": [
           {
@@ -2237,82 +2851,91 @@
             "name": "dsoBenutzer",
             "type": "set",
             "value": "${result.value[0]}"
+          }
+        ],
+        "type": "invoke"
+      },
+      {
+        "name": "dbHopeKurseTextbausteine.getIbsiTextbausteineArtens",
+        "parameters": [
+          {
+            "name": "$orderby",
+            "value": "Sortierung"
+          }
+        ],
+        "then": [
+          {
+            "name": "rstTextbausteineArten",
+            "type": "set",
+            "value": "${result.value}"
           },
           {
-            "name": "dbHopeKurseTextbausteine.getIbsiTextbausteineArtens",
+            "name": "dbHopeKurseTextbausteine.getIbsiKurses",
             "parameters": [
               {
                 "name": "$orderby",
-                "value": "Sortierung"
+                "value": "Titel"
               }
             ],
             "then": [
               {
-                "name": "rstTextbausteineArten",
+                "name": "rstKurse",
                 "type": "set",
                 "value": "${result.value}"
               },
               {
-                "name": "dbHopeKurseTextbausteine.getIbsiKurses",
+                "name": "dbHopeKurseTextbausteine.getIbsiTextbausteineAutorens",
                 "parameters": [
                   {
                     "name": "$orderby",
-                    "value": "Titel"
+                    "value": "Name"
                   }
                 ],
                 "then": [
                   {
-                    "name": "rstKurse",
+                    "name": "rstAutoren",
                     "type": "set",
                     "value": "${result.value}"
                   },
                   {
-                    "name": "dbHopeKurseTextbausteine.getIbsiTextbausteineAutorens",
-                    "parameters": [
-                      {
-                        "name": "$orderby",
-                        "value": "Name"
-                      }
-                    ],
-                    "then": [
-                      {
-                        "name": "rstAutoren",
-                        "type": "set",
-                        "value": "${result.value}"
-                      },
-                      {
-                        "name": "valAnreden",
-                        "type": "set",
-                        "value": "[{text: 'Du', value: 'Du'}, {text: 'Sie', value: 'Sie'}, {text: 'Ohne', value: 'Ohne'}]"
-                      },
-                      {
-                        "name": "valDokumente",
-                        "type": "set",
-                        "value": "[{text: 'Mit Domument', value: 'MitDokument'}, {text: 'Ohne Dokument', value: 'OhneDokument'}]"
-                      },
-                      {
-                        "code": "this.gridTextbausteine.load();",
-                        "type": "execute"
-                      }
-                    ],
-                    "type": "invoke"
+                    "name": "valAnreden",
+                    "type": "set",
+                    "value": "[{text: 'Du', value: 'Du'}, {text: 'Sie', value: 'Sie'}, {text: 'Ohne', value: 'Ohne'}]"
+                  },
+                  {
+                    "name": "valDokumente",
+                    "type": "set",
+                    "value": "[{text: 'Mit Domument', value: 'MitDokument'}, {text: 'Ohne Dokument', value: 'OhneDokument'}]"
+                  },
+                  {
+                    "code": "this.gridTextbausteine.load();",
+                    "type": "execute"
                   }
                 ],
                 "type": "invoke"
               }
             ],
             "type": "invoke"
-          },
-          {
-            "code": "this.gridFavoriten.load();",
-            "type": "execute"
-          },
-          {
-            "code": "this.gridVerlauf.load();",
-            "type": "execute"
           }
         ],
         "type": "invoke"
+      },
+      {
+        "code": "this.gridFavoriten.load();",
+        "type": "execute"
+      },
+      {
+        "code": "this.gridVerlauf.load();",
+        "type": "execute"
+      },
+      {
+        "code": "this.gridTextbausteinePapierkorb.load();",
+        "type": "execute"
+      },
+      {
+        "name": "bolAnzeigenTitelTextbaustein",
+        "type": "set",
+        "value": "true"
       },
       {
         "name": "dsoFavoriten",
@@ -2327,17 +2950,12 @@
       {
         "name": "onKeyEnterFilterText",
         "type": "set",
-        "value": "() => { console.log('Enter gedrückt'); }"
-      },
-      {
-        "name": "bolAnzeigenTitelTextbaustein",
-        "type": "set",
-        "value": "true"
+        "value": "() => {\n    this.dbHopeKurseTextbausteine.updateBenutzer(null, this.dsoBenutzer.BenutzerID, this.dsoBenutzer)\n    .subscribe((result: any) => {\n\n    }, (result: any) => {\n\n    });\n    \n    this.gridTextbausteine.load();\n }"
       },
       {
         "name": "onFocusOutFilterText",
         "type": "set",
-        "value": "() => { console.log('Focus verlassen'); }"
+        "value": "() => {     \n    this.dbHopeKurseTextbausteine.updateBenutzer(null, this.dsoBenutzer.BenutzerID, this.dsoBenutzer)\n    .subscribe((result: any) => {\n\n    }, (result: any) => {\n\n    });\n    \n    this.gridTextbausteine.load();\n }"
       }
     ]
   },

@@ -1,0 +1,108 @@
+{
+  "access": [
+    "Authenticated"
+  ],
+  "components": [
+    {
+      "components": [
+        {
+          "components": [
+            {
+              "class": "col-md-12",
+              "components": [
+                {
+                  "components": [
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-12",
+                          "components": [
+                            {
+                              "content": "<div innerHTML='${filterInfoHTML}'></div>",
+                              "name": "html0",
+                              "type": "html"
+                            }
+                          ],
+                          "name": "col1",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row0",
+                      "style": {},
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col offset-sm-3 justify-content-end d-flex",
+                          "components": [
+                            {
+                              "buttonStyle": "light",
+                              "events": {
+                                "click": [
+                                  {
+                                    "type": "back"
+                                  }
+                                ]
+                              },
+                              "name": "button1",
+                              "style": {
+                                "marginLeft": "1rem"
+                              },
+                              "text": "Schließen",
+                              "type": "button"
+                            }
+                          ],
+                          "name": "col4",
+                          "style": {},
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row2",
+                      "style": {
+                        "marginTop": "1em"
+                      },
+                      "type": "row"
+                    }
+                  ],
+                  "events": {
+                    "submit": []
+                  },
+                  "name": "form0",
+                  "type": "template-form"
+                }
+              ],
+              "type": "col"
+            }
+          ],
+          "type": "row"
+        }
+      ],
+      "container": "main",
+      "type": "content"
+    }
+  ],
+  "events": {
+    "load": [
+      {
+        "name": "dbHopeKurseTextbausteine.getInfotexteHtmls",
+        "parameters": [
+          {
+            "name": "$filter",
+            "value": "Code eq 'FilterInfoTextbaust'"
+          }
+        ],
+        "then": [
+          {
+            "name": "filterInfoHTML",
+            "type": "set",
+            "value": "${result.value[0].Inhalt}"
+          }
+        ],
+        "type": "invoke"
+      }
+    ]
+  },
+  "layout": "Main",
+  "name": "TextbausteineFilterInfo"
+}

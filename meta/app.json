@@ -60,7 +60,8 @@
     "Login",
     "Versionen",
     "InfoboxTextbausteineFilterText",
-    "TextbausteineInfo"
+    "TextbausteineInfo",
+    "TextbausteineFilterInfo"
   ],
   "port": 8000,
   "security": {

@@ -8,7 +8,7 @@
             </rz-label>
           </div>
           <div class="col-md-9">
-            <rz-dropdown #textbausteinArtCode [data]="rstTextbausteineArten" placeholder="Art auswählen" [style]="{'display': 'block', 'width': '100%'}" textProperty="Bezeichnung" valueProperty="TextbausteinArtCode" name="TextbausteinArtCode">
+            <rz-dropdown #textbausteinArtCode [data]="rstTextbausteineArten" placeholder="Art auswählen" [style]="{'display': 'block', 'width': '100%'}" textProperty="Bezeichnung" [(ngModel)]="parameters && parameters.FilterTextbausteinArtCode" valueProperty="TextbausteinArtCode" name="TextbausteinArtCode">
             </rz-dropdown>
             <rz-required-validator #requiredValidator0 [component]="textbausteinArtCode" [style]="{'position': 'absolute'}" text="Art erforderlich">
             </rz-required-validator>

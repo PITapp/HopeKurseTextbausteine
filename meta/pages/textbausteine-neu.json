@@ -45,6 +45,7 @@
                               },
                               "textProperty": "Bezeichnung",
                               "type": "dropdown",
+                              "value": "${parameters.FilterTextbausteinArtCode}",
                               "valueProperty": "TextbausteinArtCode"
                             },
                             {

@@ -36,11 +36,31 @@
         </div>
         <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
           <div class="col-md-3">
-            <rz-label #kurzzeichenLabel component="Kurzzeichen" [style]="{'width': '100%'}" text="Kurzzeichen">
+            <rz-label #kurzzeichenLabel component="Kurzzeichen" [style]="{'width': '100%'}" text="Kurzzeichen A">
             </rz-label>
           </div>
           <div class="col-md-9">
             <rz-textbox #kurzzeichen [maxLength]="10" [style]="{'width': '100%'}" [(ngModel)]="dsoKurse && dsoKurse.Kurzzeichen" name="Kurzzeichen">
+            </rz-textbox>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #labeKurzzeichenD component="KurzzeichenD" [style]="{'width': '100%'}" text="Kurzzeichen D">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-textbox #kurzzeichenD [maxLength]="10" [style]="{'width': '100%'}" [(ngModel)]="dsoKurse && dsoKurse.KurzzeichenD" name="KurzzeichenD">
+            </rz-textbox>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #label1 component="KurzzeichenCH" [style]="{'width': '100%'}" text="Kurzzeichen CH">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-textbox #kurzzeichenCh [maxLength]="10" [style]="{'width': '100%'}" [(ngModel)]="dsoKurse && dsoKurse.KurzzeichenCH" name="KurzzeichenCH">
             </rz-textbox>
           </div>
         </div>

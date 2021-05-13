@@ -42,6 +42,16 @@ namespace HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine
       get;
       set;
     }
+    public string KurzzeichenD
+    {
+      get;
+      set;
+    }
+    public string KurzzeichenCH
+    {
+      get;
+      set;
+    }
     public string Beschreibung
     {
       get;
@@ -58,6 +68,11 @@ namespace HopeKurseTextbausteine.Models.DbHopeKurseTextbausteine
       set;
     }
     public bool? Onlinekurs
+    {
+      get;
+      set;
+    }
+    public string KursinhaltAnrede
     {
       get;
       set;

@@ -39,6 +39,10 @@ export class KurseNeuGenerated implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('untertitel') untertitel: TextBoxComponent;
   @ViewChild('kurzzeichenLabel') kurzzeichenLabel: LabelComponent;
   @ViewChild('kurzzeichen') kurzzeichen: TextBoxComponent;
+  @ViewChild('label1') label1: LabelComponent;
+  @ViewChild('kurzzeichenD') kurzzeichenD: TextBoxComponent;
+  @ViewChild('label0') label0: LabelComponent;
+  @ViewChild('kurzzeichenCh') kurzzeichenCh: TextBoxComponent;
   @ViewChild('beschreibungLabel') beschreibungLabel: LabelComponent;
   @ViewChild('beschreibung') beschreibung: TextAreaComponent;
   @ViewChild('anzahlThemenLabel') anzahlThemenLabel: LabelComponent;
