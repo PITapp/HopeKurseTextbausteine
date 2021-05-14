@@ -68,6 +68,8 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
   @ViewChild('htmlEditorTextbausteine') htmlEditorTextbausteine: HtmlComponent;
   @ViewChild('buttonKopieren') buttonKopieren: ButtonComponent;
   @ViewChild('buttonDokument') buttonDokument: ButtonComponent;
+  @ViewChild('button2') button2: ButtonComponent;
+  @ViewChild('button3') button3: ButtonComponent;
   @ViewChild('buttonFavorit') buttonFavorit: ButtonComponent;
   @ViewChild('buttonSpeichern') buttonSpeichern: ButtonComponent;
   @ViewChild('panel2') panel2: PanelComponent;
@@ -563,6 +565,14 @@ this.dsoVerlauf.TextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
   }
 
   buttonDokumentClick(event: any) {
+    this.notificationService.notify({ severity: "warn", summary: ``, detail: `Diese Funktion ist in Arbeit` });
+  }
+
+  button2Click(event: any) {
+    this.notificationService.notify({ severity: "warn", summary: ``, detail: `Diese Funktion ist in Arbeit` });
+  }
+
+  button3Click(event: any) {
     this.notificationService.notify({ severity: "warn", summary: ``, detail: `Diese Funktion ist in Arbeit` });
   }
 

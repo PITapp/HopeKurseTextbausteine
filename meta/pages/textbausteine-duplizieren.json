@@ -379,6 +379,7 @@
                             {
                               "maxLength": 255,
                               "name": "DokumentTitel",
+                              "readOnly": true,
                               "style": {
                                 "display": "block",
                                 "width": "100%"

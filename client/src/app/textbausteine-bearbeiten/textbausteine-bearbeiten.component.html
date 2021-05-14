@@ -88,9 +88,9 @@
             </rz-label>
           </div>
           <div class="col-md-9">
-            <rz-textbox #dokumentTitel [maxLength]="255" [style]="{'display': 'block', 'width': '100%'}" [(ngModel)]="dsoTextbausteine && dsoTextbausteine.DokumentTitel" name="DokumentTitel">
+            <rz-textbox #dokumentTitel [maxLength]="255" [readOnly]="true" [style]="{'display': 'block', 'width': '100%'}" [(ngModel)]="dsoTextbausteine && dsoTextbausteine.DokumentTitel" name="DokumentTitel">
             </rz-textbox>
-            <rz-upload #upload0 chooseText="Dokument auswählen" [showCancelButton]="false" [style]="{'width': '100%'}" uploadText="Hochladen">
+            <rz-upload #uploadDokumente chooseText="Dokument auswählen" [showCancelButton]="false" [style]="{'width': '100%'}" uploadText="Hochladen" url="upload/dokumente/{{strDokumentDateiName}}" (beforeUpload)="uploadDokumenteBeforeUpload($event)" (upload)="uploadDokumenteUpload($event)">
             </rz-upload>
           </div>
         </div>

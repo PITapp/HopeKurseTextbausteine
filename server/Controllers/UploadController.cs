@@ -54,6 +54,22 @@ namespace RadzenAngularFileUpload.Controllers
             }
         }
 
+        [HttpPost("upload/dokumente/{zielName}")]
+        public ActionResult Single3(IFormFile file, string zielName)
+        {
+            try
+            {
+                // Console.WriteLine("datei: " + file);
+
+                UploadFileDokumente(file, zielName);
+                return StatusCode(200);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
         [HttpPost("upload/multiple")]
         public IActionResult Multiple(IFormFile[] files)
         {
@@ -77,7 +93,7 @@ namespace RadzenAngularFileUpload.Controllers
         {
             if (file != null && file.Length > 0)
             {
-                var imagePath = @"\upload\dokumente";
+                var imagePath = @"\upload";
                 var uploadPath = _environment.WebRootPath + imagePath;
 
                 if (!Directory.Exists(uploadPath))
@@ -98,6 +114,26 @@ namespace RadzenAngularFileUpload.Controllers
             if (file != null && file.Length > 0)
             {
                 var imagePath = @"\upload\bilder\base";
+                var uploadPath = _environment.WebRootPath + imagePath;
+
+                if (!Directory.Exists(uploadPath))
+                {
+                    Directory.CreateDirectory(uploadPath);
+                }
+
+                var fullPath = Path.Combine(uploadPath, zielName);
+
+                using (FileStream fileStream = new FileStream(fullPath, FileMode.Create, FileAccess.Write))
+
+                    await file.CopyToAsync(fileStream);
+            }
+        }
+
+        public async Task UploadFileDokumente(IFormFile file, string zielName)
+        {
+            if (file != null && file.Length > 0)
+            {
+                var imagePath = @"\upload\dokumente";
                 var uploadPath = _environment.WebRootPath + imagePath;
 
                 if (!Directory.Exists(uploadPath))
