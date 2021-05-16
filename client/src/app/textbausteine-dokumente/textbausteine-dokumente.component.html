@@ -1,0 +1,70 @@
+<rz-content #content1 container="main">
+  <div class="row">
+    <div class="col-md-12">
+      <rz-template-form #form0 (submit)="form0Submit($event)">
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #titelTextbausteinLabel component="TitelTextbaustein" [style]="{'width': '100%'}" text="Textbaustein">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-textbox #titelTextbaustein [disabled]="false" [maxLength]="100" [readOnly]="true" [style]="{'display': 'block', 'width': '100%'}" [(ngModel)]="dsoTextbausteine && dsoTextbausteine.TitelTextbaustein" name="TitelTextbaustein">
+            </rz-textbox>
+            <rz-required-validator #requiredValidator1 [component]="titelTextbaustein" [style]="{'position': 'absolute'}" text="Titel erforderlich">
+            </rz-required-validator>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #untertitelTextbausteinLabel component="UntertitelTextbaustein" [style]="{'width': '100%'}" text="Untertitel">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-textbox #untertitelTextbaustein [maxLength]="100" [readOnly]="true" [style]="{'width': '100%'}" [(ngModel)]="dsoTextbausteine && dsoTextbausteine.UntertitelTextbaustein" name="UntertitelTextbaustein">
+            </rz-textbox>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #dokumentTitelLabel component="DokumentTitel" [style]="{'width': '100%'}" text="Dokument">
+            </rz-label>
+          </div>
+          <div class="col-md-9" [ngStyle]="{'backgroundColor': 'rgba(0, 0, 0, 0)'}">
+            <rz-textbox #dokumentTitel [maxLength]="255" [readOnly]="true" [style]="{'display': 'block', 'width': '100%'}" [(ngModel)]="dsoTextbausteine && dsoTextbausteine.DokumentTitel" name="DokumentTitel">
+            </rz-textbox>
+            <div [ngStyle]="{'backgroundColor': '#e6ecef'}" class="row">
+              <div class="col-md-6" [ngStyle]="{'backgroundColor': 'rgba(0, 0, 0, 0)', 'marginLeft': '-15px'}">
+                <rz-upload #uploadDokumente chooseText="Auswählen" mode="advanced" [previewWidth]="50" [showCancelButton]="false" [style]="{}" uploadText="Hochladen" url="upload/dokumente/tbdok{{parameters?.TextbausteinNr}}{{(uploadDokumente?.fileUpload?.files || {})[0]?.name?.substring((uploadDokumente?.fileUpload?.files || {})[0]?.name?.indexOf('.'))}}" (beforeUpload)="uploadDokumenteBeforeUpload($event)" (error)="uploadDokumenteError($event)" (upload)="uploadDokumenteUpload($event)">
+                </rz-upload>
+              </div>
+              <div class="justify-content-end d-flex col-md-6">
+                <rz-button #buttonDokumentLoeschen buttonStyle="danger" buttonType="button" icon="cancel_presentation" size="sm" [style]="{'float': 'none', 'marginBottom': '10px', 'marginTop': '10px'}" text="Löschen" tooltip="Dokument löschen" (click)="buttonDokumentLoeschenClick($event)">
+                </rz-button>
+                <rz-button #buttonDokumentOeffnen2 buttonStyle="secondary" icon="open_in_new" size="sm" [style]="{'float': 'none', 'marginBottom': '10px', 'marginLeft': '1rem', 'marginRight': '-15px', 'marginTop': '10px'}" text="Öffnen" tooltip="Dokument öffnen" (click)="buttonDokumentOeffnen2Click($event)">
+                </rz-button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '14px'}" class="row">
+          <div class="col-md-3" [ngStyle]="{}">
+            <rz-label #label19 component="Info" [style]="{'width': '100%'}" text="Notizen">
+            </rz-label>
+          </div>
+          <div class="col-md-9" [ngStyle]="{}">
+            <rz-textarea #infoText [rows]="4" [style]="{'height': '136px', 'width': '100%'}" [(ngModel)]="dsoTextbausteine && dsoTextbausteine.InfoText" name="InfoText">
+            </rz-textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col  justify-content-end d-flex col-md-12">
+            <rz-button #button5 buttonStyle="success" buttonType="submit" icon="done" [style]="{'marginLeft': '1rem'}" text="Speichern">
+            </rz-button>
+            <rz-button #button6 buttonStyle="light" [style]="{'marginLeft': '1rem'}" text="Abbruch" (click)="button6Click($event)">
+            </rz-button>
+          </div>
+        </div>
+      </rz-template-form>
+    </div>
+  </div>
+</rz-content>

@@ -74,7 +74,7 @@
           "events": {
             "change": [
               {
-                "code": "switch (${event.index}) {\n  case 0:\n    ${bolAnzeigenTitelTextbaustein} = true\n    break;\n\n  case 1:\n    ${bolAnzeigenTitelTextbaustein} = false\n    break;\n\n  case 2:\n    ${bolAnzeigenTitelTextbaustein} = false\n    break;\n}",
+                "code": "switch (${event.index}) {\n  case 0:\n    ${bolAnzeigenTitelTextbaustein} = true\n    break;\n\n  case 1:\n    ${bolAnzeigenTitelTextbaustein} = false\n    break;\n\n  case 2:\n    ${bolAnzeigenTitelTextbaustein} = false\n    break;\n\n  case 3:\n    ${bolAnzeigenTitelTextbaustein} = false\n    break;\n}",
                 "type": "execute"
               }
             ]
@@ -865,13 +865,22 @@
                                 "delete": [],
                                 "loadData": [
                                   {
+                                    "name": "strFilterTextbausteine",
+                                    "type": "set",
+                                    "value": "''"
+                                  },
+                                  {
+                                    "code": "if (this.dsoBenutzer.FilterTextbausteinArtCode) {\n      this.strFilterTextbausteine = this.strFilterTextbausteine + 'TextbausteinArtCode eq \\'' + this.dsoBenutzer.FilterTextbausteinArtCode + '\\''\n    } else {\n      this.strFilterTextbausteine = this.strFilterTextbausteine + 'TextbausteinArtCode ne null'\n    }\n\n    if (this.dsoBenutzer.FilterTitelUndText) {\n      var strFilterTitelUndText = this.dsoBenutzer.FilterTitelUndText.toLowerCase();\n\n      if (strFilterTitelUndText.indexOf('\"') == -1) {\n        // Keine Anführungszeichen gefunden\n        var strFilterTitelUndTextSplit = strFilterTitelUndText.split(\" \");\n        console.log(\"strFilterTitelUndTextSplit=\", strFilterTitelUndTextSplit);\n\n        // AND und Klammer öffnen\n        this.strFilterTextbausteine = this.strFilterTextbausteine + ' and ( '\n\n        for (var i = 0; i < strFilterTitelUndTextSplit.length; i++) {\n          console.log(i, '=', strFilterTitelUndTextSplit[i]);\n          this.strFilterTextbausteine = this.strFilterTextbausteine + 'contains(tolower(TitelTextbaustein),\\'' + strFilterTitelUndTextSplit[i] + '\\') OR contains(tolower(UntertitelTextbaustein),\\'' + strFilterTitelUndTextSplit[i] + '\\') OR contains(tolower(TextbausteinHTML),\\'' + strFilterTitelUndTextSplit[i] + '\\') OR contains(tolower(InfoText),\\'' + strFilterTitelUndTextSplit[i] + '\\')';\n          this.strFilterTextbausteine = this.strFilterTextbausteine + ' OR '\n        }\n\n        // Letztes OR entfernen\n        this.strFilterTextbausteine = this.strFilterTextbausteine.substring(0, this.strFilterTextbausteine.length - 4);\n\n        // Klammer schließen\n        this.strFilterTextbausteine = this.strFilterTextbausteine + ' ) '\n\n        console.log(this.strFilterTextbausteine);\n\n      } else {\n        // Anführungszeichen gefunden\n        strFilterTitelUndText = strFilterTitelUndText.replace(/\"/g, '');\n        console.log(\"strFilterTitelUndText=\", strFilterTitelUndText);\n\n        this.strFilterTextbausteine = this.strFilterTextbausteine + ' and ( contains(tolower(TitelTextbaustein),\\'' + strFilterTitelUndText + '\\') OR contains(tolower(UntertitelTextbaustein),\\'' + strFilterTitelUndText + '\\') OR contains(tolower(TextbausteinHTML),\\'' + strFilterTitelUndText + '\\') OR contains(tolower(InfoText),\\'' + strFilterTitelUndText + '\\') )';\n      }\n    }\n\n    if (this.dsoBenutzer.FilterKursNr) {\n      this.strFilterTextbausteine = this.strFilterTextbausteine + ' and KursNr eq ' + this.dsoBenutzer.FilterKursNr\n    }\n\n    if (this.dsoBenutzer.FilterAutorNr) {\n      this.strFilterTextbausteine = this.strFilterTextbausteine + ' and AutorNr eq ' + this.dsoBenutzer.FilterAutorNr\n    }\n\n    if (this.dsoBenutzer.FilterThemaNummer) {\n      this.strFilterTextbausteine = this.strFilterTextbausteine + ' and ThemaNummer eq ' + this.dsoBenutzer.FilterThemaNummer\n    }\n\n    if (this.dsoBenutzer.FilterAnrede) {\n      this.strFilterTextbausteine = this.strFilterTextbausteine + ' and Anrede eq \\'' + this.dsoBenutzer.FilterAnrede + '\\''\n    }\n\n    if (this.dsoBenutzer.FilterDokument == 'MitDokument') {\n      this.strFilterTextbausteine = this.strFilterTextbausteine + ' and length(DokumentTitel) gt 0'\n    }\n\n    if (this.dsoBenutzer.FilterDokument == 'OhneDokument') {\n      this.strFilterTextbausteine = this.strFilterTextbausteine + ' and length(DokumentTitel) eq null'\n    }",
+                                    "type": "execute"
+                                  },
+                                  {
                                     "name": "dbHopeKurseTextbausteine.getIbsiTextbausteines",
                                     "parameters": [
                                       {
                                         "name": "$filter",
                                         "value": [
                                           {
-                                            "value": "${this.dsoBenutzer.FilterTextbausteinArtCode ? 'TextbausteinArtCode eq \\'' + this.dsoBenutzer.FilterTextbausteinArtCode + '\\'' : 'TextbausteinArtCode ne null'} \n${this.dsoBenutzer.FilterTitelUndText ? ' and ( contains(tolower(TitelTextbaustein),tolower(\\'' + this.dsoBenutzer.FilterTitelUndText + '\\')) OR contains(tolower(UntertitelTextbaustein),tolower(\\'' + this.dsoBenutzer.FilterTitelUndText + '\\')) OR contains(tolower(TextbausteinHTML),tolower(\\'' + this.dsoBenutzer.FilterTitelUndText + '\\')) OR contains(tolower(InfoText),tolower(\\'' + this.dsoBenutzer.FilterTitelUndText + '\\')) )' : ''} \n${this.dsoBenutzer.FilterKursNr ? ' and KursNr eq ' + this.dsoBenutzer.FilterKursNr : ''} \n${this.dsoBenutzer.FilterAutorNr ? ' and AutorNr eq ' + this.dsoBenutzer.FilterAutorNr : ''}\n${this.dsoBenutzer.FilterThemaNummer ? ' and ThemaNummer eq ' + this.dsoBenutzer.FilterThemaNummer : ''}\n${this.dsoBenutzer.FilterAnrede ? ' and Anrede eq \\'' + this.dsoBenutzer.FilterAnrede + '\\'' : ''}\n${this.dsoBenutzer.FilterDokument == 'MitDokument' ? ' and length(DokumentTitel) gt 0' : ''}\n${this.dsoBenutzer.FilterDokument == 'OhneDokument' ? ' and length(DokumentTitel) eq null' : ''}"
+                                            "value": "${strFilterTextbausteine}"
                                           },
                                           {
                                             "operation": "ne",
@@ -1299,7 +1308,7 @@
                                       "events": {
                                         "click": [
                                           {
-                                            "code": "// Create container for the HTML\n  // [1]\n  var container = document.createElement('div')\n  container.innerHTML = this.strTextbausteinHTML\n\n  // Hide element\n  // [2]\n  container.style.position = 'fixed'\n  container.style.pointerEvents = 'none'\n  container.style.opacity = '0'\n\n  // Mount the container to the DOM to make `contentWindow` available\n  // [3]\n  document.body.appendChild(container)\n\n  // Copy to clipboard\n  // [4]\n  window.getSelection().removeAllRanges()\n\n  var range = document.createRange()\n  range.selectNode(container)\n  window.getSelection().addRange(range)\n\n  // [5]\n  document.execCommand('copy')\n  \n  // Remove the container\n  // [6]\n  document.body.removeChild(container)",
+                                            "code": "  // Create container for the HTML\n  // [1]\n  var container = document.createElement('div')\n  container.innerHTML = this.strTextbausteinHTML\n\n  // Hide element\n  // [2]\n  container.style.position = 'fixed'\n  container.style.pointerEvents = 'none'\n  container.style.opacity = '0'\n  container.style.background = 'white'\n\n  // Mount the container to the DOM to make `contentWindow` available\n  // [3]\n  document.body.appendChild(container)\n\n  // Copy to clipboard\n  // [4]\n  window.getSelection().removeAllRanges()\n\n  var range = document.createRange()\n  range.selectNode(container)\n  window.getSelection().addRange(range)\n\n  // [5]\n  document.execCommand('copy')\n  \n  // Remove the container\n  // [6]\n  document.body.removeChild(container)",
                                             "type": "execute"
                                           },
                                           {
@@ -1338,75 +1347,6 @@
                                         "float": "none"
                                       },
                                       "text": "Kopieren",
-                                      "tooltip": "",
-                                      "type": "button"
-                                    },
-                                    {
-                                      "buttonStyle": "light",
-                                      "events": {
-                                        "click": [
-                                          {
-                                            "detail": "Diese Funktion ist in Arbeit",
-                                            "severity": "warn",
-                                            "type": "notify"
-                                          }
-                                        ]
-                                      },
-                                      "icon": "folder_open",
-                                      "name": "buttonDokument",
-                                      "size": "sm",
-                                      "style": {
-                                        "color": "#D86E13",
-                                        "display": "inline-block",
-                                        "marginLeft": "10px"
-                                      },
-                                      "text": "Dokument",
-                                      "tooltip": "",
-                                      "type": "button"
-                                    },
-                                    {
-                                      "buttonStyle": "light",
-                                      "events": {
-                                        "click": [
-                                          {
-                                            "detail": "Diese Funktion ist in Arbeit",
-                                            "severity": "warn",
-                                            "type": "notify"
-                                          }
-                                        ]
-                                      },
-                                      "icon": "note_add",
-                                      "name": "button2",
-                                      "size": "sm",
-                                      "style": {
-                                        "color": "#D86E13",
-                                        "display": "inline-block",
-                                        "marginLeft": "10px"
-                                      },
-                                      "text": "Dokument hinzufügen",
-                                      "tooltip": "",
-                                      "type": "button"
-                                    },
-                                    {
-                                      "buttonStyle": "light",
-                                      "events": {
-                                        "click": [
-                                          {
-                                            "detail": "Diese Funktion ist in Arbeit",
-                                            "severity": "warn",
-                                            "type": "notify"
-                                          }
-                                        ]
-                                      },
-                                      "icon": "description",
-                                      "name": "button3",
-                                      "size": "sm",
-                                      "style": {
-                                        "color": "#D86E13",
-                                        "display": "inline-block",
-                                        "marginLeft": "10px"
-                                      },
-                                      "text": "Dokument öffnen",
                                       "tooltip": "",
                                       "type": "button"
                                     },
@@ -1459,6 +1399,41 @@
                                         "marginLeft": "10px"
                                       },
                                       "text": "Favorit",
+                                      "tooltip": "",
+                                      "type": "button"
+                                    },
+                                    {
+                                      "buttonStyle": "light",
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "parameters": [
+                                              {
+                                                "name": "TextbausteinNr",
+                                                "value": "${dsoTextbausteine.TextbausteinNr}"
+                                              }
+                                            ],
+                                            "path": "textbausteine-dokumente",
+                                            "title": "Domument ",
+                                            "type": "popup",
+                                            "width": 900
+                                          },
+                                          {
+                                            "name": "letzteTextbausteinNr",
+                                            "type": "set",
+                                            "value": "${dsoTextbausteine.TextbausteinNr}"
+                                          }
+                                        ]
+                                      },
+                                      "icon": "attach_file",
+                                      "name": "buttonDokument",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#D86E13",
+                                        "display": "inline-block",
+                                        "marginLeft": "10px"
+                                      },
+                                      "text": "Dokument",
                                       "tooltip": "",
                                       "type": "button"
                                     },
@@ -1916,7 +1891,17 @@
                                       "buttonStyle": "light",
                                       "disabled": false,
                                       "events": {
-                                        "click": []
+                                        "click": [
+                                          {
+                                            "code": "  // Create container for the HTML\n  // [1]\n  var container = document.createElement('div')\n  container.innerHTML = this.strTextbausteinHTMLFavoriten\n\n  // Hide element\n  // [2]\n  container.style.position = 'fixed'\n  container.style.pointerEvents = 'none'\n  container.style.opacity = '0'\n  container.style.background = 'white'\n\n  // Mount the container to the DOM to make `contentWindow` available\n  // [3]\n  document.body.appendChild(container)\n\n  // Copy to clipboard\n  // [4]\n  window.getSelection().removeAllRanges()\n\n  var range = document.createRange()\n  range.selectNode(container)\n  window.getSelection().addRange(range)\n\n  // [5]\n  document.execCommand('copy')\n  \n  // Remove the container\n  // [6]\n  document.body.removeChild(container)",
+                                            "type": "execute"
+                                          },
+                                          {
+                                            "detail": "Text wurde kopiert",
+                                            "severity": "success",
+                                            "type": "notify"
+                                          }
+                                        ]
                                       },
                                       "icon": "content_copy",
                                       "name": "buttonFavoritenKopieren",
@@ -1936,13 +1921,19 @@
                                       "events": {
                                         "click": [
                                           {
-                                            "detail": "Diese Funktion ist in Arbeit",
-                                            "severity": "warn",
-                                            "type": "notify"
+                                            "parameters": [
+                                              {
+                                                "name": "TextbausteinNr",
+                                                "value": "${dsoBenutzerTextbausteineFavoriten.TextbausteinNr}"
+                                              }
+                                            ],
+                                            "path": "textbausteine-dokumente",
+                                            "type": "popup",
+                                            "width": 900
                                           }
                                         ]
                                       },
-                                      "icon": "folder_open",
+                                      "icon": "attach_file",
                                       "name": "buttonFavoritenDokument",
                                       "size": "sm",
                                       "style": {
@@ -2337,7 +2328,17 @@
                                       "buttonStyle": "light",
                                       "disabled": false,
                                       "events": {
-                                        "click": []
+                                        "click": [
+                                          {
+                                            "code": "  // Create container for the HTML\n  // [1]\n  var container = document.createElement('div')\n  container.innerHTML = this.strTextbausteinHTMLVerlauf\n\n  // Hide element\n  // [2]\n  container.style.position = 'fixed'\n  container.style.pointerEvents = 'none'\n  container.style.opacity = '0'\n  container.style.background = 'white'\n\n  // Mount the container to the DOM to make `contentWindow` available\n  // [3]\n  document.body.appendChild(container)\n\n  // Copy to clipboard\n  // [4]\n  window.getSelection().removeAllRanges()\n\n  var range = document.createRange()\n  range.selectNode(container)\n  window.getSelection().addRange(range)\n\n  // [5]\n  document.execCommand('copy')\n  \n  // Remove the container\n  // [6]\n  document.body.removeChild(container)",
+                                            "type": "execute"
+                                          },
+                                          {
+                                            "detail": "Text wurde kopiert",
+                                            "severity": "success",
+                                            "type": "notify"
+                                          }
+                                        ]
                                       },
                                       "icon": "content_copy",
                                       "name": "buttonVerlaufKopieren",
@@ -2357,13 +2358,19 @@
                                       "events": {
                                         "click": [
                                           {
-                                            "detail": "Diese Funktion ist in Arbeit",
-                                            "severity": "warn",
-                                            "type": "notify"
+                                            "parameters": [
+                                              {
+                                                "name": "TextbausteinNr",
+                                                "value": "${dsoBenutzerTextbausteineVerlauf.TextbausteinNr}"
+                                              }
+                                            ],
+                                            "path": "textbausteine-dokumente",
+                                            "type": "popup",
+                                            "width": 900
                                           }
                                         ]
                                       },
-                                      "icon": "folder_open",
+                                      "icon": "attach_file",
                                       "name": "buttonVerlaufDokument",
                                       "size": "sm",
                                       "style": {
@@ -2710,7 +2717,7 @@
                             "border": "1px solid #e6ecef",
                             "height": "750px"
                           },
-                          "text": "{{rstTextbausteineCount == 0 ? '' : rstTextbausteineCount}} Textbausteine",
+                          "text": "{{rstTextbausteinePapierkorbCount == 0 ? '' : rstTextbausteinePapierkorbCount}} Textbausteine",
                           "type": "panel"
                         }
                       ],
@@ -2761,13 +2768,19 @@
                                       "events": {
                                         "click": [
                                           {
-                                            "detail": "Diese Funktion ist in Arbeit",
-                                            "severity": "warn",
-                                            "type": "notify"
+                                            "parameters": [
+                                              {
+                                                "name": "TextbausteinNr",
+                                                "value": "${dsoTextbausteinePapierkorb.TextbausteinNr}"
+                                              }
+                                            ],
+                                            "path": "textbausteine-dokumente",
+                                            "type": "popup",
+                                            "width": 900
                                           }
                                         ]
                                       },
-                                      "icon": "folder_open",
+                                      "icon": "attach_file",
                                       "name": "buttonPapierkorbDokument",
                                       "size": "sm",
                                       "style": {

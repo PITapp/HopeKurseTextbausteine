@@ -120,7 +120,6 @@ export class KontakteGenerated implements AfterViewInit, OnInit, OnDestroy {
 
   security: SecurityService;
   letzteBaseID: any;
-  strBildDateiName: any;
   rstBaseAnreden: any;
   parameters: any;
   rstBase: any;
@@ -177,8 +176,6 @@ export class KontakteGenerated implements AfterViewInit, OnInit, OnDestroy {
 
   load() {
     this.letzteBaseID = null;
-
-    this.strBildDateiName = 'Unbekannt';
 
     this.dbHopeKurseTextbausteine.getBaseAnredens(null, null, null, null, null, null, null, null)
     .subscribe((result: any) => {
@@ -275,12 +272,10 @@ export class KontakteGenerated implements AfterViewInit, OnInit, OnDestroy {
 
   uploadBildBaseBeforeUpload(event: any) {
     var strDateiName = this.uploadBildBase.fileUpload.files[0].name;
-
 var strDateiEndung = strDateiName.substring(strDateiName.indexOf("."));
 
-this.strBildDateiName = this.dsoBase.BaseID + strDateiEndung;
-
-this.dsoBase.BildURL = 'https://hopekurse-textbausteine.app/upload/bilder/base/' + this.strBildDateiName;
+this.dsoBase.BildURL = 'https://hopekurse-textbausteine.app/upload/bilder/base/KeinBildPerson.png';
+this.dsoBase.BildURL = 'https://hopekurse-textbausteine.app/upload/bilder/base/' + this.dsoBase.BaseID + strDateiEndung;
   }
 
   uploadBildBaseError(event: any) {

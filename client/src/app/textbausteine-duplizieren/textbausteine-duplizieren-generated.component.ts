@@ -17,7 +17,6 @@ import { DropDownComponent } from '@radzen/angular/dist/dropdown';
 import { RequiredValidatorComponent } from '@radzen/angular/dist/required-validator';
 import { TextBoxComponent } from '@radzen/angular/dist/textbox';
 import { NumericComponent } from '@radzen/angular/dist/numeric';
-import { UploadComponent } from '@radzen/angular/dist/upload';
 import { TextAreaComponent } from '@radzen/angular/dist/textarea';
 import { ButtonComponent } from '@radzen/angular/dist/button';
 
@@ -49,9 +48,6 @@ export class TextbausteineDuplizierenGenerated implements AfterViewInit, OnInit,
   @ViewChild('untertitelTextbaustein') untertitelTextbaustein: TextBoxComponent;
   @ViewChild('themaNummerLabel') themaNummerLabel: LabelComponent;
   @ViewChild('themaNummer') themaNummer: NumericComponent;
-  @ViewChild('dokumentTitelLabel') dokumentTitelLabel: LabelComponent;
-  @ViewChild('dokumentTitel') dokumentTitel: TextBoxComponent;
-  @ViewChild('upload0') upload0: UploadComponent;
   @ViewChild('landLabel') landLabel: LabelComponent;
   @ViewChild('land') land: DropDownComponent;
   @ViewChild('label19') label19: LabelComponent;

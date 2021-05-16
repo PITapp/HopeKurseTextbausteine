@@ -362,57 +362,6 @@
                           "class": "col-md-3",
                           "components": [
                             {
-                              "component": "DokumentTitel",
-                              "name": "DokumentTitelLabel",
-                              "style": {
-                                "width": "100%"
-                              },
-                              "text": "Dokument",
-                              "type": "label"
-                            }
-                          ],
-                          "type": "col"
-                        },
-                        {
-                          "class": "col-md-9",
-                          "components": [
-                            {
-                              "maxLength": 255,
-                              "name": "DokumentTitel",
-                              "readOnly": true,
-                              "style": {
-                                "display": "block",
-                                "width": "100%"
-                              },
-                              "type": "textbox",
-                              "value": "${dsoTextbausteine.DokumentTitel}"
-                            },
-                            {
-                              "cancelText": "",
-                              "chooseText": "Dokument auswählen",
-                              "name": "upload0",
-                              "showCancelButton": false,
-                              "style": {
-                                "width": "100%"
-                              },
-                              "type": "upload",
-                              "uploadText": "Hochladen"
-                            }
-                          ],
-                          "type": "col"
-                        }
-                      ],
-                      "style": {
-                        "marginBottom": "1rem"
-                      },
-                      "type": "row"
-                    },
-                    {
-                      "components": [
-                        {
-                          "class": "col-md-3",
-                          "components": [
-                            {
                               "component": "Land",
                               "name": "LandLabel",
                               "style": {

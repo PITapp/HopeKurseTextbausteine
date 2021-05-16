@@ -94,7 +94,6 @@ export class BenutzerProfilGenerated implements AfterViewInit, OnInit, OnDestroy
   dbHopeKurseTextbausteine: DbHopeKurseTextbausteineService;
 
   security: SecurityService;
-  strBildDateiName: any;
   rstRollen: any;
   dsoBenutzer: any;
   strNameKontakt: any;
@@ -150,8 +149,6 @@ export class BenutzerProfilGenerated implements AfterViewInit, OnInit, OnDestroy
 
 
   load() {
-    this.strBildDateiName = 'Unbekannt';
-
     this.dbHopeKurseTextbausteine.getVwRollens(null, null, null, null, null, null, null, null)
     .subscribe((result: any) => {
       this.rstRollen = result.value;
@@ -225,12 +222,10 @@ export class BenutzerProfilGenerated implements AfterViewInit, OnInit, OnDestroy
 
   uploadBildBaseBeforeUpload(event: any) {
     var strDateiName = this.uploadBildBase.fileUpload.files[0].name;
-
 var strDateiEndung = strDateiName.substring(strDateiName.indexOf("."));
 
-this.strBildDateiName = this.dsoBase.BaseID + strDateiEndung;
-
-this.dsoBase.BildURL = 'https://hopekurse-textbausteine.app/upload/bilder/base/' + this.strBildDateiName;
+this.dsoBase.BildURL = 'https://hopekurse-textbausteine.app/upload/bilder/base/KeinBildPerson.png';
+this.dsoBase.BildURL = 'https://hopekurse-textbausteine.app/upload/bilder/base/' + this.dsoBase.BaseID + strDateiEndung;
   }
 
   uploadBildBaseError(event: any) {

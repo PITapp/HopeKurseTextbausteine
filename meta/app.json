@@ -61,7 +61,8 @@
     "Versionen",
     "InfoboxTextbausteineFilterText",
     "TextbausteineInfo",
-    "TextbausteineFilterInfo"
+    "TextbausteineFilterInfo",
+    "TextbausteineDokumente"
   ],
   "port": 8000,
   "security": {

@@ -40,12 +40,12 @@
                   "name": "heading21",
                   "size": "H3",
                   "style": {
-                    "color": "#ff6d41",
+                    "color": "#789BC0",
                     "display": "inline",
                     "fontSize": "21px",
                     "fontWeight": "normal"
                   },
-                  "text": "Modul in Arbeit",
+                  "text": "{{dsoTextbausteineDokumente?.TitelTextbaustein ? dsoTextbausteineDokumente?.TitelTextbaustein : 'Kein Textbaustein ausgewählt!'}}\n{{dsoTextbausteineDokumente?.DokumentTitel ? '&nbsp; ⁞ &nbsp;&nbsp;' + dsoTextbausteineDokumente?.DokumentTitel : ''}}\n{{dsoTextbausteineDokumente?.DokumentTyp ? '&nbsp; ⁞ &nbsp;&nbsp;' + dsoTextbausteineDokumente?.DokumentTyp : ''}}",
                   "type": "heading"
                 }
               ],
@@ -76,74 +76,462 @@
                 {
                   "components": [
                     {
-                      "class": "col-md-4",
+                      "class": "col-md-7",
                       "components": [
                         {
                           "allowCollapse": false,
-                          "components": [],
+                          "components": [
+                            {
+                              "addText": "",
+                              "allowAdd": false,
+                              "allowColumnReorder": true,
+                              "allowColumnResize": true,
+                              "allowDelete": false,
+                              "allowFiltering": false,
+                              "allowMultiSorting": false,
+                              "allowPaging": true,
+                              "allowSorting": false,
+                              "alwaysShowPager": false,
+                              "applyFilterText": "Apply",
+                              "clearFilterText": "Clear",
+                              "columnResizeMode": "fit",
+                              "columns": [
+                                {
+                                  "format": "",
+                                  "property": "TitelTextbaustein",
+                                  "title": "Titel Textbaustein",
+                                  "type": "string",
+                                  "width": "50%"
+                                },
+                                {
+                                  "format": "",
+                                  "property": "DokumentTitel",
+                                  "title": "Dokument",
+                                  "type": "string",
+                                  "width": "50%"
+                                },
+                                {
+                                  "format": "",
+                                  "property": "DokumentTyp",
+                                  "title": "Dateityp",
+                                  "type": "string",
+                                  "width": "70px"
+                                },
+                                {
+                                  "format": "",
+                                  "property": "DokumentErstelltVon",
+                                  "title": "Erstellt Von",
+                                  "type": "string",
+                                  "width": "120px"
+                                },
+                                {
+                                  "format": "date-time",
+                                  "formatString": "dd.MM.yyyy HH:mm",
+                                  "property": "DokumentErstelltAm",
+                                  "sortProperty": "",
+                                  "template": "",
+                                  "title": "Erstellt Am",
+                                  "type": "string",
+                                  "width": "120px"
+                                }
+                              ],
+                              "confirmDelete": false,
+                              "confirmDeleteCancelText": "",
+                              "confirmDeleteOkText": "",
+                              "confirmDeleteText": "",
+                              "confirmDeleteTitle": "",
+                              "containsText": "Contains",
+                              "count": "${rstTextbausteineDokumente}",
+                              "data": "${rstTextbausteineDokumente}",
+                              "emptyText": "Keine Textbausteine vorhanden",
+                              "endsWithText": "Ends with",
+                              "equalsText": "Equals",
+                              "events": {
+                                "add": [],
+                                "delete": [],
+                                "loadData": [
+                                  {
+                                    "name": "dbHopeKurseTextbausteine.getIbsiTextbausteines",
+                                    "parameters": [
+                                      {
+                                        "name": "$filter",
+                                        "value": [
+                                          {
+                                            "operation": "ne",
+                                            "property": "DokumentTitel",
+                                            "type": "string",
+                                            "value": "null"
+                                          },
+                                          {
+                                            "operation": "ne",
+                                            "property": "Ordner",
+                                            "type": "string",
+                                            "value": "'Papierkorb'"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "name": "$expand",
+                                        "value": "IBSITextbausteineAutoren, IBSIKurse"
+                                      },
+                                      {
+                                        "name": "$top",
+                                        "value": "event.top"
+                                      },
+                                      {
+                                        "name": "$skip",
+                                        "value": "event.skip"
+                                      },
+                                      {
+                                        "name": "$count",
+                                        "value": "event.top != null && event.skip != null"
+                                      },
+                                      {
+                                        "name": "$orderby",
+                                        "value": [
+                                          {
+                                            "value": "${event.orderby || 'TitelTextbaustein'}"
+                                          }
+                                        ]
+                                      }
+                                    ],
+                                    "then": [
+                                      {
+                                        "name": "rstTextbausteineDokumente",
+                                        "type": "set",
+                                        "value": "${result.value}"
+                                      },
+                                      {
+                                        "name": "rstTextbausteineDokumenteCount",
+                                        "type": "set",
+                                        "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
+                                      }
+                                    ],
+                                    "type": "invoke"
+                                  }
+                                ],
+                                "rowDoubleClick": [
+                                  {
+                                    "parameters": [
+                                      {
+                                        "name": "TextbausteinNr",
+                                        "value": "${dsoTextbausteineDokumente.TextbausteinNr}"
+                                      }
+                                    ],
+                                    "path": "textbausteine-bearbeiten",
+                                    "title": "Bearbeiten Textbaustein",
+                                    "type": "popup"
+                                  }
+                                ],
+                                "rowSelect": [
+                                  {
+                                    "name": "strTextbausteinDokumenteHTML",
+                                    "type": "set",
+                                    "value": "${event.TextbausteinHTML}"
+                                  },
+                                  {
+                                    "name": "dsoTextbausteineDokumente",
+                                    "type": "set",
+                                    "value": "${event}"
+                                  }
+                                ]
+                              },
+                              "filterCaseSensitivity": "caseInsensitive",
+                              "greaterThanOrEqualsText": "Greater than or equals",
+                              "greaterThanText": "Greater than",
+                              "isLoading": "",
+                              "lessThanOrEqualsText": "Less than or equals",
+                              "lessThanText": "Less than",
+                              "name": "gridTextbausteineDokumente",
+                              "notEqualsText": "Not equals",
+                              "pageSize": 22,
+                              "startsWithText": "Starts with",
+                              "style": {
+                                "border": "1px solid rgba(0, 0, 0, 0)",
+                                "height": "700px",
+                                "marginLeft": "-10px",
+                                "marginRight": "-10px",
+                                "marginTop": "-13px"
+                              },
+                              "title": "",
+                              "type": "grid"
+                            }
+                          ],
                           "footerTemplate": "",
-                          "headerTemplate": "",
-                          "name": "panelDokumente",
+                          "headerTemplate": [
+                            {
+                              "components": [
+                                {
+                                  "class": "col-md-12 align-items-start d-flex",
+                                  "components": [
+                                    {
+                                      "buttonStyle": "light",
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "parameters": [
+                                              {
+                                                "name": "TextbausteinNr",
+                                                "value": "${dsoTextbausteineDokumente.TextbausteinNr}"
+                                              }
+                                            ],
+                                            "path": "textbausteine-bearbeiten",
+                                            "then": [],
+                                            "title": "Bearbeiten Textbaustein",
+                                            "type": "popup"
+                                          }
+                                        ]
+                                      },
+                                      "icon": "create",
+                                      "name": "buttonDokumenteBearbeiten",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#598087",
+                                        "paddingLeft": ""
+                                      },
+                                      "text": "",
+                                      "tooltip": "Bearbeiten Textbaustein",
+                                      "type": "button"
+                                    },
+                                    {
+                                      "buttonStyle": "light",
+                                      "disabled": false,
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "parameters": [
+                                              {
+                                                "name": "strMeldung",
+                                                "value": "\"Soll der Textbaustein '\" + ${dsoTextbausteineDokumente.TitelTextbaustein} + \"' gelöscht (in den Papierkorb) werden?\""
+                                              }
+                                            ],
+                                            "path": "meldung-loeschen",
+                                            "then": [
+                                              {
+                                                "code": "${dsoTextbausteineDokumente.Ordner} = 'Papierkorb'",
+                                                "condition": "${result} == 'Löschen'",
+                                                "type": "execute"
+                                              },
+                                              {
+                                                "condition": "${result} == 'Löschen'",
+                                                "error": [
+                                                  {
+                                                    "detail": "Textbaustein konnte nicht gelöscht werden!",
+                                                    "severity": "error",
+                                                    "summary": "",
+                                                    "type": "notify"
+                                                  }
+                                                ],
+                                                "name": "dbHopeKurseTextbausteine.updateIbsiTextbausteine",
+                                                "parameters": [
+                                                  {
+                                                    "name": "TextbausteinNr",
+                                                    "value": "${dsoTextbausteineDokumente.TextbausteinNr}"
+                                                  },
+                                                  {
+                                                    "name": "IbsiTextbausteine",
+                                                    "value": "${dsoTextbausteineDokumente}"
+                                                  }
+                                                ],
+                                                "then": [
+                                                  {
+                                                    "code": "this.gridTextbausteineDokumente.load();",
+                                                    "type": "execute"
+                                                  },
+                                                  {
+                                                    "detail": "Textbaustein gelöscht",
+                                                    "severity": "success",
+                                                    "summary": "",
+                                                    "type": "notify"
+                                                  }
+                                                ],
+                                                "type": "invoke"
+                                              }
+                                            ],
+                                            "title": "Löschen Textbaustein",
+                                            "type": "popup"
+                                          }
+                                        ]
+                                      },
+                                      "icon": "cancel",
+                                      "name": "buttonDokumenteLoeschen",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#598087",
+                                        "fontWeight": "normal",
+                                        "marginLeft": "10px",
+                                        "marginRight": "-9px",
+                                        "paddingLeft": ""
+                                      },
+                                      "text": "",
+                                      "tooltip": "Löschen Textbaustein",
+                                      "type": "button"
+                                    }
+                                  ],
+                                  "name": "col0",
+                                  "type": "col"
+                                }
+                              ],
+                              "name": "row0",
+                              "type": "row"
+                            }
+                          ],
+                          "name": "panel8",
                           "style": {
                             "border": "1px solid #e6ecef",
                             "height": "750px"
                           },
-                          "text": "Dokumente",
+                          "text": "{{rstTextbausteineDokumenteCount == 0 ? '' : rstTextbausteineDokumenteCount}} Textbausteine",
                           "type": "panel"
                         }
                       ],
-                      "name": "col0",
-                      "type": "col"
-                    },
-                    {
-                      "class": "col-md-4",
-                      "components": [
-                        {
-                          "components": [],
-                          "icon": "",
-                          "name": "panel3",
-                          "style": {
-                            "border": "1px solid #e6ecef",
-                            "height": "360px"
-                          },
-                          "text": "Vorschau",
-                          "type": "panel"
-                        },
-                        {
-                          "components": [],
-                          "icon": "",
-                          "name": "panel1",
-                          "style": {
-                            "border": "1px solid #e6ecef",
-                            "height": "370px",
-                            "marginTop": "20px"
-                          },
-                          "text": "Sonstiges",
-                          "type": "panel"
-                        }
-                      ],
-                      "name": "col4",
+                      "name": "col42",
                       "style": {
                         "paddingLeft": "5px"
                       },
                       "type": "col"
                     },
                     {
-                      "class": "col-md-4",
+                      "class": "col-md-5",
                       "components": [
                         {
-                          "components": [],
-                          "footerTemplate": "",
-                          "name": "panelTextbaustein",
+                          "components": [
+                            {
+                              "components": [
+                                {
+                                  "class": "col-md-12",
+                                  "components": [
+                                    {
+                                      "content": "<p-editor [(ngModel)]=\"strTextbausteinDokumenteHTML\" [style]=\"{'height': '645px'}\">\n    <p-header>\n\t\t<span class=\"ql-formats\">\n           <select class=\"ql-font\"></select>\n\t\t   <select class=\"ql-header\">\n\t\t\t    <option value=\"1\">Titel 1</option>\n\t\t\t    <option value=\"2\">Titel 2</option>\n\t\t\t    <option value=\"3\">Titel 3</option>\n\t\t\t    <option value=\"4\">Titel 4</option>\n\t\t\t    <option value=\"5\">Titel 5</option>\n\t\t\t    <option value=\"6\">Titel 6</option>\n\t\t\t    <option selected>Normal</option>\n\t\t\t</select>\n\t\t</span>\n\t\t\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-bold\" aria-label=\"Bold\">Fett</button>\n\t\t\t<button class=\"ql-italic\" aria-label=\"Italic\"></button>\n\t\t\t<button class=\"ql-underline\" aria-label=\"Underline\"></button>\n\t\t</span>\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-align\"></select>\n\t\t</span>\t\t\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-list\" value=\"ordered\"></button>\n\t\t\t<button class=\"ql-list\" value=\"bullet\"></button>\n\t\t\t<button class=\"ql-indent\" value=\"-1\"></button>\n\t\t\t<button class=\"ql-indent\" value=\"+1\"></button>\n\t\t</span>\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-color\"></select>\n\t\t\t<select class=\"ql-background\"></select>\n\t\t</span>\n\n    </p-header>\n\n</p-editor>",
+                                      "name": "html1",
+                                      "type": "html"
+                                    }
+                                  ],
+                                  "name": "col44",
+                                  "style": {},
+                                  "type": "col"
+                                }
+                              ],
+                              "name": "row21",
+                              "style": {
+                                "marginLeft": "-36px",
+                                "marginRight": "-36px",
+                                "marginTop": "-12px"
+                              },
+                              "type": "row"
+                            }
+                          ],
+                          "headerTemplate": [
+                            {
+                              "components": [
+                                {
+                                  "class": "col-md-12 align-items-start d-flex",
+                                  "components": [
+                                    {
+                                      "buttonStyle": "light",
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "parameters": [
+                                              {
+                                                "name": "TextbausteinNr",
+                                                "value": "${dsoTextbausteineDokumente.TextbausteinNr}"
+                                              }
+                                            ],
+                                            "path": "textbausteine-dokumente",
+                                            "type": "popup",
+                                            "width": 900
+                                          }
+                                        ]
+                                      },
+                                      "icon": "attach_file",
+                                      "name": "buttonDokumenteDokument",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#D86E13",
+                                        "display": "inline-block"
+                                      },
+                                      "text": "Dokument",
+                                      "tooltip": "",
+                                      "type": "button"
+                                    },
+                                    {
+                                      "buttonStyle": "light",
+                                      "buttonType": "submit",
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "code": "${dsoTextbausteineDokumente.TextbausteinHTML} = ${strTextbausteinDokumenteHTML}",
+                                            "type": "execute"
+                                          },
+                                          {
+                                            "error": [
+                                              {
+                                                "detail": "Textbaustein konnte nicht gespeichert werden!",
+                                                "severity": "error",
+                                                "type": "notify"
+                                              }
+                                            ],
+                                            "name": "dbHopeKurseTextbausteine.updateIbsiTextbausteine",
+                                            "parameters": [
+                                              {
+                                                "name": "TextbausteinNr",
+                                                "value": "${dsoTextbausteineDokumente.TextbausteinNr}"
+                                              },
+                                              {
+                                                "name": "IbsiTextbausteine",
+                                                "value": "${dsoTextbausteineDokumente}"
+                                              }
+                                            ],
+                                            "then": [
+                                              {
+                                                "detail": "Textbaustein gespeichert",
+                                                "severity": "success",
+                                                "type": "notify"
+                                              }
+                                            ],
+                                            "type": "invoke"
+                                          }
+                                        ]
+                                      },
+                                      "icon": "done",
+                                      "name": "buttonPapierkorbSpeichern",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#598087",
+                                        "display": "inline-block",
+                                        "marginLeft": "10px",
+                                        "marginRight": "-9px"
+                                      },
+                                      "text": "Speichern",
+                                      "tooltip": "",
+                                      "type": "button"
+                                    }
+                                  ],
+                                  "name": "col2",
+                                  "style": {
+                                    "display": "flex"
+                                  },
+                                  "type": "col"
+                                }
+                              ],
+                              "name": "row0",
+                              "style": {
+                                "display": "inline-block"
+                              },
+                              "type": "row"
+                            }
+                          ],
+                          "name": "panel9",
                           "style": {
                             "border": "1px solid #e6ecef",
                             "height": "750px"
                           },
-                          "text": "Textbaustein",
+                          "text": "Text",
                           "type": "panel"
                         }
                       ],
-                      "name": "col3",
+                      "name": "col43",
                       "style": {
                         "paddingLeft": "5px"
                       },
@@ -156,93 +544,6 @@
               ],
               "selected": true,
               "text": "Daten"
-            },
-            {
-              "components": [
-                {
-                  "components": [
-                    {
-                      "class": "col-md-4",
-                      "components": [
-                        {
-                          "allowCollapse": false,
-                          "components": [],
-                          "footerTemplate": "",
-                          "headerTemplate": "",
-                          "name": "panel0",
-                          "style": {
-                            "border": "1px solid #e6ecef",
-                            "height": "750px"
-                          },
-                          "text": "Weitere 1",
-                          "type": "panel"
-                        }
-                      ],
-                      "name": "col1",
-                      "type": "col"
-                    },
-                    {
-                      "class": "col-md-4",
-                      "components": [
-                        {
-                          "components": [],
-                          "icon": "",
-                          "name": "panel4",
-                          "style": {
-                            "border": "1px solid #e6ecef",
-                            "height": "360px"
-                          },
-                          "text": "Weitere 2",
-                          "type": "panel"
-                        },
-                        {
-                          "components": [],
-                          "icon": "",
-                          "name": "panel5",
-                          "style": {
-                            "border": "1px solid #e6ecef",
-                            "height": "370px",
-                            "marginTop": "20px"
-                          },
-                          "text": "Sonstiges",
-                          "type": "panel"
-                        }
-                      ],
-                      "name": "col2",
-                      "style": {
-                        "paddingLeft": "5px"
-                      },
-                      "type": "col"
-                    },
-                    {
-                      "class": "col-md-4",
-                      "components": [
-                        {
-                          "components": [],
-                          "footerTemplate": "",
-                          "name": "panel6",
-                          "style": {
-                            "border": "1px solid #e6ecef",
-                            "height": "750px"
-                          },
-                          "text": "Weitere 3",
-                          "type": "panel"
-                        }
-                      ],
-                      "name": "col5",
-                      "style": {
-                        "paddingLeft": "5px"
-                      },
-                      "type": "col"
-                    }
-                  ],
-                  "name": "row0",
-                  "type": "row"
-                }
-              ],
-              "icon": "",
-              "selected": false,
-              "text": "Weitere"
             }
           ],
           "name": "tabs0",
@@ -258,7 +559,12 @@
     }
   ],
   "events": {
-    "load": []
+    "load": [
+      {
+        "code": "this.gridTextbausteineDokumente.load();",
+        "type": "execute"
+      }
+    ]
   },
   "layout": "Main",
   "name": "Dokumente"

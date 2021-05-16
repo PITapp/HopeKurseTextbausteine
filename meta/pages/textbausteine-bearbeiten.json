@@ -362,73 +362,6 @@
                           "class": "col-md-3",
                           "components": [
                             {
-                              "component": "DokumentTitel",
-                              "name": "DokumentTitelLabel",
-                              "style": {
-                                "width": "100%"
-                              },
-                              "text": "Dokument",
-                              "type": "label"
-                            }
-                          ],
-                          "type": "col"
-                        },
-                        {
-                          "class": "col-md-9",
-                          "components": [
-                            {
-                              "maxLength": 255,
-                              "name": "DokumentTitel",
-                              "readOnly": true,
-                              "style": {
-                                "display": "block",
-                                "width": "100%"
-                              },
-                              "type": "textbox",
-                              "value": "${dsoTextbausteine.DokumentTitel}"
-                            },
-                            {
-                              "cancelText": "",
-                              "chooseText": "Dokument auswählen",
-                              "events": {
-                                "beforeUpload": [
-                                  {
-                                    "code": "var strDateiName = ${this.uploadDokumente.fileUpload.files[0].name};\n\nvar strDateiEndung = strDateiName.substring(strDateiName.indexOf(\".\"));\n\nthis.strDokumentDateiName = 'tbdok' + ${parameters.TextbausteinNr} + strDateiEndung;\n\nthis.dsoTextbausteine.DokumentTitel = strDateiName;\nthis.dsoTextbausteine.DokumentName = this.strDokumentDateiName;\nthis.dsoTextbausteine.DokumentTyp = strDateiName.substring(strDateiName.indexOf(\".\") + 1);\nthis.dsoTextbausteine.DokumentErstelltVon = ${security.user.name};\n\nvar date = new Date();\n\nthis.dsoTextbausteine.DokumentErstelltAm = new Date(Date.UTC(date.getFullYear(),\n                                                    date.getMonth(),\n                                                    date.getDate(),\n                                                    date.getHours(),\n                                                    date.getMinutes(),\n                                                    date.getSeconds(),\n                                                    date.getMilliseconds() ))\n",
-                                    "type": "execute"
-                                  }
-                                ],
-                                "upload": [
-                                  {
-                                    "detail": "Dokument erfolgreich hochgeladen",
-                                    "severity": "success",
-                                    "type": "notify"
-                                  }
-                                ]
-                              },
-                              "name": "uploadDokumente",
-                              "showCancelButton": false,
-                              "style": {
-                                "width": "100%"
-                              },
-                              "type": "upload",
-                              "uploadText": "Hochladen",
-                              "url": "upload/dokumente/{{strDokumentDateiName}}"
-                            }
-                          ],
-                          "type": "col"
-                        }
-                      ],
-                      "style": {
-                        "marginBottom": "1rem"
-                      },
-                      "type": "row"
-                    },
-                    {
-                      "components": [
-                        {
-                          "class": "col-md-3",
-                          "components": [
-                            {
                               "component": "Land",
                               "name": "LandLabel",
                               "style": {
@@ -710,11 +643,6 @@
         "name": "rstLaender",
         "type": "set",
         "value": "[{Titel: 'Deutschland', LKZ: 'D'}, {Titel: 'Österreich', LKZ: 'A'}, {Titel: 'Schweiz', LKZ: 'CH'}]"
-      },
-      {
-        "name": "strDokumentDateiName",
-        "type": "set",
-        "value": "'Unbekannt'"
       }
     ]
   },

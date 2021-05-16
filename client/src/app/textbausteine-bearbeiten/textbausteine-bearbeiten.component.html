@@ -84,18 +84,6 @@
         </div>
         <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
           <div class="col-md-3">
-            <rz-label #dokumentTitelLabel component="DokumentTitel" [style]="{'width': '100%'}" text="Dokument">
-            </rz-label>
-          </div>
-          <div class="col-md-9">
-            <rz-textbox #dokumentTitel [maxLength]="255" [readOnly]="true" [style]="{'display': 'block', 'width': '100%'}" [(ngModel)]="dsoTextbausteine && dsoTextbausteine.DokumentTitel" name="DokumentTitel">
-            </rz-textbox>
-            <rz-upload #uploadDokumente chooseText="Dokument auswählen" [showCancelButton]="false" [style]="{'width': '100%'}" uploadText="Hochladen" url="upload/dokumente/{{strDokumentDateiName}}" (beforeUpload)="uploadDokumenteBeforeUpload($event)" (upload)="uploadDokumenteUpload($event)">
-            </rz-upload>
-          </div>
-        </div>
-        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
-          <div class="col-md-3">
             <rz-label #landLabel component="Land" [style]="{'width': '100%'}" text="Land">
             </rz-label>
           </div>

@@ -190,13 +190,9 @@
                 <div class="col-md-12 align-items-start d-flex" [ngStyle]="{'display': 'flex'}">
                   <rz-button #buttonKopieren buttonStyle="light" icon="content_copy" size="sm" [style]="{'color': '#D86E13', 'display': 'inline-block', 'float': 'none'}" text="Kopieren" (click)="buttonKopierenClick($event)">
                   </rz-button>
-                  <rz-button #buttonDokument buttonStyle="light" icon="folder_open" size="sm" [style]="{'color': '#D86E13', 'display': 'inline-block', 'marginLeft': '10px'}" text="Dokument" (click)="buttonDokumentClick($event)">
-                  </rz-button>
-                  <rz-button #button2 buttonStyle="light" icon="note_add" size="sm" [style]="{'color': '#D86E13', 'display': 'inline-block', 'marginLeft': '10px'}" text="Dokument hinzufügen" (click)="button2Click($event)">
-                  </rz-button>
-                  <rz-button #button3 buttonStyle="light" icon="description" size="sm" [style]="{'color': '#D86E13', 'display': 'inline-block', 'marginLeft': '10px'}" text="Dokument öffnen" (click)="button3Click($event)">
-                  </rz-button>
                   <rz-button #buttonFavorit buttonStyle="light" icon="star_outline" size="sm" [style]="{'color': '#D86E13', 'display': 'inline-block', 'marginLeft': '10px'}" text="Favorit" (click)="buttonFavoritClick($event)">
+                  </rz-button>
+                  <rz-button #buttonDokument buttonStyle="light" icon="attach_file" size="sm" [style]="{'color': '#D86E13', 'display': 'inline-block', 'marginLeft': '10px'}" text="Dokument" (click)="buttonDokumentClick($event)">
                   </rz-button>
                   <rz-button #buttonSpeichern buttonStyle="light" buttonType="submit" icon="done" size="sm" [style]="{'color': '#598087', 'display': 'inline-block', 'marginLeft': '10px', 'marginRight': '-9px'}" text="Speichern" (click)="buttonSpeichernClick($event)">
                   </rz-button>
@@ -291,9 +287,9 @@
             <rz-panel-header>
               <div [ngStyle]="{'display': 'inline-block'}" class="row">
                 <div class="col-md-12 align-items-start d-flex" [ngStyle]="{'display': 'flex'}">
-                  <rz-button #buttonFavoritenKopieren buttonStyle="light" [disabled]="false" icon="content_copy" size="sm" [style]="{'color': '#D86E13', 'display': 'block', 'fontWeight': 'normal', 'paddingLeft': ''}" text="Kopieren" tooltip="Löschen Autor">
+                  <rz-button #buttonFavoritenKopieren buttonStyle="light" [disabled]="false" icon="content_copy" size="sm" [style]="{'color': '#D86E13', 'display': 'block', 'fontWeight': 'normal', 'paddingLeft': ''}" text="Kopieren" tooltip="Löschen Autor" (click)="buttonFavoritenKopierenClick($event)">
                   </rz-button>
-                  <rz-button #buttonFavoritenDokument buttonStyle="light" icon="folder_open" size="sm" [style]="{'color': '#D86E13', 'display': 'block', 'marginLeft': '10px', 'marginRight': '-9px'}" text="Dokument" (click)="buttonFavoritenDokumentClick($event)">
+                  <rz-button #buttonFavoritenDokument buttonStyle="light" icon="attach_file" size="sm" [style]="{'color': '#D86E13', 'display': 'block', 'marginLeft': '10px', 'marginRight': '-9px'}" text="Dokument" (click)="buttonFavoritenDokumentClick($event)">
                   </rz-button>
                 </div>
               </div>
@@ -385,9 +381,9 @@
             <rz-panel-header>
               <div [ngStyle]="{'display': 'inline-block'}" class="row">
                 <div class="col-md-12 align-items-start d-flex" [ngStyle]="{'display': 'flex'}">
-                  <rz-button #buttonVerlaufKopieren buttonStyle="light" [disabled]="false" icon="content_copy" size="sm" [style]="{'color': '#D86E13', 'display': 'block', 'fontWeight': 'normal', 'paddingLeft': ''}" text="Kopieren" tooltip="Löschen Autor">
+                  <rz-button #buttonVerlaufKopieren buttonStyle="light" [disabled]="false" icon="content_copy" size="sm" [style]="{'color': '#D86E13', 'display': 'block', 'fontWeight': 'normal', 'paddingLeft': ''}" text="Kopieren" tooltip="Löschen Autor" (click)="buttonVerlaufKopierenClick($event)">
                   </rz-button>
-                  <rz-button #buttonVerlaufDokument buttonStyle="light" icon="folder_open" size="sm" [style]="{'color': '#D86E13', 'display': 'block', 'marginLeft': '10px', 'marginRight': '-9px'}" text="Dokument" (click)="buttonVerlaufDokumentClick($event)">
+                  <rz-button #buttonVerlaufDokument buttonStyle="light" icon="attach_file" size="sm" [style]="{'color': '#D86E13', 'display': 'block', 'marginLeft': '10px', 'marginRight': '-9px'}" text="Dokument" (click)="buttonVerlaufDokumentClick($event)">
                   </rz-button>
                 </div>
               </div>
@@ -399,7 +395,7 @@
     <rz-tabs-item [selected]="false" text="Papierkorb" *ngIf="security?.user?.isInRole('Administrator')">
       <div class="row">
         <div class="col-md-7" [ngStyle]="{'paddingLeft': '5px'}">
-          <rz-panel #panel8 [allowCollapse]="false" [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="{{rstTextbausteineCount == 0 ? '' : rstTextbausteineCount}} Textbausteine">
+          <rz-panel #panel8 [allowCollapse]="false" [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="{{rstTextbausteinePapierkorbCount == 0 ? '' : rstTextbausteinePapierkorbCount}} Textbausteine">
             <rz-grid #gridTextbausteinePapierkorb [allowAdd]="false" [allowColumnReorder]="true" [allowColumnResize]="true" [allowDelete]="false" [allowFiltering]="false" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="false" [alwaysShowPager]="false" applyFilterText="Apply" clearFilterText="Clear" columnResizeMode="fit" [confirmDelete]="false" containsText="Contains" [count]="rstTextbausteinePapierkorbCount" [data]="rstTextbausteinePapierkorb" emptyText="Keine Textbausteine vorhanden" endsWithText="Ends with" equalsText="Equals" filterCaseSensitivity="caseInsensitive" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="22" startsWithText="Starts with" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'height': '700px', 'marginLeft': '-10px', 'marginRight': '-10px', 'marginTop': '-13px'}" (loadData)="gridTextbausteinePapierkorbLoadData($event)" (rowDoubleClick)="gridTextbausteinePapierkorbRowDoubleClick($event)" (rowSelect)="gridTextbausteinePapierkorbRowSelect($event)">
               <rz-grid-column property="TitelTextbaustein" title="Titel" width="60%" type="string">
               </rz-grid-column>
@@ -483,7 +479,7 @@
             <rz-panel-header>
               <div [ngStyle]="{'display': 'inline-block'}" class="row">
                 <div class="col-md-12 align-items-start d-flex" [ngStyle]="{'display': 'flex'}">
-                  <rz-button #buttonPapierkorbDokument buttonStyle="light" icon="folder_open" size="sm" [style]="{'color': '#D86E13', 'display': 'inline-block'}" text="Dokument" (click)="buttonPapierkorbDokumentClick($event)">
+                  <rz-button #buttonPapierkorbDokument buttonStyle="light" icon="attach_file" size="sm" [style]="{'color': '#D86E13', 'display': 'inline-block'}" text="Dokument" (click)="buttonPapierkorbDokumentClick($event)">
                   </rz-button>
                   <rz-button #buttonPapierkorbSpeichern buttonStyle="light" buttonType="submit" icon="done" size="sm" [style]="{'color': '#598087', 'display': 'inline-block', 'marginLeft': '10px', 'marginRight': '-9px'}" text="Speichern" (click)="buttonPapierkorbSpeichernClick($event)">
                   </rz-button>

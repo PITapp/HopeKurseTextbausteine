@@ -38,6 +38,7 @@ import { VersionenComponent } from './versionen/versionen.component';
 import { InfoboxTextbausteineFilterTextComponent } from './infobox-textbausteine-filter-text/infobox-textbausteine-filter-text.component';
 import { TextbausteineInfoComponent } from './textbausteine-info/textbausteine-info.component';
 import { TextbausteineFilterInfoComponent } from './textbausteine-filter-info/textbausteine-filter-info.component';
+import { TextbausteineDokumenteComponent } from './textbausteine-dokumente/textbausteine-dokumente.component';
 
 import { SecurityService } from './security.service';
 import { AuthGuard } from './auth.guard';
@@ -318,6 +319,14 @@ export const routes: Routes = [
           roles: ['Authenticated'],
         },
         component: TextbausteineFilterInfoComponent
+      },
+      {
+        path: 'textbausteine-dokumente/:TextbausteinNr',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: TextbausteineDokumenteComponent
       },
     ]
   },

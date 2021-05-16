@@ -268,7 +268,7 @@
             </div>
             <div class="row">
               <div class="col-md-12">
-                <rz-upload #uploadBildBase accept="image/*" [auto]="false" cancelText="Abbruch" chooseText="Bild auswählen" mode="advanced" [multiple]="false" [previewWidth]="50" [showCancelButton]="false" [showUploadButton]="true" [style]="{'float': 'none', 'width': '100%'}" uploadText="Hochladen" url="upload/bild/base/{{strBildDateiName}}" (beforeUpload)="uploadBildBaseBeforeUpload($event)" (error)="uploadBildBaseError($event)" (upload)="uploadBildBaseUpload($event)">
+                <rz-upload #uploadBildBase accept="image/*" [auto]="false" cancelText="Abbruch" chooseText="Bild auswählen" mode="advanced" [multiple]="false" [previewWidth]="50" [showCancelButton]="false" [showUploadButton]="true" [style]="{'float': 'none', 'width': '100%'}" uploadText="Hochladen" url="upload/bild/base/{{dsoBase?.BaseID}}{{(uploadBildBase?.fileUpload?.files || {})[0]?.name?.substring((uploadBildBase?.fileUpload?.files || {})[0]?.name?.indexOf('.'))}}" (beforeUpload)="uploadBildBaseBeforeUpload($event)" (error)="uploadBildBaseError($event)" (upload)="uploadBildBaseUpload($event)">
                 </rz-upload>
               </div>
             </div>

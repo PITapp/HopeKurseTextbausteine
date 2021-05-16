@@ -14,9 +14,16 @@ import { ContentComponent } from '@radzen/angular/dist/content';
 import { HeadingComponent } from '@radzen/angular/dist/heading';
 import { TabsComponent } from '@radzen/angular/dist/tabs';
 import { PanelComponent } from '@radzen/angular/dist/panel';
+import { GridComponent } from '@radzen/angular/dist/grid';
+import { ButtonComponent } from '@radzen/angular/dist/button';
+import { HtmlComponent } from '@radzen/angular/dist/html';
 
 import { ConfigService } from '../config.service';
+import { TextbausteineDokumenteComponent } from '../textbausteine-dokumente/textbausteine-dokumente.component';
+import { MeldungLoeschenComponent } from '../meldung-loeschen/meldung-loeschen.component';
+import { TextbausteineBearbeitenComponent } from '../textbausteine-bearbeiten/textbausteine-bearbeiten.component';
 
+import { DbHopeKurseTextbausteineService } from '../db-hope-kurse-textbausteine.service';
 import { SecurityService } from '../security.service';
 
 export class DokumenteGenerated implements AfterViewInit, OnInit, OnDestroy {
@@ -26,14 +33,14 @@ export class DokumenteGenerated implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('heading19') heading19: HeadingComponent;
   @ViewChild('heading21') heading21: HeadingComponent;
   @ViewChild('tabs0') tabs0: TabsComponent;
-  @ViewChild('panelDokumente') panelDokumente: PanelComponent;
-  @ViewChild('panel3') panel3: PanelComponent;
-  @ViewChild('panel1') panel1: PanelComponent;
-  @ViewChild('panelTextbaustein') panelTextbaustein: PanelComponent;
-  @ViewChild('panel0') panel0: PanelComponent;
-  @ViewChild('panel4') panel4: PanelComponent;
-  @ViewChild('panel5') panel5: PanelComponent;
-  @ViewChild('panel6') panel6: PanelComponent;
+  @ViewChild('panel8') panel8: PanelComponent;
+  @ViewChild('gridTextbausteineDokumente') gridTextbausteineDokumente: GridComponent;
+  @ViewChild('buttonDokumenteBearbeiten') buttonDokumenteBearbeiten: ButtonComponent;
+  @ViewChild('buttonDokumenteLoeschen') buttonDokumenteLoeschen: ButtonComponent;
+  @ViewChild('panel9') panel9: PanelComponent;
+  @ViewChild('html1') html1: HtmlComponent;
+  @ViewChild('buttonDokumenteDokument') buttonDokumenteDokument: ButtonComponent;
+  @ViewChild('buttonPapierkorbSpeichern') buttonPapierkorbSpeichern: ButtonComponent;
 
   router: Router;
 
@@ -57,8 +64,14 @@ export class DokumenteGenerated implements AfterViewInit, OnInit, OnDestroy {
 
   _subscription: Subscription;
 
+  dbHopeKurseTextbausteine: DbHopeKurseTextbausteineService;
+
   security: SecurityService;
   parameters: any;
+  rstTextbausteineDokumente: any;
+  rstTextbausteineDokumenteCount: any;
+  strTextbausteinDokumenteHTML: any;
+  dsoTextbausteineDokumente: any;
 
   constructor(private injector: Injector) {
   }
@@ -84,6 +97,7 @@ export class DokumenteGenerated implements AfterViewInit, OnInit, OnDestroy {
 
     this.httpClient = this.injector.get(HttpClient);
 
+    this.dbHopeKurseTextbausteine = this.injector.get(DbHopeKurseTextbausteineService);
     this.security = this.injector.get(SecurityService);
   }
 
@@ -107,6 +121,66 @@ export class DokumenteGenerated implements AfterViewInit, OnInit, OnDestroy {
 
 
   load() {
+    this.gridTextbausteineDokumente.load();
+  }
 
+  gridTextbausteineDokumenteLoadData(event: any) {
+    this.dbHopeKurseTextbausteine.getIbsiTextbausteines(`DokumentTitel ne null and Ordner ne 'Papierkorb'`, event.top, event.skip, `${event.orderby || 'TitelTextbaustein'}`, event.top != null && event.skip != null, `IBSITextbausteineAutoren, IBSIKurse`, null, null)
+    .subscribe((result: any) => {
+      this.rstTextbausteineDokumente = result.value;
+
+      this.rstTextbausteineDokumenteCount = event.top != null && event.skip != null ? result['@odata.count'] : result.value.length;
+    }, (result: any) => {
+
+    });
+  }
+
+  gridTextbausteineDokumenteRowDoubleClick(event: any) {
+    this.dialogService.open(TextbausteineBearbeitenComponent, { parameters: {TextbausteinNr: this.dsoTextbausteineDokumente.TextbausteinNr}, title: `Bearbeiten Textbaustein` });
+  }
+
+  gridTextbausteineDokumenteRowSelect(event: any) {
+    this.strTextbausteinDokumenteHTML = event.TextbausteinHTML;
+
+    this.dsoTextbausteineDokumente = event;
+  }
+
+  buttonDokumenteBearbeitenClick(event: any) {
+    this.dialogService.open(TextbausteineBearbeitenComponent, { parameters: {TextbausteinNr: this.dsoTextbausteineDokumente.TextbausteinNr}, title: `Bearbeiten Textbaustein` });
+  }
+
+  buttonDokumenteLoeschenClick(event: any) {
+    this.dialogService.open(MeldungLoeschenComponent, { parameters: {strMeldung: "Soll der Textbaustein '" + this.dsoTextbausteineDokumente.TitelTextbaustein + "' gelöscht (in den Papierkorb) werden?"}, title: `Löschen Textbaustein` })
+        .afterClosed().subscribe(result => {
+              if (result == 'Löschen') {
+        this.dsoTextbausteineDokumente.Ordner = 'Papierkorb'
+      }
+
+      if (result == 'Löschen') {
+              this.dbHopeKurseTextbausteine.updateIbsiTextbausteine(null, this.dsoTextbausteineDokumente.TextbausteinNr, this.dsoTextbausteineDokumente)
+        .subscribe((result: any) => {
+              this.gridTextbausteineDokumente.load();
+
+        this.notificationService.notify({ severity: "success", summary: ``, detail: `Textbaustein gelöscht` });
+        }, (result: any) => {
+              this.notificationService.notify({ severity: "error", summary: ``, detail: `Textbaustein konnte nicht gelöscht werden!` });
+        });
+      }
+    });
+  }
+
+  buttonDokumenteDokumentClick(event: any) {
+    this.dialogService.open(TextbausteineDokumenteComponent, { parameters: {TextbausteinNr: this.dsoTextbausteineDokumente.TextbausteinNr}, width: 900, title: 'TextbausteineDokumente' });
+  }
+
+  buttonPapierkorbSpeichernClick(event: any) {
+    this.dsoTextbausteineDokumente.TextbausteinHTML = this.strTextbausteinDokumenteHTML
+
+    this.dbHopeKurseTextbausteine.updateIbsiTextbausteine(null, this.dsoTextbausteineDokumente.TextbausteinNr, this.dsoTextbausteineDokumente)
+    .subscribe((result: any) => {
+      this.notificationService.notify({ severity: "success", summary: ``, detail: `Textbaustein gespeichert` });
+    }, (result: any) => {
+      this.notificationService.notify({ severity: "error", summary: ``, detail: `Textbaustein konnte nicht gespeichert werden!` });
+    });
   }
 }

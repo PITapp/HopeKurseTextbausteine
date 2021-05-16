@@ -17,7 +17,6 @@ import { DropDownComponent } from '@radzen/angular/dist/dropdown';
 import { RequiredValidatorComponent } from '@radzen/angular/dist/required-validator';
 import { TextBoxComponent } from '@radzen/angular/dist/textbox';
 import { NumericComponent } from '@radzen/angular/dist/numeric';
-import { UploadComponent } from '@radzen/angular/dist/upload';
 import { TextAreaComponent } from '@radzen/angular/dist/textarea';
 import { ButtonComponent } from '@radzen/angular/dist/button';
 
@@ -49,9 +48,6 @@ export class TextbausteineBearbeitenGenerated implements AfterViewInit, OnInit, 
   @ViewChild('untertitelTextbaustein') untertitelTextbaustein: TextBoxComponent;
   @ViewChild('themaNummerLabel') themaNummerLabel: LabelComponent;
   @ViewChild('themaNummer') themaNummer: NumericComponent;
-  @ViewChild('dokumentTitelLabel') dokumentTitelLabel: LabelComponent;
-  @ViewChild('dokumentTitel') dokumentTitel: TextBoxComponent;
-  @ViewChild('uploadDokumente') uploadDokumente: UploadComponent;
   @ViewChild('landLabel') landLabel: LabelComponent;
   @ViewChild('land') land: DropDownComponent;
   @ViewChild('label19') label19: LabelComponent;
@@ -90,7 +86,6 @@ export class TextbausteineBearbeitenGenerated implements AfterViewInit, OnInit, 
   rstKurse: any;
   rstTextbausteineAnreden: any;
   rstLaender: any;
-  strDokumentDateiName: any;
   parameters: any;
 
   constructor(private injector: Injector) {
@@ -177,8 +172,6 @@ export class TextbausteineBearbeitenGenerated implements AfterViewInit, OnInit, 
     });
 
     this.rstLaender = [{Titel: 'Deutschland', LKZ: 'D'}, {Titel: 'Österreich', LKZ: 'A'}, {Titel: 'Schweiz', LKZ: 'CH'}];
-
-    this.strDokumentDateiName = 'Unbekannt';
   }
 
   form0Submit(event: any) {
@@ -190,34 +183,6 @@ export class TextbausteineBearbeitenGenerated implements AfterViewInit, OnInit, 
     }, (result: any) => {
       this.notificationService.notify({ severity: "error", summary: ``, detail: `Textbaustein konnte nicht gespeichert werden!` });
     });
-  }
-
-  uploadDokumenteBeforeUpload(event: any) {
-    var strDateiName = this.uploadDokumente.fileUpload.files[0].name;
-
-var strDateiEndung = strDateiName.substring(strDateiName.indexOf("."));
-
-this.strDokumentDateiName = 'tbdok' + this.parameters.TextbausteinNr + strDateiEndung;
-
-this.dsoTextbausteine.DokumentTitel = strDateiName;
-this.dsoTextbausteine.DokumentName = this.strDokumentDateiName;
-this.dsoTextbausteine.DokumentTyp = strDateiName.substring(strDateiName.indexOf(".") + 1);
-this.dsoTextbausteine.DokumentErstelltVon = this.security.user.name;
-
-var date = new Date();
-
-this.dsoTextbausteine.DokumentErstelltAm = new Date(Date.UTC(date.getFullYear(),
-                                                    date.getMonth(),
-                                                    date.getDate(),
-                                                    date.getHours(),
-                                                    date.getMinutes(),
-                                                    date.getSeconds(),
-                                                    date.getMilliseconds() ))
-
-  }
-
-  uploadDokumenteUpload(event: any) {
-    this.notificationService.notify({ severity: "success", summary: ``, detail: `Dokument erfolgreich hochgeladen` });
   }
 
   button1Click(event: any) {

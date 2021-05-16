@@ -810,7 +810,7 @@
                                       "events": {
                                         "beforeUpload": [
                                           {
-                                            "code": "var strDateiName = ${this.uploadBildBase.fileUpload.files[0].name};\n\nvar strDateiEndung = strDateiName.substring(strDateiName.indexOf(\".\"));\n\nthis.strBildDateiName = ${dsoBase.BaseID} + strDateiEndung;\n\n${dsoBase.BildURL} = 'https://hopekurse-textbausteine.app/upload/bilder/base/' + this.strBildDateiName;",
+                                            "code": "var strDateiName = ${this.uploadBildBase.fileUpload.files[0].name};\nvar strDateiEndung = strDateiName.substring(strDateiName.indexOf(\".\"));\n\n${dsoBase.BildURL} = 'https://hopekurse-textbausteine.app/upload/bilder/base/KeinBildPerson.png';\n${dsoBase.BildURL} = 'https://hopekurse-textbausteine.app/upload/bilder/base/' + ${dsoBase.BaseID} + strDateiEndung;",
                                             "type": "execute"
                                           }
                                         ],
@@ -859,7 +859,7 @@
                                       },
                                       "type": "upload",
                                       "uploadText": "Hochladen",
-                                      "url": "upload/bild/base/{{strBildDateiName}}"
+                                      "url": "upload/bild/base/${dsoBase.BaseID}${this.uploadBildBase.fileUpload.files[0].name.substring(this.uploadBildBase.fileUpload.files[0].name.indexOf('.'))}"
                                     }
                                   ],
                                   "name": "col17",
@@ -1009,11 +1009,6 @@
   ],
   "events": {
     "load": [
-      {
-        "name": "strBildDateiName",
-        "type": "set",
-        "value": "'Unbekannt'"
-      },
       {
         "name": "dbHopeKurseTextbausteine.getVwRollens",
         "then": [

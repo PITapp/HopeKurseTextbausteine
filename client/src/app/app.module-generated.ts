@@ -88,6 +88,7 @@ import { VersionenComponent } from './versionen/versionen.component';
 import { InfoboxTextbausteineFilterTextComponent } from './infobox-textbausteine-filter-text/infobox-textbausteine-filter-text.component';
 import { TextbausteineInfoComponent } from './textbausteine-info/textbausteine-info.component';
 import { TextbausteineFilterInfoComponent } from './textbausteine-filter-info/textbausteine-filter-info.component';
+import { TextbausteineDokumenteComponent } from './textbausteine-dokumente/textbausteine-dokumente.component';
 import { LoginLayoutComponent } from './login-layout/login-layout.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 
@@ -132,6 +133,7 @@ export const PageDeclarations = [
   InfoboxTextbausteineFilterTextComponent,
   TextbausteineInfoComponent,
   TextbausteineFilterInfoComponent,
+  TextbausteineDokumenteComponent,
 ];
 
 export const LayoutDeclarations = [

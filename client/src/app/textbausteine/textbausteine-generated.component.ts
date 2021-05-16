@@ -24,6 +24,7 @@ import { GridComponent } from '@radzen/angular/dist/grid';
 import { HtmlComponent } from '@radzen/angular/dist/html';
 
 import { ConfigService } from '../config.service';
+import { TextbausteineDokumenteComponent } from '../textbausteine-dokumente/textbausteine-dokumente.component';
 import { MeldungLoeschenComponent } from '../meldung-loeschen/meldung-loeschen.component';
 import { TextbausteineBearbeitenComponent } from '../textbausteine-bearbeiten/textbausteine-bearbeiten.component';
 import { TextbausteineInfoComponent } from '../textbausteine-info/textbausteine-info.component';
@@ -67,10 +68,8 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
   @ViewChild('panel6') panel6: PanelComponent;
   @ViewChild('htmlEditorTextbausteine') htmlEditorTextbausteine: HtmlComponent;
   @ViewChild('buttonKopieren') buttonKopieren: ButtonComponent;
-  @ViewChild('buttonDokument') buttonDokument: ButtonComponent;
-  @ViewChild('button2') button2: ButtonComponent;
-  @ViewChild('button3') button3: ButtonComponent;
   @ViewChild('buttonFavorit') buttonFavorit: ButtonComponent;
+  @ViewChild('buttonDokument') buttonDokument: ButtonComponent;
   @ViewChild('buttonSpeichern') buttonSpeichern: ButtonComponent;
   @ViewChild('panel2') panel2: PanelComponent;
   @ViewChild('gridFavoriten') gridFavoriten: GridComponent;
@@ -135,6 +134,7 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
   onFocusOutFilterText: any;
   parameters: any;
   letzteTextbausteinNr: any;
+  strFilterTextbausteine: any;
   rstTextbausteine: any;
   rstTextbausteineCount: any;
   strTextbausteinHTML: any;
@@ -282,6 +282,10 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
   case 2:
     this.bolAnzeigenTitelTextbaustein = false
     break;
+
+  case 3:
+    this.bolAnzeigenTitelTextbaustein = false
+    break;
 }
   }
 
@@ -375,14 +379,73 @@ this.dsoBenutzer.FilterDokument = null
   }
 
   gridTextbausteineLoadData(event: any) {
-    this.dbHopeKurseTextbausteine.getIbsiTextbausteines(`${this.dsoBenutzer.FilterTextbausteinArtCode ? 'TextbausteinArtCode eq \'' + this.dsoBenutzer.FilterTextbausteinArtCode + '\'' : 'TextbausteinArtCode ne null'} 
-${this.dsoBenutzer.FilterTitelUndText ? ' and ( contains(tolower(TitelTextbaustein),tolower(\'' + this.dsoBenutzer.FilterTitelUndText + '\')) OR contains(tolower(UntertitelTextbaustein),tolower(\'' + this.dsoBenutzer.FilterTitelUndText + '\')) OR contains(tolower(TextbausteinHTML),tolower(\'' + this.dsoBenutzer.FilterTitelUndText + '\')) OR contains(tolower(InfoText),tolower(\'' + this.dsoBenutzer.FilterTitelUndText + '\')) )' : ''} 
-${this.dsoBenutzer.FilterKursNr ? ' and KursNr eq ' + this.dsoBenutzer.FilterKursNr : ''} 
-${this.dsoBenutzer.FilterAutorNr ? ' and AutorNr eq ' + this.dsoBenutzer.FilterAutorNr : ''}
-${this.dsoBenutzer.FilterThemaNummer ? ' and ThemaNummer eq ' + this.dsoBenutzer.FilterThemaNummer : ''}
-${this.dsoBenutzer.FilterAnrede ? ' and Anrede eq \'' + this.dsoBenutzer.FilterAnrede + '\'' : ''}
-${this.dsoBenutzer.FilterDokument == 'MitDokument' ? ' and length(DokumentTitel) gt 0' : ''}
-${this.dsoBenutzer.FilterDokument == 'OhneDokument' ? ' and length(DokumentTitel) eq null' : ''} and Ordner ne 'Papierkorb'`, event.top, event.skip, `${event.orderby || 'TitelTextbaustein'}`, event.top != null && event.skip != null, `IBSITextbausteineAutoren, IBSIKurse`, null, null)
+    this.strFilterTextbausteine = '';
+
+    if (this.dsoBenutzer.FilterTextbausteinArtCode) {
+      this.strFilterTextbausteine = this.strFilterTextbausteine + 'TextbausteinArtCode eq \'' + this.dsoBenutzer.FilterTextbausteinArtCode + '\''
+    } else {
+      this.strFilterTextbausteine = this.strFilterTextbausteine + 'TextbausteinArtCode ne null'
+    }
+
+    if (this.dsoBenutzer.FilterTitelUndText) {
+      var strFilterTitelUndText = this.dsoBenutzer.FilterTitelUndText.toLowerCase();
+
+      if (strFilterTitelUndText.indexOf('"') == -1) {
+        // Keine Anführungszeichen gefunden
+        var strFilterTitelUndTextSplit = strFilterTitelUndText.split(" ");
+        console.log("strFilterTitelUndTextSplit=", strFilterTitelUndTextSplit);
+
+        // AND und Klammer öffnen
+        this.strFilterTextbausteine = this.strFilterTextbausteine + ' and ( '
+
+        for (var i = 0; i < strFilterTitelUndTextSplit.length; i++) {
+          console.log(i, '=', strFilterTitelUndTextSplit[i]);
+          this.strFilterTextbausteine = this.strFilterTextbausteine + 'contains(tolower(TitelTextbaustein),\'' + strFilterTitelUndTextSplit[i] + '\') OR contains(tolower(UntertitelTextbaustein),\'' + strFilterTitelUndTextSplit[i] + '\') OR contains(tolower(TextbausteinHTML),\'' + strFilterTitelUndTextSplit[i] + '\') OR contains(tolower(InfoText),\'' + strFilterTitelUndTextSplit[i] + '\')';
+          this.strFilterTextbausteine = this.strFilterTextbausteine + ' OR '
+        }
+
+        // Letztes OR entfernen
+        this.strFilterTextbausteine = this.strFilterTextbausteine.substring(0, this.strFilterTextbausteine.length - 4);
+
+        // Klammer schließen
+        this.strFilterTextbausteine = this.strFilterTextbausteine + ' ) '
+
+        console.log(this.strFilterTextbausteine);
+
+      } else {
+        // Anführungszeichen gefunden
+        strFilterTitelUndText = strFilterTitelUndText.replace(/"/g, '');
+        console.log("strFilterTitelUndText=", strFilterTitelUndText);
+
+        this.strFilterTextbausteine = this.strFilterTextbausteine + ' and ( contains(tolower(TitelTextbaustein),\'' + strFilterTitelUndText + '\') OR contains(tolower(UntertitelTextbaustein),\'' + strFilterTitelUndText + '\') OR contains(tolower(TextbausteinHTML),\'' + strFilterTitelUndText + '\') OR contains(tolower(InfoText),\'' + strFilterTitelUndText + '\') )';
+      }
+    }
+
+    if (this.dsoBenutzer.FilterKursNr) {
+      this.strFilterTextbausteine = this.strFilterTextbausteine + ' and KursNr eq ' + this.dsoBenutzer.FilterKursNr
+    }
+
+    if (this.dsoBenutzer.FilterAutorNr) {
+      this.strFilterTextbausteine = this.strFilterTextbausteine + ' and AutorNr eq ' + this.dsoBenutzer.FilterAutorNr
+    }
+
+    if (this.dsoBenutzer.FilterThemaNummer) {
+      this.strFilterTextbausteine = this.strFilterTextbausteine + ' and ThemaNummer eq ' + this.dsoBenutzer.FilterThemaNummer
+    }
+
+    if (this.dsoBenutzer.FilterAnrede) {
+      this.strFilterTextbausteine = this.strFilterTextbausteine + ' and Anrede eq \'' + this.dsoBenutzer.FilterAnrede + '\''
+    }
+
+    if (this.dsoBenutzer.FilterDokument == 'MitDokument') {
+      this.strFilterTextbausteine = this.strFilterTextbausteine + ' and length(DokumentTitel) gt 0'
+    }
+
+    if (this.dsoBenutzer.FilterDokument == 'OhneDokument') {
+      this.strFilterTextbausteine = this.strFilterTextbausteine + ' and length(DokumentTitel) eq null'
+    }
+
+    this.dbHopeKurseTextbausteine.getIbsiTextbausteines(`${this.strFilterTextbausteine} and Ordner ne 'Papierkorb'`, event.top, event.skip, `${event.orderby || 'TitelTextbaustein'}`, event.top != null && event.skip != null, `IBSITextbausteineAutoren, IBSIKurse`, null, null)
     .subscribe((result: any) => {
       this.rstTextbausteine = result.value;
 
@@ -511,7 +574,7 @@ this.dsoBenutzer.FilterDokument = null
   }
 
   buttonKopierenClick(event: any) {
-    // Create container for the HTML
+      // Create container for the HTML
   // [1]
   var container = document.createElement('div')
   container.innerHTML = this.strTextbausteinHTML
@@ -521,6 +584,7 @@ this.dsoBenutzer.FilterDokument = null
   container.style.position = 'fixed'
   container.style.pointerEvents = 'none'
   container.style.opacity = '0'
+  container.style.background = 'white'
 
   // Mount the container to the DOM to make `contentWindow` available
   // [3]
@@ -564,18 +628,6 @@ this.dsoVerlauf.TextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
     });
   }
 
-  buttonDokumentClick(event: any) {
-    this.notificationService.notify({ severity: "warn", summary: ``, detail: `Diese Funktion ist in Arbeit` });
-  }
-
-  button2Click(event: any) {
-    this.notificationService.notify({ severity: "warn", summary: ``, detail: `Diese Funktion ist in Arbeit` });
-  }
-
-  button3Click(event: any) {
-    this.notificationService.notify({ severity: "warn", summary: ``, detail: `Diese Funktion ist in Arbeit` });
-  }
-
   buttonFavoritClick(event: any) {
     var date = new Date();
 
@@ -598,6 +650,12 @@ this.dsoFavoriten.TextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
     }, (result: any) => {
       this.notificationService.notify({ severity: "info", summary: ``, detail: `Textbaustein ist schon Favorit` });
     });
+  }
+
+  buttonDokumentClick(event: any) {
+    this.dialogService.open(TextbausteineDokumenteComponent, { parameters: {TextbausteinNr: this.dsoTextbausteine.TextbausteinNr}, width: 900, title: `Domument ` });
+
+    this.letzteTextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
   }
 
   buttonSpeichernClick(event: any) {
@@ -680,8 +738,43 @@ this.dsoVerlauf.TextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
     });
   }
 
+  buttonFavoritenKopierenClick(event: any) {
+      // Create container for the HTML
+  // [1]
+  var container = document.createElement('div')
+  container.innerHTML = this.strTextbausteinHTMLFavoriten
+
+  // Hide element
+  // [2]
+  container.style.position = 'fixed'
+  container.style.pointerEvents = 'none'
+  container.style.opacity = '0'
+  container.style.background = 'white'
+
+  // Mount the container to the DOM to make `contentWindow` available
+  // [3]
+  document.body.appendChild(container)
+
+  // Copy to clipboard
+  // [4]
+  window.getSelection().removeAllRanges()
+
+  var range = document.createRange()
+  range.selectNode(container)
+  window.getSelection().addRange(range)
+
+  // [5]
+  document.execCommand('copy')
+  
+  // Remove the container
+  // [6]
+  document.body.removeChild(container)
+
+    this.notificationService.notify({ severity: "success", summary: ``, detail: `Text wurde kopiert` });
+  }
+
   buttonFavoritenDokumentClick(event: any) {
-    this.notificationService.notify({ severity: "warn", summary: ``, detail: `Diese Funktion ist in Arbeit` });
+    this.dialogService.open(TextbausteineDokumenteComponent, { parameters: {TextbausteinNr: this.dsoBenutzerTextbausteineFavoriten.TextbausteinNr}, width: 900, title: 'TextbausteineDokumente' });
   }
 
   gridVerlaufLoadData(event: any) {
@@ -731,8 +824,43 @@ this.dsoVerlauf.TextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
     });
   }
 
+  buttonVerlaufKopierenClick(event: any) {
+      // Create container for the HTML
+  // [1]
+  var container = document.createElement('div')
+  container.innerHTML = this.strTextbausteinHTMLVerlauf
+
+  // Hide element
+  // [2]
+  container.style.position = 'fixed'
+  container.style.pointerEvents = 'none'
+  container.style.opacity = '0'
+  container.style.background = 'white'
+
+  // Mount the container to the DOM to make `contentWindow` available
+  // [3]
+  document.body.appendChild(container)
+
+  // Copy to clipboard
+  // [4]
+  window.getSelection().removeAllRanges()
+
+  var range = document.createRange()
+  range.selectNode(container)
+  window.getSelection().addRange(range)
+
+  // [5]
+  document.execCommand('copy')
+  
+  // Remove the container
+  // [6]
+  document.body.removeChild(container)
+
+    this.notificationService.notify({ severity: "success", summary: ``, detail: `Text wurde kopiert` });
+  }
+
   buttonVerlaufDokumentClick(event: any) {
-    this.notificationService.notify({ severity: "warn", summary: ``, detail: `Diese Funktion ist in Arbeit` });
+    this.dialogService.open(TextbausteineDokumenteComponent, { parameters: {TextbausteinNr: this.dsoBenutzerTextbausteineVerlauf.TextbausteinNr}, width: 900, title: 'TextbausteineDokumente' });
   }
 
   gridTextbausteinePapierkorbLoadData(event: any) {
@@ -777,7 +905,7 @@ this.dsoVerlauf.TextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
   }
 
   buttonPapierkorbDokumentClick(event: any) {
-    this.notificationService.notify({ severity: "warn", summary: ``, detail: `Diese Funktion ist in Arbeit` });
+    this.dialogService.open(TextbausteineDokumenteComponent, { parameters: {TextbausteinNr: this.dsoTextbausteinePapierkorb.TextbausteinNr}, width: 900, title: 'TextbausteineDokumente' });
   }
 
   buttonPapierkorbSpeichernClick(event: any) {
