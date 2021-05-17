@@ -13,6 +13,12 @@ https://www.primefaces.org/primeng/showcase/#/editor
 
 - npm install quill --save
 
+import * as Quill from 'quill/dist/quill';
+(<any>window).Quill = Quill;
+import { EditorModule } from 'primeng/editor';
+
+
+
 # push an existing repository from the command line
 git remote add origin https://github.com/PITapp/HopeKurseTextbausteine.git
 git branch -M main
@@ -31,3 +37,26 @@ https://www.stimulsoft.com/de
 # Interesante Links
 > Theme: https://www.primefaces.org/verona-ng/#/
 > Theme: https://www.primefaces.org/olympia/
+
+# TinyMCE Editor einbinden
+https://www.tiny.cloud/docs/integrations/angular/#tinymceangulartechnicalreference
+
+npm install --save @tinymce/tinymce-angular
+
+import { BrowserModule } from '@angular/platform-browser';
+ import { NgModule } from '@angular/core';
+ import { EditorModule } from '@tinymce/tinymce-angular';
+ import { AppComponent } from './app.component';
+
+ @NgModule({
+   declarations: [
+     AppComponent
+   ],
+   imports: [
+     BrowserModule,
+     EditorModule
+   ],
+   providers: [],
+   bootstrap: [AppComponent]
+ })
+ export class AppModule { }

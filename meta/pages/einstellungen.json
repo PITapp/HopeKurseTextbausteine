@@ -194,14 +194,14 @@
                                 ],
                                 "rowSelect": [
                                   {
+                                    "name": "strInfotextHTML",
+                                    "type": "set",
+                                    "value": "${event.Inhalt}"
+                                  },
+                                  {
                                     "name": "dsoInfotexte",
                                     "type": "set",
                                     "value": "${event}"
-                                  },
-                                  {
-                                    "name": "strInfotext",
-                                    "type": "set",
-                                    "value": "${event.Inhalt}"
                                   }
                                 ],
                                 "update": []
@@ -407,7 +407,7 @@
                                   "class": "col-md-12",
                                   "components": [
                                     {
-                                      "content": "<p-editor [(ngModel)]=\"strInfotext\" [style]=\"{'height': '645px'}\">\n    <p-header>\n\t\t<span class=\"ql-formats\">\n           <select class=\"ql-font\"></select>\n\t\t   <select class=\"ql-header\">\n\t\t\t    <option value=\"1\">Titel 1</option>\n\t\t\t    <option value=\"2\">Titel 2</option>\n\t\t\t    <option value=\"3\">Titel 3</option>\n\t\t\t    <option value=\"4\">Titel 4</option>\n\t\t\t    <option value=\"5\">Titel 5</option>\n\t\t\t    <option value=\"6\">Titel 6</option>\n\t\t\t    <option selected>Normal</option>\n\t\t\t</select>\n\t\t</span>\n\t\t\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-bold\" aria-label=\"Bold\">Fett</button>\n\t\t\t<button class=\"ql-italic\" aria-label=\"Italic\"></button>\n\t\t\t<button class=\"ql-underline\" aria-label=\"Underline\"></button>\n\t\t</span>\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-align\"></select>\n\t\t</span>\t\t\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-list\" value=\"ordered\"></button>\n\t\t\t<button class=\"ql-list\" value=\"bullet\"></button>\n\t\t\t<button class=\"ql-indent\" value=\"-1\"></button>\n\t\t\t<button class=\"ql-indent\" value=\"+1\"></button>\n\t\t</span>\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<button class=\"ql-blockquote\"></button>\n\t\t</span>\t\t\n\n\t\t<span class=\"ql-formats\">\n\t\t\t<select class=\"ql-color\"></select>\n\t\t\t<select class=\"ql-background\"></select>\n\t\t</span>\n\n    </p-header>\n</p-editor>",
+                                      "content": "<editor\n    [(ngModel)]=\"strInfotextHTML\"\n    apiKey=\"7uaxcp1fzfppm9wca8ei2hnuuf9hv2fl9slezwr9k33gv0pp\"\n    [init]=\"{\n        height: 699,\n        menubar: true,\n        statusbar: false,\n        language: 'de',\n        plugins: [\n           'advlist autolink lists link image charmap print preview anchor',\n           'searchreplace visualblocks code fullscreen',\n           'insertdatetime media table paste code help wordcount'\n         ],\n         toolbar:\n             'undo redo | fontselect fontsizeselect | bold italic formatting | bullist numlist | help',\n         fontsize_formats: '8pt 9pt 10pt 11pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt',\n         toolbar_groups: {\n             formatting: {\n                 icon: 'align-left', tooltip: 'Text ausrichten', items: 'alignleft aligncenter alignright alignjustify'\n             }\n         }\n    }\"\n ></editor>",
                                       "name": "htmlEditorInfotexte",
                                       "type": "html"
                                     }
@@ -438,7 +438,7 @@
                                       "events": {
                                         "click": [
                                           {
-                                            "code": "${dsoInfotexte.Inhalt} = ${strInfotext}",
+                                            "code": "${dsoInfotexte.Inhalt} = ${strInfotextHTML}",
                                             "type": "execute"
                                           },
                                           {
@@ -540,6 +540,11 @@
       {
         "code": "this.gridInfotexte.load();",
         "type": "execute"
+      },
+      {
+        "name": "strInfotextHTML",
+        "type": "set",
+        "value": "null"
       }
     ]
   },

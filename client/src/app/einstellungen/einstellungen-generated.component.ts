@@ -68,11 +68,11 @@ export class EinstellungenGenerated implements AfterViewInit, OnInit, OnDestroy 
 
   security: SecurityService;
   letzteInfotextID: any;
+  strInfotextHTML: any;
   parameters: any;
   rstInfotexte: any;
   rstInfotexteCount: any;
   dsoInfotexte: any;
-  strInfotext: any;
 
   constructor(private injector: Injector) {
   }
@@ -125,6 +125,8 @@ export class EinstellungenGenerated implements AfterViewInit, OnInit, OnDestroy 
     this.letzteInfotextID = null;
 
     this.gridInfotexte.load();
+
+    this.strInfotextHTML = null;
   }
 
   gridInfotexteLoadData(event: any) {
@@ -154,9 +156,9 @@ export class EinstellungenGenerated implements AfterViewInit, OnInit, OnDestroy 
   }
 
   gridInfotexteRowSelect(event: any) {
-    this.dsoInfotexte = event;
+    this.strInfotextHTML = event.Inhalt;
 
-    this.strInfotext = event.Inhalt;
+    this.dsoInfotexte = event;
   }
 
   button0Click(event: any) {
@@ -197,7 +199,7 @@ export class EinstellungenGenerated implements AfterViewInit, OnInit, OnDestroy 
   }
 
   button4Click(event: any) {
-    this.dsoInfotexte.Inhalt = this.strInfotext
+    this.dsoInfotexte.Inhalt = this.strInfotextHTML
 
     this.dbHopeKurseTextbausteine.updateInfotexteHtml(null, this.dsoInfotexte.InfotextID, this.dsoInfotexte)
     .subscribe((result: any) => {

@@ -67,10 +67,10 @@ export class DokumenteGenerated implements AfterViewInit, OnInit, OnDestroy {
   dbHopeKurseTextbausteine: DbHopeKurseTextbausteineService;
 
   security: SecurityService;
+  strTextbausteinDokumenteHTML: any;
   parameters: any;
   rstTextbausteineDokumente: any;
   rstTextbausteineDokumenteCount: any;
-  strTextbausteinDokumenteHTML: any;
   dsoTextbausteineDokumente: any;
 
   constructor(private injector: Injector) {
@@ -122,6 +122,8 @@ export class DokumenteGenerated implements AfterViewInit, OnInit, OnDestroy {
 
   load() {
     this.gridTextbausteineDokumente.load();
+
+    this.strTextbausteinDokumenteHTML = null;
   }
 
   gridTextbausteineDokumenteLoadData(event: any) {
@@ -140,7 +142,11 @@ export class DokumenteGenerated implements AfterViewInit, OnInit, OnDestroy {
   }
 
   gridTextbausteineDokumenteRowSelect(event: any) {
-    this.strTextbausteinDokumenteHTML = event.TextbausteinHTML;
+        if(event.TextbausteinHTML.indexOf('<body') == -1) {
+      this.strTextbausteinDokumenteHTML = event.TextbausteinHTML
+    } else {
+      this.strTextbausteinDokumenteHTML = event.TextbausteinHTML.substring(event.TextbausteinHTML.indexOf('<p'), event.TextbausteinHTML.indexOf('</body>'));
+    }
 
     this.dsoTextbausteineDokumente = event;
   }
@@ -174,7 +180,7 @@ export class DokumenteGenerated implements AfterViewInit, OnInit, OnDestroy {
   }
 
   buttonPapierkorbSpeichernClick(event: any) {
-    this.dsoTextbausteineDokumente.TextbausteinHTML = this.strTextbausteinDokumenteHTML
+    this.dsoTextbausteineDokumente.TextbausteinHTML =  '<body>' + this.strTextbausteinDokumenteHTML + '</body>'
 
     this.dbHopeKurseTextbausteine.updateIbsiTextbausteine(null, this.dsoTextbausteineDokumente.TextbausteinNr, this.dsoTextbausteineDokumente)
     .subscribe((result: any) => {

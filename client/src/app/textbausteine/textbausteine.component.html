@@ -142,46 +142,29 @@
             <div [ngStyle]="{'marginLeft': '-36px', 'marginRight': '-36px', 'marginTop': '-12px'}" class="row">
               <div class="col-md-12" [ngStyle]="{}">
                 <rz-html #htmlEditorTextbausteine>
-                  <p-editor [(ngModel)]="strTextbausteinHTML" [style]="{'height': '645px'}">
-                      <p-header>
-                  		<span class="ql-formats">
-                             <select class="ql-font"></select>
-                  		   <select class="ql-header">
-                  			    <option value="1">Titel 1</option>
-                  			    <option value="2">Titel 2</option>
-                  			    <option value="3">Titel 3</option>
-                  			    <option value="4">Titel 4</option>
-                  			    <option value="5">Titel 5</option>
-                  			    <option value="6">Titel 6</option>
-                  			    <option selected>Normal</option>
-                  			</select>
-                  		</span>
-                  		
-                  		<span class="ql-formats">
-                  			<button class="ql-bold" aria-label="Bold">Fett</button>
-                  			<button class="ql-italic" aria-label="Italic"></button>
-                  			<button class="ql-underline" aria-label="Underline"></button>
-                  		</span>
-                  
-                  		<span class="ql-formats">
-                  			<select class="ql-align"></select>
-                  		</span>		
-                  
-                  		<span class="ql-formats">
-                  			<button class="ql-list" value="ordered"></button>
-                  			<button class="ql-list" value="bullet"></button>
-                  			<button class="ql-indent" value="-1"></button>
-                  			<button class="ql-indent" value="+1"></button>
-                  		</span>
-                  
-                  		<span class="ql-formats">
-                  			<select class="ql-color"></select>
-                  			<select class="ql-background"></select>
-                  		</span>
-                  
-                      </p-header>
-                  
-                  </p-editor>
+                  <editor
+                      [(ngModel)]="strTextbausteinHTML"
+                      apiKey="7uaxcp1fzfppm9wca8ei2hnuuf9hv2fl9slezwr9k33gv0pp"
+                      [init]="{
+                          height: 699,
+                          menubar: true,
+                          statusbar: false,
+                          language: 'de',
+                          plugins: [
+                             'advlist autolink lists link image charmap print preview anchor',
+                             'searchreplace visualblocks code fullscreen',
+                             'insertdatetime media table paste code help wordcount'
+                           ],
+                           toolbar:
+                               'undo redo | fontselect fontsizeselect | bold italic formatting | bullist numlist | help',
+                           fontsize_formats: '8pt 9pt 10pt 11pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt',
+                           toolbar_groups: {
+                               formatting: {
+                                   icon: 'align-left', tooltip: 'Text ausrichten', items: 'alignleft aligncenter alignright alignjustify'
+                               }
+                           }
+                      }"
+                   ></editor>
                 </rz-html>
               </div>
             </div>
@@ -241,46 +224,29 @@
             <div [ngStyle]="{'marginLeft': '-36px', 'marginRight': '-36px', 'marginTop': '-12px'}" class="row">
               <div class="col-md-12" [ngStyle]="{}">
                 <rz-html #htmlEditorTextbausteineFavoriten>
-                  <p-editor [(ngModel)]="strTextbausteinHTMLFavoriten" [style]="{'height': '645px'}">
-                      <p-header>
-                  		<span class="ql-formats">
-                             <select class="ql-font"></select>
-                  		   <select class="ql-header">
-                  			    <option value="1">Titel 1</option>
-                  			    <option value="2">Titel 2</option>
-                  			    <option value="3">Titel 3</option>
-                  			    <option value="4">Titel 4</option>
-                  			    <option value="5">Titel 5</option>
-                  			    <option value="6">Titel 6</option>
-                  			    <option selected>Normal</option>
-                  			</select>
-                  		</span>
-                  		
-                  		<span class="ql-formats">
-                  			<button class="ql-bold" aria-label="Bold">Fett</button>
-                  			<button class="ql-italic" aria-label="Italic"></button>
-                  			<button class="ql-underline" aria-label="Underline"></button>
-                  		</span>
-                  
-                  		<span class="ql-formats">
-                  			<select class="ql-align"></select>
-                  		</span>		
-                  
-                  		<span class="ql-formats">
-                  			<button class="ql-list" value="ordered"></button>
-                  			<button class="ql-list" value="bullet"></button>
-                  			<button class="ql-indent" value="-1"></button>
-                  			<button class="ql-indent" value="+1"></button>
-                  		</span>
-                  
-                  		<span class="ql-formats">
-                  			<select class="ql-color"></select>
-                  			<select class="ql-background"></select>
-                  		</span>
-                  
-                      </p-header>
-                  
-                  </p-editor>
+                  <editor
+                      [(ngModel)]="strTextbausteinHTMLFavoriten"
+                      apiKey="7uaxcp1fzfppm9wca8ei2hnuuf9hv2fl9slezwr9k33gv0pp"
+                      [init]="{
+                          height: 699,
+                          menubar: true,
+                          statusbar: false,
+                          language: 'de',
+                          plugins: [
+                             'advlist autolink lists link image charmap print preview anchor',
+                             'searchreplace visualblocks code fullscreen',
+                             'insertdatetime media table paste code help wordcount'
+                           ],
+                           toolbar:
+                               'undo redo | fontselect fontsizeselect | bold italic formatting | bullist numlist | help',
+                           fontsize_formats: '8pt 9pt 10pt 11pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt',
+                           toolbar_groups: {
+                               formatting: {
+                                   icon: 'align-left', tooltip: 'Text ausrichten', items: 'alignleft aligncenter alignright alignjustify'
+                               }
+                           }
+                      }"
+                   ></editor>
                 </rz-html>
               </div>
             </div>
@@ -336,45 +302,29 @@
             <div [ngStyle]="{'marginLeft': '-36px', 'marginRight': '-36px', 'marginTop': '-12px'}" class="row">
               <div class="col-md-12" [ngStyle]="{}">
                 <rz-html #html0>
-                  <p-editor [(ngModel)]="strTextbausteinHTMLVerlauf" [style]="{'height': '645px'}">
-                      <p-header>
-                  		<span class="ql-formats">
-                             <select class="ql-font"></select>
-                  		   <select class="ql-header">
-                  			    <option value="1">Titel 1</option>
-                  			    <option value="2">Titel 2</option>
-                  			    <option value="3">Titel 3</option>
-                  			    <option value="4">Titel 4</option>
-                  			    <option value="5">Titel 5</option>
-                  			    <option value="6">Titel 6</option>
-                  			    <option selected>Normal</option>
-                  			</select>
-                  		</span>
-                  		
-                  		<span class="ql-formats">
-                  			<button class="ql-bold" aria-label="Bold">Fett</button>
-                  			<button class="ql-italic" aria-label="Italic"></button>
-                  			<button class="ql-underline" aria-label="Underline"></button>
-                  		</span>
-                  
-                  		<span class="ql-formats">
-                  			<select class="ql-align"></select>
-                  		</span>		
-                  
-                  		<span class="ql-formats">
-                  			<button class="ql-list" value="ordered"></button>
-                  			<button class="ql-list" value="bullet"></button>
-                  			<button class="ql-indent" value="-1"></button>
-                  			<button class="ql-indent" value="+1"></button>
-                  		</span>
-                  
-                  		<span class="ql-formats">
-                  			<select class="ql-color"></select>
-                  			<select class="ql-background"></select>
-                  		</span>
-                  
-                      </p-header>
-                  </p-editor>
+                  <editor
+                      [(ngModel)]="strTextbausteinHTMLVerlauf"
+                      apiKey="7uaxcp1fzfppm9wca8ei2hnuuf9hv2fl9slezwr9k33gv0pp"
+                      [init]="{
+                          height: 699,
+                          menubar: true,
+                          statusbar: false,
+                          language: 'de',
+                          plugins: [
+                             'advlist autolink lists link image charmap print preview anchor',
+                             'searchreplace visualblocks code fullscreen',
+                             'insertdatetime media table paste code help wordcount'
+                           ],
+                           toolbar:
+                               'undo redo | fontselect fontsizeselect | bold italic formatting | bullist numlist | help',
+                           fontsize_formats: '8pt 9pt 10pt 11pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt',
+                           toolbar_groups: {
+                               formatting: {
+                                   icon: 'align-left', tooltip: 'Text ausrichten', items: 'alignleft aligncenter alignright alignjustify'
+                               }
+                           }
+                      }"
+                   ></editor>
                 </rz-html>
               </div>
             </div>
@@ -392,7 +342,7 @@
         </div>
       </div>
     </rz-tabs-item>
-    <rz-tabs-item [selected]="false" text="Papierkorb" *ngIf="security?.user?.isInRole('Administrator')">
+    <rz-tabs-item [disabled]="false" [selected]="false" text="Papierkorb" *ngIf="security?.user?.isInRole('Administrator')">
       <div class="row">
         <div class="col-md-7" [ngStyle]="{'paddingLeft': '5px'}">
           <rz-panel #panel8 [allowCollapse]="false" [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="{{rstTextbausteinePapierkorbCount == 0 ? '' : rstTextbausteinePapierkorbCount}} Textbausteine">
@@ -433,46 +383,29 @@
             <div [ngStyle]="{'marginLeft': '-36px', 'marginRight': '-36px', 'marginTop': '-12px'}" class="row">
               <div class="col-md-12" [ngStyle]="{}">
                 <rz-html #html1>
-                  <p-editor [(ngModel)]="strTextbausteinPapierkorbHTML" [style]="{'height': '645px'}">
-                      <p-header>
-                  		<span class="ql-formats">
-                             <select class="ql-font"></select>
-                  		   <select class="ql-header">
-                  			    <option value="1">Titel 1</option>
-                  			    <option value="2">Titel 2</option>
-                  			    <option value="3">Titel 3</option>
-                  			    <option value="4">Titel 4</option>
-                  			    <option value="5">Titel 5</option>
-                  			    <option value="6">Titel 6</option>
-                  			    <option selected>Normal</option>
-                  			</select>
-                  		</span>
-                  		
-                  		<span class="ql-formats">
-                  			<button class="ql-bold" aria-label="Bold">Fett</button>
-                  			<button class="ql-italic" aria-label="Italic"></button>
-                  			<button class="ql-underline" aria-label="Underline"></button>
-                  		</span>
-                  
-                  		<span class="ql-formats">
-                  			<select class="ql-align"></select>
-                  		</span>		
-                  
-                  		<span class="ql-formats">
-                  			<button class="ql-list" value="ordered"></button>
-                  			<button class="ql-list" value="bullet"></button>
-                  			<button class="ql-indent" value="-1"></button>
-                  			<button class="ql-indent" value="+1"></button>
-                  		</span>
-                  
-                  		<span class="ql-formats">
-                  			<select class="ql-color"></select>
-                  			<select class="ql-background"></select>
-                  		</span>
-                  
-                      </p-header>
-                  
-                  </p-editor>
+                  <editor
+                      [(ngModel)]="strTextbausteinHTMLPapierkorb"
+                      apiKey="7uaxcp1fzfppm9wca8ei2hnuuf9hv2fl9slezwr9k33gv0pp"
+                      [init]="{
+                          height: 699,
+                          menubar: true,
+                          statusbar: false,
+                          language: 'de',
+                          plugins: [
+                             'advlist autolink lists link image charmap print preview anchor',
+                             'searchreplace visualblocks code fullscreen',
+                             'insertdatetime media table paste code help wordcount'
+                           ],
+                           toolbar:
+                               'undo redo | fontselect fontsizeselect | bold italic formatting | bullist numlist | help',
+                           fontsize_formats: '8pt 9pt 10pt 11pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt',
+                           toolbar_groups: {
+                               formatting: {
+                                   icon: 'align-left', tooltip: 'Text ausrichten', items: 'alignleft aligncenter alignright alignjustify'
+                               }
+                           }
+                      }"
+                   ></editor>
                 </rz-html>
               </div>
             </div>

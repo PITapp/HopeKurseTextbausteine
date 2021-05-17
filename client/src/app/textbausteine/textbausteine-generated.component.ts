@@ -132,24 +132,24 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
   dsoVerlauf: any;
   onKeyEnterFilterText: any;
   onFocusOutFilterText: any;
+  strTextbausteinHTML: any;
+  strTextbausteinHTMLFavoriten: any;
+  strTextbausteinHTMLVerlauf: any;
+  strTextbausteinHTMLPapierkorb: any;
   parameters: any;
   letzteTextbausteinNr: any;
   strFilterTextbausteine: any;
   rstTextbausteine: any;
   rstTextbausteineCount: any;
-  strTextbausteinHTML: any;
   dsoTextbausteine: any;
   rstFavoriten: any;
   rstFavoritenCount: any;
-  strTextbausteinHTMLFavoriten: any;
   dsoBenutzerTextbausteineFavoriten: any;
   rstVerlauf: any;
   rstVerlaufCount: any;
-  strTextbausteinHTMLVerlauf: any;
   dsoBenutzerTextbausteineVerlauf: any;
   rstTextbausteinePapierkorb: any;
   rstTextbausteinePapierkorbCount: any;
-  strTextbausteinPapierkorbHTML: any;
   dsoTextbausteinePapierkorb: any;
 
   constructor(private injector: Injector) {
@@ -267,6 +267,14 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
     
     this.gridTextbausteine.load();
  };
+
+    this.strTextbausteinHTML = null;
+
+    this.strTextbausteinHTMLFavoriten = null;
+
+    this.strTextbausteinHTMLVerlauf = null;
+
+    this.strTextbausteinHTMLPapierkorb = null;
   }
 
   tabsTextbausteineChange(event: any) {
@@ -472,7 +480,11 @@ this.dsoBenutzer.FilterDokument = null
   }
 
   gridTextbausteineRowSelect(event: any) {
-    this.strTextbausteinHTML = event.TextbausteinHTML;
+        if(event.TextbausteinHTML.indexOf('<body') == -1) {
+      this.strTextbausteinHTML = event.TextbausteinHTML
+    } else {
+      this.strTextbausteinHTML = event.TextbausteinHTML.substring(event.TextbausteinHTML.indexOf('<p'), event.TextbausteinHTML.indexOf('</body>'));
+    }
 
     this.dsoTextbausteine = event;
   }
@@ -661,7 +673,7 @@ this.dsoFavoriten.TextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
   buttonSpeichernClick(event: any) {
     this.letzteTextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
 
-    this.dsoTextbausteine.TextbausteinHTML = this.strTextbausteinHTML
+    this.dsoTextbausteine.TextbausteinHTML = '<body>' + this.strTextbausteinHTML + '</body>'
 
     this.dbHopeKurseTextbausteine.updateIbsiTextbausteine(null, this.dsoTextbausteine.TextbausteinNr, this.dsoTextbausteine)
     .subscribe((result: any) => {
@@ -713,7 +725,11 @@ this.dsoVerlauf.TextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
   }
 
   gridFavoritenRowSelect(event: any) {
-    this.strTextbausteinHTMLFavoriten = event.TextbausteinHTML;
+        if(event.TextbausteinHTML.indexOf('<body') == -1) {
+      this.strTextbausteinHTMLFavoriten = event.TextbausteinHTML
+    } else {
+      this.strTextbausteinHTMLFavoriten = event.TextbausteinHTML.substring(event.TextbausteinHTML.indexOf('<p'), event.TextbausteinHTML.indexOf('</body>'));
+    }
 
     this.dsoBenutzerTextbausteineFavoriten = event;
   }
@@ -799,7 +815,11 @@ this.dsoVerlauf.TextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
   }
 
   gridVerlaufRowSelect(event: any) {
-    this.strTextbausteinHTMLVerlauf = event.TextbausteinHTML;
+        if(event.TextbausteinHTML.indexOf('<body') == -1) {
+      this.strTextbausteinHTMLVerlauf = event.TextbausteinHTML
+    } else {
+      this.strTextbausteinHTMLVerlauf = event.TextbausteinHTML.substring(event.TextbausteinHTML.indexOf('<p'), event.TextbausteinHTML.indexOf('</body>'));
+    }
 
     this.dsoBenutzerTextbausteineVerlauf = event;
   }
@@ -879,7 +899,11 @@ this.dsoVerlauf.TextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
   }
 
   gridTextbausteinePapierkorbRowSelect(event: any) {
-    this.strTextbausteinPapierkorbHTML = event.TextbausteinHTML;
+        if(event.TextbausteinHTML.indexOf('<body') == -1) {
+      this.strTextbausteinHTMLPapierkorb = event.TextbausteinHTML
+    } else {
+      this.strTextbausteinHTMLPapierkorb = event.TextbausteinHTML.substring(event.TextbausteinHTML.indexOf('<p'), event.TextbausteinHTML.indexOf('</body>'));
+    }
 
     this.dsoTextbausteinePapierkorb = event;
   }
@@ -909,7 +933,7 @@ this.dsoVerlauf.TextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
   }
 
   buttonPapierkorbSpeichernClick(event: any) {
-    this.dsoTextbausteinePapierkorb.TextbausteinHTML = this.strTextbausteinPapierkorbHTML
+    this.dsoTextbausteinePapierkorb.TextbausteinHTML =  '<body>' + this.strTextbausteinHTMLPapierkorb + '</body>'
 
     this.dbHopeKurseTextbausteine.updateIbsiTextbausteine(null, this.dsoTextbausteinePapierkorb.TextbausteinNr, this.dsoTextbausteinePapierkorb)
     .subscribe((result: any) => {

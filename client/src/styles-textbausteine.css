@@ -203,34 +203,6 @@ input:focus, textarea:focus {
 }
 
 
-/* --- Quill Editor --- */
-.xxql-toolbar.ql-snow {
-  border: 1px solid #e6ecef;
-  border-radius: 4px 4px 0px 0px;
-}
-
-.ql-toolbar.ql-snow {
-  background-color: #e6ecef;
-  border: none;
-  margin-left: 12px;
-  margin-right: 12px;
-}
-
-.xxql-container.ql-snow {
-  font-family: 'Open Sans', sans-serif, Helvetica, Arial;
-  font-size: 14px;
-  border: 1px solid #e6ecef;
-  border-radius: 0px 0px 4px 4px;
-}
-
-.ql-container.ql-snow {
-  font-family: 'Open Sans', sans-serif, Helvetica, Arial;
-  font-size: 14px;
-  border: none;
-  padding: 3px 7px;
-}
-
-
 /* --- Der Icon für den DataPicker wird falsch angezeigt. Mit dieser Einstellung wird er wieder in das Eingabefeld gesetzt --- */
 .ui-datepicker-trigger {
   right: 190px;
