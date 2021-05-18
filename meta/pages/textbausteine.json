@@ -135,7 +135,7 @@
                                       "events": {
                                         "change": []
                                       },
-                                      "maxLength": 30,
+                                      "maxLength": 255,
                                       "name": "textboxTitelUndText",
                                       "placeholder": "",
                                       "style": {

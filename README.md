@@ -40,8 +40,10 @@ https://www.stimulsoft.com/de
 
 # TinyMCE Editor einbinden
 https://www.tiny.cloud/docs/integrations/angular/#tinymceangulartechnicalreference
+https://github.com/tinymce/tinymce-angular
 
-npm install --save @tinymce/tinymce-angular
+> For Angular 8 and below use integration version 3.x:
+npm install --save @tinymce/tinymce-angular@^3.0.0
 
 import { BrowserModule } from '@angular/platform-browser';
  import { NgModule } from '@angular/core';

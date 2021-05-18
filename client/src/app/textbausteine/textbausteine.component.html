@@ -23,7 +23,7 @@
                 </rz-label>
               </div>
               <div class="col-md-12" [ngStyle]="{'display': 'block'}">
-                <rz-textbox #textboxTitelUndText [autoComplete]="false" [maxLength]="30" [style]="{'display': 'inline-block', 'height': '28px', 'marginBottom': '6px', 'width': '100%'}" [(ngModel)]="dsoBenutzer && dsoBenutzer.FilterTitelUndText" name="textboxTitelUndText" class="textbausteine-filter-auswahl" (keydown.enter)="onKeyEnterFilterText()" (focusout)="onFocusOutFilterText()">
+                <rz-textbox #textboxTitelUndText [autoComplete]="false" [maxLength]="255" [style]="{'display': 'inline-block', 'height': '28px', 'marginBottom': '6px', 'width': '100%'}" [(ngModel)]="dsoBenutzer && dsoBenutzer.FilterTitelUndText" name="textboxTitelUndText" class="textbausteine-filter-auswahl" (keydown.enter)="onKeyEnterFilterText()" (focusout)="onFocusOutFilterText()">
                 </rz-textbox>
               </div>
             </div>
