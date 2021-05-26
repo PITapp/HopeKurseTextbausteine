@@ -67,6 +67,7 @@ export class DokumenteGenerated implements AfterViewInit, OnInit, OnDestroy {
   dbHopeKurseTextbausteine: DbHopeKurseTextbausteineService;
 
   security: SecurityService;
+  letzteTextbausteinNr: any;
   strTextbausteinDokumenteHTML: any;
   parameters: any;
   rstTextbausteineDokumente: any;
@@ -121,6 +122,8 @@ export class DokumenteGenerated implements AfterViewInit, OnInit, OnDestroy {
 
 
   load() {
+    this.letzteTextbausteinNr = null;
+
     this.gridTextbausteineDokumente.load();
 
     this.strTextbausteinDokumenteHTML = null;
@@ -132,30 +135,41 @@ export class DokumenteGenerated implements AfterViewInit, OnInit, OnDestroy {
       this.rstTextbausteineDokumente = result.value;
 
       this.rstTextbausteineDokumenteCount = event.top != null && event.skip != null ? result['@odata.count'] : result.value.length;
-    }, (result: any) => {
 
+      if (this.rstTextbausteineDokumente.find(p => p.TextbausteinNr == this.letzteTextbausteinNr) != null) {
+    // letzteTextbausteinNr wurde in rstTextbausteineDokumente gefunden
+    this.gridTextbausteineDokumente.onSelect(this.rstTextbausteineDokumente.find(p => p.TextbausteinNr == this.letzteTextbausteinNr))
+} else {
+    // letzteTextbausteinNr wurde in rstTextbausteineDokumente NICHT gefunden
+    this.letzteTextbausteinNr = null;
+    this.gridTextbausteineDokumente.onSelect(this.rstTextbausteineDokumente[0]);
+}
+    }, (result: any) => {
+      this.notificationService.notify({ severity: "error", summary: ``, detail: `Dokumente konnten nicht geladen werden!` });
     });
   }
 
   gridTextbausteineDokumenteRowDoubleClick(event: any) {
+    this.letzteTextbausteinNr = this.dsoTextbausteineDokumente.TextbausteinNr;
+
     this.dialogService.open(TextbausteineBearbeitenComponent, { parameters: {TextbausteinNr: this.dsoTextbausteineDokumente.TextbausteinNr}, title: `Bearbeiten Textbaustein` });
   }
 
   gridTextbausteineDokumenteRowSelect(event: any) {
-        if(event.TextbausteinHTML.indexOf('<body') == -1) {
-      this.strTextbausteinDokumenteHTML = event.TextbausteinHTML
-    } else {
-      this.strTextbausteinDokumenteHTML = event.TextbausteinHTML.substring(event.TextbausteinHTML.indexOf('<p'), event.TextbausteinHTML.indexOf('</body>'));
-    }
+    this.strTextbausteinDokumenteHTML = event.TextbausteinHTML;
 
     this.dsoTextbausteineDokumente = event;
   }
 
   buttonDokumenteBearbeitenClick(event: any) {
+    this.letzteTextbausteinNr = this.dsoTextbausteineDokumente.TextbausteinNr;
+
     this.dialogService.open(TextbausteineBearbeitenComponent, { parameters: {TextbausteinNr: this.dsoTextbausteineDokumente.TextbausteinNr}, title: `Bearbeiten Textbaustein` });
   }
 
   buttonDokumenteLoeschenClick(event: any) {
+    this.letzteTextbausteinNr = null;
+
     this.dialogService.open(MeldungLoeschenComponent, { parameters: {strMeldung: "Soll der Textbaustein '" + this.dsoTextbausteineDokumente.TitelTextbaustein + "' gelöscht (in den Papierkorb) werden?"}, title: `Löschen Textbaustein` })
         .afterClosed().subscribe(result => {
               if (result == 'Löschen') {
@@ -180,7 +194,7 @@ export class DokumenteGenerated implements AfterViewInit, OnInit, OnDestroy {
   }
 
   buttonPapierkorbSpeichernClick(event: any) {
-    this.dsoTextbausteineDokumente.TextbausteinHTML =  '<body>' + this.strTextbausteinDokumenteHTML + '</body>'
+    this.dsoTextbausteineDokumente.TextbausteinHTML = this.strTextbausteinDokumenteHTML
 
     this.dbHopeKurseTextbausteine.updateIbsiTextbausteine(null, this.dsoTextbausteineDokumente.TextbausteinNr, this.dsoTextbausteineDokumente)
     .subscribe((result: any) => {

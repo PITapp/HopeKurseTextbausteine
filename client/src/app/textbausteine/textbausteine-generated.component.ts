@@ -480,11 +480,7 @@ this.dsoBenutzer.FilterDokument = null
   }
 
   gridTextbausteineRowSelect(event: any) {
-        if(event.TextbausteinHTML.indexOf('<body') == -1) {
-      this.strTextbausteinHTML = event.TextbausteinHTML
-    } else {
-      this.strTextbausteinHTML = event.TextbausteinHTML.substring(event.TextbausteinHTML.indexOf('<p'), event.TextbausteinHTML.indexOf('</body>'));
-    }
+    this.strTextbausteinHTML = event.TextbausteinHTML;
 
     this.dsoTextbausteine = event;
   }
@@ -673,7 +669,7 @@ this.dsoFavoriten.TextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
   buttonSpeichernClick(event: any) {
     this.letzteTextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
 
-    this.dsoTextbausteine.TextbausteinHTML = '<body>' + this.strTextbausteinHTML + '</body>'
+    this.dsoTextbausteine.TextbausteinHTML = this.strTextbausteinHTML
 
     this.dbHopeKurseTextbausteine.updateIbsiTextbausteine(null, this.dsoTextbausteine.TextbausteinNr, this.dsoTextbausteine)
     .subscribe((result: any) => {
@@ -725,11 +721,7 @@ this.dsoVerlauf.TextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
   }
 
   gridFavoritenRowSelect(event: any) {
-        if(event.TextbausteinHTML.indexOf('<body') == -1) {
-      this.strTextbausteinHTMLFavoriten = event.TextbausteinHTML
-    } else {
-      this.strTextbausteinHTMLFavoriten = event.TextbausteinHTML.substring(event.TextbausteinHTML.indexOf('<p'), event.TextbausteinHTML.indexOf('</body>'));
-    }
+    this.strTextbausteinHTMLFavoriten = event.TextbausteinHTML;
 
     this.dsoBenutzerTextbausteineFavoriten = event;
   }
@@ -815,11 +807,7 @@ this.dsoVerlauf.TextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
   }
 
   gridVerlaufRowSelect(event: any) {
-        if(event.TextbausteinHTML.indexOf('<body') == -1) {
-      this.strTextbausteinHTMLVerlauf = event.TextbausteinHTML
-    } else {
-      this.strTextbausteinHTMLVerlauf = event.TextbausteinHTML.substring(event.TextbausteinHTML.indexOf('<p'), event.TextbausteinHTML.indexOf('</body>'));
-    }
+    this.strTextbausteinHTMLVerlauf = event.TextbausteinHTML;
 
     this.dsoBenutzerTextbausteineVerlauf = event;
   }
@@ -899,11 +887,7 @@ this.dsoVerlauf.TextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
   }
 
   gridTextbausteinePapierkorbRowSelect(event: any) {
-        if(event.TextbausteinHTML.indexOf('<body') == -1) {
-      this.strTextbausteinHTMLPapierkorb = event.TextbausteinHTML
-    } else {
-      this.strTextbausteinHTMLPapierkorb = event.TextbausteinHTML.substring(event.TextbausteinHTML.indexOf('<p'), event.TextbausteinHTML.indexOf('</body>'));
-    }
+    this.strTextbausteinHTMLPapierkorb = event.TextbausteinHTML;
 
     this.dsoTextbausteinePapierkorb = event;
   }
@@ -933,7 +917,7 @@ this.dsoVerlauf.TextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
   }
 
   buttonPapierkorbSpeichernClick(event: any) {
-    this.dsoTextbausteinePapierkorb.TextbausteinHTML =  '<body>' + this.strTextbausteinHTMLPapierkorb + '</body>'
+    this.dsoTextbausteinePapierkorb.TextbausteinHTML = this.strTextbausteinHTMLPapierkorb
 
     this.dbHopeKurseTextbausteine.updateIbsiTextbausteine(null, this.dsoTextbausteinePapierkorb.TextbausteinNr, this.dsoTextbausteinePapierkorb)
     .subscribe((result: any) => {

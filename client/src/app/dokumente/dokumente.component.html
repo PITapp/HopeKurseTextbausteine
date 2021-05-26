@@ -46,27 +46,39 @@
               <div class="col-md-12" [ngStyle]="{}">
                 <rz-html #html1>
                   <editor
-                      [(ngModel)]="strTextbausteinDokumenteHTML"
-                      apiKey="7uaxcp1fzfppm9wca8ei2hnuuf9hv2fl9slezwr9k33gv0pp"
-                      [init]="{
-                          height: 699,
-                          menubar: true,
-                          statusbar: false,
-                          language: 'de',
-                          plugins: [
-                             'advlist autolink lists link image charmap print preview anchor',
-                             'searchreplace visualblocks code fullscreen',
-                             'insertdatetime media table paste code help wordcount'
-                           ],
-                           toolbar:
-                               'undo redo | fontselect fontsizeselect | bold italic formatting | bullist numlist | help',
-                           fontsize_formats: '8pt 9pt 10pt 11pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt',
-                           toolbar_groups: {
-                               formatting: {
-                                   icon: 'align-left', tooltip: 'Text ausrichten', items: 'alignleft aligncenter alignright alignjustify'
-                               }
-                           }
-                      }"
+                    [(ngModel)]="strTextbausteinDokumenteHTML"
+                    apiKey="7uaxcp1fzfppm9wca8ei2hnuuf9hv2fl9slezwr9k33gv0pp"
+                    [init]="{
+                      height: 699,
+                      menubar: true,
+                      statusbar: false,
+                      language: 'de',
+                      browser_spellcheck: true,
+                      plugins: [
+                        'fullpage advlist autolink lists link image charmap print preview anchor',
+                        'searchreplace visualblocks code fullscreen',
+                        'insertdatetime media table paste code help wordcount'
+                      ],
+                      style_formats_merge: false,
+                      style_formats: [
+                        {title: 'HK Standard', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '11pt'}},    
+                        {title: 'HK Überschrift', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '12pt', 'font-weight': 'bold'}},    
+                        {title: 'HK Fußnote', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '9pt'}}
+                      ],
+                      toolbar_mode: 'sliding',
+                      toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | fullscreen | fontselect fontsizeselect | outdent indent | forecolor backcolor | removeformat searchreplace | help',
+                      fontsize_formats: '8pt 9pt 10pt 11pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt',
+                      menu: {
+                        file: { title: 'File', items: 'restoredraft | preview | print ' },
+                        edit: { title: 'Edit', items: 'undo redo | cut copy paste pastetext | selectall | searchreplace' },
+                        view: { title: 'View', items: 'code | visualaid visualchars visualblocks | spellchecker | preview fullscreen' },
+                        insert: { title: 'Insert', items: 'image link media template codesample inserttable | charmap emoticons hr | pagebreak nonbreaking anchor toc | insertdatetime' },
+                        format: { title: 'Format', items: 'bold italic underline strikethrough superscript subscript codeformat | formats blockformats fontformats fontsizes align lineheight | forecolor backcolor | removeformat' },
+                        tools: { title: 'Tools', items: 'spellchecker spellcheckerlanguage | code wordcount' },
+                        table: { title: 'Table', items: 'inserttable | cell row column | tableprops deletetable' },
+                        help: { title: 'Help', items: 'help' }
+                      }         
+                    }"
                    ></editor>
                 </rz-html>
               </div>

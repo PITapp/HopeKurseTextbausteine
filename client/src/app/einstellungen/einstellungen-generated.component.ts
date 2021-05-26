@@ -199,6 +199,8 @@ export class EinstellungenGenerated implements AfterViewInit, OnInit, OnDestroy 
   }
 
   button4Click(event: any) {
+    this.letzteInfotextID = this.dsoInfotexte.InfotextID;
+
     this.dsoInfotexte.Inhalt = this.strInfotextHTML
 
     this.dbHopeKurseTextbausteine.updateInfotexteHtml(null, this.dsoInfotexte.InfotextID, this.dsoInfotexte)

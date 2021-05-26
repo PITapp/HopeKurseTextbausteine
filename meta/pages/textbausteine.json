@@ -954,8 +954,9 @@
                                 ],
                                 "rowSelect": [
                                   {
-                                    "code": "    if(event.TextbausteinHTML.indexOf('<body') == -1) {\n      this.strTextbausteinHTML = event.TextbausteinHTML\n    } else {\n      this.strTextbausteinHTML = event.TextbausteinHTML.substring(event.TextbausteinHTML.indexOf('<p'), event.TextbausteinHTML.indexOf('</body>'));\n    }",
-                                    "type": "execute"
+                                    "name": "strTextbausteinHTML",
+                                    "type": "set",
+                                    "value": "${event.TextbausteinHTML}"
                                   },
                                   {
                                     "name": "dsoTextbausteine",
@@ -1277,7 +1278,7 @@
                                   "class": "col-md-12",
                                   "components": [
                                     {
-                                      "content": "<editor\n    [(ngModel)]=\"strTextbausteinHTML\"\n    apiKey=\"7uaxcp1fzfppm9wca8ei2hnuuf9hv2fl9slezwr9k33gv0pp\"\n    [init]=\"{\n        height: 699,\n        menubar: true,\n        statusbar: false,\n        language: 'de',\n        plugins: [\n           'advlist autolink lists link image charmap print preview anchor',\n           'searchreplace visualblocks code fullscreen',\n           'insertdatetime media table paste code help wordcount'\n         ],\n         toolbar:\n             'undo redo | fontselect fontsizeselect | bold italic formatting | bullist numlist | help',\n         fontsize_formats: '8pt 9pt 10pt 11pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt',\n         toolbar_groups: {\n             formatting: {\n                 icon: 'align-left', tooltip: 'Text ausrichten', items: 'alignleft aligncenter alignright alignjustify'\n             }\n         }\n    }\"\n ></editor>",
+                                      "content": "<editor\n  [(ngModel)]=\"strTextbausteinHTML\"\n  apiKey=\"7uaxcp1fzfppm9wca8ei2hnuuf9hv2fl9slezwr9k33gv0pp\"\n  [init]=\"{\n    height: 699,\n    menubar: true,\n    statusbar: false,\n    language: 'de',\n    browser_spellcheck: true,\n    plugins: [\n      'fullpage advlist autolink lists link image charmap print preview anchor',\n      'searchreplace visualblocks code fullscreen',\n      'insertdatetime media table paste code help wordcount'\n    ],\n    style_formats_merge: false,\n    style_formats: [\n      {title: 'HK Standard', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '11pt'}},    \n      {title: 'HK Überschrift', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '12pt', 'font-weight': 'bold'}},    \n      {title: 'HK Fußnote', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '9pt'}}\n    ],\n    toolbar_mode: 'sliding',\n    toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | fullscreen | fontselect fontsizeselect | outdent indent | forecolor backcolor | removeformat searchreplace | help',\n    fontsize_formats: '8pt 9pt 10pt 11pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt',\n    menu: {\n      file: { title: 'File', items: 'restoredraft | preview | print ' },\n      edit: { title: 'Edit', items: 'undo redo | cut copy paste pastetext | selectall | searchreplace' },\n      view: { title: 'View', items: 'code | visualaid visualchars visualblocks | spellchecker | preview fullscreen' },\n      insert: { title: 'Insert', items: 'image link media template codesample inserttable | charmap emoticons hr | pagebreak nonbreaking anchor toc | insertdatetime' },\n      format: { title: 'Format', items: 'bold italic underline strikethrough superscript subscript codeformat | formats blockformats fontformats fontsizes align lineheight | forecolor backcolor | removeformat' },\n      tools: { title: 'Tools', items: 'spellchecker spellcheckerlanguage | code wordcount' },\n      table: { title: 'Table', items: 'inserttable | cell row column | tableprops deletetable' },\n      help: { title: 'Help', items: 'help' }\n    }         \n  }\"\n ></editor>",
                                       "name": "htmlEditorTextbausteine",
                                       "type": "html"
                                     }
@@ -1447,7 +1448,7 @@
                                             "value": "${dsoTextbausteine.TextbausteinNr}"
                                           },
                                           {
-                                            "code": "${dsoTextbausteine.TextbausteinHTML} = '<body>' + ${strTextbausteinHTML} + '</body>'",
+                                            "code": "${dsoTextbausteine.TextbausteinHTML} = ${strTextbausteinHTML}",
                                             "type": "execute"
                                           },
                                           {
@@ -1693,8 +1694,9 @@
                                 ],
                                 "rowSelect": [
                                   {
-                                    "code": "    if(event.TextbausteinHTML.indexOf('<body') == -1) {\n      this.strTextbausteinHTMLFavoriten = event.TextbausteinHTML\n    } else {\n      this.strTextbausteinHTMLFavoriten = event.TextbausteinHTML.substring(event.TextbausteinHTML.indexOf('<p'), event.TextbausteinHTML.indexOf('</body>'));\n    }",
-                                    "type": "execute"
+                                    "name": "strTextbausteinHTMLFavoriten",
+                                    "type": "set",
+                                    "value": "${event.TextbausteinHTML}"
                                   },
                                   {
                                     "name": "dsoBenutzerTextbausteineFavoriten",
@@ -1860,7 +1862,7 @@
                                   "class": "col-md-12",
                                   "components": [
                                     {
-                                      "content": "<editor\n    [(ngModel)]=\"strTextbausteinHTMLFavoriten\"\n    apiKey=\"7uaxcp1fzfppm9wca8ei2hnuuf9hv2fl9slezwr9k33gv0pp\"\n    [init]=\"{\n        height: 699,\n        menubar: true,\n        statusbar: false,\n        language: 'de',\n        plugins: [\n           'advlist autolink lists link image charmap print preview anchor',\n           'searchreplace visualblocks code fullscreen',\n           'insertdatetime media table paste code help wordcount'\n         ],\n         toolbar:\n             'undo redo | fontselect fontsizeselect | bold italic formatting | bullist numlist | help',\n         fontsize_formats: '8pt 9pt 10pt 11pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt',\n         toolbar_groups: {\n             formatting: {\n                 icon: 'align-left', tooltip: 'Text ausrichten', items: 'alignleft aligncenter alignright alignjustify'\n             }\n         }\n    }\"\n ></editor>",
+                                      "content": "<editor\n  [(ngModel)]=\"strTextbausteinHTMLFavoriten\"\n  apiKey=\"7uaxcp1fzfppm9wca8ei2hnuuf9hv2fl9slezwr9k33gv0pp\"\n  [init]=\"{\n    height: 699,\n    menubar: true,\n    statusbar: false,\n    language: 'de',\n    browser_spellcheck: true,\n    plugins: [\n      'fullpage advlist autolink lists link image charmap print preview anchor',\n      'searchreplace visualblocks code fullscreen',\n      'insertdatetime media table paste code help wordcount'\n    ],\n    style_formats_merge: false,\n    style_formats: [\n      {title: 'HK Standard', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '11pt'}},    \n      {title: 'HK Überschrift', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '12pt', 'font-weight': 'bold'}},    \n      {title: 'HK Fußnote', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '9pt'}}\n    ],\n    toolbar_mode: 'sliding',\n    toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | fullscreen | fontselect fontsizeselect | outdent indent | forecolor backcolor | removeformat searchreplace | help',\n    fontsize_formats: '8pt 9pt 10pt 11pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt',\n    menu: {\n      file: { title: 'File', items: 'restoredraft | preview | print ' },\n      edit: { title: 'Edit', items: 'undo redo | cut copy paste pastetext | selectall | searchreplace' },\n      view: { title: 'View', items: 'code | visualaid visualchars visualblocks | spellchecker | preview fullscreen' },\n      insert: { title: 'Insert', items: 'image link media template codesample inserttable | charmap emoticons hr | pagebreak nonbreaking anchor toc | insertdatetime' },\n      format: { title: 'Format', items: 'bold italic underline strikethrough superscript subscript codeformat | formats blockformats fontformats fontsizes align lineheight | forecolor backcolor | removeformat' },\n      tools: { title: 'Tools', items: 'spellchecker spellcheckerlanguage | code wordcount' },\n      table: { title: 'Table', items: 'inserttable | cell row column | tableprops deletetable' },\n      help: { title: 'Help', items: 'help' }\n    }         \n  }\"\n ></editor>",
                                       "name": "htmlEditorTextbausteineFavoriten",
                                       "type": "html"
                                     }
@@ -2129,8 +2131,9 @@
                                 ],
                                 "rowSelect": [
                                   {
-                                    "code": "    if(event.TextbausteinHTML.indexOf('<body') == -1) {\n      this.strTextbausteinHTMLVerlauf = event.TextbausteinHTML\n    } else {\n      this.strTextbausteinHTMLVerlauf = event.TextbausteinHTML.substring(event.TextbausteinHTML.indexOf('<p'), event.TextbausteinHTML.indexOf('</body>'));\n    }",
-                                    "type": "execute"
+                                    "name": "strTextbausteinHTMLVerlauf",
+                                    "type": "set",
+                                    "value": "${event.TextbausteinHTML}"
                                   },
                                   {
                                     "name": "dsoBenutzerTextbausteineVerlauf",
@@ -2296,7 +2299,7 @@
                                   "class": "col-md-12",
                                   "components": [
                                     {
-                                      "content": "<editor\n    [(ngModel)]=\"strTextbausteinHTMLVerlauf\"\n    apiKey=\"7uaxcp1fzfppm9wca8ei2hnuuf9hv2fl9slezwr9k33gv0pp\"\n    [init]=\"{\n        height: 699,\n        menubar: true,\n        statusbar: false,\n        language: 'de',\n        plugins: [\n           'advlist autolink lists link image charmap print preview anchor',\n           'searchreplace visualblocks code fullscreen',\n           'insertdatetime media table paste code help wordcount'\n         ],\n         toolbar:\n             'undo redo | fontselect fontsizeselect | bold italic formatting | bullist numlist | help',\n         fontsize_formats: '8pt 9pt 10pt 11pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt',\n         toolbar_groups: {\n             formatting: {\n                 icon: 'align-left', tooltip: 'Text ausrichten', items: 'alignleft aligncenter alignright alignjustify'\n             }\n         }\n    }\"\n ></editor>",
+                                      "content": "<editor\n  [(ngModel)]=\"strTextbausteinHTMLVerlauf\"\n  apiKey=\"7uaxcp1fzfppm9wca8ei2hnuuf9hv2fl9slezwr9k33gv0pp\"\n  [init]=\"{\n    height: 699,\n    menubar: true,\n    statusbar: false,\n    language: 'de',\n    browser_spellcheck: true,\n    plugins: [\n      'fullpage advlist autolink lists link image charmap print preview anchor',\n      'searchreplace visualblocks code fullscreen',\n      'insertdatetime media table paste code help wordcount'\n    ],\n    style_formats_merge: false,\n    style_formats: [\n      {title: 'HK Standard', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '11pt'}},    \n      {title: 'HK Überschrift', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '12pt', 'font-weight': 'bold'}},    \n      {title: 'HK Fußnote', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '9pt'}}\n    ],\n    toolbar_mode: 'sliding',\n    toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | fullscreen | fontselect fontsizeselect | outdent indent | forecolor backcolor | removeformat searchreplace | help',\n    fontsize_formats: '8pt 9pt 10pt 11pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt',\n    menu: {\n      file: { title: 'File', items: 'restoredraft | preview | print ' },\n      edit: { title: 'Edit', items: 'undo redo | cut copy paste pastetext | selectall | searchreplace' },\n      view: { title: 'View', items: 'code | visualaid visualchars visualblocks | spellchecker | preview fullscreen' },\n      insert: { title: 'Insert', items: 'image link media template codesample inserttable | charmap emoticons hr | pagebreak nonbreaking anchor toc | insertdatetime' },\n      format: { title: 'Format', items: 'bold italic underline strikethrough superscript subscript codeformat | formats blockformats fontformats fontsizes align lineheight | forecolor backcolor | removeformat' },\n      tools: { title: 'Tools', items: 'spellchecker spellcheckerlanguage | code wordcount' },\n      table: { title: 'Table', items: 'inserttable | cell row column | tableprops deletetable' },\n      help: { title: 'Help', items: 'help' }\n    }         \n  }\"\n ></editor>",
                                       "name": "html0",
                                       "type": "html"
                                     }
@@ -2567,8 +2570,9 @@
                                 ],
                                 "rowSelect": [
                                   {
-                                    "code": "    if(event.TextbausteinHTML.indexOf('<body') == -1) {\n      this.strTextbausteinHTMLPapierkorb = event.TextbausteinHTML\n    } else {\n      this.strTextbausteinHTMLPapierkorb = event.TextbausteinHTML.substring(event.TextbausteinHTML.indexOf('<p'), event.TextbausteinHTML.indexOf('</body>'));\n    }",
-                                    "type": "execute"
+                                    "name": "strTextbausteinHTMLPapierkorb",
+                                    "type": "set",
+                                    "value": "${event.TextbausteinHTML}"
                                   },
                                   {
                                     "name": "dsoTextbausteinePapierkorb",
@@ -2734,7 +2738,7 @@
                                   "class": "col-md-12",
                                   "components": [
                                     {
-                                      "content": "<editor\n    [(ngModel)]=\"strTextbausteinHTMLPapierkorb\"\n    apiKey=\"7uaxcp1fzfppm9wca8ei2hnuuf9hv2fl9slezwr9k33gv0pp\"\n    [init]=\"{\n        height: 699,\n        menubar: true,\n        statusbar: false,\n        language: 'de',\n        plugins: [\n           'advlist autolink lists link image charmap print preview anchor',\n           'searchreplace visualblocks code fullscreen',\n           'insertdatetime media table paste code help wordcount'\n         ],\n         toolbar:\n             'undo redo | fontselect fontsizeselect | bold italic formatting | bullist numlist | help',\n         fontsize_formats: '8pt 9pt 10pt 11pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt',\n         toolbar_groups: {\n             formatting: {\n                 icon: 'align-left', tooltip: 'Text ausrichten', items: 'alignleft aligncenter alignright alignjustify'\n             }\n         }\n    }\"\n ></editor>",
+                                      "content": "<editor\n  [(ngModel)]=\"strTextbausteinHTMLPapierkorb\"\n  apiKey=\"7uaxcp1fzfppm9wca8ei2hnuuf9hv2fl9slezwr9k33gv0pp\"\n  [init]=\"{\n    height: 699,\n    menubar: true,\n    statusbar: false,\n    language: 'de',\n    browser_spellcheck: true,\n    plugins: [\n      'fullpage advlist autolink lists link image charmap print preview anchor',\n      'searchreplace visualblocks code fullscreen',\n      'insertdatetime media table paste code help wordcount'\n    ],\n    style_formats_merge: false,\n    style_formats: [\n      {title: 'HK Standard', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '11pt'}},    \n      {title: 'HK Überschrift', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '12pt', 'font-weight': 'bold'}},    \n      {title: 'HK Fußnote', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '9pt'}}\n    ],\n    toolbar_mode: 'sliding',\n    toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | fullscreen | fontselect fontsizeselect | outdent indent | forecolor backcolor | removeformat searchreplace | help',\n    fontsize_formats: '8pt 9pt 10pt 11pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt',\n    menu: {\n      file: { title: 'File', items: 'restoredraft | preview | print ' },\n      edit: { title: 'Edit', items: 'undo redo | cut copy paste pastetext | selectall | searchreplace' },\n      view: { title: 'View', items: 'code | visualaid visualchars visualblocks | spellchecker | preview fullscreen' },\n      insert: { title: 'Insert', items: 'image link media template codesample inserttable | charmap emoticons hr | pagebreak nonbreaking anchor toc | insertdatetime' },\n      format: { title: 'Format', items: 'bold italic underline strikethrough superscript subscript codeformat | formats blockformats fontformats fontsizes align lineheight | forecolor backcolor | removeformat' },\n      tools: { title: 'Tools', items: 'spellchecker spellcheckerlanguage | code wordcount' },\n      table: { title: 'Table', items: 'inserttable | cell row column | tableprops deletetable' },\n      help: { title: 'Help', items: 'help' }\n    }         \n  }\"\n ></editor>",
                                       "name": "html1",
                                       "type": "html"
                                     }
@@ -2793,7 +2797,7 @@
                                       "events": {
                                         "click": [
                                           {
-                                            "code": "${dsoTextbausteinePapierkorb.TextbausteinHTML} =  '<body>' + ${strTextbausteinHTMLPapierkorb} + '</body>'",
+                                            "code": "${dsoTextbausteinePapierkorb.TextbausteinHTML} = ${strTextbausteinHTMLPapierkorb}",
                                             "type": "execute"
                                           },
                                           {
