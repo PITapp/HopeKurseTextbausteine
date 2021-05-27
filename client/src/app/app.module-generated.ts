@@ -83,12 +83,13 @@ import { TextbausteineNeuComponent } from './textbausteine-neu/textbausteine-neu
 import { TextbausteineBearbeitenComponent } from './textbausteine-bearbeiten/textbausteine-bearbeiten.component';
 import { TextbausteineDuplizierenComponent } from './textbausteine-duplizieren/textbausteine-duplizieren.component';
 import { TextbausteineFelderAuswahlComponent } from './textbausteine-felder-auswahl/textbausteine-felder-auswahl.component';
-import { LoginComponent } from './login/login.component';
 import { VersionenComponent } from './versionen/versionen.component';
 import { InfoboxTextbausteineFilterTextComponent } from './infobox-textbausteine-filter-text/infobox-textbausteine-filter-text.component';
 import { TextbausteineInfoComponent } from './textbausteine-info/textbausteine-info.component';
 import { TextbausteineFilterInfoComponent } from './textbausteine-filter-info/textbausteine-filter-info.component';
 import { TextbausteineDokumenteComponent } from './textbausteine-dokumente/textbausteine-dokumente.component';
+import { HandbuchComponent } from './handbuch/handbuch.component';
+import { LoginComponent } from './login/login.component';
 import { LoginLayoutComponent } from './login-layout/login-layout.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 
@@ -128,12 +129,13 @@ export const PageDeclarations = [
   TextbausteineBearbeitenComponent,
   TextbausteineDuplizierenComponent,
   TextbausteineFelderAuswahlComponent,
-  LoginComponent,
   VersionenComponent,
   InfoboxTextbausteineFilterTextComponent,
   TextbausteineInfoComponent,
   TextbausteineFilterInfoComponent,
   TextbausteineDokumenteComponent,
+  HandbuchComponent,
+  LoginComponent,
 ];
 
 export const LayoutDeclarations = [

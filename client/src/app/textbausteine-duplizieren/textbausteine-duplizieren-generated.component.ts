@@ -159,7 +159,7 @@ export class TextbausteineDuplizierenGenerated implements AfterViewInit, OnInit,
 
     });
 
-    this.dbHopeKurseTextbausteine.getIbsiKurses(null, null, null, `Titel`, null, null, null, `KursNr, Titel`)
+    this.dbHopeKurseTextbausteine.getIbsiKurses(`Titel ne '(Online-Registrierung)' and Titel ne '(Datenübernahme FileMaker)'`, null, null, `Titel`, null, null, null, `KursNr, Titel`)
     .subscribe((result: any) => {
       this.rstKurse = result.value;
     }, (result: any) => {

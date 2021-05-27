@@ -87,10 +87,10 @@
                               "allowColumnReorder": true,
                               "allowColumnResize": true,
                               "allowDelete": false,
-                              "allowFiltering": false,
+                              "allowFiltering": true,
                               "allowMultiSorting": false,
                               "allowPaging": true,
-                              "allowSorting": false,
+                              "allowSorting": true,
                               "alwaysShowPager": false,
                               "applyFilterText": "Apply",
                               "clearFilterText": "Clear",
@@ -113,7 +113,7 @@
                                 {
                                   "format": "",
                                   "property": "DokumentTyp",
-                                  "title": "Dateityp",
+                                  "title": "Typ",
                                   "type": "string",
                                   "width": "70px"
                                 },
@@ -407,7 +407,7 @@
                             "border": "1px solid #e6ecef",
                             "height": "750px"
                           },
-                          "text": "{{rstTextbausteineDokumenteCount == 0 ? '' : rstTextbausteineDokumenteCount}} Textbausteine",
+                          "text": "{{rstTextbausteineDokumenteCount == 0 ? '' : rstTextbausteineDokumenteCount}} Textbausteine mit Dokument",
                           "type": "panel"
                         }
                       ],
@@ -465,6 +465,7 @@
                                               }
                                             ],
                                             "path": "textbausteine-dokumente",
+                                            "title": "Textbaustein Dokument",
                                             "type": "popup",
                                             "width": 900
                                           }

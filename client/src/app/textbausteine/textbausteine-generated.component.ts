@@ -211,7 +211,7 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
     .subscribe((result: any) => {
       this.rstTextbausteineArten = result.value;
 
-      this.dbHopeKurseTextbausteine.getIbsiKurses(null, null, null, `Titel`, null, null, null, null)
+      this.dbHopeKurseTextbausteine.getIbsiKurses(`Titel ne '(Online-Registrierung)' and Titel ne '(Datenübernahme FileMaker)'`, null, null, `Titel`, null, null, null, null)
       .subscribe((result: any) => {
         this.rstKurse = result.value;
 
@@ -476,7 +476,7 @@ this.dsoBenutzer.FilterDokument = null
   gridTextbausteineRowDoubleClick(event: any) {
     this.letzteTextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
 
-    this.dialogService.open(TextbausteineBearbeitenComponent, { parameters: {TextbausteinNr: this.dsoTextbausteine.TextbausteinNr}, title: `Bearbeiten Textbaustein` });
+    this.dialogService.open(TextbausteineBearbeitenComponent, { parameters: {TextbausteinNr: this.dsoTextbausteine.TextbausteinNr}, title: `Bearbeiten Textbaustein (Grunddaten)` });
   }
 
   gridTextbausteineRowSelect(event: any) {
@@ -554,7 +554,7 @@ this.dsoBenutzer.FilterDokument = null
   buttonBearbeitenClick(event: any) {
     this.letzteTextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
 
-    this.dialogService.open(TextbausteineBearbeitenComponent, { parameters: {TextbausteinNr: this.dsoTextbausteine.TextbausteinNr}, title: `Bearbeiten Textbaustein` });
+    this.dialogService.open(TextbausteineBearbeitenComponent, { parameters: {TextbausteinNr: this.dsoTextbausteine.TextbausteinNr}, title: `Bearbeiten Textbaustein (Grunddaten)` });
   }
 
   buttonLoeschenClick(event: any) {
@@ -661,7 +661,7 @@ this.dsoFavoriten.TextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
   }
 
   buttonDokumentClick(event: any) {
-    this.dialogService.open(TextbausteineDokumenteComponent, { parameters: {TextbausteinNr: this.dsoTextbausteine.TextbausteinNr}, width: 900, title: `Domument ` });
+    this.dialogService.open(TextbausteineDokumenteComponent, { parameters: {TextbausteinNr: this.dsoTextbausteine.TextbausteinNr}, width: 900, title: `Textbaustein Dokument` });
 
     this.letzteTextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
   }
@@ -782,7 +782,7 @@ this.dsoVerlauf.TextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
   }
 
   buttonFavoritenDokumentClick(event: any) {
-    this.dialogService.open(TextbausteineDokumenteComponent, { parameters: {TextbausteinNr: this.dsoBenutzerTextbausteineFavoriten.TextbausteinNr}, width: 900, title: 'TextbausteineDokumente' });
+    this.dialogService.open(TextbausteineDokumenteComponent, { parameters: {TextbausteinNr: this.dsoBenutzerTextbausteineFavoriten.TextbausteinNr}, width: 900, title: `Textbaustein Dokument` });
   }
 
   gridVerlaufLoadData(event: any) {
@@ -868,7 +868,7 @@ this.dsoVerlauf.TextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
   }
 
   buttonVerlaufDokumentClick(event: any) {
-    this.dialogService.open(TextbausteineDokumenteComponent, { parameters: {TextbausteinNr: this.dsoBenutzerTextbausteineVerlauf.TextbausteinNr}, width: 900, title: 'TextbausteineDokumente' });
+    this.dialogService.open(TextbausteineDokumenteComponent, { parameters: {TextbausteinNr: this.dsoBenutzerTextbausteineVerlauf.TextbausteinNr}, width: 900, title: `Textbaustein Dokument` });
   }
 
   gridTextbausteinePapierkorbLoadData(event: any) {
@@ -913,7 +913,7 @@ this.dsoVerlauf.TextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
   }
 
   buttonPapierkorbDokumentClick(event: any) {
-    this.dialogService.open(TextbausteineDokumenteComponent, { parameters: {TextbausteinNr: this.dsoTextbausteinePapierkorb.TextbausteinNr}, width: 900, title: 'TextbausteineDokumente' });
+    this.dialogService.open(TextbausteineDokumenteComponent, { parameters: {TextbausteinNr: this.dsoTextbausteinePapierkorb.TextbausteinNr}, width: 900, title: `Textbaustein Dokument` });
   }
 
   buttonPapierkorbSpeichernClick(event: any) {

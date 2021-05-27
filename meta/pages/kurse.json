@@ -203,11 +203,31 @@
                                       },
                                       {
                                         "name": "$filter",
-                                        "value": "${event.filter}"
+                                        "value": [
+                                          {
+                                            "value": "${event.filter}"
+                                          },
+                                          {
+                                            "operation": "ne",
+                                            "property": "Titel",
+                                            "type": "string",
+                                            "value": "'(Online-Registrierung)'"
+                                          },
+                                          {
+                                            "operation": "ne",
+                                            "property": "Titel",
+                                            "type": "string",
+                                            "value": "'(Datenübernahme FileMaker)'"
+                                          }
+                                        ]
                                       },
                                       {
                                         "name": "$orderby",
-                                        "value": "${event.orderby || 'Titel'}"
+                                        "value": [
+                                          {
+                                            "value": "${event.orderby || 'Titel'}"
+                                          }
+                                        ]
                                       },
                                       {
                                         "name": "$expand",
@@ -517,7 +537,7 @@
                               "lessThanText": "Less than",
                               "name": "gridKurseThemenListe",
                               "notEqualsText": "Not equals",
-                              "pageSize": 22,
+                              "pageSize": 21,
                               "startsWithText": "Starts with",
                               "style": {
                                 "border": "1px solid rgba(0, 0, 0, 0)",

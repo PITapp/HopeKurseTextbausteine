@@ -138,7 +138,7 @@ export class KurseGenerated implements AfterViewInit, OnInit, OnDestroy {
   }
 
   gridKurseLoadData(event: any) {
-    this.dbHopeKurseTextbausteine.getIbsiKurses(`${event.filter}`, event.top, event.skip, `${event.orderby || 'Titel'}`, event.top != null && event.skip != null, `IbsiKurseArten`, null, null)
+    this.dbHopeKurseTextbausteine.getIbsiKurses(`${event.filter} and Titel ne '(Online-Registrierung)' and Titel ne '(Datenübernahme FileMaker)'`, event.top, event.skip, `${event.orderby || 'Titel'}`, event.top != null && event.skip != null, `IbsiKurseArten`, null, null)
     .subscribe((result: any) => {
       this.rstKurse = result.value;
 

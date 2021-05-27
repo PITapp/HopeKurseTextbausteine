@@ -10,7 +10,7 @@ namespace HopeKurseTextbausteine.Authentication
         public static string Audience { get; } = "HopeKurseTextbausteineAudience";
         public static string Issuer { get; } = "HopeKurseTextbausteine";
         public static SymmetricSecurityKey Key { get; } = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("HopeKurseTextbausteineSecretSecurityKeyHopeKurseTextbausteine"));
-        public static TimeSpan Expiration { get; } = TimeSpan.FromMinutes(10000);
+        public static TimeSpan Expiration { get; } = TimeSpan.FromMinutes(20000);
         public static SigningCredentials SigningCredentials { get; } = new SigningCredentials(Key, SecurityAlgorithms.HmacSha256);
     }
 }

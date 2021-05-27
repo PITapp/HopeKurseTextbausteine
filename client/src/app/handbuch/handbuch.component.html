@@ -1,7 +1,7 @@
 <rz-content #content1 container="main">
   <div [ngStyle]="{'height': '', 'marginTop': '-7px', 'paddingBottom': '0', 'paddingLeft': '5px', 'paddingRight': '3px', 'paddingTop': '0', 'width': ''}" class="row">
     <div class="justify-content-start  col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 d-flex align-items-center" [ngStyle]="{'height': '57px', 'paddingBottom': '1px'}">
-      <rz-heading #heading18 size="H1" [style]="{'color': '#5d717b', 'display': 'inline-block'}" text="Kontakt">
+      <rz-heading #heading18 size="H1" [style]="{'color': '#5d717b', 'display': 'inline-block'}" text="Handbuch">
       </rz-heading>
       <rz-heading #heading19 size="H3" [style]="{'color': '#e5ecef', 'display': 'inline-block', 'marginTop': '7px', 'paddingLeft': '10px', 'paddingRight': '10px'}" text="|">
       </rz-heading>
@@ -10,15 +10,11 @@
     </div>
   </div>
   <rz-tabs #tabs0 [style]="{'float': 'none', 'height': '831px'}">
-    <rz-tabs-item [selected]="false" text="Kontakt">
+    <rz-tabs-item [selected]="false" text="Handbuch">
       <div class="col-md-12">
         <rz-html #html0>
-          <div innerHTML='{{kontaktHtml}}'></div>
+          <div innerHTML='{{handbuchHtml}}'></div>
         </rz-html>
-      </div>
-      <div class="col-md-12" [ngStyle]="{'marginTop': '30px'}">
-        <rz-image #image0 path="assets/images/Large - Logo links 1 - transparent.png" [style]="{'height': '60px'}">
-        </rz-image>
       </div>
     </rz-tabs-item>
   </rz-tabs>

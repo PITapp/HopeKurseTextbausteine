@@ -190,7 +190,7 @@ export class DokumenteGenerated implements AfterViewInit, OnInit, OnDestroy {
   }
 
   buttonDokumenteDokumentClick(event: any) {
-    this.dialogService.open(TextbausteineDokumenteComponent, { parameters: {TextbausteinNr: this.dsoTextbausteineDokumente.TextbausteinNr}, width: 900, title: 'TextbausteineDokumente' });
+    this.dialogService.open(TextbausteineDokumenteComponent, { parameters: {TextbausteinNr: this.dsoTextbausteineDokumente.TextbausteinNr}, width: 900, title: `Textbaustein Dokument` });
   }
 
   buttonPapierkorbSpeichernClick(event: any) {

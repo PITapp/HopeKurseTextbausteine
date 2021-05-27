@@ -92,6 +92,16 @@
             </rz-dropdown>
           </div>
         </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #label0 component="DokumentTitel" [style]="{'width': '100%'}" text="Dokument">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-textbox #dokumentTitel [maxLength]="100" [readOnly]="true" [style]="{'width': '100%'}" [(ngModel)]="dsoTextbausteine && dsoTextbausteine.DokumentTitel" name="DokumentTitel">
+            </rz-textbox>
+          </div>
+        </div>
         <div [ngStyle]="{'marginBottom': '14px'}" class="row">
           <div class="col-md-3" [ngStyle]="{}">
             <rz-label #label19 component="Info" [style]="{'width': '100%'}" text="Notizen">

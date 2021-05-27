@@ -38,8 +38,9 @@
           <rz-panel #panel0 [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" [text]="dsoInfotexte?.Titel">
             <div [ngStyle]="{'marginLeft': '-36px', 'marginRight': '-36px', 'marginTop': '-12px'}" class="row">
               <div class="col-md-12" [ngStyle]="{}">
-                <rz-html #htmlEditorInfotexte>
+                <rz-html #htmlEditorInfotexte (focusout)="onFocusOutPruefenAenderung()">
                   <editor
+                    (onFocusOut)="onFocusOutPruefenAenderung()"
                     [(ngModel)]="strInfotextHTML"
                     apiKey="7uaxcp1fzfppm9wca8ei2hnuuf9hv2fl9slezwr9k33gv0pp"
                     [init]="{
@@ -71,7 +72,7 @@
                         tools: { title: 'Tools', items: 'spellchecker spellcheckerlanguage | code wordcount' },
                         table: { title: 'Table', items: 'inserttable | cell row column | tableprops deletetable' },
                         help: { title: 'Help', items: 'help' }
-                      }         
+                      }
                     }"
                    ></editor>
                 </rz-html>

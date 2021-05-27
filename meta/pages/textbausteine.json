@@ -948,7 +948,7 @@
                                       }
                                     ],
                                     "path": "textbausteine-bearbeiten",
-                                    "title": "Bearbeiten Textbaustein",
+                                    "title": "Bearbeiten Textbaustein (Grunddaten)",
                                     "type": "popup"
                                   }
                                 ],
@@ -1143,7 +1143,7 @@
                                             ],
                                             "path": "textbausteine-bearbeiten",
                                             "then": [],
-                                            "title": "Bearbeiten Textbaustein",
+                                            "title": "Bearbeiten Textbaustein (Grunddaten)",
                                             "type": "popup"
                                           }
                                         ]
@@ -1414,7 +1414,7 @@
                                               }
                                             ],
                                             "path": "textbausteine-dokumente",
-                                            "title": "Domument ",
+                                            "title": "Textbaustein Dokument",
                                             "type": "popup",
                                             "width": 900
                                           },
@@ -1928,6 +1928,7 @@
                                               }
                                             ],
                                             "path": "textbausteine-dokumente",
+                                            "title": "Textbaustein Dokument",
                                             "type": "popup",
                                             "width": 900
                                           }
@@ -2365,6 +2366,7 @@
                                               }
                                             ],
                                             "path": "textbausteine-dokumente",
+                                            "title": "Textbaustein Dokument",
                                             "type": "popup",
                                             "width": 900
                                           }
@@ -2775,6 +2777,7 @@
                                               }
                                             ],
                                             "path": "textbausteine-dokumente",
+                                            "title": "Textbaustein Dokument",
                                             "type": "popup",
                                             "width": 900
                                           }
@@ -2934,7 +2937,28 @@
             "parameters": [
               {
                 "name": "$orderby",
-                "value": "Titel"
+                "value": [
+                  {
+                    "value": "Titel"
+                  }
+                ]
+              },
+              {
+                "name": "$filter",
+                "value": [
+                  {
+                    "operation": "ne",
+                    "property": "Titel",
+                    "type": "string",
+                    "value": "'(Online-Registrierung)'"
+                  },
+                  {
+                    "operation": "ne",
+                    "property": "Titel",
+                    "type": "string",
+                    "value": "'(Datenübernahme FileMaker)'"
+                  }
+                ]
               }
             ],
             "then": [

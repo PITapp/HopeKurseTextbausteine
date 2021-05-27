@@ -600,11 +600,33 @@
         "parameters": [
           {
             "name": "$orderby",
-            "value": "Titel"
+            "value": [
+              {
+                "value": "Titel"
+              }
+            ]
           },
           {
             "name": "$select",
             "value": "KursNr, Titel"
+          },
+          {
+            "name": "$filter",
+            "operator": "and",
+            "value": [
+              {
+                "operation": "ne",
+                "property": "Titel",
+                "type": "string",
+                "value": "'(Online-Registrierung)'"
+              },
+              {
+                "operation": "ne",
+                "property": "Titel",
+                "type": "string",
+                "value": "'(Datenübernahme FileMaker)'"
+              }
+            ]
           }
         ],
         "then": [

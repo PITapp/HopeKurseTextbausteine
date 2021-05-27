@@ -409,6 +409,48 @@
                           "class": "col-md-3",
                           "components": [
                             {
+                              "component": "DokumentTitel",
+                              "name": "label0",
+                              "style": {
+                                "width": "100%"
+                              },
+                              "text": "Dokument",
+                              "type": "label"
+                            }
+                          ],
+                          "name": "col9",
+                          "type": "col"
+                        },
+                        {
+                          "class": "col-md-9",
+                          "components": [
+                            {
+                              "maxLength": 100,
+                              "name": "DokumentTitel",
+                              "readOnly": true,
+                              "style": {
+                                "width": "100%"
+                              },
+                              "type": "textbox",
+                              "value": "${dsoTextbausteine.DokumentTitel}"
+                            }
+                          ],
+                          "name": "col10",
+                          "type": "col"
+                        }
+                      ],
+                      "name": "row5",
+                      "style": {
+                        "marginBottom": "1rem"
+                      },
+                      "type": "row"
+                    },
+                    {
+                      "components": [
+                        {
+                          "class": "col-md-3",
+                          "components": [
+                            {
                               "component": "Info",
                               "name": "label19",
                               "style": {
@@ -602,11 +644,33 @@
         "parameters": [
           {
             "name": "$orderby",
-            "value": "Titel"
+            "value": [
+              {
+                "value": "Titel"
+              }
+            ]
           },
           {
             "name": "$select",
             "value": "KursNr, Titel"
+          },
+          {
+            "name": "$filter",
+            "operator": "and",
+            "value": [
+              {
+                "operation": "ne",
+                "property": "Titel",
+                "type": "string",
+                "value": "'(Online-Registrierung)'"
+              },
+              {
+                "operation": "ne",
+                "property": "Titel",
+                "type": "string",
+                "value": "'(Datenübernahme FileMaker)'"
+              }
+            ]
           }
         ],
         "then": [

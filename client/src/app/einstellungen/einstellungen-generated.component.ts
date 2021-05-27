@@ -19,6 +19,7 @@ import { ButtonComponent } from '@radzen/angular/dist/button';
 import { HtmlComponent } from '@radzen/angular/dist/html';
 
 import { ConfigService } from '../config.service';
+import { MeldungJaNeinComponent } from '../meldung-ja-nein/meldung-ja-nein.component';
 import { MeldungLoeschenComponent } from '../meldung-loeschen/meldung-loeschen.component';
 import { EinstellungenInfotexteBearbeitenComponent } from '../einstellungen-infotexte-bearbeiten/einstellungen-infotexte-bearbeiten.component';
 import { EinstellungenInfotexteNeuComponent } from '../einstellungen-infotexte-neu/einstellungen-infotexte-neu.component';
@@ -69,6 +70,7 @@ export class EinstellungenGenerated implements AfterViewInit, OnInit, OnDestroy 
   security: SecurityService;
   letzteInfotextID: any;
   strInfotextHTML: any;
+  onFocusOutPruefenAenderung: any;
   parameters: any;
   rstInfotexte: any;
   rstInfotexteCount: any;
@@ -127,6 +129,21 @@ export class EinstellungenGenerated implements AfterViewInit, OnInit, OnDestroy 
     this.gridInfotexte.load();
 
     this.strInfotextHTML = null;
+
+    this.onFocusOutPruefenAenderung = () => {     
+
+    console.log('bin draussen');
+
+    this.dialogService.open(MeldungJaNeinComponent, { parameters: {strMeldung: "Am Infotext '" + this.dsoInfotexte.Titel + "' wurden Änderungen vorgenommen. Sollen diese Änderungen gespeichert werden?"}, title: `Textbaustein geändert` })
+        .afterClosed().subscribe(result => {
+              if (result == 'Ja') {
+        console.log('Ja');
+      }
+    });
+
+
+};
+
   }
 
   gridInfotexteLoadData(event: any) {

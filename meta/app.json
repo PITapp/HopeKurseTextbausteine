@@ -57,18 +57,19 @@
     "TextbausteineBearbeiten",
     "TextbausteineDuplizieren",
     "TextbausteineFelderAuswahl",
-    "Login",
     "Versionen",
     "InfoboxTextbausteineFilterText",
     "TextbausteineInfo",
     "TextbausteineFilterInfo",
-    "TextbausteineDokumente"
+    "TextbausteineDokumente",
+    "Handbuch",
+    "Login"
   ],
   "port": 8000,
   "security": {
     "autoGeneratePages": false,
     "dataSource": "dbHopeKurseTextbausteine",
-    "duration": 10000,
+    "duration": 20000,
     "emailConfirmation": false,
     "layout": "Main",
     "loginLayout": "Login",

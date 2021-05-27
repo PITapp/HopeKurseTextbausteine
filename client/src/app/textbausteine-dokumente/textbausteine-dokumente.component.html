@@ -34,13 +34,13 @@
             </rz-textbox>
             <div [ngStyle]="{'backgroundColor': '#e6ecef'}" class="row">
               <div class="col-md-6" [ngStyle]="{'backgroundColor': 'rgba(0, 0, 0, 0)', 'marginLeft': '-15px'}">
-                <rz-upload #uploadDokumente chooseText="Auswählen" mode="advanced" [previewWidth]="50" [showCancelButton]="false" [style]="{}" uploadText="Hochladen" url="upload/dokumente/tbdok{{parameters?.TextbausteinNr}}{{(uploadDokumente?.fileUpload?.files || {})[0]?.name?.substring((uploadDokumente?.fileUpload?.files || {})[0]?.name?.indexOf('.'))}}" (beforeUpload)="uploadDokumenteBeforeUpload($event)" (error)="uploadDokumenteError($event)" (upload)="uploadDokumenteUpload($event)">
+                <rz-upload #uploadDokumente chooseText="Auswählen" mode="advanced" [previewWidth]="50" [showCancelButton]="false" [showUploadButton]="true" [style]="{}" uploadText="Hochladen" url="upload/dokumente/tbdok{{parameters?.TextbausteinNr}}{{(uploadDokumente?.fileUpload?.files || {})[0]?.name?.substring((uploadDokumente?.fileUpload?.files || {})[0]?.name?.indexOf('.'))}}" (beforeUpload)="uploadDokumenteBeforeUpload($event)" (error)="uploadDokumenteError($event)" (upload)="uploadDokumenteUpload($event)">
                 </rz-upload>
               </div>
               <div class="justify-content-end d-flex col-md-6">
-                <rz-button #buttonDokumentLoeschen buttonStyle="danger" buttonType="button" icon="cancel_presentation" size="sm" [style]="{'float': 'none', 'marginBottom': '10px', 'marginTop': '10px'}" text="Löschen" tooltip="Dokument löschen" (click)="buttonDokumentLoeschenClick($event)">
+                <rz-button #buttonDokumentLoeschen buttonStyle="danger" buttonType="button" icon="cancel_presentation" size="sm" [style]="{'float': 'none', 'marginBottom': '10px', 'marginTop': '12px'}" text="Löschen" tooltip="Dokument löschen" (click)="buttonDokumentLoeschenClick($event)">
                 </rz-button>
-                <rz-button #buttonDokumentOeffnen2 buttonStyle="secondary" icon="open_in_new" size="sm" [style]="{'float': 'none', 'marginBottom': '10px', 'marginLeft': '1rem', 'marginRight': '-15px', 'marginTop': '10px'}" text="Öffnen" tooltip="Dokument öffnen" (click)="buttonDokumentOeffnen2Click($event)">
+                <rz-button #buttonDokumentOeffnen2 buttonStyle="secondary" icon="open_in_new" size="sm" [style]="{'float': 'none', 'marginBottom': '10px', 'marginLeft': '1rem', 'marginRight': '-15px', 'marginTop': '12px'}" text="Öffnen" tooltip="Dokument öffnen" (click)="buttonDokumentOeffnen2Click($event)">
                 </rz-button>
               </div>
             </div>

@@ -50,6 +50,8 @@ export class TextbausteineBearbeitenGenerated implements AfterViewInit, OnInit, 
   @ViewChild('themaNummer') themaNummer: NumericComponent;
   @ViewChild('landLabel') landLabel: LabelComponent;
   @ViewChild('land') land: DropDownComponent;
+  @ViewChild('label0') label0: LabelComponent;
+  @ViewChild('dokumentTitel') dokumentTitel: TextBoxComponent;
   @ViewChild('label19') label19: LabelComponent;
   @ViewChild('infoText') infoText: TextAreaComponent;
   @ViewChild('button0') button0: ButtonComponent;
@@ -157,7 +159,7 @@ export class TextbausteineBearbeitenGenerated implements AfterViewInit, OnInit, 
 
     });
 
-    this.dbHopeKurseTextbausteine.getIbsiKurses(null, null, null, `Titel`, null, null, null, `KursNr, Titel`)
+    this.dbHopeKurseTextbausteine.getIbsiKurses(`Titel ne '(Online-Registrierung)' and Titel ne '(Datenübernahme FileMaker)'`, null, null, `Titel`, null, null, null, `KursNr, Titel`)
     .subscribe((result: any) => {
       this.rstKurse = result.value;
     }, (result: any) => {

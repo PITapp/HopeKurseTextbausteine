@@ -1,7 +1,7 @@
 export const environment = {
-  serverMethodsUrl: '/',
-  dbHopeKurseTextbausteine: '/odata/dbHopeKurseTextbausteine',
+  serverMethodsUrl: 'http://localhost:5000/',
+  dbHopeKurseTextbausteine: 'http://localhost:5000/odata/dbHopeKurseTextbausteine',
 
-  securityUrl: '/auth',
+  securityUrl: 'http://localhost:5000/auth',
   production: true
 };

@@ -33,12 +33,13 @@ import { TextbausteineNeuComponent } from './textbausteine-neu/textbausteine-neu
 import { TextbausteineBearbeitenComponent } from './textbausteine-bearbeiten/textbausteine-bearbeiten.component';
 import { TextbausteineDuplizierenComponent } from './textbausteine-duplizieren/textbausteine-duplizieren.component';
 import { TextbausteineFelderAuswahlComponent } from './textbausteine-felder-auswahl/textbausteine-felder-auswahl.component';
-import { LoginComponent } from './login/login.component';
 import { VersionenComponent } from './versionen/versionen.component';
 import { InfoboxTextbausteineFilterTextComponent } from './infobox-textbausteine-filter-text/infobox-textbausteine-filter-text.component';
 import { TextbausteineInfoComponent } from './textbausteine-info/textbausteine-info.component';
 import { TextbausteineFilterInfoComponent } from './textbausteine-filter-info/textbausteine-filter-info.component';
 import { TextbausteineDokumenteComponent } from './textbausteine-dokumente/textbausteine-dokumente.component';
+import { HandbuchComponent } from './handbuch/handbuch.component';
+import { LoginComponent } from './login/login.component';
 
 import { SecurityService } from './security.service';
 import { AuthGuard } from './auth.guard';
@@ -327,6 +328,14 @@ export const routes: Routes = [
           roles: ['Authenticated'],
         },
         component: TextbausteineDokumenteComponent
+      },
+      {
+        path: 'handbuch',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: HandbuchComponent
       },
     ]
   },
