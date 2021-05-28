@@ -23,11 +23,11 @@
             <rz-panel-header>
               <div class="row">
                 <div class="col-md-12 align-items-start d-flex">
-                  <rz-button #button0 buttonStyle="light" icon="add" size="sm" [style]="{'color': '#D86E13', 'display': 'block'}" text="Neuer Infotext" (click)="button0Click($event)">
+                  <rz-button #buttonNeuerInfotext buttonStyle="light" icon="add" size="sm" [style]="{'color': '#D86E13', 'display': 'block'}" text="Neuer Infotext" (click)="buttonNeuerInfotextClick($event)">
                   </rz-button>
-                  <rz-button #buttonBearbeiten buttonStyle="light" icon="create" size="sm" [style]="{'color': '#598087', 'marginLeft': '10px', 'paddingLeft': ''}" tooltip="Bearbeiten Infotext" (click)="buttonBearbeitenClick($event)">
+                  <rz-button #buttonBearbeitenInfotext buttonStyle="light" icon="create" size="sm" [style]="{'color': '#598087', 'marginLeft': '10px', 'paddingLeft': ''}" tooltip="Bearbeiten Infotext" (click)="buttonBearbeitenInfotextClick($event)">
                   </rz-button>
-                  <rz-button #buttonLoeschen buttonStyle="light" [disabled]="false" icon="cancel" size="sm" [style]="{'color': '#598087', 'fontStyle': 'normal', 'fontWeight': 'normal', 'marginLeft': '10px', 'marginRight': '-9px'}" tooltip="Löschen Infotext" (click)="buttonLoeschenClick($event)">
+                  <rz-button #buttonLoeschenInfotext buttonStyle="light" [disabled]="false" icon="cancel" size="sm" [style]="{'color': '#598087', 'fontStyle': 'normal', 'fontWeight': 'normal', 'marginLeft': '10px', 'marginRight': '-9px'}" tooltip="Löschen Infotext" (click)="buttonLoeschenInfotextClick($event)">
                   </rz-button>
                 </div>
               </div>
@@ -38,9 +38,10 @@
           <rz-panel #panel0 [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" [text]="dsoInfotexte?.Titel">
             <div [ngStyle]="{'marginLeft': '-36px', 'marginRight': '-36px', 'marginTop': '-12px'}" class="row">
               <div class="col-md-12" [ngStyle]="{}">
-                <rz-html #htmlEditorInfotexte (focusout)="onFocusOutPruefenAenderung()">
+                <rz-html #htmlEditorInfotexte>
                   <editor
-                    (onFocusOut)="onFocusOutPruefenAenderung()"
+                    (onFocusIn)="onFocusInEditorInfotexte()"
+                    (onFocusOut)="onFocusOutEditorInfotexte()"
                     [(ngModel)]="strInfotextHTML"
                     apiKey="7uaxcp1fzfppm9wca8ei2hnuuf9hv2fl9slezwr9k33gv0pp"
                     [init]="{
@@ -76,12 +77,14 @@
                     }"
                    ></editor>
                 </rz-html>
+                <rz-button #button0 *ngIf="false" (click)="button0Click($event)">
+                </rz-button>
               </div>
             </div>
             <rz-panel-header>
               <div class="row">
                 <div class="col-md-12 align-items-start d-flex">
-                  <rz-button #button4 buttonStyle="light" buttonType="submit" icon="done" size="sm" [style]="{'color': '#598087', 'display': 'block', 'marginRight': '-9px'}" text="Speichern" (click)="button4Click($event)">
+                  <rz-button #buttonSpeichernInfotext buttonStyle="light" buttonType="button" icon="done" size="sm" [style]="{'color': '#598087', 'display': 'block', 'marginRight': '-9px', 'marginTop': '1px'}" text="Speichern" (click)="buttonSpeichernInfotextClick($event)">
                   </rz-button>
                 </div>
               </div>

@@ -94,7 +94,7 @@ export class LoginGenerated implements AfterViewInit, OnInit, OnDestroy {
 
 
   load() {
-
+    setTimeout(() => { document.getElementById('username').focus(); }, 500)
   }
 
   login0Login(event: any) {

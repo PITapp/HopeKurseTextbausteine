@@ -36,12 +36,13 @@ export class EinstellungenGenerated implements AfterViewInit, OnInit, OnDestroy 
   @ViewChild('tabs0') tabs0: TabsComponent;
   @ViewChild('panel1') panel1: PanelComponent;
   @ViewChild('gridInfotexte') gridInfotexte: GridComponent;
-  @ViewChild('button0') button0: ButtonComponent;
-  @ViewChild('buttonBearbeiten') buttonBearbeiten: ButtonComponent;
-  @ViewChild('buttonLoeschen') buttonLoeschen: ButtonComponent;
+  @ViewChild('buttonNeuerInfotext') buttonNeuerInfotext: ButtonComponent;
+  @ViewChild('buttonBearbeitenInfotext') buttonBearbeitenInfotext: ButtonComponent;
+  @ViewChild('buttonLoeschenInfotext') buttonLoeschenInfotext: ButtonComponent;
   @ViewChild('panel0') panel0: PanelComponent;
   @ViewChild('htmlEditorInfotexte') htmlEditorInfotexte: HtmlComponent;
-  @ViewChild('button4') button4: ButtonComponent;
+  @ViewChild('button0') button0: ButtonComponent;
+  @ViewChild('buttonSpeichernInfotext') buttonSpeichernInfotext: ButtonComponent;
 
   router: Router;
 
@@ -70,10 +71,14 @@ export class EinstellungenGenerated implements AfterViewInit, OnInit, OnDestroy 
   security: SecurityService;
   letzteInfotextID: any;
   strInfotextHTML: any;
-  onFocusOutPruefenAenderung: any;
+  strInfotextHTML_Vergleich: any;
+  dsoInfotexteAutoSave: any;
+  onFocusInEditorInfotexte: any;
+  onFocusOutEditorInfotexte: any;
   parameters: any;
   rstInfotexte: any;
   rstInfotexteCount: any;
+  strInfotextUrsprungHTML: any;
   dsoInfotexte: any;
 
   constructor(private injector: Injector) {
@@ -130,20 +135,36 @@ export class EinstellungenGenerated implements AfterViewInit, OnInit, OnDestroy 
 
     this.strInfotextHTML = null;
 
-    this.onFocusOutPruefenAenderung = () => {     
+    this.strInfotextHTML_Vergleich = null;
 
-    console.log('bin draussen');
-
-    this.dialogService.open(MeldungJaNeinComponent, { parameters: {strMeldung: "Am Infotext '" + this.dsoInfotexte.Titel + "' wurden Änderungen vorgenommen. Sollen diese Änderungen gespeichert werden?"}, title: `Textbaustein geändert` })
-        .afterClosed().subscribe(result => {
-              if (result == 'Ja') {
-        console.log('Ja');
-      }
-    });
-
-
+    this.dsoInfotexteAutoSave = {
+    "InfotextID": 0,
+    "Inhalt": ""
 };
 
+    this.onFocusInEditorInfotexte = () => {     
+
+  console.log('bin drinnen');
+
+  this.strInfotextHTML_Vergleich = this.strInfotextHTML;
+};
+
+    this.onFocusOutEditorInfotexte = () => {     
+
+  console.log('bin draussen');
+
+  if (this.strInfotextHTML != this.strInfotextHTML_Vergleich) {
+    this.dsoInfotexteAutoSave.InfotextID = this.dsoInfotexte.InfotextID;
+    this.dsoInfotexteAutoSave.Inhalt = this.strInfotextHTML;
+    
+    this.dbHopeKurseTextbausteine.updateInfotexteHtml(null, this.dsoInfotexte.InfotextID, this.dsoInfotexte)
+    .subscribe((result: any) => {
+      this.notificationService.notify({ severity: "success", summary: ``, detail: `Infotext gespeichert` });
+    }, (result: any) => {
+      this.notificationService.notify({ severity: "error", summary: ``, detail: `Infotext konnten nicht gespeichert werden!` });
+    });
+  }
+};
   }
 
   gridInfotexteLoadData(event: any) {
@@ -175,10 +196,12 @@ export class EinstellungenGenerated implements AfterViewInit, OnInit, OnDestroy 
   gridInfotexteRowSelect(event: any) {
     this.strInfotextHTML = event.Inhalt;
 
+    this.strInfotextUrsprungHTML = event.Inhalt;
+
     this.dsoInfotexte = event;
   }
 
-  button0Click(event: any) {
+  buttonNeuerInfotextClick(event: any) {
     this.letzteInfotextID = this.dsoInfotexte.InfotextID;
 
     this.dialogService.open(EinstellungenInfotexteNeuComponent, { parameters: {}, title: `Neuer Infotext ` })
@@ -193,13 +216,13 @@ export class EinstellungenGenerated implements AfterViewInit, OnInit, OnDestroy 
     });
   }
 
-  buttonBearbeitenClick(event: any) {
+  buttonBearbeitenInfotextClick(event: any) {
     this.letzteInfotextID = this.dsoInfotexte.InfotextID;
 
     this.dialogService.open(EinstellungenInfotexteBearbeitenComponent, { parameters: {InfotextID: this.dsoInfotexte.InfotextID}, title: `Bearbeiten Infotext` });
   }
 
-  buttonLoeschenClick(event: any) {
+  buttonLoeschenInfotextClick(event: any) {
     this.letzteInfotextID = null;
 
     this.dialogService.open(MeldungLoeschenComponent, { parameters: {strMeldung: "Soll der Infotext '" + this.dsoInfotexte.Titel + "' gelöscht werden?"}, title: `Löschen Infotext` })
@@ -215,7 +238,11 @@ export class EinstellungenGenerated implements AfterViewInit, OnInit, OnDestroy 
     });
   }
 
-  button4Click(event: any) {
+  button0Click(event: any) {
+    this.dialogService.open(MeldungJaNeinComponent, { parameters: {strMeldung: 'alles ok'}, title: 'MeldungJaNein' });
+  }
+
+  buttonSpeichernInfotextClick(event: any) {
     this.letzteInfotextID = this.dsoInfotexte.InfotextID;
 
     this.dsoInfotexte.Inhalt = this.strInfotextHTML
