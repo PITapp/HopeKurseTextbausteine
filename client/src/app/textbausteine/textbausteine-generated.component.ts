@@ -84,7 +84,7 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
   @ViewChild('button1') button1: ButtonComponent;
   @ViewChild('buttonVerlaufEntfernen') buttonVerlaufEntfernen: ButtonComponent;
   @ViewChild('panel5') panel5: PanelComponent;
-  @ViewChild('html0') html0: HtmlComponent;
+  @ViewChild('htmlEditorTextbausteineVerlauf') htmlEditorTextbausteineVerlauf: HtmlComponent;
   @ViewChild('buttonVerlaufKopieren') buttonVerlaufKopieren: ButtonComponent;
   @ViewChild('buttonVerlaufDokument') buttonVerlaufDokument: ButtonComponent;
   @ViewChild('panel8') panel8: PanelComponent;
@@ -92,7 +92,7 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
   @ViewChild('buttonPapierkorbBearbeiten') buttonPapierkorbBearbeiten: ButtonComponent;
   @ViewChild('buttonPapierkorbLoeschen') buttonPapierkorbLoeschen: ButtonComponent;
   @ViewChild('panel9') panel9: PanelComponent;
-  @ViewChild('html1') html1: HtmlComponent;
+  @ViewChild('htmlEditorTextbausteinePapierkorb') htmlEditorTextbausteinePapierkorb: HtmlComponent;
   @ViewChild('buttonPapierkorbDokument') buttonPapierkorbDokument: ButtonComponent;
   @ViewChild('buttonPapierkorbSpeichern') buttonPapierkorbSpeichern: ButtonComponent;
 

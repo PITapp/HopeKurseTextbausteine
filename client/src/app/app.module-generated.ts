@@ -90,6 +90,9 @@ import { TextbausteineFilterInfoComponent } from './textbausteine-filter-info/te
 import { TextbausteineDokumenteComponent } from './textbausteine-dokumente/textbausteine-dokumente.component';
 import { HandbuchComponent } from './handbuch/handbuch.component';
 import { LoginComponent } from './login/login.component';
+import { EinstellungenInfotexteEditorComponent } from './einstellungen-infotexte-editor/einstellungen-infotexte-editor.component';
+import { EinstellungenKopie1Component } from './einstellungen-kopie-1/einstellungen-kopie-1.component';
+import { EinstellungenInfotexteEditorKopie1Component } from './einstellungen-infotexte-editor-kopie-1/einstellungen-infotexte-editor-kopie-1.component';
 import { LoginLayoutComponent } from './login-layout/login-layout.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 
@@ -136,6 +139,9 @@ export const PageDeclarations = [
   TextbausteineDokumenteComponent,
   HandbuchComponent,
   LoginComponent,
+  EinstellungenInfotexteEditorComponent,
+  EinstellungenKopie1Component,
+  EinstellungenInfotexteEditorKopie1Component,
 ];
 
 export const LayoutDeclarations = [

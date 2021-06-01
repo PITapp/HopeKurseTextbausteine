@@ -189,17 +189,24 @@ input:focus, textarea:focus {
   background-color: #3B4650; 
   background-color: #424753;
   */
+  /*
   background-color: #D86E13;
   background-image: linear-gradient(#455B65, #212C36);
   color: whitesmoke;
+  */
+
+  background-color: #E8ECEF;
+  color: #5d717b;
 }
 
 .ui-dialog-titlebar-close {
   color: whitesmoke;
+  color: #5d717b;
 }
 
 .ui-dialog-titlebar-close .pi-times:before {
   color: whitesmoke;
+  color: #5d717b;
 }
 
 

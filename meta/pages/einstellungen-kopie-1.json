@@ -8,7 +8,7 @@
         {
           "components": [
             {
-              "class": "justify-content-start       d-flex align-items-center     col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12",
+              "class": "justify-content-start       d-flex align-items-center col-md-9 col-lg-8 col-xl-9 col-sm-9 col-9",
               "components": [
                 {
                   "name": "heading18",
@@ -50,6 +50,32 @@
                 }
               ],
               "name": "col46",
+              "style": {
+                "height": "57px",
+                "paddingBottom": "1px"
+              },
+              "type": "col"
+            },
+            {
+              "class": "d-flex align-items-center     col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 justify-content-end",
+              "components": [
+                {
+                  "attributes": [
+                    {}
+                  ],
+                  "name": "heading2",
+                  "size": "H3",
+                  "style": {
+                    "color": "#ff6d41",
+                    "display": "inline",
+                    "fontSize": "21px",
+                    "fontWeight": "normal"
+                  },
+                  "text": "{{bolInfotextHTMLgeaendert ? 'Daten wurden geändert' : 'Keine Änderung'}}",
+                  "type": "heading"
+                }
+              ],
+              "name": "col4",
               "style": {
                 "height": "57px",
                 "paddingBottom": "1px"
@@ -169,9 +195,17 @@
                                       {
                                         "code": "if (this.rstInfotexte.find(p => p.InfotextID == this.letzteInfotextID) != null) {\n    // letzteInfotextID wurde in rstInfotexte gefunden\n    this.gridInfotexte.onSelect(this.rstInfotexte.find(p => p.InfotextID == this.letzteInfotextID))\n} else {\n    // letzteInfotextID wurde in rstInfotexte NICHT gefunden\n    this.letzteInfotextID = null;\n    this.gridInfotexte.onSelect(this.rstInfotexte[0]);\n}",
                                         "type": "execute"
+                                      },
+                                      {
+                                        "code": "console.log('Infotexte neu geladen');",
+                                        "type": "execute"
                                       }
                                     ],
                                     "type": "invoke"
+                                  },
+                                  {
+                                    "code": "console.log('Infotexte laden');",
+                                    "type": "execute"
                                   }
                                 ],
                                 "rowDoubleClick": [
@@ -199,9 +233,23 @@
                                     "value": "${event.Inhalt}"
                                   },
                                   {
+                                    "name": "strInfotextUrsprungHTML",
+                                    "type": "set",
+                                    "value": "${event.Inhalt}"
+                                  },
+                                  {
                                     "name": "dsoInfotexte",
                                     "type": "set",
                                     "value": "${event}"
+                                  },
+                                  {
+                                    "code": "console.log('Infotexte RowSelect');",
+                                    "type": "execute"
+                                  },
+                                  {
+                                    "name": "bolInfotextHTMLgeaendert",
+                                    "type": "set",
+                                    "value": "false"
                                   }
                                 ],
                                 "update": []
@@ -409,7 +457,7 @@
                                   "components": [
                                     {
                                       "attributes": [],
-                                      "content": "<editor\n  [(ngModel)]=\"strInfotextHTML\"\n  [disabled]=\"true\"\n  apiKey=\"7uaxcp1fzfppm9wca8ei2hnuuf9hv2fl9slezwr9k33gv0pp\"\n  [init]=\"{\n    height: 699,\n    menubar: false,\n    toolbar: false,\n    statusbar: false,\n    language: 'de',\n    browser_spellcheck: true,\n    plugins: [\n      'fullpage'\n    ]\n}\"\n ></editor>",
+                                      "content": "<editor\n  (onFocusIn)=\"onFocusInEditor()\"\n  (onFocusOut)=\"onFocusOutEditor()\"\n  (onDblclick)=\"onDblclickEditor()\"\n  (onDirty)=\"onDirtyEditor()\"\n  [(ngModel)]=\"strInfotextHTML\"\n  apiKey=\"7uaxcp1fzfppm9wca8ei2hnuuf9hv2fl9slezwr9k33gv0pp\"\n  [init]=\"{\n    height: 699,\n    menubar: true,\n    statusbar: false,\n    language: 'de',\n    browser_spellcheck: true,\n    plugins: [\n      'fullpage advlist autolink lists link image charmap print preview anchor',\n      'searchreplace visualblocks code fullscreen',\n      'insertdatetime media table paste code help wordcount'\n    ],\n    style_formats_merge: false,\n    style_formats: [\n      {title: 'HK Standard', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '11pt'}},    \n      {title: 'HK Überschrift', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '12pt', 'font-weight': 'bold'}},    \n      {title: 'HK Fußnote', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '9pt'}}\n    ],\n    toolbar_mode: 'sliding',\n    toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | fullscreen | fontselect fontsizeselect | outdent indent | forecolor backcolor | removeformat searchreplace | help',\n    fontsize_formats: '8pt 9pt 10pt 11pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt',\n    menu: {\n      file: { title: 'File', items: 'restoredraft | preview | print ' },\n      edit: { title: 'Edit', items: 'undo redo | cut copy paste pastetext | selectall | searchreplace' },\n      view: { title: 'View', items: 'code | visualaid visualchars visualblocks | spellchecker | preview fullscreen' },\n      insert: { title: 'Insert', items: 'image link media template codesample inserttable | charmap emoticons hr | pagebreak nonbreaking anchor toc | insertdatetime' },\n      format: { title: 'Format', items: 'bold italic underline strikethrough superscript subscript codeformat | formats blockformats fontformats fontsizes align lineheight | forecolor backcolor | removeformat' },\n      tools: { title: 'Tools', items: 'spellchecker spellcheckerlanguage | code wordcount' },\n      table: { title: 'Table', items: 'inserttable | cell row column | tableprops deletetable' },\n      help: { title: 'Help', items: 'help' }\n    }\n}\"\n ></editor>",
                                       "name": "htmlEditorInfotexte",
                                       "type": "html"
                                     }
@@ -435,33 +483,6 @@
                                 {
                                   "class": "col-md-12 align-items-start d-flex",
                                   "components": [
-                                    {
-                                      "buttonStyle": "light",
-                                      "events": {
-                                        "click": [
-                                          {
-                                            "code": "  // Create container for the HTML\n  // [1]\n  var container = document.createElement('div')\n  container.innerHTML = this.strInfotextHTML\n\n  // Hide element\n  // [2]\n  container.style.position = 'fixed'\n  container.style.pointerEvents = 'none'\n  container.style.opacity = '0'\n  container.style.background = 'white'\n\n  // Mount the container to the DOM to make `contentWindow` available\n  // [3]\n  document.body.appendChild(container)\n\n  // Copy to clipboard\n  // [4]\n  window.getSelection().removeAllRanges()\n\n  var range = document.createRange()\n  range.selectNode(container)\n  window.getSelection().addRange(range)\n\n  // [5]\n  document.execCommand('copy')\n  \n  // Remove the container\n  // [6]\n  document.body.removeChild(container)",
-                                            "type": "execute"
-                                          },
-                                          {
-                                            "detail": "Text wurde kopiert",
-                                            "severity": "success",
-                                            "type": "notify"
-                                          }
-                                        ]
-                                      },
-                                      "icon": "content_copy",
-                                      "name": "buttonKopieren",
-                                      "size": "sm",
-                                      "style": {
-                                        "color": "#D86E13",
-                                        "display": "inline-block",
-                                        "float": "none"
-                                      },
-                                      "text": "Kopieren",
-                                      "tooltip": "",
-                                      "type": "button"
-                                    },
                                     {
                                       "buttonStyle": "light",
                                       "buttonType": "button",
@@ -491,12 +512,67 @@
                                       "size": "sm",
                                       "style": {
                                         "color": "#598087",
+                                        "display": "block"
+                                      },
+                                      "text": "Bearbeiten",
+                                      "tooltip": "",
+                                      "type": "button"
+                                    },
+                                    {
+                                      "buttonStyle": "light",
+                                      "buttonType": "button",
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "name": "letzteInfotextID",
+                                            "type": "set",
+                                            "value": "${dsoInfotexte.InfotextID}"
+                                          },
+                                          {
+                                            "code": "${dsoInfotexte.Inhalt} = ${strInfotextHTML}",
+                                            "type": "execute"
+                                          },
+                                          {
+                                            "error": [
+                                              {
+                                                "detail": "Infotext konnten nicht gespeichert werden!",
+                                                "severity": "error",
+                                                "type": "notify"
+                                              }
+                                            ],
+                                            "name": "dbHopeKurseTextbausteine.updateInfotexteHtml",
+                                            "parameters": [
+                                              {
+                                                "name": "InfotextID",
+                                                "value": "${dsoInfotexte.InfotextID}"
+                                              },
+                                              {
+                                                "name": "InfotexteHtml",
+                                                "value": "${dsoInfotexte}"
+                                              }
+                                            ],
+                                            "then": [
+                                              {
+                                                "detail": "Infotext gespeichert",
+                                                "severity": "success",
+                                                "type": "notify"
+                                              }
+                                            ],
+                                            "type": "invoke"
+                                          }
+                                        ]
+                                      },
+                                      "icon": "done",
+                                      "name": "buttonSpeichernInfotext",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#598087",
                                         "display": "block",
                                         "marginLeft": "10px",
                                         "marginRight": "-9px",
                                         "marginTop": "1px"
                                       },
-                                      "text": "Bearbeiten",
+                                      "text": "Speichern",
                                       "tooltip": "",
                                       "type": "button"
                                     }
@@ -550,11 +626,6 @@
   "events": {
     "load": [
       {
-        "name": "strInfotextHTML",
-        "type": "set",
-        "value": "null"
-      },
-      {
         "name": "letzteInfotextID",
         "type": "set",
         "value": "null"
@@ -562,9 +633,54 @@
       {
         "code": "this.gridInfotexte.load();",
         "type": "execute"
+      },
+      {
+        "name": "strInfotextHTML",
+        "type": "set",
+        "value": "null"
+      },
+      {
+        "name": "strInfotextHTML_Vergleich",
+        "type": "set",
+        "value": "null"
+      },
+      {
+        "name": "dsoInfotexteAutoSave",
+        "type": "set",
+        "value": "{\n    \"InfotextID\": 0,\n    \"Inhalt\": \"\"\n}"
+      },
+      {
+        "name": "onFocusInEditor",
+        "type": "set",
+        "value": "() => {     \n\n  console.log('bin drinnen');\n\n}"
+      },
+      {
+        "name": "onFocusOutEditorInfotexte_Temp",
+        "type": "set",
+        "value": "() => {     \n\n  console.log('bin draussen');\n\n  if (this.strInfotextHTML != this.strInfotextHTML_Vergleich) {\n    \n    console.log('bin beim Infotexte speichern', this.dsoInfotexteAutoSave);\n    \n    this.dsoInfotexteAutoSave.InfotextID = this.dsoInfotexte.InfotextID;\n    this.dsoInfotexteAutoSave.Inhalt = this.strInfotextHTML;\n    \n    console.log('bin beim Infotexte speichern Teil2', this.dsoInfotexteAutoSave);\n\n    this.dbHopeKurseTextbausteine.updateInfotexteHtml(null, this.dsoInfotexteAutoSave.InfotextID, this.dsoInfotexteAutoSave)\n    .subscribe((result: any) => {\n      \n      console.log('Infotexte wurden gespeichert');\n      \n      this.notificationService.notify({ severity: \"success\", summary: ``, detail: `Infotext gespeichert` });\n    }, (result: any) => {\n      this.notificationService.notify({ severity: \"error\", summary: ``, detail: `Infotext konnten nicht gespeichert werden!` });\n    });\n  }\n}"
+      },
+      {
+        "name": "onFocusOutEditor",
+        "type": "set",
+        "value": "() => {     \n\n  console.log('bin draussen');\n\n}"
+      },
+      {
+        "name": "bolInfotextHTMLgeaendert",
+        "type": "set",
+        "value": "false"
+      },
+      {
+        "name": "onDblclickEditor",
+        "type": "set",
+        "value": "() => {     \n\n  console.log('das war ein doppel click');\n\n}"
+      },
+      {
+        "name": "onDirtyEditor",
+        "type": "set",
+        "value": "() => {     \n\n  console.log('der Editor onDirty');\n  \n  this.bolInfotextHTMLgeaendert = true;\n\n}"
       }
     ]
   },
   "layout": "Main",
-  "name": "Einstellungen"
+  "name": "Einstellungen_Kopie1"
 }

@@ -63,7 +63,10 @@
     "TextbausteineFilterInfo",
     "TextbausteineDokumente",
     "Handbuch",
-    "Login"
+    "Login",
+    "EinstellungenInfotexteEditor",
+    "Einstellungen_Kopie1",
+    "EinstellungenInfotexteEditor_Kopie1"
   ],
   "port": 8000,
   "security": {
