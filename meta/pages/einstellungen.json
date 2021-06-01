@@ -409,7 +409,7 @@
                                   "components": [
                                     {
                                       "attributes": [],
-                                      "content": "<editor\n  [(ngModel)]=\"strInfotextHTML\"\n  [disabled]=\"true\"\n  apiKey=\"7uaxcp1fzfppm9wca8ei2hnuuf9hv2fl9slezwr9k33gv0pp\"\n  [init]=\"{\n    height: 699,\n    menubar: false,\n    toolbar: false,\n    statusbar: false,\n    language: 'de',\n    browser_spellcheck: true,\n    plugins: [\n      'fullpage'\n    ]\n}\"\n ></editor>",
+                                      "content": "<editor\n  [(ngModel)]=\"strInfotextHTML\"\n  [disabled]=\"true\"\n  apiKey=\"7uaxcp1fzfppm9wca8ei2hnuuf9hv2fl9slezwr9k33gv0pp\"\n  [init]=\"{\n    height: 699,\n    menubar: false,\n    toolbar: false,\n    statusbar: false,\n    language: 'de',\n    browser_spellcheck: true,\n    plugins: [\n      'fullpage'\n    ]\n  }\"\n ></editor>",
                                       "name": "htmlEditorInfotexte",
                                       "type": "html"
                                     }

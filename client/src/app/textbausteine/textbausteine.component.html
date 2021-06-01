@@ -144,37 +144,18 @@
                 <rz-html #htmlEditorTextbausteine>
                   <editor
                     [(ngModel)]="strTextbausteinHTML"
+                    [disabled]="true"
                     apiKey="7uaxcp1fzfppm9wca8ei2hnuuf9hv2fl9slezwr9k33gv0pp"
                     [init]="{
                       height: 699,
-                      menubar: true,
+                      menubar: false,
+                      toolbar: false,
                       statusbar: false,
                       language: 'de',
                       browser_spellcheck: true,
                       plugins: [
-                        'fullpage advlist autolink lists link image charmap print preview anchor',
-                        'searchreplace visualblocks code fullscreen',
-                        'insertdatetime media table paste code help wordcount'
-                      ],
-                      style_formats_merge: false,
-                      style_formats: [
-                        {title: 'HK Standard', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '11pt'}},    
-                        {title: 'HK Überschrift', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '12pt', 'font-weight': 'bold'}},    
-                        {title: 'HK Fußnote', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '9pt'}}
-                      ],
-                      toolbar_mode: 'sliding',
-                      toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | fullscreen | fontselect fontsizeselect | outdent indent | forecolor backcolor | removeformat searchreplace | help',
-                      fontsize_formats: '8pt 9pt 10pt 11pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt',
-                      menu: {
-                        file: { title: 'File', items: 'restoredraft | preview | print ' },
-                        edit: { title: 'Edit', items: 'undo redo | cut copy paste pastetext | selectall | searchreplace' },
-                        view: { title: 'View', items: 'code | visualaid visualchars visualblocks | spellchecker | preview fullscreen' },
-                        insert: { title: 'Insert', items: 'image link media template codesample inserttable | charmap emoticons hr | pagebreak nonbreaking anchor toc | insertdatetime' },
-                        format: { title: 'Format', items: 'bold italic underline strikethrough superscript subscript codeformat | formats blockformats fontformats fontsizes align lineheight | forecolor backcolor | removeformat' },
-                        tools: { title: 'Tools', items: 'spellchecker spellcheckerlanguage | code wordcount' },
-                        table: { title: 'Table', items: 'inserttable | cell row column | tableprops deletetable' },
-                        help: { title: 'Help', items: 'help' }
-                      }         
+                        'fullpage'
+                      ]
                     }"
                    ></editor>
                 </rz-html>
@@ -183,13 +164,13 @@
             <rz-panel-header>
               <div [ngStyle]="{'display': 'inline-block'}" class="row">
                 <div class="col-md-12 align-items-start d-flex" [ngStyle]="{'display': 'flex'}">
-                  <rz-button #buttonKopieren buttonStyle="light" icon="content_copy" size="sm" [style]="{'color': '#D86E13', 'display': 'inline-block', 'float': 'none'}" text="Kopieren" (click)="buttonKopierenClick($event)">
+                  <rz-button #button9 buttonStyle="light" icon="attach_file" size="sm" [style]="{'color': '#D86E13', 'display': 'inline-block'}" text="Dokument" (click)="button9Click($event)">
                   </rz-button>
                   <rz-button #buttonFavorit buttonStyle="light" icon="star_outline" size="sm" [style]="{'color': '#D86E13', 'display': 'inline-block', 'marginLeft': '10px'}" text="Favorit" (click)="buttonFavoritClick($event)">
                   </rz-button>
-                  <rz-button #buttonDokument buttonStyle="light" icon="attach_file" size="sm" [style]="{'color': '#D86E13', 'display': 'inline-block', 'marginLeft': '10px'}" text="Dokument" (click)="buttonDokumentClick($event)">
+                  <rz-button #button10 buttonStyle="light" icon="content_copy" size="sm" [style]="{'color': '#D86E13', 'display': 'block', 'float': 'none', 'marginLeft': '10px'}" text="Kopieren" (click)="button10Click($event)">
                   </rz-button>
-                  <rz-button #buttonSpeichern buttonStyle="light" buttonType="submit" icon="done" size="sm" [style]="{'color': '#598087', 'display': 'inline-block', 'marginLeft': '10px', 'marginRight': '-9px'}" text="Speichern" (click)="buttonSpeichernClick($event)">
+                  <rz-button #button11 buttonStyle="light" buttonType="button" icon="create" size="sm" [style]="{'color': '#598087', 'display': 'block', 'marginLeft': '10px', 'marginRight': '-9px', 'marginTop': '1px'}" text="Bearbeiten" (click)="button11Click($event)">
                   </rz-button>
                 </div>
               </div>
@@ -203,20 +184,20 @@
         <div class="col-md-7" [ngStyle]="{}">
           <rz-panel #panel2 [allowCollapse]="false" [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="{{rstFavoritenCount == 0 ? '' : rstFavoritenCount}} Favoriten">
             <rz-grid #gridFavoriten [allowAdd]="false" [allowColumnResize]="true" [allowDelete]="false" [allowFiltering]="false" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="false" [alwaysShowPager]="false" applyFilterText="Apply" clearFilterText="Clear" [confirmDelete]="false" containsText="Contains" [count]="rstFavoritenCount" [data]="rstFavoriten" emptyText="Keine Favoriten vorhanden" endsWithText="Ends with" equalsText="Equals" filterCaseSensitivity="caseInsensitive" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="22" startsWithText="Starts with" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'height': '700px', 'marginLeft': '-10px', 'marginRight': '-10px', 'marginTop': '-13px'}" (loadData)="gridFavoritenLoadData($event)" (rowDoubleClick)="gridFavoritenRowDoubleClick($event)" (rowSelect)="gridFavoritenRowSelect($event)">
-              <rz-grid-column property="AutorKrzel" title="Autor" width="50px" type="string">
+              <rz-grid-column property="TitelTextbaustein" title="Titel" width="50%" type="string">
               </rz-grid-column>
-              <rz-grid-column property="KursKurzzeichen" title="Kurs" width="50px" type="string">
+              <rz-grid-column property="UntertitelTextbaustein" title="Untertitel" width="30%" type="string">
+              </rz-grid-column>
+              <rz-grid-column property="InfoText" title="Notiz" width="20%" type="string">
+              </rz-grid-column>
+              <rz-grid-column property="AutorKrzel" title="Autor" width="80px" type="string">
+              </rz-grid-column>
+              <rz-grid-column property="KursKurzzeichen" title="Kurs" width="80px" type="string">
               </rz-grid-column>
               <rz-grid-column property="Anrede" title="Anr." width="40px" type="string">
                 <ng-template let-data gridColumnTemplate>
                 {{((data?.Anrede == 'Ohne') ? ('') : (data?.Anrede))}}
                 </ng-template>
-              </rz-grid-column>
-              <rz-grid-column property="TitelTextbaustein" title="Titel" width="40%" type="string">
-              </rz-grid-column>
-              <rz-grid-column property="UntertitelTextbaustein" title="Untertitel" width="30%" type="string">
-              </rz-grid-column>
-              <rz-grid-column property="InfoText" title="Notiz" type="string">
               </rz-grid-column>
             </rz-grid>
             <rz-panel-header>
@@ -232,43 +213,24 @@
           </rz-panel>
         </div>
         <div class="col-md-5" [ngStyle]="{'paddingLeft': '5px'}">
-          <rz-panel #panel3 [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" [text]="dsoBenutzerTextbausteineFavoriten?.TitelTextbaustein">
+          <rz-panel #panel3 [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="Text">
             <div [ngStyle]="{'marginLeft': '-36px', 'marginRight': '-36px', 'marginTop': '-12px'}" class="row">
               <div class="col-md-12" [ngStyle]="{}">
                 <rz-html #htmlEditorTextbausteineFavoriten>
                   <editor
                     [(ngModel)]="strTextbausteinHTMLFavoriten"
+                    [disabled]="true"
                     apiKey="7uaxcp1fzfppm9wca8ei2hnuuf9hv2fl9slezwr9k33gv0pp"
                     [init]="{
                       height: 699,
-                      menubar: true,
+                      menubar: false,
+                      toolbar: false,
                       statusbar: false,
                       language: 'de',
                       browser_spellcheck: true,
                       plugins: [
-                        'fullpage advlist autolink lists link image charmap print preview anchor',
-                        'searchreplace visualblocks code fullscreen',
-                        'insertdatetime media table paste code help wordcount'
-                      ],
-                      style_formats_merge: false,
-                      style_formats: [
-                        {title: 'HK Standard', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '11pt'}},    
-                        {title: 'HK Überschrift', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '12pt', 'font-weight': 'bold'}},    
-                        {title: 'HK Fußnote', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '9pt'}}
-                      ],
-                      toolbar_mode: 'sliding',
-                      toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | fullscreen | fontselect fontsizeselect | outdent indent | forecolor backcolor | removeformat searchreplace | help',
-                      fontsize_formats: '8pt 9pt 10pt 11pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt',
-                      menu: {
-                        file: { title: 'File', items: 'restoredraft | preview | print ' },
-                        edit: { title: 'Edit', items: 'undo redo | cut copy paste pastetext | selectall | searchreplace' },
-                        view: { title: 'View', items: 'code | visualaid visualchars visualblocks | spellchecker | preview fullscreen' },
-                        insert: { title: 'Insert', items: 'image link media template codesample inserttable | charmap emoticons hr | pagebreak nonbreaking anchor toc | insertdatetime' },
-                        format: { title: 'Format', items: 'bold italic underline strikethrough superscript subscript codeformat | formats blockformats fontformats fontsizes align lineheight | forecolor backcolor | removeformat' },
-                        tools: { title: 'Tools', items: 'spellchecker spellcheckerlanguage | code wordcount' },
-                        table: { title: 'Table', items: 'inserttable | cell row column | tableprops deletetable' },
-                        help: { title: 'Help', items: 'help' }
-                      }         
+                        'fullpage'
+                      ]
                     }"
                    ></editor>
                 </rz-html>
@@ -277,9 +239,11 @@
             <rz-panel-header>
               <div [ngStyle]="{'display': 'inline-block'}" class="row">
                 <div class="col-md-12 align-items-start d-flex" [ngStyle]="{'display': 'flex'}">
-                  <rz-button #buttonFavoritenKopieren buttonStyle="light" [disabled]="false" icon="content_copy" size="sm" [style]="{'color': '#D86E13', 'display': 'block', 'fontWeight': 'normal', 'paddingLeft': ''}" text="Kopieren" tooltip="Löschen Autor" (click)="buttonFavoritenKopierenClick($event)">
+                  <rz-button #button6 buttonStyle="light" icon="attach_file" size="sm" [style]="{'color': '#D86E13', 'display': 'inline-block'}" text="Dokument" (click)="button6Click($event)">
                   </rz-button>
-                  <rz-button #buttonFavoritenDokument buttonStyle="light" icon="attach_file" size="sm" [style]="{'color': '#D86E13', 'display': 'block', 'marginLeft': '10px', 'marginRight': '-9px'}" text="Dokument" (click)="buttonFavoritenDokumentClick($event)">
+                  <rz-button #button7 buttonStyle="light" icon="content_copy" size="sm" [style]="{'color': '#D86E13', 'display': 'block', 'float': 'none', 'marginLeft': '10px'}" text="Kopieren" (click)="button7Click($event)">
+                  </rz-button>
+                  <rz-button #button8 buttonStyle="light" buttonType="button" icon="create" size="sm" [style]="{'color': '#598087', 'display': 'block', 'marginLeft': '10px', 'marginRight': '-9px', 'marginTop': '1px'}" text="Bearbeiten" (click)="button8Click($event)">
                   </rz-button>
                 </div>
               </div>
@@ -293,20 +257,20 @@
         <div class="col-md-7" [ngStyle]="{}">
           <rz-panel #panel1 [allowCollapse]="false" [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="{{rstVerlaufCount == 0 ? '' : rstVerlaufCount}} Verlauf">
             <rz-grid #gridVerlauf [allowAdd]="false" [allowColumnResize]="true" [allowDelete]="false" [allowFiltering]="false" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="false" [alwaysShowPager]="false" applyFilterText="Apply" clearFilterText="Clear" [confirmDelete]="false" containsText="Contains" [count]="rstVerlaufCount" [data]="rstVerlauf" emptyText="Kein Verlauf vorhanden" endsWithText="Ends with" equalsText="Equals" filterCaseSensitivity="caseInsensitive" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="22" startsWithText="Starts with" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'height': '700px', 'marginLeft': '-10px', 'marginRight': '-10px', 'marginTop': '-13px'}" (loadData)="gridVerlaufLoadData($event)" (rowDoubleClick)="gridVerlaufRowDoubleClick($event)" (rowSelect)="gridVerlaufRowSelect($event)">
-              <rz-grid-column property="AutorKrzel" title="Autor" width="50px" type="string">
+              <rz-grid-column format="date-time" formatString="dd.MM.yyyy HH:mm" property="Am" title="Am" width="120px" type="string">
               </rz-grid-column>
-              <rz-grid-column property="KursKurzzeichen" title="Kurs" width="50px" type="string">
+              <rz-grid-column property="TitelTextbaustein" title="Titel" width="60%" type="string">
+              </rz-grid-column>
+              <rz-grid-column property="UntertitelTextbaustein" title="Untertitel" width="40%" type="string">
+              </rz-grid-column>
+              <rz-grid-column property="AutorKrzel" title="Autor" width="80px" type="string">
+              </rz-grid-column>
+              <rz-grid-column property="KursKurzzeichen" title="Kurs" width="80px" type="string">
               </rz-grid-column>
               <rz-grid-column property="Anrede" title="Anr." width="40px" type="string">
                 <ng-template let-data gridColumnTemplate>
                 {{((data?.Anrede == 'Ohne') ? ('') : (data?.Anrede))}}
                 </ng-template>
-              </rz-grid-column>
-              <rz-grid-column property="TitelTextbaustein" title="Titel" width="40%" type="string">
-              </rz-grid-column>
-              <rz-grid-column property="UntertitelTextbaustein" title="Untertitel" width="30%" type="string">
-              </rz-grid-column>
-              <rz-grid-column format="date-time" formatString="dd.MM.yyyy HH:mm" property="Am" title="Am" width="120px" type="string">
               </rz-grid-column>
             </rz-grid>
             <rz-panel-header>
@@ -322,43 +286,24 @@
           </rz-panel>
         </div>
         <div class="col-md-5" [ngStyle]="{'paddingLeft': '5px'}">
-          <rz-panel #panel5 [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" [text]="dsoBenutzerTextbausteineVerlauf?.TitelTextbaustein">
+          <rz-panel #panel5 [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="Text">
             <div [ngStyle]="{'marginLeft': '-36px', 'marginRight': '-36px', 'marginTop': '-12px'}" class="row">
               <div class="col-md-12" [ngStyle]="{}">
                 <rz-html #htmlEditorTextbausteineVerlauf>
                   <editor
                     [(ngModel)]="strTextbausteinHTMLVerlauf"
+                    [disabled]="true"
                     apiKey="7uaxcp1fzfppm9wca8ei2hnuuf9hv2fl9slezwr9k33gv0pp"
                     [init]="{
                       height: 699,
-                      menubar: true,
+                      menubar: false,
+                      toolbar: false,
                       statusbar: false,
                       language: 'de',
                       browser_spellcheck: true,
                       plugins: [
-                        'fullpage advlist autolink lists link image charmap print preview anchor',
-                        'searchreplace visualblocks code fullscreen',
-                        'insertdatetime media table paste code help wordcount'
-                      ],
-                      style_formats_merge: false,
-                      style_formats: [
-                        {title: 'HK Standard', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '11pt'}},    
-                        {title: 'HK Überschrift', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '12pt', 'font-weight': 'bold'}},    
-                        {title: 'HK Fußnote', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '9pt'}}
-                      ],
-                      toolbar_mode: 'sliding',
-                      toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | fullscreen | fontselect fontsizeselect | outdent indent | forecolor backcolor | removeformat searchreplace | help',
-                      fontsize_formats: '8pt 9pt 10pt 11pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt',
-                      menu: {
-                        file: { title: 'File', items: 'restoredraft | preview | print ' },
-                        edit: { title: 'Edit', items: 'undo redo | cut copy paste pastetext | selectall | searchreplace' },
-                        view: { title: 'View', items: 'code | visualaid visualchars visualblocks | spellchecker | preview fullscreen' },
-                        insert: { title: 'Insert', items: 'image link media template codesample inserttable | charmap emoticons hr | pagebreak nonbreaking anchor toc | insertdatetime' },
-                        format: { title: 'Format', items: 'bold italic underline strikethrough superscript subscript codeformat | formats blockformats fontformats fontsizes align lineheight | forecolor backcolor | removeformat' },
-                        tools: { title: 'Tools', items: 'spellchecker spellcheckerlanguage | code wordcount' },
-                        table: { title: 'Table', items: 'inserttable | cell row column | tableprops deletetable' },
-                        help: { title: 'Help', items: 'help' }
-                      }         
+                        'fullpage'
+                      ]
                     }"
                    ></editor>
                 </rz-html>
@@ -367,9 +312,11 @@
             <rz-panel-header>
               <div [ngStyle]="{'display': 'inline-block'}" class="row">
                 <div class="col-md-12 align-items-start d-flex" [ngStyle]="{'display': 'flex'}">
-                  <rz-button #buttonVerlaufKopieren buttonStyle="light" [disabled]="false" icon="content_copy" size="sm" [style]="{'color': '#D86E13', 'display': 'block', 'fontWeight': 'normal', 'paddingLeft': ''}" text="Kopieren" tooltip="Löschen Autor" (click)="buttonVerlaufKopierenClick($event)">
+                  <rz-button #button3 buttonStyle="light" icon="attach_file" size="sm" [style]="{'color': '#D86E13', 'display': 'inline-block'}" text="Dokument" (click)="button3Click($event)">
                   </rz-button>
-                  <rz-button #buttonVerlaufDokument buttonStyle="light" icon="attach_file" size="sm" [style]="{'color': '#D86E13', 'display': 'block', 'marginLeft': '10px', 'marginRight': '-9px'}" text="Dokument" (click)="buttonVerlaufDokumentClick($event)">
+                  <rz-button #button4 buttonStyle="light" icon="content_copy" size="sm" [style]="{'color': '#D86E13', 'display': 'block', 'float': 'none', 'marginLeft': '10px'}" text="Kopieren" (click)="button4Click($event)">
+                  </rz-button>
+                  <rz-button #button5 buttonStyle="light" buttonType="button" icon="create" size="sm" [style]="{'color': '#598087', 'display': 'block', 'marginLeft': '10px', 'marginRight': '-9px', 'marginTop': '1px'}" text="Bearbeiten" (click)="button5Click($event)">
                   </rz-button>
                 </div>
               </div>
@@ -380,7 +327,7 @@
     </rz-tabs-item>
     <rz-tabs-item [disabled]="false" [selected]="false" text="Papierkorb" *ngIf="security?.user?.isInRole('Administrator')">
       <div class="row">
-        <div class="col-md-7" [ngStyle]="{'paddingLeft': '5px'}">
+        <div class="col-md-7" [ngStyle]="{}">
           <rz-panel #panel8 [allowCollapse]="false" [style]="{'border': '1px solid #e6ecef', 'height': '750px'}" text="{{rstTextbausteinePapierkorbCount == 0 ? '' : rstTextbausteinePapierkorbCount}} Textbausteine">
             <rz-grid #gridTextbausteinePapierkorb [allowAdd]="false" [allowColumnReorder]="true" [allowColumnResize]="true" [allowDelete]="false" [allowFiltering]="false" [allowMultiSorting]="false" [allowPaging]="true" [allowSorting]="false" [alwaysShowPager]="false" applyFilterText="Apply" clearFilterText="Clear" columnResizeMode="fit" [confirmDelete]="false" containsText="Contains" [count]="rstTextbausteinePapierkorbCount" [data]="rstTextbausteinePapierkorb" emptyText="Keine Textbausteine vorhanden" endsWithText="Ends with" equalsText="Equals" filterCaseSensitivity="caseInsensitive" greaterThanOrEqualsText="Greater than or equals" greaterThanText="Greater than" lessThanOrEqualsText="Less than or equals" lessThanText="Less than" notEqualsText="Not equals" [pageSize]="22" startsWithText="Starts with" [style]="{'border': '1px solid rgba(0, 0, 0, 0)', 'height': '700px', 'marginLeft': '-10px', 'marginRight': '-10px', 'marginTop': '-13px'}" (loadData)="gridTextbausteinePapierkorbLoadData($event)" (rowDoubleClick)="gridTextbausteinePapierkorbRowDoubleClick($event)" (rowSelect)="gridTextbausteinePapierkorbRowSelect($event)">
               <rz-grid-column property="TitelTextbaustein" title="Titel" width="60%" type="string">
@@ -421,37 +368,18 @@
                 <rz-html #htmlEditorTextbausteinePapierkorb>
                   <editor
                     [(ngModel)]="strTextbausteinHTMLPapierkorb"
+                    [disabled]="true"
                     apiKey="7uaxcp1fzfppm9wca8ei2hnuuf9hv2fl9slezwr9k33gv0pp"
                     [init]="{
                       height: 699,
-                      menubar: true,
+                      menubar: false,
+                      toolbar: false,
                       statusbar: false,
                       language: 'de',
                       browser_spellcheck: true,
                       plugins: [
-                        'fullpage advlist autolink lists link image charmap print preview anchor',
-                        'searchreplace visualblocks code fullscreen',
-                        'insertdatetime media table paste code help wordcount'
-                      ],
-                      style_formats_merge: false,
-                      style_formats: [
-                        {title: 'HK Standard', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '11pt'}},    
-                        {title: 'HK Überschrift', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '12pt', 'font-weight': 'bold'}},    
-                        {title: 'HK Fußnote', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '9pt'}}
-                      ],
-                      toolbar_mode: 'sliding',
-                      toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | fullscreen | fontselect fontsizeselect | outdent indent | forecolor backcolor | removeformat searchreplace | help',
-                      fontsize_formats: '8pt 9pt 10pt 11pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt',
-                      menu: {
-                        file: { title: 'File', items: 'restoredraft | preview | print ' },
-                        edit: { title: 'Edit', items: 'undo redo | cut copy paste pastetext | selectall | searchreplace' },
-                        view: { title: 'View', items: 'code | visualaid visualchars visualblocks | spellchecker | preview fullscreen' },
-                        insert: { title: 'Insert', items: 'image link media template codesample inserttable | charmap emoticons hr | pagebreak nonbreaking anchor toc | insertdatetime' },
-                        format: { title: 'Format', items: 'bold italic underline strikethrough superscript subscript codeformat | formats blockformats fontformats fontsizes align lineheight | forecolor backcolor | removeformat' },
-                        tools: { title: 'Tools', items: 'spellchecker spellcheckerlanguage | code wordcount' },
-                        table: { title: 'Table', items: 'inserttable | cell row column | tableprops deletetable' },
-                        help: { title: 'Help', items: 'help' }
-                      }         
+                        'fullpage'
+                      ]
                     }"
                    ></editor>
                 </rz-html>
@@ -462,7 +390,9 @@
                 <div class="col-md-12 align-items-start d-flex" [ngStyle]="{'display': 'flex'}">
                   <rz-button #buttonPapierkorbDokument buttonStyle="light" icon="attach_file" size="sm" [style]="{'color': '#D86E13', 'display': 'inline-block'}" text="Dokument" (click)="buttonPapierkorbDokumentClick($event)">
                   </rz-button>
-                  <rz-button #buttonPapierkorbSpeichern buttonStyle="light" buttonType="submit" icon="done" size="sm" [style]="{'color': '#598087', 'display': 'inline-block', 'marginLeft': '10px', 'marginRight': '-9px'}" text="Speichern" (click)="buttonPapierkorbSpeichernClick($event)">
+                  <rz-button #button2 buttonStyle="light" icon="content_copy" size="sm" [style]="{'color': '#D86E13', 'display': 'block', 'float': 'none', 'marginLeft': '10px'}" text="Kopieren" (click)="button2Click($event)">
+                  </rz-button>
+                  <rz-button #buttonBearbeitenPapierkorbEditor buttonStyle="light" buttonType="button" icon="create" size="sm" [style]="{'color': '#598087', 'display': 'block', 'marginLeft': '10px', 'marginRight': '-9px', 'marginTop': '1px'}" text="Bearbeiten" (click)="buttonBearbeitenPapierkorbEditorClick($event)">
                   </rz-button>
                 </div>
               </div>

@@ -1,14 +1,14 @@
 <rz-content #content1 container="main">
   <div class="row">
     <div class="col-md-12">
-      <rz-panel #panel6 [style]="{'border': '1px solid #e6ecef', 'height': '850px'}" [text]="dsoInfotexteHTML?.Titel">
+      <rz-panel #panel6 [style]="{'border': '1px solid #e6ecef', 'height': '850px'}" [text]="dsoTextbausteine?.TitelTextbaustein">
         <div [ngStyle]="{'marginLeft': '-36px', 'marginRight': '-36px', 'marginTop': '-12px'}" class="row">
           <div class="col-md-12" [ngStyle]="{}">
-            <rz-html #htmlEditorInfotexte>
+            <rz-html #htmlEditorTextbausteine>
               <editor
                 *ngIf="bolEditorLaden"
                 (onDirty)="onDirtyEditor()"
-                [(ngModel)]="strInfotextHTML"
+                [(ngModel)]="strTextbausteinHTML"
                 apiKey="7uaxcp1fzfppm9wca8ei2hnuuf9hv2fl9slezwr9k33gv0pp"
                 [init]="{
                   height: 799,
@@ -58,7 +58,7 @@
   </div>
   <div [ngStyle]="{'paddingTop': '15px'}" class="row">
     <div class="col offset-sm-3 justify-content-end d-flex" [ngStyle]="{}">
-      <rz-button #button0 buttonStyle="success" buttonType="button" icon="done" text="Speichern" (click)="button0Click($event)">
+      <rz-button #buttonSpeichern buttonStyle="success" buttonType="button" icon="done" text="Speichern" (click)="buttonSpeichernClick($event)">
       </rz-button>
       <rz-button #button1 buttonStyle="light" [style]="{'marginLeft': '1rem'}" text="Abbruch" (click)="button1Click($event)">
       </rz-button>

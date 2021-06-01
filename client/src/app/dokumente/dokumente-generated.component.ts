@@ -19,6 +19,7 @@ import { ButtonComponent } from '@radzen/angular/dist/button';
 import { HtmlComponent } from '@radzen/angular/dist/html';
 
 import { ConfigService } from '../config.service';
+import { DokumenteEditorComponent } from '../dokumente-editor/dokumente-editor.component';
 import { TextbausteineDokumenteComponent } from '../textbausteine-dokumente/textbausteine-dokumente.component';
 import { MeldungLoeschenComponent } from '../meldung-loeschen/meldung-loeschen.component';
 import { TextbausteineBearbeitenComponent } from '../textbausteine-bearbeiten/textbausteine-bearbeiten.component';
@@ -40,7 +41,8 @@ export class DokumenteGenerated implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('panel9') panel9: PanelComponent;
   @ViewChild('html1') html1: HtmlComponent;
   @ViewChild('buttonDokumenteDokument') buttonDokumenteDokument: ButtonComponent;
-  @ViewChild('buttonPapierkorbSpeichern') buttonPapierkorbSpeichern: ButtonComponent;
+  @ViewChild('buttonKopieren') buttonKopieren: ButtonComponent;
+  @ViewChild('buttonBearbeitenEditor') buttonBearbeitenEditor: ButtonComponent;
 
   router: Router;
 
@@ -193,14 +195,44 @@ export class DokumenteGenerated implements AfterViewInit, OnInit, OnDestroy {
     this.dialogService.open(TextbausteineDokumenteComponent, { parameters: {TextbausteinNr: this.dsoTextbausteineDokumente.TextbausteinNr}, width: 900, title: `Textbaustein Dokument` });
   }
 
-  buttonPapierkorbSpeichernClick(event: any) {
-    this.dsoTextbausteineDokumente.TextbausteinHTML = this.strTextbausteinDokumenteHTML
+  buttonKopierenClick(event: any) {
+      // Create container for the HTML
+  // [1]
+  var container = document.createElement('div')
+  container.innerHTML = this.strTextbausteinDokumenteHTML
 
-    this.dbHopeKurseTextbausteine.updateIbsiTextbausteine(null, this.dsoTextbausteineDokumente.TextbausteinNr, this.dsoTextbausteineDokumente)
-    .subscribe((result: any) => {
-      this.notificationService.notify({ severity: "success", summary: ``, detail: `Textbaustein gespeichert` });
-    }, (result: any) => {
-      this.notificationService.notify({ severity: "error", summary: ``, detail: `Textbaustein konnte nicht gespeichert werden!` });
-    });
+  // Hide element
+  // [2]
+  container.style.position = 'fixed'
+  container.style.pointerEvents = 'none'
+  container.style.opacity = '0'
+  container.style.background = 'white'
+
+  // Mount the container to the DOM to make `contentWindow` available
+  // [3]
+  document.body.appendChild(container)
+
+  // Copy to clipboard
+  // [4]
+  window.getSelection().removeAllRanges()
+
+  var range = document.createRange()
+  range.selectNode(container)
+  window.getSelection().addRange(range)
+
+  // [5]
+  document.execCommand('copy')
+  
+  // Remove the container
+  // [6]
+  document.body.removeChild(container)
+
+    this.notificationService.notify({ severity: "success", summary: ``, detail: `Text wurde kopiert` });
+  }
+
+  buttonBearbeitenEditorClick(event: any) {
+    this.letzteTextbausteinNr = this.dsoTextbausteineDokumente.TextbausteinNr;
+
+    this.dialogService.open(DokumenteEditorComponent, { parameters: {TextbausteinNr: this.dsoTextbausteineDokumente.TextbausteinNr}, width: 720, title: `Bearbeiten` });
   }
 }

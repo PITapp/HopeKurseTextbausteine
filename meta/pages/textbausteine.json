@@ -927,8 +927,14 @@
                                         "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
                                       },
                                       {
-                                        "code": "if (this.rstTextbausteine.find(p => p.TextbausteinNr == this.letzteTextbausteinNr) != null) {\n    // letzteTextbausteinNr wurde in rstTextbausteine gefunden\n    this.gridTextbausteine.onSelect(this.rstTextbausteine.find(p => p.TextbausteinNr == this.letzteTextbausteinNr));\n} else {\n    // letzteTextbausteinNr wurde in rstTextbausteine NICHT gefunden\n    this.letzteTextbausteinNr = null;\n    this.strTextbausteinHTML = null;\n    this.dsoTextbausteine = null;\n}",
+                                        "code": "if (this.rstTextbausteine.find(p => p.TextbausteinNr == this.letzteTextbausteinNr) != null) {\n    // letzteTextbausteinNr wurde in rstTextbausteine gefunden\n    this.gridTextbausteine.onSelect(this.rstTextbausteine.find(p => p.TextbausteinNr == this.letzteTextbausteinNr));\n} else {\n    // letzteTextbausteinNr wurde in rstTextbausteine NICHT gefunden\n    this.letzteTextbausteinNr = null;\n    // this.strTextbausteinHTML = null;\n    // this.dsoTextbausteine = null;\n    this.gridTextbausteine.onSelect(this.rstTextbausteine[0]);\n}",
                                         "type": "execute"
+                                      },
+                                      {
+                                        "condition": "${rstTextbausteineCount} == 0",
+                                        "name": "strTextbausteinHTML",
+                                        "type": "set",
+                                        "value": "null"
                                       }
                                     ],
                                     "type": "invoke"
@@ -1278,7 +1284,7 @@
                                   "class": "col-md-12",
                                   "components": [
                                     {
-                                      "content": "<editor\n  [(ngModel)]=\"strTextbausteinHTML\"\n  apiKey=\"7uaxcp1fzfppm9wca8ei2hnuuf9hv2fl9slezwr9k33gv0pp\"\n  [init]=\"{\n    height: 699,\n    menubar: true,\n    statusbar: false,\n    language: 'de',\n    browser_spellcheck: true,\n    plugins: [\n      'fullpage advlist autolink lists link image charmap print preview anchor',\n      'searchreplace visualblocks code fullscreen',\n      'insertdatetime media table paste code help wordcount'\n    ],\n    style_formats_merge: false,\n    style_formats: [\n      {title: 'HK Standard', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '11pt'}},    \n      {title: 'HK Überschrift', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '12pt', 'font-weight': 'bold'}},    \n      {title: 'HK Fußnote', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '9pt'}}\n    ],\n    toolbar_mode: 'sliding',\n    toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | fullscreen | fontselect fontsizeselect | outdent indent | forecolor backcolor | removeformat searchreplace | help',\n    fontsize_formats: '8pt 9pt 10pt 11pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt',\n    menu: {\n      file: { title: 'File', items: 'restoredraft | preview | print ' },\n      edit: { title: 'Edit', items: 'undo redo | cut copy paste pastetext | selectall | searchreplace' },\n      view: { title: 'View', items: 'code | visualaid visualchars visualblocks | spellchecker | preview fullscreen' },\n      insert: { title: 'Insert', items: 'image link media template codesample inserttable | charmap emoticons hr | pagebreak nonbreaking anchor toc | insertdatetime' },\n      format: { title: 'Format', items: 'bold italic underline strikethrough superscript subscript codeformat | formats blockformats fontformats fontsizes align lineheight | forecolor backcolor | removeformat' },\n      tools: { title: 'Tools', items: 'spellchecker spellcheckerlanguage | code wordcount' },\n      table: { title: 'Table', items: 'inserttable | cell row column | tableprops deletetable' },\n      help: { title: 'Help', items: 'help' }\n    }         \n  }\"\n ></editor>",
+                                      "content": "<editor\n  [(ngModel)]=\"strTextbausteinHTML\"\n  [disabled]=\"true\"\n  apiKey=\"7uaxcp1fzfppm9wca8ei2hnuuf9hv2fl9slezwr9k33gv0pp\"\n  [init]=\"{\n    height: 699,\n    menubar: false,\n    toolbar: false,\n    statusbar: false,\n    language: 'de',\n    browser_spellcheck: true,\n    plugins: [\n      'fullpage'\n    ]\n  }\"\n ></editor>",
                                       "name": "htmlEditorTextbausteine",
                                       "type": "html"
                                     }
@@ -1308,45 +1314,32 @@
                                       "events": {
                                         "click": [
                                           {
-                                            "code": "  // Create container for the HTML\n  // [1]\n  var container = document.createElement('div')\n  container.innerHTML = this.strTextbausteinHTML\n\n  // Hide element\n  // [2]\n  container.style.position = 'fixed'\n  container.style.pointerEvents = 'none'\n  container.style.opacity = '0'\n  container.style.background = 'white'\n\n  // Mount the container to the DOM to make `contentWindow` available\n  // [3]\n  document.body.appendChild(container)\n\n  // Copy to clipboard\n  // [4]\n  window.getSelection().removeAllRanges()\n\n  var range = document.createRange()\n  range.selectNode(container)\n  window.getSelection().addRange(range)\n\n  // [5]\n  document.execCommand('copy')\n  \n  // Remove the container\n  // [6]\n  document.body.removeChild(container)",
-                                            "type": "execute"
+                                            "name": "letzteTextbausteinNr",
+                                            "type": "set",
+                                            "value": "${dsoTextbausteine.TextbausteinNr}"
                                           },
                                           {
-                                            "detail": "Text wurde kopiert",
-                                            "severity": "success",
-                                            "type": "notify"
-                                          },
-                                          {
-                                            "code": "var date = new Date();\n\nthis.dsoVerlauf.Am = new Date(Date.UTC(date.getFullYear(),\n                                       date.getMonth(),\n                                       date.getDate(),\n                                       date.getHours(),\n                                       date.getMinutes(),\n                                       date.getSeconds(),\n                                       date.getMilliseconds() ))\n\n${dsoVerlauf.BenutzerID} = ${dsoBenutzer.BenutzerID};\n${dsoVerlauf.TextbausteinNr} = ${dsoTextbausteine.TextbausteinNr};",
-                                            "type": "execute"
-                                          },
-                                          {
-                                            "name": "dbHopeKurseTextbausteine.createBenutzerTextbausteineVerlauf",
                                             "parameters": [
                                               {
-                                                "name": "BenutzerTextbausteineVerlauf",
-                                                "value": "${dsoVerlauf}"
+                                                "name": "TextbausteinNr",
+                                                "value": "${dsoTextbausteine.TextbausteinNr}"
                                               }
                                             ],
-                                            "then": [
-                                              {
-                                                "code": "this.gridVerlauf.load();",
-                                                "type": "execute"
-                                              }
-                                            ],
-                                            "type": "invoke"
+                                            "path": "textbausteine-dokumente",
+                                            "title": "Textbaustein Dokument",
+                                            "type": "popup",
+                                            "width": 900
                                           }
                                         ]
                                       },
-                                      "icon": "content_copy",
-                                      "name": "buttonKopieren",
+                                      "icon": "attach_file",
+                                      "name": "button9",
                                       "size": "sm",
                                       "style": {
                                         "color": "#D86E13",
-                                        "display": "inline-block",
-                                        "float": "none"
+                                        "display": "inline-block"
                                       },
-                                      "text": "Kopieren",
+                                      "text": "Dokument",
                                       "tooltip": "",
                                       "type": "button"
                                     },
@@ -1407,39 +1400,32 @@
                                       "events": {
                                         "click": [
                                           {
-                                            "parameters": [
-                                              {
-                                                "name": "TextbausteinNr",
-                                                "value": "${dsoTextbausteine.TextbausteinNr}"
-                                              }
-                                            ],
-                                            "path": "textbausteine-dokumente",
-                                            "title": "Textbaustein Dokument",
-                                            "type": "popup",
-                                            "width": 900
+                                            "code": "  // Create container for the HTML\n  // [1]\n  var container = document.createElement('div')\n  container.innerHTML = this.strTextbausteinHTML\n\n  // Hide element\n  // [2]\n  container.style.position = 'fixed'\n  container.style.pointerEvents = 'none'\n  container.style.opacity = '0'\n  container.style.background = 'white'\n\n  // Mount the container to the DOM to make `contentWindow` available\n  // [3]\n  document.body.appendChild(container)\n\n  // Copy to clipboard\n  // [4]\n  window.getSelection().removeAllRanges()\n\n  var range = document.createRange()\n  range.selectNode(container)\n  window.getSelection().addRange(range)\n\n  // [5]\n  document.execCommand('copy')\n  \n  // Remove the container\n  // [6]\n  document.body.removeChild(container)",
+                                            "type": "execute"
                                           },
                                           {
-                                            "name": "letzteTextbausteinNr",
-                                            "type": "set",
-                                            "value": "${dsoTextbausteine.TextbausteinNr}"
+                                            "detail": "Text wurde kopiert",
+                                            "severity": "success",
+                                            "type": "notify"
                                           }
                                         ]
                                       },
-                                      "icon": "attach_file",
-                                      "name": "buttonDokument",
+                                      "icon": "content_copy",
+                                      "name": "button10",
                                       "size": "sm",
                                       "style": {
                                         "color": "#D86E13",
-                                        "display": "inline-block",
+                                        "display": "block",
+                                        "float": "none",
                                         "marginLeft": "10px"
                                       },
-                                      "text": "Dokument",
+                                      "text": "Kopieren",
                                       "tooltip": "",
                                       "type": "button"
                                     },
                                     {
                                       "buttonStyle": "light",
-                                      "buttonType": "submit",
+                                      "buttonType": "button",
                                       "events": {
                                         "click": [
                                           {
@@ -1448,81 +1434,52 @@
                                             "value": "${dsoTextbausteine.TextbausteinNr}"
                                           },
                                           {
-                                            "code": "${dsoTextbausteine.TextbausteinHTML} = ${strTextbausteinHTML}",
-                                            "type": "execute"
-                                          },
-                                          {
-                                            "error": [
-                                              {
-                                                "detail": "Textbaustein konnte nicht gespeichert werden!",
-                                                "severity": "error",
-                                                "type": "notify"
-                                              }
-                                            ],
-                                            "name": "dbHopeKurseTextbausteine.updateIbsiTextbausteine",
                                             "parameters": [
                                               {
                                                 "name": "TextbausteinNr",
                                                 "value": "${dsoTextbausteine.TextbausteinNr}"
-                                              },
-                                              {
-                                                "name": "IbsiTextbausteine",
-                                                "value": "${dsoTextbausteine}"
                                               }
                                             ],
+                                            "path": "textbausteine-editor",
                                             "then": [
                                               {
-                                                "detail": "Textbaustein gespeichert",
-                                                "severity": "success",
-                                                "type": "notify"
-                                              },
-                                              {
-                                                "code": "var date = new Date();\n\nthis.dsoVerlauf.Am = new Date(Date.UTC(date.getFullYear(),\n                                       date.getMonth(),\n                                       date.getDate(),\n                                       date.getHours(),\n                                       date.getMinutes(),\n                                       date.getSeconds(),\n                                       date.getMilliseconds() ))\n\n${dsoVerlauf.BenutzerID} = ${dsoBenutzer.BenutzerID};\n${dsoVerlauf.TextbausteinNr} = ${dsoTextbausteine.TextbausteinNr};",
+                                                "code": "this.gridFavoriten.load();",
                                                 "type": "execute"
                                               },
                                               {
-                                                "name": "dbHopeKurseTextbausteine.createBenutzerTextbausteineVerlauf",
-                                                "parameters": [
-                                                  {
-                                                    "name": "BenutzerTextbausteineVerlauf",
-                                                    "value": "${dsoVerlauf}"
-                                                  }
-                                                ],
-                                                "then": [
-                                                  {
-                                                    "code": "this.gridVerlauf.load();",
-                                                    "type": "execute"
-                                                  }
-                                                ],
-                                                "type": "invoke"
+                                                "code": "this.gridVerlauf.load();",
+                                                "type": "execute"
                                               }
                                             ],
-                                            "type": "invoke"
+                                            "title": "Bearbeiten",
+                                            "type": "popup",
+                                            "width": 720
                                           }
                                         ]
                                       },
-                                      "icon": "done",
-                                      "name": "buttonSpeichern",
+                                      "icon": "create",
+                                      "name": "button11",
                                       "size": "sm",
                                       "style": {
                                         "color": "#598087",
-                                        "display": "inline-block",
+                                        "display": "block",
                                         "marginLeft": "10px",
-                                        "marginRight": "-9px"
+                                        "marginRight": "-9px",
+                                        "marginTop": "1px"
                                       },
-                                      "text": "Speichern",
+                                      "text": "Bearbeiten",
                                       "tooltip": "",
                                       "type": "button"
                                     }
                                   ],
-                                  "name": "col2",
+                                  "name": "col13",
                                   "style": {
                                     "display": "flex"
                                   },
                                   "type": "col"
                                 }
                               ],
-                              "name": "row0",
+                              "name": "row5",
                               "style": {
                                 "display": "inline-block"
                               },
@@ -1577,32 +1534,10 @@
                               "columns": [
                                 {
                                   "format": "",
-                                  "property": "AutorKrzel",
-                                  "title": "Autor",
-                                  "type": "string",
-                                  "width": "50px"
-                                },
-                                {
-                                  "format": "",
-                                  "property": "KursKurzzeichen",
-                                  "title": "Kurs",
-                                  "type": "string",
-                                  "width": "50px"
-                                },
-                                {
-                                  "format": "",
-                                  "property": "Anrede",
-                                  "template": "${data.Anrede == 'Ohne' ? '' : data.Anrede}",
-                                  "title": "Anr.",
-                                  "type": "string",
-                                  "width": "40px"
-                                },
-                                {
-                                  "format": "",
                                   "property": "TitelTextbaustein",
                                   "title": "Titel",
                                   "type": "string",
-                                  "width": "40%"
+                                  "width": "50%"
                                 },
                                 {
                                   "format": "",
@@ -1615,7 +1550,30 @@
                                   "format": "",
                                   "property": "InfoText",
                                   "title": "Notiz",
-                                  "type": "string"
+                                  "type": "string",
+                                  "width": "20%"
+                                },
+                                {
+                                  "format": "",
+                                  "property": "AutorKrzel",
+                                  "title": "Autor",
+                                  "type": "string",
+                                  "width": "80px"
+                                },
+                                {
+                                  "format": "",
+                                  "property": "KursKurzzeichen",
+                                  "title": "Kurs",
+                                  "type": "string",
+                                  "width": "80px"
+                                },
+                                {
+                                  "format": "",
+                                  "property": "Anrede",
+                                  "template": "${data.Anrede == 'Ohne' ? '' : data.Anrede}",
+                                  "title": "Anr.",
+                                  "type": "string",
+                                  "width": "40px"
                                 }
                               ],
                               "confirmDelete": false,
@@ -1651,6 +1609,10 @@
                                       {
                                         "name": "$filter",
                                         "value": "Benutzername eq '${security.user.name}'"
+                                      },
+                                      {
+                                        "name": "$orderby",
+                                        "value": "${event.orderby || 'TitelTextbaustein'}"
                                       }
                                     ],
                                     "then": [
@@ -1665,7 +1627,7 @@
                                         "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
                                       },
                                       {
-                                        "code": "this.gridFavoriten.onSelect(this.rstFavoriten[0]);",
+                                        "code": "this.gridFavoriten.onSelect(this.rstFavoriten[0]);\n\nif (this.rstFavoriten.find(p => p.TextbausteinNr == this.letzteTextbausteinNrFavoriten) != null) {\n    // letzteTextbausteinNr wurde in rstTextbausteine gefunden\n    this.gridFavoriten.onSelect(this.rstFavoriten.find(p => p.TextbausteinNr == this.letzteTextbausteinNrFavoriten));\n} else {\n    // letzteTextbausteinNr wurde in rstTextbausteine NICHT gefunden\n    this.letzteTextbausteinNrFavoriten = null;\n    this.gridFavoriten.onSelect(this.rstFavoriten[0]);\n}",
                                         "error": [],
                                         "type": "execute"
                                       },
@@ -1680,6 +1642,11 @@
                                   }
                                 ],
                                 "rowDoubleClick": [
+                                  {
+                                    "name": "letzteTextbausteinNrFavoriten",
+                                    "type": "set",
+                                    "value": "${event.TextbausteinNr}"
+                                  },
                                   {
                                     "parameters": [
                                       {
@@ -1862,7 +1829,7 @@
                                   "class": "col-md-12",
                                   "components": [
                                     {
-                                      "content": "<editor\n  [(ngModel)]=\"strTextbausteinHTMLFavoriten\"\n  apiKey=\"7uaxcp1fzfppm9wca8ei2hnuuf9hv2fl9slezwr9k33gv0pp\"\n  [init]=\"{\n    height: 699,\n    menubar: true,\n    statusbar: false,\n    language: 'de',\n    browser_spellcheck: true,\n    plugins: [\n      'fullpage advlist autolink lists link image charmap print preview anchor',\n      'searchreplace visualblocks code fullscreen',\n      'insertdatetime media table paste code help wordcount'\n    ],\n    style_formats_merge: false,\n    style_formats: [\n      {title: 'HK Standard', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '11pt'}},    \n      {title: 'HK Überschrift', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '12pt', 'font-weight': 'bold'}},    \n      {title: 'HK Fußnote', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '9pt'}}\n    ],\n    toolbar_mode: 'sliding',\n    toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | fullscreen | fontselect fontsizeselect | outdent indent | forecolor backcolor | removeformat searchreplace | help',\n    fontsize_formats: '8pt 9pt 10pt 11pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt',\n    menu: {\n      file: { title: 'File', items: 'restoredraft | preview | print ' },\n      edit: { title: 'Edit', items: 'undo redo | cut copy paste pastetext | selectall | searchreplace' },\n      view: { title: 'View', items: 'code | visualaid visualchars visualblocks | spellchecker | preview fullscreen' },\n      insert: { title: 'Insert', items: 'image link media template codesample inserttable | charmap emoticons hr | pagebreak nonbreaking anchor toc | insertdatetime' },\n      format: { title: 'Format', items: 'bold italic underline strikethrough superscript subscript codeformat | formats blockformats fontformats fontsizes align lineheight | forecolor backcolor | removeformat' },\n      tools: { title: 'Tools', items: 'spellchecker spellcheckerlanguage | code wordcount' },\n      table: { title: 'Table', items: 'inserttable | cell row column | tableprops deletetable' },\n      help: { title: 'Help', items: 'help' }\n    }         \n  }\"\n ></editor>",
+                                      "content": "<editor\n  [(ngModel)]=\"strTextbausteinHTMLFavoriten\"\n  [disabled]=\"true\"\n  apiKey=\"7uaxcp1fzfppm9wca8ei2hnuuf9hv2fl9slezwr9k33gv0pp\"\n  [init]=\"{\n    height: 699,\n    menubar: false,\n    toolbar: false,\n    statusbar: false,\n    language: 'de',\n    browser_spellcheck: true,\n    plugins: [\n      'fullpage'\n    ]\n  }\"\n ></editor>",
                                       "name": "htmlEditorTextbausteineFavoriten",
                                       "type": "html"
                                     }
@@ -1889,37 +1856,13 @@
                                   "components": [
                                     {
                                       "buttonStyle": "light",
-                                      "disabled": false,
                                       "events": {
                                         "click": [
                                           {
-                                            "code": "  // Create container for the HTML\n  // [1]\n  var container = document.createElement('div')\n  container.innerHTML = this.strTextbausteinHTMLFavoriten\n\n  // Hide element\n  // [2]\n  container.style.position = 'fixed'\n  container.style.pointerEvents = 'none'\n  container.style.opacity = '0'\n  container.style.background = 'white'\n\n  // Mount the container to the DOM to make `contentWindow` available\n  // [3]\n  document.body.appendChild(container)\n\n  // Copy to clipboard\n  // [4]\n  window.getSelection().removeAllRanges()\n\n  var range = document.createRange()\n  range.selectNode(container)\n  window.getSelection().addRange(range)\n\n  // [5]\n  document.execCommand('copy')\n  \n  // Remove the container\n  // [6]\n  document.body.removeChild(container)",
-                                            "type": "execute"
+                                            "name": "letzteTextbausteinNrFavoriten",
+                                            "type": "set",
+                                            "value": "${dsoBenutzerTextbausteineFavoriten.TextbausteinNr}"
                                           },
-                                          {
-                                            "detail": "Text wurde kopiert",
-                                            "severity": "success",
-                                            "type": "notify"
-                                          }
-                                        ]
-                                      },
-                                      "icon": "content_copy",
-                                      "name": "buttonFavoritenKopieren",
-                                      "size": "sm",
-                                      "style": {
-                                        "color": "#D86E13",
-                                        "display": "block",
-                                        "fontWeight": "normal",
-                                        "paddingLeft": ""
-                                      },
-                                      "text": "Kopieren",
-                                      "tooltip": "Löschen Autor",
-                                      "type": "button"
-                                    },
-                                    {
-                                      "buttonStyle": "light",
-                                      "events": {
-                                        "click": [
                                           {
                                             "parameters": [
                                               {
@@ -1935,27 +1878,97 @@
                                         ]
                                       },
                                       "icon": "attach_file",
-                                      "name": "buttonFavoritenDokument",
+                                      "name": "button6",
                                       "size": "sm",
                                       "style": {
                                         "color": "#D86E13",
-                                        "display": "block",
-                                        "marginLeft": "10px",
-                                        "marginRight": "-9px"
+                                        "display": "inline-block"
                                       },
                                       "text": "Dokument",
                                       "tooltip": "",
                                       "type": "button"
+                                    },
+                                    {
+                                      "buttonStyle": "light",
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "code": "  // Create container for the HTML\n  // [1]\n  var container = document.createElement('div')\n  container.innerHTML = this.strTextbausteinHTMLFavoriten\n\n  // Hide element\n  // [2]\n  container.style.position = 'fixed'\n  container.style.pointerEvents = 'none'\n  container.style.opacity = '0'\n  container.style.background = 'white'\n\n  // Mount the container to the DOM to make `contentWindow` available\n  // [3]\n  document.body.appendChild(container)\n\n  // Copy to clipboard\n  // [4]\n  window.getSelection().removeAllRanges()\n\n  var range = document.createRange()\n  range.selectNode(container)\n  window.getSelection().addRange(range)\n\n  // [5]\n  document.execCommand('copy')\n  \n  // Remove the container\n  // [6]\n  document.body.removeChild(container)",
+                                            "type": "execute"
+                                          },
+                                          {
+                                            "detail": "Text wurde kopiert",
+                                            "severity": "success",
+                                            "type": "notify"
+                                          }
+                                        ]
+                                      },
+                                      "icon": "content_copy",
+                                      "name": "button7",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#D86E13",
+                                        "display": "block",
+                                        "float": "none",
+                                        "marginLeft": "10px"
+                                      },
+                                      "text": "Kopieren",
+                                      "tooltip": "",
+                                      "type": "button"
+                                    },
+                                    {
+                                      "buttonStyle": "light",
+                                      "buttonType": "button",
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "name": "letzteTextbausteinNrFavoriten",
+                                            "type": "set",
+                                            "value": "${dsoBenutzerTextbausteineFavoriten.TextbausteinNr}"
+                                          },
+                                          {
+                                            "parameters": [
+                                              {
+                                                "name": "TextbausteinNr",
+                                                "value": "${dsoBenutzerTextbausteineFavoriten.TextbausteinNr}"
+                                              }
+                                            ],
+                                            "path": "textbausteine-editor",
+                                            "then": [
+                                              {
+                                                "code": "this.gridFavoriten.load();",
+                                                "type": "execute"
+                                              }
+                                            ],
+                                            "title": "Bearbeiten",
+                                            "type": "popup",
+                                            "width": 720
+                                          }
+                                        ]
+                                      },
+                                      "icon": "create",
+                                      "name": "button8",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#598087",
+                                        "display": "block",
+                                        "marginLeft": "10px",
+                                        "marginRight": "-9px",
+                                        "marginTop": "1px"
+                                      },
+                                      "text": "Bearbeiten",
+                                      "tooltip": "",
+                                      "type": "button"
                                     }
                                   ],
-                                  "name": "col2",
+                                  "name": "col12",
                                   "style": {
                                     "display": "flex"
                                   },
                                   "type": "col"
                                 }
                               ],
-                              "name": "row0",
+                              "name": "row5",
                               "style": {
                                 "display": "inline-block"
                               },
@@ -1967,7 +1980,7 @@
                             "border": "1px solid #e6ecef",
                             "height": "750px"
                           },
-                          "text": "${dsoBenutzerTextbausteineFavoriten.TitelTextbaustein}",
+                          "text": "Text",
                           "type": "panel"
                         }
                       ],
@@ -2009,42 +2022,6 @@
                               "clearFilterText": "Clear",
                               "columns": [
                                 {
-                                  "format": "",
-                                  "property": "AutorKrzel",
-                                  "title": "Autor",
-                                  "type": "string",
-                                  "width": "50px"
-                                },
-                                {
-                                  "format": "",
-                                  "property": "KursKurzzeichen",
-                                  "title": "Kurs",
-                                  "type": "string",
-                                  "width": "50px"
-                                },
-                                {
-                                  "format": "",
-                                  "property": "Anrede",
-                                  "template": "${data.Anrede == 'Ohne' ? '' : data.Anrede}",
-                                  "title": "Anr.",
-                                  "type": "string",
-                                  "width": "40px"
-                                },
-                                {
-                                  "format": "",
-                                  "property": "TitelTextbaustein",
-                                  "title": "Titel",
-                                  "type": "string",
-                                  "width": "40%"
-                                },
-                                {
-                                  "format": "",
-                                  "property": "UntertitelTextbaustein",
-                                  "title": "Untertitel",
-                                  "type": "string",
-                                  "width": "30%"
-                                },
-                                {
                                   "filterProperty": "",
                                   "footerTemplate": "",
                                   "format": "date-time",
@@ -2055,6 +2032,42 @@
                                   "title": "Am",
                                   "type": "string",
                                   "width": "120px"
+                                },
+                                {
+                                  "format": "",
+                                  "property": "TitelTextbaustein",
+                                  "title": "Titel",
+                                  "type": "string",
+                                  "width": "60%"
+                                },
+                                {
+                                  "format": "",
+                                  "property": "UntertitelTextbaustein",
+                                  "title": "Untertitel",
+                                  "type": "string",
+                                  "width": "40%"
+                                },
+                                {
+                                  "format": "",
+                                  "property": "AutorKrzel",
+                                  "title": "Autor",
+                                  "type": "string",
+                                  "width": "80px"
+                                },
+                                {
+                                  "format": "",
+                                  "property": "KursKurzzeichen",
+                                  "title": "Kurs",
+                                  "type": "string",
+                                  "width": "80px"
+                                },
+                                {
+                                  "format": "",
+                                  "property": "Anrede",
+                                  "template": "${data.Anrede == 'Ohne' ? '' : data.Anrede}",
+                                  "title": "Anr.",
+                                  "type": "string",
+                                  "width": "40px"
                                 }
                               ],
                               "confirmDelete": false,
@@ -2089,7 +2102,11 @@
                                       },
                                       {
                                         "name": "$filter",
-                                        "value": "Benutzername eq '${security.user.name}'"
+                                        "value": [
+                                          {
+                                            "value": "Benutzername eq '${security.user.name}'"
+                                          }
+                                        ]
                                       }
                                     ],
                                     "then": [
@@ -2104,7 +2121,7 @@
                                         "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
                                       },
                                       {
-                                        "code": "this.gridVerlauf.onSelect(this.rstVerlauf[0]);",
+                                        "code": "if (this.rstVerlauf.find(p => p.TextbausteinNr == this.letzteTextbausteinNrVerlauf) != null) {\n    // letzteTextbausteinNr wurde in rstTextbausteine gefunden\n    this.gridVerlauf.onSelect(this.rstVerlauf.find(p => p.TextbausteinNr == this.letzteTextbausteinNrVerlauf));\n} else {\n    // letzteTextbausteinNr wurde in rstTextbausteine NICHT gefunden\n    this.letzteTextbausteinNrVerlauf = null;\n    this.gridVerlauf.onSelect(this.rstVerlauf[0]);\n}",
                                         "type": "execute"
                                       },
                                       {
@@ -2118,6 +2135,11 @@
                                   }
                                 ],
                                 "rowDoubleClick": [
+                                  {
+                                    "name": "letzteTextbausteinNrVerlauf",
+                                    "type": "set",
+                                    "value": "${event.TextbausteinNr}"
+                                  },
                                   {
                                     "parameters": [
                                       {
@@ -2300,7 +2322,7 @@
                                   "class": "col-md-12",
                                   "components": [
                                     {
-                                      "content": "<editor\n  [(ngModel)]=\"strTextbausteinHTMLVerlauf\"\n  apiKey=\"7uaxcp1fzfppm9wca8ei2hnuuf9hv2fl9slezwr9k33gv0pp\"\n  [init]=\"{\n    height: 699,\n    menubar: true,\n    statusbar: false,\n    language: 'de',\n    browser_spellcheck: true,\n    plugins: [\n      'fullpage advlist autolink lists link image charmap print preview anchor',\n      'searchreplace visualblocks code fullscreen',\n      'insertdatetime media table paste code help wordcount'\n    ],\n    style_formats_merge: false,\n    style_formats: [\n      {title: 'HK Standard', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '11pt'}},    \n      {title: 'HK Überschrift', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '12pt', 'font-weight': 'bold'}},    \n      {title: 'HK Fußnote', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '9pt'}}\n    ],\n    toolbar_mode: 'sliding',\n    toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | fullscreen | fontselect fontsizeselect | outdent indent | forecolor backcolor | removeformat searchreplace | help',\n    fontsize_formats: '8pt 9pt 10pt 11pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt',\n    menu: {\n      file: { title: 'File', items: 'restoredraft | preview | print ' },\n      edit: { title: 'Edit', items: 'undo redo | cut copy paste pastetext | selectall | searchreplace' },\n      view: { title: 'View', items: 'code | visualaid visualchars visualblocks | spellchecker | preview fullscreen' },\n      insert: { title: 'Insert', items: 'image link media template codesample inserttable | charmap emoticons hr | pagebreak nonbreaking anchor toc | insertdatetime' },\n      format: { title: 'Format', items: 'bold italic underline strikethrough superscript subscript codeformat | formats blockformats fontformats fontsizes align lineheight | forecolor backcolor | removeformat' },\n      tools: { title: 'Tools', items: 'spellchecker spellcheckerlanguage | code wordcount' },\n      table: { title: 'Table', items: 'inserttable | cell row column | tableprops deletetable' },\n      help: { title: 'Help', items: 'help' }\n    }         \n  }\"\n ></editor>",
+                                      "content": "<editor\n  [(ngModel)]=\"strTextbausteinHTMLVerlauf\"\n  [disabled]=\"true\"\n  apiKey=\"7uaxcp1fzfppm9wca8ei2hnuuf9hv2fl9slezwr9k33gv0pp\"\n  [init]=\"{\n    height: 699,\n    menubar: false,\n    toolbar: false,\n    statusbar: false,\n    language: 'de',\n    browser_spellcheck: true,\n    plugins: [\n      'fullpage'\n    ]\n  }\"\n ></editor>",
                                       "name": "htmlEditorTextbausteineVerlauf",
                                       "type": "html"
                                     }
@@ -2327,37 +2349,13 @@
                                   "components": [
                                     {
                                       "buttonStyle": "light",
-                                      "disabled": false,
                                       "events": {
                                         "click": [
                                           {
-                                            "code": "  // Create container for the HTML\n  // [1]\n  var container = document.createElement('div')\n  container.innerHTML = this.strTextbausteinHTMLVerlauf\n\n  // Hide element\n  // [2]\n  container.style.position = 'fixed'\n  container.style.pointerEvents = 'none'\n  container.style.opacity = '0'\n  container.style.background = 'white'\n\n  // Mount the container to the DOM to make `contentWindow` available\n  // [3]\n  document.body.appendChild(container)\n\n  // Copy to clipboard\n  // [4]\n  window.getSelection().removeAllRanges()\n\n  var range = document.createRange()\n  range.selectNode(container)\n  window.getSelection().addRange(range)\n\n  // [5]\n  document.execCommand('copy')\n  \n  // Remove the container\n  // [6]\n  document.body.removeChild(container)",
-                                            "type": "execute"
+                                            "name": "letzteTextbausteinNrVerlauf",
+                                            "type": "set",
+                                            "value": "${dsoBenutzerTextbausteineVerlauf.TextbausteinNr}"
                                           },
-                                          {
-                                            "detail": "Text wurde kopiert",
-                                            "severity": "success",
-                                            "type": "notify"
-                                          }
-                                        ]
-                                      },
-                                      "icon": "content_copy",
-                                      "name": "buttonVerlaufKopieren",
-                                      "size": "sm",
-                                      "style": {
-                                        "color": "#D86E13",
-                                        "display": "block",
-                                        "fontWeight": "normal",
-                                        "paddingLeft": ""
-                                      },
-                                      "text": "Kopieren",
-                                      "tooltip": "Löschen Autor",
-                                      "type": "button"
-                                    },
-                                    {
-                                      "buttonStyle": "light",
-                                      "events": {
-                                        "click": [
                                           {
                                             "parameters": [
                                               {
@@ -2373,27 +2371,97 @@
                                         ]
                                       },
                                       "icon": "attach_file",
-                                      "name": "buttonVerlaufDokument",
+                                      "name": "button3",
                                       "size": "sm",
                                       "style": {
                                         "color": "#D86E13",
-                                        "display": "block",
-                                        "marginLeft": "10px",
-                                        "marginRight": "-9px"
+                                        "display": "inline-block"
                                       },
                                       "text": "Dokument",
                                       "tooltip": "",
                                       "type": "button"
+                                    },
+                                    {
+                                      "buttonStyle": "light",
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "code": "  // Create container for the HTML\n  // [1]\n  var container = document.createElement('div')\n  container.innerHTML = this.strTextbausteinHTMLVerlauf\n\n  // Hide element\n  // [2]\n  container.style.position = 'fixed'\n  container.style.pointerEvents = 'none'\n  container.style.opacity = '0'\n  container.style.background = 'white'\n\n  // Mount the container to the DOM to make `contentWindow` available\n  // [3]\n  document.body.appendChild(container)\n\n  // Copy to clipboard\n  // [4]\n  window.getSelection().removeAllRanges()\n\n  var range = document.createRange()\n  range.selectNode(container)\n  window.getSelection().addRange(range)\n\n  // [5]\n  document.execCommand('copy')\n  \n  // Remove the container\n  // [6]\n  document.body.removeChild(container)",
+                                            "type": "execute"
+                                          },
+                                          {
+                                            "detail": "Text wurde kopiert",
+                                            "severity": "success",
+                                            "type": "notify"
+                                          }
+                                        ]
+                                      },
+                                      "icon": "content_copy",
+                                      "name": "button4",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#D86E13",
+                                        "display": "block",
+                                        "float": "none",
+                                        "marginLeft": "10px"
+                                      },
+                                      "text": "Kopieren",
+                                      "tooltip": "",
+                                      "type": "button"
+                                    },
+                                    {
+                                      "buttonStyle": "light",
+                                      "buttonType": "button",
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "name": "letzteTextbausteinNrVerlauf",
+                                            "type": "set",
+                                            "value": "${dsoBenutzerTextbausteineVerlauf.TextbausteinNr}"
+                                          },
+                                          {
+                                            "parameters": [
+                                              {
+                                                "name": "TextbausteinNr",
+                                                "value": "${dsoBenutzerTextbausteineVerlauf.TextbausteinNr}"
+                                              }
+                                            ],
+                                            "path": "textbausteine-editor",
+                                            "then": [
+                                              {
+                                                "code": "this.gridVerlauf.load();",
+                                                "type": "execute"
+                                              }
+                                            ],
+                                            "title": "Bearbeiten",
+                                            "type": "popup",
+                                            "width": 720
+                                          }
+                                        ]
+                                      },
+                                      "icon": "create",
+                                      "name": "button5",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#598087",
+                                        "display": "block",
+                                        "marginLeft": "10px",
+                                        "marginRight": "-9px",
+                                        "marginTop": "1px"
+                                      },
+                                      "text": "Bearbeiten",
+                                      "tooltip": "",
+                                      "type": "button"
                                     }
                                   ],
-                                  "name": "col2",
+                                  "name": "col3",
                                   "style": {
                                     "display": "flex"
                                   },
                                   "type": "col"
                                 }
                               ],
-                              "name": "row0",
+                              "name": "row5",
                               "style": {
                                 "display": "inline-block"
                               },
@@ -2405,7 +2473,7 @@
                             "border": "1px solid #e6ecef",
                             "height": "750px"
                           },
-                          "text": "${dsoBenutzerTextbausteineVerlauf.TitelTextbaustein}",
+                          "text": "Text",
                           "type": "panel"
                         }
                       ],
@@ -2552,12 +2620,27 @@
                                         "name": "rstTextbausteinePapierkorbCount",
                                         "type": "set",
                                         "value": "event.top != null && event.skip != null ? result['@odata.count'] : ${result.value.length}"
+                                      },
+                                      {
+                                        "code": "if (this.rstTextbausteinePapierkorb.find(p => p.TextbausteinNr == this.letzteTextbausteinNrPapierkorb) != null) {\n    // letzteTextbausteinNrPapierkorb wurde in rstTextbausteinePapierkorb gefunden\n    this.gridTextbausteinePapierkorb.onSelect(this.rstTextbausteinePapierkorb.find(p => p.TextbausteinNr == this.letzteTextbausteinNrPapierkorb));\n} else {\n    // letzteTextbausteinNrPapierkorb wurde in rstTextbausteinePapierkorb NICHT gefunden\n    this.letzteTextbausteinNrPapierkorb = null;\n    this.gridTextbausteinePapierkorb.onSelect(this.rstTextbausteinePapierkorb[0]);\n}",
+                                        "type": "execute"
+                                      },
+                                      {
+                                        "condition": "${rstTextbausteinePapierkorbCount} == 0",
+                                        "name": "strTextbausteinHTMLPapierkorb",
+                                        "type": "set",
+                                        "value": "null"
                                       }
                                     ],
                                     "type": "invoke"
                                   }
                                 ],
                                 "rowDoubleClick": [
+                                  {
+                                    "name": "letzteTextbausteinNrPapierkorb",
+                                    "type": "set",
+                                    "value": "${event.TextbausteinNr}"
+                                  },
                                   {
                                     "parameters": [
                                       {
@@ -2724,9 +2807,7 @@
                         }
                       ],
                       "name": "col42",
-                      "style": {
-                        "paddingLeft": "5px"
-                      },
+                      "style": {},
                       "type": "col"
                     },
                     {
@@ -2740,7 +2821,7 @@
                                   "class": "col-md-12",
                                   "components": [
                                     {
-                                      "content": "<editor\n  [(ngModel)]=\"strTextbausteinHTMLPapierkorb\"\n  apiKey=\"7uaxcp1fzfppm9wca8ei2hnuuf9hv2fl9slezwr9k33gv0pp\"\n  [init]=\"{\n    height: 699,\n    menubar: true,\n    statusbar: false,\n    language: 'de',\n    browser_spellcheck: true,\n    plugins: [\n      'fullpage advlist autolink lists link image charmap print preview anchor',\n      'searchreplace visualblocks code fullscreen',\n      'insertdatetime media table paste code help wordcount'\n    ],\n    style_formats_merge: false,\n    style_formats: [\n      {title: 'HK Standard', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '11pt'}},    \n      {title: 'HK Überschrift', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '12pt', 'font-weight': 'bold'}},    \n      {title: 'HK Fußnote', inline: 'span', styles: { 'font-family': 'Arial', 'font-size': '9pt'}}\n    ],\n    toolbar_mode: 'sliding',\n    toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist | fullscreen | fontselect fontsizeselect | outdent indent | forecolor backcolor | removeformat searchreplace | help',\n    fontsize_formats: '8pt 9pt 10pt 11pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt',\n    menu: {\n      file: { title: 'File', items: 'restoredraft | preview | print ' },\n      edit: { title: 'Edit', items: 'undo redo | cut copy paste pastetext | selectall | searchreplace' },\n      view: { title: 'View', items: 'code | visualaid visualchars visualblocks | spellchecker | preview fullscreen' },\n      insert: { title: 'Insert', items: 'image link media template codesample inserttable | charmap emoticons hr | pagebreak nonbreaking anchor toc | insertdatetime' },\n      format: { title: 'Format', items: 'bold italic underline strikethrough superscript subscript codeformat | formats blockformats fontformats fontsizes align lineheight | forecolor backcolor | removeformat' },\n      tools: { title: 'Tools', items: 'spellchecker spellcheckerlanguage | code wordcount' },\n      table: { title: 'Table', items: 'inserttable | cell row column | tableprops deletetable' },\n      help: { title: 'Help', items: 'help' }\n    }         \n  }\"\n ></editor>",
+                                      "content": "<editor\n  [(ngModel)]=\"strTextbausteinHTMLPapierkorb\"\n  [disabled]=\"true\"\n  apiKey=\"7uaxcp1fzfppm9wca8ei2hnuuf9hv2fl9slezwr9k33gv0pp\"\n  [init]=\"{\n    height: 699,\n    menubar: false,\n    toolbar: false,\n    statusbar: false,\n    language: 'de',\n    browser_spellcheck: true,\n    plugins: [\n      'fullpage'\n    ]\n  }\"\n ></editor>",
                                       "name": "htmlEditorTextbausteinePapierkorb",
                                       "type": "html"
                                     }
@@ -2770,6 +2851,11 @@
                                       "events": {
                                         "click": [
                                           {
+                                            "name": "letzteTextbausteinNrPapierkorb",
+                                            "type": "set",
+                                            "value": "${dsoTextbausteinePapierkorb.TextbausteinNr}"
+                                          },
+                                          {
                                             "parameters": [
                                               {
                                                 "name": "TextbausteinNr",
@@ -2796,53 +2882,73 @@
                                     },
                                     {
                                       "buttonStyle": "light",
-                                      "buttonType": "submit",
                                       "events": {
                                         "click": [
                                           {
-                                            "code": "${dsoTextbausteinePapierkorb.TextbausteinHTML} = ${strTextbausteinHTMLPapierkorb}",
+                                            "code": "  // Create container for the HTML\n  // [1]\n  var container = document.createElement('div')\n  container.innerHTML = this.strTextbausteinHTMLPapierkorb\n\n  // Hide element\n  // [2]\n  container.style.position = 'fixed'\n  container.style.pointerEvents = 'none'\n  container.style.opacity = '0'\n  container.style.background = 'white'\n\n  // Mount the container to the DOM to make `contentWindow` available\n  // [3]\n  document.body.appendChild(container)\n\n  // Copy to clipboard\n  // [4]\n  window.getSelection().removeAllRanges()\n\n  var range = document.createRange()\n  range.selectNode(container)\n  window.getSelection().addRange(range)\n\n  // [5]\n  document.execCommand('copy')\n  \n  // Remove the container\n  // [6]\n  document.body.removeChild(container)",
                                             "type": "execute"
                                           },
                                           {
-                                            "error": [
-                                              {
-                                                "detail": "Textbaustein konnte nicht gespeichert werden!",
-                                                "severity": "error",
-                                                "type": "notify"
-                                              }
-                                            ],
-                                            "name": "dbHopeKurseTextbausteine.updateIbsiTextbausteine",
+                                            "detail": "Text wurde kopiert",
+                                            "severity": "success",
+                                            "type": "notify"
+                                          }
+                                        ]
+                                      },
+                                      "icon": "content_copy",
+                                      "name": "button2",
+                                      "size": "sm",
+                                      "style": {
+                                        "color": "#D86E13",
+                                        "display": "block",
+                                        "float": "none",
+                                        "marginLeft": "10px"
+                                      },
+                                      "text": "Kopieren",
+                                      "tooltip": "",
+                                      "type": "button"
+                                    },
+                                    {
+                                      "buttonStyle": "light",
+                                      "buttonType": "button",
+                                      "events": {
+                                        "click": [
+                                          {
+                                            "name": "letzteTextbausteinNrPapierkorb",
+                                            "type": "set",
+                                            "value": "${dsoTextbausteinePapierkorb.TextbausteinNr}"
+                                          },
+                                          {
                                             "parameters": [
                                               {
                                                 "name": "TextbausteinNr",
                                                 "value": "${dsoTextbausteinePapierkorb.TextbausteinNr}"
-                                              },
-                                              {
-                                                "name": "IbsiTextbausteine",
-                                                "value": "${dsoTextbausteinePapierkorb}"
                                               }
                                             ],
+                                            "path": "textbausteine-editor",
                                             "then": [
                                               {
-                                                "detail": "Textbaustein gespeichert",
-                                                "severity": "success",
-                                                "type": "notify"
+                                                "code": "this.gridTextbausteinePapierkorb.load();",
+                                                "type": "execute"
                                               }
                                             ],
-                                            "type": "invoke"
+                                            "title": "Bearbeiten",
+                                            "type": "popup",
+                                            "width": 720
                                           }
                                         ]
                                       },
-                                      "icon": "done",
-                                      "name": "buttonPapierkorbSpeichern",
+                                      "icon": "create",
+                                      "name": "buttonBearbeitenPapierkorbEditor",
                                       "size": "sm",
                                       "style": {
                                         "color": "#598087",
-                                        "display": "inline-block",
+                                        "display": "block",
                                         "marginLeft": "10px",
-                                        "marginRight": "-9px"
+                                        "marginRight": "-9px",
+                                        "marginTop": "1px"
                                       },
-                                      "text": "Speichern",
+                                      "text": "Bearbeiten",
                                       "tooltip": "",
                                       "type": "button"
                                     }
@@ -3027,11 +3133,6 @@
         "value": "{BenutzerID: '', Am: '', TextbausteinNr: ''}"
       },
       {
-        "name": "dsoVerlauf",
-        "type": "set",
-        "value": "{BenutzerID: '', Am: '', TextbausteinNr: ''}"
-      },
-      {
         "name": "onKeyEnterFilterText",
         "type": "set",
         "value": "() => {\n    this.dbHopeKurseTextbausteine.updateBenutzer(null, this.dsoBenutzer.BenutzerID, this.dsoBenutzer)\n    .subscribe((result: any) => {\n\n    }, (result: any) => {\n\n    });\n    \n    this.gridTextbausteine.load();\n }"
@@ -3058,6 +3159,26 @@
       },
       {
         "name": "strTextbausteinHTMLPapierkorb",
+        "type": "set",
+        "value": "null"
+      },
+      {
+        "name": "letzteTextbausteinNr",
+        "type": "set",
+        "value": "null"
+      },
+      {
+        "name": "letzteTextbausteinNrFavoriten",
+        "type": "set",
+        "value": "null"
+      },
+      {
+        "name": "letzteTextbausteinNrVerlauf",
+        "type": "set",
+        "value": "null"
+      },
+      {
+        "name": "letzteTextbausteinNrPapierkorb",
         "type": "set",
         "value": "null"
       }

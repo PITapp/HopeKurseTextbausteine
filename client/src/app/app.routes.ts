@@ -43,6 +43,8 @@ import { LoginComponent } from './login/login.component';
 import { EinstellungenInfotexteEditorComponent } from './einstellungen-infotexte-editor/einstellungen-infotexte-editor.component';
 import { EinstellungenKopie1Component } from './einstellungen-kopie-1/einstellungen-kopie-1.component';
 import { EinstellungenInfotexteEditorKopie1Component } from './einstellungen-infotexte-editor-kopie-1/einstellungen-infotexte-editor-kopie-1.component';
+import { DokumenteEditorComponent } from './dokumente-editor/dokumente-editor.component';
+import { TextbausteineEditorComponent } from './textbausteine-editor/textbausteine-editor.component';
 
 import { SecurityService } from './security.service';
 import { AuthGuard } from './auth.guard';
@@ -363,6 +365,22 @@ export const routes: Routes = [
           roles: ['Authenticated'],
         },
         component: EinstellungenInfotexteEditorKopie1Component
+      },
+      {
+        path: 'dokumente-editor/:TextbausteinNr',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: DokumenteEditorComponent
+      },
+      {
+        path: 'textbausteine-editor/:TextbausteinNr',
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Authenticated'],
+        },
+        component: TextbausteineEditorComponent
       },
     ]
   },
