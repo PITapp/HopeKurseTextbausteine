@@ -204,7 +204,7 @@ console.log(this.dsoVerlauf);
       .subscribe((result: any) => {
         this.dialogRef.close(result);
       }, (result: any) => {
-
+        this.dialogRef.close(result);
       });
     }, (result: any) => {
       this.notificationService.notify({ severity: "error", summary: ``, detail: `Textbaustein konnte nicht gespeichert werden!` });
