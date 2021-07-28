@@ -133,6 +133,7 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
   valDokumente: any;
   bolAnzeigenTitelTextbaustein: any;
   dsoFavoriten: any;
+  dsoVerlauf: any;
   onKeyEnterFilterText: any;
   onFocusOutFilterText: any;
   strTextbausteinHTML: any;
@@ -244,11 +245,15 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
 
     this.gridVerlauf.load();
 
-    this.gridTextbausteinePapierkorb.load();
+    if (this.security.user.isInRole('Administrator')) {
+      this.gridTextbausteinePapierkorb.load();
+    }
 
     this.bolAnzeigenTitelTextbaustein = true;
 
     this.dsoFavoriten = {BenutzerID: '', Am: '', TextbausteinNr: ''};
+
+    this.dsoVerlauf = {BenutzerID: '', Am: '', TextbausteinNr: ''};
 
     this.onKeyEnterFilterText = () => {
     this.dbHopeKurseTextbausteine.updateBenutzer(null, this.dsoBenutzer.BenutzerID, this.dsoBenutzer)
@@ -376,7 +381,7 @@ export class TextbausteineGenerated implements AfterViewInit, OnInit, OnDestroy 
   }
 
   buttonFilterInfoClick(event: any) {
-    this.dialogService.open(TextbausteineFilterInfoComponent, { parameters: {}, title: `Info Filter` });
+    this.dialogService.open(TextbausteineFilterInfoComponent, { parameters: {}, title: `Info Textbausteine filtern` });
   }
 
   buttonFilterLoeschenClick(event: any) {
@@ -411,32 +416,73 @@ this.dsoBenutzer.FilterDokument = null
       var strFilterTitelUndText = this.dsoBenutzer.FilterTitelUndText.toLowerCase();
 
       if (strFilterTitelUndText.indexOf('"') == -1) {
-        // Keine Anführungszeichen gefunden
-        var strFilterTitelUndTextSplit = strFilterTitelUndText.split(" ");
-        console.log("strFilterTitelUndTextSplit=", strFilterTitelUndTextSplit);
+        // KEINE Anführungszeichen gefunden
 
         // AND und Klammer öffnen
-        this.strFilterTextbausteine = this.strFilterTextbausteine + ' and ( '
+        this.strFilterTextbausteine = this.strFilterTextbausteine + ' and ( ';
 
-        for (var i = 0; i < strFilterTitelUndTextSplit.length; i++) {
-          console.log(i, '=', strFilterTitelUndTextSplit[i]);
-          this.strFilterTextbausteine = this.strFilterTextbausteine + 'contains(tolower(TitelTextbaustein),\'' + strFilterTitelUndTextSplit[i] + '\') OR contains(tolower(UntertitelTextbaustein),\'' + strFilterTitelUndTextSplit[i] + '\') OR contains(tolower(TextbausteinHTML),\'' + strFilterTitelUndTextSplit[i] + '\') OR contains(tolower(InfoText),\'' + strFilterTitelUndTextSplit[i] + '\')';
-          this.strFilterTextbausteine = this.strFilterTextbausteine + ' OR '
-        }
+        // Prüfen, ob die Wörter mit Plus verbunden sind
+        if (strFilterTitelUndText.indexOf('+') == -1) {
+            // KEIN Plus gefunden
+            var strFilterTitelUndTextSplit = strFilterTitelUndText.split(" ");
+            
+            for (var i = 0; i < strFilterTitelUndTextSplit.length; i++) {
+              this.strFilterTextbausteine = this.strFilterTextbausteine + 'contains(tolower(TitelTextbaustein),\'' + strFilterTitelUndTextSplit[i] + '\') OR contains(tolower(UntertitelTextbaustein),\'' + strFilterTitelUndTextSplit[i] + '\') OR contains(tolower(TextbausteinHTML),\'' + strFilterTitelUndTextSplit[i] + '\') OR contains(tolower(InfoText),\'' + strFilterTitelUndTextSplit[i] + '\')';
+              this.strFilterTextbausteine = this.strFilterTextbausteine + ' OR ';
+            }
 
-        // Letztes OR entfernen
-        this.strFilterTextbausteine = this.strFilterTextbausteine.substring(0, this.strFilterTextbausteine.length - 4);
+            // Letztes OR entfernen
+            this.strFilterTextbausteine = this.strFilterTextbausteine.substring(0, this.strFilterTextbausteine.length - 4);
+        } else {
+            // Plus gefunden
+            var strFilterTitelUndTextSplit = strFilterTitelUndText.split("+");
+
+            // ------- TitelTextbaustein -------
+            this.strFilterTextbausteine = this.strFilterTextbausteine + ' ( ';
+            for (var i = 0; i < strFilterTitelUndTextSplit.length; i++) {
+              this.strFilterTextbausteine = this.strFilterTextbausteine + 'contains(tolower(TitelTextbaustein),\'' + strFilterTitelUndTextSplit[i] + '\')';
+              this.strFilterTextbausteine = this.strFilterTextbausteine + ' AND ';
+            }
+            // Letztes AND entfernen
+            this.strFilterTextbausteine = this.strFilterTextbausteine.substring(0, this.strFilterTextbausteine.length - 5);
+            this.strFilterTextbausteine = this.strFilterTextbausteine + ' ) OR ';
+
+            // ------- UntertitelTextbaustein -------
+            this.strFilterTextbausteine = this.strFilterTextbausteine + ' ( ';
+            for (var i = 0; i < strFilterTitelUndTextSplit.length; i++) {
+              this.strFilterTextbausteine = this.strFilterTextbausteine + 'contains(tolower(UntertitelTextbaustein),\'' + strFilterTitelUndTextSplit[i] + '\')';
+              this.strFilterTextbausteine = this.strFilterTextbausteine + ' AND ';
+            }
+            // Letztes AND entfernen
+            this.strFilterTextbausteine = this.strFilterTextbausteine.substring(0, this.strFilterTextbausteine.length - 5);
+            this.strFilterTextbausteine = this.strFilterTextbausteine + ' ) OR ';
+
+            // ------- TextbausteinHTML -------
+            this.strFilterTextbausteine = this.strFilterTextbausteine + ' ( ';
+            for (var i = 0; i < strFilterTitelUndTextSplit.length; i++) {
+              this.strFilterTextbausteine = this.strFilterTextbausteine + 'contains(tolower(TextbausteinHTML),\'' + strFilterTitelUndTextSplit[i] + '\')';
+              this.strFilterTextbausteine = this.strFilterTextbausteine + ' AND ';
+            }
+            // Letztes AND entfernen
+            this.strFilterTextbausteine = this.strFilterTextbausteine.substring(0, this.strFilterTextbausteine.length - 5);
+            this.strFilterTextbausteine = this.strFilterTextbausteine + ' ) OR ';
+
+            // ------- InfoText -------
+            this.strFilterTextbausteine = this.strFilterTextbausteine + ' ( ';
+            for (var i = 0; i < strFilterTitelUndTextSplit.length; i++) {
+              this.strFilterTextbausteine = this.strFilterTextbausteine + 'contains(tolower(InfoText),\'' + strFilterTitelUndTextSplit[i] + '\')';
+              this.strFilterTextbausteine = this.strFilterTextbausteine + ' AND ';
+            }
+            // Letztes AND entfernen
+            this.strFilterTextbausteine = this.strFilterTextbausteine.substring(0, this.strFilterTextbausteine.length - 5);
+            this.strFilterTextbausteine = this.strFilterTextbausteine + ' ) ';
+          }
 
         // Klammer schließen
-        this.strFilterTextbausteine = this.strFilterTextbausteine + ' ) '
-
-        console.log(this.strFilterTextbausteine);
-
+        this.strFilterTextbausteine = this.strFilterTextbausteine + ' ) ';
       } else {
         // Anführungszeichen gefunden
         strFilterTitelUndText = strFilterTitelUndText.replace(/"/g, '');
-        console.log("strFilterTitelUndText=", strFilterTitelUndText);
-
         this.strFilterTextbausteine = this.strFilterTextbausteine + ' and ( contains(tolower(TitelTextbaustein),\'' + strFilterTitelUndText + '\') OR contains(tolower(UntertitelTextbaustein),\'' + strFilterTitelUndText + '\') OR contains(tolower(TextbausteinHTML),\'' + strFilterTitelUndText + '\') OR contains(tolower(InfoText),\'' + strFilterTitelUndText + '\') )';
       }
     }
@@ -661,6 +707,26 @@ this.dsoFavoriten.TextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
   document.body.removeChild(container)
 
     this.notificationService.notify({ severity: "success", summary: ``, detail: `Text wurde kopiert` });
+
+    var date = new Date();
+
+this.dsoVerlauf.Am = new Date(Date.UTC(date.getFullYear(),
+                                         date.getMonth(),
+                                         date.getDate(),
+                                         date.getHours(),
+                                         date.getMinutes(),
+                                         date.getSeconds(),
+                                         date.getMilliseconds() ))
+
+this.dsoVerlauf.BenutzerID = this.dsoBenutzer.BenutzerID;
+this.dsoVerlauf.TextbausteinNr = this.dsoTextbausteine.TextbausteinNr;
+
+    this.dbHopeKurseTextbausteine.createBenutzerTextbausteineVerlauf(null, this.dsoVerlauf)
+    .subscribe((result: any) => {
+      this.gridVerlauf.load();
+    }, (result: any) => {
+
+    });
   }
 
   button11Click(event: any) {

@@ -702,9 +702,8 @@
                                       "events": {
                                         "click": [
                                           {
-                                            "height": "",
                                             "path": "textbausteine-filter-info",
-                                            "title": "Info Filter",
+                                            "title": "Info Textbausteine filtern",
                                             "type": "popup"
                                           }
                                         ]
@@ -716,7 +715,7 @@
                                         "color": "#D86E13",
                                         "display": "block",
                                         "fontWeight": "normal",
-                                        "paddingLeft": ""
+                                        "marginLeft": "10px"
                                       },
                                       "text": "Info",
                                       "tooltip": "",
@@ -870,7 +869,7 @@
                                     "value": "''"
                                   },
                                   {
-                                    "code": "if (this.dsoBenutzer.FilterTextbausteinArtCode) {\n      this.strFilterTextbausteine = this.strFilterTextbausteine + 'TextbausteinArtCode eq \\'' + this.dsoBenutzer.FilterTextbausteinArtCode + '\\''\n    } else {\n      this.strFilterTextbausteine = this.strFilterTextbausteine + 'TextbausteinArtCode ne null'\n    }\n\n    if (this.dsoBenutzer.FilterTitelUndText) {\n      var strFilterTitelUndText = this.dsoBenutzer.FilterTitelUndText.toLowerCase();\n\n      if (strFilterTitelUndText.indexOf('\"') == -1) {\n        // Keine Anführungszeichen gefunden\n        var strFilterTitelUndTextSplit = strFilterTitelUndText.split(\" \");\n        console.log(\"strFilterTitelUndTextSplit=\", strFilterTitelUndTextSplit);\n\n        // AND und Klammer öffnen\n        this.strFilterTextbausteine = this.strFilterTextbausteine + ' and ( '\n\n        for (var i = 0; i < strFilterTitelUndTextSplit.length; i++) {\n          console.log(i, '=', strFilterTitelUndTextSplit[i]);\n          this.strFilterTextbausteine = this.strFilterTextbausteine + 'contains(tolower(TitelTextbaustein),\\'' + strFilterTitelUndTextSplit[i] + '\\') OR contains(tolower(UntertitelTextbaustein),\\'' + strFilterTitelUndTextSplit[i] + '\\') OR contains(tolower(TextbausteinHTML),\\'' + strFilterTitelUndTextSplit[i] + '\\') OR contains(tolower(InfoText),\\'' + strFilterTitelUndTextSplit[i] + '\\')';\n          this.strFilterTextbausteine = this.strFilterTextbausteine + ' OR '\n        }\n\n        // Letztes OR entfernen\n        this.strFilterTextbausteine = this.strFilterTextbausteine.substring(0, this.strFilterTextbausteine.length - 4);\n\n        // Klammer schließen\n        this.strFilterTextbausteine = this.strFilterTextbausteine + ' ) '\n\n        console.log(this.strFilterTextbausteine);\n\n      } else {\n        // Anführungszeichen gefunden\n        strFilterTitelUndText = strFilterTitelUndText.replace(/\"/g, '');\n        console.log(\"strFilterTitelUndText=\", strFilterTitelUndText);\n\n        this.strFilterTextbausteine = this.strFilterTextbausteine + ' and ( contains(tolower(TitelTextbaustein),\\'' + strFilterTitelUndText + '\\') OR contains(tolower(UntertitelTextbaustein),\\'' + strFilterTitelUndText + '\\') OR contains(tolower(TextbausteinHTML),\\'' + strFilterTitelUndText + '\\') OR contains(tolower(InfoText),\\'' + strFilterTitelUndText + '\\') )';\n      }\n    }\n\n    if (this.dsoBenutzer.FilterKursNr) {\n      this.strFilterTextbausteine = this.strFilterTextbausteine + ' and KursNr eq ' + this.dsoBenutzer.FilterKursNr\n    }\n\n    if (this.dsoBenutzer.FilterAutorNr) {\n      this.strFilterTextbausteine = this.strFilterTextbausteine + ' and AutorNr eq ' + this.dsoBenutzer.FilterAutorNr\n    }\n\n    if (this.dsoBenutzer.FilterThemaNummer) {\n      this.strFilterTextbausteine = this.strFilterTextbausteine + ' and ThemaNummer eq ' + this.dsoBenutzer.FilterThemaNummer\n    }\n\n    if (this.dsoBenutzer.FilterAnrede) {\n      this.strFilterTextbausteine = this.strFilterTextbausteine + ' and Anrede eq \\'' + this.dsoBenutzer.FilterAnrede + '\\''\n    }\n\n    if (this.dsoBenutzer.FilterDokument == 'MitDokument') {\n      this.strFilterTextbausteine = this.strFilterTextbausteine + ' and length(DokumentTitel) gt 0'\n    }\n\n    if (this.dsoBenutzer.FilterDokument == 'OhneDokument') {\n      this.strFilterTextbausteine = this.strFilterTextbausteine + ' and length(DokumentTitel) eq null'\n    }",
+                                    "code": "if (this.dsoBenutzer.FilterTextbausteinArtCode) {\n      this.strFilterTextbausteine = this.strFilterTextbausteine + 'TextbausteinArtCode eq \\'' + this.dsoBenutzer.FilterTextbausteinArtCode + '\\''\n    } else {\n      this.strFilterTextbausteine = this.strFilterTextbausteine + 'TextbausteinArtCode ne null'\n    }\n\n    if (this.dsoBenutzer.FilterTitelUndText) {\n      var strFilterTitelUndText = this.dsoBenutzer.FilterTitelUndText.toLowerCase();\n\n      if (strFilterTitelUndText.indexOf('\"') == -1) {\n        // KEINE Anführungszeichen gefunden\n\n        // AND und Klammer öffnen\n        this.strFilterTextbausteine = this.strFilterTextbausteine + ' and ( ';\n\n        // Prüfen, ob die Wörter mit Plus verbunden sind\n        if (strFilterTitelUndText.indexOf('+') == -1) {\n            // KEIN Plus gefunden\n            var strFilterTitelUndTextSplit = strFilterTitelUndText.split(\" \");\n            \n            for (var i = 0; i < strFilterTitelUndTextSplit.length; i++) {\n              this.strFilterTextbausteine = this.strFilterTextbausteine + 'contains(tolower(TitelTextbaustein),\\'' + strFilterTitelUndTextSplit[i] + '\\') OR contains(tolower(UntertitelTextbaustein),\\'' + strFilterTitelUndTextSplit[i] + '\\') OR contains(tolower(TextbausteinHTML),\\'' + strFilterTitelUndTextSplit[i] + '\\') OR contains(tolower(InfoText),\\'' + strFilterTitelUndTextSplit[i] + '\\')';\n              this.strFilterTextbausteine = this.strFilterTextbausteine + ' OR ';\n            }\n\n            // Letztes OR entfernen\n            this.strFilterTextbausteine = this.strFilterTextbausteine.substring(0, this.strFilterTextbausteine.length - 4);\n        } else {\n            // Plus gefunden\n            var strFilterTitelUndTextSplit = strFilterTitelUndText.split(\"+\");\n\n            // ------- TitelTextbaustein -------\n            this.strFilterTextbausteine = this.strFilterTextbausteine + ' ( ';\n            for (var i = 0; i < strFilterTitelUndTextSplit.length; i++) {\n              this.strFilterTextbausteine = this.strFilterTextbausteine + 'contains(tolower(TitelTextbaustein),\\'' + strFilterTitelUndTextSplit[i] + '\\')';\n              this.strFilterTextbausteine = this.strFilterTextbausteine + ' AND ';\n            }\n            // Letztes AND entfernen\n            this.strFilterTextbausteine = this.strFilterTextbausteine.substring(0, this.strFilterTextbausteine.length - 5);\n            this.strFilterTextbausteine = this.strFilterTextbausteine + ' ) OR ';\n\n            // ------- UntertitelTextbaustein -------\n            this.strFilterTextbausteine = this.strFilterTextbausteine + ' ( ';\n            for (var i = 0; i < strFilterTitelUndTextSplit.length; i++) {\n              this.strFilterTextbausteine = this.strFilterTextbausteine + 'contains(tolower(UntertitelTextbaustein),\\'' + strFilterTitelUndTextSplit[i] + '\\')';\n              this.strFilterTextbausteine = this.strFilterTextbausteine + ' AND ';\n            }\n            // Letztes AND entfernen\n            this.strFilterTextbausteine = this.strFilterTextbausteine.substring(0, this.strFilterTextbausteine.length - 5);\n            this.strFilterTextbausteine = this.strFilterTextbausteine + ' ) OR ';\n\n            // ------- TextbausteinHTML -------\n            this.strFilterTextbausteine = this.strFilterTextbausteine + ' ( ';\n            for (var i = 0; i < strFilterTitelUndTextSplit.length; i++) {\n              this.strFilterTextbausteine = this.strFilterTextbausteine + 'contains(tolower(TextbausteinHTML),\\'' + strFilterTitelUndTextSplit[i] + '\\')';\n              this.strFilterTextbausteine = this.strFilterTextbausteine + ' AND ';\n            }\n            // Letztes AND entfernen\n            this.strFilterTextbausteine = this.strFilterTextbausteine.substring(0, this.strFilterTextbausteine.length - 5);\n            this.strFilterTextbausteine = this.strFilterTextbausteine + ' ) OR ';\n\n            // ------- InfoText -------\n            this.strFilterTextbausteine = this.strFilterTextbausteine + ' ( ';\n            for (var i = 0; i < strFilterTitelUndTextSplit.length; i++) {\n              this.strFilterTextbausteine = this.strFilterTextbausteine + 'contains(tolower(InfoText),\\'' + strFilterTitelUndTextSplit[i] + '\\')';\n              this.strFilterTextbausteine = this.strFilterTextbausteine + ' AND ';\n            }\n            // Letztes AND entfernen\n            this.strFilterTextbausteine = this.strFilterTextbausteine.substring(0, this.strFilterTextbausteine.length - 5);\n            this.strFilterTextbausteine = this.strFilterTextbausteine + ' ) ';\n          }\n\n        // Klammer schließen\n        this.strFilterTextbausteine = this.strFilterTextbausteine + ' ) ';\n      } else {\n        // Anführungszeichen gefunden\n        strFilterTitelUndText = strFilterTitelUndText.replace(/\"/g, '');\n        this.strFilterTextbausteine = this.strFilterTextbausteine + ' and ( contains(tolower(TitelTextbaustein),\\'' + strFilterTitelUndText + '\\') OR contains(tolower(UntertitelTextbaustein),\\'' + strFilterTitelUndText + '\\') OR contains(tolower(TextbausteinHTML),\\'' + strFilterTitelUndText + '\\') OR contains(tolower(InfoText),\\'' + strFilterTitelUndText + '\\') )';\n      }\n    }\n\n    if (this.dsoBenutzer.FilterKursNr) {\n      this.strFilterTextbausteine = this.strFilterTextbausteine + ' and KursNr eq ' + this.dsoBenutzer.FilterKursNr\n    }\n\n    if (this.dsoBenutzer.FilterAutorNr) {\n      this.strFilterTextbausteine = this.strFilterTextbausteine + ' and AutorNr eq ' + this.dsoBenutzer.FilterAutorNr\n    }\n\n    if (this.dsoBenutzer.FilterThemaNummer) {\n      this.strFilterTextbausteine = this.strFilterTextbausteine + ' and ThemaNummer eq ' + this.dsoBenutzer.FilterThemaNummer\n    }\n\n    if (this.dsoBenutzer.FilterAnrede) {\n      this.strFilterTextbausteine = this.strFilterTextbausteine + ' and Anrede eq \\'' + this.dsoBenutzer.FilterAnrede + '\\''\n    }\n\n    if (this.dsoBenutzer.FilterDokument == 'MitDokument') {\n      this.strFilterTextbausteine = this.strFilterTextbausteine + ' and length(DokumentTitel) gt 0'\n    }\n\n    if (this.dsoBenutzer.FilterDokument == 'OhneDokument') {\n      this.strFilterTextbausteine = this.strFilterTextbausteine + ' and length(DokumentTitel) eq null'\n    }",
                                     "type": "execute"
                                   },
                                   {
@@ -1407,6 +1406,26 @@
                                             "detail": "Text wurde kopiert",
                                             "severity": "success",
                                             "type": "notify"
+                                          },
+                                          {
+                                            "code": "var date = new Date();\n\nthis.dsoVerlauf.Am = new Date(Date.UTC(date.getFullYear(),\n                                         date.getMonth(),\n                                         date.getDate(),\n                                         date.getHours(),\n                                         date.getMinutes(),\n                                         date.getSeconds(),\n                                         date.getMilliseconds() ))\n\n${dsoVerlauf.BenutzerID} = ${dsoBenutzer.BenutzerID};\n${dsoVerlauf.TextbausteinNr} = ${dsoTextbausteine.TextbausteinNr};",
+                                            "type": "execute"
+                                          },
+                                          {
+                                            "name": "dbHopeKurseTextbausteine.createBenutzerTextbausteineVerlauf",
+                                            "parameters": [
+                                              {
+                                                "name": "BenutzerTextbausteineVerlauf",
+                                                "value": "${dsoVerlauf}"
+                                              }
+                                            ],
+                                            "then": [
+                                              {
+                                                "code": "this.gridVerlauf.load();",
+                                                "type": "execute"
+                                              }
+                                            ],
+                                            "type": "invoke"
                                           }
                                         ]
                                       },
@@ -3120,6 +3139,7 @@
       },
       {
         "code": "this.gridTextbausteinePapierkorb.load();",
+        "condition": "${security.user.isInRole('Administrator')}",
         "type": "execute"
       },
       {
@@ -3129,6 +3149,11 @@
       },
       {
         "name": "dsoFavoriten",
+        "type": "set",
+        "value": "{BenutzerID: '', Am: '', TextbausteinNr: ''}"
+      },
+      {
+        "name": "dsoVerlauf",
         "type": "set",
         "value": "{BenutzerID: '', Am: '', TextbausteinNr: ''}"
       },

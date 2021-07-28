@@ -89,7 +89,7 @@
                               "allowDelete": false,
                               "allowFiltering": true,
                               "allowMultiSorting": false,
-                              "allowPaging": true,
+                              "allowPaging": false,
                               "allowSorting": true,
                               "alwaysShowPager": false,
                               "applyFilterText": "Apply",
