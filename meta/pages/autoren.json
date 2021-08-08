@@ -337,7 +337,8 @@
                                       "name": "buttonNeu",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#D86E13"
+                                        "color": "#D86E13",
+                                        "display": "block"
                                       },
                                       "text": "Neuer Autor",
                                       "type": "button"
@@ -369,7 +370,8 @@
                                       "name": "buttonBearbeiten",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#598087",
+                                        "color": "#6A80AA",
+                                        "display": "block",
                                         "marginLeft": "10px",
                                         "paddingLeft": ""
                                       },
@@ -433,7 +435,8 @@
                                       "name": "buttonLoeschen",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#598087",
+                                        "color": "#6A80AA",
+                                        "display": "block",
                                         "fontWeight": "normal",
                                         "marginLeft": "10px",
                                         "marginRight": "-9px",

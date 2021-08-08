@@ -392,7 +392,8 @@
                                       "name": "buttonBearbeiten",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#598087",
+                                        "color": "#6A80AA",
+                                        "display": "block",
                                         "marginLeft": "10px",
                                         "paddingLeft": ""
                                       },
@@ -456,7 +457,8 @@
                                       "name": "buttonLoeschen",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#598087",
+                                        "color": "#6A80AA",
+                                        "display": "block",
                                         "fontWeight": "normal",
                                         "marginLeft": "10px",
                                         "marginRight": "-9px",
@@ -1253,7 +1255,7 @@
                                       "name": "button4",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#598087",
+                                        "color": "#5dbf74",
                                         "display": "block",
                                         "marginRight": "-9px"
                                       },
@@ -1700,7 +1702,7 @@
                                       "name": "buttonBildEntfernen",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#598087",
+                                        "color": "#6A80AA",
                                         "display": "block",
                                         "marginRight": "-9px"
                                       },

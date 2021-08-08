@@ -849,7 +849,7 @@ if (this.rstFavoriten.find(p => p.TextbausteinNr == this.letzteTextbausteinNrFav
   }
 
   gridVerlaufLoadData(event: any) {
-    this.dbHopeKurseTextbausteine.getVwBenutzerTextbausteineVerlaufs(`Benutzername eq '${this.security.user.name}'`, event.top, event.skip, null, event.top != null && event.skip != null, null, null, null)
+    this.dbHopeKurseTextbausteine.getVwBenutzerTextbausteineVerlaufs(`Benutzername eq '${this.security.user.name}'`, event.top, event.skip, `Am desc`, event.top != null && event.skip != null, null, null, null)
     .subscribe((result: any) => {
       this.rstVerlauf = result.value;
 

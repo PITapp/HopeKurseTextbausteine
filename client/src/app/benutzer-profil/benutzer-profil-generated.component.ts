@@ -241,6 +241,8 @@ this.dsoBase.BildURL = 'https://hopekurse-textbausteine.app/upload/bilder/base/'
     });
 
     this.notificationService.notify({ severity: "success", summary: `Bild`, detail: `Erfolgreich hochgeladen!` });
+
+    window.location.reload();
   }
 
   buttonBildEntfernenClick(event: any) {

@@ -23,13 +23,13 @@ namespace RadzenAngularFileUpload.Controllers
         }
 
         [HttpPost("upload/single")]
-        public ActionResult Single(IFormFile file)
+        public async Task<ActionResult> SingleAsync(IFormFile file)
         {
             try
             {
                 // Console.WriteLine("datei: " + file);
 
-                UploadFile(file);
+                await UploadFile(file);
                 return StatusCode(200);
             }
             catch (Exception ex)
@@ -39,13 +39,13 @@ namespace RadzenAngularFileUpload.Controllers
         }
 
         [HttpPost("upload/bild/base/{zielName}")]
-        public ActionResult Single2(IFormFile file, string zielName)
+        public async Task<ActionResult> Single2Async(IFormFile file, string zielName)
         {
             try
             {
                 // Console.WriteLine("datei: " + file);
 
-                UploadFileBilderBase(file, zielName);
+                await UploadFileBilderBase(file, zielName);
                 return StatusCode(200);
             }
             catch (Exception ex)
@@ -55,13 +55,13 @@ namespace RadzenAngularFileUpload.Controllers
         }
 
         [HttpPost("upload/dokumente/{zielName}")]
-        public ActionResult Single3(IFormFile file, string zielName)
+        public async Task<ActionResult> Single3Async(IFormFile file, string zielName)
         {
             try
             {
                 // Console.WriteLine("datei: " + file);
 
-                UploadFileDokumente(file, zielName);
+                await UploadFileDokumente(file, zielName);
                 return StatusCode(200);
             }
             catch (Exception ex)
@@ -71,7 +71,7 @@ namespace RadzenAngularFileUpload.Controllers
         }
 
         [HttpPost("upload/multiple")]
-        public IActionResult Multiple(IFormFile[] files)
+        public async Task<IActionResult> MultipleAsync(IFormFile[] files)
         {
             try
             {
@@ -79,7 +79,7 @@ namespace RadzenAngularFileUpload.Controllers
                 {
                     // Console.WriteLine("datei: " + item);
 
-                    UploadFile(file);
+                    await UploadFile(file);
                 }
                 return StatusCode(200);
             }

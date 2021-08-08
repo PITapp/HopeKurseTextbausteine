@@ -300,7 +300,8 @@
                                       "name": "buttonBearbeitenInfotext",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#598087",
+                                        "color": "#6A80AA",
+                                        "display": "block",
                                         "marginLeft": "10px",
                                         "paddingLeft": ""
                                       },
@@ -364,7 +365,8 @@
                                       "name": "buttonLoeschenInfotext",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#598087",
+                                        "color": "#6A80AA",
+                                        "display": "block",
                                         "fontStyle": "normal",
                                         "fontWeight": "normal",
                                         "marginLeft": "10px",
@@ -455,7 +457,7 @@
                                       "size": "sm",
                                       "style": {
                                         "color": "#D86E13",
-                                        "display": "inline-block",
+                                        "display": "block",
                                         "float": "none"
                                       },
                                       "text": "Kopieren",
@@ -490,7 +492,7 @@
                                       "name": "buttonBearbeitenInfotextEditor",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#598087",
+                                        "color": "#6A80AA",
                                         "display": "block",
                                         "marginLeft": "10px",
                                         "marginRight": "-9px",

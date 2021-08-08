@@ -730,7 +730,7 @@
                                       "name": "button4",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#598087",
+                                        "color": "#5dbf74",
                                         "display": "block",
                                         "marginRight": "-9px"
                                       },
@@ -844,6 +844,10 @@
                                             "severity": "success",
                                             "summary": "Bild",
                                             "type": "notify"
+                                          },
+                                          {
+                                            "code": "window.location.reload();",
+                                            "type": "execute"
                                           }
                                         ]
                                       },
@@ -934,7 +938,7 @@
                                       "name": "buttonBildEntfernen",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#598087",
+                                        "color": "#6A80AA",
                                         "display": "block",
                                         "marginRight": "-9px"
                                       },

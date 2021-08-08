@@ -64,7 +64,7 @@
                               "size": "sm",
                               "style": {
                                 "color": "#D86E13",
-                                "display": "inline-block",
+                                "display": "block",
                                 "float": "none",
                                 "marginRight": "-9px",
                                 "marginTop": "1px"

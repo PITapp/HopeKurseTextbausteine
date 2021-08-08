@@ -755,7 +755,7 @@
                                       "name": "buttonFilterLoeschen",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#598087",
+                                        "color": "#6A80AA",
                                         "display": "block",
                                         "fontWeight": "normal",
                                         "marginLeft": "10px",
@@ -1157,7 +1157,8 @@
                                       "name": "buttonBearbeiten",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#598087",
+                                        "color": "#6A80AA",
+                                        "display": "block",
                                         "marginLeft": "10px",
                                         "paddingLeft": ""
                                       },
@@ -1238,7 +1239,8 @@
                                       "name": "buttonLoeschen",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#598087",
+                                        "color": "#6A80AA",
+                                        "display": "block",
                                         "fontWeight": "normal",
                                         "marginLeft": "10px",
                                         "marginRight": "-9px",
@@ -1336,7 +1338,7 @@
                                       "size": "sm",
                                       "style": {
                                         "color": "#D86E13",
-                                        "display": "inline-block"
+                                        "display": "block"
                                       },
                                       "text": "Dokument",
                                       "tooltip": "",
@@ -1387,7 +1389,7 @@
                                       "size": "sm",
                                       "style": {
                                         "color": "#D86E13",
-                                        "display": "inline-block",
+                                        "display": "block",
                                         "marginLeft": "10px"
                                       },
                                       "text": "Favorit",
@@ -1480,7 +1482,7 @@
                                       "name": "button11",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#598087",
+                                        "color": "#6A80AA",
                                         "display": "block",
                                         "marginLeft": "10px",
                                         "marginRight": "-9px",
@@ -1805,7 +1807,8 @@
                                       "name": "buttonFavoritEntfernen",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#598087",
+                                        "color": "#6A80AA",
+                                        "display": "block",
                                         "fontWeight": "normal",
                                         "marginLeft": "10px",
                                         "marginRight": "-9px",
@@ -1901,7 +1904,7 @@
                                       "size": "sm",
                                       "style": {
                                         "color": "#D86E13",
-                                        "display": "inline-block"
+                                        "display": "block"
                                       },
                                       "text": "Dokument",
                                       "tooltip": "",
@@ -1969,7 +1972,7 @@
                                       "name": "button8",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#598087",
+                                        "color": "#6A80AA",
                                         "display": "block",
                                         "marginLeft": "10px",
                                         "marginRight": "-9px",
@@ -2126,6 +2129,10 @@
                                             "value": "Benutzername eq '${security.user.name}'"
                                           }
                                         ]
+                                      },
+                                      {
+                                        "name": "$orderby",
+                                        "value": "Am desc"
                                       }
                                     ],
                                     "then": [
@@ -2298,7 +2305,8 @@
                                       "name": "buttonVerlaufEntfernen",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#598087",
+                                        "color": "#6A80AA",
+                                        "display": "block",
                                         "fontWeight": "normal",
                                         "marginLeft": "10px",
                                         "marginRight": "-9px",
@@ -2394,7 +2402,7 @@
                                       "size": "sm",
                                       "style": {
                                         "color": "#D86E13",
-                                        "display": "inline-block"
+                                        "display": "block"
                                       },
                                       "text": "Dokument",
                                       "tooltip": "",
@@ -2462,7 +2470,7 @@
                                       "name": "button5",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#598087",
+                                        "color": "#6A80AA",
                                         "display": "block",
                                         "marginLeft": "10px",
                                         "marginRight": "-9px",
@@ -2735,7 +2743,8 @@
                                       "name": "buttonPapierkorbBearbeiten",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#598087",
+                                        "color": "#6A80AA",
+                                        "display": "block",
                                         "paddingLeft": ""
                                       },
                                       "text": "",
@@ -2797,7 +2806,8 @@
                                       "name": "buttonPapierkorbLoeschen",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#598087",
+                                        "color": "#6A80AA",
+                                        "display": "block",
                                         "fontWeight": "normal",
                                         "marginLeft": "10px",
                                         "marginRight": "-9px",
@@ -2893,7 +2903,7 @@
                                       "size": "sm",
                                       "style": {
                                         "color": "#D86E13",
-                                        "display": "inline-block"
+                                        "display": "block"
                                       },
                                       "text": "Dokument",
                                       "tooltip": "",
@@ -2961,7 +2971,7 @@
                                       "name": "buttonBearbeitenPapierkorbEditor",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#598087",
+                                        "color": "#6A80AA",
                                         "display": "block",
                                         "marginLeft": "10px",
                                         "marginRight": "-9px",

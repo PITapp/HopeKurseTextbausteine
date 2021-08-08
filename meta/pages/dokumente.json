@@ -307,7 +307,8 @@
                                       "name": "buttonDokumenteBearbeiten",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#598087",
+                                        "color": "#6A80AA",
+                                        "display": "block",
                                         "paddingLeft": ""
                                       },
                                       "text": "",
@@ -383,7 +384,8 @@
                                       "name": "buttonDokumenteLoeschen",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#598087",
+                                        "color": "#6A80AA",
+                                        "display": "block",
                                         "fontWeight": "normal",
                                         "marginLeft": "10px",
                                         "marginRight": "-9px",
@@ -539,7 +541,7 @@
                                       "name": "buttonBearbeitenEditor",
                                       "size": "sm",
                                       "style": {
-                                        "color": "#598087",
+                                        "color": "#6A80AA",
                                         "display": "block",
                                         "marginLeft": "10px",
                                         "marginRight": "-9px",
