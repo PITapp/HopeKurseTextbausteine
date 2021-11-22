@@ -35,6 +35,7 @@
                             "value": "${event.password}"
                           }
                         ],
+                        "then": [],
                         "type": "invoke"
                       }
                     ],

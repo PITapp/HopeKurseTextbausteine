@@ -8,17 +8,6 @@ alternativ Schaltfläche: background-color: #fa7d19;
 
 # Whitesmoke: f5f5f5
 
-# Quill Editor einbinden
-https://www.primefaces.org/primeng/showcase/#/editor
-
-- npm install quill --save
-
-import * as Quill from 'quill/dist/quill';
-(<any>window).Quill = Quill;
-import { EditorModule } from 'primeng/editor';
-
-
-
 # push an existing repository from the command line
 git remote add origin https://github.com/PITapp/HopeKurseTextbausteine.git
 git branch -M main

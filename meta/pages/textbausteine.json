@@ -1000,6 +1000,7 @@
                                   "components": [
                                     {
                                       "buttonStyle": "light",
+                                      "disabled": "",
                                       "events": {
                                         "click": [
                                           {
@@ -1065,6 +1066,7 @@
                                     },
                                     {
                                       "buttonStyle": "light",
+                                      "disabled": false,
                                       "events": {
                                         "click": [
                                           {

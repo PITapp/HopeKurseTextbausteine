@@ -126,7 +126,7 @@
                 <div class="col-md-12 align-items-start d-flex">
                   <rz-button #buttonNeu buttonStyle="light" icon="add" size="sm" [style]="{'color': '#D86E13', 'display': 'block'}" text="Neu" (click)="buttonNeuClick($event)">
                   </rz-button>
-                  <rz-button #buttonDuplizieren buttonStyle="light" icon="control_point_duplicate" size="sm" [style]="{'color': '#D86E13', 'display': 'block', 'marginLeft': '10px'}" text="Duplizieren" (click)="buttonDuplizierenClick($event)">
+                  <rz-button #buttonDuplizieren buttonStyle="light" [disabled]="false" icon="control_point_duplicate" size="sm" [style]="{'color': '#D86E13', 'display': 'block', 'marginLeft': '10px'}" text="Duplizieren" (click)="buttonDuplizierenClick($event)">
                   </rz-button>
                   <rz-button #buttonBearbeiten buttonStyle="light" icon="create" size="sm" [style]="{'color': '#6A80AA', 'display': 'block', 'marginLeft': '10px', 'paddingLeft': ''}" tooltip="Bearbeiten Textbaustein" (click)="buttonBearbeitenClick($event)">
                   </rz-button>

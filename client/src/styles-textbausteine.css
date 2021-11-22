@@ -350,3 +350,8 @@ input:focus, textarea:focus {
   border-color: #6A80AA;
   background: #6A80AA;
 }
+
+/* --- Abrundungen für Tab-Rahmen einstellen (sonst war er rechts oben ohne Abrundung) --- */
+.ui-tabview-panels {
+  border-radius: 0 4px 4px 4px;
+}
