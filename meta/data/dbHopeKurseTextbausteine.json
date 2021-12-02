@@ -722,11 +722,11 @@
         },
         "TitelTextbaustein": {
           "type": "string",
-          "length": 100
+          "length": 150
         },
         "UntertitelTextbaustein": {
           "type": "string",
-          "length": 100
+          "length": 150
         },
         "Land": {
           "type": "string",
@@ -1279,11 +1279,11 @@
         },
         "TitelTextbaustein": {
           "type": "string",
-          "length": 100
+          "length": 150
         },
         "UntertitelTextbaustein": {
           "type": "string",
-          "length": 100
+          "length": 150
         },
         "TextbausteinArtCode": {
           "x-nullable": false,
@@ -1397,11 +1397,11 @@
         },
         "TitelTextbaustein": {
           "type": "string",
-          "length": 100
+          "length": 150
         },
         "UntertitelTextbaustein": {
           "type": "string",
-          "length": 100
+          "length": 150
         },
         "TextbausteinArtCode": {
           "x-nullable": false,
